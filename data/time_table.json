@@ -1,3430 +1,4560 @@
 {
-  "1조": [
+  "2025-08-01": [
     {
-      "date": "2025-08-01",
-      "shift": "O",
-      "members": [
+      "shift": "D",
+      "teams": [
         {
-          "staff_id": "101",
-          "name": "이보은"
+          "팀명": "1조",
+          "members": [
+            {
+              "staff_id": "101",
+              "이름": "이보은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "102",
+              "이름": "박주영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "103",
+              "이름": "최정환",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "104",
+              "이름": "문재윤",
+              "직급": "junior"
+            }
+          ]
         },
         {
-          "staff_id": "102",
-          "name": "박주영"
-        },
-        {
-          "staff_id": "103",
-          "name": "최정환"
-        },
-        {
-          "staff_id": "104",
-          "name": "문재윤"
+          "팀명": "2조",
+          "members": [
+            {
+              "staff_id": "105",
+              "이름": "선서현",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "106",
+              "이름": "박경태",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "107",
+              "이름": "유희라",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "108",
+              "이름": "김유범",
+              "직급": "junior"
+            }
+          ]
         }
       ]
     },
     {
-      "date": "2025-08-02",
-      "shift": "N",
-      "members": [
-        {
-          "staff_id": "101",
-          "name": "이보은"
-        },
-        {
-          "staff_id": "102",
-          "name": "박주영"
-        },
-        {
-          "staff_id": "103",
-          "name": "최정환"
-        },
-        {
-          "staff_id": "104",
-          "name": "문재윤"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-03",
-      "shift": "O",
-      "members": [
-        {
-          "staff_id": "101",
-          "name": "이보은"
-        },
-        {
-          "staff_id": "102",
-          "name": "박주영"
-        },
-        {
-          "staff_id": "103",
-          "name": "최정환"
-        },
-        {
-          "staff_id": "104",
-          "name": "문재윤"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-04",
       "shift": "E",
-      "members": [
+      "teams": [
         {
-          "staff_id": "101",
-          "name": "이보은"
-        },
-        {
-          "staff_id": "102",
-          "name": "박주영"
-        },
-        {
-          "staff_id": "103",
-          "name": "최정환"
-        },
-        {
-          "staff_id": "104",
-          "name": "문재윤"
+          "팀명": "4조",
+          "members": [
+            {
+              "staff_id": "114",
+              "이름": "오장관",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "115",
+              "이름": "윤진영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "116",
+              "이름": "한경식",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "117",
+              "이름": "한현희",
+              "직급": "junior"
+            }
+          ]
         }
       ]
     },
     {
-      "date": "2025-08-05",
       "shift": "N",
-      "members": [
+      "teams": [
         {
-          "staff_id": "101",
-          "name": "이보은"
-        },
-        {
-          "staff_id": "102",
-          "name": "박주영"
-        },
-        {
-          "staff_id": "103",
-          "name": "최정환"
-        },
-        {
-          "staff_id": "104",
-          "name": "문재윤"
+          "팀명": "5조",
+          "members": [
+            {
+              "staff_id": "118",
+              "이름": "정종옥",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "119",
+              "이름": "양성규",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "120",
+              "이름": "김화백",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "121",
+              "이름": "이병희",
+              "직급": "junior"
+            }
+          ]
         }
       ]
     },
     {
-      "date": "2025-08-06",
       "shift": "O",
-      "members": [
-        {
-          "staff_id": "101",
-          "name": "이보은"
-        },
-        {
-          "staff_id": "102",
-          "name": "박주영"
-        },
-        {
-          "staff_id": "103",
-          "name": "최정환"
-        },
-        {
-          "staff_id": "104",
-          "name": "문재윤"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-07",
-      "shift": "D",
-      "members": [
-        {
-          "staff_id": "101",
-          "name": "이보은"
-        },
-        {
-          "staff_id": "102",
-          "name": "박주영"
-        },
-        {
-          "staff_id": "103",
-          "name": "최정환"
-        },
-        {
-          "staff_id": "104",
-          "name": "문재윤"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-08",
-      "shift": "E",
-      "members": [
-        {
-          "staff_id": "101",
-          "name": "이보은"
-        },
-        {
-          "staff_id": "102",
-          "name": "박주영"
-        },
-        {
-          "staff_id": "103",
-          "name": "최정환"
-        },
-        {
-          "staff_id": "104",
-          "name": "문재윤"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-09",
-      "shift": "N",
-      "members": [
-        {
-          "staff_id": "101",
-          "name": "이보은"
-        },
-        {
-          "staff_id": "102",
-          "name": "박주영"
-        },
-        {
-          "staff_id": "103",
-          "name": "최정환"
-        },
-        {
-          "staff_id": "104",
-          "name": "문재윤"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-10",
-      "shift": "O",
-      "members": [
-        {
-          "staff_id": "101",
-          "name": "이보은"
-        },
-        {
-          "staff_id": "102",
-          "name": "박주영"
-        },
-        {
-          "staff_id": "103",
-          "name": "최정환"
-        },
-        {
-          "staff_id": "104",
-          "name": "문재윤"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-11",
-      "shift": "E",
-      "members": [
-        {
-          "staff_id": "101",
-          "name": "이보은"
-        },
-        {
-          "staff_id": "102",
-          "name": "박주영"
-        },
-        {
-          "staff_id": "103",
-          "name": "최정환"
-        },
-        {
-          "staff_id": "104",
-          "name": "문재윤"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-12",
-      "shift": "O",
-      "members": [
-        {
-          "staff_id": "101",
-          "name": "이보은"
-        },
-        {
-          "staff_id": "102",
-          "name": "박주영"
-        },
-        {
-          "staff_id": "103",
-          "name": "최정환"
-        },
-        {
-          "staff_id": "104",
-          "name": "문재윤"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-13",
-      "shift": "D",
-      "members": [
-        {
-          "staff_id": "101",
-          "name": "이보은"
-        },
-        {
-          "staff_id": "102",
-          "name": "박주영"
-        },
-        {
-          "staff_id": "103",
-          "name": "최정환"
-        },
-        {
-          "staff_id": "104",
-          "name": "문재윤"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-14",
-      "shift": "D",
-      "members": [
-        {
-          "staff_id": "101",
-          "name": "이보은"
-        },
-        {
-          "staff_id": "102",
-          "name": "박주영"
-        },
-        {
-          "staff_id": "103",
-          "name": "최정환"
-        },
-        {
-          "staff_id": "104",
-          "name": "문재윤"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-15",
-      "shift": "E",
-      "members": [
-        {
-          "staff_id": "101",
-          "name": "이보은"
-        },
-        {
-          "staff_id": "102",
-          "name": "박주영"
-        },
-        {
-          "staff_id": "103",
-          "name": "최정환"
-        },
-        {
-          "staff_id": "104",
-          "name": "문재윤"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-16",
-      "shift": "D",
-      "members": [
-        {
-          "staff_id": "101",
-          "name": "이보은"
-        },
-        {
-          "staff_id": "102",
-          "name": "박주영"
-        },
-        {
-          "staff_id": "103",
-          "name": "최정환"
-        },
-        {
-          "staff_id": "104",
-          "name": "문재윤"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-17",
-      "shift": "N",
-      "members": [
-        {
-          "staff_id": "101",
-          "name": "이보은"
-        },
-        {
-          "staff_id": "102",
-          "name": "박주영"
-        },
-        {
-          "staff_id": "103",
-          "name": "최정환"
-        },
-        {
-          "staff_id": "104",
-          "name": "문재윤"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-18",
-      "shift": "O",
-      "members": [
-        {
-          "staff_id": "101",
-          "name": "이보은"
-        },
-        {
-          "staff_id": "102",
-          "name": "박주영"
-        },
-        {
-          "staff_id": "103",
-          "name": "최정환"
-        },
-        {
-          "staff_id": "104",
-          "name": "문재윤"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-19",
-      "shift": "N",
-      "members": [
-        {
-          "staff_id": "101",
-          "name": "이보은"
-        },
-        {
-          "staff_id": "102",
-          "name": "박주영"
-        },
-        {
-          "staff_id": "103",
-          "name": "최정환"
-        },
-        {
-          "staff_id": "104",
-          "name": "문재윤"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-20",
-      "shift": "O",
-      "members": [
-        {
-          "staff_id": "101",
-          "name": "이보은"
-        },
-        {
-          "staff_id": "102",
-          "name": "박주영"
-        },
-        {
-          "staff_id": "103",
-          "name": "최정환"
-        },
-        {
-          "staff_id": "104",
-          "name": "문재윤"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-21",
-      "shift": "E",
-      "members": [
-        {
-          "staff_id": "101",
-          "name": "이보은"
-        },
-        {
-          "staff_id": "102",
-          "name": "박주영"
-        },
-        {
-          "staff_id": "103",
-          "name": "최정환"
-        },
-        {
-          "staff_id": "104",
-          "name": "문재윤"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-22",
-      "shift": "N",
-      "members": [
-        {
-          "staff_id": "101",
-          "name": "이보은"
-        },
-        {
-          "staff_id": "102",
-          "name": "박주영"
-        },
-        {
-          "staff_id": "103",
-          "name": "최정환"
-        },
-        {
-          "staff_id": "104",
-          "name": "문재윤"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-23",
-      "shift": "O",
-      "members": [
-        {
-          "staff_id": "101",
-          "name": "이보은"
-        },
-        {
-          "staff_id": "102",
-          "name": "박주영"
-        },
-        {
-          "staff_id": "103",
-          "name": "최정환"
-        },
-        {
-          "staff_id": "104",
-          "name": "문재윤"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-24",
-      "shift": "D",
-      "members": [
-        {
-          "staff_id": "101",
-          "name": "이보은"
-        },
-        {
-          "staff_id": "102",
-          "name": "박주영"
-        },
-        {
-          "staff_id": "103",
-          "name": "최정환"
-        },
-        {
-          "staff_id": "104",
-          "name": "문재윤"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-25",
-      "shift": "E",
-      "members": [
-        {
-          "staff_id": "101",
-          "name": "이보은"
-        },
-        {
-          "staff_id": "102",
-          "name": "박주영"
-        },
-        {
-          "staff_id": "103",
-          "name": "최정환"
-        },
-        {
-          "staff_id": "104",
-          "name": "문재윤"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-26",
-      "shift": "D",
-      "members": [
-        {
-          "staff_id": "101",
-          "name": "이보은"
-        },
-        {
-          "staff_id": "102",
-          "name": "박주영"
-        },
-        {
-          "staff_id": "103",
-          "name": "최정환"
-        },
-        {
-          "staff_id": "104",
-          "name": "문재윤"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-27",
-      "shift": "O",
-      "members": [
-        {
-          "staff_id": "101",
-          "name": "이보은"
-        },
-        {
-          "staff_id": "102",
-          "name": "박주영"
-        },
-        {
-          "staff_id": "103",
-          "name": "최정환"
-        },
-        {
-          "staff_id": "104",
-          "name": "문재윤"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-28",
-      "shift": "D",
-      "members": [
-        {
-          "staff_id": "101",
-          "name": "이보은"
-        },
-        {
-          "staff_id": "102",
-          "name": "박주영"
-        },
-        {
-          "staff_id": "103",
-          "name": "최정환"
-        },
-        {
-          "staff_id": "104",
-          "name": "문재윤"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-29",
-      "shift": "D",
-      "members": [
-        {
-          "staff_id": "101",
-          "name": "이보은"
-        },
-        {
-          "staff_id": "102",
-          "name": "박주영"
-        },
-        {
-          "staff_id": "103",
-          "name": "최정환"
-        },
-        {
-          "staff_id": "104",
-          "name": "문재윤"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-30",
-      "shift": "D",
-      "members": [
-        {
-          "staff_id": "101",
-          "name": "이보은"
-        },
-        {
-          "staff_id": "102",
-          "name": "박주영"
-        },
-        {
-          "staff_id": "103",
-          "name": "최정환"
-        },
-        {
-          "staff_id": "104",
-          "name": "문재윤"
+      "teams": [
+        {
+          "팀명": "3조",
+          "members": [
+            {
+              "staff_id": "109",
+              "이름": "박서은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "110",
+              "이름": "김대업",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "111",
+              "이름": "유예솜",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "112",
+              "이름": "고준영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "113",
+              "이름": "하진영",
+              "직급": "junior"
+            }
+          ]
         }
       ]
     }
   ],
-  "2조": [
+  "2025-08-02": [
     {
-      "date": "2025-08-01",
-      "shift": "O",
-      "members": [
-        {
-          "staff_id": "105",
-          "name": "선서현"
-        },
-        {
-          "staff_id": "106",
-          "name": "박경태"
-        },
-        {
-          "staff_id": "107",
-          "name": "유희라"
-        },
-        {
-          "staff_id": "108",
-          "name": "김유범"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-02",
-      "shift": "O",
-      "members": [
-        {
-          "staff_id": "105",
-          "name": "선서현"
-        },
-        {
-          "staff_id": "106",
-          "name": "박경태"
-        },
-        {
-          "staff_id": "107",
-          "name": "유희라"
-        },
-        {
-          "staff_id": "108",
-          "name": "김유범"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-03",
-      "shift": "N",
-      "members": [
-        {
-          "staff_id": "105",
-          "name": "선서현"
-        },
-        {
-          "staff_id": "106",
-          "name": "박경태"
-        },
-        {
-          "staff_id": "107",
-          "name": "유희라"
-        },
-        {
-          "staff_id": "108",
-          "name": "김유범"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-04",
-      "shift": "O",
-      "members": [
-        {
-          "staff_id": "105",
-          "name": "선서현"
-        },
-        {
-          "staff_id": "106",
-          "name": "박경태"
-        },
-        {
-          "staff_id": "107",
-          "name": "유희라"
-        },
-        {
-          "staff_id": "108",
-          "name": "김유범"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-05",
-      "shift": "O",
-      "members": [
-        {
-          "staff_id": "105",
-          "name": "선서현"
-        },
-        {
-          "staff_id": "106",
-          "name": "박경태"
-        },
-        {
-          "staff_id": "107",
-          "name": "유희라"
-        },
-        {
-          "staff_id": "108",
-          "name": "김유범"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-06",
       "shift": "D",
-      "members": [
+      "teams": [
         {
-          "staff_id": "105",
-          "name": "선서현"
-        },
-        {
-          "staff_id": "106",
-          "name": "박경태"
-        },
-        {
-          "staff_id": "107",
-          "name": "유희라"
-        },
-        {
-          "staff_id": "108",
-          "name": "김유범"
+          "팀명": "3조",
+          "members": [
+            {
+              "staff_id": "109",
+              "이름": "박서은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "110",
+              "이름": "김대업",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "111",
+              "이름": "유예솜",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "112",
+              "이름": "고준영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "113",
+              "이름": "하진영",
+              "직급": "junior"
+            }
+          ]
         }
       ]
     },
     {
-      "date": "2025-08-07",
       "shift": "E",
-      "members": [
+      "teams": [
         {
-          "staff_id": "105",
-          "name": "선서현"
-        },
-        {
-          "staff_id": "106",
-          "name": "박경태"
-        },
-        {
-          "staff_id": "107",
-          "name": "유희라"
-        },
-        {
-          "staff_id": "108",
-          "name": "김유범"
+          "팀명": "2조",
+          "members": [
+            {
+              "staff_id": "105",
+              "이름": "선서현",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "106",
+              "이름": "박경태",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "107",
+              "이름": "유희라",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "108",
+              "이름": "김유범",
+              "직급": "junior"
+            }
+          ]
         }
       ]
     },
     {
-      "date": "2025-08-08",
       "shift": "N",
-      "members": [
+      "teams": [
         {
-          "staff_id": "105",
-          "name": "선서현"
-        },
-        {
-          "staff_id": "106",
-          "name": "박경태"
-        },
-        {
-          "staff_id": "107",
-          "name": "유희라"
-        },
-        {
-          "staff_id": "108",
-          "name": "김유범"
+          "팀명": "4조",
+          "members": [
+            {
+              "staff_id": "114",
+              "이름": "오장관",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "115",
+              "이름": "윤진영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "116",
+              "이름": "한경식",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "117",
+              "이름": "한현희",
+              "직급": "junior"
+            }
+          ]
         }
       ]
     },
     {
-      "date": "2025-08-09",
       "shift": "O",
-      "members": [
-        {
-          "staff_id": "105",
-          "name": "선서현"
-        },
-        {
-          "staff_id": "106",
-          "name": "박경태"
-        },
-        {
-          "staff_id": "107",
-          "name": "유희라"
-        },
-        {
-          "staff_id": "108",
-          "name": "김유범"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-10",
-      "shift": "E",
-      "members": [
-        {
-          "staff_id": "105",
-          "name": "선서현"
-        },
-        {
-          "staff_id": "106",
-          "name": "박경태"
-        },
-        {
-          "staff_id": "107",
-          "name": "유희라"
-        },
-        {
-          "staff_id": "108",
-          "name": "김유범"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-11",
-      "shift": "N",
-      "members": [
-        {
-          "staff_id": "105",
-          "name": "선서현"
-        },
-        {
-          "staff_id": "106",
-          "name": "박경태"
-        },
-        {
-          "staff_id": "107",
-          "name": "유희라"
-        },
-        {
-          "staff_id": "108",
-          "name": "김유범"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-12",
-      "shift": "O",
-      "members": [
-        {
-          "staff_id": "105",
-          "name": "선서현"
-        },
-        {
-          "staff_id": "106",
-          "name": "박경태"
-        },
-        {
-          "staff_id": "107",
-          "name": "유희라"
-        },
-        {
-          "staff_id": "108",
-          "name": "김유범"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-13",
-      "shift": "E",
-      "members": [
-        {
-          "staff_id": "105",
-          "name": "선서현"
-        },
-        {
-          "staff_id": "106",
-          "name": "박경태"
-        },
-        {
-          "staff_id": "107",
-          "name": "유희라"
-        },
-        {
-          "staff_id": "108",
-          "name": "김유범"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-14",
-      "shift": "E",
-      "members": [
-        {
-          "staff_id": "105",
-          "name": "선서현"
-        },
-        {
-          "staff_id": "106",
-          "name": "박경태"
-        },
-        {
-          "staff_id": "107",
-          "name": "유희라"
-        },
-        {
-          "staff_id": "108",
-          "name": "김유범"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-15",
-      "shift": "N",
-      "members": [
-        {
-          "staff_id": "105",
-          "name": "선서현"
-        },
-        {
-          "staff_id": "106",
-          "name": "박경태"
-        },
-        {
-          "staff_id": "107",
-          "name": "유희라"
-        },
-        {
-          "staff_id": "108",
-          "name": "김유범"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-16",
-      "shift": "O",
-      "members": [
-        {
-          "staff_id": "105",
-          "name": "선서현"
-        },
-        {
-          "staff_id": "106",
-          "name": "박경태"
-        },
-        {
-          "staff_id": "107",
-          "name": "유희라"
-        },
-        {
-          "staff_id": "108",
-          "name": "김유범"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-17",
-      "shift": "O",
-      "members": [
-        {
-          "staff_id": "105",
-          "name": "선서현"
-        },
-        {
-          "staff_id": "106",
-          "name": "박경태"
-        },
-        {
-          "staff_id": "107",
-          "name": "유희라"
-        },
-        {
-          "staff_id": "108",
-          "name": "김유범"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-18",
-      "shift": "E",
-      "members": [
-        {
-          "staff_id": "105",
-          "name": "선서현"
-        },
-        {
-          "staff_id": "106",
-          "name": "박경태"
-        },
-        {
-          "staff_id": "107",
-          "name": "유희라"
-        },
-        {
-          "staff_id": "108",
-          "name": "김유범"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-19",
-      "shift": "E",
-      "members": [
-        {
-          "staff_id": "105",
-          "name": "선서현"
-        },
-        {
-          "staff_id": "106",
-          "name": "박경태"
-        },
-        {
-          "staff_id": "107",
-          "name": "유희라"
-        },
-        {
-          "staff_id": "108",
-          "name": "김유범"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-20",
-      "shift": "O",
-      "members": [
-        {
-          "staff_id": "105",
-          "name": "선서현"
-        },
-        {
-          "staff_id": "106",
-          "name": "박경태"
-        },
-        {
-          "staff_id": "107",
-          "name": "유희라"
-        },
-        {
-          "staff_id": "108",
-          "name": "김유범"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-21",
-      "shift": "O",
-      "members": [
-        {
-          "staff_id": "105",
-          "name": "선서현"
-        },
-        {
-          "staff_id": "106",
-          "name": "박경태"
-        },
-        {
-          "staff_id": "107",
-          "name": "유희라"
-        },
-        {
-          "staff_id": "108",
-          "name": "김유범"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-22",
-      "shift": "D",
-      "members": [
-        {
-          "staff_id": "105",
-          "name": "선서현"
-        },
-        {
-          "staff_id": "106",
-          "name": "박경태"
-        },
-        {
-          "staff_id": "107",
-          "name": "유희라"
-        },
-        {
-          "staff_id": "108",
-          "name": "김유범"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-23",
-      "shift": "N",
-      "members": [
-        {
-          "staff_id": "105",
-          "name": "선서현"
-        },
-        {
-          "staff_id": "106",
-          "name": "박경태"
-        },
-        {
-          "staff_id": "107",
-          "name": "유희라"
-        },
-        {
-          "staff_id": "108",
-          "name": "김유범"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-24",
-      "shift": "O",
-      "members": [
-        {
-          "staff_id": "105",
-          "name": "선서현"
-        },
-        {
-          "staff_id": "106",
-          "name": "박경태"
-        },
-        {
-          "staff_id": "107",
-          "name": "유희라"
-        },
-        {
-          "staff_id": "108",
-          "name": "김유범"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-25",
-      "shift": "O",
-      "members": [
-        {
-          "staff_id": "105",
-          "name": "선서현"
-        },
-        {
-          "staff_id": "106",
-          "name": "박경태"
-        },
-        {
-          "staff_id": "107",
-          "name": "유희라"
-        },
-        {
-          "staff_id": "108",
-          "name": "김유범"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-26",
-      "shift": "E",
-      "members": [
-        {
-          "staff_id": "105",
-          "name": "선서현"
-        },
-        {
-          "staff_id": "106",
-          "name": "박경태"
-        },
-        {
-          "staff_id": "107",
-          "name": "유희라"
-        },
-        {
-          "staff_id": "108",
-          "name": "김유범"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-27",
-      "shift": "D",
-      "members": [
-        {
-          "staff_id": "105",
-          "name": "선서현"
-        },
-        {
-          "staff_id": "106",
-          "name": "박경태"
-        },
-        {
-          "staff_id": "107",
-          "name": "유희라"
-        },
-        {
-          "staff_id": "108",
-          "name": "김유범"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-28",
-      "shift": "E",
-      "members": [
-        {
-          "staff_id": "105",
-          "name": "선서현"
-        },
-        {
-          "staff_id": "106",
-          "name": "박경태"
-        },
-        {
-          "staff_id": "107",
-          "name": "유희라"
-        },
-        {
-          "staff_id": "108",
-          "name": "김유범"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-29",
-      "shift": "N",
-      "members": [
-        {
-          "staff_id": "105",
-          "name": "선서현"
-        },
-        {
-          "staff_id": "106",
-          "name": "박경태"
-        },
-        {
-          "staff_id": "107",
-          "name": "유희라"
-        },
-        {
-          "staff_id": "108",
-          "name": "김유범"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-30",
-      "shift": "O",
-      "members": [
-        {
-          "staff_id": "105",
-          "name": "선서현"
-        },
-        {
-          "staff_id": "106",
-          "name": "박경태"
-        },
-        {
-          "staff_id": "107",
-          "name": "유희라"
-        },
-        {
-          "staff_id": "108",
-          "name": "김유범"
+      "teams": [
+        {
+          "팀명": "1조",
+          "members": [
+            {
+              "staff_id": "101",
+              "이름": "이보은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "102",
+              "이름": "박주영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "103",
+              "이름": "최정환",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "104",
+              "이름": "문재윤",
+              "직급": "junior"
+            }
+          ]
+        },
+        {
+          "팀명": "5조",
+          "members": [
+            {
+              "staff_id": "118",
+              "이름": "정종옥",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "119",
+              "이름": "양성규",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "120",
+              "이름": "김화백",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "121",
+              "이름": "이병희",
+              "직급": "junior"
+            }
+          ]
         }
       ]
     }
   ],
-  "3조": [
+  "2025-08-03": [
     {
-      "date": "2025-08-01",
+      "shift": "D",
+      "teams": [
+        {
+          "팀명": "2조",
+          "members": [
+            {
+              "staff_id": "105",
+              "이름": "선서현",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "106",
+              "이름": "박경태",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "107",
+              "이름": "유희라",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "108",
+              "이름": "김유범",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "shift": "E",
-      "members": [
+      "teams": [
         {
-          "staff_id": "109",
-          "name": "박서은"
-        },
-        {
-          "staff_id": "110",
-          "name": "김대업"
-        },
-        {
-          "staff_id": "111",
-          "name": "유예솜"
-        },
-        {
-          "staff_id": "112",
-          "name": "고준영"
-        },
-        {
-          "staff_id": "113",
-          "name": "하진영"
+          "팀명": "3조",
+          "members": [
+            {
+              "staff_id": "109",
+              "이름": "박서은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "110",
+              "이름": "김대업",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "111",
+              "이름": "유예솜",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "112",
+              "이름": "고준영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "113",
+              "이름": "하진영",
+              "직급": "junior"
+            }
+          ]
         }
       ]
     },
     {
-      "date": "2025-08-02",
-      "shift": "D",
-      "members": [
-        {
-          "staff_id": "109",
-          "name": "박서은"
-        },
-        {
-          "staff_id": "110",
-          "name": "김대업"
-        },
-        {
-          "staff_id": "111",
-          "name": "유예솜"
-        },
-        {
-          "staff_id": "112",
-          "name": "고준영"
-        },
-        {
-          "staff_id": "113",
-          "name": "하진영"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-03",
-      "shift": "D",
-      "members": [
-        {
-          "staff_id": "109",
-          "name": "박서은"
-        },
-        {
-          "staff_id": "110",
-          "name": "김대업"
-        },
-        {
-          "staff_id": "111",
-          "name": "유예솜"
-        },
-        {
-          "staff_id": "112",
-          "name": "고준영"
-        },
-        {
-          "staff_id": "113",
-          "name": "하진영"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-04",
       "shift": "N",
-      "members": [
+      "teams": [
         {
-          "staff_id": "109",
-          "name": "박서은"
-        },
-        {
-          "staff_id": "110",
-          "name": "김대업"
-        },
-        {
-          "staff_id": "111",
-          "name": "유예솜"
-        },
-        {
-          "staff_id": "112",
-          "name": "고준영"
-        },
-        {
-          "staff_id": "113",
-          "name": "하진영"
+          "팀명": "5조",
+          "members": [
+            {
+              "staff_id": "118",
+              "이름": "정종옥",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "119",
+              "이름": "양성규",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "120",
+              "이름": "김화백",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "121",
+              "이름": "이병희",
+              "직급": "junior"
+            }
+          ]
         }
       ]
     },
     {
-      "date": "2025-08-05",
       "shift": "O",
-      "members": [
-        {
-          "staff_id": "109",
-          "name": "박서은"
-        },
-        {
-          "staff_id": "110",
-          "name": "김대업"
-        },
-        {
-          "staff_id": "111",
-          "name": "유예솜"
-        },
-        {
-          "staff_id": "112",
-          "name": "고준영"
-        },
-        {
-          "staff_id": "113",
-          "name": "하진영"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-06",
-      "shift": "N",
-      "members": [
-        {
-          "staff_id": "109",
-          "name": "박서은"
-        },
-        {
-          "staff_id": "110",
-          "name": "김대업"
-        },
-        {
-          "staff_id": "111",
-          "name": "유예솜"
-        },
-        {
-          "staff_id": "112",
-          "name": "고준영"
-        },
-        {
-          "staff_id": "113",
-          "name": "하진영"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-07",
-      "shift": "O",
-      "members": [
-        {
-          "staff_id": "109",
-          "name": "박서은"
-        },
-        {
-          "staff_id": "110",
-          "name": "김대업"
-        },
-        {
-          "staff_id": "111",
-          "name": "유예솜"
-        },
-        {
-          "staff_id": "112",
-          "name": "고준영"
-        },
-        {
-          "staff_id": "113",
-          "name": "하진영"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-08",
-      "shift": "D",
-      "members": [
-        {
-          "staff_id": "109",
-          "name": "박서은"
-        },
-        {
-          "staff_id": "110",
-          "name": "김대업"
-        },
-        {
-          "staff_id": "111",
-          "name": "유예솜"
-        },
-        {
-          "staff_id": "112",
-          "name": "고준영"
-        },
-        {
-          "staff_id": "113",
-          "name": "하진영"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-09",
-      "shift": "E",
-      "members": [
-        {
-          "staff_id": "109",
-          "name": "박서은"
-        },
-        {
-          "staff_id": "110",
-          "name": "김대업"
-        },
-        {
-          "staff_id": "111",
-          "name": "유예솜"
-        },
-        {
-          "staff_id": "112",
-          "name": "고준영"
-        },
-        {
-          "staff_id": "113",
-          "name": "하진영"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-10",
-      "shift": "E",
-      "members": [
-        {
-          "staff_id": "109",
-          "name": "박서은"
-        },
-        {
-          "staff_id": "110",
-          "name": "김대업"
-        },
-        {
-          "staff_id": "111",
-          "name": "유예솜"
-        },
-        {
-          "staff_id": "112",
-          "name": "고준영"
-        },
-        {
-          "staff_id": "113",
-          "name": "하진영"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-11",
-      "shift": "O",
-      "members": [
-        {
-          "staff_id": "109",
-          "name": "박서은"
-        },
-        {
-          "staff_id": "110",
-          "name": "김대업"
-        },
-        {
-          "staff_id": "111",
-          "name": "유예솜"
-        },
-        {
-          "staff_id": "112",
-          "name": "고준영"
-        },
-        {
-          "staff_id": "113",
-          "name": "하진영"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-12",
-      "shift": "N",
-      "members": [
-        {
-          "staff_id": "109",
-          "name": "박서은"
-        },
-        {
-          "staff_id": "110",
-          "name": "김대업"
-        },
-        {
-          "staff_id": "111",
-          "name": "유예솜"
-        },
-        {
-          "staff_id": "112",
-          "name": "고준영"
-        },
-        {
-          "staff_id": "113",
-          "name": "하진영"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-13",
-      "shift": "O",
-      "members": [
-        {
-          "staff_id": "109",
-          "name": "박서은"
-        },
-        {
-          "staff_id": "110",
-          "name": "김대업"
-        },
-        {
-          "staff_id": "111",
-          "name": "유예솜"
-        },
-        {
-          "staff_id": "112",
-          "name": "고준영"
-        },
-        {
-          "staff_id": "113",
-          "name": "하진영"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-14",
-      "shift": "O",
-      "members": [
-        {
-          "staff_id": "109",
-          "name": "박서은"
-        },
-        {
-          "staff_id": "110",
-          "name": "김대업"
-        },
-        {
-          "staff_id": "111",
-          "name": "유예솜"
-        },
-        {
-          "staff_id": "112",
-          "name": "고준영"
-        },
-        {
-          "staff_id": "113",
-          "name": "하진영"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-15",
-      "shift": "O",
-      "members": [
-        {
-          "staff_id": "109",
-          "name": "박서은"
-        },
-        {
-          "staff_id": "110",
-          "name": "김대업"
-        },
-        {
-          "staff_id": "111",
-          "name": "유예솜"
-        },
-        {
-          "staff_id": "112",
-          "name": "고준영"
-        },
-        {
-          "staff_id": "113",
-          "name": "하진영"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-16",
-      "shift": "E",
-      "members": [
-        {
-          "staff_id": "109",
-          "name": "박서은"
-        },
-        {
-          "staff_id": "110",
-          "name": "김대업"
-        },
-        {
-          "staff_id": "111",
-          "name": "유예솜"
-        },
-        {
-          "staff_id": "112",
-          "name": "고준영"
-        },
-        {
-          "staff_id": "113",
-          "name": "하진영"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-17",
-      "shift": "E",
-      "members": [
-        {
-          "staff_id": "109",
-          "name": "박서은"
-        },
-        {
-          "staff_id": "110",
-          "name": "김대업"
-        },
-        {
-          "staff_id": "111",
-          "name": "유예솜"
-        },
-        {
-          "staff_id": "112",
-          "name": "고준영"
-        },
-        {
-          "staff_id": "113",
-          "name": "하진영"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-18",
-      "shift": "D",
-      "members": [
-        {
-          "staff_id": "109",
-          "name": "박서은"
-        },
-        {
-          "staff_id": "110",
-          "name": "김대업"
-        },
-        {
-          "staff_id": "111",
-          "name": "유예솜"
-        },
-        {
-          "staff_id": "112",
-          "name": "고준영"
-        },
-        {
-          "staff_id": "113",
-          "name": "하진영"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-19",
-      "shift": "D",
-      "members": [
-        {
-          "staff_id": "109",
-          "name": "박서은"
-        },
-        {
-          "staff_id": "110",
-          "name": "김대업"
-        },
-        {
-          "staff_id": "111",
-          "name": "유예솜"
-        },
-        {
-          "staff_id": "112",
-          "name": "고준영"
-        },
-        {
-          "staff_id": "113",
-          "name": "하진영"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-20",
-      "shift": "N",
-      "members": [
-        {
-          "staff_id": "109",
-          "name": "박서은"
-        },
-        {
-          "staff_id": "110",
-          "name": "김대업"
-        },
-        {
-          "staff_id": "111",
-          "name": "유예솜"
-        },
-        {
-          "staff_id": "112",
-          "name": "고준영"
-        },
-        {
-          "staff_id": "113",
-          "name": "하진영"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-21",
-      "shift": "O",
-      "members": [
-        {
-          "staff_id": "109",
-          "name": "박서은"
-        },
-        {
-          "staff_id": "110",
-          "name": "김대업"
-        },
-        {
-          "staff_id": "111",
-          "name": "유예솜"
-        },
-        {
-          "staff_id": "112",
-          "name": "고준영"
-        },
-        {
-          "staff_id": "113",
-          "name": "하진영"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-22",
-      "shift": "E",
-      "members": [
-        {
-          "staff_id": "109",
-          "name": "박서은"
-        },
-        {
-          "staff_id": "110",
-          "name": "김대업"
-        },
-        {
-          "staff_id": "111",
-          "name": "유예솜"
-        },
-        {
-          "staff_id": "112",
-          "name": "고준영"
-        },
-        {
-          "staff_id": "113",
-          "name": "하진영"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-23",
-      "shift": "D",
-      "members": [
-        {
-          "staff_id": "109",
-          "name": "박서은"
-        },
-        {
-          "staff_id": "110",
-          "name": "김대업"
-        },
-        {
-          "staff_id": "111",
-          "name": "유예솜"
-        },
-        {
-          "staff_id": "112",
-          "name": "고준영"
-        },
-        {
-          "staff_id": "113",
-          "name": "하진영"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-24",
-      "shift": "O",
-      "members": [
-        {
-          "staff_id": "109",
-          "name": "박서은"
-        },
-        {
-          "staff_id": "110",
-          "name": "김대업"
-        },
-        {
-          "staff_id": "111",
-          "name": "유예솜"
-        },
-        {
-          "staff_id": "112",
-          "name": "고준영"
-        },
-        {
-          "staff_id": "113",
-          "name": "하진영"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-25",
-      "shift": "D",
-      "members": [
-        {
-          "staff_id": "109",
-          "name": "박서은"
-        },
-        {
-          "staff_id": "110",
-          "name": "김대업"
-        },
-        {
-          "staff_id": "111",
-          "name": "유예솜"
-        },
-        {
-          "staff_id": "112",
-          "name": "고준영"
-        },
-        {
-          "staff_id": "113",
-          "name": "하진영"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-26",
-      "shift": "O",
-      "members": [
-        {
-          "staff_id": "109",
-          "name": "박서은"
-        },
-        {
-          "staff_id": "110",
-          "name": "김대업"
-        },
-        {
-          "staff_id": "111",
-          "name": "유예솜"
-        },
-        {
-          "staff_id": "112",
-          "name": "고준영"
-        },
-        {
-          "staff_id": "113",
-          "name": "하진영"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-27",
-      "shift": "N",
-      "members": [
-        {
-          "staff_id": "109",
-          "name": "박서은"
-        },
-        {
-          "staff_id": "110",
-          "name": "김대업"
-        },
-        {
-          "staff_id": "111",
-          "name": "유예솜"
-        },
-        {
-          "staff_id": "112",
-          "name": "고준영"
-        },
-        {
-          "staff_id": "113",
-          "name": "하진영"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-28",
-      "shift": "O",
-      "members": [
-        {
-          "staff_id": "109",
-          "name": "박서은"
-        },
-        {
-          "staff_id": "110",
-          "name": "김대업"
-        },
-        {
-          "staff_id": "111",
-          "name": "유예솜"
-        },
-        {
-          "staff_id": "112",
-          "name": "고준영"
-        },
-        {
-          "staff_id": "113",
-          "name": "하진영"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-29",
-      "shift": "E",
-      "members": [
-        {
-          "staff_id": "109",
-          "name": "박서은"
-        },
-        {
-          "staff_id": "110",
-          "name": "김대업"
-        },
-        {
-          "staff_id": "111",
-          "name": "유예솜"
-        },
-        {
-          "staff_id": "112",
-          "name": "고준영"
-        },
-        {
-          "staff_id": "113",
-          "name": "하진영"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-30",
-      "shift": "N",
-      "members": [
-        {
-          "staff_id": "109",
-          "name": "박서은"
-        },
-        {
-          "staff_id": "110",
-          "name": "김대업"
-        },
-        {
-          "staff_id": "111",
-          "name": "유예솜"
-        },
-        {
-          "staff_id": "112",
-          "name": "고준영"
-        },
-        {
-          "staff_id": "113",
-          "name": "하진영"
+      "teams": [
+        {
+          "팀명": "1조",
+          "members": [
+            {
+              "staff_id": "101",
+              "이름": "이보은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "102",
+              "이름": "박주영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "103",
+              "이름": "최정환",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "104",
+              "이름": "문재윤",
+              "직급": "junior"
+            }
+          ]
+        },
+        {
+          "팀명": "4조",
+          "members": [
+            {
+              "staff_id": "114",
+              "이름": "오장관",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "115",
+              "이름": "윤진영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "116",
+              "이름": "한경식",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "117",
+              "이름": "한현희",
+              "직급": "junior"
+            }
+          ]
         }
       ]
     }
   ],
-  "4조": [
+  "2025-08-04": [
     {
-      "date": "2025-08-01",
       "shift": "D",
-      "members": [
+      "teams": [
         {
-          "staff_id": "114",
-          "name": "오장관"
-        },
-        {
-          "staff_id": "115",
-          "name": "윤진영"
-        },
-        {
-          "staff_id": "116",
-          "name": "한경식"
-        },
-        {
-          "staff_id": "117",
-          "name": "한현희"
+          "팀명": "3조",
+          "members": [
+            {
+              "staff_id": "109",
+              "이름": "박서은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "110",
+              "이름": "김대업",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "111",
+              "이름": "유예솜",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "112",
+              "이름": "고준영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "113",
+              "이름": "하진영",
+              "직급": "junior"
+            }
+          ]
         }
       ]
     },
     {
-      "date": "2025-08-02",
       "shift": "E",
-      "members": [
+      "teams": [
         {
-          "staff_id": "114",
-          "name": "오장관"
-        },
-        {
-          "staff_id": "115",
-          "name": "윤진영"
-        },
-        {
-          "staff_id": "116",
-          "name": "한경식"
-        },
-        {
-          "staff_id": "117",
-          "name": "한현희"
+          "팀명": "4조",
+          "members": [
+            {
+              "staff_id": "114",
+              "이름": "오장관",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "115",
+              "이름": "윤진영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "116",
+              "이름": "한경식",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "117",
+              "이름": "한현희",
+              "직급": "junior"
+            }
+          ]
         }
       ]
     },
     {
-      "date": "2025-08-03",
-      "shift": "E",
-      "members": [
-        {
-          "staff_id": "114",
-          "name": "오장관"
-        },
-        {
-          "staff_id": "115",
-          "name": "윤진영"
-        },
-        {
-          "staff_id": "116",
-          "name": "한경식"
-        },
-        {
-          "staff_id": "117",
-          "name": "한현희"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-04",
-      "shift": "E",
-      "members": [
-        {
-          "staff_id": "114",
-          "name": "오장관"
-        },
-        {
-          "staff_id": "115",
-          "name": "윤진영"
-        },
-        {
-          "staff_id": "116",
-          "name": "한경식"
-        },
-        {
-          "staff_id": "117",
-          "name": "한현희"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-05",
-      "shift": "E",
-      "members": [
-        {
-          "staff_id": "114",
-          "name": "오장관"
-        },
-        {
-          "staff_id": "115",
-          "name": "윤진영"
-        },
-        {
-          "staff_id": "116",
-          "name": "한경식"
-        },
-        {
-          "staff_id": "117",
-          "name": "한현희"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-06",
-      "shift": "O",
-      "members": [
-        {
-          "staff_id": "114",
-          "name": "오장관"
-        },
-        {
-          "staff_id": "115",
-          "name": "윤진영"
-        },
-        {
-          "staff_id": "116",
-          "name": "한경식"
-        },
-        {
-          "staff_id": "117",
-          "name": "한현희"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-07",
-      "shift": "O",
-      "members": [
-        {
-          "staff_id": "114",
-          "name": "오장관"
-        },
-        {
-          "staff_id": "115",
-          "name": "윤진영"
-        },
-        {
-          "staff_id": "116",
-          "name": "한경식"
-        },
-        {
-          "staff_id": "117",
-          "name": "한현희"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-08",
-      "shift": "D",
-      "members": [
-        {
-          "staff_id": "114",
-          "name": "오장관"
-        },
-        {
-          "staff_id": "115",
-          "name": "윤진영"
-        },
-        {
-          "staff_id": "116",
-          "name": "한경식"
-        },
-        {
-          "staff_id": "117",
-          "name": "한현희"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-09",
-      "shift": "D",
-      "members": [
-        {
-          "staff_id": "114",
-          "name": "오장관"
-        },
-        {
-          "staff_id": "115",
-          "name": "윤진영"
-        },
-        {
-          "staff_id": "116",
-          "name": "한경식"
-        },
-        {
-          "staff_id": "117",
-          "name": "한현희"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-10",
       "shift": "N",
-      "members": [
+      "teams": [
         {
-          "staff_id": "114",
-          "name": "오장관"
-        },
-        {
-          "staff_id": "115",
-          "name": "윤진영"
-        },
-        {
-          "staff_id": "116",
-          "name": "한경식"
-        },
-        {
-          "staff_id": "117",
-          "name": "한현희"
+          "팀명": "1조",
+          "members": [
+            {
+              "staff_id": "101",
+              "이름": "이보은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "102",
+              "이름": "박주영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "103",
+              "이름": "최정환",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "104",
+              "이름": "문재윤",
+              "직급": "junior"
+            }
+          ]
         }
       ]
     },
     {
-      "date": "2025-08-11",
       "shift": "O",
-      "members": [
+      "teams": [
         {
-          "staff_id": "114",
-          "name": "오장관"
+          "팀명": "2조",
+          "members": [
+            {
+              "staff_id": "105",
+              "이름": "선서현",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "106",
+              "이름": "박경태",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "107",
+              "이름": "유희라",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "108",
+              "이름": "김유범",
+              "직급": "junior"
+            }
+          ]
         },
         {
-          "staff_id": "115",
-          "name": "윤진영"
-        },
-        {
-          "staff_id": "116",
-          "name": "한경식"
-        },
-        {
-          "staff_id": "117",
-          "name": "한현희"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-12",
-      "shift": "D",
-      "members": [
-        {
-          "staff_id": "114",
-          "name": "오장관"
-        },
-        {
-          "staff_id": "115",
-          "name": "윤진영"
-        },
-        {
-          "staff_id": "116",
-          "name": "한경식"
-        },
-        {
-          "staff_id": "117",
-          "name": "한현희"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-13",
-      "shift": "N",
-      "members": [
-        {
-          "staff_id": "114",
-          "name": "오장관"
-        },
-        {
-          "staff_id": "115",
-          "name": "윤진영"
-        },
-        {
-          "staff_id": "116",
-          "name": "한경식"
-        },
-        {
-          "staff_id": "117",
-          "name": "한현희"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-14",
-      "shift": "O",
-      "members": [
-        {
-          "staff_id": "114",
-          "name": "오장관"
-        },
-        {
-          "staff_id": "115",
-          "name": "윤진영"
-        },
-        {
-          "staff_id": "116",
-          "name": "한경식"
-        },
-        {
-          "staff_id": "117",
-          "name": "한현희"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-15",
-      "shift": "D",
-      "members": [
-        {
-          "staff_id": "114",
-          "name": "오장관"
-        },
-        {
-          "staff_id": "115",
-          "name": "윤진영"
-        },
-        {
-          "staff_id": "116",
-          "name": "한경식"
-        },
-        {
-          "staff_id": "117",
-          "name": "한현희"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-16",
-      "shift": "N",
-      "members": [
-        {
-          "staff_id": "114",
-          "name": "오장관"
-        },
-        {
-          "staff_id": "115",
-          "name": "윤진영"
-        },
-        {
-          "staff_id": "116",
-          "name": "한경식"
-        },
-        {
-          "staff_id": "117",
-          "name": "한현희"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-17",
-      "shift": "O",
-      "members": [
-        {
-          "staff_id": "114",
-          "name": "오장관"
-        },
-        {
-          "staff_id": "115",
-          "name": "윤진영"
-        },
-        {
-          "staff_id": "116",
-          "name": "한경식"
-        },
-        {
-          "staff_id": "117",
-          "name": "한현희"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-18",
-      "shift": "N",
-      "members": [
-        {
-          "staff_id": "114",
-          "name": "오장관"
-        },
-        {
-          "staff_id": "115",
-          "name": "윤진영"
-        },
-        {
-          "staff_id": "116",
-          "name": "한경식"
-        },
-        {
-          "staff_id": "117",
-          "name": "한현희"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-19",
-      "shift": "O",
-      "members": [
-        {
-          "staff_id": "114",
-          "name": "오장관"
-        },
-        {
-          "staff_id": "115",
-          "name": "윤진영"
-        },
-        {
-          "staff_id": "116",
-          "name": "한경식"
-        },
-        {
-          "staff_id": "117",
-          "name": "한현희"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-20",
-      "shift": "E",
-      "members": [
-        {
-          "staff_id": "114",
-          "name": "오장관"
-        },
-        {
-          "staff_id": "115",
-          "name": "윤진영"
-        },
-        {
-          "staff_id": "116",
-          "name": "한경식"
-        },
-        {
-          "staff_id": "117",
-          "name": "한현희"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-21",
-      "shift": "D",
-      "members": [
-        {
-          "staff_id": "114",
-          "name": "오장관"
-        },
-        {
-          "staff_id": "115",
-          "name": "윤진영"
-        },
-        {
-          "staff_id": "116",
-          "name": "한경식"
-        },
-        {
-          "staff_id": "117",
-          "name": "한현희"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-22",
-      "shift": "O",
-      "members": [
-        {
-          "staff_id": "114",
-          "name": "오장관"
-        },
-        {
-          "staff_id": "115",
-          "name": "윤진영"
-        },
-        {
-          "staff_id": "116",
-          "name": "한경식"
-        },
-        {
-          "staff_id": "117",
-          "name": "한현희"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-23",
-      "shift": "D",
-      "members": [
-        {
-          "staff_id": "114",
-          "name": "오장관"
-        },
-        {
-          "staff_id": "115",
-          "name": "윤진영"
-        },
-        {
-          "staff_id": "116",
-          "name": "한경식"
-        },
-        {
-          "staff_id": "117",
-          "name": "한현희"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-24",
-      "shift": "N",
-      "members": [
-        {
-          "staff_id": "114",
-          "name": "오장관"
-        },
-        {
-          "staff_id": "115",
-          "name": "윤진영"
-        },
-        {
-          "staff_id": "116",
-          "name": "한경식"
-        },
-        {
-          "staff_id": "117",
-          "name": "한현희"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-25",
-      "shift": "O",
-      "members": [
-        {
-          "staff_id": "114",
-          "name": "오장관"
-        },
-        {
-          "staff_id": "115",
-          "name": "윤진영"
-        },
-        {
-          "staff_id": "116",
-          "name": "한경식"
-        },
-        {
-          "staff_id": "117",
-          "name": "한현희"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-26",
-      "shift": "N",
-      "members": [
-        {
-          "staff_id": "114",
-          "name": "오장관"
-        },
-        {
-          "staff_id": "115",
-          "name": "윤진영"
-        },
-        {
-          "staff_id": "116",
-          "name": "한경식"
-        },
-        {
-          "staff_id": "117",
-          "name": "한현희"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-27",
-      "shift": "O",
-      "members": [
-        {
-          "staff_id": "114",
-          "name": "오장관"
-        },
-        {
-          "staff_id": "115",
-          "name": "윤진영"
-        },
-        {
-          "staff_id": "116",
-          "name": "한경식"
-        },
-        {
-          "staff_id": "117",
-          "name": "한현희"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-28",
-      "shift": "O",
-      "members": [
-        {
-          "staff_id": "114",
-          "name": "오장관"
-        },
-        {
-          "staff_id": "115",
-          "name": "윤진영"
-        },
-        {
-          "staff_id": "116",
-          "name": "한경식"
-        },
-        {
-          "staff_id": "117",
-          "name": "한현희"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-29",
-      "shift": "E",
-      "members": [
-        {
-          "staff_id": "114",
-          "name": "오장관"
-        },
-        {
-          "staff_id": "115",
-          "name": "윤진영"
-        },
-        {
-          "staff_id": "116",
-          "name": "한경식"
-        },
-        {
-          "staff_id": "117",
-          "name": "한현희"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-30",
-      "shift": "O",
-      "members": [
-        {
-          "staff_id": "114",
-          "name": "오장관"
-        },
-        {
-          "staff_id": "115",
-          "name": "윤진영"
-        },
-        {
-          "staff_id": "116",
-          "name": "한경식"
-        },
-        {
-          "staff_id": "117",
-          "name": "한현희"
+          "팀명": "5조",
+          "members": [
+            {
+              "staff_id": "118",
+              "이름": "정종옥",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "119",
+              "이름": "양성규",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "120",
+              "이름": "김화백",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "121",
+              "이름": "이병희",
+              "직급": "junior"
+            }
+          ]
         }
       ]
     }
   ],
-  "5조": [
+  "2025-08-05": [
     {
-      "date": "2025-08-01",
-      "shift": "N",
-      "members": [
-        {
-          "staff_id": "118",
-          "name": "정종옥"
-        },
-        {
-          "staff_id": "119",
-          "name": "양성규"
-        },
-        {
-          "staff_id": "120",
-          "name": "김화백"
-        },
-        {
-          "staff_id": "121",
-          "name": "이병희"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-02",
-      "shift": "O",
-      "members": [
-        {
-          "staff_id": "118",
-          "name": "정종옥"
-        },
-        {
-          "staff_id": "119",
-          "name": "양성규"
-        },
-        {
-          "staff_id": "120",
-          "name": "김화백"
-        },
-        {
-          "staff_id": "121",
-          "name": "이병희"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-03",
-      "shift": "O",
-      "members": [
-        {
-          "staff_id": "118",
-          "name": "정종옥"
-        },
-        {
-          "staff_id": "119",
-          "name": "양성규"
-        },
-        {
-          "staff_id": "120",
-          "name": "김화백"
-        },
-        {
-          "staff_id": "121",
-          "name": "이병희"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-04",
       "shift": "D",
-      "members": [
+      "teams": [
         {
-          "staff_id": "118",
-          "name": "정종옥"
-        },
-        {
-          "staff_id": "119",
-          "name": "양성규"
-        },
-        {
-          "staff_id": "120",
-          "name": "김화백"
-        },
-        {
-          "staff_id": "121",
-          "name": "이병희"
+          "팀명": "2조",
+          "members": [
+            {
+              "staff_id": "105",
+              "이름": "선서현",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "106",
+              "이름": "박경태",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "107",
+              "이름": "유희라",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "108",
+              "이름": "김유범",
+              "직급": "junior"
+            }
+          ]
         }
       ]
     },
     {
-      "date": "2025-08-05",
-      "shift": "D",
-      "members": [
-        {
-          "staff_id": "118",
-          "name": "정종옥"
-        },
-        {
-          "staff_id": "119",
-          "name": "양성규"
-        },
-        {
-          "staff_id": "120",
-          "name": "김화백"
-        },
-        {
-          "staff_id": "121",
-          "name": "이병희"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-06",
       "shift": "E",
-      "members": [
+      "teams": [
         {
-          "staff_id": "118",
-          "name": "정종옥"
-        },
-        {
-          "staff_id": "119",
-          "name": "양성규"
-        },
-        {
-          "staff_id": "120",
-          "name": "김화백"
-        },
-        {
-          "staff_id": "121",
-          "name": "이병희"
+          "팀명": "5조",
+          "members": [
+            {
+              "staff_id": "118",
+              "이름": "정종옥",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "119",
+              "이름": "양성규",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "120",
+              "이름": "김화백",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "121",
+              "이름": "이병희",
+              "직급": "junior"
+            }
+          ]
         }
       ]
     },
     {
-      "date": "2025-08-07",
       "shift": "N",
-      "members": [
+      "teams": [
         {
-          "staff_id": "118",
-          "name": "정종옥"
-        },
-        {
-          "staff_id": "119",
-          "name": "양성규"
-        },
-        {
-          "staff_id": "120",
-          "name": "김화백"
-        },
-        {
-          "staff_id": "121",
-          "name": "이병희"
+          "팀명": "3조",
+          "members": [
+            {
+              "staff_id": "109",
+              "이름": "박서은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "110",
+              "이름": "김대업",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "111",
+              "이름": "유예솜",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "112",
+              "이름": "고준영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "113",
+              "이름": "하진영",
+              "직급": "junior"
+            }
+          ]
         }
       ]
     },
     {
-      "date": "2025-08-08",
       "shift": "O",
-      "members": [
+      "teams": [
         {
-          "staff_id": "118",
-          "name": "정종옥"
+          "팀명": "1조",
+          "members": [
+            {
+              "staff_id": "101",
+              "이름": "이보은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "102",
+              "이름": "박주영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "103",
+              "이름": "최정환",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "104",
+              "이름": "문재윤",
+              "직급": "junior"
+            }
+          ]
         },
         {
-          "staff_id": "119",
-          "name": "양성규"
-        },
-        {
-          "staff_id": "120",
-          "name": "김화백"
-        },
-        {
-          "staff_id": "121",
-          "name": "이병희"
+          "팀명": "4조",
+          "members": [
+            {
+              "staff_id": "114",
+              "이름": "오장관",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "115",
+              "이름": "윤진영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "116",
+              "이름": "한경식",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "117",
+              "이름": "한현희",
+              "직급": "junior"
+            }
+          ]
         }
       ]
-    },
+    }
+  ],
+  "2025-08-06": [
     {
-      "date": "2025-08-09",
-      "shift": "E",
-      "members": [
-        {
-          "staff_id": "118",
-          "name": "정종옥"
-        },
-        {
-          "staff_id": "119",
-          "name": "양성규"
-        },
-        {
-          "staff_id": "120",
-          "name": "김화백"
-        },
-        {
-          "staff_id": "121",
-          "name": "이병희"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-10",
       "shift": "D",
-      "members": [
+      "teams": [
         {
-          "staff_id": "118",
-          "name": "정종옥"
-        },
-        {
-          "staff_id": "119",
-          "name": "양성규"
-        },
-        {
-          "staff_id": "120",
-          "name": "김화백"
-        },
-        {
-          "staff_id": "121",
-          "name": "이병희"
+          "팀명": "1조",
+          "members": [
+            {
+              "staff_id": "101",
+              "이름": "이보은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "102",
+              "이름": "박주영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "103",
+              "이름": "최정환",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "104",
+              "이름": "문재윤",
+              "직급": "junior"
+            }
+          ]
         }
       ]
     },
     {
-      "date": "2025-08-11",
+      "shift": "E",
+      "teams": [
+        {
+          "팀명": "4조",
+          "members": [
+            {
+              "staff_id": "114",
+              "이름": "오장관",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "115",
+              "이름": "윤진영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "116",
+              "이름": "한경식",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "117",
+              "이름": "한현희",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "N",
+      "teams": [
+        {
+          "팀명": "5조",
+          "members": [
+            {
+              "staff_id": "118",
+              "이름": "정종옥",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "119",
+              "이름": "양성규",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "120",
+              "이름": "김화백",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "121",
+              "이름": "이병희",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "O",
+      "teams": [
+        {
+          "팀명": "2조",
+          "members": [
+            {
+              "staff_id": "105",
+              "이름": "선서현",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "106",
+              "이름": "박경태",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "107",
+              "이름": "유희라",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "108",
+              "이름": "김유범",
+              "직급": "junior"
+            }
+          ]
+        },
+        {
+          "팀명": "3조",
+          "members": [
+            {
+              "staff_id": "109",
+              "이름": "박서은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "110",
+              "이름": "김대업",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "111",
+              "이름": "유예솜",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "112",
+              "이름": "고준영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "113",
+              "이름": "하진영",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "2025-08-07": [
+    {
       "shift": "D",
-      "members": [
+      "teams": [
         {
-          "staff_id": "118",
-          "name": "정종옥"
-        },
-        {
-          "staff_id": "119",
-          "name": "양성규"
-        },
-        {
-          "staff_id": "120",
-          "name": "김화백"
-        },
-        {
-          "staff_id": "121",
-          "name": "이병희"
+          "팀명": "2조",
+          "members": [
+            {
+              "staff_id": "105",
+              "이름": "선서현",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "106",
+              "이름": "박경태",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "107",
+              "이름": "유희라",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "108",
+              "이름": "김유범",
+              "직급": "junior"
+            }
+          ]
         }
       ]
     },
     {
-      "date": "2025-08-12",
       "shift": "E",
-      "members": [
+      "teams": [
         {
-          "staff_id": "118",
-          "name": "정종옥"
-        },
-        {
-          "staff_id": "119",
-          "name": "양성규"
-        },
-        {
-          "staff_id": "120",
-          "name": "김화백"
-        },
-        {
-          "staff_id": "121",
-          "name": "이병희"
+          "팀명": "4조",
+          "members": [
+            {
+              "staff_id": "114",
+              "이름": "오장관",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "115",
+              "이름": "윤진영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "116",
+              "이름": "한경식",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "117",
+              "이름": "한현희",
+              "직급": "junior"
+            }
+          ]
         }
       ]
     },
     {
-      "date": "2025-08-13",
-      "shift": "O",
-      "members": [
-        {
-          "staff_id": "118",
-          "name": "정종옥"
-        },
-        {
-          "staff_id": "119",
-          "name": "양성규"
-        },
-        {
-          "staff_id": "120",
-          "name": "김화백"
-        },
-        {
-          "staff_id": "121",
-          "name": "이병희"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-14",
       "shift": "N",
-      "members": [
+      "teams": [
         {
-          "staff_id": "118",
-          "name": "정종옥"
-        },
-        {
-          "staff_id": "119",
-          "name": "양성규"
-        },
-        {
-          "staff_id": "120",
-          "name": "김화백"
-        },
-        {
-          "staff_id": "121",
-          "name": "이병희"
+          "팀명": "1조",
+          "members": [
+            {
+              "staff_id": "101",
+              "이름": "이보은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "102",
+              "이름": "박주영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "103",
+              "이름": "최정환",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "104",
+              "이름": "문재윤",
+              "직급": "junior"
+            }
+          ]
         }
       ]
     },
     {
-      "date": "2025-08-15",
       "shift": "O",
-      "members": [
+      "teams": [
         {
-          "staff_id": "118",
-          "name": "정종옥"
+          "팀명": "3조",
+          "members": [
+            {
+              "staff_id": "109",
+              "이름": "박서은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "110",
+              "이름": "김대업",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "111",
+              "이름": "유예솜",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "112",
+              "이름": "고준영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "113",
+              "이름": "하진영",
+              "직급": "junior"
+            }
+          ]
         },
         {
-          "staff_id": "119",
-          "name": "양성규"
-        },
-        {
-          "staff_id": "120",
-          "name": "김화백"
-        },
-        {
-          "staff_id": "121",
-          "name": "이병희"
+          "팀명": "5조",
+          "members": [
+            {
+              "staff_id": "118",
+              "이름": "정종옥",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "119",
+              "이름": "양성규",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "120",
+              "이름": "김화백",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "121",
+              "이름": "이병희",
+              "직급": "junior"
+            }
+          ]
         }
       ]
-    },
+    }
+  ],
+  "2025-08-08": [
     {
-      "date": "2025-08-16",
-      "shift": "E",
-      "members": [
-        {
-          "staff_id": "118",
-          "name": "정종옥"
-        },
-        {
-          "staff_id": "119",
-          "name": "양성규"
-        },
-        {
-          "staff_id": "120",
-          "name": "김화백"
-        },
-        {
-          "staff_id": "121",
-          "name": "이병희"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-17",
       "shift": "D",
-      "members": [
+      "teams": [
         {
-          "staff_id": "118",
-          "name": "정종옥"
-        },
-        {
-          "staff_id": "119",
-          "name": "양성규"
-        },
-        {
-          "staff_id": "120",
-          "name": "김화백"
-        },
-        {
-          "staff_id": "121",
-          "name": "이병희"
+          "팀명": "2조",
+          "members": [
+            {
+              "staff_id": "105",
+              "이름": "선서현",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "106",
+              "이름": "박경태",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "107",
+              "이름": "유희라",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "108",
+              "이름": "김유범",
+              "직급": "junior"
+            }
+          ]
         }
       ]
     },
     {
-      "date": "2025-08-18",
+      "shift": "E",
+      "teams": [
+        {
+          "팀명": "4조",
+          "members": [
+            {
+              "staff_id": "114",
+              "이름": "오장관",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "115",
+              "이름": "윤진영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "116",
+              "이름": "한경식",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "117",
+              "이름": "한현희",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "N",
+      "teams": [
+        {
+          "팀명": "5조",
+          "members": [
+            {
+              "staff_id": "118",
+              "이름": "정종옥",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "119",
+              "이름": "양성규",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "120",
+              "이름": "김화백",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "121",
+              "이름": "이병희",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "shift": "O",
-      "members": [
+      "teams": [
         {
-          "staff_id": "118",
-          "name": "정종옥"
+          "팀명": "1조",
+          "members": [
+            {
+              "staff_id": "101",
+              "이름": "이보은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "102",
+              "이름": "박주영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "103",
+              "이름": "최정환",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "104",
+              "이름": "문재윤",
+              "직급": "junior"
+            }
+          ]
         },
         {
-          "staff_id": "119",
-          "name": "양성규"
-        },
-        {
-          "staff_id": "120",
-          "name": "김화백"
-        },
-        {
-          "staff_id": "121",
-          "name": "이병희"
+          "팀명": "3조",
+          "members": [
+            {
+              "staff_id": "109",
+              "이름": "박서은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "110",
+              "이름": "김대업",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "111",
+              "이름": "유예솜",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "112",
+              "이름": "고준영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "113",
+              "이름": "하진영",
+              "직급": "junior"
+            }
+          ]
         }
       ]
-    },
+    }
+  ],
+  "2025-08-09": [
     {
-      "date": "2025-08-19",
-      "shift": "O",
-      "members": [
-        {
-          "staff_id": "118",
-          "name": "정종옥"
-        },
-        {
-          "staff_id": "119",
-          "name": "양성규"
-        },
-        {
-          "staff_id": "120",
-          "name": "김화백"
-        },
-        {
-          "staff_id": "121",
-          "name": "이병희"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-20",
       "shift": "D",
-      "members": [
+      "teams": [
         {
-          "staff_id": "118",
-          "name": "정종옥"
-        },
-        {
-          "staff_id": "119",
-          "name": "양성규"
-        },
-        {
-          "staff_id": "120",
-          "name": "김화백"
-        },
-        {
-          "staff_id": "121",
-          "name": "이병희"
+          "팀명": "4조",
+          "members": [
+            {
+              "staff_id": "114",
+              "이름": "오장관",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "115",
+              "이름": "윤진영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "116",
+              "이름": "한경식",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "117",
+              "이름": "한현희",
+              "직급": "junior"
+            }
+          ]
         }
       ]
     },
     {
-      "date": "2025-08-21",
+      "shift": "E",
+      "teams": [
+        {
+          "팀명": "1조",
+          "members": [
+            {
+              "staff_id": "101",
+              "이름": "이보은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "102",
+              "이름": "박주영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "103",
+              "이름": "최정환",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "104",
+              "이름": "문재윤",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "shift": "N",
-      "members": [
+      "teams": [
         {
-          "staff_id": "118",
-          "name": "정종옥"
-        },
-        {
-          "staff_id": "119",
-          "name": "양성규"
-        },
-        {
-          "staff_id": "120",
-          "name": "김화백"
-        },
-        {
-          "staff_id": "121",
-          "name": "이병희"
+          "팀명": "3조",
+          "members": [
+            {
+              "staff_id": "109",
+              "이름": "박서은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "110",
+              "이름": "김대업",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "111",
+              "이름": "유예솜",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "112",
+              "이름": "고준영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "113",
+              "이름": "하진영",
+              "직급": "junior"
+            }
+          ]
         }
       ]
     },
     {
-      "date": "2025-08-22",
       "shift": "O",
-      "members": [
+      "teams": [
         {
-          "staff_id": "118",
-          "name": "정종옥"
+          "팀명": "2조",
+          "members": [
+            {
+              "staff_id": "105",
+              "이름": "선서현",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "106",
+              "이름": "박경태",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "107",
+              "이름": "유희라",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "108",
+              "이름": "김유범",
+              "직급": "junior"
+            }
+          ]
         },
         {
-          "staff_id": "119",
-          "name": "양성규"
-        },
+          "팀명": "5조",
+          "members": [
+            {
+              "staff_id": "118",
+              "이름": "정종옥",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "119",
+              "이름": "양성규",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "120",
+              "이름": "김화백",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "121",
+              "이름": "이병희",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "2025-08-10": [
+    {
+      "shift": "D",
+      "teams": [
         {
-          "staff_id": "120",
-          "name": "김화백"
-        },
-        {
-          "staff_id": "121",
-          "name": "이병희"
+          "팀명": "1조",
+          "members": [
+            {
+              "staff_id": "101",
+              "이름": "이보은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "102",
+              "이름": "박주영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "103",
+              "이름": "최정환",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "104",
+              "이름": "문재윤",
+              "직급": "junior"
+            }
+          ]
         }
       ]
     },
     {
-      "date": "2025-08-23",
       "shift": "E",
-      "members": [
+      "teams": [
         {
-          "staff_id": "118",
-          "name": "정종옥"
-        },
-        {
-          "staff_id": "119",
-          "name": "양성규"
-        },
-        {
-          "staff_id": "120",
-          "name": "김화백"
-        },
-        {
-          "staff_id": "121",
-          "name": "이병희"
+          "팀명": "5조",
+          "members": [
+            {
+              "staff_id": "118",
+              "이름": "정종옥",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "119",
+              "이름": "양성규",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "120",
+              "이름": "김화백",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "121",
+              "이름": "이병희",
+              "직급": "junior"
+            }
+          ]
         }
       ]
     },
     {
-      "date": "2025-08-24",
-      "shift": "E",
-      "members": [
-        {
-          "staff_id": "118",
-          "name": "정종옥"
-        },
-        {
-          "staff_id": "119",
-          "name": "양성규"
-        },
-        {
-          "staff_id": "120",
-          "name": "김화백"
-        },
-        {
-          "staff_id": "121",
-          "name": "이병희"
-        }
-      ]
-    },
-    {
-      "date": "2025-08-25",
       "shift": "N",
-      "members": [
+      "teams": [
         {
-          "staff_id": "118",
-          "name": "정종옥"
-        },
-        {
-          "staff_id": "119",
-          "name": "양성규"
-        },
-        {
-          "staff_id": "120",
-          "name": "김화백"
-        },
-        {
-          "staff_id": "121",
-          "name": "이병희"
+          "팀명": "2조",
+          "members": [
+            {
+              "staff_id": "105",
+              "이름": "선서현",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "106",
+              "이름": "박경태",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "107",
+              "이름": "유희라",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "108",
+              "이름": "김유범",
+              "직급": "junior"
+            }
+          ]
         }
       ]
     },
     {
-      "date": "2025-08-26",
       "shift": "O",
-      "members": [
+      "teams": [
         {
-          "staff_id": "118",
-          "name": "정종옥"
+          "팀명": "3조",
+          "members": [
+            {
+              "staff_id": "109",
+              "이름": "박서은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "110",
+              "이름": "김대업",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "111",
+              "이름": "유예솜",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "112",
+              "이름": "고준영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "113",
+              "이름": "하진영",
+              "직급": "junior"
+            }
+          ]
         },
         {
-          "staff_id": "119",
-          "name": "양성규"
-        },
+          "팀명": "4조",
+          "members": [
+            {
+              "staff_id": "114",
+              "이름": "오장관",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "115",
+              "이름": "윤진영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "116",
+              "이름": "한경식",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "117",
+              "이름": "한현희",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "2025-08-11": [
+    {
+      "shift": "D",
+      "teams": [
         {
-          "staff_id": "120",
-          "name": "김화백"
-        },
-        {
-          "staff_id": "121",
-          "name": "이병희"
+          "팀명": "4조",
+          "members": [
+            {
+              "staff_id": "114",
+              "이름": "오장관",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "115",
+              "이름": "윤진영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "116",
+              "이름": "한경식",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "117",
+              "이름": "한현희",
+              "직급": "junior"
+            }
+          ]
         }
       ]
     },
     {
-      "date": "2025-08-27",
       "shift": "E",
-      "members": [
+      "teams": [
         {
-          "staff_id": "118",
-          "name": "정종옥"
-        },
-        {
-          "staff_id": "119",
-          "name": "양성규"
-        },
-        {
-          "staff_id": "120",
-          "name": "김화백"
-        },
-        {
-          "staff_id": "121",
-          "name": "이병희"
+          "팀명": "3조",
+          "members": [
+            {
+              "staff_id": "109",
+              "이름": "박서은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "110",
+              "이름": "김대업",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "111",
+              "이름": "유예솜",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "112",
+              "이름": "고준영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "113",
+              "이름": "하진영",
+              "직급": "junior"
+            }
+          ]
         }
       ]
     },
     {
-      "date": "2025-08-28",
       "shift": "N",
-      "members": [
+      "teams": [
         {
-          "staff_id": "118",
-          "name": "정종옥"
-        },
-        {
-          "staff_id": "119",
-          "name": "양성규"
-        },
-        {
-          "staff_id": "120",
-          "name": "김화백"
-        },
-        {
-          "staff_id": "121",
-          "name": "이병희"
+          "팀명": "1조",
+          "members": [
+            {
+              "staff_id": "101",
+              "이름": "이보은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "102",
+              "이름": "박주영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "103",
+              "이름": "최정환",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "104",
+              "이름": "문재윤",
+              "직급": "junior"
+            }
+          ]
         }
       ]
     },
     {
-      "date": "2025-08-29",
       "shift": "O",
-      "members": [
+      "teams": [
         {
-          "staff_id": "118",
-          "name": "정종옥"
+          "팀명": "2조",
+          "members": [
+            {
+              "staff_id": "105",
+              "이름": "선서현",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "106",
+              "이름": "박경태",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "107",
+              "이름": "유희라",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "108",
+              "이름": "김유범",
+              "직급": "junior"
+            }
+          ]
         },
         {
-          "staff_id": "119",
-          "name": "양성규"
-        },
+          "팀명": "5조",
+          "members": [
+            {
+              "staff_id": "118",
+              "이름": "정종옥",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "119",
+              "이름": "양성규",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "120",
+              "이름": "김화백",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "121",
+              "이름": "이병희",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "2025-08-12": [
+    {
+      "shift": "D",
+      "teams": [
         {
-          "staff_id": "120",
-          "name": "김화백"
-        },
-        {
-          "staff_id": "121",
-          "name": "이병희"
+          "팀명": "3조",
+          "members": [
+            {
+              "staff_id": "109",
+              "이름": "박서은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "110",
+              "이름": "김대업",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "111",
+              "이름": "유예솜",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "112",
+              "이름": "고준영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "113",
+              "이름": "하진영",
+              "직급": "junior"
+            }
+          ]
         }
       ]
     },
     {
-      "date": "2025-08-30",
       "shift": "E",
-      "members": [
+      "teams": [
         {
-          "staff_id": "118",
-          "name": "정종옥"
+          "팀명": "2조",
+          "members": [
+            {
+              "staff_id": "105",
+              "이름": "선서현",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "106",
+              "이름": "박경태",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "107",
+              "이름": "유희라",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "108",
+              "이름": "김유범",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "N",
+      "teams": [
+        {
+          "팀명": "4조",
+          "members": [
+            {
+              "staff_id": "114",
+              "이름": "오장관",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "115",
+              "이름": "윤진영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "116",
+              "이름": "한경식",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "117",
+              "이름": "한현희",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "O",
+      "teams": [
+        {
+          "팀명": "1조",
+          "members": [
+            {
+              "staff_id": "101",
+              "이름": "이보은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "102",
+              "이름": "박주영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "103",
+              "이름": "최정환",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "104",
+              "이름": "문재윤",
+              "직급": "junior"
+            }
+          ]
         },
         {
-          "staff_id": "119",
-          "name": "양성규"
+          "팀명": "5조",
+          "members": [
+            {
+              "staff_id": "118",
+              "이름": "정종옥",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "119",
+              "이름": "양성규",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "120",
+              "이름": "김화백",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "121",
+              "이름": "이병희",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "2025-08-13": [
+    {
+      "shift": "D",
+      "teams": [
+        {
+          "팀명": "3조",
+          "members": [
+            {
+              "staff_id": "109",
+              "이름": "박서은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "110",
+              "이름": "김대업",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "111",
+              "이름": "유예솜",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "112",
+              "이름": "고준영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "113",
+              "이름": "하진영",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "E",
+      "teams": [
+        {
+          "팀명": "1조",
+          "members": [
+            {
+              "staff_id": "101",
+              "이름": "이보은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "102",
+              "이름": "박주영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "103",
+              "이름": "최정환",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "104",
+              "이름": "문재윤",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "N",
+      "teams": [
+        {
+          "팀명": "2조",
+          "members": [
+            {
+              "staff_id": "105",
+              "이름": "선서현",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "106",
+              "이름": "박경태",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "107",
+              "이름": "유희라",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "108",
+              "이름": "김유범",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "O",
+      "teams": [
+        {
+          "팀명": "4조",
+          "members": [
+            {
+              "staff_id": "114",
+              "이름": "오장관",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "115",
+              "이름": "윤진영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "116",
+              "이름": "한경식",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "117",
+              "이름": "한현희",
+              "직급": "junior"
+            }
+          ]
         },
         {
-          "staff_id": "120",
-          "name": "김화백"
+          "팀명": "5조",
+          "members": [
+            {
+              "staff_id": "118",
+              "이름": "정종옥",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "119",
+              "이름": "양성규",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "120",
+              "이름": "김화백",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "121",
+              "이름": "이병희",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "2025-08-14": [
+    {
+      "shift": "D",
+      "teams": [
+        {
+          "팀명": "5조",
+          "members": [
+            {
+              "staff_id": "118",
+              "이름": "정종옥",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "119",
+              "이름": "양성규",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "120",
+              "이름": "김화백",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "121",
+              "이름": "이병희",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "E",
+      "teams": [
+        {
+          "팀명": "1조",
+          "members": [
+            {
+              "staff_id": "101",
+              "이름": "이보은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "102",
+              "이름": "박주영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "103",
+              "이름": "최정환",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "104",
+              "이름": "문재윤",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "N",
+      "teams": [
+        {
+          "팀명": "4조",
+          "members": [
+            {
+              "staff_id": "114",
+              "이름": "오장관",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "115",
+              "이름": "윤진영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "116",
+              "이름": "한경식",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "117",
+              "이름": "한현희",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "O",
+      "teams": [
+        {
+          "팀명": "2조",
+          "members": [
+            {
+              "staff_id": "105",
+              "이름": "선서현",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "106",
+              "이름": "박경태",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "107",
+              "이름": "유희라",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "108",
+              "이름": "김유범",
+              "직급": "junior"
+            }
+          ]
         },
         {
-          "staff_id": "121",
-          "name": "이병희"
+          "팀명": "3조",
+          "members": [
+            {
+              "staff_id": "109",
+              "이름": "박서은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "110",
+              "이름": "김대업",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "111",
+              "이름": "유예솜",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "112",
+              "이름": "고준영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "113",
+              "이름": "하진영",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "2025-08-15": [
+    {
+      "shift": "D",
+      "teams": [
+        {
+          "팀명": "1조",
+          "members": [
+            {
+              "staff_id": "101",
+              "이름": "이보은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "102",
+              "이름": "박주영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "103",
+              "이름": "최정환",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "104",
+              "이름": "문재윤",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "E",
+      "teams": [
+        {
+          "팀명": "5조",
+          "members": [
+            {
+              "staff_id": "118",
+              "이름": "정종옥",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "119",
+              "이름": "양성규",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "120",
+              "이름": "김화백",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "121",
+              "이름": "이병희",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "N",
+      "teams": [
+        {
+          "팀명": "2조",
+          "members": [
+            {
+              "staff_id": "105",
+              "이름": "선서현",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "106",
+              "이름": "박경태",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "107",
+              "이름": "유희라",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "108",
+              "이름": "김유범",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "O",
+      "teams": [
+        {
+          "팀명": "3조",
+          "members": [
+            {
+              "staff_id": "109",
+              "이름": "박서은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "110",
+              "이름": "김대업",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "111",
+              "이름": "유예솜",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "112",
+              "이름": "고준영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "113",
+              "이름": "하진영",
+              "직급": "junior"
+            }
+          ]
+        },
+        {
+          "팀명": "4조",
+          "members": [
+            {
+              "staff_id": "114",
+              "이름": "오장관",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "115",
+              "이름": "윤진영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "116",
+              "이름": "한경식",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "117",
+              "이름": "한현희",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "2025-08-16": [
+    {
+      "shift": "D",
+      "teams": [
+        {
+          "팀명": "4조",
+          "members": [
+            {
+              "staff_id": "114",
+              "이름": "오장관",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "115",
+              "이름": "윤진영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "116",
+              "이름": "한경식",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "117",
+              "이름": "한현희",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "E",
+      "teams": [
+        {
+          "팀명": "1조",
+          "members": [
+            {
+              "staff_id": "101",
+              "이름": "이보은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "102",
+              "이름": "박주영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "103",
+              "이름": "최정환",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "104",
+              "이름": "문재윤",
+              "직급": "junior"
+            }
+          ]
+        },
+        {
+          "팀명": "3조",
+          "members": [
+            {
+              "staff_id": "109",
+              "이름": "박서은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "110",
+              "이름": "김대업",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "111",
+              "이름": "유예솜",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "112",
+              "이름": "고준영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "113",
+              "이름": "하진영",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "N",
+      "teams": [
+        {
+          "팀명": "5조",
+          "members": [
+            {
+              "staff_id": "118",
+              "이름": "정종옥",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "119",
+              "이름": "양성규",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "120",
+              "이름": "김화백",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "121",
+              "이름": "이병희",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "O",
+      "teams": [
+        {
+          "팀명": "2조",
+          "members": [
+            {
+              "staff_id": "105",
+              "이름": "선서현",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "106",
+              "이름": "박경태",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "107",
+              "이름": "유희라",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "108",
+              "이름": "김유범",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "2025-08-17": [
+    {
+      "shift": "D",
+      "teams": [
+        {
+          "팀명": "2조",
+          "members": [
+            {
+              "staff_id": "105",
+              "이름": "선서현",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "106",
+              "이름": "박경태",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "107",
+              "이름": "유희라",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "108",
+              "이름": "김유범",
+              "직급": "junior"
+            }
+          ]
+        },
+        {
+          "팀명": "3조",
+          "members": [
+            {
+              "staff_id": "109",
+              "이름": "박서은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "110",
+              "이름": "김대업",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "111",
+              "이름": "유예솜",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "112",
+              "이름": "고준영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "113",
+              "이름": "하진영",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "E",
+      "teams": [
+        {
+          "팀명": "1조",
+          "members": [
+            {
+              "staff_id": "101",
+              "이름": "이보은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "102",
+              "이름": "박주영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "103",
+              "이름": "최정환",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "104",
+              "이름": "문재윤",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "N",
+      "teams": [
+        {
+          "팀명": "4조",
+          "members": [
+            {
+              "staff_id": "114",
+              "이름": "오장관",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "115",
+              "이름": "윤진영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "116",
+              "이름": "한경식",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "117",
+              "이름": "한현희",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "O",
+      "teams": [
+        {
+          "팀명": "5조",
+          "members": [
+            {
+              "staff_id": "118",
+              "이름": "정종옥",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "119",
+              "이름": "양성규",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "120",
+              "이름": "김화백",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "121",
+              "이름": "이병희",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "2025-08-18": [
+    {
+      "shift": "D",
+      "teams": [
+        {
+          "팀명": "2조",
+          "members": [
+            {
+              "staff_id": "105",
+              "이름": "선서현",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "106",
+              "이름": "박경태",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "107",
+              "이름": "유희라",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "108",
+              "이름": "김유범",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "E",
+      "teams": [
+        {
+          "팀명": "1조",
+          "members": [
+            {
+              "staff_id": "101",
+              "이름": "이보은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "102",
+              "이름": "박주영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "103",
+              "이름": "최정환",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "104",
+              "이름": "문재윤",
+              "직급": "junior"
+            }
+          ]
+        },
+        {
+          "팀명": "5조",
+          "members": [
+            {
+              "staff_id": "118",
+              "이름": "정종옥",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "119",
+              "이름": "양성규",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "120",
+              "이름": "김화백",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "121",
+              "이름": "이병희",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "N",
+      "teams": [
+        {
+          "팀명": "3조",
+          "members": [
+            {
+              "staff_id": "109",
+              "이름": "박서은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "110",
+              "이름": "김대업",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "111",
+              "이름": "유예솜",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "112",
+              "이름": "고준영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "113",
+              "이름": "하진영",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "O",
+      "teams": [
+        {
+          "팀명": "4조",
+          "members": [
+            {
+              "staff_id": "114",
+              "이름": "오장관",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "115",
+              "이름": "윤진영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "116",
+              "이름": "한경식",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "117",
+              "이름": "한현희",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "2025-08-19": [
+    {
+      "shift": "D",
+      "teams": [
+        {
+          "팀명": "5조",
+          "members": [
+            {
+              "staff_id": "118",
+              "이름": "정종옥",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "119",
+              "이름": "양성규",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "120",
+              "이름": "김화백",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "121",
+              "이름": "이병희",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "E",
+      "teams": [
+        {
+          "팀명": "2조",
+          "members": [
+            {
+              "staff_id": "105",
+              "이름": "선서현",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "106",
+              "이름": "박경태",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "107",
+              "이름": "유희라",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "108",
+              "이름": "김유범",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "N",
+      "teams": [
+        {
+          "팀명": "4조",
+          "members": [
+            {
+              "staff_id": "114",
+              "이름": "오장관",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "115",
+              "이름": "윤진영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "116",
+              "이름": "한경식",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "117",
+              "이름": "한현희",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "O",
+      "teams": [
+        {
+          "팀명": "1조",
+          "members": [
+            {
+              "staff_id": "101",
+              "이름": "이보은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "102",
+              "이름": "박주영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "103",
+              "이름": "최정환",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "104",
+              "이름": "문재윤",
+              "직급": "junior"
+            }
+          ]
+        },
+        {
+          "팀명": "3조",
+          "members": [
+            {
+              "staff_id": "109",
+              "이름": "박서은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "110",
+              "이름": "김대업",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "111",
+              "이름": "유예솜",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "112",
+              "이름": "고준영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "113",
+              "이름": "하진영",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "2025-08-20": [
+    {
+      "shift": "D",
+      "teams": [
+        {
+          "팀명": "3조",
+          "members": [
+            {
+              "staff_id": "109",
+              "이름": "박서은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "110",
+              "이름": "김대업",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "111",
+              "이름": "유예솜",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "112",
+              "이름": "고준영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "113",
+              "이름": "하진영",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "E",
+      "teams": [
+        {
+          "팀명": "5조",
+          "members": [
+            {
+              "staff_id": "118",
+              "이름": "정종옥",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "119",
+              "이름": "양성규",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "120",
+              "이름": "김화백",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "121",
+              "이름": "이병희",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "N",
+      "teams": [
+        {
+          "팀명": "1조",
+          "members": [
+            {
+              "staff_id": "101",
+              "이름": "이보은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "102",
+              "이름": "박주영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "103",
+              "이름": "최정환",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "104",
+              "이름": "문재윤",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "O",
+      "teams": [
+        {
+          "팀명": "2조",
+          "members": [
+            {
+              "staff_id": "105",
+              "이름": "선서현",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "106",
+              "이름": "박경태",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "107",
+              "이름": "유희라",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "108",
+              "이름": "김유범",
+              "직급": "junior"
+            }
+          ]
+        },
+        {
+          "팀명": "4조",
+          "members": [
+            {
+              "staff_id": "114",
+              "이름": "오장관",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "115",
+              "이름": "윤진영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "116",
+              "이름": "한경식",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "117",
+              "이름": "한현희",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "2025-08-21": [
+    {
+      "shift": "D",
+      "teams": [
+        {
+          "팀명": "4조",
+          "members": [
+            {
+              "staff_id": "114",
+              "이름": "오장관",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "115",
+              "이름": "윤진영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "116",
+              "이름": "한경식",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "117",
+              "이름": "한현희",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "E",
+      "teams": [
+        {
+          "팀명": "3조",
+          "members": [
+            {
+              "staff_id": "109",
+              "이름": "박서은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "110",
+              "이름": "김대업",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "111",
+              "이름": "유예솜",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "112",
+              "이름": "고준영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "113",
+              "이름": "하진영",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "N",
+      "teams": [
+        {
+          "팀명": "2조",
+          "members": [
+            {
+              "staff_id": "105",
+              "이름": "선서현",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "106",
+              "이름": "박경태",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "107",
+              "이름": "유희라",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "108",
+              "이름": "김유범",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "O",
+      "teams": [
+        {
+          "팀명": "1조",
+          "members": [
+            {
+              "staff_id": "101",
+              "이름": "이보은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "102",
+              "이름": "박주영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "103",
+              "이름": "최정환",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "104",
+              "이름": "문재윤",
+              "직급": "junior"
+            }
+          ]
+        },
+        {
+          "팀명": "5조",
+          "members": [
+            {
+              "staff_id": "118",
+              "이름": "정종옥",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "119",
+              "이름": "양성규",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "120",
+              "이름": "김화백",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "121",
+              "이름": "이병희",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "2025-08-22": [
+    {
+      "shift": "D",
+      "teams": [
+        {
+          "팀명": "5조",
+          "members": [
+            {
+              "staff_id": "118",
+              "이름": "정종옥",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "119",
+              "이름": "양성규",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "120",
+              "이름": "김화백",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "121",
+              "이름": "이병희",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "E",
+      "teams": [
+        {
+          "팀명": "4조",
+          "members": [
+            {
+              "staff_id": "114",
+              "이름": "오장관",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "115",
+              "이름": "윤진영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "116",
+              "이름": "한경식",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "117",
+              "이름": "한현희",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "N",
+      "teams": [
+        {
+          "팀명": "3조",
+          "members": [
+            {
+              "staff_id": "109",
+              "이름": "박서은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "110",
+              "이름": "김대업",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "111",
+              "이름": "유예솜",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "112",
+              "이름": "고준영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "113",
+              "이름": "하진영",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "O",
+      "teams": [
+        {
+          "팀명": "1조",
+          "members": [
+            {
+              "staff_id": "101",
+              "이름": "이보은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "102",
+              "이름": "박주영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "103",
+              "이름": "최정환",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "104",
+              "이름": "문재윤",
+              "직급": "junior"
+            }
+          ]
+        },
+        {
+          "팀명": "2조",
+          "members": [
+            {
+              "staff_id": "105",
+              "이름": "선서현",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "106",
+              "이름": "박경태",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "107",
+              "이름": "유희라",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "108",
+              "이름": "김유범",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "2025-08-23": [
+    {
+      "shift": "D",
+      "teams": [
+        {
+          "팀명": "2조",
+          "members": [
+            {
+              "staff_id": "105",
+              "이름": "선서현",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "106",
+              "이름": "박경태",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "107",
+              "이름": "유희라",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "108",
+              "이름": "김유범",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "E",
+      "teams": [
+        {
+          "팀명": "1조",
+          "members": [
+            {
+              "staff_id": "101",
+              "이름": "이보은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "102",
+              "이름": "박주영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "103",
+              "이름": "최정환",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "104",
+              "이름": "문재윤",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "N",
+      "teams": [
+        {
+          "팀명": "4조",
+          "members": [
+            {
+              "staff_id": "114",
+              "이름": "오장관",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "115",
+              "이름": "윤진영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "116",
+              "이름": "한경식",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "117",
+              "이름": "한현희",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "O",
+      "teams": [
+        {
+          "팀명": "3조",
+          "members": [
+            {
+              "staff_id": "109",
+              "이름": "박서은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "110",
+              "이름": "김대업",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "111",
+              "이름": "유예솜",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "112",
+              "이름": "고준영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "113",
+              "이름": "하진영",
+              "직급": "junior"
+            }
+          ]
+        },
+        {
+          "팀명": "5조",
+          "members": [
+            {
+              "staff_id": "118",
+              "이름": "정종옥",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "119",
+              "이름": "양성규",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "120",
+              "이름": "김화백",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "121",
+              "이름": "이병희",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "2025-08-24": [
+    {
+      "shift": "D",
+      "teams": [
+        {
+          "팀명": "3조",
+          "members": [
+            {
+              "staff_id": "109",
+              "이름": "박서은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "110",
+              "이름": "김대업",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "111",
+              "이름": "유예솜",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "112",
+              "이름": "고준영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "113",
+              "이름": "하진영",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "E",
+      "teams": [
+        {
+          "팀명": "2조",
+          "members": [
+            {
+              "staff_id": "105",
+              "이름": "선서현",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "106",
+              "이름": "박경태",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "107",
+              "이름": "유희라",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "108",
+              "이름": "김유범",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "N",
+      "teams": [
+        {
+          "팀명": "1조",
+          "members": [
+            {
+              "staff_id": "101",
+              "이름": "이보은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "102",
+              "이름": "박주영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "103",
+              "이름": "최정환",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "104",
+              "이름": "문재윤",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "O",
+      "teams": [
+        {
+          "팀명": "4조",
+          "members": [
+            {
+              "staff_id": "114",
+              "이름": "오장관",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "115",
+              "이름": "윤진영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "116",
+              "이름": "한경식",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "117",
+              "이름": "한현희",
+              "직급": "junior"
+            }
+          ]
+        },
+        {
+          "팀명": "5조",
+          "members": [
+            {
+              "staff_id": "118",
+              "이름": "정종옥",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "119",
+              "이름": "양성규",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "120",
+              "이름": "김화백",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "121",
+              "이름": "이병희",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "2025-08-25": [
+    {
+      "shift": "D",
+      "teams": [
+        {
+          "팀명": "3조",
+          "members": [
+            {
+              "staff_id": "109",
+              "이름": "박서은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "110",
+              "이름": "김대업",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "111",
+              "이름": "유예솜",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "112",
+              "이름": "고준영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "113",
+              "이름": "하진영",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "E",
+      "teams": [
+        {
+          "팀명": "5조",
+          "members": [
+            {
+              "staff_id": "118",
+              "이름": "정종옥",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "119",
+              "이름": "양성규",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "120",
+              "이름": "김화백",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "121",
+              "이름": "이병희",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "N",
+      "teams": [
+        {
+          "팀명": "2조",
+          "members": [
+            {
+              "staff_id": "105",
+              "이름": "선서현",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "106",
+              "이름": "박경태",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "107",
+              "이름": "유희라",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "108",
+              "이름": "김유범",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "O",
+      "teams": [
+        {
+          "팀명": "1조",
+          "members": [
+            {
+              "staff_id": "101",
+              "이름": "이보은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "102",
+              "이름": "박주영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "103",
+              "이름": "최정환",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "104",
+              "이름": "문재윤",
+              "직급": "junior"
+            }
+          ]
+        },
+        {
+          "팀명": "4조",
+          "members": [
+            {
+              "staff_id": "114",
+              "이름": "오장관",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "115",
+              "이름": "윤진영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "116",
+              "이름": "한경식",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "117",
+              "이름": "한현희",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "2025-08-26": [
+    {
+      "shift": "D",
+      "teams": [
+        {
+          "팀명": "1조",
+          "members": [
+            {
+              "staff_id": "101",
+              "이름": "이보은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "102",
+              "이름": "박주영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "103",
+              "이름": "최정환",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "104",
+              "이름": "문재윤",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "E",
+      "teams": [
+        {
+          "팀명": "5조",
+          "members": [
+            {
+              "staff_id": "118",
+              "이름": "정종옥",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "119",
+              "이름": "양성규",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "120",
+              "이름": "김화백",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "121",
+              "이름": "이병희",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "N",
+      "teams": [
+        {
+          "팀명": "3조",
+          "members": [
+            {
+              "staff_id": "109",
+              "이름": "박서은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "110",
+              "이름": "김대업",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "111",
+              "이름": "유예솜",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "112",
+              "이름": "고준영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "113",
+              "이름": "하진영",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "O",
+      "teams": [
+        {
+          "팀명": "2조",
+          "members": [
+            {
+              "staff_id": "105",
+              "이름": "선서현",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "106",
+              "이름": "박경태",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "107",
+              "이름": "유희라",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "108",
+              "이름": "김유범",
+              "직급": "junior"
+            }
+          ]
+        },
+        {
+          "팀명": "4조",
+          "members": [
+            {
+              "staff_id": "114",
+              "이름": "오장관",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "115",
+              "이름": "윤진영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "116",
+              "이름": "한경식",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "117",
+              "이름": "한현희",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "2025-08-27": [
+    {
+      "shift": "D",
+      "teams": [
+        {
+          "팀명": "1조",
+          "members": [
+            {
+              "staff_id": "101",
+              "이름": "이보은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "102",
+              "이름": "박주영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "103",
+              "이름": "최정환",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "104",
+              "이름": "문재윤",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "E",
+      "teams": [
+        {
+          "팀명": "5조",
+          "members": [
+            {
+              "staff_id": "118",
+              "이름": "정종옥",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "119",
+              "이름": "양성규",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "120",
+              "이름": "김화백",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "121",
+              "이름": "이병희",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "N",
+      "teams": [
+        {
+          "팀명": "2조",
+          "members": [
+            {
+              "staff_id": "105",
+              "이름": "선서현",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "106",
+              "이름": "박경태",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "107",
+              "이름": "유희라",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "108",
+              "이름": "김유범",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "O",
+      "teams": [
+        {
+          "팀명": "3조",
+          "members": [
+            {
+              "staff_id": "109",
+              "이름": "박서은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "110",
+              "이름": "김대업",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "111",
+              "이름": "유예솜",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "112",
+              "이름": "고준영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "113",
+              "이름": "하진영",
+              "직급": "junior"
+            }
+          ]
+        },
+        {
+          "팀명": "4조",
+          "members": [
+            {
+              "staff_id": "114",
+              "이름": "오장관",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "115",
+              "이름": "윤진영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "116",
+              "이름": "한경식",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "117",
+              "이름": "한현희",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "2025-08-28": [
+    {
+      "shift": "D",
+      "teams": [
+        {
+          "팀명": "5조",
+          "members": [
+            {
+              "staff_id": "118",
+              "이름": "정종옥",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "119",
+              "이름": "양성규",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "120",
+              "이름": "김화백",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "121",
+              "이름": "이병희",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "E",
+      "teams": [
+        {
+          "팀명": "3조",
+          "members": [
+            {
+              "staff_id": "109",
+              "이름": "박서은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "110",
+              "이름": "김대업",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "111",
+              "이름": "유예솜",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "112",
+              "이름": "고준영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "113",
+              "이름": "하진영",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "N",
+      "teams": [
+        {
+          "팀명": "1조",
+          "members": [
+            {
+              "staff_id": "101",
+              "이름": "이보은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "102",
+              "이름": "박주영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "103",
+              "이름": "최정환",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "104",
+              "이름": "문재윤",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "O",
+      "teams": [
+        {
+          "팀명": "2조",
+          "members": [
+            {
+              "staff_id": "105",
+              "이름": "선서현",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "106",
+              "이름": "박경태",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "107",
+              "이름": "유희라",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "108",
+              "이름": "김유범",
+              "직급": "junior"
+            }
+          ]
+        },
+        {
+          "팀명": "4조",
+          "members": [
+            {
+              "staff_id": "114",
+              "이름": "오장관",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "115",
+              "이름": "윤진영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "116",
+              "이름": "한경식",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "117",
+              "이름": "한현희",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "2025-08-29": [
+    {
+      "shift": "D",
+      "teams": [
+        {
+          "팀명": "5조",
+          "members": [
+            {
+              "staff_id": "118",
+              "이름": "정종옥",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "119",
+              "이름": "양성규",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "120",
+              "이름": "김화백",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "121",
+              "이름": "이병희",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "E",
+      "teams": [
+        {
+          "팀명": "2조",
+          "members": [
+            {
+              "staff_id": "105",
+              "이름": "선서현",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "106",
+              "이름": "박경태",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "107",
+              "이름": "유희라",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "108",
+              "이름": "김유범",
+              "직급": "junior"
+            }
+          ]
+        },
+        {
+          "팀명": "4조",
+          "members": [
+            {
+              "staff_id": "114",
+              "이름": "오장관",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "115",
+              "이름": "윤진영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "116",
+              "이름": "한경식",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "117",
+              "이름": "한현희",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "N",
+      "teams": [
+        {
+          "팀명": "3조",
+          "members": [
+            {
+              "staff_id": "109",
+              "이름": "박서은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "110",
+              "이름": "김대업",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "111",
+              "이름": "유예솜",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "112",
+              "이름": "고준영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "113",
+              "이름": "하진영",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "O",
+      "teams": [
+        {
+          "팀명": "1조",
+          "members": [
+            {
+              "staff_id": "101",
+              "이름": "이보은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "102",
+              "이름": "박주영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "103",
+              "이름": "최정환",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "104",
+              "이름": "문재윤",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "2025-08-30": [
+    {
+      "shift": "D",
+      "teams": [
+        {
+          "팀명": "1조",
+          "members": [
+            {
+              "staff_id": "101",
+              "이름": "이보은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "102",
+              "이름": "박주영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "103",
+              "이름": "최정환",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "104",
+              "이름": "문재윤",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "E",
+      "teams": [
+        {
+          "팀명": "2조",
+          "members": [
+            {
+              "staff_id": "105",
+              "이름": "선서현",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "106",
+              "이름": "박경태",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "107",
+              "이름": "유희라",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "108",
+              "이름": "김유범",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "N",
+      "teams": [
+        {
+          "팀명": "5조",
+          "members": [
+            {
+              "staff_id": "118",
+              "이름": "정종옥",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "119",
+              "이름": "양성규",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "120",
+              "이름": "김화백",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "121",
+              "이름": "이병희",
+              "직급": "junior"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shift": "O",
+      "teams": [
+        {
+          "팀명": "3조",
+          "members": [
+            {
+              "staff_id": "109",
+              "이름": "박서은",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "110",
+              "이름": "김대업",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "111",
+              "이름": "유예솜",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "112",
+              "이름": "고준영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "113",
+              "이름": "하진영",
+              "직급": "junior"
+            }
+          ]
+        },
+        {
+          "팀명": "4조",
+          "members": [
+            {
+              "staff_id": "114",
+              "이름": "오장관",
+              "직급": "team_lead"
+            },
+            {
+              "staff_id": "115",
+              "이름": "윤진영",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "116",
+              "이름": "한경식",
+              "직급": "junior"
+            },
+            {
+              "staff_id": "117",
+              "이름": "한현희",
+              "직급": "junior"
+            }
+          ]
         }
       ]
     }
