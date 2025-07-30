@@ -17,6 +17,22 @@ struct WorkItem {
     std::vector<char> payload;
 };
 
+std::string toUTF8_safely(const std::string& cp949Str) {
+    // CP949 → UTF-16
+    int wlen = MultiByteToWideChar(949, 0, cp949Str.data(), (int)cp949Str.size(), nullptr, 0);
+    if (wlen == 0) return "인코딩 오류";
+
+    std::wstring wide(wlen, 0);
+    MultiByteToWideChar(949, 0, cp949Str.data(), (int)cp949Str.size(), &wide[0], wlen);
+
+    // UTF-16 → UTF-8
+    int ulen = WideCharToMultiByte(CP_UTF8, 0, wide.data(), wlen, nullptr, 0, nullptr, nullptr);
+    std::string utf8(ulen, 0);
+    WideCharToMultiByte(CP_UTF8, 0, wide.data(), wlen, &utf8[0], ulen, nullptr, nullptr);
+
+    return utf8;
+}
+
 // 데이터를 정확히 size 바이트만큼 받는 함수
 std::vector<char> recvExact(SOCKET sock, size_t size) {
     std::vector<char> buffer(size);
@@ -76,13 +92,8 @@ int main() {
     SOCKET listenSocket = INVALID_SOCKET, clientSocket = INVALID_SOCKET;
     
 
-    // 콘솔 입출력 코드 페이지를 UTF-8로 설정
     SetConsoleOutputCP(CP_UTF8);
-    SetConsoleCP(CP_UTF8);
-
-
-
-
+    SetConsoleCP(CP_UTF8);  // 입력도 필요하면
 
     try {
         if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0)
@@ -103,36 +114,36 @@ int main() {
         if (listen(listenSocket, SOMAXCONN) == SOCKET_ERROR)
             throw std::runtime_error("listen() failed");
 
-        std::cout << "서버 시작, 포트 5556 대기 중..." << std::endl;
+        std::cout << u8"서버 시작, 포트 5556 대기 중..." << std::endl;
 
         while (true) {
             clientSocket = accept(listenSocket, nullptr, nullptr);
             if (clientSocket == INVALID_SOCKET) {
-                std::cerr << "accept() failed: " << WSAGetLastError() << std::endl;
+                std::cerr << u8"accept() failed: " << WSAGetLastError() << std::endl;
                 continue; // 새 연결 시도
             }
 
-            std::cout << "클라이언트 접속됨" << std::endl;
+            std::cout << u8"클라이언트 접속됨" << std::endl;
 
             MYSQL* conn = nullptr;
             try {
                 conn = mysql_init(NULL);
                 if (conn == NULL) {
-                    throw std::runtime_error("mysql_init() 실패");
+                    throw std::runtime_error(u8"mysql_init() 실패");
                 }
                 if (mysql_real_connect(conn, "localhost", "master", "1111", "mydb", 3306, NULL, 0) == NULL) {
-                    throw std::runtime_error(std::string("mysql_real_connect() 실패: ") + mysql_error(conn));
+                    throw std::runtime_error(std::string(u8"mysql_real_connect() 실패: ") + mysql_error(conn));
                 }
                 mysql_set_character_set(conn, "utf8mb4");
 
                 while (true) {
                     try {
                         WorkItem req = receiveWorkItem(clientSocket);
-                        std::cout << "받은 JSON: " << req.jsonStr << std::endl;
+                        std::cout << u8"받은 JSON: " << req.jsonStr << std::endl;
 
                         auto j = json::parse(req.jsonStr);
                         if (j.contains("Protocol") && j["Protocol"] == "Hello") {
-                            std::cout << "Hello 프로토콜 받음!" << std::endl;
+                            std::cout << u8"Hello 프로토콜 받음!" << std::endl;
                             j["Protocol"] = "hi";
                             WorkItem resp{ j.dump(), {} };
                             sendWorkItem(clientSocket, resp);
@@ -141,7 +152,7 @@ int main() {
                         //인서트 프로토콜 왔을때 
                         else if (j.contains("Protocol") && j["Protocol"] == "Insert") {
 
-                            std::cout << "Insert 프로토콜 받음!" << std::endl;
+                            std::cout << u8"Insert 프로토콜 받음!" << std::endl;
 
                             if (j.contains("content"))
                             {
@@ -161,14 +172,14 @@ int main() {
                                 const char* query = queryStr.c_str();
 
                                 // 출력
-                                std::cout << "쿼리: " << query << std::endl;
+                                std::cout << u8"쿼리: " << query << std::endl;
                                 
 
                                 if (mysql_query(conn, query)) {
-                                    std::cerr << "Insert 쿼리 실패: " << mysql_error(conn) << std::endl;
+                                    std::cerr << u8"Insert 쿼리 실패: " << mysql_error(conn) << std::endl;
                                 }
                                 else {
-                                    std::cout << "Insert 성공!" << std::endl;
+                                    std::cout << u8"Insert 성공!" << std::endl;
                                 }
                                 
                             }

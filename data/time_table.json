@@ -1,0 +1,3432 @@
+{
+  "1조": [
+    {
+      "date": "2025-08-01",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "101",
+          "name": "이보은"
+        },
+        {
+          "staff_id": "102",
+          "name": "박주영"
+        },
+        {
+          "staff_id": "103",
+          "name": "최정환"
+        },
+        {
+          "staff_id": "104",
+          "name": "문재윤"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-02",
+      "shift": "N",
+      "members": [
+        {
+          "staff_id": "101",
+          "name": "이보은"
+        },
+        {
+          "staff_id": "102",
+          "name": "박주영"
+        },
+        {
+          "staff_id": "103",
+          "name": "최정환"
+        },
+        {
+          "staff_id": "104",
+          "name": "문재윤"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-03",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "101",
+          "name": "이보은"
+        },
+        {
+          "staff_id": "102",
+          "name": "박주영"
+        },
+        {
+          "staff_id": "103",
+          "name": "최정환"
+        },
+        {
+          "staff_id": "104",
+          "name": "문재윤"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-04",
+      "shift": "E",
+      "members": [
+        {
+          "staff_id": "101",
+          "name": "이보은"
+        },
+        {
+          "staff_id": "102",
+          "name": "박주영"
+        },
+        {
+          "staff_id": "103",
+          "name": "최정환"
+        },
+        {
+          "staff_id": "104",
+          "name": "문재윤"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-05",
+      "shift": "N",
+      "members": [
+        {
+          "staff_id": "101",
+          "name": "이보은"
+        },
+        {
+          "staff_id": "102",
+          "name": "박주영"
+        },
+        {
+          "staff_id": "103",
+          "name": "최정환"
+        },
+        {
+          "staff_id": "104",
+          "name": "문재윤"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-06",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "101",
+          "name": "이보은"
+        },
+        {
+          "staff_id": "102",
+          "name": "박주영"
+        },
+        {
+          "staff_id": "103",
+          "name": "최정환"
+        },
+        {
+          "staff_id": "104",
+          "name": "문재윤"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-07",
+      "shift": "D",
+      "members": [
+        {
+          "staff_id": "101",
+          "name": "이보은"
+        },
+        {
+          "staff_id": "102",
+          "name": "박주영"
+        },
+        {
+          "staff_id": "103",
+          "name": "최정환"
+        },
+        {
+          "staff_id": "104",
+          "name": "문재윤"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-08",
+      "shift": "E",
+      "members": [
+        {
+          "staff_id": "101",
+          "name": "이보은"
+        },
+        {
+          "staff_id": "102",
+          "name": "박주영"
+        },
+        {
+          "staff_id": "103",
+          "name": "최정환"
+        },
+        {
+          "staff_id": "104",
+          "name": "문재윤"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-09",
+      "shift": "N",
+      "members": [
+        {
+          "staff_id": "101",
+          "name": "이보은"
+        },
+        {
+          "staff_id": "102",
+          "name": "박주영"
+        },
+        {
+          "staff_id": "103",
+          "name": "최정환"
+        },
+        {
+          "staff_id": "104",
+          "name": "문재윤"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-10",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "101",
+          "name": "이보은"
+        },
+        {
+          "staff_id": "102",
+          "name": "박주영"
+        },
+        {
+          "staff_id": "103",
+          "name": "최정환"
+        },
+        {
+          "staff_id": "104",
+          "name": "문재윤"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-11",
+      "shift": "E",
+      "members": [
+        {
+          "staff_id": "101",
+          "name": "이보은"
+        },
+        {
+          "staff_id": "102",
+          "name": "박주영"
+        },
+        {
+          "staff_id": "103",
+          "name": "최정환"
+        },
+        {
+          "staff_id": "104",
+          "name": "문재윤"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-12",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "101",
+          "name": "이보은"
+        },
+        {
+          "staff_id": "102",
+          "name": "박주영"
+        },
+        {
+          "staff_id": "103",
+          "name": "최정환"
+        },
+        {
+          "staff_id": "104",
+          "name": "문재윤"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-13",
+      "shift": "D",
+      "members": [
+        {
+          "staff_id": "101",
+          "name": "이보은"
+        },
+        {
+          "staff_id": "102",
+          "name": "박주영"
+        },
+        {
+          "staff_id": "103",
+          "name": "최정환"
+        },
+        {
+          "staff_id": "104",
+          "name": "문재윤"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-14",
+      "shift": "D",
+      "members": [
+        {
+          "staff_id": "101",
+          "name": "이보은"
+        },
+        {
+          "staff_id": "102",
+          "name": "박주영"
+        },
+        {
+          "staff_id": "103",
+          "name": "최정환"
+        },
+        {
+          "staff_id": "104",
+          "name": "문재윤"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-15",
+      "shift": "E",
+      "members": [
+        {
+          "staff_id": "101",
+          "name": "이보은"
+        },
+        {
+          "staff_id": "102",
+          "name": "박주영"
+        },
+        {
+          "staff_id": "103",
+          "name": "최정환"
+        },
+        {
+          "staff_id": "104",
+          "name": "문재윤"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-16",
+      "shift": "D",
+      "members": [
+        {
+          "staff_id": "101",
+          "name": "이보은"
+        },
+        {
+          "staff_id": "102",
+          "name": "박주영"
+        },
+        {
+          "staff_id": "103",
+          "name": "최정환"
+        },
+        {
+          "staff_id": "104",
+          "name": "문재윤"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-17",
+      "shift": "N",
+      "members": [
+        {
+          "staff_id": "101",
+          "name": "이보은"
+        },
+        {
+          "staff_id": "102",
+          "name": "박주영"
+        },
+        {
+          "staff_id": "103",
+          "name": "최정환"
+        },
+        {
+          "staff_id": "104",
+          "name": "문재윤"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-18",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "101",
+          "name": "이보은"
+        },
+        {
+          "staff_id": "102",
+          "name": "박주영"
+        },
+        {
+          "staff_id": "103",
+          "name": "최정환"
+        },
+        {
+          "staff_id": "104",
+          "name": "문재윤"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-19",
+      "shift": "N",
+      "members": [
+        {
+          "staff_id": "101",
+          "name": "이보은"
+        },
+        {
+          "staff_id": "102",
+          "name": "박주영"
+        },
+        {
+          "staff_id": "103",
+          "name": "최정환"
+        },
+        {
+          "staff_id": "104",
+          "name": "문재윤"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-20",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "101",
+          "name": "이보은"
+        },
+        {
+          "staff_id": "102",
+          "name": "박주영"
+        },
+        {
+          "staff_id": "103",
+          "name": "최정환"
+        },
+        {
+          "staff_id": "104",
+          "name": "문재윤"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-21",
+      "shift": "E",
+      "members": [
+        {
+          "staff_id": "101",
+          "name": "이보은"
+        },
+        {
+          "staff_id": "102",
+          "name": "박주영"
+        },
+        {
+          "staff_id": "103",
+          "name": "최정환"
+        },
+        {
+          "staff_id": "104",
+          "name": "문재윤"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-22",
+      "shift": "N",
+      "members": [
+        {
+          "staff_id": "101",
+          "name": "이보은"
+        },
+        {
+          "staff_id": "102",
+          "name": "박주영"
+        },
+        {
+          "staff_id": "103",
+          "name": "최정환"
+        },
+        {
+          "staff_id": "104",
+          "name": "문재윤"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-23",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "101",
+          "name": "이보은"
+        },
+        {
+          "staff_id": "102",
+          "name": "박주영"
+        },
+        {
+          "staff_id": "103",
+          "name": "최정환"
+        },
+        {
+          "staff_id": "104",
+          "name": "문재윤"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-24",
+      "shift": "D",
+      "members": [
+        {
+          "staff_id": "101",
+          "name": "이보은"
+        },
+        {
+          "staff_id": "102",
+          "name": "박주영"
+        },
+        {
+          "staff_id": "103",
+          "name": "최정환"
+        },
+        {
+          "staff_id": "104",
+          "name": "문재윤"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-25",
+      "shift": "E",
+      "members": [
+        {
+          "staff_id": "101",
+          "name": "이보은"
+        },
+        {
+          "staff_id": "102",
+          "name": "박주영"
+        },
+        {
+          "staff_id": "103",
+          "name": "최정환"
+        },
+        {
+          "staff_id": "104",
+          "name": "문재윤"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-26",
+      "shift": "D",
+      "members": [
+        {
+          "staff_id": "101",
+          "name": "이보은"
+        },
+        {
+          "staff_id": "102",
+          "name": "박주영"
+        },
+        {
+          "staff_id": "103",
+          "name": "최정환"
+        },
+        {
+          "staff_id": "104",
+          "name": "문재윤"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-27",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "101",
+          "name": "이보은"
+        },
+        {
+          "staff_id": "102",
+          "name": "박주영"
+        },
+        {
+          "staff_id": "103",
+          "name": "최정환"
+        },
+        {
+          "staff_id": "104",
+          "name": "문재윤"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-28",
+      "shift": "D",
+      "members": [
+        {
+          "staff_id": "101",
+          "name": "이보은"
+        },
+        {
+          "staff_id": "102",
+          "name": "박주영"
+        },
+        {
+          "staff_id": "103",
+          "name": "최정환"
+        },
+        {
+          "staff_id": "104",
+          "name": "문재윤"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-29",
+      "shift": "D",
+      "members": [
+        {
+          "staff_id": "101",
+          "name": "이보은"
+        },
+        {
+          "staff_id": "102",
+          "name": "박주영"
+        },
+        {
+          "staff_id": "103",
+          "name": "최정환"
+        },
+        {
+          "staff_id": "104",
+          "name": "문재윤"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-30",
+      "shift": "D",
+      "members": [
+        {
+          "staff_id": "101",
+          "name": "이보은"
+        },
+        {
+          "staff_id": "102",
+          "name": "박주영"
+        },
+        {
+          "staff_id": "103",
+          "name": "최정환"
+        },
+        {
+          "staff_id": "104",
+          "name": "문재윤"
+        }
+      ]
+    }
+  ],
+  "2조": [
+    {
+      "date": "2025-08-01",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "105",
+          "name": "선서현"
+        },
+        {
+          "staff_id": "106",
+          "name": "박경태"
+        },
+        {
+          "staff_id": "107",
+          "name": "유희라"
+        },
+        {
+          "staff_id": "108",
+          "name": "김유범"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-02",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "105",
+          "name": "선서현"
+        },
+        {
+          "staff_id": "106",
+          "name": "박경태"
+        },
+        {
+          "staff_id": "107",
+          "name": "유희라"
+        },
+        {
+          "staff_id": "108",
+          "name": "김유범"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-03",
+      "shift": "N",
+      "members": [
+        {
+          "staff_id": "105",
+          "name": "선서현"
+        },
+        {
+          "staff_id": "106",
+          "name": "박경태"
+        },
+        {
+          "staff_id": "107",
+          "name": "유희라"
+        },
+        {
+          "staff_id": "108",
+          "name": "김유범"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-04",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "105",
+          "name": "선서현"
+        },
+        {
+          "staff_id": "106",
+          "name": "박경태"
+        },
+        {
+          "staff_id": "107",
+          "name": "유희라"
+        },
+        {
+          "staff_id": "108",
+          "name": "김유범"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-05",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "105",
+          "name": "선서현"
+        },
+        {
+          "staff_id": "106",
+          "name": "박경태"
+        },
+        {
+          "staff_id": "107",
+          "name": "유희라"
+        },
+        {
+          "staff_id": "108",
+          "name": "김유범"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-06",
+      "shift": "D",
+      "members": [
+        {
+          "staff_id": "105",
+          "name": "선서현"
+        },
+        {
+          "staff_id": "106",
+          "name": "박경태"
+        },
+        {
+          "staff_id": "107",
+          "name": "유희라"
+        },
+        {
+          "staff_id": "108",
+          "name": "김유범"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-07",
+      "shift": "E",
+      "members": [
+        {
+          "staff_id": "105",
+          "name": "선서현"
+        },
+        {
+          "staff_id": "106",
+          "name": "박경태"
+        },
+        {
+          "staff_id": "107",
+          "name": "유희라"
+        },
+        {
+          "staff_id": "108",
+          "name": "김유범"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-08",
+      "shift": "N",
+      "members": [
+        {
+          "staff_id": "105",
+          "name": "선서현"
+        },
+        {
+          "staff_id": "106",
+          "name": "박경태"
+        },
+        {
+          "staff_id": "107",
+          "name": "유희라"
+        },
+        {
+          "staff_id": "108",
+          "name": "김유범"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-09",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "105",
+          "name": "선서현"
+        },
+        {
+          "staff_id": "106",
+          "name": "박경태"
+        },
+        {
+          "staff_id": "107",
+          "name": "유희라"
+        },
+        {
+          "staff_id": "108",
+          "name": "김유범"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-10",
+      "shift": "E",
+      "members": [
+        {
+          "staff_id": "105",
+          "name": "선서현"
+        },
+        {
+          "staff_id": "106",
+          "name": "박경태"
+        },
+        {
+          "staff_id": "107",
+          "name": "유희라"
+        },
+        {
+          "staff_id": "108",
+          "name": "김유범"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-11",
+      "shift": "N",
+      "members": [
+        {
+          "staff_id": "105",
+          "name": "선서현"
+        },
+        {
+          "staff_id": "106",
+          "name": "박경태"
+        },
+        {
+          "staff_id": "107",
+          "name": "유희라"
+        },
+        {
+          "staff_id": "108",
+          "name": "김유범"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-12",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "105",
+          "name": "선서현"
+        },
+        {
+          "staff_id": "106",
+          "name": "박경태"
+        },
+        {
+          "staff_id": "107",
+          "name": "유희라"
+        },
+        {
+          "staff_id": "108",
+          "name": "김유범"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-13",
+      "shift": "E",
+      "members": [
+        {
+          "staff_id": "105",
+          "name": "선서현"
+        },
+        {
+          "staff_id": "106",
+          "name": "박경태"
+        },
+        {
+          "staff_id": "107",
+          "name": "유희라"
+        },
+        {
+          "staff_id": "108",
+          "name": "김유범"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-14",
+      "shift": "E",
+      "members": [
+        {
+          "staff_id": "105",
+          "name": "선서현"
+        },
+        {
+          "staff_id": "106",
+          "name": "박경태"
+        },
+        {
+          "staff_id": "107",
+          "name": "유희라"
+        },
+        {
+          "staff_id": "108",
+          "name": "김유범"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-15",
+      "shift": "N",
+      "members": [
+        {
+          "staff_id": "105",
+          "name": "선서현"
+        },
+        {
+          "staff_id": "106",
+          "name": "박경태"
+        },
+        {
+          "staff_id": "107",
+          "name": "유희라"
+        },
+        {
+          "staff_id": "108",
+          "name": "김유범"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-16",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "105",
+          "name": "선서현"
+        },
+        {
+          "staff_id": "106",
+          "name": "박경태"
+        },
+        {
+          "staff_id": "107",
+          "name": "유희라"
+        },
+        {
+          "staff_id": "108",
+          "name": "김유범"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-17",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "105",
+          "name": "선서현"
+        },
+        {
+          "staff_id": "106",
+          "name": "박경태"
+        },
+        {
+          "staff_id": "107",
+          "name": "유희라"
+        },
+        {
+          "staff_id": "108",
+          "name": "김유범"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-18",
+      "shift": "E",
+      "members": [
+        {
+          "staff_id": "105",
+          "name": "선서현"
+        },
+        {
+          "staff_id": "106",
+          "name": "박경태"
+        },
+        {
+          "staff_id": "107",
+          "name": "유희라"
+        },
+        {
+          "staff_id": "108",
+          "name": "김유범"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-19",
+      "shift": "E",
+      "members": [
+        {
+          "staff_id": "105",
+          "name": "선서현"
+        },
+        {
+          "staff_id": "106",
+          "name": "박경태"
+        },
+        {
+          "staff_id": "107",
+          "name": "유희라"
+        },
+        {
+          "staff_id": "108",
+          "name": "김유범"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-20",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "105",
+          "name": "선서현"
+        },
+        {
+          "staff_id": "106",
+          "name": "박경태"
+        },
+        {
+          "staff_id": "107",
+          "name": "유희라"
+        },
+        {
+          "staff_id": "108",
+          "name": "김유범"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-21",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "105",
+          "name": "선서현"
+        },
+        {
+          "staff_id": "106",
+          "name": "박경태"
+        },
+        {
+          "staff_id": "107",
+          "name": "유희라"
+        },
+        {
+          "staff_id": "108",
+          "name": "김유범"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-22",
+      "shift": "D",
+      "members": [
+        {
+          "staff_id": "105",
+          "name": "선서현"
+        },
+        {
+          "staff_id": "106",
+          "name": "박경태"
+        },
+        {
+          "staff_id": "107",
+          "name": "유희라"
+        },
+        {
+          "staff_id": "108",
+          "name": "김유범"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-23",
+      "shift": "N",
+      "members": [
+        {
+          "staff_id": "105",
+          "name": "선서현"
+        },
+        {
+          "staff_id": "106",
+          "name": "박경태"
+        },
+        {
+          "staff_id": "107",
+          "name": "유희라"
+        },
+        {
+          "staff_id": "108",
+          "name": "김유범"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-24",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "105",
+          "name": "선서현"
+        },
+        {
+          "staff_id": "106",
+          "name": "박경태"
+        },
+        {
+          "staff_id": "107",
+          "name": "유희라"
+        },
+        {
+          "staff_id": "108",
+          "name": "김유범"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-25",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "105",
+          "name": "선서현"
+        },
+        {
+          "staff_id": "106",
+          "name": "박경태"
+        },
+        {
+          "staff_id": "107",
+          "name": "유희라"
+        },
+        {
+          "staff_id": "108",
+          "name": "김유범"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-26",
+      "shift": "E",
+      "members": [
+        {
+          "staff_id": "105",
+          "name": "선서현"
+        },
+        {
+          "staff_id": "106",
+          "name": "박경태"
+        },
+        {
+          "staff_id": "107",
+          "name": "유희라"
+        },
+        {
+          "staff_id": "108",
+          "name": "김유범"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-27",
+      "shift": "D",
+      "members": [
+        {
+          "staff_id": "105",
+          "name": "선서현"
+        },
+        {
+          "staff_id": "106",
+          "name": "박경태"
+        },
+        {
+          "staff_id": "107",
+          "name": "유희라"
+        },
+        {
+          "staff_id": "108",
+          "name": "김유범"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-28",
+      "shift": "E",
+      "members": [
+        {
+          "staff_id": "105",
+          "name": "선서현"
+        },
+        {
+          "staff_id": "106",
+          "name": "박경태"
+        },
+        {
+          "staff_id": "107",
+          "name": "유희라"
+        },
+        {
+          "staff_id": "108",
+          "name": "김유범"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-29",
+      "shift": "N",
+      "members": [
+        {
+          "staff_id": "105",
+          "name": "선서현"
+        },
+        {
+          "staff_id": "106",
+          "name": "박경태"
+        },
+        {
+          "staff_id": "107",
+          "name": "유희라"
+        },
+        {
+          "staff_id": "108",
+          "name": "김유범"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-30",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "105",
+          "name": "선서현"
+        },
+        {
+          "staff_id": "106",
+          "name": "박경태"
+        },
+        {
+          "staff_id": "107",
+          "name": "유희라"
+        },
+        {
+          "staff_id": "108",
+          "name": "김유범"
+        }
+      ]
+    }
+  ],
+  "3조": [
+    {
+      "date": "2025-08-01",
+      "shift": "E",
+      "members": [
+        {
+          "staff_id": "109",
+          "name": "박서은"
+        },
+        {
+          "staff_id": "110",
+          "name": "김대업"
+        },
+        {
+          "staff_id": "111",
+          "name": "유예솜"
+        },
+        {
+          "staff_id": "112",
+          "name": "고준영"
+        },
+        {
+          "staff_id": "113",
+          "name": "하진영"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-02",
+      "shift": "D",
+      "members": [
+        {
+          "staff_id": "109",
+          "name": "박서은"
+        },
+        {
+          "staff_id": "110",
+          "name": "김대업"
+        },
+        {
+          "staff_id": "111",
+          "name": "유예솜"
+        },
+        {
+          "staff_id": "112",
+          "name": "고준영"
+        },
+        {
+          "staff_id": "113",
+          "name": "하진영"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-03",
+      "shift": "D",
+      "members": [
+        {
+          "staff_id": "109",
+          "name": "박서은"
+        },
+        {
+          "staff_id": "110",
+          "name": "김대업"
+        },
+        {
+          "staff_id": "111",
+          "name": "유예솜"
+        },
+        {
+          "staff_id": "112",
+          "name": "고준영"
+        },
+        {
+          "staff_id": "113",
+          "name": "하진영"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-04",
+      "shift": "N",
+      "members": [
+        {
+          "staff_id": "109",
+          "name": "박서은"
+        },
+        {
+          "staff_id": "110",
+          "name": "김대업"
+        },
+        {
+          "staff_id": "111",
+          "name": "유예솜"
+        },
+        {
+          "staff_id": "112",
+          "name": "고준영"
+        },
+        {
+          "staff_id": "113",
+          "name": "하진영"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-05",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "109",
+          "name": "박서은"
+        },
+        {
+          "staff_id": "110",
+          "name": "김대업"
+        },
+        {
+          "staff_id": "111",
+          "name": "유예솜"
+        },
+        {
+          "staff_id": "112",
+          "name": "고준영"
+        },
+        {
+          "staff_id": "113",
+          "name": "하진영"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-06",
+      "shift": "N",
+      "members": [
+        {
+          "staff_id": "109",
+          "name": "박서은"
+        },
+        {
+          "staff_id": "110",
+          "name": "김대업"
+        },
+        {
+          "staff_id": "111",
+          "name": "유예솜"
+        },
+        {
+          "staff_id": "112",
+          "name": "고준영"
+        },
+        {
+          "staff_id": "113",
+          "name": "하진영"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-07",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "109",
+          "name": "박서은"
+        },
+        {
+          "staff_id": "110",
+          "name": "김대업"
+        },
+        {
+          "staff_id": "111",
+          "name": "유예솜"
+        },
+        {
+          "staff_id": "112",
+          "name": "고준영"
+        },
+        {
+          "staff_id": "113",
+          "name": "하진영"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-08",
+      "shift": "D",
+      "members": [
+        {
+          "staff_id": "109",
+          "name": "박서은"
+        },
+        {
+          "staff_id": "110",
+          "name": "김대업"
+        },
+        {
+          "staff_id": "111",
+          "name": "유예솜"
+        },
+        {
+          "staff_id": "112",
+          "name": "고준영"
+        },
+        {
+          "staff_id": "113",
+          "name": "하진영"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-09",
+      "shift": "E",
+      "members": [
+        {
+          "staff_id": "109",
+          "name": "박서은"
+        },
+        {
+          "staff_id": "110",
+          "name": "김대업"
+        },
+        {
+          "staff_id": "111",
+          "name": "유예솜"
+        },
+        {
+          "staff_id": "112",
+          "name": "고준영"
+        },
+        {
+          "staff_id": "113",
+          "name": "하진영"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-10",
+      "shift": "E",
+      "members": [
+        {
+          "staff_id": "109",
+          "name": "박서은"
+        },
+        {
+          "staff_id": "110",
+          "name": "김대업"
+        },
+        {
+          "staff_id": "111",
+          "name": "유예솜"
+        },
+        {
+          "staff_id": "112",
+          "name": "고준영"
+        },
+        {
+          "staff_id": "113",
+          "name": "하진영"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-11",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "109",
+          "name": "박서은"
+        },
+        {
+          "staff_id": "110",
+          "name": "김대업"
+        },
+        {
+          "staff_id": "111",
+          "name": "유예솜"
+        },
+        {
+          "staff_id": "112",
+          "name": "고준영"
+        },
+        {
+          "staff_id": "113",
+          "name": "하진영"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-12",
+      "shift": "N",
+      "members": [
+        {
+          "staff_id": "109",
+          "name": "박서은"
+        },
+        {
+          "staff_id": "110",
+          "name": "김대업"
+        },
+        {
+          "staff_id": "111",
+          "name": "유예솜"
+        },
+        {
+          "staff_id": "112",
+          "name": "고준영"
+        },
+        {
+          "staff_id": "113",
+          "name": "하진영"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-13",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "109",
+          "name": "박서은"
+        },
+        {
+          "staff_id": "110",
+          "name": "김대업"
+        },
+        {
+          "staff_id": "111",
+          "name": "유예솜"
+        },
+        {
+          "staff_id": "112",
+          "name": "고준영"
+        },
+        {
+          "staff_id": "113",
+          "name": "하진영"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-14",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "109",
+          "name": "박서은"
+        },
+        {
+          "staff_id": "110",
+          "name": "김대업"
+        },
+        {
+          "staff_id": "111",
+          "name": "유예솜"
+        },
+        {
+          "staff_id": "112",
+          "name": "고준영"
+        },
+        {
+          "staff_id": "113",
+          "name": "하진영"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-15",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "109",
+          "name": "박서은"
+        },
+        {
+          "staff_id": "110",
+          "name": "김대업"
+        },
+        {
+          "staff_id": "111",
+          "name": "유예솜"
+        },
+        {
+          "staff_id": "112",
+          "name": "고준영"
+        },
+        {
+          "staff_id": "113",
+          "name": "하진영"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-16",
+      "shift": "E",
+      "members": [
+        {
+          "staff_id": "109",
+          "name": "박서은"
+        },
+        {
+          "staff_id": "110",
+          "name": "김대업"
+        },
+        {
+          "staff_id": "111",
+          "name": "유예솜"
+        },
+        {
+          "staff_id": "112",
+          "name": "고준영"
+        },
+        {
+          "staff_id": "113",
+          "name": "하진영"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-17",
+      "shift": "E",
+      "members": [
+        {
+          "staff_id": "109",
+          "name": "박서은"
+        },
+        {
+          "staff_id": "110",
+          "name": "김대업"
+        },
+        {
+          "staff_id": "111",
+          "name": "유예솜"
+        },
+        {
+          "staff_id": "112",
+          "name": "고준영"
+        },
+        {
+          "staff_id": "113",
+          "name": "하진영"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-18",
+      "shift": "D",
+      "members": [
+        {
+          "staff_id": "109",
+          "name": "박서은"
+        },
+        {
+          "staff_id": "110",
+          "name": "김대업"
+        },
+        {
+          "staff_id": "111",
+          "name": "유예솜"
+        },
+        {
+          "staff_id": "112",
+          "name": "고준영"
+        },
+        {
+          "staff_id": "113",
+          "name": "하진영"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-19",
+      "shift": "D",
+      "members": [
+        {
+          "staff_id": "109",
+          "name": "박서은"
+        },
+        {
+          "staff_id": "110",
+          "name": "김대업"
+        },
+        {
+          "staff_id": "111",
+          "name": "유예솜"
+        },
+        {
+          "staff_id": "112",
+          "name": "고준영"
+        },
+        {
+          "staff_id": "113",
+          "name": "하진영"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-20",
+      "shift": "N",
+      "members": [
+        {
+          "staff_id": "109",
+          "name": "박서은"
+        },
+        {
+          "staff_id": "110",
+          "name": "김대업"
+        },
+        {
+          "staff_id": "111",
+          "name": "유예솜"
+        },
+        {
+          "staff_id": "112",
+          "name": "고준영"
+        },
+        {
+          "staff_id": "113",
+          "name": "하진영"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-21",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "109",
+          "name": "박서은"
+        },
+        {
+          "staff_id": "110",
+          "name": "김대업"
+        },
+        {
+          "staff_id": "111",
+          "name": "유예솜"
+        },
+        {
+          "staff_id": "112",
+          "name": "고준영"
+        },
+        {
+          "staff_id": "113",
+          "name": "하진영"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-22",
+      "shift": "E",
+      "members": [
+        {
+          "staff_id": "109",
+          "name": "박서은"
+        },
+        {
+          "staff_id": "110",
+          "name": "김대업"
+        },
+        {
+          "staff_id": "111",
+          "name": "유예솜"
+        },
+        {
+          "staff_id": "112",
+          "name": "고준영"
+        },
+        {
+          "staff_id": "113",
+          "name": "하진영"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-23",
+      "shift": "D",
+      "members": [
+        {
+          "staff_id": "109",
+          "name": "박서은"
+        },
+        {
+          "staff_id": "110",
+          "name": "김대업"
+        },
+        {
+          "staff_id": "111",
+          "name": "유예솜"
+        },
+        {
+          "staff_id": "112",
+          "name": "고준영"
+        },
+        {
+          "staff_id": "113",
+          "name": "하진영"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-24",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "109",
+          "name": "박서은"
+        },
+        {
+          "staff_id": "110",
+          "name": "김대업"
+        },
+        {
+          "staff_id": "111",
+          "name": "유예솜"
+        },
+        {
+          "staff_id": "112",
+          "name": "고준영"
+        },
+        {
+          "staff_id": "113",
+          "name": "하진영"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-25",
+      "shift": "D",
+      "members": [
+        {
+          "staff_id": "109",
+          "name": "박서은"
+        },
+        {
+          "staff_id": "110",
+          "name": "김대업"
+        },
+        {
+          "staff_id": "111",
+          "name": "유예솜"
+        },
+        {
+          "staff_id": "112",
+          "name": "고준영"
+        },
+        {
+          "staff_id": "113",
+          "name": "하진영"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-26",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "109",
+          "name": "박서은"
+        },
+        {
+          "staff_id": "110",
+          "name": "김대업"
+        },
+        {
+          "staff_id": "111",
+          "name": "유예솜"
+        },
+        {
+          "staff_id": "112",
+          "name": "고준영"
+        },
+        {
+          "staff_id": "113",
+          "name": "하진영"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-27",
+      "shift": "N",
+      "members": [
+        {
+          "staff_id": "109",
+          "name": "박서은"
+        },
+        {
+          "staff_id": "110",
+          "name": "김대업"
+        },
+        {
+          "staff_id": "111",
+          "name": "유예솜"
+        },
+        {
+          "staff_id": "112",
+          "name": "고준영"
+        },
+        {
+          "staff_id": "113",
+          "name": "하진영"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-28",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "109",
+          "name": "박서은"
+        },
+        {
+          "staff_id": "110",
+          "name": "김대업"
+        },
+        {
+          "staff_id": "111",
+          "name": "유예솜"
+        },
+        {
+          "staff_id": "112",
+          "name": "고준영"
+        },
+        {
+          "staff_id": "113",
+          "name": "하진영"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-29",
+      "shift": "E",
+      "members": [
+        {
+          "staff_id": "109",
+          "name": "박서은"
+        },
+        {
+          "staff_id": "110",
+          "name": "김대업"
+        },
+        {
+          "staff_id": "111",
+          "name": "유예솜"
+        },
+        {
+          "staff_id": "112",
+          "name": "고준영"
+        },
+        {
+          "staff_id": "113",
+          "name": "하진영"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-30",
+      "shift": "N",
+      "members": [
+        {
+          "staff_id": "109",
+          "name": "박서은"
+        },
+        {
+          "staff_id": "110",
+          "name": "김대업"
+        },
+        {
+          "staff_id": "111",
+          "name": "유예솜"
+        },
+        {
+          "staff_id": "112",
+          "name": "고준영"
+        },
+        {
+          "staff_id": "113",
+          "name": "하진영"
+        }
+      ]
+    }
+  ],
+  "4조": [
+    {
+      "date": "2025-08-01",
+      "shift": "D",
+      "members": [
+        {
+          "staff_id": "114",
+          "name": "오장관"
+        },
+        {
+          "staff_id": "115",
+          "name": "윤진영"
+        },
+        {
+          "staff_id": "116",
+          "name": "한경식"
+        },
+        {
+          "staff_id": "117",
+          "name": "한현희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-02",
+      "shift": "E",
+      "members": [
+        {
+          "staff_id": "114",
+          "name": "오장관"
+        },
+        {
+          "staff_id": "115",
+          "name": "윤진영"
+        },
+        {
+          "staff_id": "116",
+          "name": "한경식"
+        },
+        {
+          "staff_id": "117",
+          "name": "한현희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-03",
+      "shift": "E",
+      "members": [
+        {
+          "staff_id": "114",
+          "name": "오장관"
+        },
+        {
+          "staff_id": "115",
+          "name": "윤진영"
+        },
+        {
+          "staff_id": "116",
+          "name": "한경식"
+        },
+        {
+          "staff_id": "117",
+          "name": "한현희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-04",
+      "shift": "E",
+      "members": [
+        {
+          "staff_id": "114",
+          "name": "오장관"
+        },
+        {
+          "staff_id": "115",
+          "name": "윤진영"
+        },
+        {
+          "staff_id": "116",
+          "name": "한경식"
+        },
+        {
+          "staff_id": "117",
+          "name": "한현희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-05",
+      "shift": "E",
+      "members": [
+        {
+          "staff_id": "114",
+          "name": "오장관"
+        },
+        {
+          "staff_id": "115",
+          "name": "윤진영"
+        },
+        {
+          "staff_id": "116",
+          "name": "한경식"
+        },
+        {
+          "staff_id": "117",
+          "name": "한현희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-06",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "114",
+          "name": "오장관"
+        },
+        {
+          "staff_id": "115",
+          "name": "윤진영"
+        },
+        {
+          "staff_id": "116",
+          "name": "한경식"
+        },
+        {
+          "staff_id": "117",
+          "name": "한현희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-07",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "114",
+          "name": "오장관"
+        },
+        {
+          "staff_id": "115",
+          "name": "윤진영"
+        },
+        {
+          "staff_id": "116",
+          "name": "한경식"
+        },
+        {
+          "staff_id": "117",
+          "name": "한현희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-08",
+      "shift": "D",
+      "members": [
+        {
+          "staff_id": "114",
+          "name": "오장관"
+        },
+        {
+          "staff_id": "115",
+          "name": "윤진영"
+        },
+        {
+          "staff_id": "116",
+          "name": "한경식"
+        },
+        {
+          "staff_id": "117",
+          "name": "한현희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-09",
+      "shift": "D",
+      "members": [
+        {
+          "staff_id": "114",
+          "name": "오장관"
+        },
+        {
+          "staff_id": "115",
+          "name": "윤진영"
+        },
+        {
+          "staff_id": "116",
+          "name": "한경식"
+        },
+        {
+          "staff_id": "117",
+          "name": "한현희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-10",
+      "shift": "N",
+      "members": [
+        {
+          "staff_id": "114",
+          "name": "오장관"
+        },
+        {
+          "staff_id": "115",
+          "name": "윤진영"
+        },
+        {
+          "staff_id": "116",
+          "name": "한경식"
+        },
+        {
+          "staff_id": "117",
+          "name": "한현희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-11",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "114",
+          "name": "오장관"
+        },
+        {
+          "staff_id": "115",
+          "name": "윤진영"
+        },
+        {
+          "staff_id": "116",
+          "name": "한경식"
+        },
+        {
+          "staff_id": "117",
+          "name": "한현희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-12",
+      "shift": "D",
+      "members": [
+        {
+          "staff_id": "114",
+          "name": "오장관"
+        },
+        {
+          "staff_id": "115",
+          "name": "윤진영"
+        },
+        {
+          "staff_id": "116",
+          "name": "한경식"
+        },
+        {
+          "staff_id": "117",
+          "name": "한현희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-13",
+      "shift": "N",
+      "members": [
+        {
+          "staff_id": "114",
+          "name": "오장관"
+        },
+        {
+          "staff_id": "115",
+          "name": "윤진영"
+        },
+        {
+          "staff_id": "116",
+          "name": "한경식"
+        },
+        {
+          "staff_id": "117",
+          "name": "한현희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-14",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "114",
+          "name": "오장관"
+        },
+        {
+          "staff_id": "115",
+          "name": "윤진영"
+        },
+        {
+          "staff_id": "116",
+          "name": "한경식"
+        },
+        {
+          "staff_id": "117",
+          "name": "한현희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-15",
+      "shift": "D",
+      "members": [
+        {
+          "staff_id": "114",
+          "name": "오장관"
+        },
+        {
+          "staff_id": "115",
+          "name": "윤진영"
+        },
+        {
+          "staff_id": "116",
+          "name": "한경식"
+        },
+        {
+          "staff_id": "117",
+          "name": "한현희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-16",
+      "shift": "N",
+      "members": [
+        {
+          "staff_id": "114",
+          "name": "오장관"
+        },
+        {
+          "staff_id": "115",
+          "name": "윤진영"
+        },
+        {
+          "staff_id": "116",
+          "name": "한경식"
+        },
+        {
+          "staff_id": "117",
+          "name": "한현희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-17",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "114",
+          "name": "오장관"
+        },
+        {
+          "staff_id": "115",
+          "name": "윤진영"
+        },
+        {
+          "staff_id": "116",
+          "name": "한경식"
+        },
+        {
+          "staff_id": "117",
+          "name": "한현희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-18",
+      "shift": "N",
+      "members": [
+        {
+          "staff_id": "114",
+          "name": "오장관"
+        },
+        {
+          "staff_id": "115",
+          "name": "윤진영"
+        },
+        {
+          "staff_id": "116",
+          "name": "한경식"
+        },
+        {
+          "staff_id": "117",
+          "name": "한현희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-19",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "114",
+          "name": "오장관"
+        },
+        {
+          "staff_id": "115",
+          "name": "윤진영"
+        },
+        {
+          "staff_id": "116",
+          "name": "한경식"
+        },
+        {
+          "staff_id": "117",
+          "name": "한현희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-20",
+      "shift": "E",
+      "members": [
+        {
+          "staff_id": "114",
+          "name": "오장관"
+        },
+        {
+          "staff_id": "115",
+          "name": "윤진영"
+        },
+        {
+          "staff_id": "116",
+          "name": "한경식"
+        },
+        {
+          "staff_id": "117",
+          "name": "한현희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-21",
+      "shift": "D",
+      "members": [
+        {
+          "staff_id": "114",
+          "name": "오장관"
+        },
+        {
+          "staff_id": "115",
+          "name": "윤진영"
+        },
+        {
+          "staff_id": "116",
+          "name": "한경식"
+        },
+        {
+          "staff_id": "117",
+          "name": "한현희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-22",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "114",
+          "name": "오장관"
+        },
+        {
+          "staff_id": "115",
+          "name": "윤진영"
+        },
+        {
+          "staff_id": "116",
+          "name": "한경식"
+        },
+        {
+          "staff_id": "117",
+          "name": "한현희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-23",
+      "shift": "D",
+      "members": [
+        {
+          "staff_id": "114",
+          "name": "오장관"
+        },
+        {
+          "staff_id": "115",
+          "name": "윤진영"
+        },
+        {
+          "staff_id": "116",
+          "name": "한경식"
+        },
+        {
+          "staff_id": "117",
+          "name": "한현희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-24",
+      "shift": "N",
+      "members": [
+        {
+          "staff_id": "114",
+          "name": "오장관"
+        },
+        {
+          "staff_id": "115",
+          "name": "윤진영"
+        },
+        {
+          "staff_id": "116",
+          "name": "한경식"
+        },
+        {
+          "staff_id": "117",
+          "name": "한현희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-25",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "114",
+          "name": "오장관"
+        },
+        {
+          "staff_id": "115",
+          "name": "윤진영"
+        },
+        {
+          "staff_id": "116",
+          "name": "한경식"
+        },
+        {
+          "staff_id": "117",
+          "name": "한현희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-26",
+      "shift": "N",
+      "members": [
+        {
+          "staff_id": "114",
+          "name": "오장관"
+        },
+        {
+          "staff_id": "115",
+          "name": "윤진영"
+        },
+        {
+          "staff_id": "116",
+          "name": "한경식"
+        },
+        {
+          "staff_id": "117",
+          "name": "한현희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-27",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "114",
+          "name": "오장관"
+        },
+        {
+          "staff_id": "115",
+          "name": "윤진영"
+        },
+        {
+          "staff_id": "116",
+          "name": "한경식"
+        },
+        {
+          "staff_id": "117",
+          "name": "한현희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-28",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "114",
+          "name": "오장관"
+        },
+        {
+          "staff_id": "115",
+          "name": "윤진영"
+        },
+        {
+          "staff_id": "116",
+          "name": "한경식"
+        },
+        {
+          "staff_id": "117",
+          "name": "한현희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-29",
+      "shift": "E",
+      "members": [
+        {
+          "staff_id": "114",
+          "name": "오장관"
+        },
+        {
+          "staff_id": "115",
+          "name": "윤진영"
+        },
+        {
+          "staff_id": "116",
+          "name": "한경식"
+        },
+        {
+          "staff_id": "117",
+          "name": "한현희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-30",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "114",
+          "name": "오장관"
+        },
+        {
+          "staff_id": "115",
+          "name": "윤진영"
+        },
+        {
+          "staff_id": "116",
+          "name": "한경식"
+        },
+        {
+          "staff_id": "117",
+          "name": "한현희"
+        }
+      ]
+    }
+  ],
+  "5조": [
+    {
+      "date": "2025-08-01",
+      "shift": "N",
+      "members": [
+        {
+          "staff_id": "118",
+          "name": "정종옥"
+        },
+        {
+          "staff_id": "119",
+          "name": "양성규"
+        },
+        {
+          "staff_id": "120",
+          "name": "김화백"
+        },
+        {
+          "staff_id": "121",
+          "name": "이병희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-02",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "118",
+          "name": "정종옥"
+        },
+        {
+          "staff_id": "119",
+          "name": "양성규"
+        },
+        {
+          "staff_id": "120",
+          "name": "김화백"
+        },
+        {
+          "staff_id": "121",
+          "name": "이병희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-03",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "118",
+          "name": "정종옥"
+        },
+        {
+          "staff_id": "119",
+          "name": "양성규"
+        },
+        {
+          "staff_id": "120",
+          "name": "김화백"
+        },
+        {
+          "staff_id": "121",
+          "name": "이병희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-04",
+      "shift": "D",
+      "members": [
+        {
+          "staff_id": "118",
+          "name": "정종옥"
+        },
+        {
+          "staff_id": "119",
+          "name": "양성규"
+        },
+        {
+          "staff_id": "120",
+          "name": "김화백"
+        },
+        {
+          "staff_id": "121",
+          "name": "이병희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-05",
+      "shift": "D",
+      "members": [
+        {
+          "staff_id": "118",
+          "name": "정종옥"
+        },
+        {
+          "staff_id": "119",
+          "name": "양성규"
+        },
+        {
+          "staff_id": "120",
+          "name": "김화백"
+        },
+        {
+          "staff_id": "121",
+          "name": "이병희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-06",
+      "shift": "E",
+      "members": [
+        {
+          "staff_id": "118",
+          "name": "정종옥"
+        },
+        {
+          "staff_id": "119",
+          "name": "양성규"
+        },
+        {
+          "staff_id": "120",
+          "name": "김화백"
+        },
+        {
+          "staff_id": "121",
+          "name": "이병희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-07",
+      "shift": "N",
+      "members": [
+        {
+          "staff_id": "118",
+          "name": "정종옥"
+        },
+        {
+          "staff_id": "119",
+          "name": "양성규"
+        },
+        {
+          "staff_id": "120",
+          "name": "김화백"
+        },
+        {
+          "staff_id": "121",
+          "name": "이병희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-08",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "118",
+          "name": "정종옥"
+        },
+        {
+          "staff_id": "119",
+          "name": "양성규"
+        },
+        {
+          "staff_id": "120",
+          "name": "김화백"
+        },
+        {
+          "staff_id": "121",
+          "name": "이병희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-09",
+      "shift": "E",
+      "members": [
+        {
+          "staff_id": "118",
+          "name": "정종옥"
+        },
+        {
+          "staff_id": "119",
+          "name": "양성규"
+        },
+        {
+          "staff_id": "120",
+          "name": "김화백"
+        },
+        {
+          "staff_id": "121",
+          "name": "이병희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-10",
+      "shift": "D",
+      "members": [
+        {
+          "staff_id": "118",
+          "name": "정종옥"
+        },
+        {
+          "staff_id": "119",
+          "name": "양성규"
+        },
+        {
+          "staff_id": "120",
+          "name": "김화백"
+        },
+        {
+          "staff_id": "121",
+          "name": "이병희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-11",
+      "shift": "D",
+      "members": [
+        {
+          "staff_id": "118",
+          "name": "정종옥"
+        },
+        {
+          "staff_id": "119",
+          "name": "양성규"
+        },
+        {
+          "staff_id": "120",
+          "name": "김화백"
+        },
+        {
+          "staff_id": "121",
+          "name": "이병희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-12",
+      "shift": "E",
+      "members": [
+        {
+          "staff_id": "118",
+          "name": "정종옥"
+        },
+        {
+          "staff_id": "119",
+          "name": "양성규"
+        },
+        {
+          "staff_id": "120",
+          "name": "김화백"
+        },
+        {
+          "staff_id": "121",
+          "name": "이병희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-13",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "118",
+          "name": "정종옥"
+        },
+        {
+          "staff_id": "119",
+          "name": "양성규"
+        },
+        {
+          "staff_id": "120",
+          "name": "김화백"
+        },
+        {
+          "staff_id": "121",
+          "name": "이병희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-14",
+      "shift": "N",
+      "members": [
+        {
+          "staff_id": "118",
+          "name": "정종옥"
+        },
+        {
+          "staff_id": "119",
+          "name": "양성규"
+        },
+        {
+          "staff_id": "120",
+          "name": "김화백"
+        },
+        {
+          "staff_id": "121",
+          "name": "이병희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-15",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "118",
+          "name": "정종옥"
+        },
+        {
+          "staff_id": "119",
+          "name": "양성규"
+        },
+        {
+          "staff_id": "120",
+          "name": "김화백"
+        },
+        {
+          "staff_id": "121",
+          "name": "이병희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-16",
+      "shift": "E",
+      "members": [
+        {
+          "staff_id": "118",
+          "name": "정종옥"
+        },
+        {
+          "staff_id": "119",
+          "name": "양성규"
+        },
+        {
+          "staff_id": "120",
+          "name": "김화백"
+        },
+        {
+          "staff_id": "121",
+          "name": "이병희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-17",
+      "shift": "D",
+      "members": [
+        {
+          "staff_id": "118",
+          "name": "정종옥"
+        },
+        {
+          "staff_id": "119",
+          "name": "양성규"
+        },
+        {
+          "staff_id": "120",
+          "name": "김화백"
+        },
+        {
+          "staff_id": "121",
+          "name": "이병희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-18",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "118",
+          "name": "정종옥"
+        },
+        {
+          "staff_id": "119",
+          "name": "양성규"
+        },
+        {
+          "staff_id": "120",
+          "name": "김화백"
+        },
+        {
+          "staff_id": "121",
+          "name": "이병희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-19",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "118",
+          "name": "정종옥"
+        },
+        {
+          "staff_id": "119",
+          "name": "양성규"
+        },
+        {
+          "staff_id": "120",
+          "name": "김화백"
+        },
+        {
+          "staff_id": "121",
+          "name": "이병희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-20",
+      "shift": "D",
+      "members": [
+        {
+          "staff_id": "118",
+          "name": "정종옥"
+        },
+        {
+          "staff_id": "119",
+          "name": "양성규"
+        },
+        {
+          "staff_id": "120",
+          "name": "김화백"
+        },
+        {
+          "staff_id": "121",
+          "name": "이병희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-21",
+      "shift": "N",
+      "members": [
+        {
+          "staff_id": "118",
+          "name": "정종옥"
+        },
+        {
+          "staff_id": "119",
+          "name": "양성규"
+        },
+        {
+          "staff_id": "120",
+          "name": "김화백"
+        },
+        {
+          "staff_id": "121",
+          "name": "이병희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-22",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "118",
+          "name": "정종옥"
+        },
+        {
+          "staff_id": "119",
+          "name": "양성규"
+        },
+        {
+          "staff_id": "120",
+          "name": "김화백"
+        },
+        {
+          "staff_id": "121",
+          "name": "이병희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-23",
+      "shift": "E",
+      "members": [
+        {
+          "staff_id": "118",
+          "name": "정종옥"
+        },
+        {
+          "staff_id": "119",
+          "name": "양성규"
+        },
+        {
+          "staff_id": "120",
+          "name": "김화백"
+        },
+        {
+          "staff_id": "121",
+          "name": "이병희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-24",
+      "shift": "E",
+      "members": [
+        {
+          "staff_id": "118",
+          "name": "정종옥"
+        },
+        {
+          "staff_id": "119",
+          "name": "양성규"
+        },
+        {
+          "staff_id": "120",
+          "name": "김화백"
+        },
+        {
+          "staff_id": "121",
+          "name": "이병희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-25",
+      "shift": "N",
+      "members": [
+        {
+          "staff_id": "118",
+          "name": "정종옥"
+        },
+        {
+          "staff_id": "119",
+          "name": "양성규"
+        },
+        {
+          "staff_id": "120",
+          "name": "김화백"
+        },
+        {
+          "staff_id": "121",
+          "name": "이병희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-26",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "118",
+          "name": "정종옥"
+        },
+        {
+          "staff_id": "119",
+          "name": "양성규"
+        },
+        {
+          "staff_id": "120",
+          "name": "김화백"
+        },
+        {
+          "staff_id": "121",
+          "name": "이병희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-27",
+      "shift": "E",
+      "members": [
+        {
+          "staff_id": "118",
+          "name": "정종옥"
+        },
+        {
+          "staff_id": "119",
+          "name": "양성규"
+        },
+        {
+          "staff_id": "120",
+          "name": "김화백"
+        },
+        {
+          "staff_id": "121",
+          "name": "이병희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-28",
+      "shift": "N",
+      "members": [
+        {
+          "staff_id": "118",
+          "name": "정종옥"
+        },
+        {
+          "staff_id": "119",
+          "name": "양성규"
+        },
+        {
+          "staff_id": "120",
+          "name": "김화백"
+        },
+        {
+          "staff_id": "121",
+          "name": "이병희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-29",
+      "shift": "O",
+      "members": [
+        {
+          "staff_id": "118",
+          "name": "정종옥"
+        },
+        {
+          "staff_id": "119",
+          "name": "양성규"
+        },
+        {
+          "staff_id": "120",
+          "name": "김화백"
+        },
+        {
+          "staff_id": "121",
+          "name": "이병희"
+        }
+      ]
+    },
+    {
+      "date": "2025-08-30",
+      "shift": "E",
+      "members": [
+        {
+          "staff_id": "118",
+          "name": "정종옥"
+        },
+        {
+          "staff_id": "119",
+          "name": "양성규"
+        },
+        {
+          "staff_id": "120",
+          "name": "김화백"
+        },
+        {
+          "staff_id": "121",
+          "name": "이병희"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,135 @@
+[Python 생성기] ▶ JSON (팀 단위)
+       │
+       ▼
+[정규화] ▶ 개인별 JSON → schedule 테이블
+       │
+       ▼
+[확정] ▶ row 단위 정규화 insert → duty_schedule
+       │
+       ▼
+[조회] ▶ 로그인 staff_id 기준으로 조회 + JSON 응답
+
+
+---
+
+### ✅ 1. 전체 근무표 생성 → JSON
+
+✔ **맞습니다.**
+Python 알고리즘으로 팀 단위의 **한 달치 근무표**를 생성하고,
+**팀 이름, 날짜, 근무조, 멤버 리스트**가 포함된 JSON 형식으로 저장됩니다.
+
+{
+  "1조": [
+    {
+      "date": "2025-08-01",
+      "shift": "D",
+      "members": [
+        { "staff_id": "101", "name": "박서은" },
+        { "staff_id": "102", "name": "김대업" },
+        { "staff_id": "103", "name": "유예솜" }
+      ]
+    },
+    ...
+  ],
+  ...
+}
+
+---
+
+### ✅ 2. `schedule` 테이블에 JSON 원본 저장
+
+✔ **맞습니다.**
+이 JSON을 기반으로 **개인별로 한 달치 근무표만 추려서 `schedule` 테이블에 insert**합니다.
+
+* `staff_id` 별로 하나의 JSON을 저장
+* 예시:
+
+```json
+{
+  "month": "2025-08",
+  "schedules": [
+    { "date": "2025-08-01", "shift": "D" },
+    { "date": "2025-08-02", "shift": "O" },
+    ...
+  ]
+}
+```
+
+📌 즉, `schedule` 테이블은 **임시 보관소 or 최초 기록 저장소**로 보면 됩니다.
+
+---
+
+### ✅ 3. 정규화하여 `duty_schedule`에 insert
+
+✔ **맞습니다.**
+`team → 개인`으로 풀어낸 뒤 `duty_schedule` 테이블에 정규화된 행 단위로 저장합니다.
+
+* 각 직원 × 날짜당 1 row
+* 저장 예시:
+
+| staff\_id | duty\_date | shift\_code | work\_time   |
+| --------- | ---------- | ----------- | ------------ |
+| 101       | 2025-08-01 | D           | 09:00\~17:00 |
+| 101       | 2025-08-02 | O           |              |
+
+📌 **`duty_schedule`는 운영의 기준 테이블**이므로 여기만으로 통계, 조회, 통근관리 가능
+
+---
+
+### ✅ 4. 로그인한 사용자의 근무표 조회
+
+✔ **정확합니다.**
+
+* 클라이언트에서 로그인 → `staff_id` 식별
+* `duty_schedule`에서 해당 직원의 `duty_date`, `shift_code`, `work_time`을 조회
+* 그 결과를 다시 JSON으로 구성하여 응답
+
+응답 예시:
+
+```json
+{
+  "staff_id": 101,
+  "month": "2025-08",
+  "schedules": [
+    { "date": "2025-08-01", "shift": "D", "work_time": "09:00~17:00" },
+    { "date": "2025-08-02", "shift": "O", "work_time": null }
+  ]
+}
+```
+
+---
+
+## ✅ 전체 흐름 정리
+
+```plaintext
+[Python 생성기] ▶ JSON (팀 단위)
+       │
+       ▼
+[정규화] ▶ 개인별 JSON → schedule 테이블
+       │
+       ▼
+[확정] ▶ row 단위 정규화 insert → duty_schedule
+       │
+       ▼
+[조회] ▶ 로그인 staff_id 기준으로 조회 + JSON 응답
+```
+
+---
+
+## 💡 부가 팁
+
+* schedule 테이블은 "초안 or 원본 JSON 백업" 용도로 사용
+* duty\_schedule이 실제 서비스 기준
+* 추후 수정 기능이 필요하다면:
+
+  * schedule 갱신 후 다시 정규화하여 duty\_schedule을 덮어쓰기 처리
+
+---
+
+필요하시면 위 흐름 기반으로
+
+* MySQL 쿼리
+* C++ 서버 코드
+* 클라이언트 요청/응답 JSON 포맷
+
+까지 이어서 도와드릴 수 있습니다!

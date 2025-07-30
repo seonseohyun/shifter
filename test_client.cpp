@@ -6,8 +6,11 @@
 #include <vector>
 #include <stdexcept>
 #include <nlohmann/json.hpp>
+#include <windows.h>
 
 #pragma comment(lib, "ws2_32.lib")
+
+
 
 using json = nlohmann::json;
 
@@ -42,6 +45,7 @@ void sendWorkItem(SOCKET sock, const WorkItem& item) {
 
     send(sock, header, 8, 0);
     send(sock, item.jsonStr.c_str(), jsonLen, 0);
+
     if (payloadLen > 0) {
         send(sock, item.payload.data(), payloadLen, 0);
     }
@@ -82,10 +86,13 @@ std::string toUTF8_safely(const std::string & cp949Str) {
 
 
 int main() {
+
+
     WSADATA wsaData;
     SOCKET clientSocket = INVALID_SOCKET;
 
-   
+    SetConsoleOutputCP(CP_UTF8);
+    SetConsoleCP(CP_UTF8);  // 입력도 필요하면
 
 
     try {
@@ -108,19 +115,21 @@ int main() {
         if (connect(clientSocket, (sockaddr*)&serverAddr, sizeof(serverAddr)) == SOCKET_ERROR)
             throw std::runtime_error("connect() failed");
 
-        std::cout << "서버에 연결되었습니다!" << std::endl;
+        std::cout << u8"서버에 연결되었습니다!" << std::endl;
 
         // 테스트 1: Hello 프로토콜
         {
             json j;
-            j["Protocol"] = "Hello";
+            j["Protocol"] = toUTF8_safely("Hello");
             WorkItem item{ j.dump(), {} };
 
+            
+
             sendWorkItem(clientSocket, item);
-            std::cout << "Hello 프로토콜 전송: " << item.jsonStr << std::endl;
+            std::cout << u8"Hello 프로토콜 전송: " << item.jsonStr << std::endl;
 
             WorkItem response = receiveWorkItem(clientSocket);
-            std::cout << "Hello 프로토콜 응답: " << response.jsonStr << std::endl;
+            std::cout << u8"Hello 프로토콜 응답: " << toUTF8_safely(response.jsonStr) << std::endl;
         }
 
         // 테스트 2: Insert 프로토콜
@@ -130,18 +139,18 @@ int main() {
             j["content"] = toUTF8_safely("잇힝~ㅋㅋ");
             WorkItem item{ j.dump(), {} };
             sendWorkItem(clientSocket, item);
-            std::cout << "Insert 프로토콜 전송: " << item.jsonStr << std::endl;
+            std::cout << u8"Insert 프로토콜 전송: " << item.jsonStr << std::endl;
             
             WorkItem response = receiveWorkItem(clientSocket);
-            std::cout << "Hello 프로토콜 응답: " << response.jsonStr << std::endl;
+            std::cout << u8"Hello 프로토콜 응답: " << response.jsonStr << std::endl;
         }
 
-        std::cout << "계속하려면 enter, 종료하려면 ctrl+ c ..." << std::endl;
+        std::cout <<u8"계속하려면 enter, 종료하려면 ctrl+ c ..." << std::endl;
         std::cin.get();
 
     }
     catch (const std::exception& e) {
-        std::cerr << "클라이언트 오류: " << e.what() << std::endl;
+        std::cerr << u8"클라이언트 오류: " << e.what() << std::endl;
     }
 
     // 정리
