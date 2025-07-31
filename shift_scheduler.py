@@ -1,137 +1,164 @@
 from ortools.sat.python import cp_model
 from datetime import datetime, timedelta
+import os
 import json
 
-def create_team_shift_schedule(team_json):
+def create_individual_shift_schedule(staff_data, shift_type):
+    if shift_type not in [2, 3, 4]:
+        raise ValueError("shift_type must be 2, 3, or 4")
+
     model = cp_model.CpModel()
 
-    # 설정
-    shifts = ['D', 'E', 'N', 'O']  # Day, Evening, Night, Off
-    shift_times = {  # 시작/종료 시간 (datetime.time 객체, 24시간제)
-        'D': (datetime.strptime('09:00', '%H:%M').time(), datetime.strptime('17:00', '%H:%M').time()),
-        'E': (datetime.strptime('14:00', '%H:%M').time(), datetime.strptime('22:00', '%H:%M').time()),
-        'N': (datetime.strptime('22:00', '%H:%M').time(), datetime.strptime('06:00', '%H:%M').time()),  # 다음 날 종료
-        'O': (None, None)  # 휴식
-    }
-    shift_hours = {'D': 8, 'E': 8, 'N': 8, 'O': 0}  # 각 교대 근무시간 (휴게 제외)
-    num_days = 30
+    # Define shifts based on shift_type
+    if shift_type == 2:
+        shifts = ['D', 'N', 'O']  # Day, Night, Off
+        night_shift = 'N'  # The night shift label
+    elif shift_type == 3:
+        shifts = ['D', 'E', 'N', 'O']  # Day, Evening, Night, Off
+        night_shift = 'N'
+    elif shift_type == 4:
+        shifts = ['M', 'D', 'E', 'N', 'O']  # Morning, Day, Evening, Night, Off (inspired by image)
+        night_shift = 'N'
+
+    shift_hours = {s: 8 if s != 'O' else 0 for s in shifts}
+    num_days = 31
     days = range(num_days)
-    start_date = datetime(2025, 8, 1)
-    num_weeks = (num_days + 6) // 7  # 대략적인 주 수
+    start_date = datetime(2025, 7, 1)
+    num_weeks = (num_days + 6) // 7
 
-    # 조 이름 및 인원 정리
-    team_names = sorted(set(key.split()[0] for key in team_json if '팀장' in key))
-    team_to_people = {
-        team: [team_json[f"{team} 팀장"]] + team_json[f"{team} 팀원"]
-        for team in team_names
-    }
+    # Extract all individuals
+    all_people = staff_data["staff"]
 
-    # 변수 생성: 팀 단위로 근무 배정
+    # Check for maximum 5 unique grades
+    unique_grades = set(person["grade"] for person in all_people)
+    if len(unique_grades) > 5:
+        raise ValueError("Up to 5 unique grades are supported.")
+
+    # Variables: (staff_id, day, shift)
     schedule = {}
-    for team in team_names:
+    for person in all_people:
+        sid = str(person["staff_id"])  # Ensure staff_id is string
         for d in days:
-            schedule[(team, d)] = model.NewIntVar(0, len(shifts) - 1, f"{team}_day{d}")
+            for s in shifts:
+                schedule[(sid, d, s)] = model.NewBoolVar(f"{sid}_d{d}_{s}")
 
-    # 제약 1: 각 조는 매일 D, E, N 중 하나를 선택 (팀 단위로 동일 근무)
+    # Each individual has exactly one shift per day
+    for person in all_people:
+        sid = str(person["staff_id"])
+        for d in days:
+            model.AddExactlyOne([schedule[(sid, d, s)] for s in shifts])
+
+    # Each day, at least one person per required shift (all except O)
     for d in days:
-        for s in ['D', 'E', 'N']:
-            shift_bools = []
-            for team in team_names:
-                is_shift = model.NewBoolVar(f"{team}_d{d}_{s}")
-                model.Add(schedule[(team, d)] == shifts.index(s)).OnlyEnforceIf(is_shift)
-                model.Add(schedule[(team, d)] != shifts.index(s)).OnlyEnforceIf(is_shift.Not())
-                shift_bools.append(is_shift)
-            model.Add(sum(shift_bools) >= 1)
+        for s in shifts:
+            if s != 'O':
+                model.Add(sum(schedule[(str(person["staff_id"]), d, s)] for person in all_people) >= 1)
 
-    # 제약 2: Night 근무 다음 날 Off 또는 Evening, 그리고 11시간 휴식 강화
-    for team in team_names:
+    # Night shift followed by Off, and no E after N (adapt for shift_type)
+    for person in all_people:
+        sid = str(person["staff_id"])
         for d in range(num_days - 1):
-            night = model.NewBoolVar(f"{team}_d{d}_isN")
-            model.Add(schedule[(team, d)] == shifts.index('N')).OnlyEnforceIf(night)
-            model.Add(schedule[(team, d)] != shifts.index('N')).OnlyEnforceIf(night.Not())
+            night = schedule[(sid, d, night_shift)]
+            off_next = schedule[(sid, d + 1, 'O')]
+            model.AddImplication(night, off_next)
 
-            # 다음 날 허용: O 또는 E
-            model.Add(schedule[(team, d + 1)] == shifts.index('O')).OnlyEnforceIf(night)
-            model.Add(schedule[(team, d + 1)] == shifts.index('E')).OnlyEnforceIf(night)
-            # N 후 D/N 금지 이미 포함
+            # For shift_type >=3, prevent E after N (if E exists)
+            if 'E' in shifts:
+                eve_next = schedule[(sid, d + 1, 'E')]
+                model.AddBoolOr([night.Not(), eve_next.Not()])
 
-    # 새 제약: 근로일 간 최소 11시간 휴식 (모든 교대에 적용)
-    for team in team_names:
-        for d in range(num_days - 1):
-            for s1 in shifts[:-1]:  # O 제외
-                for s2 in shifts[:-1]:  # O 제외
-                    is_s1 = model.NewBoolVar(f"{team}_d{d}_{s1}")
-                    model.Add(schedule[(team, d)] == shifts.index(s1)).OnlyEnforceIf(is_s1)
-                    model.Add(schedule[(team, d)] != shifts.index(s1)).OnlyEnforceIf(is_s1.Not())
-                    is_s2 = model.NewBoolVar(f"{team}_d{d+1}_{s2}")
-                    model.Add(schedule[(team, d + 1)] == shifts.index(s2)).OnlyEnforceIf(is_s2)
-                    model.Add(schedule[(team, d + 1)] != shifts.index(s2)).OnlyEnforceIf(is_s2.Not())
+    # Minimum 3 Off days per individual over the period
+    for person in all_people:
+        sid = str(person["staff_id"])
+        model.Add(sum(schedule[(sid, d, 'O')] for d in days) >= 3)
 
-                    # 종료 시간과 다음 시작 시간 비교 (시간 차 계산)
-                    end_time1 = shift_times[s1][1]
-                    start_time2 = shift_times[s2][0]
-                    # N처럼 다음 날 종료 시 +24시간 고려
-                    if end_time1 < shift_times[s1][0]:  # 밤을 넘는 경우 (N)
-                        end_dt = datetime(2000, 1, 2, end_time1.hour, end_time1.minute)  # 다음 날
-                    else:
-                        end_dt = datetime(2000, 1, 1, end_time1.hour, end_time1.minute)
-                    start_dt = datetime(2000, 1, 1, start_time2.hour, start_time2.minute)
-                    if start_dt < end_dt:
-                        start_dt += timedelta(days=1)  # 다음 날 시작
-                    rest_hours = (start_dt - end_dt).total_seconds() / 3600
-                    if rest_hours < 11:
-                        model.Add(is_s1 + is_s2 <= 1)  # 둘 다 참이면 금지
-
-    # 새 제약: 주휴일 - 매주 최소 1일 O
-    for team in team_names:
+    # Weekly hours <= 40 per individual
+    for person in all_people:
+        sid = str(person["staff_id"])
         for w in range(num_weeks):
             week_start = w * 7
             week_end = min(week_start + 7, num_days)
-            off_bools = []
-            for d in range(week_start, week_end):
-                is_off = model.NewBoolVar(f"{team}_w{w}_d{d}_O")
-                model.Add(schedule[(team, d)] == shifts.index('O')).OnlyEnforceIf(is_off)
-                model.Add(schedule[(team, d)] != shifts.index('O')).OnlyEnforceIf(is_off.Not())
-                off_bools.append(is_off)
-            model.Add(sum(off_bools) >= 1)
+            hours = sum(schedule[(sid, d, s)] * shift_hours[s] for d in range(week_start, week_end) for s in shifts)
+            model.Add(hours <= 40)
 
-    # 새 제약: 주 40시간 초과 금지
-    for team in team_names:
-        for w in range(num_weeks):
-            week_start = w * 7
-            week_end = min(week_start + 7, num_days)
-            hours_var = model.NewIntVar(0, 100, f"{team}_w{w}_hours")  # 임시 변수
-            hour_terms = []
-            for d in range(week_start, week_end):
-                for s in shifts:
-                    is_s = model.NewBoolVar(f"{team}_d{d}_{s}")
-                    model.Add(schedule[(team, d)] == shifts.index(s)).OnlyEnforceIf(is_s)
-                    model.Add(schedule[(team, d)] != shifts.index(s)).OnlyEnforceIf(is_s.Not())
-                    hour_terms.append(is_s * shift_hours[s])
-            model.Add(sum(hour_terms) == hours_var)
-            model.Add(hours_var <= 40)
-
-    # 제약 3: Night 근무 균형 (기존 유지)
-    night_counts = []
-    for team in team_names:
-        bools = []
-        for d in days:
-            is_night = model.NewBoolVar(f"{team}_d{d}_N")
-            model.Add(schedule[(team, d)] == shifts.index('N')).OnlyEnforceIf(is_night)
-            model.Add(schedule[(team, d)] != shifts.index('N')).OnlyEnforceIf(is_night.Not())
-            bools.append(is_night)
-        night_counts.append(sum(bools))
+    # Balance Night shifts across individuals
+    night_counts = [sum(schedule[(str(person["staff_id"]), d, night_shift)] for d in days) for person in all_people]
     max_nights = model.NewIntVar(0, num_days, "max_night")
     min_nights = model.NewIntVar(0, num_days, "min_night")
     model.AddMaxEquality(max_nights, night_counts)
     model.AddMinEquality(min_nights, night_counts)
     model.Minimize(max_nights - min_nights)
 
-    # 사용자 정의 고정 근무 제약 조건 목록 (기존 유지)
-    custom_constraints = [
-        ("2조", "2025-08-09", "O"),
-        ("4조", "2025-08-13", "D"),
-    ]
+    # Solve the model
+    solver = cp_model.CpSolver()
+    solver.parameters.max_time_in_seconds = 300.0
+    solver.parameters.log_search_progress = True
+    solver.parameters.num_search_workers = 8
+    status = solver.Solve(model)
 
-    for team, date_str, shift_code in custom_constraints:
-        day_index = (datetime.strptime(date_str, "%Y-%m-%d") -
+    print(f"솔버 상태: {solver.StatusName(status)}")
+    if status == cp_model.INFEASIBLE:
+        print("제약 조건 모순 발생")
+
+    if status in (cp_model.OPTIMAL, cp_model.FEASIBLE):
+        result = {}
+        for d in days:
+            date_str = (start_date + timedelta(days=d)).strftime('%Y-%m-%d')
+            day_schedule = []
+            for s in shifts:
+                assigned_people = []
+                for person in all_people:
+                    sid = str(person["staff_id"])
+                    if solver.Value(schedule[(sid, d, s)]) == 1:
+                        assigned_people.append({
+                            "staff_id": sid,
+                            "이름": person["name"],
+                            "grade": person["grade"],
+                            "grade_name": person["grade_name"]
+                        })
+                day_schedule.append({
+                    "shift": s,
+                    "people": assigned_people
+                })
+            result[date_str] = day_schedule
+
+        output_path = "./data/time_table.json"
+        os.makedirs(os.path.dirname(output_path), exist_ok=True)
+        with open(output_path, "w", encoding="utf-8") as f:
+            json.dump(result, f, ensure_ascii=False, indent=2)
+
+        print(f"[INFO] 시간표가 저장되었습니다: {output_path}")
+        print(json.dumps(result, ensure_ascii=False, indent=2))
+    else:
+        print("해를 찾을 수 없습니다.")
+
+
+staff_data  = {
+    "staff": [
+        {"name": "박주영", "staff_id": 101, "grade": 1, "grade_name": "제일높은직급"},
+        {"name": "최정환", "staff_id": 102, "grade": 1, "grade_name": "제일높은직급"},
+        {"name": "문재윤", "staff_id": 103, "grade": 1, "grade_name": "제일높은직급"},
+        {"name": "선서현", "staff_id": 104, "grade": 1, "grade_name": "제일높은직급"},
+        {"name": "박경태", "staff_id": 105, "grade": 1, "grade_name": "제일높은직급"},
+        {"name": "유희라", "staff_id": 106, "grade": 1, "grade_name": "제일높은직급"},
+        {"name": "김유범", "staff_id": 107, "grade": 1, "grade_name": "제일높은직급"},
+        {"name": "박서은", "staff_id": 108, "grade": 1, "grade_name": "제일높은직급"},
+        {"name": "김대업", "staff_id": 109, "grade": 1, "grade_name": "제일높은직급"},
+        {"name": "유예솜", "staff_id": 110, "grade": 1, "grade_name": "제일높은직급"},
+        {"name": "고준영", "staff_id": 111, "grade": 1, "grade_name": "제일높은직급"},
+        {"name": "하진영", "staff_id": 112, "grade": 1, "grade_name": "제일높은직급"},
+        {"name": "오장관", "staff_id": 113, "grade": 1, "grade_name": "제일높은직급"},
+        {"name": "윤진영", "staff_id": 114, "grade": 1, "grade_name": "제일높은직급"},
+        {"name": "한경식", "staff_id": 115, "grade": 1, "grade_name": "제일높은직급"},
+        {"name": "한현희", "staff_id": 116, "grade": 1, "grade_name": "제일높은직급"},
+        {"name": "정종옥", "staff_id": 117, "grade": 1, "grade_name": "제일높은직급"},
+        {"name": "양성규", "staff_id": 118, "grade": 1, "grade_name": "제일높은직급"},
+        {"name": "김화백", "staff_id": 119, "grade": 1, "grade_name": "제일높은직급"},
+        {"name": "이병희", "staff_id": 120, "grade": 1, "grade_name": "제일높은직급"}
+    ]
+}
+
+if __name__ == "__main__":
+    # Example usage: choose shift_type as 2, 3, or 4
+    shift_type = 3  # Change this to 2 or 4 as needed
+    create_individual_shift_schedule(staff_data, shift_type)

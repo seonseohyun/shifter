@@ -1,12 +1,31 @@
 ﻿#define _WINSOCK_DEPRECATED_NO_WARNINGS
+
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <cstdlib>
+#include <nlohmann/json.hpp>
+#include <mysql_connection.h>
+#include<cppconn/driver.h>
+
+
+
 #include <winsock2.h>
 #include <ws2tcpip.h>
-#include <iostream>
-#include <string>
+
+
 #include <vector>
 #include <stdexcept>
-#include <nlohmann/json.hpp>
-#include <mysql/mysql.h>
+
+
+
+
+
+
+
+
+
+
 
 #pragma comment(lib, "ws2_32.lib")
 
@@ -86,6 +105,90 @@ WorkItem receiveWorkItem(SOCKET sock) {
     }
     return WorkItem{ jsonStr, payload };
 }
+using json = nlohmann::json;
+
+void generate_and_insert_schedule(const std::string& db_host, const std::string& db_user, const std::string& db_password, const std::string& db_name) {
+    // Execute the Python script to generate the JSON file
+    std::system("python shift_scheduler_base.py");
+
+    // Parse the generated JSON file
+    std::ifstream json_file("/data/time_table.json");
+    if (!json_file.is_open()) {
+        std::cerr << "Failed to open /data/time_table.json" << std::endl;
+        return;
+    }
+    json schedule_data;
+    try {
+        schedule_data = json::parse(json_file);
+    }
+    catch (const json::parse_error& e) {
+        std::cerr << "JSON parsing error: " << e.what() << std::endl;
+        return;
+    }
+
+    // Establish database connection
+    sql::Driver* driver = nullptr;
+    sql::Connection* con = nullptr;
+    try {
+        driver = sql::mysql::get_driver_instance();
+        con = driver->connect(db_host, db_user, db_password);
+        con->setSchema(db_name);
+    }
+    catch (sql::SQLException& e) {
+        std::cerr << "Database connection error: " << e.what() << std::endl;
+        return;
+    }
+
+    // Prepare the SQL insert statement
+    sql::PreparedStatement* pstmt = nullptr;
+    try {
+        pstmt = con->prepareStatement(
+            "INSERT INTO duty_schedule (staff_id, duty_date, shift_code, work_time, created_at, updated_at) "
+            "VALUES (?, ?, ?, ?, NOW(), NOW())"
+        );
+
+        // Iterate over the JSON data and perform insertions
+        for (auto& date_entry : schedule_data.items()) {
+            std::string duty_date = date_entry.key();
+            auto shifts = date_entry.value();
+
+            for (const auto& shift_obj : shifts) {
+                std::string shift_code = shift_obj["shift"];
+                auto teams = shift_obj["teams"];
+
+                for (const auto& team : teams) {
+                    auto members = team["members"];
+
+                    for (const auto& member : members) {
+                        std::string staff_id = member["staff_id"];
+                        std::string work_time = "";  // No work_time in JSON; set to empty string
+
+                        pstmt->setString(1, staff_id);
+                        pstmt->setString(2, duty_date);
+                        pstmt->setString(3, shift_code);
+                        pstmt->setString(4, work_time);
+                        pstmt->executeUpdate();
+                    }
+                }
+            }
+        }
+    }
+    catch (sql::SQLException& e) {
+        std::cerr << "SQL error during insertion: " << e.what() << std::endl;
+    }
+    catch (const json::exception& e) {
+        std::cerr << "JSON processing error: " << e.what() << std::endl;
+    }
+
+    // Clean up resources
+    delete pstmt;
+    delete con;
+
+    // Log completion
+    std::cout << "Duty schedule insertion completed successfully." << std::endl;
+}
+
+
 
 int main() {
     WSADATA wsaData;
@@ -94,6 +197,10 @@ int main() {
 
     SetConsoleOutputCP(CP_UTF8);
     SetConsoleCP(CP_UTF8);  // 입력도 필요하면
+
+
+
+
 
     try {
         if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0)

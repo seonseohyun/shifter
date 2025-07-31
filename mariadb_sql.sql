@@ -13,8 +13,10 @@ CREATE TABLE `team` (
 );
 
 CREATE TABLE `shift_code` (
-  `shift_code` char(1) PRIMARY KEY,
-  `description` varchar(255)
+  `shift_code_id` PRIMARY KEY,
+  `shift_code` varchar(100), 
+  `description` varchar(255),
+  `time_info` varchar(255)
 );
 
 CREATE TABLE `schedule` (
