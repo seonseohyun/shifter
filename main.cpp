@@ -9,7 +9,7 @@
 #include <nlohmann/json.hpp>
 #include <mysql/mysql.h>
 #include <fstream>
-#include <direct.h>  
+#include <direct.h>
 
 #pragma comment(lib, "ws2_32.lib")
 
@@ -21,14 +21,12 @@ struct WorkItem {
 };
 
 std::string toUTF8_safely(const std::string& cp949Str) {
-    // CP949 → UTF-16
     int wlen = MultiByteToWideChar(949, 0, cp949Str.data(), (int)cp949Str.size(), nullptr, 0);
     if (wlen == 0) return "인코딩 오류";
 
     std::wstring wide(wlen, 0);
     MultiByteToWideChar(949, 0, cp949Str.data(), (int)cp949Str.size(), &wide[0], wlen);
 
-    // UTF-16 → UTF-8
     int ulen = WideCharToMultiByte(CP_UTF8, 0, wide.data(), wlen, nullptr, 0, nullptr, nullptr);
     std::string utf8(ulen, 0);
     WideCharToMultiByte(CP_UTF8, 0, wide.data(), wlen, &utf8[0], ulen, nullptr, nullptr);
@@ -36,7 +34,6 @@ std::string toUTF8_safely(const std::string& cp949Str) {
     return utf8;
 }
 
-// 데이터를 정확히 size 바이트만큼 받는 함수
 std::vector<char> recvExact(SOCKET sock, size_t size) {
     std::vector<char> buffer(size);
     size_t totalRead = 0;
@@ -50,7 +47,6 @@ std::vector<char> recvExact(SOCKET sock, size_t size) {
     return buffer;
 }
 
-// WorkItem 보내기
 void sendWorkItem(SOCKET sock, const WorkItem& item) {
     int jsonLen = (int)item.jsonStr.size();
     int payloadLen = (int)item.payload.size();
@@ -67,29 +63,24 @@ void sendWorkItem(SOCKET sock, const WorkItem& item) {
     }
 }
 
-// WorkItem 받기
 WorkItem receiveWorkItem(SOCKET sock) {
-    std::cout << "receiveWorkItem 시작" << std::endl;
     auto header = recvExact(sock, 8);
-    std::cout << "헤더 수신 완료" << std::endl;
 
     int totalLen = *reinterpret_cast<int*>(header.data());
     int jsonLen = *reinterpret_cast<int*>(header.data() + 4);
     int payloadLen = totalLen - jsonLen;
-    std::cout << "totalLen: " << totalLen << ", jsonLen: " << jsonLen << ", payloadLen: " << payloadLen << std::endl;
 
     auto jsonBytes = recvExact(sock, jsonLen);
     std::string jsonStr(jsonBytes.begin(), jsonBytes.end());
-    std::cout << "JSON 수신: " << jsonStr << std::endl;
 
     std::vector<char> payload;
     if (payloadLen > 0) {
         payload = recvExact(sock, payloadLen);
-        std::cout << "페이로드 수신 완료" << std::endl;
     }
     return WorkItem{ jsonStr, payload };
 }
-//db연결함수
+
+// DB 연결 함수
 MYSQL* create_db_connection() {
     MYSQL* conn = mysql_init(NULL);
     if (!conn) {
@@ -106,22 +97,14 @@ MYSQL* create_db_connection() {
     mysql_set_character_set(conn, "utf8mb4");
     return conn;
 }
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <vector>
-#include <cstring>
-#include <mysql.h>
-#include <nlohmann/json.hpp>
-#include <direct.h>  // _chdir()
 
-using json = nlohmann::json;
-void generate_and_insert_schedule() {
-    // 실행 디렉토리를 Python 스크립트가 있는 곳으로 변경
+// 스케줄 생성 및 DB 삽입 함수 (conn 전달받음)
+void generate_and_insert_schedule(MYSQL* conn) {
+    if (!conn) return;
+
     _chdir("c:\\project_0726");
     std::system("python shift_scheduler.py");
 
-    // JSON 파일 열기
     std::ifstream json_file("c:\\project_0726/data/time_table.json");
     if (!json_file.is_open()) {
         std::cerr << "Failed to open time_table.json" << std::endl;
@@ -137,14 +120,9 @@ void generate_and_insert_schedule() {
         return;
     }
 
-    // DB 커넥션 생성
-    MYSQL* conn = create_db_connection();
-    if (!conn) return;
-
     MYSQL_STMT* stmt = mysql_stmt_init(conn);
     if (!stmt) {
         std::cerr << "mysql_stmt_init failed" << std::endl;
-        mysql_close(conn);
         return;
     }
 
@@ -155,11 +133,9 @@ void generate_and_insert_schedule() {
     if (mysql_stmt_prepare(stmt, query, strlen(query))) {
         std::cerr << "mysql_stmt_prepare failed: " << mysql_stmt_error(stmt) << std::endl;
         mysql_stmt_close(stmt);
-        mysql_close(conn);
         return;
     }
 
-    // 바인딩 변수 설정
     MYSQL_BIND bind[4];
     memset(bind, 0, sizeof(bind));
 
@@ -202,11 +178,9 @@ void generate_and_insert_schedule() {
     if (mysql_stmt_bind_param(stmt, bind)) {
         std::cerr << "mysql_stmt_bind_param failed: " << mysql_stmt_error(stmt) << std::endl;
         mysql_stmt_close(stmt);
-        mysql_close(conn);
         return;
     }
 
-    // JSON 반복 삽입
     try {
         for (auto& date_entry : schedule_data.items()) {
             std::string duty_date = date_entry.key();
@@ -247,7 +221,6 @@ void generate_and_insert_schedule() {
     }
 
     mysql_stmt_close(stmt);
-    mysql_close(conn);
     std::cout << "Duty schedule insertion completed successfully." << std::endl;
 }
 
@@ -256,15 +229,19 @@ int main() {
     WSADATA wsaData;
     SOCKET listenSocket = INVALID_SOCKET, clientSocket = INVALID_SOCKET;
 
-
     SetConsoleOutputCP(CP_UTF8);
-    SetConsoleCP(CP_UTF8);  // 입력도 필요하면
-
-    generate_and_insert_schedule();
+    SetConsoleCP(CP_UTF8);
 
     try {
         if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0)
             throw std::runtime_error("WSAStartup failed");
+
+        MYSQL* conn = create_db_connection();
+        if (!conn) {
+            throw std::runtime_error("Failed to connect to DB");
+        }
+
+        generate_and_insert_schedule(conn);
 
         sockaddr_in serverAddr{};
         serverAddr.sin_family = AF_INET;
@@ -287,106 +264,63 @@ int main() {
             clientSocket = accept(listenSocket, nullptr, nullptr);
             if (clientSocket == INVALID_SOCKET) {
                 std::cerr << u8"accept() failed: " << WSAGetLastError() << std::endl;
-                continue; // 새 연결 시도
+                continue;
             }
 
             std::cout << u8"클라이언트 접속됨" << std::endl;
 
-            MYSQL* conn = nullptr;
             try {
-                conn = mysql_init(NULL);
-                if (conn == NULL) {
-                    throw std::runtime_error(u8"mysql_init() 실패");
-                }
-                if (mysql_real_connect(conn, "localhost", "master", "1111", "mydb", 3306, NULL, 0) == NULL) {
-                    throw std::runtime_error(std::string(u8"mysql_real_connect() 실패: ") + mysql_error(conn));
-                }
-                mysql_set_character_set(conn, "utf8mb4");
-
                 while (true) {
-                    try {
-                        WorkItem req = receiveWorkItem(clientSocket);
-                        std::cout << u8"받은 JSON: " << req.jsonStr << std::endl;
+                    WorkItem req = receiveWorkItem(clientSocket);
+                    auto j = json::parse(req.jsonStr);
 
-                        auto j = json::parse(req.jsonStr);
-                        if (j.contains("Protocol") && j["Protocol"] == "Hello") {
-                            std::cout << u8"Hello 프로토콜 받음!" << std::endl;
-                            j["Protocol"] = "hi";
-                            WorkItem resp{ j.dump(), {} };
-                            sendWorkItem(clientSocket, resp);
-                        }
-
-                        //인서트 프로토콜 왔을때 
-                        else if (j.contains("Protocol") && j["Protocol"] == "Insert") {
-
-                            std::cout << u8"Insert 프로토콜 받음!" << std::endl;
-
-                            if (j.contains("content"))
-                            {
-                                std::string content = j["content"];
-
-                                // content 안에 따옴표가 있는 경우를 대비한 간단한 이스케이프 처리
-                                size_t pos = 0;
-                                while ((pos = content.find("'", pos)) != std::string::npos) {
-                                    content.insert(pos, "'");
-                                    pos += 2;
-                                }
-
-                                // 쿼리 문자열 생성
-                                std::string queryStr = "INSERT INTO test (TEST_FIELD) VALUES ('" + content + "');";
-
-                                // const char* 로 변환
-                                const char* query = queryStr.c_str();
-
-                                // 출력
-                                std::cout << u8"쿼리: " << query << std::endl;
-
-
-                                if (mysql_query(conn, query)) {
-                                    std::cerr << u8"Insert 쿼리 실패: " << mysql_error(conn) << std::endl;
-                                }
-                                else {
-                                    std::cout << u8"Insert 성공!" << std::endl;
-                                }
-
-                            }
-
-
-                            j["Protocol"] = "insert ok";
-                            WorkItem resp{ j.dump(), {} };
-                            sendWorkItem(clientSocket, resp);
-
-                        }
+                    if (j.contains("Protocol") && j["Protocol"] == "Hello") {
+                        std::cout << u8"Hello 프로토콜 받음!" << std::endl;
+                        j["Protocol"] = "hi";
+                        sendWorkItem(clientSocket, WorkItem{ j.dump(), {} });
                     }
-                    catch (const std::exception& e) {
-                        std::cerr << "클라이언트 처리 중 오류: " << e.what() << std::endl;
-                        break; // 클라이언트 연결 종료, 새 연결 대기
+                    else if (j.contains("Protocol") && j["Protocol"] == "Insert") {
+                        std::cout << u8"Insert 프로토콜 받음!" << std::endl;
+
+                        if (j.contains("content")) {
+                            std::string content = j["content"];
+                            size_t pos = 0;
+                            while ((pos = content.find("'", pos)) != std::string::npos) {
+                                content.insert(pos, "'");
+                                pos += 2;
+                            }
+                            std::string queryStr = "INSERT INTO test (TEST_FIELD) VALUES ('" + content + "');";
+
+                            if (mysql_query(conn, queryStr.c_str())) {
+                                std::cerr << u8"Insert 쿼리 실패: " << mysql_error(conn) << std::endl;
+                            }
+                            else {
+                                std::cout << u8"Insert 성공!" << std::endl;
+                            }
+                        }
+                        j["Protocol"] = "insert ok";
+                        sendWorkItem(clientSocket, WorkItem{ j.dump(), {} });
                     }
                 }
             }
             catch (const std::exception& e) {
-                std::cerr << "DB 연결 오류: " << e.what() << std::endl;
+                std::cerr << "클라이언트 처리 중 오류: " << e.what() << std::endl;
             }
 
-            // 클라이언트 연결 정리
-            if (conn) {
-                mysql_close(conn);
-                conn = nullptr;
-            }
             if (clientSocket != INVALID_SOCKET) {
                 closesocket(clientSocket);
                 clientSocket = INVALID_SOCKET;
             }
             std::cout << "클라이언트 연결 종료, 새 연결 대기 중..." << std::endl;
         }
+
+        mysql_close(conn);
+        if (listenSocket != INVALID_SOCKET) closesocket(listenSocket);
+        WSACleanup();
     }
     catch (const std::exception& e) {
         std::cerr << "서버 오류: " << e.what() << std::endl;
     }
-
-    if (clientSocket != INVALID_SOCKET) closesocket(clientSocket);
-    if (listenSocket != INVALID_SOCKET) closesocket(listenSocket);
-    WSACleanup();
 
     return 0;
 }
