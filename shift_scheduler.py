@@ -23,7 +23,7 @@ def create_individual_shift_schedule(staff_data, shift_type):
     shift_hours = {s: 8 if s != 'O' else 0 for s in shifts}
     num_days = 31
     days = range(num_days)
-    start_date = datetime(2025, 7, 1)
+    start_date = datetime(2025, 8, 1)
     num_weeks = (num_days + 6) // 7
 
     # Extract all individuals

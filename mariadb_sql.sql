@@ -1,6 +1,7 @@
 CREATE TABLE `staff` (
   `staff_id` varchar(255) PRIMARY KEY,
   `name` varchar(255),
+  `pw` varchar(255),
   `position` varchar(255),
   `team_id` int,
   `created_at` timestamp,

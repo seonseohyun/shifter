@@ -27,7 +27,7 @@ shift_code	char(1)	교대 코드 (PK)	예: D, E, N, O
 description	varchar	설명	예: Day, Night
 
 
-설명: AI 또는 외부 입력으로 생성된 월간 근무표를 JSON으로 저장. 추후 duty_schedule로 파싱하여 활용. 
+설명: 외부 입력으로 생성된 월간 근무표를 JSON으로 저장. 추후 duty_schedule로 파싱하여 활용. 
 4. schedule - 생성 스케줄 원본(JSON) 저장 테이블
 필드명	타입	설명	비고
 schedule_id	int	스케줄 고유 ID (PK)	
@@ -155,6 +155,27 @@ updated_at	timestamp	수정일
 
 ---
 
+INSERT INTO staff (staff_id, name, position, team_id, created_at, updated_at) VALUES
+('101', '박주영', NULL, NULL, NOW(), NOW()),
+('102', '최정환', NULL, NULL, NOW(), NOW()),
+('103', '문재윤', NULL, NULL, NOW(), NOW()),
+('104', '선서현', NULL, NULL, NOW(), NOW()),
+('105', '박경태', NULL, NULL, NOW(), NOW()),
+('106', '유희라', NULL, NULL, NOW(), NOW()),
+('107', '김유범', NULL, NULL, NOW(), NOW()),
+('108', '박서은', NULL, NULL, NOW(), NOW()),
+('109', '김대업', NULL, NULL, NOW(), NOW()),
+('110', '유예솜', NULL, NULL, NOW(), NOW()),
+('111', '고준영', NULL, NULL, NOW(), NOW()),
+('112', '하진영', NULL, NULL, NOW(), NOW()),
+('113', '오장관', NULL, NULL, NOW(), NOW()),
+('114', '윤진영', NULL, NULL, NOW(), NOW()),
+('115', '한경식', NULL, NULL, NOW(), NOW()),
+('116', '한현희', NULL, NULL, NOW(), NOW()),
+('117', '정종옥', NULL, NULL, NOW(), NOW()),
+('118', '양성규', NULL, NULL, NOW(), NOW()),
+('119', '김화백', NULL, NULL, NOW(), NOW()),
+('120', '이병희', NULL, NULL, NOW(), NOW());
 
 
 
