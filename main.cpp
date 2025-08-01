@@ -10,6 +10,9 @@
 #include <mysql/mysql.h>
 #include <fstream>
 #include <direct.h>
+#include <regex>
+#include <cstdlib>
+#include <cstdio>  // For sscanf
 
 #pragma comment(lib, "ws2_32.lib")
 
@@ -18,6 +21,13 @@ using json = nlohmann::json;
 struct WorkItem {
     std::string jsonStr;
     std::vector<char> payload;
+};
+
+struct ParsedData {
+    std::string name;
+    std::string date;
+    std::string fromShift;
+    std::string toShift;
 };
 
 std::string toUTF8_safely(const std::string& cp949Str) {
@@ -78,6 +88,72 @@ WorkItem receiveWorkItem(SOCKET sock) {
         payload = recvExact(sock, payloadLen);
     }
     return WorkItem{ jsonStr, payload };
+}
+
+ParsedData parseNaturalLanguage(const std::string& input) {
+    // Pattern for parsing: non-space for name (handles Korean), date, shifts
+    std::regex pattern(R"((\S+)\s*(\d{4}-\d{2}-\d{2})\s*([A-Z])근무에서\s*([A-Z])근무로\s*변경을\s*희망합니다\.)")); 
+    std::smatch matches;
+    if (std::regex_match(input, matches, pattern)) {
+        return {matches[1].str(), matches[2].str(), matches[3].str(), matches[4].str()};
+    }
+    throw std::invalid_argument("자연어 입력을 해석할 수 없습니다.");
+}
+
+std::string updateAndExecuteShiftScheduler(const std::string& staff_id, const std::string& date_, const std::string& shift_from, const std::string& shift_to, const std::string& pythonFilePath) {
+    try {
+        // Step 1: Read Python file content
+        std::ifstream fileIn(pythonFilePath);
+        if (!fileIn.is_open()) {
+            return "오류: 파일을 열 수 없습니다: " + pythonFilePath;
+        }
+        std::string pythonContent((std::istreambuf_iterator<char>(fileIn)), std::istreambuf_iterator<char>());
+        fileIn.close();
+
+        // Step 2: Calculate day index (assuming August 2025)
+        int year, month, dayOfMonth;
+        if (sscanf(date_.c_str(), "%d-%d-%d", &year, &month, &dayOfMonth) != 3 ||
+            year != 2025 || month != 8 || dayOfMonth < 1 || dayOfMonth > 31) {
+            return "오류: 유효하지 않은 날짜입니다. 2025-08-01 ~ 2025-08-31 범위여야 합니다.";
+        }
+        int day = dayOfMonth - 1;  // Day 0 is 2025-08-01
+
+        // Step 3: Prepare insertion code for fixed constraint
+        std::string insertCode = 
+            "\n    # Fixed shift change for staff_id " + staff_id + " on day " + std::to_string(day) + " from " + shift_from + " to " + shift_to +
+            "\n    sid = '" + staff_id + "'"
+            "\n    d = " + std::to_string(day) +
+            "\n    s = '" + shift_to + "'"
+            "\n    model.Add(schedule[(sid, d, s)] == 1)\n";
+
+        // Step 4: Find insertion point (before the coverage constraint comment)
+        size_t insertPos = pythonContent.find("# Each day, at least one person per required shift (all except O)");
+        if (insertPos == std::string::npos) {
+            return "오류: Python 코드에서 삽입 지점을 찾을 수 없습니다.";
+        }
+        pythonContent.insert(insertPos, insertCode);
+
+        // Step 5: Backup original and save modified file
+        std::string backupPath = pythonFilePath + ".bak";
+        std::rename(pythonFilePath.c_str(), backupPath.c_str());
+        std::ofstream fileOut(pythonFilePath);
+        if (!fileOut.is_open()) {
+            return "오류: 파일을 저장할 수 없습니다: " + pythonFilePath;
+        }
+        fileOut << pythonContent;
+        fileOut.close();
+
+        // Step 6: Execute Python script
+        std::string command = "python " + pythonFilePath;
+        int result = std::system(command.c_str());
+        if (result != 0) {
+            return "오류: Python 실행 오류: 반환 코드 " + std::to_string(result);
+        }
+
+        return "성공: 근무표 생성이 완료되었습니다. 변경 요청이 반영되었습니다.";
+    } catch (const std::exception& ex) {
+        return "오류: " + std::string(ex.what());
+    }
 }
 
 // DB 연결 함수
@@ -299,6 +375,53 @@ int main() {
                             }
                         }
                         j["Protocol"] = "insert ok";
+                        sendWorkItem(clientSocket, WorkItem{ j.dump(), {} });
+                    }
+                    else if (j.contains("Protocol") && j["Protocol"] == "GetSchedule") {
+                        std::cout << u8"GetSchedule 프로토콜 받음!" << std::endl;
+                        
+                        // time_table.json 파일 읽기
+                        std::ifstream json_file("c:\\project_0726/data/time_table.json");
+                        if (json_file.is_open()) {
+                            std::string json_content((std::istreambuf_iterator<char>(json_file)), std::istreambuf_iterator<char>());
+                            json_file.close();
+                            
+                            j["Protocol"] = "schedule_data";
+                            j["content"] = json_content;
+                        } else {
+                            j["Protocol"] = "error";
+                            j["message"] = "근무표 파일을 찾을 수 없습니다.";
+                        }
+                        sendWorkItem(clientSocket, WorkItem{ j.dump(), {} });
+                    }
+                    else if (j.contains("Protocol") && j["Protocol"] == "ChangeShift") {
+                        std::cout << u8"ChangeShift 프로토콜 받음!" << std::endl;
+                        
+                        if (j.contains("staff_id") && j.contains("date_") && j.contains("shift_from") && j.contains("shift_to")) {
+                            std::string staff_id = j["staff_id"];
+                            std::string date_ = j["date_"];
+                            std::string shift_from = j["shift_from"];
+                            std::string shift_to = j["shift_to"];
+                            
+                            std::string result = updateAndExecuteShiftScheduler(staff_id, date_, shift_from, shift_to, "c:\\project_0726/shift_scheduler.py");
+                            
+                            if (result.find("성공:") == 0) {
+                                // 성공한 경우 새로운 스케줄을 DB에 저장
+                                generate_and_insert_schedule(conn);
+                                
+                                j["Protocol"] = "change_success";
+                                j["message"] = result;
+                            } else if (result.find("해가 없습니다") != std::string::npos || result.find("No solution") != std::string::npos) {
+                                j["Protocol"] = "no_solution";
+                                j["message"] = "해가 없습니다";
+                            } else {
+                                j["Protocol"] = "change_error";
+                                j["message"] = result;
+                            }
+                        } else {
+                            j["Protocol"] = "change_error";
+                            j["message"] = "필수 정보가 누락되었습니다. staff_id, date_, shift_from, shift_to가 필요합니다.";
+                        }
                         sendWorkItem(clientSocket, WorkItem{ j.dump(), {} });
                     }
                 }
