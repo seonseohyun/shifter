@@ -189,7 +189,7 @@ int main() {
                     if (protocol == "change_success") {
                         std::cout << u8"✅ 근무교대 요청이 성공적으로 처리되었습니다!" << std::endl;
                     } else if (protocol == "no_solution") {
-                        std::cout << u8"❌ 해가 없습니다. 근무교대가 불가능합니다." << std::endl;
+                        std::cout << u8"🚫 근무 변경이 불가능합니다!" << std::endl;
                     } else if (protocol == "change_error") {
                         std::cout << u8"❌ 근무교대 처리 중 오류가 발생했습니다." << std::endl;
                     }

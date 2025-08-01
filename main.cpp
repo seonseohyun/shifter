@@ -448,7 +448,7 @@ int main() {
                                 j["message"] = result;
                             } else if (result.find("해가 없습니다") != std::string::npos || result.find("No solution") != std::string::npos) {
                                 j["Protocol"] = "no_solution";
-                                j["message"] = "해가 없습니다";
+                                j["message"] = "근무 변경이 불가능합니다. 해당 조건으로는 근무표를 생성할 수 없습니다.";
                             } else {
                                 j["Protocol"] = "change_error";
                                 j["message"] = result;
