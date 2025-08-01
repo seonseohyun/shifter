@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include <nlohmann/json.hpp>
+#include <windows.h>
 
 #pragma comment(lib, "ws2_32.lib")
 
@@ -66,6 +67,10 @@ void sendWorkItem(SOCKET sock, const WorkItem& item) {
 }
 
 int main() {
+    // UTF-8 콘솔 설정
+    SetConsoleOutputCP(CP_UTF8);
+    SetConsoleCP(CP_UTF8);
+    
     WSADATA wsaData;
     SOCKET sock = INVALID_SOCKET;
 
@@ -85,16 +90,16 @@ int main() {
         if (connect(sock, (sockaddr*)&serverAddr, sizeof(serverAddr)) == SOCKET_ERROR)
             throw std::runtime_error("connect() failed");
 
-        std::cout << "서버에 연결됨!" << std::endl;
+        std::cout << u8"서버에 연결됨!" << std::endl;
 
         // 테스트 메뉴
         int choice;
-        std::cout << "\n테스트할 기능을 선택하세요:" << std::endl;
-        std::cout << "1. Hello 프로토콜 테스트" << std::endl;
-        std::cout << "2. Insert 프로토콜 테스트" << std::endl;
-        std::cout << "3. GetSchedule 프로토콜 테스트" << std::endl;
-        std::cout << "4. ChangeShift 프로토콜 테스트 (updateAndExecuteShiftScheduler)" << std::endl;
-        std::cout << "선택: ";
+        std::cout << u8"\n테스트할 기능을 선택하세요:" << std::endl;
+        std::cout << u8"1. Hello 프로토콜 테스트" << std::endl;
+        std::cout << u8"2. Insert 프로토콜 테스트" << std::endl;
+        std::cout << u8"3. GetSchedule 프로토콜 테스트" << std::endl;
+        std::cout << u8"4. ChangeShift 프로토콜 테스트 (updateAndExecuteShiftScheduler)" << std::endl;
+        std::cout << u8"선택: ";
         std::cin >> choice;
 
         json requestJson;
@@ -127,17 +132,17 @@ int main() {
             {
                 std::string staff_id, date_, shift_from, shift_to;
                 
-                std::cout << "\n=== ChangeShift 프로토콜 테스트 ===" << std::endl;
-                std::cout << "직원 ID를 입력하세요 (예: 1): ";
+                std::cout << u8"\n=== ChangeShift 프로토콜 테스트 ===" << std::endl;
+                std::cout << u8"직원 ID를 입력하세요 (예: 1): ";
                 std::cin >> staff_id;
                 
-                std::cout << "날짜를 입력하세요 (예: 2025-08-10): ";
+                std::cout << u8"날짜를 입력하세요 (예: 2025-08-10): ";
                 std::cin >> date_;
                 
-                std::cout << "기존 근무 시간대를 입력하세요 (예: D): ";
+                std::cout << u8"기존 근무 시간대를 입력하세요 (예: D): ";
                 std::cin >> shift_from;
                 
-                std::cout << "변경할 근무 시간대를 입력하세요 (예: E): ";
+                std::cout << u8"변경할 근무 시간대를 입력하세요 (예: E): ";
                 std::cin >> shift_to;
                 
                 requestJson = {
@@ -148,12 +153,12 @@ int main() {
                     {"shift_to", shift_to}
                 };
                 
-                std::cout << "\n전송할 JSON: " << requestJson.dump(2) << std::endl;
+                std::cout << u8"\n전송할 JSON: " << requestJson.dump(2) << std::endl;
             }
             break;
             
         default:
-            std::cout << "잘못된 선택입니다. Insert 프로토콜로 기본 설정합니다." << std::endl;
+            std::cout << u8"잘못된 선택입니다. Insert 프로토콜로 기본 설정합니다." << std::endl;
             requestJson = {
                 {"Protocol", "Insert"},
                 {"content", "기본 테스트 데이터"}
@@ -163,49 +168,49 @@ int main() {
 
         // 요청 전송
         WorkItem request{ requestJson.dump(), {} };
-        std::cout << "\n서버로 요청 전송 중..." << std::endl;
+        std::cout << u8"\n서버로 요청 전송 중..." << std::endl;
         sendWorkItem(sock, request);
 
         // 서버 응답 수신
         try {
             WorkItem response = receiveWorkItem(sock);
-            std::cout << "\n=== 서버 응답 ===" << std::endl;
+            std::cout << u8"\n=== 서버 응답 ===" << std::endl;
             
             // JSON 파싱해서 예쁘게 출력
             try {
                 json responseJson = json::parse(response.jsonStr);
-                std::cout << "응답 JSON: " << responseJson.dump(2) << std::endl;
+                std::cout << u8"응답 JSON: " << responseJson.dump(2) << std::endl;
                 
                 // ChangeShift 응답에 대한 특별 처리
                 if (responseJson.contains("Protocol")) {
                     std::string protocol = responseJson["Protocol"];
-                    std::cout << "\n응답 프로토콜: " << protocol << std::endl;
+                    std::cout << u8"\n응답 프로토콜: " << protocol << std::endl;
                     
                     if (protocol == "change_success") {
-                        std::cout << "✅ 근무교대 요청이 성공적으로 처리되었습니다!" << std::endl;
+                        std::cout << u8"✅ 근무교대 요청이 성공적으로 처리되었습니다!" << std::endl;
                     } else if (protocol == "no_solution") {
-                        std::cout << "❌ 해가 없습니다. 근무교대가 불가능합니다." << std::endl;
+                        std::cout << u8"❌ 해가 없습니다. 근무교대가 불가능합니다." << std::endl;
                     } else if (protocol == "change_error") {
-                        std::cout << "❌ 근무교대 처리 중 오류가 발생했습니다." << std::endl;
+                        std::cout << u8"❌ 근무교대 처리 중 오류가 발생했습니다." << std::endl;
                     }
                     
                     if (responseJson.contains("message")) {
-                        std::cout << "메시지: " << responseJson["message"] << std::endl;
+                        std::cout << u8"메시지: " << responseJson["message"].get<std::string>() << std::endl;
                     }
                 }
             } catch (const json::parse_error& e) {
-                std::cout << "Raw 응답: " << response.jsonStr << std::endl;
+                std::cout << u8"Raw 응답: " << response.jsonStr << std::endl;
             }
             
         } catch (const std::exception& e) {
-            std::cout << "응답 수신 실패: " << e.what() << std::endl;
+            std::cout << u8"응답 수신 실패: " << e.what() << std::endl;
         }
 
         closesocket(sock);
         WSACleanup();
     }
     catch (const std::exception& e) {
-        std::cerr << "클라이언트 오류: " << e.what() << std::endl;
+        std::cerr << u8"클라이언트 오류: " << e.what() << std::endl;
         if (sock != INVALID_SOCKET) closesocket(sock);
         WSACleanup();
     }

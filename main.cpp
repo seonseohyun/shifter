@@ -23,12 +23,6 @@ struct WorkItem {
     std::vector<char> payload;
 };
 
-struct ParsedData {
-    std::string name;
-    std::string date;
-    std::string fromShift;
-    std::string toShift;
-};
 
 std::string toUTF8_safely(const std::string& cp949Str) {
     int wlen = MultiByteToWideChar(949, 0, cp949Str.data(), (int)cp949Str.size(), nullptr, 0);
@@ -90,60 +84,70 @@ WorkItem receiveWorkItem(SOCKET sock) {
     return WorkItem{ jsonStr, payload };
 }
 
-ParsedData parseNaturalLanguage(const std::string& input) {
-    // Pattern for parsing: non-space for name (handles Korean), date, shifts
-    std::regex pattern(R"((\S+)\s*(\d{4}-\d{2}-\d{2})\s*([A-Z])근무에서\s*([A-Z])근무로\s*변경을\s*희망합니다\.)")); 
-    std::smatch matches;
-    if (std::regex_match(input, matches, pattern)) {
-        return {matches[1].str(), matches[2].str(), matches[3].str(), matches[4].str()};
+
+// 직원 이름으로 staff_id를 찾는 함수
+std::string getStaffIdFromName(const std::string& name, const std::string& pythonFilePath) {
+    std::ifstream fileIn(pythonFilePath);
+    if (!fileIn.is_open()) {
+        throw std::runtime_error("Python 파일을 열 수 없습니다: " + pythonFilePath);
     }
-    throw std::invalid_argument("자연어 입력을 해석할 수 없습니다.");
+    std::string pythonContent((std::istreambuf_iterator<char>(fileIn)), std::istreambuf_iterator<char>());
+    fileIn.close();
+
+    std::regex staffPattern(R"(\{"name": "([^"]+)", "staff_id": (\d+),)");
+    std::sregex_iterator iter(pythonContent.begin(), pythonContent.end(), staffPattern);
+    std::sregex_iterator end;
+    for (; iter != end; ++iter) {
+        std::smatch match = *iter;
+        if (match[1].str() == name) {
+            return match[2].str();
+        }
+    }
+    throw std::runtime_error("해당 이름을 가진 직원을 찾을 수 없습니다: " + name);
 }
 
+
+// JSON 파라미터를 직접 받는 버전
 std::string updateAndExecuteShiftScheduler(const std::string& staff_id, const std::string& date_, const std::string& shift_from, const std::string& shift_to, const std::string& pythonFilePath) {
     try {
-        // Step 1: Read Python file content
-        std::ifstream fileIn(pythonFilePath);
-        if (!fileIn.is_open()) {
-            return "오류: 파일을 열 수 없습니다: " + pythonFilePath;
-        }
-        std::string pythonContent((std::istreambuf_iterator<char>(fileIn)), std::istreambuf_iterator<char>());
-        fileIn.close();
-
-        // Step 2: Calculate day index (assuming August 2025)
-        int year, month, dayOfMonth;
-        if (sscanf(date_.c_str(), "%d-%d-%d", &year, &month, &dayOfMonth) != 3 ||
-            year != 2025 || month != 8 || dayOfMonth < 1 || dayOfMonth > 31) {
+        // 단계 1: 날짜 유효성 검사 (2025-08-01 ~ 2025-08-31)
+        int year, month, day;
+        if (sscanf(date_.c_str(), "%d-%d-%d", &year, &month, &day) != 3 ||
+            year != 2025 || month != 8 || day < 1 || day > 31) {
             return "오류: 유효하지 않은 날짜입니다. 2025-08-01 ~ 2025-08-31 범위여야 합니다.";
         }
-        int day = dayOfMonth - 1;  // Day 0 is 2025-08-01
 
-        // Step 3: Prepare insertion code for fixed constraint
-        std::string insertCode = 
-            "\n    # Fixed shift change for staff_id " + staff_id + " on day " + std::to_string(day) + " from " + shift_from + " to " + shift_to +
-            "\n    sid = '" + staff_id + "'"
-            "\n    d = " + std::to_string(day) +
-            "\n    s = '" + shift_to + "'"
-            "\n    model.Add(schedule[(sid, d, s)] == 1)\n";
+        // 단계 2: JSON 요청 생성
+        json request = {
+            {"staff_id", staff_id},
+            {"date", date_},
+            {"original_shift", shift_from},
+            {"desired_shift", shift_to}
+        };
 
-        // Step 4: Find insertion point (before the coverage constraint comment)
-        size_t insertPos = pythonContent.find("# Each day, at least one person per required shift (all except O)");
-        if (insertPos == std::string::npos) {
-            return "오류: Python 코드에서 삽입 지점을 찾을 수 없습니다.";
+        // 단계 3: JSON 파일 읽기 및 업데이트
+        std::string jsonPath = "./data/change_requests.json";
+        json requests;
+        std::ifstream jsonIn(jsonPath);
+        if (jsonIn.is_open()) {
+            jsonIn >> requests;
+            jsonIn.close();
+        } else {
+            requests = json::array();
         }
-        pythonContent.insert(insertPos, insertCode);
+        requests.push_back(request);
 
-        // Step 5: Backup original and save modified file
-        std::string backupPath = pythonFilePath + ".bak";
-        std::rename(pythonFilePath.c_str(), backupPath.c_str());
-        std::ofstream fileOut(pythonFilePath);
-        if (!fileOut.is_open()) {
-            return "오류: 파일을 저장할 수 없습니다: " + pythonFilePath;
+        // 단계 4: JSON 파일 저장 (원자적 쓰기)
+        std::string tempPath = jsonPath + ".tmp";
+        std::ofstream jsonOut(tempPath);
+        if (!jsonOut.is_open()) {
+            return "오류: JSON 파일을 저장할 수 없습니다: " + tempPath;
         }
-        fileOut << pythonContent;
-        fileOut.close();
+        jsonOut << requests.dump(2);
+        jsonOut.close();
+        std::rename(tempPath.c_str(), jsonPath.c_str());
 
-        // Step 6: Execute Python script
+        // 단계 5: Python 스크립트 실행
         std::string command = "python " + pythonFilePath;
         int result = std::system(command.c_str());
         if (result != 0) {
@@ -174,8 +178,8 @@ MYSQL* create_db_connection() {
     return conn;
 }
 
-// 스케줄 생성 및 DB 삽입 함수 (conn 전달받음)
-void generate_and_insert_schedule(MYSQL* conn) {
+// 스케줄 생성 및 DB 업데이트 함수 (conn 전달받음)
+void generate_and_update_schedule(MYSQL* conn) {
     if (!conn) return;
 
     _chdir("c:\\project_0726");
@@ -196,19 +200,36 @@ void generate_and_insert_schedule(MYSQL* conn) {
         return;
     }
 
-    MYSQL_STMT* stmt = mysql_stmt_init(conn);
-    if (!stmt) {
-        std::cerr << "mysql_stmt_init failed" << std::endl;
+    // 트랜잭션 시작
+    if (mysql_query(conn, "START TRANSACTION")) {
+        std::cerr << "Failed to start transaction: " << mysql_error(conn) << std::endl;
         return;
     }
 
-    const char* query =
+    // 기존 스케줄 데이터 삭제 (2025년 8월 데이터만)
+    const char* delete_query = "DELETE FROM duty_schedule WHERE duty_date >= '2025-08-01' AND duty_date <= '2025-08-31'";
+    if (mysql_query(conn, delete_query)) {
+        std::cerr << "Failed to delete existing schedule: " << mysql_error(conn) << std::endl;
+        mysql_query(conn, "ROLLBACK");
+        return;
+    }
+    std::cout << "Existing schedule data deleted successfully." << std::endl;
+
+    MYSQL_STMT* stmt = mysql_stmt_init(conn);
+    if (!stmt) {
+        std::cerr << "mysql_stmt_init failed" << std::endl;
+        mysql_query(conn, "ROLLBACK");
+        return;
+    }
+
+    const char* insert_query =
         "INSERT INTO duty_schedule (staff_id, duty_date, shift_code, work_time, created_at, updated_at) "
         "VALUES (?, ?, ?, ?, NOW(), NOW())";
 
-    if (mysql_stmt_prepare(stmt, query, strlen(query))) {
+    if (mysql_stmt_prepare(stmt, insert_query, strlen(insert_query))) {
         std::cerr << "mysql_stmt_prepare failed: " << mysql_stmt_error(stmt) << std::endl;
         mysql_stmt_close(stmt);
+        mysql_query(conn, "ROLLBACK");
         return;
     }
 
@@ -297,7 +318,15 @@ void generate_and_insert_schedule(MYSQL* conn) {
     }
 
     mysql_stmt_close(stmt);
-    std::cout << "Duty schedule insertion completed successfully." << std::endl;
+    
+    // 트랜잭션 커밋
+    if (mysql_query(conn, "COMMIT")) {
+        std::cerr << "Failed to commit transaction: " << mysql_error(conn) << std::endl;
+        mysql_query(conn, "ROLLBACK");
+        return;
+    }
+    
+    std::cout << "Duty schedule update completed successfully." << std::endl;
 }
 
 
@@ -305,8 +334,14 @@ int main() {
     WSADATA wsaData;
     SOCKET listenSocket = INVALID_SOCKET, clientSocket = INVALID_SOCKET;
 
+    // UTF-8 콘솔 설정
     SetConsoleOutputCP(CP_UTF8);
     SetConsoleCP(CP_UTF8);
+    
+    // UTF-8 로케일 설정
+    std::locale::global(std::locale(".UTF-8"));
+    std::wcout.imbue(std::locale());
+    std::wcin.imbue(std::locale());
 
     try {
         if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0)
@@ -317,7 +352,7 @@ int main() {
             throw std::runtime_error("Failed to connect to DB");
         }
 
-        generate_and_insert_schedule(conn);
+        generate_and_update_schedule(conn);
 
         sockaddr_in serverAddr{};
         serverAddr.sin_family = AF_INET;
@@ -407,7 +442,7 @@ int main() {
                             
                             if (result.find("성공:") == 0) {
                                 // 성공한 경우 새로운 스케줄을 DB에 저장
-                                generate_and_insert_schedule(conn);
+                                generate_and_update_schedule(conn);
                                 
                                 j["Protocol"] = "change_success";
                                 j["message"] = result;
