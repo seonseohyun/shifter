@@ -37,11 +37,14 @@
                            TextAlignment="Center"/>
 
                 <Grid HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,12,0" Width="24" Height="24">
-                    <Image Source="/Resources/images/bell_on.png"
-                           Width="20" Height="20"/>
-                    <Ellipse Width="8" Height="8" Fill="Red"
-                             HorizontalAlignment="Right" VerticalAlignment="Top"
-                             Visibility="{Binding HasAlert, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                    <Button Command="{Binding OpenAlertCommand}" Background="Transparent" BorderThickness="0">
+                        <Grid>
+                            <Image Source="/Resources/images/bell_on.png" Width="20" Height="20"/>
+                            <Ellipse Width="8" Height="8" Fill="Red"
+                                     HorizontalAlignment="Right" VerticalAlignment="Top"
+                                     Visibility="{Binding HasAlert, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                        </Grid>
+                    </Button>
                 </Grid>
             </Grid>
         </Border>
@@ -49,22 +52,23 @@
         <StackPanel Margin="16,72,16,16">
 
             <!-- 출퇴근 카드 -->
-            <Grid Margin="0,0,0,12">
+            <Grid Margin="0,0,0,15">
                 <Border Background="White" CornerRadius="16" Effect="{StaticResource ShadowEffect}"/>
                 <Border Background="White" CornerRadius="16" Padding="16" BorderBrush="#CCCCCC" BorderThickness="1">
                     <StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                            <Image Source="/Resources/images/qr_icon.png" Width="32" Height="32" Margin="0,0,12,0"/>
+                            <Image Source="/Resources/images/qr_icon.png" Width="45" Height="42" Margin="0,0,12,0"/>
                             <StackPanel>
-                                <TextBlock Text="2025.07.30" FontSize="12" Foreground="Gray"/>
+                                <TextBlock Text="2025.07.30" FontSize="14" Foreground="Gray"/>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="출근 완료" FontSize="14" FontWeight="Bold"/>
-                                    <Ellipse Width="8" Height="8" Fill="Green" Margin="4,6,0,0"/>
+                                    <TextBlock Text="출근 완료" FontSize="16" FontWeight="Bold" />
+                                    <Ellipse Width="10" Height="10" Fill="Green" Margin="6,3,0,0"/>
                                 </StackPanel>
                             </StackPanel>
                         </StackPanel>
-                        <Button Content="QR 체크하러 가기" Height="44" Margin="0,8,0,0"
-                                Background="#007BFF" Foreground="White" FontWeight="SemiBold">
+                        <Button Content="QR 체크하러 가기" Height="44" Margin="0,8,0,0" FontSize="16"
+                                Background="#007BFF" Foreground="White" FontWeight="SemiBold"
+                                Command="{Binding GoToQrCheckCommand}">
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
                                     <Border Background="{TemplateBinding Background}" CornerRadius="22">
@@ -78,32 +82,41 @@
             </Grid>
 
             <!-- 그룹 활동 -->
-            <Grid Margin="0,0,0,12">
+            <Grid Margin="0,0,0,15">
                 <Border Background="White" CornerRadius="16" Effect="{StaticResource ShadowEffect}"/>
                 <Border Background="White" CornerRadius="16" Padding="16" BorderBrush="#CCCCCC" BorderThickness="1">
                     <StackPanel>
-                        <DockPanel Margin="0,0,0,8">
-                            <TextBlock Text="그룹 활동 보기" FontSize="14" FontWeight="Bold"/>
-                            <Image Source="/Resources/images/arrow_right.png" Width="12" Height="12" DockPanel.Dock="Right"  HorizontalAlignment="Right"/>
+                        <DockPanel Margin="0,0,0,15">
+                            <TextBlock Text="그룹 활동 보기" FontSize="18" FontWeight="Bold"/>
+                            <Image Source="/Resources/images/arrow_right.png" Width="15" Height="15" DockPanel.Dock="Right"
+                                   Cursor="Hand" HorizontalAlignment="Right">
+                                <Image.InputBindings>
+                                    <MouseBinding Gesture="LeftClick" Command="{Binding GoToGroupActivityCommand}" />
+                                </Image.InputBindings>
+                            </Image>
                         </DockPanel>
                         <Border CornerRadius="12" Background="#F7F7F7" BorderBrush="#CCC" BorderThickness="1" Height="36">
-                            <TextBox Text="응급실 A팀" BorderThickness="0" Padding="8,0" VerticalContentAlignment="Center" Background="Transparent"/>
+                            <TextBox Text="응급실 A팀" BorderThickness="0" Padding="8,0" VerticalContentAlignment="Center" Background="Transparent" Height="44" VerticalAlignment="Center" FontSize="14"/>
                         </Border>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,12,0,0">
-                            <Button Content="공지사항 보기" Width="120" Height="36" Margin="0,0,8,0"
-                                    BorderBrush="#007BFF" BorderThickness="1" Background="White" Foreground="#007BFF" FontWeight="SemiBold">
+                            <Button Content="공지사항 보기" Width="163" Height="44" Margin="0,0,8,0"
+                                    BorderBrush="#007BFF" BorderThickness="1" Background="White" Foreground="#007BFF"
+                                    FontWeight="SemiBold" FontSize="16"
+                                    Command="{Binding GoToNoticeCommand}">
                                 <Button.Template>
                                     <ControlTemplate TargetType="Button">
-                                        <Border CornerRadius="18" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" Background="{TemplateBinding Background}">
+                                        <Border CornerRadius="22" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" Background="{TemplateBinding Background}">
                                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         </Border>
                                     </ControlTemplate>
                                 </Button.Template>
                             </Button>
-                            <Button Content="인수인계 보기" Width="120" Height="36" Background="#007BFF" Foreground="White" FontWeight="SemiBold" BorderThickness="0">
+                            <Button Content="인수인계 보기" Width="163" Height="44" Background="#007BFF" Foreground="White"
+                                    FontWeight="SemiBold" BorderThickness="0" FontSize="16"
+                                    Command="{Binding GoToHandoverCommand}">
                                 <Button.Template>
                                     <ControlTemplate TargetType="Button">
-                                        <Border CornerRadius="18" Background="#007BFF">
+                                        <Border CornerRadius="22" Background="#007BFF">
                                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         </Border>
                                     </ControlTemplate>
@@ -115,74 +128,82 @@
             </Grid>
 
             <!-- 이번 주 스케줄 -->
-            <Grid Margin="0,0,0,12">
+            <Grid Margin="0,0,0,15">
                 <Border Background="White" CornerRadius="16" Effect="{StaticResource ShadowEffect}"/>
-                <Border Background="White" CornerRadius="16" Padding="16" BorderBrush="#CCCCCC" BorderThickness="1">
+                <Border Background="White" CornerRadius="16" Padding="16" BorderBrush="#CCCCCC" BorderThickness="1" Height="150">
                     <StackPanel>
-                        <DockPanel Margin="0,0,0,8">
-                            <TextBlock Text="이번 주 스케줄" FontSize="14" FontWeight="Bold" VerticalAlignment="Center"/>
-                            <Image Source="/Resources/images/arrow_right.png"
-                       Width="12" Height="12"
-                       HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                        <DockPanel Margin="0,0,0,15">
+                            <TextBlock Text="이번 주 스케줄" FontSize="18" FontWeight="Bold" VerticalAlignment="Center"/>
+                            <Image Source="/Resources/images/arrow_right.png" Width="15" Height="15" HorizontalAlignment="Right"
+                                   Cursor="Hand">
+                                <Image.InputBindings>
+                                    <MouseBinding Gesture="LeftClick" Command="{Binding GoToScheduleCommand}" />
+                                </Image.InputBindings>
+                            </Image>
                         </DockPanel>
 
                         <!-- 요일 7개 구성 -->
                         <UniformGrid Columns="7" HorizontalAlignment="Stretch">
                             <StackPanel HorizontalAlignment="Center">
-                                <TextBlock Text="월" Background="#EEF6FF" Padding="5,2" Width="30" TextAlignment="Center"/>
-                                <TextBlock Text="D" FontWeight="Bold" Foreground="#007BFF" TextAlignment="Center"/>
+                                <TextBlock Text="월" Background="#EEF6FF" Padding="5,2" Width="50" TextAlignment="Center" Height="30" FontSize="16"/>
+                                <TextBlock Text="D" FontWeight="Bold" Foreground="#007BFF" TextAlignment="Center" Width="50" Height="30" FontSize="16"/>
                             </StackPanel>
                             <StackPanel HorizontalAlignment="Center">
-                                <TextBlock Text="화" Background="#EEF6FF" Padding="5,2" Width="30" TextAlignment="Center"/>
-                                <TextBlock Text="N" FontWeight="Bold" Foreground="#007BFF" TextAlignment="Center"/>
+                                <TextBlock Text="화" Background="#EEF6FF" Padding="5,2" Width="50" TextAlignment="Center" Height="30" FontSize="16"/>
+                                <TextBlock Text="N" FontWeight="Bold" Foreground="#007BFF" TextAlignment="Center" Width="50" Height="30" FontSize="16"/>
                             </StackPanel>
                             <StackPanel HorizontalAlignment="Center">
-                                <TextBlock Text="수" Background="#EEF6FF" Padding="5,2" Width="30" TextAlignment="Center"/>
-                                <TextBlock Text="N" FontWeight="Bold" Foreground="#007BFF" TextAlignment="Center"/>
+                                <TextBlock Text="수" Background="#EEF6FF" Padding="5,2" Width="50" TextAlignment="Center" Height="30" FontSize="16"/>
+                                <TextBlock Text="N" FontWeight="Bold" Foreground="#007BFF" TextAlignment="Center" Width="50" Height="30" FontSize="16"/>
                             </StackPanel>
                             <StackPanel HorizontalAlignment="Center">
-                                <TextBlock Text="목" Background="#EEF6FF" Padding="5,2" Width="30" TextAlignment="Center"/>
-                                <TextBlock Text="E" FontWeight="Bold" Foreground="#007BFF" TextAlignment="Center"/>
+                                <TextBlock Text="목" Background="#EEF6FF" Padding="5,2" Width="50" TextAlignment="Center" Height="30" FontSize="16"/>
+                                <TextBlock Text="E" FontWeight="Bold" Foreground="#007BFF" TextAlignment="Center" Width="50" Height="30" FontSize="16"/>
                             </StackPanel>
                             <StackPanel HorizontalAlignment="Center">
-                                <TextBlock Text="금" Background="#EEF6FF" Padding="5,2" Width="30" TextAlignment="Center"/>
-                                <TextBlock Text="O" FontWeight="Bold" Foreground="#007BFF" TextAlignment="Center"/>
+                                <TextBlock Text="금" Background="#EEF6FF" Padding="5,2" Width="50" TextAlignment="Center" Height="30" FontSize="16"/>
+                                <TextBlock Text="O" FontWeight="Bold" Foreground="#007BFF" TextAlignment="Center" Width="50" Height="30" FontSize="16"/>
                             </StackPanel>
                             <StackPanel HorizontalAlignment="Center">
-                                <TextBlock Text="토" Background="#EEF6FF" Padding="5,2" Width="30" TextAlignment="Center"/>
-                                <TextBlock Text="-" FontWeight="Bold" Foreground="Gray" TextAlignment="Center"/>
+                                <TextBlock Text="토" Background="#EEF6FF" Padding="5,2" Width="50" TextAlignment="Center" Height="30" FontSize="16"/>
+                                <TextBlock Text="-" FontWeight="Bold" Foreground="Gray" TextAlignment="Center" Width="50" Height="30" FontSize="16"/>
                             </StackPanel>
-                            <StackPanel HorizontalAlignment="Center">
-                                <TextBlock Text="일" Background="#EEF6FF" Padding="5,2" Width="30" TextAlignment="Center"/>
-                                <TextBlock Text="-" FontWeight="Bold" Foreground="Gray" TextAlignment="Center"/>
+                            <StackPanel HorizontalAlignment="Center" Width="50">
+                                <TextBlock Text="일" Background="#EEF6FF" Padding="5,2" Width="50" TextAlignment="Center" Height="30" FontSize="16"/>
+                                <TextBlock Text="-" FontWeight="Bold" Foreground="Gray" TextAlignment="Center" Height="30" FontSize="16"/>
                             </StackPanel>
                         </UniformGrid>
+
                     </StackPanel>
                 </Border>
             </Grid>
 
-
             <!-- 근무 요청 -->
             <Grid>
                 <Border Background="White" CornerRadius="16" Effect="{StaticResource ShadowEffect}"/>
-                <Border Background="White" CornerRadius="16" Padding="16" BorderBrush="#CCCCCC" BorderThickness="1">
+                <Border Background="White" CornerRadius="16" Padding="16" BorderBrush="#CCCCCC" BorderThickness="1" Height="128" VerticalAlignment="Top">
                     <StackPanel>
-                        <DockPanel Margin="0,0,0,8">
-                            <TextBlock Text="근무 요청 현황" FontSize="14" FontWeight="Bold"/>
-                            <Image Source="/Resources/images/arrow_right.png" Width="12" Height="12" DockPanel.Dock="Right"  HorizontalAlignment="Right"/>
+                        <DockPanel Margin="0,0,0,15">
+                            <TextBlock Text="근무 요청 현황" FontSize="18" FontWeight="Bold"/>
+                            <Image Source="/Resources/images/arrow_right.png" Width="15" Height="20" DockPanel.Dock="Right" HorizontalAlignment="Right"
+                                   Cursor="Hand">
+                                <Image.InputBindings>
+                                    <MouseBinding Gesture="LeftClick" Command="{Binding GoToRequestStatusCommand}" />
+                                </Image.InputBindings>
+                            </Image>
                         </DockPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <StackPanel Orientation="Horizontal" Margin="0,0,16,0">
-                                <Image Source="/Resources/images/check_green.png" Width="14" Height="14"/>
-                                <TextBlock Text=" 승인 2건" Margin="4,0"/>
+                                <Image Source="/Resources/images/check_green.png" Width="28" Height="28"/>
+                                <TextBlock Text=" 승인 2건" Margin="4,0" FontSize="16"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0,0,16,0">
-                                <Image Source="/Resources/images/pending.png" Width="14" Height="14"/>
-                                <TextBlock Text=" 대기 1건" Margin="4,0"/>
+                                <Image Source="/Resources/images/pending.png" Width="28" Height="28"/>
+                                <TextBlock Text=" 대기 1건" Margin="4,0" FontSize="16"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Image Source="/Resources/images/cancel_red.png" Width="14" Height="14"/>
-                                <TextBlock Text=" 반려 1건" Margin="4,0"/>
+                                <Image Source="/Resources/images/cancel_red.png" Width="28" Height="28"/>
+                                <TextBlock Text=" 반려 1건" Margin="4,0" FontSize="16"/>
                             </StackPanel>
                         </StackPanel>
                     </StackPanel>
