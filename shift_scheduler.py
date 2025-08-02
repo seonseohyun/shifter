@@ -53,19 +53,28 @@ def create_individual_shift_schedule(staff_data, shift_type):
         except Exception as e:
             print(f"[WARNING] JSON 파일 읽기 오류: {e}")
 
+    change_applied = False
     for req in change_requests:
         try:
             sid = str(req["staff_id"])
             req_date = datetime.strptime(req["date"], '%Y-%m-%d')
             d = (req_date - start_date).days
             s = req["desired_shift"]
+            original_s = req.get("original_shift", "알수없음")
+            
             if 0 <= d < num_days and s in shifts and sid in [str(p["staff_id"]) for p in all_people]:
                 model.Add(schedule[(sid, d, s)] == 1)
-                print(f"[INFO] {sid}의 {req['date']} 근무를 {s}로 고정")
+                change_applied = True
+                print(f"[INFO] {sid}의 {req['date']} 근무를 {original_s}에서 {s}로 변경 요청 적용")
             else:
                 print(f"[WARNING] 유효하지 않은 요청: staff_id={sid}, date={req['date']}, shift={s}")
         except Exception as e:
             print(f"[WARNING] 요청 처리 오류: {e}")
+
+    if not change_applied and change_requests:
+        print("[WARNING] 변경 요청이 있었지만 적용된 것이 없습니다.")
+    elif change_applied:
+        print(f"[INFO] 총 {len([req for req in change_requests if str(req['staff_id']) in [str(p['staff_id']) for p in all_people]])}개의 변경 요청이 적용되었습니다.")
 
 
     # Each individual has exactly one shift per day
@@ -124,7 +133,16 @@ def create_individual_shift_schedule(staff_data, shift_type):
 
     print(f"솔버 상태: {solver.StatusName(status)}")
     if status == cp_model.INFEASIBLE:
-        print("제약 조건 모순 발생")
+        print("[ERROR] 제약 조건 모순 발생 - 변경 요청을 만족하는 근무표를 생성할 수 없습니다.")
+        if change_applied:
+            print("[ERROR] 변경 요청이 적용되었지만 해가 없습니다. 요청한 변경사항이 다른 제약조건과 충돌합니다.")
+        return None
+    elif status == cp_model.MODEL_INVALID:
+        print("[ERROR] 모델이 유효하지 않습니다.")
+        return None
+    elif status == cp_model.UNKNOWN:
+        print("[WARNING] 솔버가 해를 찾지 못했습니다 (시간 초과 또는 기타 이유)")
+        return None
 
     if status in (cp_model.OPTIMAL, cp_model.FEASIBLE):
         result = {}
@@ -154,9 +172,15 @@ def create_individual_shift_schedule(staff_data, shift_type):
             json.dump(result, f, ensure_ascii=False, indent=2)
 
         print(f"[INFO] 시간표가 저장되었습니다: {output_path}")
+        if change_applied:
+            print("[SUCCESS] 변경 요청이 성공적으로 반영되어 새로운 근무표가 생성되었습니다.")
+        else:
+            print("[INFO] 변경 요청 없이 기본 근무표가 생성되었습니다.")
         print(json.dumps(result, ensure_ascii=False, indent=2))
+        return result
     else:
-        print("해를 찾을 수 없습니다.")
+        print("[ERROR] 해를 찾을 수 없습니다.")
+        return None
 
 
 staff_data  = {

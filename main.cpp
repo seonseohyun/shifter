@@ -86,19 +86,16 @@ WorkItem receiveWorkItem(SOCKET sock) {
 
 
 // JSON 파라미터를 직접 받는 버전
-std::string updateAndExecuteShiftScheduler(const std::string& staff_id, const std::string& date_, const std::string& shift_from, const std::string& shift_to, const std::string& pythonFilePath) {
+std::pair<std::string, bool> updateAndExecuteShiftScheduler(const std::string& staff_id, const std::string& date_, const std::string& shift_from, const std::string& shift_to, const std::string& pythonFilePath) {
     try {
         // 단계 1: 날짜 유효성 검사 (2025-08-01 ~ 2025-08-31)
         int year, month, day;
         if (sscanf(date_.c_str(), "%d-%d-%d", &year, &month, &day) != 3 ) {
-            return "오류: 유효하지 않은 날짜입니다.  년도-월-일 형식으로 입력되어야합니다.";
+            return std::make_pair("오류: 유효하지 않은 날짜입니다. 년도-월-일 형식으로 입력되어야합니다.", false);
         }
 
-        std::cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!shift_from  : " <<shift_from << std::endl;
-        std::cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!desired_shift  : " << shift_to << std::endl;
-        
-        
-
+        std::cout << "[DEBUG] shift_from: " << shift_from << std::endl;
+        std::cout << "[DEBUG] desired_shift: " << shift_to << std::endl;
 
         // 단계 2: JSON 요청 생성
         json request = {
@@ -124,22 +121,48 @@ std::string updateAndExecuteShiftScheduler(const std::string& staff_id, const st
         std::string tempPath = jsonPath + ".tmp";
         std::ofstream jsonOut(tempPath);
         if (!jsonOut.is_open()) {
-            return "오류: JSON 파일을 저장할 수 없습니다: " + tempPath;
+            return std::make_pair("오류: JSON 파일을 저장할 수 없습니다: " + tempPath, false);
         }
         jsonOut << requests.dump(2);
         jsonOut.close();
         std::rename(tempPath.c_str(), jsonPath.c_str());
 
-        // 단계 5: Python 스크립트 실행
-        std::string command = "python " + pythonFilePath;
-        int result = std::system(command.c_str());
-        if (result != 0) {
-            return "오류: Python 실행 오류: 반환 코드 " + std::to_string(result);
+        // 단계 5: Python 스크립트 실행 및 출력 캡처
+        std::string command = "python " + pythonFilePath + " 2>&1";
+        FILE* pipe = _popen(command.c_str(), "r");
+        if (!pipe) {
+            return std::make_pair("오류: Python 실행을 위한 파이프 생성 실패", false);
         }
 
-        return "성공: . 변경 요청이 반영되었습니다.";
+        std::string output;
+        char buffer[128];
+        while (fgets(buffer, sizeof(buffer), pipe) != nullptr) {
+            output += buffer;
+        }
+        int result = _pclose(pipe);
+
+        std::cout << "[PYTHON OUTPUT]\n" << output << std::endl;
+
+        // Python 출력에서 성공/실패 판단
+        bool scheduleChanged = false;
+        if (result == 0) {
+            if (output.find("[SUCCESS]") != std::string::npos) {
+                scheduleChanged = true;
+                return std::make_pair("성공: 변경 요청이 반영되어 새로운 근무표가 생성되었습니다.", true);
+            } else if (output.find("[ERROR]") != std::string::npos) {
+                if (output.find("해가 없습니다") != std::string::npos || output.find("제약 조건 모순") != std::string::npos) {
+                    return std::make_pair("변경 불가: 요청한 변경사항이 다른 제약조건과 충돌하여 근무표를 생성할 수 없습니다.", false);
+                } else {
+                    return std::make_pair("오류: Python 실행 중 오류 발생", false);
+                }
+            } else {
+                return std::make_pair("성공: 근무표가 생성되었습니다.", scheduleChanged);
+            }
+        } else {
+            return std::make_pair("오류: Python 실행 오류: 반환 코드 " + std::to_string(result), false);
+        }
     } catch (const std::exception& ex) {
-        return "오류: " + std::string(ex.what());
+        return std::make_pair("오류: " + std::string(ex.what()), false);
     }
 }
 
@@ -426,24 +449,33 @@ int main() {
                             std::string shift_to = j["shift_to"];
 
                             try {
-                                                                                                                                    
-                                updateAndExecuteShiftScheduler(staff_id, date_, shift_from, shift_to, "c:\\workspace\\shifter\\shift_scheduler.py");
+                                auto result = updateAndExecuteShiftScheduler(staff_id, date_, shift_from, shift_to, "c:\\workspace\\shifter\\shift_scheduler.py");
+                                std::string message = result.first;
+                                bool scheduleChanged = result.second;
 
-                                // 성공 후 DB 갱신
-                                generate_and_update_schedule(conn);
-
-                                j["Protocol"] = "change_success";
-                                j["message"] = "근무 변경 요청이 성공적으로 처리되었습니다.";
-                            } catch (const std::exception& e) {
-                                std::string error_msg = e.what();
-
-                                if (error_msg.find("No solution") != std::string::npos || error_msg.find("해가 없습니다") != std::string::npos) {
+                                if (message.find("성공:") == 0) {
+                                    if (scheduleChanged) {
+                                        // 스케줄이 변경된 경우에만 DB 갱신
+                                        std::cout << "[INFO] 스케줄 변경이 확인되어 DB를 업데이트합니다." << std::endl;
+                                        generate_and_update_schedule(conn);
+                                        j["Protocol"] = "change_success";
+                                        j["message"] = message;
+                                    } else {
+                                        // 스케줄 변경이 없는 경우 DB 갱신 생략
+                                        std::cout << "[INFO] 스케줄 변경이 없어 DB 업데이트를 생략합니다." << std::endl;
+                                        j["Protocol"] = "change_success";
+                                        j["message"] = message;
+                                    }
+                                } else if (message.find("변경 불가:") == 0) {
                                     j["Protocol"] = "no_solution";
-                                    j["message"] = "근무 변경이 불가능합니다. 해당 조건으로는 근무표를 생성할 수 없습니다.";
+                                    j["message"] = message;
                                 } else {
                                     j["Protocol"] = "change_error";
-                                    j["message"] = error_msg;
+                                    j["message"] = message;
                                 }
+                            } catch (const std::exception& e) {
+                                j["Protocol"] = "change_error";
+                                j["message"] = "예외 발생: " + std::string(e.what());
                             }
                         } else {
                             j["Protocol"] = "change_error";
