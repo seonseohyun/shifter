@@ -20,6 +20,8 @@
     <None Remove="Resources\images\pending.png" />
     <None Remove="Resources\images\pin.png" />
     <None Remove="Resources\images\qr_icon.png" />
+    <None Remove="Resources\images\teamimg.png" />
+    <None Remove="Resources\images\x.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -46,6 +48,8 @@
     <Resource Include="Resources\images\pending.png" />
     <Resource Include="Resources\images\pin.png" />
     <Resource Include="Resources\images\qr_icon.png" />
+    <Resource Include="Resources\images\teamimg.png" />
+    <Resource Include="Resources\images\x.png" />
   </ItemGroup>
 
 </Project>

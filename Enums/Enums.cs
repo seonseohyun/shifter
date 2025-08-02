@@ -12,6 +12,7 @@ namespace ShifterUser.Enums
         Login,
         Home,
         SignUp,
+        TeamCode,
         Goback
     }
 }
