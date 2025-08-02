@@ -94,6 +94,12 @@ std::string updateAndExecuteShiftScheduler(const std::string& staff_id, const st
             return "오류: 유효하지 않은 날짜입니다.  년도-월-일 형식으로 입력되어야합니다.";
         }
 
+        std::cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!shift_from  : " <<shift_from << std::endl;
+        std::cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!desired_shift  : " << shift_to << std::endl;
+        
+        
+
+
         // 단계 2: JSON 요청 생성
         json request = {
             {"staff_id", staff_id},
@@ -131,7 +137,7 @@ std::string updateAndExecuteShiftScheduler(const std::string& staff_id, const st
             return "오류: Python 실행 오류: 반환 코드 " + std::to_string(result);
         }
 
-        return "성공: 근무표 생성이 완료되었습니다. 변경 요청이 반영되었습니다.";
+        return "성공: . 변경 요청이 반영되었습니다.";
     } catch (const std::exception& ex) {
         return "오류: " + std::string(ex.what());
     }
