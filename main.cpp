@@ -85,28 +85,6 @@ WorkItem receiveWorkItem(SOCKET sock) {
 }
 
 
-// 직원 이름으로 staff_id를 찾는 함수
-std::string getStaffIdFromName(const std::string& name, const std::string& pythonFilePath) {
-    std::ifstream fileIn(pythonFilePath);
-    if (!fileIn.is_open()) {
-        throw std::runtime_error("Python 파일을 열 수 없습니다: " + pythonFilePath);
-    }
-    std::string pythonContent((std::istreambuf_iterator<char>(fileIn)), std::istreambuf_iterator<char>());
-    fileIn.close();
-
-    std::regex staffPattern(R"(\{"name": "([^"]+)", "staff_id": (\d+),)");
-    std::sregex_iterator iter(pythonContent.begin(), pythonContent.end(), staffPattern);
-    std::sregex_iterator end;
-    for (; iter != end; ++iter) {
-        std::smatch match = *iter;
-        if (match[1].str() == name) {
-            return match[2].str();
-        }
-    }
-    throw std::runtime_error("해당 이름을 가진 직원을 찾을 수 없습니다: " + name);
-}
-
-
 // JSON 파라미터를 직접 받는 버전
 std::string updateAndExecuteShiftScheduler(const std::string& staff_id, const std::string& date_, const std::string& shift_from, const std::string& shift_to, const std::string& pythonFilePath) {
     try {
@@ -126,7 +104,7 @@ std::string updateAndExecuteShiftScheduler(const std::string& staff_id, const st
         };
 
         // 단계 3: JSON 파일 읽기 및 업데이트
-        std::string jsonPath = "./data/change_requests.json";
+        std::string jsonPath = "C:/workspace/shifter/data/change_requests.json";
         json requests;
         std::ifstream jsonIn(jsonPath);
         if (jsonIn.is_open()) {
@@ -182,10 +160,15 @@ MYSQL* create_db_connection() {
 void generate_and_update_schedule(MYSQL* conn) {
     if (!conn) return;
 
-    _chdir("c:\\project_0726");
+    _chdir("C:\\workspace\\shifter");
+    std::cerr << "파일이 안열리나?>>>>>>>>>>>>>>>>>>>>>>>>>: " <<  std::endl;
     std::system("python shift_scheduler.py");
+    std::cerr << "파일이 안열리나?>>>>>>>>>>>>>>>>>>>>>>>>>: " << std::endl;
 
-    std::ifstream json_file("c:\\project_0726/data/time_table.json");
+
+
+
+    std::ifstream json_file("C:/workspace/shifter/data/time_table.json");
     if (!json_file.is_open()) {
         std::cerr << "Failed to open time_table.json" << std::endl;
         return;
@@ -415,8 +398,8 @@ int main() {
                     else if (j.contains("Protocol") && j["Protocol"] == "GetSchedule") {
                         std::cout << u8"GetSchedule 프로토콜 받음!" << std::endl;
                         
-                        // time_table.json 파일 읽기
-                        std::ifstream json_file("c:\\project_0726/data/time_table.json");
+                        // time_table.json 파일 읽기 c:\\workspace\\shifter\\shift_scheduler.py
+                        std::ifstream json_file("c:/workspace/shifter/data/time_table.json");
                         if (json_file.is_open()) {
                             std::string json_content((std::istreambuf_iterator<char>(json_file)), std::istreambuf_iterator<char>());
                             json_file.close();
@@ -431,34 +414,41 @@ int main() {
                     }
                     else if (j.contains("Protocol") && j["Protocol"] == "ChangeShift") {
                         std::cout << u8"ChangeShift 프로토콜 받음!" << std::endl;
-                        
+
                         if (j.contains("staff_id") && j.contains("date_") && j.contains("shift_from") && j.contains("shift_to")) {
                             std::string staff_id = j["staff_id"];
                             std::string date_ = j["date_"];
                             std::string shift_from = j["shift_from"];
                             std::string shift_to = j["shift_to"];
-                            
-                            std::string result = updateAndExecuteShiftScheduler(staff_id, date_, shift_from, shift_to, "c:\\project_0726/shift_scheduler.py");
-                            
-                            if (result.find("성공:") == 0) {
-                                // 성공한 경우 새로운 스케줄을 DB에 저장
+
+                            try {
+                                                                                                                                    
+                                updateAndExecuteShiftScheduler(staff_id, date_, shift_from, shift_to, "c:\\workspace\\shifter\\shift_scheduler.py");
+
+                                // 성공 후 DB 갱신
                                 generate_and_update_schedule(conn);
-                                
+
                                 j["Protocol"] = "change_success";
-                                j["message"] = result;
-                            } else if (result.find("해가 없습니다") != std::string::npos || result.find("No solution") != std::string::npos) {
-                                j["Protocol"] = "no_solution";
-                                j["message"] = "근무 변경이 불가능합니다. 해당 조건으로는 근무표를 생성할 수 없습니다.";
-                            } else {
-                                j["Protocol"] = "change_error";
-                                j["message"] = result;
+                                j["message"] = "근무 변경 요청이 성공적으로 처리되었습니다.";
+                            } catch (const std::exception& e) {
+                                std::string error_msg = e.what();
+
+                                if (error_msg.find("No solution") != std::string::npos || error_msg.find("해가 없습니다") != std::string::npos) {
+                                    j["Protocol"] = "no_solution";
+                                    j["message"] = "근무 변경이 불가능합니다. 해당 조건으로는 근무표를 생성할 수 없습니다.";
+                                } else {
+                                    j["Protocol"] = "change_error";
+                                    j["message"] = error_msg;
+                                }
                             }
                         } else {
                             j["Protocol"] = "change_error";
                             j["message"] = "필수 정보가 누락되었습니다. staff_id, date_, shift_from, shift_to가 필요합니다.";
                         }
+
                         sendWorkItem(clientSocket, WorkItem{ j.dump(), {} });
                     }
+
                 }
             }
             catch (const std::exception& e) {

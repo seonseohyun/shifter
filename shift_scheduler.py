@@ -42,6 +42,32 @@ def create_individual_shift_schedule(staff_data, shift_type):
             for s in shifts:
                 schedule[(sid, d, s)] = model.NewBoolVar(f"{sid}_d{d}_{s}")
 
+    
+    # Load and apply change requests from JSON
+    change_requests_path = "./data/change_requests.json"
+    change_requests = []
+    if os.path.exists(change_requests_path):
+        try:
+            with open(change_requests_path, "r", encoding="utf-8") as f:
+                change_requests = json.load(f)
+        except Exception as e:
+            print(f"[WARNING] JSON 파일 읽기 오류: {e}")
+
+    for req in change_requests:
+        try:
+            sid = str(req["staff_id"])
+            req_date = datetime.strptime(req["date"], '%Y-%m-%d')
+            d = (req_date - start_date).days
+            s = req["desired_shift"]
+            if 0 <= d < num_days and s in shifts and sid in [str(p["staff_id"]) for p in all_people]:
+                model.Add(schedule[(sid, d, s)] == 1)
+                print(f"[INFO] {sid}의 {req['date']} 근무를 {s}로 고정")
+            else:
+                print(f"[WARNING] 유효하지 않은 요청: staff_id={sid}, date={req['date']}, shift={s}")
+        except Exception as e:
+            print(f"[WARNING] 요청 처리 오류: {e}")
+
+
     # Each individual has exactly one shift per day
     for person in all_people:
         sid = str(person["staff_id"])

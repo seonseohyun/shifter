@@ -4,8 +4,14 @@
       "shift": "D",
       "people": [
         {
-          "staff_id": "102",
-          "이름": "최정환",
+          "staff_id": "106",
+          "이름": "유희라",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "118",
+          "이름": "양성규",
           "grade": 1,
           "grade_name": "제일높은직급"
         }
@@ -15,8 +21,8 @@
       "shift": "E",
       "people": [
         {
-          "staff_id": "120",
-          "이름": "이병희",
+          "staff_id": "101",
+          "이름": "박주영",
           "grade": 1,
           "grade_name": "제일높은직급"
         }
@@ -25,23 +31,6 @@
     {
       "shift": "N",
       "people": [
-        {
-          "staff_id": "108",
-          "이름": "박서은",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "O",
-      "people": [
-        {
-          "staff_id": "101",
-          "이름": "박주영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
         {
           "staff_id": "103",
           "이름": "문재윤",
@@ -61,14 +50,37 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "106",
-          "이름": "유희라",
+          "staff_id": "111",
+          "이름": "고준영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "116",
+          "이름": "한현희",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "O",
+      "people": [
+        {
+          "staff_id": "102",
+          "이름": "최정환",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
         {
           "staff_id": "107",
           "이름": "김유범",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "108",
+          "이름": "박서은",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -81,12 +93,6 @@
         {
           "staff_id": "110",
           "이름": "유예솜",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "111",
-          "이름": "고준영",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -115,26 +121,20 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "116",
-          "이름": "한현희",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
           "staff_id": "117",
           "이름": "정종옥",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "118",
-          "이름": "양성규",
+          "staff_id": "119",
+          "이름": "김화백",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "119",
-          "이름": "김화백",
+          "staff_id": "120",
+          "이름": "이병희",
           "grade": 1,
           "grade_name": "제일높은직급"
         }
@@ -146,8 +146,20 @@
       "shift": "D",
       "people": [
         {
-          "staff_id": "101",
-          "이름": "박주영",
+          "staff_id": "107",
+          "이름": "김유범",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "109",
+          "이름": "김대업",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "112",
+          "이름": "하진영",
           "grade": 1,
           "grade_name": "제일높은직급"
         }
@@ -157,8 +169,14 @@
       "shift": "E",
       "people": [
         {
-          "staff_id": "120",
-          "이름": "이병희",
+          "staff_id": "101",
+          "이름": "박주영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "114",
+          "이름": "윤진영",
           "grade": 1,
           "grade_name": "제일높은직급"
         }
@@ -168,8 +186,14 @@
       "shift": "N",
       "people": [
         {
-          "staff_id": "103",
-          "이름": "문재윤",
+          "staff_id": "108",
+          "이름": "박서은",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "118",
+          "이름": "양성규",
           "grade": 1,
           "grade_name": "제일높은직급"
         }
@@ -181,6 +205,12 @@
         {
           "staff_id": "102",
           "이름": "최정환",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "103",
+          "이름": "문재윤",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -203,24 +233,6 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "107",
-          "이름": "김유범",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "108",
-          "이름": "박서은",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "109",
-          "이름": "김대업",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
           "staff_id": "110",
           "이름": "유예솜",
           "grade": 1,
@@ -233,20 +245,8 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "112",
-          "이름": "하진영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
           "staff_id": "113",
           "이름": "오장관",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "114",
-          "이름": "윤진영",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -269,14 +269,14 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "118",
-          "이름": "양성규",
+          "staff_id": "119",
+          "이름": "김화백",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "119",
-          "이름": "김화백",
+          "staff_id": "120",
+          "이름": "이병희",
           "grade": 1,
           "grade_name": "제일높은직급"
         }
@@ -288,8 +288,89 @@
       "shift": "D",
       "people": [
         {
+          "staff_id": "103",
+          "이름": "문재윤",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
           "staff_id": "106",
           "이름": "유희라",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "112",
+          "이름": "하진영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "E",
+      "people": [
+        {
+          "staff_id": "116",
+          "이름": "한현희",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "117",
+          "이름": "정종옥",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "119",
+          "이름": "김화백",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "N",
+      "people": [
+        {
+          "staff_id": "101",
+          "이름": "박주영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "109",
+          "이름": "김대업",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "115",
+          "이름": "한경식",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "O",
+      "people": [
+        {
+          "staff_id": "102",
+          "이름": "최정환",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "104",
+          "이름": "선서현",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "105",
+          "이름": "박경태",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -306,12 +387,6 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "109",
-          "이름": "김대업",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
           "staff_id": "110",
           "이름": "유예솜",
           "grade": 1,
@@ -320,12 +395,6 @@
         {
           "staff_id": "111",
           "이름": "고준영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "112",
-          "이름": "하진영",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -342,83 +411,14 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "116",
-          "이름": "한현희",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "117",
-          "이름": "정종옥",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
           "staff_id": "118",
           "이름": "양성규",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "119",
-          "이름": "김화백",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
           "staff_id": "120",
           "이름": "이병희",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "E",
-      "people": [
-        {
-          "staff_id": "115",
-          "이름": "한경식",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "N",
-      "people": [
-        {
-          "staff_id": "104",
-          "이름": "선서현",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "O",
-      "people": [
-        {
-          "staff_id": "101",
-          "이름": "박주영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "102",
-          "이름": "최정환",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "103",
-          "이름": "문재윤",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "105",
-          "이름": "박경태",
           "grade": 1,
           "grade_name": "제일높은직급"
         }
@@ -430,6 +430,81 @@
       "shift": "D",
       "people": [
         {
+          "staff_id": "112",
+          "이름": "하진영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "114",
+          "이름": "윤진영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "E",
+      "people": [
+        {
+          "staff_id": "102",
+          "이름": "최정환",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "104",
+          "이름": "선서현",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "107",
+          "이름": "김유범",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "108",
+          "이름": "박서은",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "118",
+          "이름": "양성규",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "N",
+      "people": [
+        {
+          "staff_id": "113",
+          "이름": "오장관",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "O",
+      "people": [
+        {
+          "staff_id": "101",
+          "이름": "박주영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "103",
+          "이름": "문재윤",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
           "staff_id": "105",
           "이름": "박경태",
           "grade": 1,
@@ -438,12 +513,6 @@
         {
           "staff_id": "106",
           "이름": "유희라",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "107",
-          "이름": "김유범",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -466,14 +535,8 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "112",
-          "이름": "하진영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "113",
-          "이름": "오장관",
+          "staff_id": "115",
+          "이름": "한경식",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -490,12 +553,6 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "118",
-          "이름": "양성규",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
           "staff_id": "119",
           "이름": "김화백",
           "grade": 1,
@@ -504,63 +561,6 @@
         {
           "staff_id": "120",
           "이름": "이병희",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "E",
-      "people": [
-        {
-          "staff_id": "115",
-          "이름": "한경식",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "N",
-      "people": [
-        {
-          "staff_id": "114",
-          "이름": "윤진영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "O",
-      "people": [
-        {
-          "staff_id": "101",
-          "이름": "박주영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "102",
-          "이름": "최정환",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "103",
-          "이름": "문재윤",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "104",
-          "이름": "선서현",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "108",
-          "이름": "박서은",
           "grade": 1,
           "grade_name": "제일높은직급"
         }
@@ -572,20 +572,101 @@
       "shift": "D",
       "people": [
         {
-          "staff_id": "105",
-          "이름": "박경태",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
           "staff_id": "106",
           "이름": "유희라",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
         {
+          "staff_id": "111",
+          "이름": "고준영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "119",
+          "이름": "김화백",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "120",
+          "이름": "이병희",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "E",
+      "people": [
+        {
+          "staff_id": "101",
+          "이름": "박주영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
           "staff_id": "107",
           "이름": "김유범",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "116",
+          "이름": "한현희",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "117",
+          "이름": "정종옥",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "N",
+      "people": [
+        {
+          "staff_id": "104",
+          "이름": "선서현",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "114",
+          "이름": "윤진영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "118",
+          "이름": "양성규",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "O",
+      "people": [
+        {
+          "staff_id": "102",
+          "이름": "최정환",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "103",
+          "이름": "문재윤",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "105",
+          "이름": "박경태",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -608,12 +689,6 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "111",
-          "이름": "고준영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
           "staff_id": "112",
           "이름": "하진영",
           "grade": 1,
@@ -628,81 +703,6 @@
         {
           "staff_id": "115",
           "이름": "한경식",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "116",
-          "이름": "한현희",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "117",
-          "이름": "정종옥",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "118",
-          "이름": "양성규",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "119",
-          "이름": "김화백",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "E",
-      "people": [
-        {
-          "staff_id": "102",
-          "이름": "최정환",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "103",
-          "이름": "문재윤",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "104",
-          "이름": "선서현",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "N",
-      "people": [
-        {
-          "staff_id": "101",
-          "이름": "박주영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "O",
-      "people": [
-        {
-          "staff_id": "114",
-          "이름": "윤진영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "120",
-          "이름": "이병희",
           "grade": 1,
           "grade_name": "제일높은직급"
         }
@@ -714,8 +714,31 @@
       "shift": "D",
       "people": [
         {
+          "staff_id": "103",
+          "이름": "문재윤",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
           "staff_id": "105",
           "이름": "박경태",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "108",
+          "이름": "박서은",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "E",
+      "people": [
+        {
+          "staff_id": "102",
+          "이름": "최정환",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -732,8 +755,60 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "108",
-          "이름": "박서은",
+          "staff_id": "112",
+          "이름": "하진영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "113",
+          "이름": "오장관",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "117",
+          "이름": "정종옥",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "120",
+          "이름": "이병희",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "N",
+      "people": [
+        {
+          "staff_id": "119",
+          "이름": "김화백",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "O",
+      "people": [
+        {
+          "staff_id": "101",
+          "이름": "박주영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "104",
+          "이름": "선서현",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "109",
+          "이름": "김대업",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -750,18 +825,6 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "112",
-          "이름": "하진영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "113",
-          "이름": "오장관",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
           "staff_id": "114",
           "이름": "윤진영",
           "grade": 1,
@@ -774,77 +837,14 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "117",
-          "이름": "정종옥",
+          "staff_id": "116",
+          "이름": "한현희",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
         {
           "staff_id": "118",
           "이름": "양성규",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "119",
-          "이름": "김화백",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "E",
-      "people": [
-        {
-          "staff_id": "116",
-          "이름": "한현희",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "N",
-      "people": [
-        {
-          "staff_id": "109",
-          "이름": "김대업",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "O",
-      "people": [
-        {
-          "staff_id": "101",
-          "이름": "박주영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "102",
-          "이름": "최정환",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "103",
-          "이름": "문재윤",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "104",
-          "이름": "선서현",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "120",
-          "이름": "이병희",
           "grade": 1,
           "grade_name": "제일높은직급"
         }
@@ -856,14 +856,37 @@
       "shift": "D",
       "people": [
         {
+          "staff_id": "107",
+          "이름": "김유범",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "108",
+          "이름": "박서은",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "118",
+          "이름": "양성규",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "E",
+      "people": [
+        {
           "staff_id": "101",
           "이름": "박주영",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "105",
-          "이름": "박경태",
+          "staff_id": "104",
+          "이름": "선서현",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -874,14 +897,54 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "107",
-          "이름": "김유범",
+          "staff_id": "113",
+          "이름": "오장관",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "108",
-          "이름": "박서은",
+          "staff_id": "115",
+          "이름": "한경식",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "N",
+      "people": [
+        {
+          "staff_id": "102",
+          "이름": "최정환",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "114",
+          "이름": "윤진영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "O",
+      "people": [
+        {
+          "staff_id": "103",
+          "이름": "문재윤",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "105",
+          "이름": "박경태",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "109",
+          "이름": "김대업",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -904,18 +967,6 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "113",
-          "이름": "오장관",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "114",
-          "이름": "윤진영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
           "staff_id": "116",
           "이름": "한현희",
           "grade": 1,
@@ -924,12 +975,6 @@
         {
           "staff_id": "117",
           "이름": "정종옥",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "118",
-          "이름": "양성규",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -946,67 +991,11 @@
           "grade_name": "제일높은직급"
         }
       ]
-    },
-    {
-      "shift": "E",
-      "people": [
-        {
-          "staff_id": "104",
-          "이름": "선서현",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "N",
-      "people": [
-        {
-          "staff_id": "115",
-          "이름": "한경식",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "O",
-      "people": [
-        {
-          "staff_id": "102",
-          "이름": "최정환",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "103",
-          "이름": "문재윤",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "109",
-          "이름": "김대업",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
     }
   ],
   "2025-08-08": [
     {
       "shift": "D",
-      "people": [
-        {
-          "staff_id": "102",
-          "이름": "최정환",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "E",
       "people": [
         {
           "staff_id": "101",
@@ -1015,16 +1004,40 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "103",
-          "이름": "문재윤",
+          "staff_id": "104",
+          "이름": "선서현",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "111",
+          "이름": "고준영",
           "grade": 1,
           "grade_name": "제일높은직급"
         }
       ]
     },
     {
-      "shift": "N",
+      "shift": "E",
       "people": [
+        {
+          "staff_id": "105",
+          "이름": "박경태",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "108",
+          "이름": "박서은",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "113",
+          "이름": "오장관",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
         {
           "staff_id": "117",
           "이름": "정종옥",
@@ -1040,20 +1053,8 @@
       ]
     },
     {
-      "shift": "O",
+      "shift": "N",
       "people": [
-        {
-          "staff_id": "104",
-          "이름": "선서현",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "105",
-          "이름": "박경태",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
         {
           "staff_id": "106",
           "이름": "유희라",
@@ -1067,8 +1068,25 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "108",
-          "이름": "박서은",
+          "staff_id": "116",
+          "이름": "한현희",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "O",
+      "people": [
+        {
+          "staff_id": "102",
+          "이름": "최정환",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "103",
+          "이름": "문재윤",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -1085,20 +1103,8 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "111",
-          "이름": "고준영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
           "staff_id": "112",
           "이름": "하진영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "113",
-          "이름": "오장관",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -1111,12 +1117,6 @@
         {
           "staff_id": "115",
           "이름": "한경식",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "116",
-          "이름": "한현희",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -1140,8 +1140,32 @@
       "shift": "D",
       "people": [
         {
-          "staff_id": "118",
-          "이름": "양성규",
+          "staff_id": "109",
+          "이름": "김대업",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "110",
+          "이름": "유예솜",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "114",
+          "이름": "윤진영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "117",
+          "이름": "정종옥",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "120",
+          "이름": "이병희",
           "grade": 1,
           "grade_name": "제일높은직급"
         }
@@ -1151,39 +1175,11 @@
       "shift": "E",
       "people": [
         {
-          "staff_id": "105",
-          "이름": "박경태",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "N",
-      "people": [
-        {
           "staff_id": "101",
           "이름": "박주영",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
-        {
-          "staff_id": "104",
-          "이름": "선서현",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "114",
-          "이름": "윤진영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "O",
-      "people": [
         {
           "staff_id": "102",
           "이름": "최정환",
@@ -1197,14 +1193,8 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "106",
-          "이름": "유희라",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "107",
-          "이름": "김유범",
+          "staff_id": "105",
+          "이름": "박경태",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -1215,14 +1205,42 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "109",
-          "이름": "김대업",
+          "staff_id": "119",
+          "이름": "김화백",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "N",
+      "people": [
+        {
+          "staff_id": "118",
+          "이름": "양성규",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "O",
+      "people": [
+        {
+          "staff_id": "104",
+          "이름": "선서현",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "110",
-          "이름": "유예솜",
+          "staff_id": "106",
+          "이름": "유희라",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "107",
+          "이름": "김유범",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -1253,24 +1271,6 @@
         {
           "staff_id": "116",
           "이름": "한현희",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "117",
-          "이름": "정종옥",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "119",
-          "이름": "김화백",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "120",
-          "이름": "이병희",
           "grade": 1,
           "grade_name": "제일높은직급"
         }
@@ -1282,14 +1282,19 @@
       "shift": "D",
       "people": [
         {
-          "staff_id": "102",
-          "이름": "최정환",
+          "staff_id": "105",
+          "이름": "박경태",
           "grade": 1,
           "grade_name": "제일높은직급"
-        },
+        }
+      ]
+    },
+    {
+      "shift": "E",
+      "people": [
         {
-          "staff_id": "106",
-          "이름": "유희라",
+          "staff_id": "104",
+          "이름": "선서현",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -1302,6 +1307,64 @@
         {
           "staff_id": "109",
           "이름": "김대업",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "114",
+          "이름": "윤진영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "116",
+          "이름": "한현희",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "N",
+      "people": [
+        {
+          "staff_id": "120",
+          "이름": "이병희",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "O",
+      "people": [
+        {
+          "staff_id": "101",
+          "이름": "박주영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "102",
+          "이름": "최정환",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "103",
+          "이름": "문재윤",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "106",
+          "이름": "유희라",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "107",
+          "이름": "김유범",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -1336,83 +1399,20 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "116",
-          "이름": "한현희",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "119",
-          "이름": "김화백",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "120",
-          "이름": "이병희",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "E",
-      "people": [
-        {
           "staff_id": "117",
           "이름": "정종옥",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "N",
-      "people": [
-        {
-          "staff_id": "107",
-          "이름": "김유범",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "O",
-      "people": [
-        {
-          "staff_id": "101",
-          "이름": "박주영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "103",
-          "이름": "문재윤",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "104",
-          "이름": "선서현",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "105",
-          "이름": "박경태",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "114",
-          "이름": "윤진영",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
         {
           "staff_id": "118",
           "이름": "양성규",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "119",
+          "이름": "김화백",
           "grade": 1,
           "grade_name": "제일높은직급"
         }
@@ -1424,8 +1424,36 @@
       "shift": "D",
       "people": [
         {
-          "staff_id": "108",
-          "이름": "박서은",
+          "staff_id": "117",
+          "이름": "정종옥",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "E",
+      "people": [
+        {
+          "staff_id": "102",
+          "이름": "최정환",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "118",
+          "이름": "양성규",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "N",
+      "people": [
+        {
+          "staff_id": "107",
+          "이름": "김유범",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -1454,6 +1482,53 @@
           "grade_name": "제일높은직급"
         },
         {
+          "staff_id": "119",
+          "이름": "김화백",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "O",
+      "people": [
+        {
+          "staff_id": "101",
+          "이름": "박주영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "103",
+          "이름": "문재윤",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "104",
+          "이름": "선서현",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "105",
+          "이름": "박경태",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "106",
+          "이름": "유희라",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "108",
+          "이름": "박서은",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
           "staff_id": "113",
           "이름": "오장관",
           "grade": 1,
@@ -1478,83 +1553,8 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "117",
-          "이름": "정종옥",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "118",
-          "이름": "양성규",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "119",
-          "이름": "김화백",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
           "staff_id": "120",
           "이름": "이병희",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "E",
-      "people": [
-        {
-          "staff_id": "106",
-          "이름": "유희라",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "N",
-      "people": [
-        {
-          "staff_id": "105",
-          "이름": "박경태",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "O",
-      "people": [
-        {
-          "staff_id": "101",
-          "이름": "박주영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "102",
-          "이름": "최정환",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "103",
-          "이름": "문재윤",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "104",
-          "이름": "선서현",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "107",
-          "이름": "김유범",
           "grade": 1,
           "grade_name": "제일높은직급"
         }
@@ -1566,81 +1566,6 @@
       "shift": "D",
       "people": [
         {
-          "staff_id": "102",
-          "이름": "최정환",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "107",
-          "이름": "김유범",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "108",
-          "이름": "박서은",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "109",
-          "이름": "김대업",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "110",
-          "이름": "유예솜",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "113",
-          "이름": "오장관",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "114",
-          "이름": "윤진영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "116",
-          "이름": "한현희",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "E",
-      "people": [
-        {
-          "staff_id": "115",
-          "이름": "한경식",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "N",
-      "people": [
-        {
-          "staff_id": "119",
-          "이름": "김화백",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "O",
-      "people": [
-        {
           "staff_id": "101",
           "이름": "박주영",
           "grade": 1,
@@ -1659,14 +1584,71 @@
           "grade_name": "제일높은직급"
         },
         {
+          "staff_id": "106",
+          "이름": "유희라",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "116",
+          "이름": "한현희",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "E",
+      "people": [
+        {
+          "staff_id": "102",
+          "이름": "최정환",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "108",
+          "이름": "박서은",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "N",
+      "people": [
+        {
+          "staff_id": "120",
+          "이름": "이병희",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "O",
+      "people": [
+        {
           "staff_id": "105",
           "이름": "박경태",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "106",
-          "이름": "유희라",
+          "staff_id": "107",
+          "이름": "김유범",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "109",
+          "이름": "김대업",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "110",
+          "이름": "유예솜",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -1683,6 +1665,24 @@
           "grade_name": "제일높은직급"
         },
         {
+          "staff_id": "113",
+          "이름": "오장관",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "114",
+          "이름": "윤진영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "115",
+          "이름": "한경식",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
           "staff_id": "117",
           "이름": "정종옥",
           "grade": 1,
@@ -1695,8 +1695,8 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "120",
-          "이름": "이병희",
+          "staff_id": "119",
+          "이름": "김화백",
           "grade": 1,
           "grade_name": "제일높은직급"
         }
@@ -1714,32 +1714,43 @@
           "grade_name": "제일높은직급"
         },
         {
+          "staff_id": "109",
+          "이름": "김대업",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "119",
+          "이름": "김화백",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "E",
+      "people": [
+        {
+          "staff_id": "103",
+          "이름": "문재윤",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "104",
+          "이름": "선서현",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
           "staff_id": "106",
           "이름": "유희라",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "107",
-          "이름": "김유범",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
           "staff_id": "108",
           "이름": "박서은",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "110",
-          "이름": "유예솜",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "111",
-          "이름": "고준영",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -1756,49 +1767,8 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "114",
-          "이름": "윤진영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
           "staff_id": "116",
           "이름": "한현희",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "117",
-          "이름": "정종옥",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "120",
-          "이름": "이병희",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "E",
-      "people": [
-        {
-          "staff_id": "104",
-          "이름": "선서현",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "105",
-          "이름": "박경태",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "118",
-          "이름": "양성규",
           "grade": 1,
           "grade_name": "제일높은직급"
         }
@@ -1808,20 +1778,8 @@
       "shift": "N",
       "people": [
         {
-          "staff_id": "103",
-          "이름": "문재윤",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "109",
-          "이름": "김대업",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "115",
-          "이름": "한경식",
+          "staff_id": "110",
+          "이름": "유예솜",
           "grade": 1,
           "grade_name": "제일높은직급"
         }
@@ -1837,8 +1795,50 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "119",
-          "이름": "김화백",
+          "staff_id": "105",
+          "이름": "박경태",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "107",
+          "이름": "김유범",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "111",
+          "이름": "고준영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "114",
+          "이름": "윤진영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "115",
+          "이름": "한경식",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "117",
+          "이름": "정종옥",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "118",
+          "이름": "양성규",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "120",
+          "이름": "이병희",
           "grade": 1,
           "grade_name": "제일높은직급"
         }
@@ -1850,32 +1850,25 @@
       "shift": "D",
       "people": [
         {
+          "staff_id": "106",
+          "이름": "유희라",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "E",
+      "people": [
+        {
           "staff_id": "101",
           "이름": "박주영",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "106",
-          "이름": "유희라",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "107",
-          "이름": "김유범",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "110",
-          "이름": "유예솜",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "111",
-          "이름": "고준영",
+          "staff_id": "109",
+          "이름": "김대업",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -1886,37 +1879,14 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "113",
-          "이름": "오장관",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
           "staff_id": "114",
           "이름": "윤진영",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "116",
-          "이름": "한현희",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "117",
-          "이름": "정종옥",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "E",
-      "people": [
-        {
-          "staff_id": "108",
-          "이름": "박서은",
+          "staff_id": "119",
+          "이름": "김화백",
           "grade": 1,
           "grade_name": "제일높은직급"
         }
@@ -1928,12 +1898,6 @@
         {
           "staff_id": "102",
           "이름": "최정환",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "120",
-          "이름": "이병희",
           "grade": 1,
           "grade_name": "제일높은직급"
         }
@@ -1961,8 +1925,32 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "109",
-          "이름": "김대업",
+          "staff_id": "107",
+          "이름": "김유범",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "108",
+          "이름": "박서은",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "110",
+          "이름": "유예솜",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "111",
+          "이름": "고준영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "113",
+          "이름": "오장관",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -1973,14 +1961,26 @@
           "grade_name": "제일높은직급"
         },
         {
+          "staff_id": "116",
+          "이름": "한현희",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "117",
+          "이름": "정종옥",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
           "staff_id": "118",
           "이름": "양성규",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "119",
-          "이름": "김화백",
+          "staff_id": "120",
+          "이름": "이병희",
           "grade": 1,
           "grade_name": "제일높은직급"
         }
@@ -1992,8 +1992,20 @@
       "shift": "D",
       "people": [
         {
-          "staff_id": "117",
-          "이름": "정종옥",
+          "staff_id": "105",
+          "이름": "박경태",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "110",
+          "이름": "유예솜",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "115",
+          "이름": "한경식",
           "grade": 1,
           "grade_name": "제일높은직급"
         }
@@ -2007,6 +2019,24 @@
           "이름": "선서현",
           "grade": 1,
           "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "106",
+          "이름": "유희라",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "108",
+          "이름": "박서은",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "109",
+          "이름": "김대업",
+          "grade": 1,
+          "grade_name": "제일높은직급"
         }
       ]
     },
@@ -2016,6 +2046,18 @@
         {
           "staff_id": "116",
           "이름": "한현희",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "117",
+          "이름": "정종옥",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "120",
+          "이름": "이병희",
           "grade": 1,
           "grade_name": "제일높은직급"
         }
@@ -2043,38 +2085,8 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "105",
-          "이름": "박경태",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "106",
-          "이름": "유희라",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
           "staff_id": "107",
           "이름": "김유범",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "108",
-          "이름": "박서은",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "109",
-          "이름": "김대업",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "110",
-          "이름": "유예솜",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -2103,12 +2115,6 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "115",
-          "이름": "한경식",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
           "staff_id": "118",
           "이름": "양성규",
           "grade": 1,
@@ -2117,12 +2123,6 @@
         {
           "staff_id": "119",
           "이름": "김화백",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "120",
-          "이름": "이병희",
           "grade": 1,
           "grade_name": "제일높은직급"
         }
@@ -2134,65 +2134,8 @@
       "shift": "D",
       "people": [
         {
-          "staff_id": "108",
-          "이름": "박서은",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "E",
-      "people": [
-        {
-          "staff_id": "115",
-          "이름": "한경식",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "N",
-      "people": [
-        {
-          "staff_id": "113",
-          "이름": "오장관",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "O",
-      "people": [
-        {
-          "staff_id": "101",
-          "이름": "박주영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "102",
-          "이름": "최정환",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "103",
-          "이름": "문재윤",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
           "staff_id": "104",
           "이름": "선서현",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "105",
-          "이름": "박경태",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -2203,8 +2146,48 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "107",
-          "이름": "김유범",
+          "staff_id": "112",
+          "이름": "하진영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "118",
+          "이름": "양성규",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "119",
+          "이름": "김화백",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "E",
+      "people": [
+        {
+          "staff_id": "101",
+          "이름": "박주영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "103",
+          "이름": "문재윤",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "N",
+      "people": [
+        {
+          "staff_id": "108",
+          "이름": "박서은",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -2219,6 +2202,29 @@
           "이름": "유예솜",
           "grade": 1,
           "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "O",
+      "people": [
+        {
+          "staff_id": "102",
+          "이름": "최정환",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "105",
+          "이름": "박경태",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "107",
+          "이름": "김유범",
+          "grade": 1,
+          "grade_name": "제일높은직급"
         },
         {
           "staff_id": "111",
@@ -2227,14 +2233,20 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "112",
-          "이름": "하진영",
+          "staff_id": "113",
+          "이름": "오장관",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
         {
           "staff_id": "114",
           "이름": "윤진영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "115",
+          "이름": "한경식",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -2247,18 +2259,6 @@
         {
           "staff_id": "117",
           "이름": "정종옥",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "118",
-          "이름": "양성규",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "119",
-          "이름": "김화백",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -2276,8 +2276,8 @@
       "shift": "D",
       "people": [
         {
-          "staff_id": "105",
-          "이름": "박경태",
+          "staff_id": "102",
+          "이름": "최정환",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -2288,50 +2288,8 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "108",
-          "이름": "박서은",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "109",
-          "이름": "김대업",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "111",
-          "이름": "고준영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "112",
-          "이름": "하진영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
           "staff_id": "114",
           "이름": "윤진영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "115",
-          "이름": "한경식",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "117",
-          "이름": "정종옥",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "118",
-          "이름": "양성규",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -2353,40 +2311,6 @@
       "shift": "E",
       "people": [
         {
-          "staff_id": "101",
-          "이름": "박주영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "102",
-          "이름": "최정환",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "N",
-      "people": [
-        {
-          "staff_id": "110",
-          "이름": "유예솜",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "O",
-      "people": [
-        {
-          "staff_id": "103",
-          "이름": "문재윤",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
           "staff_id": "104",
           "이름": "선서현",
           "grade": 1,
@@ -2399,14 +2323,90 @@
           "grade_name": "제일높은직급"
         },
         {
+          "staff_id": "112",
+          "이름": "하진영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
           "staff_id": "113",
           "이름": "오장관",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
         {
+          "staff_id": "117",
+          "이름": "정종옥",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "N",
+      "people": [
+        {
+          "staff_id": "103",
+          "이름": "문재윤",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "O",
+      "people": [
+        {
+          "staff_id": "101",
+          "이름": "박주영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "105",
+          "이름": "박경태",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "108",
+          "이름": "박서은",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "109",
+          "이름": "김대업",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "110",
+          "이름": "유예솜",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "111",
+          "이름": "고준영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "115",
+          "이름": "한경식",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
           "staff_id": "116",
           "이름": "한현희",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "118",
+          "이름": "양성규",
           "grade": 1,
           "grade_name": "제일높은직급"
         }
@@ -2424,6 +2424,45 @@
           "grade_name": "제일높은직급"
         },
         {
+          "staff_id": "113",
+          "이름": "오장관",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "E",
+      "people": [
+        {
+          "staff_id": "110",
+          "이름": "유예솜",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "N",
+      "people": [
+        {
+          "staff_id": "101",
+          "이름": "박주영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "O",
+      "people": [
+        {
+          "staff_id": "103",
+          "이름": "문재윤",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
           "staff_id": "104",
           "이름": "선서현",
           "grade": 1,
@@ -2478,8 +2517,20 @@
           "grade_name": "제일높은직급"
         },
         {
+          "staff_id": "115",
+          "이름": "한경식",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
           "staff_id": "116",
           "이름": "한현희",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "117",
+          "이름": "정종옥",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -2498,57 +2549,6 @@
         {
           "staff_id": "120",
           "이름": "이병희",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "E",
-      "people": [
-        {
-          "staff_id": "117",
-          "이름": "정종옥",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "N",
-      "people": [
-        {
-          "staff_id": "113",
-          "이름": "오장관",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "O",
-      "people": [
-        {
-          "staff_id": "101",
-          "이름": "박주영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "103",
-          "이름": "문재윤",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "110",
-          "이름": "유예솜",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "115",
-          "이름": "한경식",
           "grade": 1,
           "grade_name": "제일높은직급"
         }
@@ -2560,8 +2560,14 @@
       "shift": "D",
       "people": [
         {
-          "staff_id": "103",
-          "이름": "문재윤",
+          "staff_id": "102",
+          "이름": "최정환",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "105",
+          "이름": "박경태",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -2572,20 +2578,31 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "108",
-          "이름": "박서은",
+          "staff_id": "117",
+          "이름": "정종옥",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "119",
+          "이름": "김화백",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "E",
+      "people": [
+        {
+          "staff_id": "107",
+          "이름": "김유범",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
         {
           "staff_id": "109",
           "이름": "김대업",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "110",
-          "이름": "유예솜",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -2602,8 +2619,8 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "115",
-          "이름": "한경식",
+          "staff_id": "118",
+          "이름": "양성규",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -2616,46 +2633,11 @@
       ]
     },
     {
-      "shift": "E",
-      "people": [
-        {
-          "staff_id": "101",
-          "이름": "박주영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "105",
-          "이름": "박경태",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "118",
-          "이름": "양성규",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
       "shift": "N",
       "people": [
         {
-          "staff_id": "102",
-          "이름": "최정환",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "116",
-          "이름": "한현희",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "117",
-          "이름": "정종옥",
+          "staff_id": "115",
+          "이름": "한경식",
           "grade": 1,
           "grade_name": "제일높은직급"
         }
@@ -2665,14 +2647,32 @@
       "shift": "O",
       "people": [
         {
+          "staff_id": "101",
+          "이름": "박주영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "103",
+          "이름": "문재윤",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
           "staff_id": "104",
           "이름": "선서현",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "107",
-          "이름": "김유범",
+          "staff_id": "108",
+          "이름": "박서은",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "110",
+          "이름": "유예솜",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -2689,8 +2689,8 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "119",
-          "이름": "김화백",
+          "staff_id": "116",
+          "이름": "한현희",
           "grade": 1,
           "grade_name": "제일높은직급"
         }
@@ -2702,8 +2702,8 @@
       "shift": "D",
       "people": [
         {
-          "staff_id": "107",
-          "이름": "김유범",
+          "staff_id": "101",
+          "이름": "박주영",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -2720,8 +2720,95 @@
           "grade_name": "제일높은직급"
         },
         {
+          "staff_id": "112",
+          "이름": "하진영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "116",
+          "이름": "한현희",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "119",
+          "이름": "김화백",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "120",
+          "이름": "이병희",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "E",
+      "people": [
+        {
+          "staff_id": "104",
+          "이름": "선서현",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "108",
+          "이름": "박서은",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
           "staff_id": "111",
           "이름": "고준영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "118",
+          "이름": "양성규",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "N",
+      "people": [
+        {
+          "staff_id": "105",
+          "이름": "박경태",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "106",
+          "이름": "유희라",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "O",
+      "people": [
+        {
+          "staff_id": "102",
+          "이름": "최정환",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "103",
+          "이름": "문재윤",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "107",
+          "이름": "김유범",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -2744,95 +2831,8 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "120",
-          "이름": "이병희",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "E",
-      "people": [
-        {
-          "staff_id": "104",
-          "이름": "선서현",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "106",
-          "이름": "유희라",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "118",
-          "이름": "양성규",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "N",
-      "people": [
-        {
-          "staff_id": "108",
-          "이름": "박서은",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "O",
-      "people": [
-        {
-          "staff_id": "101",
-          "이름": "박주영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "102",
-          "이름": "최정환",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "103",
-          "이름": "문재윤",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "105",
-          "이름": "박경태",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "112",
-          "이름": "하진영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "116",
-          "이름": "한현희",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
           "staff_id": "117",
           "이름": "정종옥",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "119",
-          "이름": "김화백",
           "grade": 1,
           "grade_name": "제일높은직급"
         }
@@ -2844,44 +2844,8 @@
       "shift": "D",
       "people": [
         {
-          "staff_id": "101",
-          "이름": "박주영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "102",
-          "이름": "최정환",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "105",
-          "이름": "박경태",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "106",
-          "이름": "유희라",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "109",
-          "이름": "김대업",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "110",
-          "이름": "유예솜",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "111",
-          "이름": "고준영",
+          "staff_id": "104",
+          "이름": "선서현",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -2892,20 +2856,14 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "115",
-          "이름": "한경식",
+          "staff_id": "118",
+          "이름": "양성규",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "116",
-          "이름": "한현희",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "117",
-          "이름": "정종옥",
+          "staff_id": "119",
+          "이름": "김화백",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -2921,14 +2879,14 @@
       "shift": "E",
       "people": [
         {
-          "staff_id": "107",
-          "이름": "김유범",
+          "staff_id": "101",
+          "이름": "박주영",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "118",
-          "이름": "양성규",
+          "staff_id": "108",
+          "이름": "박서은",
           "grade": 1,
           "grade_name": "제일높은직급"
         }
@@ -2938,8 +2896,8 @@
       "shift": "N",
       "people": [
         {
-          "staff_id": "112",
-          "이름": "하진영",
+          "staff_id": "113",
+          "이름": "오장관",
           "grade": 1,
           "grade_name": "제일높은직급"
         }
@@ -2949,51 +2907,14 @@
       "shift": "O",
       "people": [
         {
-          "staff_id": "103",
-          "이름": "문재윤",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "104",
-          "이름": "선서현",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "108",
-          "이름": "박서은",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "113",
-          "이름": "오장관",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "119",
-          "이름": "김화백",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    }
-  ],
-  "2025-08-22": [
-    {
-      "shift": "D",
-      "people": [
-        {
           "staff_id": "102",
           "이름": "최정환",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "104",
-          "이름": "선서현",
+          "staff_id": "103",
+          "이름": "문재윤",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -3008,61 +2929,10 @@
           "이름": "유희라",
           "grade": 1,
           "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "E",
-      "people": [
-        {
-          "staff_id": "111",
-          "이름": "고준영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "118",
-          "이름": "양성규",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "N",
-      "people": [
-        {
-          "staff_id": "119",
-          "이름": "김화백",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "O",
-      "people": [
-        {
-          "staff_id": "101",
-          "이름": "박주영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "103",
-          "이름": "문재윤",
-          "grade": 1,
-          "grade_name": "제일높은직급"
         },
         {
           "staff_id": "107",
           "이름": "김유범",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "108",
-          "이름": "박서은",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -3079,20 +2949,14 @@
           "grade_name": "제일높은직급"
         },
         {
+          "staff_id": "111",
+          "이름": "고준영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
           "staff_id": "112",
           "이름": "하진영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "113",
-          "이름": "오장관",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "114",
-          "이름": "윤진영",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -3111,6 +2975,142 @@
         {
           "staff_id": "117",
           "이름": "정종옥",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    }
+  ],
+  "2025-08-22": [
+    {
+      "shift": "D",
+      "people": [
+        {
+          "staff_id": "104",
+          "이름": "선서현",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "112",
+          "이름": "하진영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "114",
+          "이름": "윤진영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "115",
+          "이름": "한경식",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "E",
+      "people": [
+        {
+          "staff_id": "101",
+          "이름": "박주영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "106",
+          "이름": "유희라",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "107",
+          "이름": "김유범",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "109",
+          "이름": "김대업",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "110",
+          "이름": "유예솜",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "111",
+          "이름": "고준영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "119",
+          "이름": "김화백",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "N",
+      "people": [
+        {
+          "staff_id": "117",
+          "이름": "정종옥",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "O",
+      "people": [
+        {
+          "staff_id": "102",
+          "이름": "최정환",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "103",
+          "이름": "문재윤",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "105",
+          "이름": "박경태",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "108",
+          "이름": "박서은",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "113",
+          "이름": "오장관",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "116",
+          "이름": "한현희",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "118",
+          "이름": "양성규",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -3128,8 +3128,20 @@
       "shift": "D",
       "people": [
         {
-          "staff_id": "102",
-          "이름": "최정환",
+          "staff_id": "103",
+          "이름": "문재윤",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "107",
+          "이름": "김유범",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "120",
+          "이름": "이병희",
           "grade": 1,
           "grade_name": "제일높은직급"
         }
@@ -3139,37 +3151,8 @@
       "shift": "E",
       "people": [
         {
-          "staff_id": "103",
-          "이름": "문재윤",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "106",
-          "이름": "유희라",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
           "staff_id": "111",
           "이름": "고준영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "112",
-          "이름": "하진영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "N",
-      "people": [
-        {
-          "staff_id": "105",
-          "이름": "박경태",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -3182,7 +3165,7 @@
       ]
     },
     {
-      "shift": "O",
+      "shift": "N",
       "people": [
         {
           "staff_id": "101",
@@ -3197,14 +3180,37 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "107",
-          "이름": "김유범",
+          "staff_id": "108",
+          "이름": "박서은",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "108",
-          "이름": "박서은",
+          "staff_id": "112",
+          "이름": "하진영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "O",
+      "people": [
+        {
+          "staff_id": "102",
+          "이름": "최정환",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "105",
+          "이름": "박경태",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "106",
+          "이름": "유희라",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -3255,12 +3261,6 @@
           "이름": "김화백",
           "grade": 1,
           "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "120",
-          "이름": "이병희",
-          "grade": 1,
-          "grade_name": "제일높은직급"
         }
       ]
     }
@@ -3270,14 +3270,95 @@
       "shift": "D",
       "people": [
         {
+          "staff_id": "102",
+          "이름": "최정환",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "106",
+          "이름": "유희라",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "115",
+          "이름": "한경식",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "120",
+          "이름": "이병희",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "E",
+      "people": [
+        {
+          "staff_id": "107",
+          "이름": "김유범",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "110",
+          "이름": "유예솜",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "113",
+          "이름": "오장관",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "118",
+          "이름": "양성규",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "N",
+      "people": [
+        {
+          "staff_id": "117",
+          "이름": "정종옥",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "O",
+      "people": [
+        {
+          "staff_id": "101",
+          "이름": "박주영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "103",
+          "이름": "문재윤",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
           "staff_id": "104",
           "이름": "선서현",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "107",
-          "이름": "김유범",
+          "staff_id": "105",
+          "이름": "박경태",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -3294,12 +3375,6 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "110",
-          "이름": "유예솜",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
           "staff_id": "111",
           "이름": "고준영",
           "grade": 1,
@@ -3312,89 +3387,14 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "113",
-          "이름": "오장관",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
           "staff_id": "114",
           "이름": "윤진영",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "115",
-          "이름": "한경식",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "117",
-          "이름": "정종옥",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "120",
-          "이름": "이병희",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "E",
-      "people": [
-        {
           "staff_id": "116",
           "이름": "한현희",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "N",
-      "people": [
-        {
-          "staff_id": "106",
-          "이름": "유희라",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "O",
-      "people": [
-        {
-          "staff_id": "101",
-          "이름": "박주영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "102",
-          "이름": "최정환",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "103",
-          "이름": "문재윤",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "105",
-          "이름": "박경태",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "118",
-          "이름": "양성규",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -3412,20 +3412,101 @@
       "shift": "D",
       "people": [
         {
-          "staff_id": "103",
-          "이름": "문재윤",
+          "staff_id": "104",
+          "이름": "선서현",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "107",
-          "이름": "김유범",
+          "staff_id": "105",
+          "이름": "박경태",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
         {
           "staff_id": "108",
           "이름": "박서은",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "111",
+          "이름": "고준영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "116",
+          "이름": "한현희",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "120",
+          "이름": "이병희",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "E",
+      "people": [
+        {
+          "staff_id": "112",
+          "이름": "하진영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "114",
+          "이름": "윤진영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "N",
+      "people": [
+        {
+          "staff_id": "113",
+          "이름": "오장관",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "O",
+      "people": [
+        {
+          "staff_id": "101",
+          "이름": "박주영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "102",
+          "이름": "최정환",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "103",
+          "이름": "문재윤",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "106",
+          "이름": "유희라",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "107",
+          "이름": "김유범",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -3442,95 +3523,14 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "113",
-          "이름": "오장관",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "114",
-          "이름": "윤진영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
           "staff_id": "115",
           "이름": "한경식",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "116",
-          "이름": "한현희",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
           "staff_id": "117",
           "이름": "정종옥",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "120",
-          "이름": "이병희",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "E",
-      "people": [
-        {
-          "staff_id": "101",
-          "이름": "박주영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "102",
-          "이름": "최정환",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "N",
-      "people": [
-        {
-          "staff_id": "112",
-          "이름": "하진영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "O",
-      "people": [
-        {
-          "staff_id": "104",
-          "이름": "선서현",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "105",
-          "이름": "박경태",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "106",
-          "이름": "유희라",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "111",
-          "이름": "고준영",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -3554,38 +3554,14 @@
       "shift": "D",
       "people": [
         {
-          "staff_id": "102",
-          "이름": "최정환",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "108",
-          "이름": "박서은",
+          "staff_id": "103",
+          "이름": "문재윤",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
         {
           "staff_id": "109",
           "이름": "김대업",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "113",
-          "이름": "오장관",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "114",
-          "이름": "윤진영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "115",
-          "이름": "한경식",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -3600,12 +3576,6 @@
           "이름": "정종옥",
           "grade": 1,
           "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "120",
-          "이름": "이병희",
-          "grade": 1,
-          "grade_name": "제일높은직급"
         }
       ]
     },
@@ -3613,14 +3583,20 @@
       "shift": "E",
       "people": [
         {
-          "staff_id": "118",
-          "이름": "양성규",
+          "staff_id": "101",
+          "이름": "박주영",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "119",
-          "이름": "김화백",
+          "staff_id": "102",
+          "이름": "최정환",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "107",
+          "이름": "김유범",
           "grade": 1,
           "grade_name": "제일높은직급"
         }
@@ -3630,8 +3606,8 @@
       "shift": "N",
       "people": [
         {
-          "staff_id": "110",
-          "이름": "유예솜",
+          "staff_id": "115",
+          "이름": "한경식",
           "grade": 1,
           "grade_name": "제일높은직급"
         }
@@ -3640,18 +3616,6 @@
     {
       "shift": "O",
       "people": [
-        {
-          "staff_id": "101",
-          "이름": "박주영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "103",
-          "이름": "문재윤",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
         {
           "staff_id": "104",
           "이름": "선서현",
@@ -3671,8 +3635,14 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "107",
-          "이름": "김유범",
+          "staff_id": "108",
+          "이름": "박서은",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "110",
+          "이름": "유예솜",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -3685,6 +3655,36 @@
         {
           "staff_id": "112",
           "이름": "하진영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "113",
+          "이름": "오장관",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "114",
+          "이름": "윤진영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "118",
+          "이름": "양성규",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "119",
+          "이름": "김화백",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "120",
+          "이름": "이병희",
           "grade": 1,
           "grade_name": "제일높은직급"
         }
@@ -3702,14 +3702,156 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "109",
-          "이름": "김대업",
+          "staff_id": "112",
+          "이름": "하진영",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
         {
           "staff_id": "113",
           "이름": "오장관",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "119",
+          "이름": "김화백",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "120",
+          "이름": "이병희",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "E",
+      "people": [
+        {
+          "staff_id": "105",
+          "이름": "박경태",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "109",
+          "이름": "김대업",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "114",
+          "이름": "윤진영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "N",
+      "people": [
+        {
+          "staff_id": "103",
+          "이름": "문재윤",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "O",
+      "people": [
+        {
+          "staff_id": "101",
+          "이름": "박주영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "102",
+          "이름": "최정환",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "104",
+          "이름": "선서현",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "106",
+          "이름": "유희라",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "107",
+          "이름": "김유범",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "110",
+          "이름": "유예솜",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "111",
+          "이름": "고준영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "115",
+          "이름": "한경식",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "116",
+          "이름": "한현희",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "117",
+          "이름": "정종옥",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "118",
+          "이름": "양성규",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    }
+  ],
+  "2025-08-28": [
+    {
+      "shift": "D",
+      "people": [
+        {
+          "staff_id": "105",
+          "이름": "박경태",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "107",
+          "이름": "김유범",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "110",
+          "이름": "유예솜",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -3736,12 +3878,6 @@
           "이름": "정종옥",
           "grade": 1,
           "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "120",
-          "이름": "이병희",
-          "grade": 1,
-          "grade_name": "제일높은직급"
         }
       ]
     },
@@ -3753,6 +3889,24 @@
           "이름": "박주영",
           "grade": 1,
           "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "102",
+          "이름": "최정환",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "106",
+          "이름": "유희라",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "113",
+          "이름": "오장관",
+          "grade": 1,
+          "grade_name": "제일높은직급"
         }
       ]
     },
@@ -3760,8 +3914,8 @@
       "shift": "N",
       "people": [
         {
-          "staff_id": "107",
-          "이름": "김유범",
+          "staff_id": "119",
+          "이름": "김화백",
           "grade": 1,
           "grade_name": "제일높은직급"
         }
@@ -3771,12 +3925,6 @@
       "shift": "O",
       "people": [
         {
-          "staff_id": "102",
-          "이름": "최정환",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
           "staff_id": "103",
           "이름": "문재윤",
           "grade": 1,
@@ -3785,79 +3933,6 @@
         {
           "staff_id": "104",
           "이름": "선서현",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "105",
-          "이름": "박경태",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "106",
-          "이름": "유희라",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "110",
-          "이름": "유예솜",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "111",
-          "이름": "고준영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "112",
-          "이름": "하진영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "118",
-          "이름": "양성규",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "119",
-          "이름": "김화백",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    }
-  ],
-  "2025-08-28": [
-    {
-      "shift": "D",
-      "people": [
-        {
-          "staff_id": "102",
-          "이름": "최정환",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "104",
-          "이름": "선서현",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "105",
-          "이름": "박경태",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "106",
-          "이름": "유희라",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -3874,89 +3949,8 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "110",
-          "이름": "유예솜",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "113",
-          "이름": "오장관",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "114",
-          "이름": "윤진영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "115",
-          "이름": "한경식",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "116",
-          "이름": "한현희",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "117",
-          "이름": "정종옥",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "120",
-          "이름": "이병희",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "E",
-      "people": [
-        {
-          "staff_id": "118",
-          "이름": "양성규",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "N",
-      "people": [
-        {
           "staff_id": "111",
           "이름": "고준영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "O",
-      "people": [
-        {
-          "staff_id": "101",
-          "이름": "박주영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "103",
-          "이름": "문재윤",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "107",
-          "이름": "김유범",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -3967,8 +3961,14 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "119",
-          "이름": "김화백",
+          "staff_id": "118",
+          "이름": "양성규",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "120",
+          "이름": "이병희",
           "grade": 1,
           "grade_name": "제일높은직급"
         }
@@ -3986,14 +3986,8 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "103",
-          "이름": "문재윤",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "107",
-          "이름": "김유범",
+          "staff_id": "102",
+          "이름": "최정환",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -4010,26 +4004,8 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "110",
-          "이름": "유예솜",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
           "staff_id": "113",
           "이름": "오장관",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "114",
-          "이름": "윤진영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "115",
-          "이름": "한경식",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -4057,42 +4033,8 @@
       "shift": "E",
       "people": [
         {
-          "staff_id": "105",
-          "이름": "박경태",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "118",
-          "이름": "양성규",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "119",
-          "이름": "김화백",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "N",
-      "people": [
-        {
-          "staff_id": "106",
-          "이름": "유희라",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "O",
-      "people": [
-        {
-          "staff_id": "102",
-          "이름": "최정환",
+          "staff_id": "103",
+          "이름": "문재윤",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -4103,14 +4045,72 @@
           "grade_name": "제일높은직급"
         },
         {
+          "staff_id": "106",
+          "이름": "유희라",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
           "staff_id": "111",
           "이름": "고준영",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
         {
+          "staff_id": "115",
+          "이름": "한경식",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "118",
+          "이름": "양성규",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "N",
+      "people": [
+        {
+          "staff_id": "107",
+          "이름": "김유범",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
           "staff_id": "112",
           "이름": "하진영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "O",
+      "people": [
+        {
+          "staff_id": "105",
+          "이름": "박경태",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "110",
+          "이름": "유예솜",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "114",
+          "이름": "윤진영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "119",
+          "이름": "김화백",
           "grade": 1,
           "grade_name": "제일높은직급"
         }
@@ -4122,8 +4122,107 @@
       "shift": "D",
       "people": [
         {
+          "staff_id": "101",
+          "이름": "박주영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "103",
+          "이름": "문재윤",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "110",
+          "이름": "유예솜",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "113",
+          "이름": "오장관",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "116",
+          "이름": "한현희",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "117",
+          "이름": "정종옥",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "118",
+          "이름": "양성규",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "119",
+          "이름": "김화백",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "120",
+          "이름": "이병희",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "E",
+      "people": [
+        {
           "staff_id": "102",
           "이름": "최정환",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "114",
+          "이름": "윤진영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "N",
+      "people": [
+        {
+          "staff_id": "106",
+          "이름": "유희라",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "111",
+          "이름": "고준영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "O",
+      "people": [
+        {
+          "staff_id": "104",
+          "이름": "선서현",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "105",
+          "이름": "박경태",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -4146,113 +4245,14 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "110",
-          "이름": "유예솜",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
           "staff_id": "112",
           "이름": "하진영",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "113",
-          "이름": "오장관",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "114",
-          "이름": "윤진영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "116",
-          "이름": "한현희",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "117",
-          "이름": "정종옥",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "120",
-          "이름": "이병희",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "E",
-      "people": [
-        {
           "staff_id": "115",
           "이름": "한경식",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "N",
-      "people": [
-        {
-          "staff_id": "111",
-          "이름": "고준영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "O",
-      "people": [
-        {
-          "staff_id": "101",
-          "이름": "박주영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "103",
-          "이름": "문재윤",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "104",
-          "이름": "선서현",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "105",
-          "이름": "박경태",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "106",
-          "이름": "유희라",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "118",
-          "이름": "양성규",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "119",
-          "이름": "김화백",
           "grade": 1,
           "grade_name": "제일높은직급"
         }
@@ -4264,18 +4264,6 @@
       "shift": "D",
       "people": [
         {
-          "staff_id": "103",
-          "이름": "문재윤",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "107",
-          "이름": "김유범",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
           "staff_id": "108",
           "이름": "박서은",
           "grade": 1,
@@ -4288,26 +4276,8 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "110",
-          "이름": "유예솜",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "113",
-          "이름": "오장관",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "114",
-          "이름": "윤진영",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        },
-        {
-          "staff_id": "115",
-          "이름": "한경식",
+          "staff_id": "112",
+          "이름": "하진영",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -4324,8 +4294,8 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "120",
-          "이름": "이병희",
+          "staff_id": "119",
+          "이름": "김화백",
           "grade": 1,
           "grade_name": "제일높은직급"
         }
@@ -4335,36 +4305,14 @@
       "shift": "E",
       "people": [
         {
-          "staff_id": "106",
-          "이름": "유희라",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "N",
-      "people": [
-        {
-          "staff_id": "118",
-          "이름": "양성규",
-          "grade": 1,
-          "grade_name": "제일높은직급"
-        }
-      ]
-    },
-    {
-      "shift": "O",
-      "people": [
-        {
           "staff_id": "101",
           "이름": "박주영",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "102",
-          "이름": "최정환",
+          "staff_id": "103",
+          "이름": "문재윤",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -4375,8 +4323,60 @@
           "grade_name": "제일높은직급"
         },
         {
+          "staff_id": "107",
+          "이름": "김유범",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "115",
+          "이름": "한경식",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "118",
+          "이름": "양성규",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "N",
+      "people": [
+        {
+          "staff_id": "102",
+          "이름": "최정환",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
           "staff_id": "105",
           "이름": "박경태",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "114",
+          "이름": "윤진영",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        }
+      ]
+    },
+    {
+      "shift": "O",
+      "people": [
+        {
+          "staff_id": "106",
+          "이름": "유희라",
+          "grade": 1,
+          "grade_name": "제일높은직급"
+        },
+        {
+          "staff_id": "110",
+          "이름": "유예솜",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
@@ -4387,14 +4387,14 @@
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "112",
-          "이름": "하진영",
+          "staff_id": "113",
+          "이름": "오장관",
           "grade": 1,
           "grade_name": "제일높은직급"
         },
         {
-          "staff_id": "119",
-          "이름": "김화백",
+          "staff_id": "120",
+          "이름": "이병희",
           "grade": 1,
           "grade_name": "제일높은직급"
         }
