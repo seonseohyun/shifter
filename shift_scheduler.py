@@ -183,6 +183,9 @@ def create_individual_shift_schedule(staff_data, shift_type):
         return None
 
 
+
+#staff_data가 팀개념으로 근무표가 생성될것이고
+#staff_data를 앞으로는 client가 json안에 요청을해서 python에서 참조하여 근무표를 생성하도록 변경
 staff_data  = {
     "staff": [
         {"name": "박주영", "staff_id": 101, "grade": 1, "grade_name": "제일높은직급"},
