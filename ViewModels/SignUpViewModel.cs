@@ -4,14 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShifterUser.Enums
+namespace ShifterUser.ViewModels
 {
-    public enum PageType
+    class SignUpViewModel
     {
-        Start,
-        Login,
-        Home,
-        SignUp,
-        Goback
     }
 }

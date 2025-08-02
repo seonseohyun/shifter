@@ -1,6 +1,7 @@
 ﻿<Application x:Class="ShifterUser.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:helpers="clr-namespace:ShifterUser.Helpers"
              xmlns:conv="clr-namespace:ShifterUser.Converters"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
@@ -9,6 +10,7 @@
         <conv:EmptyStringToVisibilityConverter x:Key="EmptyStringToVisibilityConverter" />
         <conv:BooleanToAlertIconConverter x:Key="AlertIconConverter" />
         <conv:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <conv:ZeroToVisibleConverter x:Key="ZeroToVisibleConverter" />
 
         <!-- 워터마크 텍스트박스 스타일 -->
         <Style x:Key="BlueWatermarkTextBoxStyle" TargetType="TextBox">
@@ -42,26 +44,24 @@
             </Setter>
         </Style>
 
-        <!-- ✨ 전역 텍스트 렌더링 향상 스타일 -->
-        <Style TargetType="TextBlock">
+        <!-- 테두리 없는 PasswordBox 스타일 -->
+        <Style x:Key="FlatPasswordBoxStyle" TargetType="PasswordBox">
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Padding" Value="10,0,0,0"/>
+            <Setter Property="FontSize" Value="14"/>
             <Setter Property="FontFamily" Value="Noto Sans KR"/>
-            <Setter Property="SnapsToDevicePixels" Value="True"/>
-            <Setter Property="TextOptions.TextFormattingMode" Value="Ideal"/>
-            <Setter Property="TextOptions.TextRenderingMode" Value="Auto"/>
-        </Style>
-
-        <Style TargetType="Button">
-            <Setter Property="FontFamily" Value="Noto Sans KR"/>
-            <Setter Property="SnapsToDevicePixels" Value="True"/>
-            <Setter Property="TextOptions.TextFormattingMode" Value="Ideal"/>
-            <Setter Property="TextOptions.TextRenderingMode" Value="Auto"/>
-        </Style>
-
-        <Style TargetType="TextBox">
-            <Setter Property="FontFamily" Value="Noto Sans KR"/>
-            <Setter Property="SnapsToDevicePixels" Value="True"/>
-            <Setter Property="TextOptions.TextFormattingMode" Value="Ideal"/>
-            <Setter Property="TextOptions.TextRenderingMode" Value="Auto"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="PasswordBox">
+                        <ScrollViewer x:Name="PART_ContentHost"
+                                      Background="{TemplateBinding Background}"
+                                      Padding="{TemplateBinding Padding}" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
 
     </Application.Resources>

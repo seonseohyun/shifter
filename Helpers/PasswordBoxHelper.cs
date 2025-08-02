@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace ShifterUser.Helpers
@@ -10,53 +9,82 @@ namespace ShifterUser.Helpers
             DependencyProperty.RegisterAttached("BoundPassword", typeof(string), typeof(PasswordBoxHelper),
                 new PropertyMetadata(string.Empty, OnBoundPasswordChanged));
 
-        public static string GetBoundPassword(DependencyObject obj) =>
-            (string)obj.GetValue(BoundPasswordProperty);
+        public static readonly DependencyProperty BindPasswordProperty =
+            DependencyProperty.RegisterAttached("BindPassword", typeof(bool), typeof(PasswordBoxHelper),
+                new PropertyMetadata(false, OnBindPasswordChanged));
 
-        public static void SetBoundPassword(DependencyObject obj, string value) =>
-            obj.SetValue(BoundPasswordProperty, value);
+        private static readonly DependencyProperty UpdatingPasswordProperty =
+            DependencyProperty.RegisterAttached("UpdatingPassword", typeof(bool), typeof(PasswordBoxHelper),
+                new PropertyMetadata(false));
 
-        private static void OnBoundPasswordChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        public static string GetBoundPassword(DependencyObject dp)
         {
-            if (d is PasswordBox passwordBox)
+            return (string)dp.GetValue(BoundPasswordProperty);
+        }
+
+        public static void SetBoundPassword(DependencyObject dp, string value)
+        {
+            dp.SetValue(BoundPasswordProperty, value);
+        }
+
+        public static bool GetBindPassword(DependencyObject dp)
+        {
+            return (bool)dp.GetValue(BindPasswordProperty);
+        }
+
+        public static void SetBindPassword(DependencyObject dp, bool value)
+        {
+            dp.SetValue(BindPasswordProperty, value);
+        }
+
+        private static bool GetUpdatingPassword(DependencyObject dp)
+        {
+            return (bool)dp.GetValue(UpdatingPasswordProperty);
+        }
+
+        private static void SetUpdatingPassword(DependencyObject dp, bool value)
+        {
+            dp.SetValue(UpdatingPasswordProperty, value);
+        }
+
+        private static void OnBoundPasswordChanged(DependencyObject dp, DependencyPropertyChangedEventArgs e)
+        {
+            if (dp is PasswordBox passwordBox)
             {
                 passwordBox.PasswordChanged -= PasswordBox_PasswordChanged;
 
-                if (!GetIsUpdating(passwordBox))
-                    passwordBox.Password = (string)e.NewValue;
+                if (!(bool)GetUpdatingPassword(passwordBox))
+                {
+                    passwordBox.Password = e.NewValue?.ToString() ?? string.Empty;
+                }
 
                 passwordBox.PasswordChanged += PasswordBox_PasswordChanged;
             }
         }
 
-        private static readonly DependencyProperty IsUpdatingProperty =
-            DependencyProperty.RegisterAttached("IsUpdating", typeof(bool), typeof(PasswordBoxHelper));
+        private static void OnBindPasswordChanged(DependencyObject dp, DependencyPropertyChangedEventArgs e)
+        {
+            if (dp is PasswordBox passwordBox)
+            {
+                if ((bool)e.NewValue)
+                {
+                    passwordBox.PasswordChanged += PasswordBox_PasswordChanged;
+                }
+                else
+                {
+                    passwordBox.PasswordChanged -= PasswordBox_PasswordChanged;
+                }
+            }
+        }
 
-        private static bool GetIsUpdating(DependencyObject obj) =>
-            (bool)obj.GetValue(IsUpdatingProperty);
-
-        private static void SetIsUpdating(DependencyObject obj, bool value) =>
-            obj.SetValue(IsUpdatingProperty, value);
-
-        // PasswordBox의 비밀번호가 변경될 때 TextBlock의 Visibility를 업데이트
         private static void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            var passwordBox = sender as PasswordBox;
-
-            SetIsUpdating(passwordBox, true);
-
-            SetBoundPassword(passwordBox, passwordBox.Password);
-
-            SetIsUpdating(passwordBox, false);
-
-            // PasswordBox의 비밀번호가 변경되었을 때 TextBlock의 Visibility 업데이트
-            var parentGrid = passwordBox.Parent as Grid;
-            var textBlock = parentGrid?.Children.OfType<TextBlock>().FirstOrDefault(tb => tb.Name == "PasswordTextBlock");
-            if (textBlock != null)
+            if (sender is PasswordBox passwordBox)
             {
-                textBlock.Visibility = string.IsNullOrEmpty(passwordBox.Password) ? Visibility.Visible : Visibility.Collapsed;
+                SetUpdatingPassword(passwordBox, true);
+                SetBoundPassword(passwordBox, passwordBox.Password);
+                SetUpdatingPassword(passwordBox, false);
             }
         }
     }
 }
-

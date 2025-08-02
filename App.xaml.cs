@@ -38,7 +38,7 @@ namespace ShifterUser
             // Models
             services.AddSingleton<Models.UserSession>();
             services.AddSingleton<Models.GroupNoticeModel>();
-            services.AddSingleton<Models.UserInfoModel>();
+            services.AddSingleton<Models.UserModel>();
             services.AddSingleton<Models.WorkScheReqModel>();
 
             // Helpers
@@ -50,6 +50,7 @@ namespace ShifterUser
             services.AddTransient<LoginViewModel>();
             services.AddTransient<QRCheckViewModel>();
             services.AddTransient<HomeViewModel>();
+            services.AddTransient<SignUpViewModel>();
         }
     }
 }

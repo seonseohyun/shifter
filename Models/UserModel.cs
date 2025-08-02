@@ -9,7 +9,7 @@ using Newtonsoft.Json.Linq;
 
 namespace ShifterUser.Models
 {
-    internal class UserInfoModel
+    internal class UserModel
     {
     }
 }

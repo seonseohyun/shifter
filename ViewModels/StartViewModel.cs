@@ -22,22 +22,3 @@ namespace ShifterUser.ViewModels
     }
 }
 
-//namespace shifter_user.ViewModels
-//{
-//    public partial class StartVM : ObservableObject
-//    {
-//        public IRelayCommand GoToLoginCommand { get; }
-
-//        public StartVM()
-//        {
-//            GoToLoginCommand = new RelayCommand(GoToLogin);
-//        }
-
-//        private void GoToLogin()
-//        {
-//            Console.WriteLine("GoToLogin 수동 호출됨");
-//            WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.Login));
-//        }
-//    }
-
-//}

@@ -52,7 +52,7 @@
         <StackPanel Grid.Row="4" Margin="20,28,20,0" VerticalAlignment="Top" Height="237">
 
             <!-- 아이디 -->
-            <Border CornerRadius="24" Background="#F1F3F5" Margin="0,0,0,12">
+            <Border CornerRadius="24" Background="#EEF3FB" Margin="0,0,0,12">
                 <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource BlueWatermarkTextBoxStyle}"
                          Tag="아이디"
@@ -61,10 +61,11 @@
             </Border>
 
             <!-- 비밀번호 -->
-            <Border CornerRadius="24" Background="#F1F3F5" Margin="0,0,0,20">
+            <Border CornerRadius="24" Background="#EEF3FB" Margin="0,0,0,20">
                 <Grid>
                     <PasswordBox
                         helpers:PasswordBoxHelper.BoundPassword="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        helpers:PasswordBoxHelper.BindPassword="True"
                         Background="Transparent"
                         BorderBrush="Transparent"
                         BorderThickness="0"
