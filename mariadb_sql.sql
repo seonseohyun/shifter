@@ -45,7 +45,8 @@ CREATE TABLE `team_constraint` (
   `param_1` varchar(255),
   `weight_point` integer,
   `created_at` timestamp,
-  `updated_at` timestamp
+  `updated_at` timestamp,
+  `team_id` varchar(255)
 );
 
 CREATE TABLE `shift_constraint_rule` (

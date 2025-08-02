@@ -1,28 +1,5 @@
 개선되어야 할 부분
 
-1. 반대로 기록되는걸까? 
- print(f"[INFO] {sid}의 {req['date']} 근무를 {s}로 고정") 
- 변경요청이 반대로 들어가는거같은데 D를 O로 변경해야하는데 
- D로 고정 이렇게 로그가 나오고 실제 근무도 변경되지 않는다. - 확인해봐야함 반대로 기록되는 경우를 본거같다.
-
-2. 변경 유무의 로그가 한번도 출력되지 않는 문제
-
-
-
-
-성능/안정성: 트랜잭션 사용은 좋으나, 매 요청마다 Python 실행과 DB 전체 삭제/삽입은 비효율적(대규모 데이터 시 느림). 다중 클라이언트 시 race condition 가능성.
-
-3. 변경이되지 않았을땐 테이블 전체삭제/ insert 동작이 불필요함 
--db 전체 삭제 삽입을 하지 않고 만약 해를 찾을수 없습니다 이련 경우에는 db 내용을 삭제 insert 하는건 불필요한 작업이다. 
-
-
-현재는  아래의 코드가 무조건 실행되는데  변경요청이 반영되지 않았을 경우에는 DB 갱신이 불필요하다.
-// 성공 후 DB 갱신
- generate_and_update_schedule(conn);
-
-
--클라이언트에서 근무변경 요청 이후 클라이언트와 연결이 그냥 끊어지는데 끊어지기전에 서버로부터 잘 변경되었는지 아니면 변경실패인지 json으로 응답받아야한다.
-
 
 
 개선된부분 0802
@@ -61,7 +38,19 @@ branch * Server_dev 이걸로 계속 간다. 나중에 완료전에 개선되어
 0802 16:17 
 shift_scheduler.py 파일의 변경점 
 #staff_data가 팀개념으로 근무표가 생성될것이고
-#staff_data를 앞으로는 client가 json안에 넣어 요청을해서 python에서 staff_data를 참조하여 근무표를 생성하도록 변경
+
+
+
+
+
+
+
+지금 애매한게
+#staff_data를 앞으로는 client가 요청시 json을같이 전송하면  
+-shift_scheduler.py파일에서 클라이언트로 부터 오는 staff_data를 참조하여 근무표를 생성하도록 변경 하는것인지?
+db에 저장된 STAFF 테이블을 참조하여 team_id를 받고 db로부터 근무표를 생성하기위한 정보를 조회하여 근무표를 생성하는 흐름으로 가는것인지?  
+
+
 
 
 
@@ -69,7 +58,6 @@ shift_scheduler.py 파일의 변경점
 {
 shift_type : 3,
 
-team_id : "A_team",
   // 구성원
   staff_data  = {
       "staff": [
@@ -101,3 +89,123 @@ team_id : "A_team",
 팀 당 하나의 월 근무표가 생깁니다.
 근무표가 생성 되면 정규화 되어 각각 테이블에 들어가서
 개인별 조회 시 요청 처리하는 방향으로 하겠습니다 !
+
+=============================================================================================
+
+# 팀 개념 도입 및 직원 정보 분리 개발 계획 (2025-08-02)
+
+## 📋 개요
+- 현재 근무표 생성 매커니즘은 유지
+- 팀별 제약조건 적용을 위한 team_id 개념 도입  
+- Python 하드코딩 직원 정보를 DB 또는 클라이언트 JSON으로 분리
+
+## 🗂️ 관련 테이블
+```sql
+CREATE TABLE `team_constraint` (
+  `id` integer PRIMARY KEY,
+  `team_id` integer,
+  `constraint_type` varchar(255),
+  `param_1` varchar(255),
+  `weight_point` integer,
+  `created_at` timestamp,
+  `updated_at` timestamp,
+  `team_id` varchar(255)
+);
+```
+
+## 🚀 Phase 1: Python 스케줄러 개선
+### 목표
+- `shift_scheduler.py`에서 하드코딩된 `staff_data` 제거
+- 동적 직원 정보 로딩 구조 구현
+
+### 작업 내용
+1. **함수 시그니처 변경**
+   ```python
+   def create_individual_shift_schedule(staff_data, shift_type, team_id=None):
+   ```
+
+2. **직원 정보 로딩 함수 추가**
+   ```python
+   def load_staff_data(team_id=None, source='db'):
+       if source == 'db':
+           return query_staff_from_db(team_id)
+       elif source == 'json':
+           return load_staff_from_json()
+   ```
+
+3. **하드코딩 제거**
+   - 현재 189-212줄 `staff_data` 딕셔너리 제거
+   - 동적 로딩으로 대체
+
+## 🚀 Phase 2: 팀 제약조건 적용
+### 목표
+- `team_constraint` 테이블 조회 및 제약조건 동적 적용
+
+### 작업 내용
+1. **팀 제약조건 조회 함수**
+   ```python
+   def load_team_constraints(team_id):
+       # team_constraint 테이블에서 team_id별 제약조건 조회
+       # constraint_type별 제약조건 파싱 및 적용
+   ```
+
+2. **제약조건 적용 로직**
+   - 기존 하드코딩된 제약조건과 팀별 제약조건 병합
+   - `weight_point`를 활용한 우선순위 적용
+
+## 🚀 Phase 3: C++ 서버 수정
+### 목표
+- 팀 관련 프로토콜 지원 및 Python 호출 시 팀 정보 전달
+
+### 작업 내용
+1. **ChangeShift 프로토콜 확장**
+   ```cpp
+   else if (j.contains("Protocol") && j["Protocol"] == "ChangeShift") {
+       std::string team_id = j.get("team_id", "1"); // 기본값
+       // Python 실행 시 team_id 전달
+   }
+   ```
+
+2. **새로운 프로토콜 추가 검토**
+   - `GetTeamInfo`: 팀 정보 조회
+   - `SetTeamStaff`: 팀 직원 정보 설정
+
+## 📅 일정 및 우선순위
+- **월요일 토의 후** 구체적 개발 방향 확정
+- **우선순위**: Phase 1 → Phase 3 → Phase 2
+- **변경 가능성**: 요구사항에 따라 계획 수정 예정
+
+## 🔄 현재 보류 사항
+- DB 스키마 변경 범위  
+- 클라이언트 JSON 구조 정의
+- 팀별 제약조건 타입 정의
+- 성능 최적화 방안 (DB 커넥션 풀링 등)
+
+## 🎯 결정 필요 사항
+1. **직원 정보 전달 방식**
+   - 옵션 A: 클라이언트가 JSON으로 staff_data 전송
+   - 옵션 B: DB STAFF 테이블에서 team_id로 조회
+   
+2. **근무표 저장 방식**
+   - 현재: JSON 파일 → DB 전체 삭제/삽입
+   - 개선: 정규화된 테이블 구조로 직접 저장
+
+
+   
+  - 분석 보고서: 현재 시스템 문제점 4가지 해결방안
+  - 개발 계획: /변경이 필요한부분.txt에 단계별 로드맵
+  - DB 설계 문서: /database/ 디렉토리 3종 세트
+    - 테이블 구조도 (성능 최적화 중심)
+    - ERD 다이어그램 (관계 및 인덱스 전략)
+    - 상세 명세서 (비즈니스 규칙 포함)
+
+  🚀 핵심 결정사항 (월요일 토의용)
+
+  1. 직원 정보 소스: DB 조회 vs 클라이언트 JSON
+  2. 마이그레이션 속도: 점진적 vs 일괄 변경
+  3. team_constraint 적용 범위: 어떤 제약조건들을 우선 구현할지
+
+  ⚡ Quick Win 옵션
+
+  - duty_schedule에 team_id 컬럼만 추가해도 즉시 20배 성능 향상 가능
+

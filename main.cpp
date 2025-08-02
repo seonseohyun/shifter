@@ -461,18 +461,22 @@ int main() {
                                         generate_and_update_schedule(conn);
                                         j["Protocol"] = "change_success";
                                         j["message"] = message;
+                                        j["schedule_updated"] = true;
                                     } else {
                                         // 스케줄 변경이 없는 경우 DB 갱신 생략
                                         std::cout << "[INFO] 스케줄 변경이 없어 DB 업데이트를 생략합니다." << std::endl;
                                         j["Protocol"] = "change_success";
                                         j["message"] = message;
+                                        j["schedule_updated"] = false;
                                     }
                                 } else if (message.find("변경 불가:") == 0) {
                                     j["Protocol"] = "no_solution";
                                     j["message"] = message;
+                                    j["schedule_updated"] = false;
                                 } else {
                                     j["Protocol"] = "change_error";
                                     j["message"] = message;
+                                    j["schedule_updated"] = false;
                                 }
                             } catch (const std::exception& e) {
                                 j["Protocol"] = "change_error";
