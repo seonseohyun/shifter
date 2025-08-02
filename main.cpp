@@ -90,9 +90,8 @@ std::string updateAndExecuteShiftScheduler(const std::string& staff_id, const st
     try {
         // 단계 1: 날짜 유효성 검사 (2025-08-01 ~ 2025-08-31)
         int year, month, day;
-        if (sscanf(date_.c_str(), "%d-%d-%d", &year, &month, &day) != 3 ||
-            year != 2025 || month != 8 || day < 1 || day > 31) {
-            return "오류: 유효하지 않은 날짜입니다. 2025-08-01 ~ 2025-08-31 범위여야 합니다.";
+        if (sscanf(date_.c_str(), "%d-%d-%d", &year, &month, &day) != 3 ) {
+            return "오류: 유효하지 않은 날짜입니다.  년도-월-일 형식으로 입력되어야합니다.";
         }
 
         // 단계 2: JSON 요청 생성
@@ -160,10 +159,9 @@ MYSQL* create_db_connection() {
 void generate_and_update_schedule(MYSQL* conn) {
     if (!conn) return;
 
-    _chdir("C:\\workspace\\shifter");
-    std::cerr << "파일이 안열리나?>>>>>>>>>>>>>>>>>>>>>>>>>: " <<  std::endl;
+    _chdir("c:\\workspace\\shifter");    
     std::system("python shift_scheduler.py");
-    std::cerr << "파일이 안열리나?>>>>>>>>>>>>>>>>>>>>>>>>>: " << std::endl;
+    
 
 
 
