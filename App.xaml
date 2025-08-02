@@ -1,43 +1,67 @@
 ﻿<Application x:Class="ShifterUser.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:ShifterUser.Helpers"
+             xmlns:conv="clr-namespace:ShifterUser.Converters"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
 
         <!-- 컨버터 등록 -->
-        <local:EmptyStringToVisibilityConverter x:Key="EmptyStringToVisibilityConverter" />
+        <conv:EmptyStringToVisibilityConverter x:Key="EmptyStringToVisibilityConverter" />
+        <conv:BooleanToAlertIconConverter x:Key="AlertIconConverter" />
+        <conv:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
+        <!-- 워터마크 텍스트박스 스타일 -->
         <Style x:Key="BlueWatermarkTextBoxStyle" TargetType="TextBox">
             <Setter Property="Foreground" Value="#2A2A2A"/>
-            <!-- 입력된 텍스트 색 -->
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="FontFamily" Value="Noto Sans KR"/>
             <Setter Property="Padding" Value="12,0,0,0"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="TextOptions.TextFormattingMode" Value="Ideal"/>
+            <Setter Property="TextOptions.TextRenderingMode" Value="Auto"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="TextBox">
                         <Grid>
-                            <!-- 실제 TextBox -->
                             <ScrollViewer x:Name="PART_ContentHost"
-                                  Background="{TemplateBinding Background}" />
-
-                            <!-- 워터마크 Text -->
+                                          Background="{TemplateBinding Background}" />
                             <TextBlock Text="{TemplateBinding Tag}"
-                               FontSize="{TemplateBinding FontSize}"
-                               FontFamily="{TemplateBinding FontFamily}"
-                               Foreground="#0080EB"
-                               Margin="12,0,0,0"
-                               VerticalAlignment="Center"
-                               IsHitTestVisible="False"
-                               Visibility="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource EmptyStringToVisibilityConverter}}"/>
+                                       FontSize="{TemplateBinding FontSize}"
+                                       FontFamily="{TemplateBinding FontFamily}"
+                                       Foreground="#0080EB"
+                                       Margin="12,0,0,0"
+                                       VerticalAlignment="Center"
+                                       IsHitTestVisible="False"
+                                       Visibility="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource EmptyStringToVisibilityConverter}}"/>
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+        </Style>
+
+        <!-- ✨ 전역 텍스트 렌더링 향상 스타일 -->
+        <Style TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Noto Sans KR"/>
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="TextOptions.TextFormattingMode" Value="Ideal"/>
+            <Setter Property="TextOptions.TextRenderingMode" Value="Auto"/>
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="FontFamily" Value="Noto Sans KR"/>
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="TextOptions.TextFormattingMode" Value="Ideal"/>
+            <Setter Property="TextOptions.TextRenderingMode" Value="Auto"/>
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="FontFamily" Value="Noto Sans KR"/>
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="TextOptions.TextFormattingMode" Value="Ideal"/>
+            <Setter Property="TextOptions.TextRenderingMode" Value="Auto"/>
         </Style>
 
     </Application.Resources>

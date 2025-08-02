@@ -23,7 +23,7 @@ namespace ShifterUser
             InitializeComponent();
 
             // 명시적 타입 지정
-            if (App.Helpers.GetService(typeof(MainVM)) is MainVM mainVM)
+            if (App.Services.GetService(typeof(MainViewModel)) is MainViewModel mainVM)
             {  // null 체크, MainViewModel 인스턴스 가져오기
                 DataContext = mainVM;
                 mainVM.SetFrame(MainFrame);  // MainFrame 

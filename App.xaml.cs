@@ -5,8 +5,9 @@ using System.Data;
 using System.Windows;
 using ShifterUser.Views;
 using ShifterUser.ViewModels;
-using ShifterUser.Helpers;
 using Microsoft.Extensions.DependencyInjection;
+using ShifterUser.Services;
+using System.Runtime.InteropServices;
 
 namespace ShifterUser
 {
@@ -15,15 +16,19 @@ namespace ShifterUser
     /// </summary>
     public partial class App : Application
     {
-        public static IServiceProvider Helpers { get; private set; }
+        public static IServiceProvider Services { get; private set; }
+        [DllImport("user32.dll")]
+        private static extern bool SetProcessDPIAware();
 
         public App()
         {
+            SetProcessDPIAware();
+
             var serviceCollection = new ServiceCollection();
             ConfigureServices(serviceCollection);
-            Helpers = serviceCollection.BuildServiceProvider();
+            Services = serviceCollection.BuildServiceProvider();
 
-            var socket = Helpers.GetService<Helpers.SocketManager>();
+            var socket = Services.GetService<SocketManager>();
             Console.WriteLine("[App] EnsureConnectedAsync() Executed");
             _ = socket?.EnsureConnectedAsync();
         }
@@ -37,14 +42,14 @@ namespace ShifterUser
             services.AddSingleton<Models.WorkScheReqModel>();
 
             // Helpers
-            services.AddSingleton<Helpers.SocketManager>();
+            services.AddSingleton<SocketManager>();
 
             // ViewModels
-            services.AddSingleton<MainVM>();
-            services.AddTransient<StartVM>();
-            services.AddTransient<LoginVM>();
-            services.AddTransient<QRCheckVM>();
-            services.AddTransient<HomeVM>();
+            services.AddSingleton<MainViewModel>();
+            services.AddTransient<StartViewModel>();
+            services.AddTransient<LoginViewModel>();
+            services.AddTransient<QRCheckViewModel>();
+            services.AddTransient<HomeViewModel>();
         }
     }
 }
