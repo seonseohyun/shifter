@@ -127,7 +127,7 @@
             </Button>
 
             <!-- 로그인 안내 -->
-            <Button Command="{Binding GoToSignUpCommand}"
+            <Button Command="{Binding GoToLoginCommand}"
                     Background="Transparent"
                     BorderBrush="Transparent"
                     Margin="0,0,0,0">

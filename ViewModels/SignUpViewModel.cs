@@ -1,4 +1,9 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
+using ShifterUser.Enums;
+using ShifterUser.Messages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +11,21 @@ using System.Threading.Tasks;
 
 namespace ShifterUser.ViewModels
 {
-    class SignUpViewModel
+    public partial class SignUpViewModel : ObservableObject
     {
+        public SignUpViewModel() { }
+    
+        [RelayCommand]
+        private static void GoBack()
+        {
+            WeakReferenceMessenger.Default.Send((new PageChangeMessage(PageType.Goback)));
+        }
+
+        [RelayCommand]
+        private static void GoToLogin()
+        {
+            WeakReferenceMessenger.Default.Send((new PageChangeMessage(PageType.Login)));
+        }
     }
 }
+

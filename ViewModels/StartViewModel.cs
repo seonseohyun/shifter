@@ -19,6 +19,13 @@ namespace ShifterUser.ViewModels
             Console.WriteLine("GoToLogin Command 호출됨");
             WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.Login));
         }
+
+        [RelayCommand]
+        private void GoToSignUp()
+        {
+            Console.WriteLine("GoToSignUp Command 호출됨");
+            WeakReferenceMessenger.Default.Send<PageChangeMessage>(new PageChangeMessage(PageType.SignUp));
+        }
     }
 }
 
