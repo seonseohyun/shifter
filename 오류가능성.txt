@@ -1,0 +1,33 @@
+주요 원인: OR-Tools 솔버(Solve())가 장시간 실행되어 서버가 블로킹됨
+
+solver.Solve() 호출 시 모델 해결 과정이 최대 60초(max_time_in_seconds = 60.0) 동안 진행됩니다. 이 동안 서버는 응답을 보내지 않고 대기 상태가 됩니다.
+클라이언트 쪽 recv 루프는 서버 응답을 기다리므로, 60초 동안 "멈춘" 듯 보입니다. 60초 후 타임아웃되면 status = UNKNOWN이 되어 None 반환, error 응답 전송.
+왜 오래 걸리는가?
+
+모델 규모: 2,480개 BoolVar, 약 1,400개 제약 (직원별 하루 제약 620개, Night implication 600개, Off min 20개, 주간/월간 hours 120개, Night balance).
+최적화 목표: Minimize(max_nights - min_nights)로 인해 feasible solution을 찾은 후에도 최적화 단계가 추가로 시간을 소모할 수 있습니다.
+feasibility 문제: 커버리지 제약이 주석 처리되어 있지만, 만약 사용자의 실제 코드에서 해제되었다면 모델이 infeasible할 수 있습니다. 예를 들어:
+
+shift_type=3 시 D/E/N 각 날짜 최소 1명 → 31일 * 3 = 93개 슬롯.
+월간 시간 제한(160시간 = 20일 작업)과 Night 다음 Off 제약으로 슬롯 채우기가 어려움. 일부 직원(160시간 제한)은 작업일이 제한되어 전체 커버리지 불가능.
+
+
+만약 infeasible하다면, CP-SAT는 이를 증명하기 위해 시간(최대 60초)을 소모합니다. 웹 검색 결과, 유사 모델에서 "OR-Tools CP-SAT infeasible proof time-consuming" 사례가 보고됨 (대규모 제약 시 수십 초 소요).
+
+
+로그 출력 (log_search_progress = True)으로 서버 콘솔에 진행 상황이 출력되므로, 서버 콘솔을 확인하면 "Searching..." 등의 메시지가 보일 것입니다.
+증상 일치: 클라이언트가 즉시 응답을 기대하나, 서버가 60초 대기 → "멈춘" 듯.
+
+
+기타 잠재 원인:
+
+파일 쓰기 오류 (INFEASIBLE 시): status == INFEASIBLE 시 model.ExportToFile("model_dump.txt") 호출. 디렉토리 쓰기 권한 없으면 예외 발생, 응답 전송 실패. 웹 검색으로 OR-Tools ExportToFile은 실패 시 False 반환하나, Python 파일 I/O 오류가 발생할 수 있음.
+JSON 파싱/디코딩 오류: 서버 recv 후 json.loads(data.decode()). 클라이언트가 한국어 이름 포함 JSON을 utf-8로 인코딩하나, 서버 decode()에서 utf-8 가정. 만약 데이터 불완전하거나 인코딩 mismatch 시 예외 → 응답 error 전송되지만, 만약 예외 핸들링 실패 시 멈춤.
+소켓 연결 문제: 서버 recv 루프가 클라이언트 close를 기다리나, 클라이언트 with socket으로 sendall 후 자동 close. 정상적이나, 네트워크 지연 시 대기.
+환경 제약: OR-Tools 멀티스레드 (num_search_workers=8) 사용 시 시스템 자원(CPU 코어 부족)으로 지연. 또는 Python 버전/환경에서 OR-Tools 호환성 문제.
+주석 처리 영향: change_requests 루프 주석으로 요청 무시되지만, 이는 멈춤 원인이 아님. 커버리지 주석 해제 시 모델 복잡도 증가 → Solve() 시간 증가.
+타임아웃 초과: 60초 후 UNKNOWN 시 None 반환, error 응답. 그러나 60초 동안 "멈춘" 상태.
+
+
+
+웹 검색 결과("OR-Tools CP-SAT solver slow large model" 및 "infeasible model detection time"), 유사 스케줄링 모델에서 제약 충돌 시 증명 시간이 길어질 수 있음. 커버리지 제약 활성화 시 infeasible 가능성 높음 (시간 제한 직원으로 슬롯 채우기 어려움).
