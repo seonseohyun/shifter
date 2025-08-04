@@ -22,6 +22,8 @@
 *.cache
 *.db
 *.VC.db
+.vs/
+*.ipch
 
 # CMake (혹시 쓰는 경우)
 CMakeFiles/
