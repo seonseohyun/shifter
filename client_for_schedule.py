@@ -4,6 +4,7 @@ import json
 HOST = '127.0.0.1'  # Python 서버 주소
 PORT = 6001         # Python 서버 포트
 
+
 # JSON 요청 데이터
 request_data = {
     "staff_data": {
@@ -30,29 +31,7 @@ request_data = {
             {"name": "이병희", "staff_id": 120, "grade": 1, "grade_name": "제일높은직급", "total_monthly_work_hours": 220}
         ]
     },
-    "shift_type": 3,  
-    "shift_details": {
-        "D": {
-        "start": "09:00",
-        "end": "17:00",
-        "hours": 8
-        },
-        "E": {
-        "start": "14:00",
-        "end": "22:00",
-        "hours": 8
-        },
-        "N": {
-        "start": "22:00",
-        "end": "06:00",
-        "hours": 8
-        },
-        "O": {
-        "start": "",
-        "end": "",
-        "hours": 0
-        }
-    }
+    "shift_type": 3,      
 }
 
 # 서버로 보내고 응답 받기

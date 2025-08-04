@@ -1,0 +1,60 @@
+def create_individual_shift_schedule(staff_data, shift_type, position, change_requests=None):
+    rules = get_rules_for_position(position)
+    if not rules:
+        print(f"[WARNING] {position}에 대한 규칙이 없습니다. 기본 제약만 적용합니다.")
+    
+    # ... 기존 모델 초기화 (model = cp_model.CpModel(), shifts 정의 등)
+    
+    # position별 제약 적용 (예시)
+    for person in all_people:
+        sid = str(person["staff_id"])
+        
+        # 최소 휴무일 (간호 예시)
+        if "min_off_days" in rules:
+            model.Add(sum(schedule[(sid, d, 'O')] for d in days) >= rules["min_off_days"])
+        
+        # 월 최대 근무시간 (공통 가능)
+        if "max_monthly_hours" in rules:
+            max_hours = rules["max_monthly_hours"]
+        else:
+            max_hours = person.get("total_monthly_work_hours", 180)  # 기본값
+        monthly_hours = sum(schedule[(sid, d, s)] * shift_hours[s] for d in days for s in shifts)
+        model.Add(monthly_hours <= max_hours)
+        
+        # 신규직원 야간 금지 (간호 특화)
+        if "newbie_no_night" in rules and rules["newbie_no_night"] and person["grade"] == 5:
+            for d in days:
+                model.Add(schedule[(sid, d, 'N')] == 0)
+        
+        # 야간 다음날 주간 금지 (간호 특화)
+        if "night_after_day" in rules and rules["night_after_day"]:
+            for d in range(num_days - 1):
+                night = schedule[(sid, d, 'N')]
+                day_next = schedule[(sid, d + 1, 'D')]
+                model.AddBoolOr([night.Not(), day_next.Not()])
+        
+        # 3일 주기 패턴 (소방 특화)
+        if "shift_cycle" in rules and rules["shift_cycle"] == "3_day":
+            for cycle_start in range(0, num_days, 3):
+                if cycle_start + 2 < num_days:
+                    # D24 -> O -> O 패턴 강제 (예: 'D' as D24 가정)
+                    model.Add(schedule[(sid, cycle_start, 'D')] == 1)
+                    model.Add(schedule[(sid, cycle_start + 1, 'O')] == 1)
+                    model.Add(schedule[(sid, cycle_start + 2, 'O')] == 1)
+        
+        # D24 다음날 오프 필수 (소방 특화)
+        if "night_after_off" in rules and rules["night_after_off"]:
+            for d in range(num_days - 1):
+                duty = schedule[(sid, d, 'D')]  # D24 as 'D'
+                off_next = schedule[(sid, d + 1, 'O')]
+                model.AddImplication(duty, off_next)
+        
+        # ... 추가 규칙 (duty_per_cycle 등) 구현
+        
+    # ... 나머지 모델링 (솔버 실행, 결과 생성 등)
+    
+    # 솔루션 발견 시 반환
+    if status in (cp_model.OPTIMAL, cp_model.FEASIBLE):
+        return result
+    else:
+        return None

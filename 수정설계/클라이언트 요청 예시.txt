@@ -1,6 +1,6 @@
 클라이언트 요청 예시 json 
 {
-  "position": "간호",
+  "position": "간호", 
   "staff_data": {
     "staff": [
       {
@@ -9,6 +9,23 @@
         "position": "간호",
         "grade": 5,
         "grade_name": "신규간호사"
+      },
+      ...
+    ]
+  },
+  "shift_type": 3
+}
+
+{
+  "position": "소방", 
+  "staff_data": {
+    "staff": [
+      {
+        "staff_id": 1,
+        "name": "김소방",
+        "position": "소방",
+        "grade": 3,
+        "grade_name": "정규소방사"
       },
       ...
     ]
@@ -35,6 +52,8 @@ POSITION_RULES = {
 }
 
 
+제약조건 정리표
+
 id	position	rule_name	        rule_value	rule_type	description			
 1	간호	    min_off_days	        3	          int	     최소 휴무일		
 2	간호	    newbie_no_night	        TRUE	      bool	    간호사 신규직원은 야간 금지	     
@@ -55,6 +74,7 @@ id	position	rule_name	        rule_value	rule_type	description
 
 
 파이썬 예시 코드
+
 position = request_data.get("position", "간호")  # 기본값은 간호
 rules = POSITION_RULES.get(position, {})
 
