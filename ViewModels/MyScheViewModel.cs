@@ -4,44 +4,92 @@ using CommunityToolkit.Mvvm.Messaging;
 using ShifterUser.Enums;
 using ShifterUser.Messages;
 using ShifterUser.Models;
+using ShifterUser.Services;
 using System;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
+using System.Net.Sockets;
+using System.Threading.Tasks;
+using ShifterUser.Helpers;
 
 namespace ShifterUser.ViewModels
 {
     public partial class MyScheViewModel : ObservableObject
     {
-        public MyScheViewModel(WorkScheReqModel scheModel, UserSession userSession)
+        public MyScheViewModel(WorkScheReqModel scheModel, UserSession userSession, SocketManager socket)
         {
             Console.WriteLine("MyScheViewModel 생성됨");
 
+            _socket = socket;
             _scheModel = scheModel;
             _session = userSession;
 
             _currentDate = DateTime.Now;
             GenerateCalendar(_currentDate);
-            UpdateSummary(); // 초기값 세팅
+            UpdateSummary();
         }
 
         private WorkScheReqModel _scheModel;
         private UserSession _session;
+        private SocketManager _socket;
 
-        // 수정해야 됨
-        [ObservableProperty]
-        private int workDay = 10;
+        [ObservableProperty] private int workDay = 10;
+        [ObservableProperty] private int nightCnt = 8;
+        [ObservableProperty] private int offCnt = 6;
+        [ObservableProperty] private string scheduleSummaryText;
 
-        [ObservableProperty]
-        private int nightCnt = 8;
+        // 팝업 관련 프로퍼티 추가
+        [ObservableProperty] private WorkScheReqModel? selectedDayData;
+        [ObservableProperty] private bool isDetailVisible;
 
-        [ObservableProperty]
-        private int offCnt = 6;
+        // 날짜 클릭 시 호출되는 커맨드
+        /* 진또배기
+        [RelayCommand]
+        private async Task DayClick(DayModel day)
+        {
+            if (day.Date is null) return;
 
-        [ObservableProperty]
-        private string scheduleSummaryText;
+            Console.WriteLine($"[MyScheViewModel] {day.Date.Value:yyyy-MM-dd} 클릭됨");
 
-        // workDay가 바뀌면 호출됨
+            var newModel = new WorkScheReqModel(_socket, _session);
+
+            await newModel.LoadFromServerAsync(_session.GetUid(), day.Date.Value);
+
+            SelectedDayData = newModel;
+            IsDetailVisible = true;
+        }
+        */
+
+        [RelayCommand]
+        private async Task DayClick(DayModel day)
+        {
+            if (day.Date is null) return;
+
+            Console.WriteLine($"[MyScheViewModel] {day.Date.Value:yyyy-MM-dd} 클릭됨");
+
+            // 테스트 데이터 생성
+            var testModel = new WorkScheReqModel(_socket, _session)
+            {
+                Date = day.Date.Value,
+                Schedule = new WorkScheduleModel
+                {
+                    ShiftType = ShiftType.Day,
+                    StartTime = TimeSpan.Parse("09:00"),
+                    EndTime = TimeSpan.Parse("18:00"),
+                    GroupName = "테스트 근무조"
+                },
+                Attendance = new AttendanceModel
+                {
+                    ClockInTime = DateTime.Parse("2025-08-06 09:03:00"),
+                    ClockOutTime = DateTime.Parse("2025-08-06 18:01:00")
+                },
+                IsRequested = true,
+                RequestReason = "개인 사유"
+            };
+
+            SelectedDayData = testModel;
+            IsDetailVisible = true;
+        }
+
         partial void OnWorkDayChanged(int value) => UpdateSummary();
         partial void OnNightCntChanged(int value) => UpdateSummary();
         partial void OnOffCntChanged(int value) => UpdateSummary();
@@ -80,23 +128,16 @@ namespace ShifterUser.ViewModels
             int daysInMonth = DateTime.DaysInMonth(targetDate.Year, targetDate.Month);
             int skipDays = (int)firstDayOfMonth.DayOfWeek;
 
-            // [1] Add Empty Cells
             for (int i = 0; i < skipDays; i++)
-            {
                 Days.Add(new DayModel { DayText = "" });
-            }
 
-            // [2] Add Actual Days
             for (int day = 1; day <= daysInMonth; day++)
             {
-                var dayModel = new DayModel
+                Days.Add(new DayModel
                 {
                     DayText = day.ToString(),
                     Date = new DateTime(targetDate.Year, targetDate.Month, day),
-                   
-                };
-
-                Days.Add(dayModel);
+                });
             }
         }
 
@@ -107,7 +148,6 @@ namespace ShifterUser.ViewModels
             WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.Home));
         }
     }
-
 
     public partial class DayModel : ObservableObject
     {

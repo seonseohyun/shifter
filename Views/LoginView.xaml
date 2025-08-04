@@ -113,7 +113,7 @@
         </StackPanel>
 
         <!-- 로고 이미지 -->
-        <Image Margin="268,123,19,79" Grid.Row="1" Source="/Resources/images/calender.png" Stretch="Fill" Grid.RowSpan="2"/>
+        <Image Margin="257,109,19,79" Grid.Row="1" Source="/Resources/images/calender.png" Stretch="Fill" Grid.RowSpan="2"/>
         <Image Grid.Row="1"
                Source="/Resources/images/Logo.png"
                Width="300"

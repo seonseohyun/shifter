@@ -28,14 +28,14 @@ namespace ShifterUser.Models
         // 근무표 정보
 
         /* Method for Protocol-LogIn */
-        public /*async Task<*/bool/*>*/ LogIn(string email, string password)
+        public bool LogIn(string email, string password)
         {
 
             /* [1] new json */
             JObject jsonData = new() {
-                { "Protocol", "Insert" },
-                //{ "ID", email },
-                //{ "PW", password }
+                { "Protocol", "Login" },
+                { "ID", email },
+                { "PW", password }
             };
 
             var sendItem = new WorkItem
@@ -53,7 +53,7 @@ namespace ShifterUser.Models
             string protocol = jsonData["Protocol"]?.ToString() ?? "";
             string result = jsonData["RESP"]?.ToString() ?? "";
 
-            if (protocol == "Hello" /*&& result == "SUCCESS"*/)
+            if (protocol == "Result" && result == "SUCCESS")
             {
                 Console.WriteLine("Success Communication with Server");
                 //ParentInfo parentInfo = new()

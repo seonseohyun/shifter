@@ -54,6 +54,9 @@ namespace ShifterUser.ViewModels
                 case PageType.MySche:
                     _mainFrame.Navigate(new MyScheView { DataContext = App.Services.GetService(typeof(MyScheViewModel)) });
                     break;
+                case PageType.DetailSche:
+                    _mainFrame.Navigate(new DetailScheView { DataContext = App.Services.GetService(typeof(DetailScheViewModel)) });
+                    break;
                 case PageType.Goback:
                     _mainFrame.GoBack();
                     break;
