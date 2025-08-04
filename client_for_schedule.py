@@ -14,7 +14,7 @@ request_data = {
             {"name": "선서현", "staff_id": 104, "grade": 1, "grade_name": "제일높은직급", "total_monthly_work_hours": 180},
             {"name": "박경태", "staff_id": 105, "grade": 1, "grade_name": "제일높은직급", "total_monthly_work_hours": 180},
             {"name": "유희라", "staff_id": 106, "grade": 1, "grade_name": "제일높은직급", "total_monthly_work_hours": 180},
-            {"name": "김유범", "staff_id": 107, "grade": 1, "grade_name": "제일높은직급", "total_monthly_work_hours": 180},
+            {"name": "김유범", "staff_id": 107, "grade": 5, "grade_name": "신규", "total_monthly_work_hours": 180},
             {"name": "박서은", "staff_id": 108, "grade": 1, "grade_name": "제일높은직급", "total_monthly_work_hours": 180},
             {"name": "김대업", "staff_id": 109, "grade": 1, "grade_name": "제일높은직급", "total_monthly_work_hours": 180},
             {"name": "유예솜", "staff_id": 110, "grade": 1, "grade_name": "제일높은직급", "total_monthly_work_hours": 180},

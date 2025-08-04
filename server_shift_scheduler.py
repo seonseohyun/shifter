@@ -40,27 +40,7 @@ def create_individual_shift_schedule(staff_data, shift_type, change_requests=Non
         sid = str(person["staff_id"])
         for d in days:
             for s in shifts:
-                schedule[(sid, d, s)] = model.NewBoolVar(f"{sid}_d{d}_{s}")
-
-    # # Apply change requests (currently disabled)
-    # change_applied = False
-    # if change_requests:
-    #     for req in change_requests:
-    #         try:
-    #             sid = str(req["staff_id"])
-    #             req_date = datetime.strptime(req["date"], '%Y-%m-%d')
-    #             d = (req_date - start_date).days
-    #             s = req["desired_shift"]
-    #             original_s = req.get("original_shift", "알수없음")
-    #
-    #             if 0 <= d < num_days and s in shifts and sid in [str(p["staff_id"]) for p in all_people]:
-    #                 model.Add(schedule[(sid, d, s)] == 1)
-    #                 change_applied = True
-    #                 print(f"[INFO] {sid}의 {req['date']} 근무를 {original_s}에서 {s}로 변경 요청 적용")
-    #             else:
-    #                 print(f"[WARNING] 유효하지 않은 요청: staff_id={sid}, date={req['date']}, shift={s}")
-    #         except Exception as e:
-    #             print(f"[WARNING] 요청 처리 오류: {e}")
+                schedule[(sid, d, s)] = model.NewBoolVar(f"{sid}_d{d}_{s}")    
 
     for person in all_people:
         sid = str(person["staff_id"])
@@ -106,14 +86,15 @@ def create_individual_shift_schedule(staff_data, shift_type, change_requests=Non
         model.Add(monthly_hours <= max_monthly_hours)
         print(f"[INFO] {person['name']} 월 최대 근무시간: {base_hours}시간 (여유분 포함: {max_monthly_hours}시간)")
 
-    # 주당 근무시간 제약을 대폭 완화 (40시간 → 50시간)
+    # 주당 근무시간 제약을 대폭 완화 (40시간 → 50시간) 주당 근무시간은 유연하게 수정가능합니다.
+    weely_hour_limit = 60
     for person in all_people:
         sid = str(person["staff_id"])
         for w in range(num_weeks):
             week_start = w * 7
             week_end = min(week_start + 7, num_days)
             hours = sum(schedule[(sid, d, s)] * shift_hours[s] for d in range(week_start, week_end) for s in shifts)
-            model.Add(hours <= 60)  # 주당 최대 60시간으로 대폭 완화
+            model.Add(hours <= weely_hour_limit)  # 주당 최대 60시간으로 대폭 완화
 
     # 야간 근무 균등 분배 - 단순화된 목적함수
     night_counts = [sum(schedule[(str(person["staff_id"]), d, night_shift)] for d in days) for person in all_people]

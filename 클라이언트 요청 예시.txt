@@ -1,0 +1,130 @@
+클라이언트 요청 예시 json 
+{
+  "position": "간호",
+  "staff_data": {
+    "staff": [
+      {
+        "staff_id": 1,
+        "name": "김간호",
+        "position": "간호",
+        "grade": 5,
+        "grade_name": "신규간호사"
+      },
+      ...
+    ]
+  },
+  "shift_type": 3
+}
+
+
+파이썬 코드에 들어갈 제약조건 예시
+POSITION_RULES = {
+    "간호": {
+        "min_off_days": 3,
+        "newbie_no_night": True,
+        "night_after_off": True,
+        "max_weekly_hours": 60,
+        "max_monthly_hours": 180
+    },
+    "소방": {
+        "shift_cycle": "D24-O-O",
+        "night_after_off": True,
+        "max_weekly_hours": 72,
+        "max_monthly_hours": 192
+    }
+}
+
+
+id	position	rule_name	        rule_value	rule_type	description			
+1	간호	    min_off_days	        3	          int	     최소 휴무일		
+2	간호	    newbie_no_night	        TRUE	      bool	    간호사 신규직원은 야간 금지	     
+3	간호	    night_after_day	        bool	      bool	    야간 다음날 주간근무 금지 (8/4 새벽근무자는 8/4 주간 근무 금지)
+4	간호	    max_monthly_hours	    180	          int	    월 최대 근무시간			
+
+
+1	소방	shift_cycle	                "3_day"	     json	    3일 주기 (D24 → O → O) 패턴			
+2	소방	duty_per_cycle	            1	        int     	3일마다 D24 1회			
+3	소방	max_monthly_hours	        192	        int	        월 최대 근무시간			
+4	소방	night_after_off	            TRUE	    bool	    D24 다음날 오프 필수			
+								
+
+
+
+
+
+
+
+파이썬 예시 코드
+position = request_data.get("position", "간호")  # 기본값은 간호
+rules = POSITION_RULES.get(position, {})
+
+for person in staff_data["staff"]:
+    apply_constraints(model, schedule, person, days, shifts, shift_hours, num_weeks, rules)
+
+
+
+
+
+
+def apply_constraints(model, schedule, person, days, shifts, shift_hours, num_weeks):
+    sid = str(person["staff_id"])
+    grade = person["grade"]
+    position = person["position"]
+
+    # ===== 간호 =====
+    if position == "간호":
+        # 신규는 야간 금지
+        if grade == 5 and 'N' in shifts:
+            for d in days:
+                model.Add(schedule[(sid, d, 'N')] == 0)
+
+        # 야간 후 반드시 오프
+        if 'N' in shifts and 'O' in shifts:
+            for d in range(len(days) - 1):
+                night = schedule[(sid, d, 'N')]
+                off_next = schedule[(sid, d + 1, 'O')]
+                model.AddImplication(night, off_next)
+
+        # 최소 휴무일 3일
+        if 'O' in shifts:
+            model.Add(sum(schedule[(sid, d, 'O')] for d in days) >= 3)
+
+        # 주당 60시간 이하 
+        for w in range(num_weeks):
+            start = w * 7
+            end = min(start + 7, len(days))
+            weekly_hours = sum(schedule[(sid, d, s)] * shift_hours[s] for d in range(start, end) for s in shifts)
+            model.Add(weekly_hours <= 60)
+
+        # 월 최대 근무시간 180시간
+        monthly_hours = sum(schedule[(sid, d, s)] * shift_hours[s] for d in days for s in shifts)
+        model.Add(monthly_hours <= 180)
+
+    # ===== 소방 =====
+    elif position == "소방":
+        # 3일 주기: D24-O-O 반복
+        for d in range(0, len(days) - 2, 3):
+            model.Add(schedule[(sid, d, 'D24')] == 1)
+            model.Add(schedule[(sid, d + 1, 'O')] == 1)
+            model.Add(schedule[(sid, d + 2, 'O')] == 1)
+
+        # 당직 후 반드시 오프
+        if 'D24' in shifts and 'O' in shifts:
+            for d in range(len(days) - 1):
+                d24 = schedule[(sid, d, 'D24')]
+                off_next = schedule[(sid, d + 1, 'O')]
+                model.AddImplication(d24, off_next)
+
+        # 월 최대 근무시간 192시간
+        monthly_hours = sum(schedule[(sid, d, s)] * shift_hours[s] for d in days for s in shifts)
+        model.Add(monthly_hours <= 192)
+
+        # 주당 최대 근무시간 72시간
+        for w in range(num_weeks):
+            start = w * 7
+            end = min(start + 7, len(days))
+            weekly_hours = sum(schedule[(sid, d, s)] * shift_hours[s] for d in range(start, end) for s in shifts)
+            model.Add(weekly_hours <= 72)
+
+    else:
+        print(f"[WARNING] 알 수 없는 position: {position} (staff_id: {sid})")
