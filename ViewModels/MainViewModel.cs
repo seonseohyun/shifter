@@ -31,7 +31,7 @@ namespace ShifterUser.ViewModels
         public void SetFrame(Frame frame)
         {  // 메인 프레임 설정(예: MainWindow.xaml.cs에서 호출)
             _mainFrame = frame;              // 프레임을 설정
-            Navigate(PageType.Login);        // 첫 페이지 로딩 ( Enum PageType.Start )
+            Navigate(PageType.MySche);        // 첫 페이지 로딩 ( Enum PageType.Start )
         }
 
         private void Navigate(PageType page)
@@ -50,6 +50,9 @@ namespace ShifterUser.ViewModels
                     break;
                 case PageType.Info:
                     _mainFrame.Navigate(new InfoView { DataContext = App.Services.GetService(typeof(InfoViewModel)) });
+                    break;
+                case PageType.MySche:
+                    _mainFrame.Navigate(new MyScheView { DataContext = App.Services.GetService(typeof(MyScheViewModel)) });
                     break;
                 case PageType.Goback:
                     _mainFrame.GoBack();

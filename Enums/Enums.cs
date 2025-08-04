@@ -11,6 +11,11 @@ namespace ShifterUser.Enums
         Login,
         Home,
         Info,
+        MySche,
         Goback
     }
+
+    public enum ShiftType { Off, Day, Evening, Night }
+
 }
+

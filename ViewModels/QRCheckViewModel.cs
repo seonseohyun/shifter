@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ShifterUser.ViewModels
 {
-    internal class QRCheckViewModel
+    public class QRCheckViewModel
     {
     }
 }

@@ -40,7 +40,7 @@ namespace ShifterUser.ViewModels
             if (LogInResult is true)
             {
                 MessageBox.Show($"로그인 성공! {id}님, 환영합니다.", "로그인 성공", MessageBoxButton.OK, MessageBoxImage.Information);
-                //GoToHome();
+                GoToHome();
             }
         }
 
@@ -48,6 +48,11 @@ namespace ShifterUser.ViewModels
         private static void GoToInfo()
         {
             WeakReferenceMessenger.Default.Send((new PageChangeMessage(PageType.Info)));
+        }
+
+        private static void GoToHome()
+        {
+            WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.Home));
         }
     }
 

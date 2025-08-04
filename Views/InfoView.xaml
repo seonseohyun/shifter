@@ -15,7 +15,7 @@
             <!-- 본문 내용 -->
         </Grid.RowDefinitions>
 
-        <!-- ✅ 상단 바 -->
+        <!-- 상단 바 -->
         <Grid Grid.Row="0" Background="#007BFF" Height="50">
             <Button Content="＜"
                     Command="{Binding GoBackCommand}"
@@ -34,7 +34,7 @@
                        HorizontalAlignment="Center"/>
         </Grid>
 
-        <!-- ✅ 본문 스크롤 가능 영역 -->
+        <!--  본문 스크롤 가능 영역 -->
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
             <StackPanel Margin="20,20,20,40">
 

@@ -1,0 +1,115 @@
+﻿<Page x:Class="ShifterUser.Views.MyScheView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="clr-namespace:ShifterUser.Helpers"
+      Background="#FFFEFD"
+      Width="400"
+      Height="800">
+
+    <Grid Width="400" Height="800">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- 상단 바 -->
+        <DockPanel Grid.Row="0" Background="#007BFF">
+            <Button Content="&lt;" Width="40"
+                    Command="{Binding GoBackCommand}"
+                    Background="Transparent" 
+                    BorderThickness="0"
+                    FontSize="16" 
+                    Foreground="White"
+                    DockPanel.Dock="Left" 
+                    HorizontalAlignment="Left"/>
+        </DockPanel>
+
+        <!-- 근무 통계 -->
+        <TextBlock Grid.Row="1" 
+                   Text="{Binding ScheduleSummaryText}" 
+                   HorizontalAlignment="Left" 
+                   VerticalAlignment="Center"
+                   FontSize="13"
+                   FontWeight="Bold"
+                   FontFamily="Noto Sans KR"
+                   Foreground="Black"/>
+
+        <!-- 월 표시 -->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="40"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Content="&lt;" Grid.Column="0"
+                    Command="{Binding PreviousMonthCommand}"
+                    Background="Transparent" BorderThickness="0" FontSize="16"/>
+
+            <TextBlock Text="{Binding CurrentMonthText}"
+                       Grid.Column="1"
+                       HorizontalAlignment="Center" VerticalAlignment="Center"
+                       FontWeight="Bold"
+                       FontFamily="Noto Sans KR"/>
+
+            <Button Content="&gt;" Grid.Column="2"
+                    Command="{Binding NextMonthCommand}"
+                    Background="Transparent" BorderThickness="0" FontSize="16"/>
+        </Grid>
+
+        <!-- 요일 -->
+        <UniformGrid Grid.Row="3" Columns="7">
+            <TextBlock Text="일" HorizontalAlignment="Center" Foreground="Red" FontFamily="Noto Sans KR"/>
+            <TextBlock Text="월" HorizontalAlignment="Center" FontFamily="Noto Sans KR"/>
+            <TextBlock Text="화" HorizontalAlignment="Center" FontFamily="Noto Sans KR"/>
+            <TextBlock Text="수" HorizontalAlignment="Center" FontFamily="Noto Sans KR"/>
+            <TextBlock Text="목" HorizontalAlignment="Center" FontFamily="Noto Sans KR"/>
+            <TextBlock Text="금" HorizontalAlignment="Center" FontFamily="Noto Sans KR"/>
+            <TextBlock Text="토" HorizontalAlignment="Center" Foreground="Blue" FontFamily="Noto Sans KR"/>
+        </UniformGrid>
+
+        <!-- 달력 날짜 -->
+        <ItemsControl Grid.Row="4" ItemsSource="{Binding Days}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="7"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Command="{Binding DataContext.DayClickCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                            CommandParameter="{Binding}"
+                            BorderThickness="0"
+                            Background="Transparent"
+                            Padding="0"
+                            IsEnabled="{Binding IsWrited}">
+                        <Border 
+                            BorderBrush="LightGray"
+                            BorderThickness="0.5"
+                            CornerRadius="1"
+                            Background="Transparent">
+                            <Grid Width="110" Height="110">
+                                <TextBlock Text="{Binding DayText}" 
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Top"
+                                           Margin="2,1,0,0" 
+                                           FontSize="12"
+                                           Foreground="Black"
+                                           FontWeight="SemiBold" 
+                                           FontFamily="Noto Sans KR"/>
+                            </Grid>
+                        </Border>
+                    </Button>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+
+            <ItemsControl.Margin>
+                <Thickness Bottom="80"/>
+            </ItemsControl.Margin>
+        </ItemsControl>
+    </Grid>
+</Page>
