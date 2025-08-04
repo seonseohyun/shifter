@@ -142,6 +142,12 @@ namespace ShifterUser.ViewModels
         }
 
         [RelayCommand]
+        private void HideDetail()
+        {
+            IsDetailVisible = false;
+        }
+
+        [RelayCommand]
         private static void GoBack()
         {
             Console.WriteLine("[MyScheViewModel] GoBack command executed.");
@@ -155,3 +161,8 @@ namespace ShifterUser.ViewModels
         [ObservableProperty] private DateTime? date;
     }
 }
+
+
+
+
+

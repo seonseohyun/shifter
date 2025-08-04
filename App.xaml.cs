@@ -51,7 +51,6 @@ namespace ShifterUser
             services.AddTransient<HomeViewModel>();
             services.AddTransient<InfoViewModel>();
             services.AddTransient<MyScheViewModel>();
-            services.AddTransient<DetailScheViewModel>();
         }
     }
 }

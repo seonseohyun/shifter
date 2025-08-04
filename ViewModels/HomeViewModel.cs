@@ -1,5 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
+using ShifterUser.Enums;
+using ShifterUser.Messages;
 using System.Windows;
 
 namespace ShifterUser.ViewModels
@@ -42,7 +45,9 @@ namespace ShifterUser.ViewModels
         [RelayCommand]
         private void GoToSchedule()
         {
-            MessageBox.Show("스케줄 페이지로 이동합니다.");
+            Console.WriteLine("스케줄 페이지로 이동합니다.");
+            WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.MySche));
+
         }
 
         [RelayCommand]
