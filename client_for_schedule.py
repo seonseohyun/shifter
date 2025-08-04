@@ -2,18 +2,18 @@ import socket
 import json
 
 HOST = '127.0.0.1'  # Python 서버 주소
-PORT = 5008         # Python 서버 포트
+PORT = 6000         # Python 서버 포트
 
 # JSON 요청 데이터
 request_data = {
     "staff_data": {
         "staff": [
-            {"name": "박주영", "staff_id": 101, "grade": 1, "grade_name": "제일높은직급","total_monthly_work_hours":160},
-            {"name": "최정환", "staff_id": 102, "grade": 1, "grade_name": "제일높은직급","total_monthly_work_hours":160},
-            {"name": "문재윤", "staff_id": 103, "grade": 1, "grade_name": "제일높은직급","total_monthly_work_hours":160},
-            {"name": "선서현", "staff_id": 104, "grade": 1, "grade_name": "제일높은직급","total_monthly_work_hours":160},
-            {"name": "박경태", "staff_id": 105, "grade": 1, "grade_name": "제일높은직급","total_monthly_work_hours":160},
-            {"name": "유희라", "staff_id": 106, "grade": 1, "grade_name": "제일높은직급","total_monthly_work_hours":160},
+            {"name": "박주영", "staff_id": 101, "grade": 1, "grade_name": "제일높은직급","total_monthly_work_hours":180},
+            {"name": "최정환", "staff_id": 102, "grade": 1, "grade_name": "제일높은직급","total_monthly_work_hours":180},
+            {"name": "문재윤", "staff_id": 103, "grade": 1, "grade_name": "제일높은직급","total_monthly_work_hours":180},
+            {"name": "선서현", "staff_id": 104, "grade": 1, "grade_name": "제일높은직급","total_monthly_work_hours":180},
+            {"name": "박경태", "staff_id": 105, "grade": 1, "grade_name": "제일높은직급","total_monthly_work_hours":180},
+            {"name": "유희라", "staff_id": 106, "grade": 1, "grade_name": "제일높은직급","total_monthly_work_hours":180},
             {"name": "김유범", "staff_id": 107, "grade": 1, "grade_name": "제일높은직급","total_monthly_work_hours":180},
             {"name": "박서은", "staff_id": 108, "grade": 1, "grade_name": "제일높은직급","total_monthly_work_hours":180},
             {"name": "김대업", "staff_id": 109, "grade": 1, "grade_name": "제일높은직급","total_monthly_work_hours":180},
