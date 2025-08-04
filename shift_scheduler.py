@@ -53,30 +53,6 @@ def create_individual_shift_schedule(staff_data, shift_type):
         except Exception as e:
             print(f"[WARNING] JSON 파일 읽기 오류: {e}")
 
-    # change_applied = False
-    # for req in change_requests:
-    #     try:
-    #         sid = str(req["staff_id"])
-    #         req_date = datetime.strptime(req["date"], '%Y-%m-%d')
-    #         d = (req_date - start_date).days
-    #         s = req["desired_shift"]
-    #         original_s = req.get("original_shift", "알수없음")
-            
-    #         if 0 <= d < num_days and s in shifts and sid in [str(p["staff_id"]) for p in all_people]:
-    #             model.Add(schedule[(sid, d, s)] == 1)
-    #             change_applied = True
-    #             print(f"[INFO] {sid}의 {req['date']} 근무를 {original_s}에서 {s}로 변경 요청 적용")
-    #         else:
-    #             print(f"[WARNING] 유효하지 않은 요청: staff_id={sid}, date={req['date']}, shift={s}")
-    #     except Exception as e:
-    #         print(f"[WARNING] 요청 처리 오류: {e}")
-
-    # if not change_applied and change_requests:
-    #     print("[WARNING] 변경 요청이 있었지만 적용된 것이 없습니다.")
-    # elif change_applied:
-    #     print(f"[INFO] 총 {len([req for req in change_requests if str(req['staff_id']) in [str(p['staff_id']) for p in all_people]])}개의 변경 요청이 적용되었습니다.")
-
-
     # Each individual has exactly one shift per day
     for person in all_people:
         sid = str(person["staff_id"])
@@ -124,9 +100,25 @@ def create_individual_shift_schedule(staff_data, shift_type):
     model.AddMinEquality(min_nights, night_counts)
     model.Minimize(max_nights - min_nights)
 
+    #최소근무시간 제약
+    margin = 20  # 예: 최소는 최대보다 10시간 적게 일해도 됨, 170시간 
+
+    for person in all_people:
+        sid = str(person["staff_id"])
+        max_hours = person.get("total_monthly_work_hours", 209)
+        min_hours = max_hours - margin  # 최소 근무시간 설정
+
+        monthly_work = sum(schedule[(sid, d, s)] * shift_hours[s] for d in days for s in shifts)
+
+        model.Add(monthly_work <= max_hours)  # 최대 근무시간 제한
+        model.Add(monthly_work >= min_hours)  # 최소 근무시간 제한
+
+
+
+
     # Solve the model
     solver = cp_model.CpSolver()
-    solver.parameters.max_time_in_seconds = 300.0
+    solver.parameters.max_time_in_seconds = 60.0
     solver.parameters.log_search_progress = True
     solver.parameters.num_search_workers = 8
     status = solver.Solve(model)

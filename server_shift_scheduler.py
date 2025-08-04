@@ -87,10 +87,10 @@ def create_individual_shift_schedule(staff_data, shift_type, change_requests=Non
                 eve_next = schedule[(sid, d + 1, 'E')]
                 model.AddBoolOr([night.Not(), eve_next.Not()])
 
-    # 최소 휴무일 제약 (월 최소 3일 → 2일로 완화)
+    # 최소 휴무일 제약 (월 최소 3일 → 2일로 완화) 
     for person in all_people:
         sid = str(person["staff_id"])
-        model.Add(sum(schedule[(sid, d, 'O')] for d in days) >= 2)
+        model.Add(sum(schedule[(sid, d, 'O')] for d in days) >= 3)
 
     # 월 총 근무시간 제약조건 - 10% 여유분 추가 (현실성 고려)
     for person in all_people:  
@@ -102,7 +102,7 @@ def create_individual_shift_schedule(staff_data, shift_type, change_requests=Non
         model.Add(monthly_hours <= max_monthly_hours)
         print(f"[INFO] {person['name']} 월 최대 근무시간: {base_hours}시간 (여유분 포함: {max_monthly_hours}시간)")
 
-    # 주당 근무시간 제약을 대폭 완화 (40시간 → 60시간)
+    # 주당 근무시간 제약을 대폭 완화 (40시간 → 50시간)
     for person in all_people:
         sid = str(person["staff_id"])
         for w in range(num_weeks):
@@ -117,6 +117,20 @@ def create_individual_shift_schedule(staff_data, shift_type, change_requests=Non
     min_nights = model.NewIntVar(0, num_days, "min_night")
     model.AddMaxEquality(max_nights, night_counts)
     model.AddMinEquality(min_nights, night_counts)
+
+
+      #최소근무시간 제약
+    margin = 10  # 예: 최소는 최대보다 10시간 적게 일해도 됨, 170시간 
+
+    for person in all_people:
+        sid = str(person["staff_id"])
+        max_hours = person.get("total_monthly_work_hours", 209)
+        min_hours = max_hours - margin  # 최소 근무시간 설정
+
+        monthly_work = sum(schedule[(sid, d, s)] * shift_hours[s] for d in days for s in shifts)
+
+        model.Add(monthly_work <= max_hours)  # 최대 근무시간 제한
+        model.Add(monthly_work >= min_hours)  # 최소 근무시간 제한
     
     # 단순한 목적함수: 야간 근무 균등성만
     model.Minimize(max_nights - min_nights)
