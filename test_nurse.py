@@ -34,7 +34,8 @@ nursing_request = {
         ]
     },
     "shift_type": 3,
-    "change_requests": []
+    "change_requests": [],    
+    "target_month": "2025-09" #이런식으로 요청이 오면 좋겠다.
 }
 
 def test_nursing():
@@ -78,11 +79,13 @@ def test_nursing():
                             if person['staff_id'] in newbie_night_counts:
                                 newbie_night_counts[person['staff_id']] += 1
             
-            print("📊 신규간호사별 야간 근무 횟수 (모두 0회여야 정상):")
+            print(" 신규간호사별 야간 근무 횟수 (모두 0회여야 정상):")
             for staff_id, count in newbie_night_counts.items():
                 name = newbie_names[staff_id]
-                status = "✅ 정상" if count == 0 else "❌ 위반"
+                status = "정상" if count == 0 else "❌ 위반"
                 print(f"   - {name}: {count}회 {status}")
+            
+            print(schedule)
             
         else:
             print("❌ 간호 직군 근무표 생성 실패")

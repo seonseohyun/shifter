@@ -263,7 +263,7 @@ def handle_request(request_json):
         data = json.loads(request_json)
         staff_data = data.get("staff_data")
         shift_type = data.get("shift_type", 3)
-        change_requests = data.get("change_requests", [])
+        change_requests = data.get("change_requests", [])  #수정요청은 추후에 넣을수도 있지만 현재는 필요가 없음 빈배열
         position = data.get("position", "default")  # 직군 정보 추가
 
         if not staff_data or "staff" not in staff_data:

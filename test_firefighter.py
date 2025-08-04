@@ -87,6 +87,9 @@ def test_firefighter():
             print(f"📊 김소방관 - D24: {d24_count}회, 오프: {off_count}회")
             print(f"📊 D24:오프 비율 = 1:{off_count/max(d24_count, 1):.1f} (이상적: 1:2)")
             
+            print(schedule)
+
+
         else:
             print("❌ 소방 직군 근무표 생성 실패")
             print(f"오류: {response_json}")
