@@ -108,7 +108,7 @@ public partial class MainViewModel : ObservableObject {
 
     /* Log Out */
     [RelayCommand] void LogOut() {
-        MessageBoxResult result = MessageBox.Show("정말로 로그인하시겠습니까?" , "회원가입 실패", MessageBoxButton.YesNo, MessageBoxImage.Question);
+        MessageBoxResult result = MessageBox.Show("정말로 로그아웃하시겠습니까?" , "로그아웃", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
         if (result == MessageBoxResult.Yes) {
             Navigate(PageType.LogIn);
