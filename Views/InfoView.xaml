@@ -3,8 +3,6 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:viewmodels="clr-namespace:ShifterUser.ViewModels"
-      xmlns:helpers="clr-namespace:ShifterUser.Helpers"
       mc:Ignorable="d"
       Background="White"
       Width="400" Height="800">
@@ -13,17 +11,11 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <!-- 상단 바 -->
-            <RowDefinition Height="Auto"/>
-            <!-- 로고 + 벨 -->
-            <RowDefinition Height="10"/>
-            <!-- 여백 -->
-            <RowDefinition Height="Auto"/>
-            <!-- 슬로건 -->
             <RowDefinition Height="*"/>
-            <!-- 입력/버튼 -->
+            <!-- 본문 내용 -->
         </Grid.RowDefinitions>
 
-        <!-- 상단 바 -->
+        <!-- ✅ 상단 바 -->
         <Grid Grid.Row="0" Background="#007BFF" Height="50">
             <Button Content="＜"
                     Command="{Binding GoBackCommand}"
@@ -34,110 +26,93 @@
                     Foreground="White"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"/>
+            <TextBlock Text="소개"
+                       FontSize="18"
+                       FontWeight="Bold"
+                       Foreground="White"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"/>
         </Grid>
 
-        <!-- 로고 + 벨 -->
-        <Grid Grid.Row="1" Margin="20,20,20,0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
+        <!-- ✅ 본문 스크롤 가능 영역 -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="20,20,20,40">
 
-            <!-- 로고 -->
+                <!-- 하루고리 소개 -->
+                <TextBlock Text="하루고리란?" 
+                           FontSize="24" FontWeight="Bold" Margin="0,0,0,10"/>
+                <TextBlock Text="“교대 근무자들을 위한 똑똑한 출퇴근 기록과 근무       소통 플랫폼”"
+                           TextWrapping="Wrap"
+                           FontSize="14"
+                           Foreground="Gray"
+                           Margin="0,0,0,30"/>
 
-            <!-- 벨 아이콘 -->
-            <Image Source="/Resources/images/bell.png"
-                   Width="163"
-                   Height="106"
-                   HorizontalAlignment="Right"
-                   VerticalAlignment="Top"
-                   Margin="0,37,4,0"/>
-            <Image Source="/Resources/images/Logo.png"
-                   Width="305"
-                   Height="300"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Center" Margin="21,0,0,0"/>
-        </Grid>
+                <!-- 핵심 기능 카드들 -->
+                <TextBlock Text="하루고리 핵심 기능" 
+                           FontSize="18" FontWeight="SemiBold" Margin="0,0,0,10"/>
 
-        <!-- 슬로건 -->
-        <TextBlock Grid.Row="1"
-                   Text="당신의 하루를 잇다"
-                   FontSize="14"
-                   FontFamily="Noto Sans KR"
-                   FontWeight="Medium"
-                   Foreground="#2A2A2A"
-                   HorizontalAlignment="Center"
-                   Margin="0,250,0,10"/>
+                <!-- 카드1 -->
+                <Border BorderBrush="#DDDDDD" BorderThickness="1" CornerRadius="10" Padding="10" Margin="0,0,0,10">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Resources/images/qr_icon.png" Width="40" Height="40" Margin="0,0,10,0"/>
+                        <StackPanel Width="300">
+                            <TextBlock Text="출퇴근 QR 기록" FontWeight="Bold" FontSize="14"/>
+                            <TextBlock Text="QR코드로 간편하게 출근/퇴근을 기록하고 확인할      수 있어요." 
+                                       TextWrapping="Wrap" FontSize="12"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
 
-        <!-- 입력 및 버튼 -->
-        <StackPanel Grid.Row="4" Margin="20,0,20,10" VerticalAlignment="Top">
-            <!-- 이름 -->
-            <Border CornerRadius="24" Background="#EEF3FB" Margin="0,0,0,12">
-                <TextBox Text="{Binding name, UpdateSourceTrigger=PropertyChanged}"
-                         Style="{StaticResource BlueWatermarkTextBoxStyle}"
-                         Tag="이름"
-                         Height="52"
-                         Margin="4,0,0,0"/>
-            </Border>
+                <!-- 카드2 -->
+                <Border BorderBrush="#DDDDDD" BorderThickness="1" CornerRadius="10" Padding="10" Margin="0,0,0,10">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Resources/images/calender.png" Width="40" Height="40" Margin="0,0,10,0"/>
+                        <StackPanel Width="300">
+                            <TextBlock Text="내 근무표 보기" FontWeight="Bold" FontSize="14"/>
+                            <TextBlock Text="이번 주부터 한 달까지 근무 스케줄을 직관적으로      확인해요." 
+                                       TextWrapping="Wrap" FontSize="12"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
 
-            <!-- 아이디 -->
-            <Border CornerRadius="24" Background="#EEF3FB" Margin="0,0,0,12">
-                <TextBox Text="{Binding id, UpdateSourceTrigger=PropertyChanged}"
-                         Style="{StaticResource BlueWatermarkTextBoxStyle}"
-                         Tag="아이디"
-                         Height="52"
-                         Margin="4,0,0,0"/>
-            </Border>
+                <!-- 카드3 -->
+                <Border BorderBrush="#DDDDDD" BorderThickness="1" CornerRadius="10" Padding="10" Margin="0,0,0,10">
+                    <StackPanel Orientation="Horizontal" >
+                        <Image Source="/Resources/images/clock.png" Width="40" Height="40" Margin="0,0,10,0"/>
+                        <StackPanel>
+                            <TextBlock Text="공지사항/인수인계 공유" FontWeight="Bold" FontSize="14"/>
+                            <TextBlock Text="중요한 내용을 팀원과 빠르게 공유하고 자동 저장돼요." 
+                                       TextWrapping="Wrap" FontSize="12"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
 
-            <!-- 비밀번호 -->
-            <Border CornerRadius="24" Background="#EEF3FB" Margin="0,0,0,12">
-                <TextBox Text="{Binding password, UpdateSourceTrigger=PropertyChanged}"
-                         Style="{StaticResource BlueWatermarkTextBoxStyle}"
-                         Tag="비밀번호"
-                         Height="52"
-                         Margin="4,0,0,0"/>
-            </Border>
+                <!-- 카드4 -->
+                <Border BorderBrush="#DDDDDD" BorderThickness="1" CornerRadius="10" Padding="10" Margin="0,0,0,10">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Resources/images/bell.png" Width="40" Height="40" Margin="0,0,10,0"/>
+                        <StackPanel Width="300">
+                            <TextBlock Text="근무 요청/승인 시스템" FontWeight="Bold" FontSize="14"/>
+                            <TextBlock Text="휴가/교대 요청을 간편하게 보내고 승인 현황도           실시간으로 확인해요." 
+                                       TextWrapping="Wrap" FontSize="12"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
 
-            <!-- 휴대전화 -->
-            <Border CornerRadius="24" Background="#EEF3FB" Margin="0,0,0,20">
-                <TextBox Text="{Binding phone, UpdateSourceTrigger=PropertyChanged}"
-                         Style="{StaticResource BlueWatermarkTextBoxStyle}"
-                         Tag="휴대전화"
-                         Height="52"
-                         Margin="4,0,0,0"/>
-            </Border>
-
-            <!-- 회원가입 버튼 -->
-            <Button Content="회원가입"
-                    Command="{Binding SignUpCommand}"
-                    FontSize="15"
-                    FontFamily="Noto Sans KR Medium"
-                    Foreground="White"
-                    Background="#007BFF"
-                    BorderThickness="0"
-                    Height="52"
-                    Margin="0,0,0,12">
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" CornerRadius="26">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-
-            <!-- 로그인 안내 -->
-            <Button Command="{Binding GoToLoginCommand}"
-                    Background="Transparent"
-                    BorderBrush="Transparent"
-                    Margin="0,0,0,0">
-                <TextBlock HorizontalAlignment="Center"
-                           FontSize="13"
-                           FontFamily="Noto Sans KR">
-                    <Run Text="이미 계정이 있나요? " Foreground="#A7A7A7"/>
-                    <Run Text="로그인" Foreground="#007BFF" TextDecorations="Underline" Cursor="Hand"/>
-                </TextBlock>
-            </Button>
-        </StackPanel>
+                <!-- 하루고리가 필요한 이유 -->
+                <StackPanel Margin="0,30,0,0">
+                    <TextBlock Text="왜 하루고리가 필요한가요?" 
+                               FontSize="18" FontWeight="SemiBold" Margin="0,0,0,10"/>
+                    <TextBlock Text="✅ 교대 근무표, 계속 메모하거나 단톡방 찾아보시나요?"
+                               FontSize="13" Margin="0,0,0,5"/>
+                    <TextBlock Text="✅ 출퇴근 누락돼서 확인 요청 오면 당황스럽지 않으셨나요?"
+                               FontSize="13" Margin="0,0,0,5"/>
+                    <TextBlock Text="✅ 매번 다른 인수인계 방식, 불편하지 않으셨나요?"
+                               FontSize="13" Margin="0,0,0,10"/>
+                    <TextBlock Text="👉 하루고리는 이 모든 불편을 하나로 해결합니다."
+                               FontSize="14" FontWeight="Bold" Foreground="#007BFF"/>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>
