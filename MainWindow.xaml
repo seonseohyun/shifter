@@ -28,6 +28,7 @@
                 <StackPanel
                     Orientation="Horizontal">
                     <Button
+                        Command="{Binding GoToHomeCommand}"
                         Height="35"
                         Width="35"
                         Margin="10,10,5,10"
@@ -45,11 +46,13 @@
                     </Button>
 
                     <Button
+                        Command="{Binding GoBackCommand}"
                         Background="#777777"
                         Height="35"
                         Width="35"
                         Margin="5,10,10,10"
-                        VerticalAlignment="Stretch">
+                        VerticalAlignment="Stretch"
+                        Visibility="{Binding Session.VisGoBack, Converter={StaticResource BoolToVis}}">
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="19"/>
@@ -155,7 +158,9 @@
                         </Button.Resources>
                         <TextBlock Text="내정보" FontSize="15" FontFamily="Noto Sans KR" FontWeight="Medium" Foreground="#000000"></TextBlock>
                     </Button>
-                    <Button MinWidth="130" Margin="5" Background="#000000" BorderBrush="#FFFFFF" BorderThickness="2">
+                    
+                    <Button MinWidth="130" Margin="5" Background="#000000" BorderBrush="#FFFFFF" BorderThickness="2"
+                            Command="{Binding LogOutCommand}">
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="7"/>

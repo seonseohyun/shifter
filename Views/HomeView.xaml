@@ -5,10 +5,212 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Shifter.Views"
       mc:Ignorable="d" 
-      d:DesignHeight="900" d:DesignWidth="1600"
-      Title="Page1">
+      d:DesignHeight="850" d:DesignWidth="1600"
+      Title="Page1"
+      Background="#FFFFFF">
 
-    <Grid>
+    <Grid Margin="80">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="12*"/>
+            <ColumnDefinition Width="10*"/>
+        </Grid.ColumnDefinitions>
+
         
+        <!-- Today's Duty -->
+        <Border Grid.Column="0"
+                Background="#F7F7F7"
+                BorderBrush="Transparent"
+                CornerRadius="20"
+                Margin="0,0,15,0">
+            <Border.Effect>
+                <DropShadowEffect
+                    Color="Black"
+                    ShadowDepth="5"
+                    BlurRadius="10"
+                    Opacity="0.5">
+                </DropShadowEffect>
+            </Border.Effect>
+
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1.2*"/>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+
+                <!-- TextBlocks -->
+                <Grid Grid.Row="0"
+                    Margin="30">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0"
+                                   Text="오늘의 근무정보"
+                                   FontSize="25" FontFamily="Noto Sans KR" FontWeight="Bold">
+                        </TextBlock>
+
+                        <TextBlock Grid.Row="1" Grid.Column="0"
+                                   Text="팀별로 오늘의 근무정보를 확인해요."
+                                   FontSize="15" FontFamily="Noto Sans KR" FontWeight="Medium">
+                        </TextBlock>
+                    </Grid>
+
+                    <ComboBox Grid.Column="1"
+                              Margin="0,15,0,15"></ComboBox>
+                </Grid>
+
+                <Grid Grid.Row="1"></Grid>
+
+                <Button Grid.Row="2"
+                        BorderBrush="Transparent"
+                        Margin="30, 20, 30, 20"
+                        Foreground="#FFFFFF"
+                        Background="#002EFF"
+                        Content="이달의 근무정보 확인하기 >"
+                        FontSize="20"
+                        FontFamily="Noto Sans KR"
+                        FontWeight="Normal">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Grid>
+        </Border>
+        
+        
+        <!-- Page Buttons -->
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <!-- 스케줄 변경요청 확인 -->
+            <Border Grid.Row="0"
+                    Background="#F7F7F7"
+                    BorderBrush="Transparent"
+                    CornerRadius="20"
+                    Margin="0,0,0,5">
+                <Border.Effect>
+                    <DropShadowEffect
+                    Color="Black" ShadowDepth="5" BlurRadius="10" Opacity="0.5">
+                    </DropShadowEffect>
+                </Border.Effect>
+                
+                <Grid Margin="30">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0"
+                                   Text="스케줄 변경요청 확인"
+                                   FontSize="25" FontFamily="Noto Sans KR" FontWeight="Bold" TextWrapping="Wrap"></TextBlock>
+                        <TextBlock Grid.Row="1"
+                                   Text="스케줄 변경요청 확인하기"
+                                   FontSize="15" FontFamily="Noto Sans KR" FontWeight="Medium" TextWrapping="Wrap"></TextBlock>
+                    </Grid>
+
+                    <Image Grid.Column="1"
+                           Margin="40"
+                           Source="/Resources/Icons/checklist_icon.png">
+                    </Image>
+
+                    <Grid Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="6*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <Button Grid.Row="1"
+                                Command="{Binding GoToChkChgReqCommand}"
+                                Margin="50,0,0,0"
+                                Background="#002EFF"
+                                Foreground="#FFFFFF"
+                                BorderBrush="Transparent">
+                            <Image Source="/Resources/Icons/right-arrows.png"></Image>
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="20"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                    </Grid>
+                </Grid>
+            </Border>
+
+            <!-- 근무통계 확인 -->
+            <Border Grid.Row="1"
+                    Background="#F7F7F7"
+                    BorderBrush="Transparent"
+                    CornerRadius="20"
+                    Margin="0,0,0,5">
+                <Border.Effect>
+                    <DropShadowEffect
+                    Color="Black" ShadowDepth="5" BlurRadius="10" Opacity="0.5">
+                    </DropShadowEffect>
+                </Border.Effect>
+
+                <Grid Margin="30">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0"
+                                   Text="근무통계 확인"
+                                   FontSize="25" FontFamily="Noto Sans KR" FontWeight="Bold" TextWrapping="Wrap"></TextBlock>
+                        <TextBlock Grid.Row="1"
+                                   Text="기간별 근무통계 확인하기"
+                                   FontSize="15" FontFamily="Noto Sans KR" FontWeight="Medium" TextWrapping="Wrap"></TextBlock>
+                    </Grid>
+
+                    <Image Grid.Column="1"
+                           Margin="40"
+                           Source="/Resources/Icons/clip_icon.png">
+                    </Image>
+
+                    <Grid Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="6*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <Button Grid.Row="1"
+                                Command="{Binding GoToStatusCommand}"
+                                Margin="50,0,0,0"
+                                Background="#002EFF"
+                                Foreground="#FFFFFF"
+                                BorderBrush="Transparent">
+                            <Image Source="/Resources/Icons/right-arrows.png"></Image>
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="20"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
     </Grid>
 </Page>

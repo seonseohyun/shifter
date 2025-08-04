@@ -1,0 +1,23 @@
+[33mcommit 986a1cd2e5ae79a0e7dfc9c855991f1c2b5875d3[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mAdmin_dev[m[33m, [m[1;31morigin/Admin_dev[m[33m)[m
+Author: XEB <ybkim202@gmail.com>
+Date:   Mon Aug 4 19:45:17 2025 +0900
+
+    toolbar visible&collapsed
+
+[33mcommit 36a6f82d61862fae34cccd82df9335fb78ae9334[m
+Author: XEB <ybkim202@gmail.com>
+Date:   Mon Aug 4 16:35:43 2025 +0900
+
+    ui/login done
+
+[33mcommit 6a2b1cb5a6658236e0f108b7bcceacc957f9c70f[m[33m ([m[1;31morigin/feature/LogIn[m[33m)[m
+Author: XEB <ybkim202@gmail.com>
+Date:   Mon Aug 4 10:40:46 2025 +0900
+
+    MVVM패턴 프로그램 구조 작성완료
+
+[33mcommit 21e8b2b4c5f04d3b4c54ed15af79241bfe834c1a[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/Server_dev[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;31morigin/AI_dev[m[33m)[m
+Author: 선서현 <seonseo1216@gmail.com>
+Date:   Mon Jul 28 20:44:38 2025 +0900
+
+    Initial commit

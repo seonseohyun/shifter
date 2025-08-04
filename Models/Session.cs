@@ -16,6 +16,7 @@ namespace Shifter.Models {
         private int CurrentTeamId;
         private string? CurrentTeamName;
         [ObservableProperty] bool visToolbar = true;
+        [ObservableProperty] bool visGoBack  = true;
 
 
         /** Member Mathods **/

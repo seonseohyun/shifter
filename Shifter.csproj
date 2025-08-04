@@ -18,6 +18,7 @@
     <None Remove="Resources\Icons\clip_icon.png" />
     <None Remove="Resources\Icons\home-button.png" />
     <None Remove="Resources\Icons\power-button.png" />
+    <None Remove="Resources\Icons\right-arrows.png" />
     <None Remove="Resources\Logo\Logo.png" />
     <None Remove="Resources\Logo\LogoNoMargin.png" />
   </ItemGroup>
@@ -61,6 +62,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Icons\power-button.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\right-arrows.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Logo\Logo.png">

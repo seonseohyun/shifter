@@ -86,8 +86,8 @@
                         Grid.Row="0"
                         CornerRadius="10"
                         Background ="#FFFFFF"
-                        BorderBrush="#222222"
-                        BorderThickness="1"
+                        BorderBrush="#A7A7A7"
+                        BorderThickness="1.5"
                         Margin="15,5,15,5">
                         <TextBox
                             Text="{Binding Id}"
@@ -109,8 +109,8 @@
                         Grid.Row="1"
                         CornerRadius="10"
                         Background ="#FFFFFF"
-                        BorderBrush="#222222"
-                        BorderThickness="1"
+                        BorderBrush="#A7A7A7"
+                        BorderThickness="1.5"
                         Margin="15,5,15,5">
                         <TextBox
                             Text="{Binding Pw}"

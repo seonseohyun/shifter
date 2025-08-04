@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Extensions.DependencyInjection;
 using Shifter.Enums;
@@ -10,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 namespace Shifter.ViewModels;
 
@@ -88,6 +90,30 @@ public partial class MainViewModel : ObservableObject {
             case PageType.GoBack:
                 _mainFrame.GoBack();
                 break;
+        }
+    }
+
+
+    /* Go to Home */
+    [RelayCommand] void GoToHome() {
+        Navigate(PageType.Home);
+    }
+
+
+    /* Go Back */
+    [RelayCommand] void GoBack() {
+        Navigate(PageType.GoBack);
+    }
+
+
+    /* Log Out */
+    [RelayCommand] void LogOut() {
+        MessageBoxResult result = MessageBox.Show("정말로 로그인하시겠습니까?" , "회원가입 실패", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+        if (result == MessageBoxResult.Yes) {
+            Navigate(PageType.LogIn);
+        }
+        else if (result == MessageBoxResult.No) {
         }
     }
 }

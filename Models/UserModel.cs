@@ -31,9 +31,8 @@ namespace Shifter.Models {
         public async Task<bool> LogInAsync(string id, string pw) {
             /* [1] new json */
             JObject jsonData = new JObject {
-                { "protocol", "login" },
+                { "protocol", "login_admin" },
                 { "data", new JObject {
-                        { "authority", "admin" },
                         { "id", id },
                         { "pw", pw }
                     }
