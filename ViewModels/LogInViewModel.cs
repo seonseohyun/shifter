@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Shifter.Models;
 using System;
 using System.Collections.Generic;
@@ -10,13 +11,28 @@ namespace Shifter.ViewModels {
     public partial class LogInViewModel : ObservableObject{
 
         /** Constructor **/
-        public LogInViewModel(Session? session) {
-            _session = session;
+        public LogInViewModel(Session? session, UserModel? userModel) {
+            Console.WriteLine("[LogInViewModel] Allocated in Memory");
+            _session   = session;
+            _userModel = userModel;
         }
 
 
         /** Member Variables **/
-        private readonly Session? _session;
+        /* Models */
+        private readonly Session?   _session;
+        private readonly UserModel? _userModel;
+        
+        /* Observable Properties */
+        [ObservableProperty] string id;
+        [ObservableProperty] string pw;
+
+
         /** Member Methods **/
+        [RelayCommand] async Task LogInAsync() {
+            if( Id.Length>0 && Pw.Length>0) {
+                bool result = await _userModel!.LogInAsync(Id, Pw);
+            }
+        }
     }
 }

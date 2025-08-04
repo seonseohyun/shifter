@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Shifter.ViewModels;
 
 namespace Shifter
 {
@@ -18,7 +19,14 @@ namespace Shifter
     {
         public MainWindow()
         {
+            Console.WriteLine("[MainWindow] Allocated in Memory");
             InitializeComponent();
+
+            if (App.Services!.GetService(typeof(MainViewModel)) is MainViewModel mainVM) {
+                Console.WriteLine("App.Services!.GetService(typeof(MainViewModel)):" + App.Services!.GetService(typeof(MainViewModel)));
+                DataContext = mainVM;
+                mainVM.SetFrame(MainFrame);
+            }
         }
     }
 }

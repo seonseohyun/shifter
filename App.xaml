@@ -1,9 +1,40 @@
 ﻿<Application x:Class="Shifter.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:Shifter"
+             xmlns:local="clr-namespace:Shifter.Helpers"
              StartupUri="MainWindow.xaml">
+
     <Application.Resources>
-         
+
+        <!-- Converters -->
+        <local:ZeroToVisConv x:Key="ZeroToVisibility"/>
+
+        
+        <!-- Style Gray Watermark -->
+        <Style x:Key="GrayWatermarkTextBoxStyle" TargetType="TextBox">
+            <Setter Property="Foreground" Value="#2A2A2A"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Grid>
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                          Background="{TemplateBinding Background}"
+                                          Foreground="{TemplateBinding Foreground}" />
+                            <TextBlock Text="{TemplateBinding Tag}"
+                                       Margin="10,0,0,0"
+                                       VerticalAlignment="Center"
+                                       Foreground="#A7A7A7"
+                                       IsHitTestVisible="False"
+                                       Visibility="{Binding Text.Length,
+                                            RelativeSource={RelativeSource TemplatedParent},
+                                            Converter={StaticResource ZeroToVisibility}}" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
     </Application.Resources>
+
 </Application>

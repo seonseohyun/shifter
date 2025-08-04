@@ -5,10 +5,148 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Shifter.Views"
       mc:Ignorable="d" 
-      d:DesignHeight="800" d:DesignWidth="450"
-      Title="Page1">
+      d:DesignHeight="900" d:DesignWidth="1600"
+      Title="Page1"
+      Background="#FFFFFF">
 
+ 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="15*"/>
+        </Grid.RowDefinitions>
+
+        <!--[1]Power Button-->
+        <StackPanel
+            Grid.Row="0"
+            Orientation="Horizontal">
+            <Button
+                Width="40" Height="40"
+                Margin="10,1,1,1"
+                Background="Transparent"
+                Foreground="Transparent"
+                BorderBrush="Transparent"
+                BorderThickness="0">
+                <Image
+                    Source="/Resources/Icons/power-button.png">
+                </Image>
+            </Button>
+        </StackPanel>
+
+        <Border
+            Grid.Row="1"
+            Width="450"
+            Height="500"
+            Background="#FFFFFF"
+            CornerRadius="20">
+            <Border.Effect>
+                <DropShadowEffect
+                    Color="Black"
+                    ShadowDepth="5"
+                    BlurRadius="10"
+                    Opacity="0.7">
+                </DropShadowEffect>
+            </Border.Effect>
+            
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+
+                <!--[2_1] Logo-->
+                <Border
+                    Grid.Row="0"
+                    Margin="50">
+                    <Image
+                        Source="/Resources/Logo/LogoNoMargin.png">
+                    </Image>
+                </Border>
+
+                <!--[2-2] Text-->
+                <TextBlock
+                    Grid.Row="1"
+                    Text="하루고리에 로그인"
+                    Foreground="#222222"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    TextAlignment="Center"
+                    FontSize="15"
+                    FontFamily="Noto Sans KR">
+                </TextBlock>
+
+                <Grid
+                    Grid.Row="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <Border
+                        Grid.Row="0"
+                        CornerRadius="10"
+                        Background ="#FFFFFF"
+                        BorderBrush="#222222"
+                        BorderThickness="1"
+                        Margin="9,5,9,5">
+                        <TextBox
+                            Text="{Binding Id}"
+                            VerticalAlignment="Center"
+                            Tag="ID"
+                            
+                            Style="{StaticResource GrayWatermarkTextBoxStyle}"
+                            FontSize="14"
+                            FontFamily="Noto Sans KR"
+                            Background="Transparent"
+                            Foreground="#2A2A2A"
+                            Padding="10,0,0,0"
+                            VerticalContentAlignment="Center"
+                            BorderBrush="Transparent">
+                        </TextBox>
+                    </Border>
+
+                    <Border
+                        Grid.Row="1"
+                        CornerRadius="10"
+                        Background ="#FFFFFF"
+                        BorderBrush="#222222"
+                        BorderThickness="1"
+                        Margin="9,5,9,5">
+                        <TextBox
+                            Text="{Binding Pw}"
+                            VerticalAlignment="Center"
+                            Tag="PW"
+                            
+                            Style="{StaticResource GrayWatermarkTextBoxStyle}"
+                            FontSize="14"
+                            FontFamily="Noto Sans KR"
+                            Background="Transparent"
+                            Foreground="#2A2A2A"
+                            Padding="10,0,0,0"
+                            VerticalContentAlignment="Center"
+                            BorderBrush="Transparent">
+                        </TextBox>
+                    </Border>
+                </Grid>
+
+                <Button
+                    Grid.Row="3"
+                    Command="{Binding LogInCommand}"
+                    Background="#222222"
+                    Margin="9,16,9,16"
+                    Content="로그인"
+                    Foreground="#FFFFFF"
+                    FontSize="15"  FontFamily="Noto Sans KR">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Grid>
+        </Border>
     </Grid>
 </Page>
