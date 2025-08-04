@@ -1,11 +1,12 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Shifter.Models {
-    public partial class Session {
+    public partial class Session : ObservableObject {
         /** Consturctor **/
         public Session() { }
 
@@ -13,7 +14,8 @@ namespace Shifter.Models {
         /** Member Variables **/
         private int CurrentAdminId;
         private int CurrentTeamId;
-        private string CurrentTeamName;
+        private string? CurrentTeamName;
+        [ObservableProperty] bool visToolbar = true;
 
 
         /** Member Mathods **/
@@ -26,6 +28,6 @@ namespace Shifter.Models {
         /* Get Variables */
         public int GetCurrentAdminId()     { return CurrentAdminId; }
         public int GetCurrentTeamId()      { return CurrentTeamId; }
-        public string GetCurrentTeamName() { return CurrentTeamName; }
+        public string GetCurrentTeamName() { return CurrentTeamName!; }
     }
 }

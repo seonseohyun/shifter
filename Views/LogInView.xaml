@@ -26,11 +26,7 @@
                 Background="Transparent"
                 Foreground="Transparent"
                 BorderBrush="Transparent"
-                BorderThickness="0">
-                <Image
-                    Source="/Resources/Icons/power-button.png">
-                </Image>
-            </Button>
+                BorderThickness="0"/>
         </StackPanel>
 
         <Border
@@ -38,13 +34,14 @@
             Width="450"
             Height="500"
             Background="#FFFFFF"
-            CornerRadius="20">
+            CornerRadius="20"
+            Margin="0,0,0,100">
             <Border.Effect>
                 <DropShadowEffect
                     Color="Black"
                     ShadowDepth="5"
                     BlurRadius="10"
-                    Opacity="0.7">
+                    Opacity="0.5">
                 </DropShadowEffect>
             </Border.Effect>
             
@@ -91,7 +88,7 @@
                         Background ="#FFFFFF"
                         BorderBrush="#222222"
                         BorderThickness="1"
-                        Margin="9,5,9,5">
+                        Margin="15,5,15,5">
                         <TextBox
                             Text="{Binding Id}"
                             VerticalAlignment="Center"
@@ -114,7 +111,7 @@
                         Background ="#FFFFFF"
                         BorderBrush="#222222"
                         BorderThickness="1"
-                        Margin="9,5,9,5">
+                        Margin="15,5,15,5">
                         <TextBox
                             Text="{Binding Pw}"
                             VerticalAlignment="Center"
@@ -136,7 +133,7 @@
                     Grid.Row="3"
                     Command="{Binding LogInCommand}"
                     Background="#222222"
-                    Margin="9,16,9,16"
+                    Margin="15,16,15,16"
                     Content="로그인"
                     Foreground="#FFFFFF"
                     FontSize="15"  FontFamily="Noto Sans KR">

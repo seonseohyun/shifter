@@ -13,8 +13,10 @@ namespace Shifter.ViewModels {
         /** Constructor **/
         public LogInViewModel(Session? session, UserModel? userModel) {
             Console.WriteLine("[LogInViewModel] Allocated in Memory");
-            _session   = session;
-            _userModel = userModel;
+            _session   = session!;
+            _userModel = userModel!;
+
+            _session.VisToolbar = false;    // LogInViewModel 생성 시, MainWindow의 Toolbar Visibillity = Collapsed
         }
 
 
@@ -24,8 +26,8 @@ namespace Shifter.ViewModels {
         private readonly UserModel? _userModel;
         
         /* Observable Properties */
-        [ObservableProperty] string id;
-        [ObservableProperty] string pw;
+        [ObservableProperty] string? id;
+        [ObservableProperty] string? pw;
 
 
         /** Member Methods **/

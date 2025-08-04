@@ -3,11 +3,175 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Shifter"
+        xmlns:local="clr-namespace:Shifter.Helpers"
         mc:Ignorable="d"
         Title="MainWindow" Width="1600" Height="900">
     <Grid>
-        <Frame x:Name="MainFrame" 
-            NavigationUIVisibility="Hidden"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="14*"/>
+        </Grid.RowDefinitions>
+        
+        
+        <!-- Menu Bar -->
+        <Grid Grid.Row="0"
+              Visibility="{Binding Session.VisToolbar, Converter={StaticResource BoolToVis}}"
+              Background="#222222">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.7*"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Home, Back -->
+            <Grid Grid.Column="0">
+                <StackPanel
+                    Orientation="Horizontal">
+                    <Button
+                        Height="35"
+                        Width="35"
+                        Margin="10,10,5,10"
+                        VerticalAlignment="Stretch"
+                        Background="#FFFFFF">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="19"/>
+                            </Style>
+                        </Button.Resources>
+                        <Image
+                            Source="/Resources/Icons/home-button.png"
+                            Margin="8">
+                        </Image>
+                    </Button>
+
+                    <Button
+                        Background="#777777"
+                        Height="35"
+                        Width="35"
+                        Margin="5,10,10,10"
+                        VerticalAlignment="Stretch">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="19"/>
+                            </Style>
+                        </Button.Resources>
+                        <Image
+                            Source="/Resources/Icons/back.png"
+                            Margin="10">
+                        </Image>
+                    </Button>
+                </StackPanel>
+            </Grid>
+
+            
+            <!-- 직원관리, 근무표생성, 근무표관리, 근무기록 --> 
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                
+                <Button
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    Background="#282828"
+                    BorderBrush="Transparent">
+                    <TextBlock Text="직원관리"
+                               FontSize="15"
+                               FontFamily="Noto Sans KR"
+                               Foreground="#FFFFFF"
+                               FontWeight="Medium">
+                    </TextBlock>
+                </Button>
+
+                <Button
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    Background="#282828"
+                    BorderBrush="Transparent">
+                    <TextBlock Text="근무표생성"
+                               FontSize="15"
+                               FontFamily="Noto Sans KR"
+                               Foreground="#FFFFFF"
+                               FontWeight="Medium">
+                    </TextBlock>
+                </Button>
+
+                <Button
+                    Grid.Column="2"
+                    Grid.Row="0"
+                    Background="#282828"
+                    BorderBrush="Transparent">
+                    <TextBlock Text="근무표관리"
+                               FontSize="15"
+                               FontFamily="Noto Sans KR"
+                               Foreground="#FFFFFF"
+                               FontWeight="Medium">
+                    </TextBlock>
+                </Button>
+
+                <Button
+                    Grid.Column="3"
+                    Grid.Row="0"
+                    Background="#282828"
+                    BorderBrush="Transparent">
+                    <TextBlock Text="근무기록"
+                               FontSize="15"
+                               FontFamily="Noto Sans KR"
+                               Foreground="#FFFFFF"
+                               FontWeight="Medium">
+                    </TextBlock>
+                </Button>
+
+
+            </Grid>
+
+
+            <!--Info / LogIn-->
+            <Grid Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Horizontal"
+                            Grid.Column="1"
+                            Margin="5">
+                    <Button Margin="5" Background="#222222" BorderBrush="Transparent">
+                        <Image Source="/Resources/Icons/bell_on_white.png" Margin="5"></Image>
+                    </Button>
+                    <Button MinWidth="130" Margin="5" Background="#FFFFFF">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="7"/>
+                            </Style>
+                        </Button.Resources>
+                        <TextBlock Text="내정보" FontSize="15" FontFamily="Noto Sans KR" FontWeight="Medium" Foreground="#000000"></TextBlock>
+                    </Button>
+                    <Button MinWidth="130" Margin="5" Background="#000000" BorderBrush="#FFFFFF" BorderThickness="2">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="7"/>
+                            </Style>
+                        </Button.Resources>
+                        <TextBlock Text="로그아웃" FontSize="15" FontFamily="Noto Sans KR" FontWeight="Medium" Foreground="#FFFFFF"></TextBlock>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Grid>
+
+        
+        
+        <!-- Main Frame -->
+        <Frame x:Name="MainFrame"
+               Grid.Row="1"
+               NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

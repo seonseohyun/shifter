@@ -9,9 +9,29 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Icons\back.png" />
+    <None Remove="Resources\Icons\bell_on.png" />
+    <None Remove="Resources\Icons\bell_on_white.png" />
+    <None Remove="Resources\Icons\Character_1.png" />
+    <None Remove="Resources\Icons\Character_2.png" />
+    <None Remove="Resources\Icons\checklist_icon.png" />
+    <None Remove="Resources\Icons\clip_icon.png" />
+    <None Remove="Resources\Icons\home-button.png" />
     <None Remove="Resources\Icons\power-button.png" />
     <None Remove="Resources\Logo\Logo.png" />
     <None Remove="Resources\Logo\LogoNoMargin.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Icons\bell_on.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Icons\back.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
@@ -22,6 +42,24 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\Icons\bell_on_white.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\Character_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\Character_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\checklist_icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\clip_icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\home-button.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\Icons\power-button.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>

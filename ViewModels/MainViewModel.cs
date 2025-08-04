@@ -1,7 +1,9 @@
-﻿using CommunityToolkit.Mvvm.Messaging;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Extensions.DependencyInjection;
 using Shifter.Enums;
 using Shifter.Messages;
+using Shifter.Models;
 using Shifter.Views;
 using System;
 using System.Collections.Generic;
@@ -11,10 +13,17 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 namespace Shifter.ViewModels;
 
-public class MainViewModel {
+public partial class MainViewModel : ObservableObject {
     
     /** Constructor **/
-    public MainViewModel() {
+    public MainViewModel(Session? session) {
+        Console.WriteLine("[MainViewModel] Allocated in Memory");
+        if (session is not null) {
+            _session = session!;
+        }
+        else if (session is null) {
+            Console.WriteLine("[MainViewModel] Session is null");
+        }
         WeakReferenceMessenger.Default.Register<PageChangeMessage>(this, (r, m) => {
             Navigate(m.Value);
         });
@@ -23,13 +32,15 @@ public class MainViewModel {
     
     /** Member Variables **/
     private Frame? _mainFrame;
+    private Session? _session;
+    public Session Session => _session!; // binding을 위해 public변수 생성
 
 
     /** Member Methods **/
     public void SetFrame(Frame frame) {  // 메인 프레임 설정(예: MainWindow.xaml.cs에서 호출)
         Console.WriteLine("[MainViewModel] Executed SetFrame");
         _mainFrame = frame;              // 프레임을 설정
-        Navigate(PageType.LogIn);        // 첫 페이지 로딩 ( Enum PageType.LogIn )
+        Navigate(PageType.Home);        // 첫 페이지 로딩 ( Enum PageType.LogIn )
     }
 
 
