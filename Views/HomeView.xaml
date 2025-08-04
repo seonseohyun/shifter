@@ -14,8 +14,7 @@
       TextOptions.TextFormattingMode="Display">
 
     <Page.Resources>
-        <conv:BooleanToAlertIconConverter x:Key="AlertIconConverter"/>
-        <conv:BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+       
         <DropShadowEffect x:Key="ShadowEffect"
                           Color="Black"
                           Direction="270"
@@ -42,7 +41,7 @@
                             <Image Source="/Resources/images/bell_on.png" Width="20" Height="20"/>
                             <Ellipse Width="8" Height="8" Fill="Red"
                                      HorizontalAlignment="Right" VerticalAlignment="Top"
-                                     Visibility="{Binding HasAlert, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                                     Visibility="{Binding HasAlert}"/>
                         </Grid>
                     </Button>
                 </Grid>

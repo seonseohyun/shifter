@@ -8,11 +8,9 @@ namespace ShifterUser.Enums
 {
     public enum PageType
     {
-        Start,
         Login,
         Home,
-        SignUp,
-        TeamCode,
+        Info,
         Goback
     }
 }

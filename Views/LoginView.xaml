@@ -5,15 +5,18 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:viewmodels="clr-namespace:ShifterUser.ViewModels"
       xmlns:helpers="clr-namespace:ShifterUser.Helpers"
+      xmlns:converters="clr-namespace:ShifterUser.Converters"
       mc:Ignorable="d"
       Background="White"
-      Width="400" Height="800"
-        >
+      Width="400" Height="800">
+
+    <Page.Resources>
+        <converters:EmptyStringToVisibilityConverter x:Key="EmptyStringToVisibilityConverter" />
+    </Page.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <!-- 상단바 -->
             <RowDefinition Height="246*"/>
             <!-- 로고 -->
             <RowDefinition Height="81*"/>
@@ -23,20 +26,6 @@
             <!-- 입력/버튼 -->
         </Grid.RowDefinitions>
 
-        <!-- 상단 바 -->
-        <Grid Grid.Row="0" Background="#007BFF" Margin="0,0,0,201" Grid.RowSpan="2">
-            <Button Content="＜"
-                    Command="{Binding GoBackCommand}"
-                    Width="40" Height="40"
-                    Background="Transparent"
-                    BorderBrush="Transparent"
-                    FontSize="16"
-                    Foreground="White"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"/>
-        </Grid>
-
-        <!-- 로고 -->
 
         <!-- 슬로건 -->
         <TextBlock Grid.Row="3"
@@ -46,14 +35,16 @@
                    FontWeight="Medium"
                    Foreground="#2A2A2A"
                    HorizontalAlignment="Center"
-                   VerticalAlignment="Top" Margin="0,9,0,0" Height="20" Width="110"/>
+                   VerticalAlignment="Top"
+                   Margin="0,9,0,0"
+                   Height="20" Width="110"/>
 
         <!-- 입력 및 버튼 -->
         <StackPanel Grid.Row="4" Margin="20,28,20,0" VerticalAlignment="Top" Height="237">
 
             <!-- 아이디 -->
             <Border CornerRadius="24" Background="#EEF3FB" Margin="0,0,0,12">
-                <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"
+                <TextBox Text="{Binding id, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource BlueWatermarkTextBoxStyle}"
                          Tag="아이디"
                          Height="52"
@@ -64,7 +55,7 @@
             <Border CornerRadius="24" Background="#EEF3FB" Margin="0,0,0,20">
                 <Grid>
                     <PasswordBox
-                        helpers:PasswordBoxHelper.BoundPassword="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        helpers:PasswordBoxHelper.BoundPassword="{Binding Password, Mode=TwoWay}"
                         helpers:PasswordBoxHelper.BindPassword="True"
                         Background="Transparent"
                         BorderBrush="Transparent"
@@ -109,24 +100,28 @@
             </Button>
 
             <!-- 회원가입 안내 -->
-            <Button Command="{Binding GoToSignUpCommand}"
+            <Button Command="{Binding GoToInfoCommand}"
                     Background="Transparent"
                     BorderBrush="Transparent">
                 <TextBlock HorizontalAlignment="Center"
                            FontSize="13"
                            FontFamily="Noto Sans KR">
-                    <Run Text="계정이 없나요? " Foreground="#A7A7A7"/>
-                    <Run Text="회원가입" Foreground="#007BFF" TextDecorations="Underline" Cursor="Hand"/>
+                    <Run Text="하루고리에 대해 궁금하신가요? " Foreground="#A7A7A7"/>
+                    <Run Text="알아보기" Foreground="#007BFF" TextDecorations="Underline" Cursor="Hand"/>
                 </TextBlock>
             </Button>
         </StackPanel>
-        <Image Margin="279,136,19,79" Grid.Row="1" Source="/Resources/images/clock.png" Stretch="Fill" Grid.RowSpan="2"/>
+
+        <!-- 로고 이미지 -->
+        <Image Margin="268,123,19,79" Grid.Row="1" Source="/Resources/images/calender.png" Stretch="Fill" Grid.RowSpan="2"/>
         <Image Grid.Row="1"
                Source="/Resources/images/Logo.png"
                Width="300"
                Height="300"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
-               Margin="40,100,0,0" RenderTransformOrigin="0.503,0.762" Grid.RowSpan="4"/>
+               Margin="40,100,0,0"
+               RenderTransformOrigin="0.503,0.762"
+               Grid.RowSpan="4"/>
     </Grid>
 </Page>

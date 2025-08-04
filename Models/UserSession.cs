@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ShifterUser.Models
 {
-    internal class UserSession
+    public class UserSession
     {
     }
 }

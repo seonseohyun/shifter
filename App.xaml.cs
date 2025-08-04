@@ -17,12 +17,12 @@ namespace ShifterUser
     public partial class App : Application
     {
         public static IServiceProvider Services { get; private set; }
-        [DllImport("user32.dll")]
-        private static extern bool SetProcessDPIAware();
+        //[DllImport("user32.dll")]
+        //private static extern bool SetProcessDPIAware();
 
         public App()
         {
-            SetProcessDPIAware();
+            //SetProcessDPIAware();
 
             var serviceCollection = new ServiceCollection();
             ConfigureServices(serviceCollection);
@@ -46,11 +46,10 @@ namespace ShifterUser
 
             // ViewModels
             services.AddSingleton<MainViewModel>();
-            services.AddTransient<StartViewModel>();
             services.AddTransient<LoginViewModel>();
             services.AddTransient<QRCheckViewModel>();
             services.AddTransient<HomeViewModel>();
-            services.AddTransient<SignUpViewModel>();
+            services.AddTransient<InfoViewModel>();
         }
     }
 }

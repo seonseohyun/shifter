@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace ShifterUser.ViewModels
 {
-    public partial class SignUpViewModel : ObservableObject
+    public partial class InfoViewModel : ObservableObject
     {
-        public SignUpViewModel() { }
+        public InfoViewModel() { }
     
         [RelayCommand]
         private static void GoBack()

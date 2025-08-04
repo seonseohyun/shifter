@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace ShifterUser.Views
 {
     /// <summary>
-    /// StartV.xaml에 대한 상호 작용 논리
+    /// SignUpView.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class StartView : Page
+    public partial class InfoView : Page
     {
-        public StartView()
+        public InfoView()
         {
             InitializeComponent();
         }
