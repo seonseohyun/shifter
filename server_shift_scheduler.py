@@ -76,7 +76,7 @@ def create_individual_shift_schedule(staff_data, shift_type, change_requests=Non
     for person in all_people:
         sid = str(person["staff_id"])
         for d in range(num_days - 1):
-            night = schedule[(sid, d, night_shift)]
+            night = schedule[(sid, d, night_shift)]            
             off_next = schedule[(sid, d + 1, 'O')]
             
             # 하드 제약: 야간 근무 후 반드시 휴무
@@ -86,6 +86,10 @@ def create_individual_shift_schedule(staff_data, shift_type, change_requests=Non
             if 'E' in shifts:
                 eve_next = schedule[(sid, d + 1, 'E')]
                 model.AddBoolOr([night.Not(), eve_next.Not()])
+            #야간 근무후 데이 근무 금지
+            if 'D' in shifts:
+                day_next = schedule[(sid, d+1, 'D')]
+                model.AddBoolOr([night.Not(), day_next.Not()])
 
     # 최소 휴무일 제약 (월 최소 3일 → 2일로 완화) 
     for person in all_people:
@@ -120,7 +124,7 @@ def create_individual_shift_schedule(staff_data, shift_type, change_requests=Non
 
 
       #최소근무시간 제약
-    margin = 10  # 예: 최소는 최대보다 10시간 적게 일해도 됨, 170시간 
+    margin = 25  # 예:209 -25 최소는 : 184시간  184/21 일 9.2시간근무
 
     for person in all_people:
         sid = str(person["staff_id"])
@@ -189,6 +193,14 @@ def create_individual_shift_schedule(staff_data, shift_type, change_requests=Non
         print("\n=== 월 총 근무시간 통계 ===")
         for name, stats in monthly_hours_summary.items():
             print(f"{name}: {stats['actual_hours']}시간/{stats['max_hours']}시간 (여유: {stats['remaining_hours']}시간)")
+
+          # JSON 파일로 저장
+        output_path = "./data/result_schedule.json"
+        os.makedirs(os.path.dirname(output_path), exist_ok=True)
+        with open(output_path, "w", encoding="utf-8") as f:
+            json.dump(result, f, ensure_ascii=False, indent=2)
+
+        print(f"[INFO] 근무표가 저장되었습니다: {output_path}")
 
         return result
     else:

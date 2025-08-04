@@ -30,15 +30,29 @@ request_data = {
             {"name": "이병희", "staff_id": 120, "grade": 1, "grade_name": "제일높은직급", "total_monthly_work_hours": 220}
         ]
     },
-    "shift_type": 3,
-    "change_requests": [
-        {
-            "staff_id": 101,
-            "date": "2025-08-12",
-            "desired_shift": "N",
-            "original_shift": "D"
+    "shift_type": 3,  
+    "shift_details": {
+        "D": {
+        "start": "09:00",
+        "end": "17:00",
+        "hours": 8
+        },
+        "E": {
+        "start": "14:00",
+        "end": "22:00",
+        "hours": 8
+        },
+        "N": {
+        "start": "22:00",
+        "end": "06:00",
+        "hours": 8
+        },
+        "O": {
+        "start": "",
+        "end": "",
+        "hours": 0
         }
-    ]
+    }
 }
 
 # 서버로 보내고 응답 받기
