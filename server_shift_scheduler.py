@@ -5,7 +5,7 @@ from ortools.sat.python import cp_model
 import os
 
 HOST = '127.0.0.1'
-PORT = 6000
+PORT = 6001
 
 def create_individual_shift_schedule(staff_data, shift_type, change_requests=None):
     if shift_type not in [2, 3, 4]:
@@ -72,45 +72,75 @@ def create_individual_shift_schedule(staff_data, shift_type, change_requests=Non
             if s != 'O':
                 model.Add(sum(schedule[(str(person["staff_id"]), d, s)] for person in all_people) >= 1)
 
+    # 야간 근무 후 휴무 규칙 - 하드 제약으로 단순화 (성능 향상)
     for person in all_people:
         sid = str(person["staff_id"])
         for d in range(num_days - 1):
             night = schedule[(sid, d, night_shift)]
             off_next = schedule[(sid, d + 1, 'O')]
+            
+            # 하드 제약: 야간 근무 후 반드시 휴무
             model.AddImplication(night, off_next)
 
+            # 야간 근무 후 저녁 근무 금지
             if 'E' in shifts:
                 eve_next = schedule[(sid, d + 1, 'E')]
                 model.AddBoolOr([night.Not(), eve_next.Not()])
 
+    # 최소 휴무일 제약 (월 최소 3일 → 2일로 완화)
     for person in all_people:
         sid = str(person["staff_id"])
-        model.Add(sum(schedule[(sid, d, 'O')] for d in days) >= 3)
+        model.Add(sum(schedule[(sid, d, 'O')] for d in days) >= 2)
 
+    # 월 총 근무시간 제약조건 - 10% 여유분 추가 (현실성 고려)
+    for person in all_people:  
+        sid = str(person["staff_id"])
+        base_hours = person.get("total_monthly_work_hours", 180)
+        # 10% 여유분 추가하여 해 찾기 용이하게 함
+        max_monthly_hours = int(base_hours * 1.1)
+        monthly_hours = sum(schedule[(sid, d, s)] * shift_hours[s] for d in days for s in shifts)
+        model.Add(monthly_hours <= max_monthly_hours)
+        print(f"[INFO] {person['name']} 월 최대 근무시간: {base_hours}시간 (여유분 포함: {max_monthly_hours}시간)")
+
+    # 주당 근무시간 제약을 대폭 완화 (40시간 → 60시간)
     for person in all_people:
         sid = str(person["staff_id"])
         for w in range(num_weeks):
             week_start = w * 7
             week_end = min(week_start + 7, num_days)
             hours = sum(schedule[(sid, d, s)] * shift_hours[s] for d in range(week_start, week_end) for s in shifts)
-            model.Add(hours <= 40)
+            model.Add(hours <= 60)  # 주당 최대 60시간으로 대폭 완화
 
+    # 야간 근무 균등 분배 - 단순화된 목적함수
     night_counts = [sum(schedule[(str(person["staff_id"]), d, night_shift)] for d in days) for person in all_people]
     max_nights = model.NewIntVar(0, num_days, "max_night")
     min_nights = model.NewIntVar(0, num_days, "min_night")
     model.AddMaxEquality(max_nights, night_counts)
     model.AddMinEquality(min_nights, night_counts)
+    
+    # 단순한 목적함수: 야간 근무 균등성만
     model.Minimize(max_nights - min_nights)
 
     solver = cp_model.CpSolver()
-    solver.parameters.max_time_in_seconds = 300.0
-    solver.parameters.log_search_progress = True
-    solver.parameters.num_search_workers = 8
+    # 성능 우선 솔버 설정 (호환성 고려)
+    solver.parameters.max_time_in_seconds = 30.0  # 시간을 30초로 대폭 단축
+    solver.parameters.log_search_progress = False  # 로그 비활성화
+    solver.parameters.num_search_workers = 1  # 단일 워커로 오버헤드 최소화
+    solver.parameters.cp_model_presolve = True  # 전처리 활성화 유지
     status = solver.Solve(model)
 
     print(f"솔버 상태: {solver.StatusName(status)}")
+    print(f"해결 시간: {solver.WallTime():.2f}초")
+    if status in (cp_model.OPTIMAL, cp_model.FEASIBLE):
+        night_balance_value = solver.Value(max_nights) - solver.Value(min_nights)
+        print(f"야간 근무 균등성: {night_balance_value}")
+        print(f"최대 야간 근무: {solver.Value(max_nights)}회, 최소 야간 근무: {solver.Value(min_nights)}회")
+    
     if status in (cp_model.OPTIMAL, cp_model.FEASIBLE):
         result = {}
+        monthly_hours_summary = {}
+        
+        # 근무표 생성
         for d in days:
             date_str = (start_date + timedelta(days=d)).strftime('%Y-%m-%d')
             day_schedule = []
@@ -130,6 +160,21 @@ def create_individual_shift_schedule(staff_data, shift_type, change_requests=Non
                     "people": assigned_people
                 })
             result[date_str] = day_schedule
+        
+        # 월 총 근무시간 통계 계산
+        for person in all_people:
+            sid = str(person["staff_id"])
+            total_hours = sum(solver.Value(schedule[(sid, d, s)]) * shift_hours[s] 
+                            for d in days for s in shifts)
+            monthly_hours_summary[person["name"]] = {
+                "actual_hours": total_hours,
+                "max_hours": person.get("total_monthly_work_hours", 180),
+                "remaining_hours": person.get("total_monthly_work_hours", 180) - total_hours
+            }
+        
+        print("\n=== 월 총 근무시간 통계 ===")
+        for name, stats in monthly_hours_summary.items():
+            print(f"{name}: {stats['actual_hours']}시간/{stats['max_hours']}시간 (여유: {stats['remaining_hours']}시간)")
 
         return result
     else:
