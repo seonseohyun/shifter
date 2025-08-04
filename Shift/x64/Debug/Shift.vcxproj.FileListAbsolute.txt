@@ -1,0 +1,8 @@
+C:\Users\seonseo\Desktop\Shift\x64\Debug\mariadbcpp.dll
+C:\Users\seonseo\Desktop\Shift\x64\Debug\libmariadb.dll
+C:\Users\seonseo\Desktop\Shift\x64\Debug\zlibd1.dll
+C:\Users\seonseo\Desktop\Shift\Shift\x64\Debug\Shift.vcxproj.Up2Date
+C:\Users\seonseo\source\repos\shifter\x64\Debug\mariadbcpp.dll
+C:\Users\seonseo\source\repos\shifter\x64\Debug\libmariadb.dll
+C:\Users\seonseo\source\repos\shifter\x64\Debug\zlibd1.dll
+C:\Users\seonseo\source\repos\shifter\Shift\x64\Debug\Shift.vcxproj.Up2Date
