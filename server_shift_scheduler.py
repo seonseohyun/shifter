@@ -1,6 +1,7 @@
 import socket
 import json
 from datetime import datetime, timedelta
+import calendar
 from ortools.sat.python import cp_model
 import os
 
@@ -38,6 +39,28 @@ POSITION_RULES = {
         "shift_hours": {'D': 8, 'E': 8, 'N': 8, 'O': 0}
     }
 }
+
+def parse_target_month(target_month):
+    """target_month 파싱하여 시작일과 일수 계산"""
+    try:
+        if target_month:
+            year, month = map(int, target_month.split('-'))
+        else:
+            # 기본값: 현재 월
+            now = datetime.now()
+            year, month = now.year, now.month
+        
+        # 해당 월의 첫째 날과 마지막 날 계산
+        start_date = datetime(year, month, 1)
+        num_days = calendar.monthrange(year, month)[1]  # 해당 월의 일수
+        
+        print(f"[INFO] 대상 월: {year}년 {month}월 ({num_days}일)")
+        return start_date, num_days
+        
+    except Exception as e:
+        print(f"[ERROR] target_month 파싱 오류: {e}")
+        # 기본값: 2025년 8월
+        return datetime(2025, 8, 1), 31
 
 def apply_position_constraints(model, schedule, person, days, shifts, shift_hours, num_weeks, rules, position):
     """직군별 제약조건 적용"""
@@ -110,7 +133,7 @@ def apply_position_constraints(model, schedule, person, days, shifts, shift_hour
     
     print(f"[INFO] {name}: 주당 최대 {max_weekly_hours}시간, 월 최대 {base_monthly_hours}시간(여유분: {max_monthly_hours}시간)")
 
-def create_individual_shift_schedule(staff_data, shift_type, change_requests=None, position="default"):
+def create_individual_shift_schedule(staff_data, shift_type, change_requests=None, position="default", target_month=None):
     model = cp_model.CpModel()
     
     # 직군별 규칙 가져오기
@@ -138,9 +161,10 @@ def create_individual_shift_schedule(staff_data, shift_type, change_requests=Non
             night_shift = 'N'
         
         shift_hours = {s: 8 if s != 'O' else 0 for s in shifts}
-    num_days = 31
+    
+    # 동적 날짜 계산
+    start_date, num_days = parse_target_month(target_month)
     days = range(num_days)
-    start_date = datetime(2025, 8, 1)
     num_weeks = (num_days + 6) // 7
 
     all_people = staff_data["staff"]
@@ -265,12 +289,13 @@ def handle_request(request_json):
         shift_type = data.get("shift_type", 3)
         change_requests = data.get("change_requests", [])  #수정요청은 추후에 넣을수도 있지만 현재는 필요가 없음 빈배열
         position = data.get("position", "default")  # 직군 정보 추가
+        target_month = data.get("target_month")  # 대상 월 정보 추가
 
         if not staff_data or "staff" not in staff_data:
             return json.dumps({"error": "유효한 staff_data가 필요합니다."})
 
-        print(f"[INFO] 요청 받음 - 직군: {position}, 직원 수: {len(staff_data['staff'])}")
-        result = create_individual_shift_schedule(staff_data, shift_type, change_requests, position)
+        print(f"[INFO] 요청 받음 - 직군: {position}, 직원 수: {len(staff_data['staff'])}, 대상 월: {target_month}")
+        result = create_individual_shift_schedule(staff_data, shift_type, change_requests, position, target_month)
 
         if result is None:
             return json.dumps({"status": "error", "message": "근무표를 생성할 수 없습니다."})

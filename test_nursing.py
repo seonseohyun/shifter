@@ -9,6 +9,7 @@ PORT = 6001
 # 간호 직군 테스트 데이터 (20명)
 nursing_request = {
     "position": "간호",
+    "target_month": "2025-09",  # 9월 근무표 생성
     "staff_data": {
         "staff": [
             {"name": "김간호사", "staff_id": 101, "grade": 3, "grade_name": "일반간호사", "position": "간호", "total_monthly_work_hours": 180},

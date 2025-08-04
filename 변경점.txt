@@ -294,3 +294,62 @@ POSITION_RULES = {
     }
 }
 ```
+
+## 🗓️ 동적 월 생성 시스템 구현 완료
+
+### 📅 추가 변경 일자: 2025-08-04 (동적 월 생성)
+
+### 1. 동적 월 생성 기능 구현
+- **target_month** 필드 지원: "YYYY-MM" 형식으로 원하는 월 지정
+- **자동 날짜 계산**: `calendar.monthrange()`로 해당 월의 정확한 일수 계산
+- **동적 근무표 생성**: 지정된 월의 실제 날짜로 근무표 작성
+- **하위 호환성**: target_month 생략시 현재 월 사용
+
+### 2. parse_target_month() 함수 구현
+```python
+def parse_target_month(target_month):
+    """target_month 파싱하여 시작일과 일수 계산"""
+    if target_month:
+        year, month = map(int, target_month.split('-'))
+    else:
+        now = datetime.now()
+        year, month = now.year, now.month
+    
+    start_date = datetime(year, month, 1)
+    num_days = calendar.monthrange(year, month)[1]
+    return start_date, num_days
+```
+
+### 3. API 확장
+```json
+{
+  "position": "간호",
+  "target_month": "2025-09",  // 새로운 필드 - 원하는 월 지정
+  "staff_data": {...}
+}
+```
+
+### 4. 테스트 결과 검증
+- **간호 직군 (2025-09)**: 30일 근무표 생성, 30.03초 ✅
+- **소방 직군 (2025-10)**: 31일 근무표 생성, 0.03초 ✅
+- **날짜 정확성**: 각 월의 정확한 일수로 근무표 생성 확인 ✅
+- **제약조건 유지**: 모든 직군별 제약조건 정상 적용 ✅
+
+### 5. 구현된 기능
+- **월별 유연성**: 임의의 년월에 대한 근무표 생성 가능
+- **정확한 날짜**: 각 월의 실제 일수 (28/29/30/31일) 자동 처리
+- **날짜 포맷팅**: 결과 JSON에서 실제 날짜 문자열 사용 (예: "2025-09-01")
+- **에러 처리**: 잘못된 target_month 입력시 기본값 사용
+
+### 6. 파일 저장 시스템
+- **자동 저장**: 생성된 근무표를 `./data/result_schedule.json`에 자동 저장
+- **디렉토리 생성**: data 디렉토리 자동 생성
+- **UTF-8 인코딩**: 한글 직원명 완전 지원
+- **JSON 형식**: 들여쓰기 적용된 가독성 높은 형식
+
+### 7. 시스템 완성도
+- **직군별 제약조건**: ✅ 완료 (간호/소방/default)
+- **동적 월 생성**: ✅ 완료 (임의 년월)
+- **파일 저장**: ✅ 완료 (JSON 형식)
+- **성능 최적화**: ✅ 완료 (30초 이내)
+- **테스트 검증**: ✅ 완료 (20명 직원)

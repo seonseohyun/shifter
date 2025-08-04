@@ -8,7 +8,8 @@ PORT = 6001
 
 # 소방 직군 테스트 데이터 (20명)
 firefighter_request = {
-    "position": "소방",
+    "position": "소방", 
+    "target_month": "2025-10",  # 10월 근무표 생성
     "staff_data": {
         "staff": [
             {"name": "김소방관", "staff_id": 201, "grade": 3, "grade_name": "정규소방사", "position": "소방", "total_monthly_work_hours": 192},
