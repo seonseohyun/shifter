@@ -31,3 +31,41 @@ JSON 파싱/디코딩 오류: 서버 recv 후 json.loads(data.decode()). 클라�
 
 
 웹 검색 결과("OR-Tools CP-SAT solver slow large model" 및 "infeasible model detection time"), 유사 스케줄링 모델에서 제약 충돌 시 증명 시간이 길어질 수 있음. 커버리지 제약 활성화 시 infeasible 가능성 높음 (시간 제한 직원으로 슬롯 채우기 어려움).
+
+
+
+
+
+
+
+월 총 근무시간 정보를 CPP 로부터 받아서 PYTHON 파일에 넘기면 파이썬의 ORTOOLS 모델을 이용해서 월총 근무시간제약을 지키는 근무표를
+생성해야하는데 제대로 생성이 안되는지 자꾸 BLOCK되는 문제가 있다.
+
+개개인의 희망 월 총 근무시간이 최대한 지켜지면서(넘기지 않는 선에서) 근무표 생성 하는 방법이 있을까? 
+
+request_data = {
+    "staff_data": {
+        "staff": [
+            {"name": "박주영", "staff_id": 101, "grade": 1, "grade_name": "제일높은직급","total_monthly_work_hours":180},
+            {"name": "최정환", "staff_id": 102, "grade": 1, "grade_name": "제일높은직급","total_monthly_work_hours":180},
+            {"name": "문재윤", "staff_id": 103, "grade": 1, "grade_name": "제일높은직급","total_monthly_work_hours":180},
+            {"name": "선서현", "staff_id": 104, "grade": 1, "grade_name": "제일높은직급","total_monthly_work_hours":180},
+            {"name": "박경태", "staff_id": 105, "grade": 1, "grade_name": "제일높은직급","total_monthly_work_hours":180},
+            {"name": "유희라", "staff_id": 106, "grade": 1, "grade_name": "제일높은직급","total_monthly_work_hours":180},
+            {"name": "김유범", "staff_id": 107, "grade": 1, "grade_name": "제일높은직급","total_monthly_work_hours":180},
+            {"name": "박서은", "staff_id": 108, "grade": 1, "grade_name": "제일높은직급","total_monthly_work_hours":180},
+            {"name": "김대업", "staff_id": 109, "grade": 1, "grade_name": "제일높은직급","total_monthly_work_hours":180},
+            {"name": "유예솜", "staff_id": 110, "grade": 1, "grade_name": "제일높은직급","total_monthly_work_hours":180},
+            {"name": "고준영", "staff_id": 111, "grade": 1, "grade_name": "제일높은직급","total_monthly_work_hours":180},
+            {"name": "하진영", "staff_id": 112, "grade": 1, "grade_name": "제일높은직급","total_monthly_work_hours":180},
+            {"name": "오장관", "staff_id": 113, "grade": 1, "grade_name": "제일높은직급","total_monthly_work_hours":200},
+            {"name": "윤진영", "staff_id": 114, "grade": 1, "grade_name": "제일높은직급","total_monthly_work_hours":200},
+            {"name": "한경식", "staff_id": 115, "grade": 1, "grade_name": "제일높은직급","total_monthly_work_hours":200},
+            {"name": "한현희", "staff_id": 116, "grade": 1, "grade_name": "제일높은직급","total_monthly_work_hours":200},
+            {"name": "정종옥", "staff_id": 117, "grade": 1, "grade_name": "제일높은직급","total_monthly_work_hours":200},
+            {"name": "양성규", "staff_id": 118, "grade": 1, "grade_name": "제일높은직급","total_monthly_work_hours":200},
+            {"name": "김화백", "staff_id": 119, "grade": 1, "grade_name": "제일높은직급","total_monthly_work_hours":200},
+            {"name": "이병희", "staff_id": 120, "grade": 1, "grade_name": "제일높은직급","total_monthly_work_hours":220}
+        ]
+    },
+}
