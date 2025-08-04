@@ -29,17 +29,17 @@ namespace ShifterUser.ViewModels
         private void LogIn()
         {
             // 로그인 시 이메일과 비밀번호가 비어있는지 확인
-            if (string.IsNullOrWhiteSpace(id) || string.IsNullOrWhiteSpace(Password))
+            if (string.IsNullOrWhiteSpace(Id) || string.IsNullOrWhiteSpace(Password))
             {
                 MessageBox.Show("이메일과 비밀번호를 입력해주세요.", "입력 오류", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
             // Model의 LogIn Method 사용
-            bool LogInResult = _userModel.LogIn(id, Password);
+            bool LogInResult = _userModel.LogIn(Id, Password);
             if (LogInResult is true)
             {
-                MessageBox.Show($"로그인 성공! {id}님, 환영합니다.", "로그인 성공", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show($"로그인 성공! {Id}님, 환영합니다.", "로그인 성공", MessageBoxButton.OK, MessageBoxImage.Information);
                 GoToHome();
             }
         }

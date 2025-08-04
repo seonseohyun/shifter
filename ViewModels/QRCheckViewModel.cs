@@ -1,4 +1,9 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
+using ShifterUser.Enums;
+using ShifterUser.Messages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +11,21 @@ using System.Threading.Tasks;
 
 namespace ShifterUser.ViewModels
 {
-    public class QRCheckViewModel
+
+    public partial class QRCheckViewModel : ObservableObject
     {
+        public QRCheckViewModel()
+        {
+            
+        }
+
+        [RelayCommand]
+        private static void GoBack()
+        {
+            WeakReferenceMessenger.Default.Send((new PageChangeMessage(PageType.Goback)));
+        }
     }
+
 }
+
+

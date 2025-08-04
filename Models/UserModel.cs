@@ -32,11 +32,16 @@ namespace ShifterUser.Models
         {
 
             /* [1] new json */
-            JObject jsonData = new() {
+            JObject jsonData = new()
+            {
                 { "protocol", "login" },
-                { "authority","user"},
-                { "id", id },
-                { "pw", password }
+                {
+                    "data", new JObject
+                    {
+                        { "id", id },
+                        { "pw", password }
+                    }
+                }
             };
 
             var sendItem = new WorkItem

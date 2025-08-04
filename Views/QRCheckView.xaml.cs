@@ -1,28 +1,62 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using OpenCvSharp;
+using OpenCvSharp.Extensions;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Threading;
+using ShifterUser.Helpers;
 
 namespace ShifterUser.Views
 {
-    /// <summary>
-    /// QRCheckV.xaml에 대한 상호 작용 논리
-    /// </summary>
     public partial class QRCheckView : Page
     {
+        private VideoCapture? _capture;
+        private Mat _frame = new();
+        private DispatcherTimer? _timer;
+
         public QRCheckView()
         {
             InitializeComponent();
+            StartCamera();
+            this.Unloaded += (s, e) => StopCamera();
         }
+
+        private void StartCamera()
+        {
+            _capture = new VideoCapture(0);
+            if (!_capture.IsOpened())
+            {
+                MessageBox.Show("카메라를 열 수 없습니다.");
+                return;
+            }
+
+            _timer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromMilliseconds(33)
+            };
+            _timer.Tick += (s, e) =>
+            {
+                _capture.Read(_frame);
+                if (!_frame.Empty())
+                {
+                    CameraPreview.Source = BitmapSourceConverter.ToBitmapSource(_frame);
+                }
+            };
+            _timer.Start();
+        }
+
+        private void StopCamera()
+        {
+            _timer?.Stop();
+            _capture?.Release();
+            _frame?.Dispose();
+        }
+
+        private void MockCheckButton_Click(object sender, RoutedEventArgs e)
+        {
+            // 현재 시간 찍어서 StatusBox에 표시
+            StatusText.Text = $"출근 완료! {DateTime.Now:HH:mm}";
+            StatusBox.Visibility = Visibility.Visible;
+        }
+
     }
 }

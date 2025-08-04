@@ -12,6 +12,7 @@ namespace ShifterUser.Enums
         Home,
         Info,
         MySche,
+        QR,
         Goback
     }
 
