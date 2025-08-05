@@ -5,6 +5,14 @@ public class WorkRequestModel
     public DateTime RequestDate { get; set; }
     public ShiftType ShiftType { get; set; }
     public WorkRequestStatus Status { get; set; }
-    public string Reason { get; set; } // 작성 사유
-    public string? RejectionReason { get; set; } // 반려일 경우만 존재
+    public string Reason { get; set; }
+    public string? RejectionReason { get; set; }
+
+    public string StatusText => Status switch
+    {
+        WorkRequestStatus.Approved => "승인",
+        WorkRequestStatus.Rejected => "반려",
+        WorkRequestStatus.Pending => "대기",
+        _ => "알수없음"
+    };
 }

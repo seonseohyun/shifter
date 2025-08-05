@@ -14,7 +14,6 @@
     <None Remove="Resources\images\bell.png" />
     <None Remove="Resources\images\bell_on.png" />
     <None Remove="Resources\images\calender.png" />
-    <None Remove="Resources\images\cancel_red.png" />
     <None Remove="Resources\images\check_green.png" />
     <None Remove="Resources\images\clock.png" />
     <None Remove="Resources\images\Logo.png" />
@@ -41,7 +40,7 @@
     <Resource Include="Resources\images\calender.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Resources\images\cancel_red.png" />
+    <Resource Include="Resources\images\cancle_red.png" />
     <Resource Include="Resources\images\check_green.png" />
     <Resource Include="Resources\images\clock.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

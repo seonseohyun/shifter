@@ -1,19 +1,27 @@
 ﻿<Page x:Class="ShifterUser.Views.MyReqStatusView"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:conv="clr-namespace:ShifterUser.Converters"
       mc:Ignorable="d"
       Background="White"
-      Width="400"
-      Height="800">
+      Width="400" Height="800"
+      FontFamily="Noto Sans KR">
+
+    <Page.Resources>
+        <DropShadowEffect x:Key="CardShadow"
+                          Color="Black"
+                          Direction="270"
+                          ShadowDepth="10"
+                          BlurRadius="6"
+                          Opacity="0.5"/>
+    </Page.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <!-- 상단바 -->
             <RowDefinition Height="*"/>
-            <!-- 본문 -->
         </Grid.RowDefinitions>
 
         <!-- 상단 네비게이션 바 -->
@@ -26,66 +34,81 @@
             </Button>
         </Border>
 
-        <!-- 본문 전체 그림자 구조 -->
-        <Grid Grid.Row="1" Margin="10">
+        <!-- 본문 -->
+        <Grid Grid.Row="1" Margin="16,16,16,16">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
-            <!-- Shadow Layer -->
-            <Border CornerRadius="20" Background="Transparent">
-                <Border.Effect>
-                    <DropShadowEffect Color="Black"
-                                      ShadowDepth="5"
-                                      BlurRadius="10"
-                                      Opacity="0.5"/>
-                </Border.Effect>
-            </Border>
+            <!-- 그림자 Layer -->
+            <Border Background="White" CornerRadius="20" Effect="{StaticResource CardShadow}"/>
 
-            <!-- Content Layer -->
-            <Border Background="White" CornerRadius="20" BorderBrush="#DDDDDD" BorderThickness="1">
+            <!-- 콘텐츠 Layer -->
+            <Border Background="White"
+                    CornerRadius="20"
+                    BorderBrush="#DDDDDD"
+                    BorderThickness="1">
                 <Grid Margin="16">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
-                        <!-- 내용 스크롤 -->
                         <RowDefinition Height="Auto"/>
-                        <!-- 하단 버튼 고정 -->
                     </Grid.RowDefinitions>
 
-                    <!-- 내용 스크롤 -->
-                    <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Hidden">
+                    <!-- 스크롤 콘텐츠 -->
+                    <ScrollViewer Grid.Row="0"
+                                  VerticalScrollBarVisibility="Hidden"
+                                  CanContentScroll="False">
                         <StackPanel>
 
                             <!-- 타이틀 -->
                             <TextBlock Text="내 근무 요청 현황 보기"
-                                       FontFamily="Noto Sans KR"
-                           FontSize="20" FontWeight="Bold" Margin="0,0,0,15"/>
+                                       FontSize="22" FontWeight="Bold"
+                                       Margin="10,10,0,15"/>
 
                             <!-- 연도/월 선택 -->
-                            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                                <ComboBox Width="160"
-                              ItemsSource="{Binding Years}"
-                              SelectedItem="{Binding SelectedYear}"/>
-                                <ComboBox Width="160" Margin="15,0,0,0"
-                              ItemsSource="{Binding Months}"
-                              SelectedItem="{Binding SelectedMonth}"/>
+                            <StackPanel Orientation="Horizontal" Margin="10,0,0,10" VerticalAlignment="Center">
+                                <!-- 연도 -->
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                    <ComboBox Width="135" Height="25" FontSize="14"
+                                      ItemsSource="{Binding Years}"
+                                      SelectedItem="{Binding SelectedYear}"/>
+                                    <TextBlock Text="년" Margin="5,0,10,0" VerticalAlignment="Center" FontSize="14"/>
+                                </StackPanel>
+
+                                <!-- 월 -->
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <ComboBox Width="135" Height="25" FontSize="14"
+                                      ItemsSource="{Binding Months}"
+                                      SelectedItem="{Binding SelectedMonth}"/>
+                                    <TextBlock Text="월" Margin="5,0,0,0" VerticalAlignment="Center" FontSize="14"/>
+                                </StackPanel>
                             </StackPanel>
 
-                            <!-- 필터 버튼 -->
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
-                                <RadioButton Content="전체" Margin="5" GroupName="StatusFilter"
-                                 IsChecked="{Binding FilterStatus, Converter={StaticResource StatusToBoolConverter}, ConverterParameter=None}"/>
-                                <RadioButton Content="대기" Margin="5" GroupName="StatusFilter"
-                                 IsChecked="{Binding FilterStatus, Converter={StaticResource StatusToBoolConverter}, ConverterParameter=Pending}"/>
-                                <RadioButton Content="승인" Margin="5" GroupName="StatusFilter"
-                                 IsChecked="{Binding FilterStatus, Converter={StaticResource StatusToBoolConverter}, ConverterParameter=Approved}"/>
-                                <RadioButton Content="반려" Margin="5" GroupName="StatusFilter"
-                                 IsChecked="{Binding FilterStatus, Converter={StaticResource StatusToBoolConverter}, ConverterParameter=Rejected}"/>
+
+                            <!-- 상태 필터 -->
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5,0,0,20">
+                                <RadioButton FontSize="14" Content="전체" Margin="8" GroupName="StatusFilter"
+                                             IsChecked="{Binding FilterStatus, Converter={StaticResource StatusToBoolConverter}, ConverterParameter=None}"/>
+                                <RadioButton FontSize="14" Content="대기" Margin="8" GroupName="StatusFilter"
+                                             IsChecked="{Binding FilterStatus, Converter={StaticResource StatusToBoolConverter}, ConverterParameter=Pending}"/>
+                                <RadioButton FontSize="14" Content="승인" Margin="8" GroupName="StatusFilter"
+                                             IsChecked="{Binding FilterStatus, Converter={StaticResource StatusToBoolConverter}, ConverterParameter=Approved}"/>
+                                <RadioButton FontSize="14" Content="반려" Margin="8" GroupName="StatusFilter"
+                                             IsChecked="{Binding FilterStatus, Converter={StaticResource StatusToBoolConverter}, ConverterParameter=Rejected}"/>
                             </StackPanel>
 
                             <!-- 요청 리스트 -->
                             <ItemsControl ItemsSource="{Binding Requests}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <Border Background="White" BorderBrush="#E0E0E0" BorderThickness="1"
-                                    CornerRadius="10" Margin="0,0,0,10" Padding="10">
+                                        <Border Background="White"
+                                            BorderBrush="#E0E0E0"
+                                            BorderThickness="1"
+                                            CornerRadius="10"
+                                            Margin="5,0,5,10"
+                                            Padding="10,14">
+                                            <!-- 상하 Padding 증가 -->
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="*"/>
@@ -95,36 +118,40 @@
                                                 <!-- 왼쪽 정보 -->
                                                 <StackPanel>
                                                     <StackPanel Orientation="Horizontal" Margin="0,0,0,2">
-                                                        <TextBlock Text="{Binding RequestDate, StringFormat=yyyy.MM.dd}" FontWeight="Bold"/>
+                                                        <TextBlock Text="{Binding RequestDate, StringFormat=yyyy.MM.dd}"
+                                                        FontWeight="Bold" FontSize="15"/>
                                                         <Border Background="#F5F5F5" CornerRadius="10" Margin="5,0,0,0" Padding="5,0">
-                                                            <TextBlock Text="{Binding ShiftType}" FontSize="10"/>
+                                                            <TextBlock Text="{Binding ShiftType}" FontSize="12"/>
                                                         </Border>
                                                     </StackPanel>
-                                                    <TextBlock Text="{Binding Reason}" FontSize="12" Foreground="Gray"/>
+                                                    <TextBlock Text="{Binding Reason}" FontSize="13" Foreground="Gray"/>
                                                 </StackPanel>
 
                                                 <!-- 오른쪽 상태 -->
-                                                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="5,0,0,0">
+                                                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,10,0">
                                                     <Image Width="16" Height="16" Source="{Binding Status, Converter={StaticResource StatusToIconConverter}}" Margin="0,0,5,0"/>
-                                                    <TextBlock Text="{Binding StatusText}" FontWeight="Bold"
-                                                   Foreground="{Binding Status, Converter={StaticResource StatusToColorConverter}}"/>
+                                                    <TextBlock Text="{Binding StatusText}" FontWeight="Bold" FontSize="14"
+                                                    Foreground="{Binding Status, Converter={StaticResource StatusToColorConverter}}"/>
                                                 </StackPanel>
                                             </Grid>
                                         </Border>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
+
                         </StackPanel>
                     </ScrollViewer>
 
-                    <!-- 하단 버튼 -->
-                    <Border Grid.Row="1" Margin="0,10,0,0" CornerRadius="22" Background="#007AFF" Height="44">
+                    <!-- 하단 고정 버튼 -->
+                    <Border Grid.Row="1" Margin="0,10,0,10" CornerRadius="22"
+                            Background="#007AFF" Height="44">
                         <Button Content="+ 근무 희망 일정 요청하기"
-                                FontFamily="Noto Sans KR"
                                 FontSize="17"
-                    Background="Transparent" Foreground="White"
-                    FontWeight="Bold" BorderThickness="0"
-                    Command="{Binding GoToReqScheCommand}"/>
+                                FontWeight="Bold"
+                                Background="Transparent"
+                                Foreground="White"
+                                BorderThickness="0"
+                                Command="{Binding GoToReqScheCommand}"/>
                     </Border>
                 </Grid>
             </Border>

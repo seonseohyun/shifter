@@ -8,15 +8,15 @@ namespace ShifterUser.Models
         /** Member Variables **/
         public Stack<string> NavigationHistory { get; set; } = new Stack<string>(); // 페이지 이동 기록 스택
 
-        private string currentUid = string.Empty;       // 현재 로그인한 사용자 UID
+        private int currentUid = 0;       // 현재 로그인한 사용자 UID
         private string currentTeamCode = string.Empty;  // 소속 팀 코드
         private string currentUserName = string.Empty;  // 사용자 이름
 
         /** Member Methods **/
 
         // UID
-        public void SetUid(string uid) => currentUid = uid;
-        public string GetUid() => currentUid;
+        public void SetUid(int uid) => currentUid = uid;
+        public int GetUid() => currentUid;
 
         // 팀 코드
         public void SetTeamCode(string code) => currentTeamCode = code;

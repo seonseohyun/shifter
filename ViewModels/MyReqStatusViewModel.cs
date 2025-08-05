@@ -17,7 +17,7 @@ namespace ShifterUser.ViewModels
     {
         private readonly WorkRequestManager _reqModel;
         private readonly UserSession _session;
-        private readonly string _uid;
+        private readonly int _uid;
 
         public ObservableCollection<int> Years { get; } = new() { 2023, 2024, 2025 };
         public ObservableCollection<int> Months { get; } = new() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
@@ -45,7 +45,7 @@ namespace ShifterUser.ViewModels
             LoadRequestsCommand = new AsyncRelayCommand(LoadRequestsAsync);
             GoToReqScheCommand = new RelayCommand(GoToReqSche);
 
-            //  이후에 속성 설정 (이 순서 매우 중요!)
+            //  이후에 속성 설정
             SelectedYear = DateTime.Now.Year;
             SelectedMonth = DateTime.Now.Month;
             FilterStatus = null;

@@ -125,7 +125,7 @@ namespace ShifterUser.Models
         }
         */
 
-        public async Task<List<WorkRequestModel>> LoadMonthRequestsAsync(string uid, int year, int month)
+        public async Task<List<WorkRequestModel>> LoadMonthRequestsAsync(int uid, int year, int month)
         {
             try
             {
@@ -156,42 +156,113 @@ namespace ShifterUser.Models
                     return res["REQUESTS"]?.ToObject<List<WorkRequestModel>>() ?? new();
                 }
 
-                Console.WriteLine("[WorkRequestManager] 응답은 왔지만 실패 처리됨");
-                return new(); // 빈 리스트 반환
+                Console.WriteLine("[WorkRequestManager] 응답 실패. 임시 데이터로 대체함.");
+                return GetDummyData(year, month);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("[WorkRequestManager] 서버 응답 실패. 임시 데이터로 대체함.");
+                Console.WriteLine("[WorkRequestManager] 서버 응답 실패. 예외 발생. 임시 데이터로 대체함.");
                 Console.WriteLine(ex.Message);
-
-                // ✅ 임시 Mock 데이터 반환
-                return new List<WorkRequestModel>
-        {
-            new()
-            {
-                RequestDate = new DateTime(year, month == 0 ? 1 : month, 1),
-                ShiftType = ShiftType.Day,
-                Status = WorkRequestStatus.Approved,
-                Reason = "결혼식 참석"
-            },
-            new()
-            {
-                RequestDate = new DateTime(year, month == 0 ? 1 : month, 4),
-                ShiftType = ShiftType.Off,
-                Status = WorkRequestStatus.Rejected,
-                Reason = "가족 여행",
-                RejectionReason = "인력 부족"
-            },
-            new()
-            {
-                RequestDate = new DateTime(year, month == 0 ? 1 : month, 7),
-                ShiftType = ShiftType.Evening,
-                Status = WorkRequestStatus.Pending,
-                Reason = "학원 수업"
-            }
-        };
+                return GetDummyData(year, month);
             }
         }
+
+        private List<WorkRequestModel> GetDummyData(int year, int month)
+        {
+            return new List<WorkRequestModel>
+    {
+        new WorkRequestModel
+        {
+            RequestDate = new DateTime(year, month == 0 ? 1 : month, 1),
+            ShiftType = ShiftType.Day,
+            Status = WorkRequestStatus.Approved,
+            Reason = "결혼식 참석"
+        },
+        new WorkRequestModel
+        {
+            RequestDate = new DateTime(year, month == 0 ? 1 : month, 4),
+            ShiftType = ShiftType.Off,
+            Status = WorkRequestStatus.Rejected,
+            Reason = "가족 여행",
+            RejectionReason = "인력 부족"
+        },
+        new WorkRequestModel
+        {
+            RequestDate = new DateTime(year, month == 0 ? 1 : month, 7),
+            ShiftType = ShiftType.Evening,
+            Status = WorkRequestStatus.Pending,
+            Reason = "학원 수업"
+        }
+    };
+        }
+
+        //public async Task<List<WorkRequestModel>> LoadMonthRequestsAsync(int uid, int year, int month)
+        //{
+        //    try
+        //    {
+        //        JObject requestJson = new()
+        //        {
+        //            ["PROTOCOL"] = "GET_MONTH_REQUESTS",
+        //            ["UID"] = uid,
+        //            ["YEAR"] = year,
+        //            ["MONTH"] = month
+        //        };
+
+        //        WorkItem sendItem = new()
+        //        {
+        //            json = requestJson.ToString(),
+        //            payload = [],
+        //            path = ""
+        //        };
+
+        //        _socket.Send(sendItem);
+        //        WorkItem response = _socket.Receive();
+
+        //        JObject res = JObject.Parse(response.json);
+        //        string protocol = res["PROTOCOL"]?.ToString() ?? "";
+        //        string resp = res["RESP"]?.ToString() ?? "FAIL";
+
+        //        if (protocol == "GET_MONTH_REQUESTS" && resp == "SUCCESS")
+        //        {
+        //            return res["REQUESTS"]?.ToObject<List<WorkRequestModel>>() ?? new();
+        //        }
+
+        //        Console.WriteLine("[WorkRequestManager] 응답은 왔지만 실패 처리됨");
+        //        return new(); // 빈 리스트 반환
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine("[WorkRequestManager] 서버 응답 실패. 임시 데이터로 대체함.");
+        //        Console.WriteLine(ex.Message);
+
+        //        // 임시 Mock 데이터 반환
+        //        return new List<WorkRequestModel>
+        //{
+        //    new()
+        //    {
+        //        RequestDate = new DateTime(year, month == 0 ? 1 : month, 1),
+        //        ShiftType = ShiftType.Day,
+        //        Status = WorkRequestStatus.Approved,
+        //        Reason = "결혼식 참석"
+        //    },
+        //    new()
+        //    {
+        //        RequestDate = new DateTime(year, month == 0 ? 1 : month, 4),
+        //        ShiftType = ShiftType.Off,
+        //        Status = WorkRequestStatus.Rejected,
+        //        Reason = "가족 여행",
+        //        RejectionReason = "인력 부족"
+        //    },
+        //    new()
+        //    {
+        //        RequestDate = new DateTime(year, month == 0 ? 1 : month, 7),
+        //        ShiftType = ShiftType.Evening,
+        //        Status = WorkRequestStatus.Pending,
+        //        Reason = "학원 수업"
+        //    }
+        //};
+        //    }
+        //}
 
 
     }
