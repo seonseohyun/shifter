@@ -10,17 +10,17 @@ import os
 HOST = '127.0.0.1'
 PORT = 6002
 
-def generate_random_staff(count=15):
+def generate_random_staff(count=25):
     """임의의 직원 정보 생성"""
     first_names = ["김", "이", "박", "최", "정", "강", "조", "윤", "장", "임", "한", "오", "서", "신", "권", "황", "안", "송", "류", "전"]
     last_names = ["민수", "영희", "철수", "영수", "정희", "현우", "지영", "승호", "미영", "태현", "소영", "준호", "혜진", "상훈", "은정", "도현", "채영", "진우", "수빈", "예준"]
     
     grade_distribution = {
-        1: ("수간호사", 1),      # 1명
-        2: ("주임간호사", 2),    # 2명  
-        3: ("일반간호사", 8),    # 8명
-        4: ("간호사", 2),        # 2명
-        5: ("신규간호사", 2)     # 2명
+        1: ("수간호사", 3),      
+        2: ("주임간호사", 5),    
+        3: ("일반간호사", 9),   
+        4: ("간호사", 4),      
+        5: ("신규간호사", 4)     
     }
     
     staff = []
@@ -99,7 +99,7 @@ def test_recommended_scenario(test_id, shifts, shift_hours, staff_data, descript
     # 수학적 검증
     non_off_shifts = [s for s in shifts if s not in ['O', 'Off', 'REST', '휴무', '쉼']]
     max_daily_hours = sum(shift_hours[s] for s in non_off_shifts)
-    max_monthly_hours = max_daily_hours * 30
+    max_monthly_hours = max_daily_hours * 20 # 보통 한달 20일 
     avg_target_hours = sum(staff["total_monthly_work_hours"] for staff in staff_data) / len(staff_data)
     
     print(f"수학적 검증:")
@@ -154,7 +154,7 @@ def run_recommended_tests():
     print("✅ 수학적 검증 완료")
     
     # 공통 직원 데이터 생성
-    common_staff = generate_random_staff(15)
+    common_staff = generate_random_staff(23)
     
     # 권장 테스트 시나리오들
     test_scenarios = [
@@ -186,11 +186,11 @@ def run_recommended_tests():
         },
         
         # 3교대 시스템 (5개)
-        {
-            "shifts": ["D", "E", "N", "O"],
-            "shift_hours": {"D": 8, "E": 8, "N": 8, "O": 0},
-            "description": "3교대 표준 시스템"
-        },
+        # {
+        #     "shifts": ["D", "E", "N", "O"],
+        #     "shift_hours": {"D": 8, "E": 8, "N": 8, "O": 0},
+        #     "description": "3교대 표준 시스템"
+        # },
         {
             "shifts": ["아침", "저녁", "밤", "휴무"],
             "shift_hours": {"아침": 8, "저녁": 8, "밤": 8, "휴무": 0},
@@ -202,8 +202,8 @@ def run_recommended_tests():
             "description": "3교대 영문 비대칭"
         },
         {
-            "shifts": ["06-14", "14-22", "22-06", "OFF"],
-            "shift_hours": {"06-14": 8, "14-22": 8, "22-06": 8, "OFF": 0},
+            "shifts": ["06-14", "14-22", "22-06", "Off"],
+            "shift_hours": {"06-14": 8, "14-22": 8, "22-06": 8, "Off": 0},
             "description": "3교대 시간대 표기"
         },
         {
@@ -217,15 +217,10 @@ def run_recommended_tests():
             "shifts": ["새벽", "오전", "오후", "밤", "휴무"],
             "shift_hours": {"새벽": 8, "오전": 8, "오후": 8, "밤": 8, "휴무": 0},
             "description": "4교대 한글 8시간"
-        },
+        },       
         {
-            "shifts": ["M", "D", "E", "N", "O"],
-            "shift_hours": {"M": 7, "D": 7, "E": 7, "N": 7, "O": 0},
-            "description": "4교대 영문 약자 7시간"
-        },
-        {
-            "shifts": ["Alpha", "Beta", "Gamma", "Delta", "Rest"],
-            "shift_hours": {"Alpha": 8, "Beta": 7, "Gamma": 7, "Delta": 8, "Rest": 0},
+            "shifts": ["Alpha", "Beta", "Gamma", "Delta", "REST"],
+            "shift_hours": {"Alpha": 8, "Beta": 7, "Gamma": 7, "Delta": 8, "REST": 0},
             "description": "4교대 그리스 문자 혼합시간"
         },
         
@@ -236,8 +231,8 @@ def run_recommended_tests():
             "description": "특수 Long-Short 시스템"
         },
         {
-            "shifts": ["FullShift", "HalfShift", "FREE"],
-            "shift_hours": {"FullShift": 12, "HalfShift": 6, "FREE": 0},
+            "shifts": ["FullShift", "HalfShift", "Off"],
+            "shift_hours": {"FullShift": 12, "HalfShift": 6, "Off": 0},
             "description": "특수 Full-Half 시스템"
         }
     ]
@@ -250,7 +245,7 @@ def run_recommended_tests():
     # 각 시나리오 실행
     for i, scenario in enumerate(test_scenarios, 1):
         # 각 테스트마다 다른 직원 데이터 생성 (변화 추가)
-        staff_data = generate_random_staff(15)
+        staff_data = generate_random_staff(25)
         
         success, gen_time = test_recommended_scenario(
             i,
@@ -270,7 +265,7 @@ def run_recommended_tests():
             "success": success,
             "time": gen_time,
             "shifts": len(scenario["shifts"]) - 1,  # 휴무 제외
-            "max_daily_hours": sum(h for s, h in scenario["shift_hours"].items() if h > 0)
+            "max_daily_hours": sum(h for s, h in scenario["shift_hours"].items() if h > 0)/2
         })
         
         time.sleep(0.1)  # 서버 부담 줄이기

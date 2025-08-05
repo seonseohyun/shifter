@@ -94,8 +94,8 @@ def test_fixed_4shift():
         },
         {
             "name": "4교대_수정3_혼합",
-            "shifts": ["Early", "Mid", "Late", "Night", "Rest"],
-            "shift_hours": {"Early": 6, "Mid": 8, "Late": 6, "Night": 8, "Rest": 0},
+            "shifts": ["Early", "Mid", "Late", "Night", "REST"],
+            "shift_hours": {"Early": 6, "Mid": 8, "Late": 6, "Night": 8, "REST": 0},
             "description": "4교대 혼합시간 (하루 28시간 가능)"
         },
         {

@@ -1,22 +1,22 @@
 {
   "2025-09-01": [
     {
-      "shift": "LongDay",
+      "shift": "FullShift",
       "people": [
         {
-          "staff_id": "1001",
-          "이름": "임소영",
-          "grade": 2,
-          "grade_name": "주임간호사"
+          "staff_id": "1000",
+          "이름": "조영희",
+          "grade": 1,
+          "grade_name": "수간호사"
         }
       ]
     },
     {
-      "shift": "ShortNight",
+      "shift": "HalfShift",
       "people": [
         {
-          "staff_id": "1000",
-          "이름": "김민수",
+          "staff_id": "1001",
+          "이름": "송태현",
           "grade": 1,
           "grade_name": "수간호사"
         }
@@ -27,79 +27,139 @@
       "people": [
         {
           "staff_id": "1002",
-          "이름": "류상훈",
+          "이름": "전예준",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1003",
+          "이름": "서상훈",
           "grade": 2,
           "grade_name": "주임간호사"
         },
         {
-          "staff_id": "1003",
-          "이름": "박철수",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
           "staff_id": "1004",
-          "이름": "윤영수",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "김태현",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1005",
-          "이름": "김은정",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "한예준",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1006",
-          "이름": "황승호",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "안정희",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1007",
-          "이름": "권진우",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "오영수",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1008",
-          "이름": "류현우",
+          "이름": "오채영",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1009",
-          "이름": "신미영",
+          "이름": "정상훈",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1010",
-          "이름": "서수빈",
+          "이름": "오상훈",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1011",
-          "이름": "정소영",
-          "grade": 4,
-          "grade_name": "간호사"
+          "이름": "김소영",
+          "grade": 3,
+          "grade_name": "일반간호사"
         },
         {
           "staff_id": "1012",
-          "이름": "권진우",
+          "이름": "권은정",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1013",
+          "이름": "강정희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "최철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1015",
+          "이름": "윤혜진",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1016",
+          "이름": "송승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1017",
+          "이름": "김태현",
           "grade": 4,
           "grade_name": "간호사"
         },
         {
-          "staff_id": "1013",
-          "이름": "조미영",
+          "staff_id": "1018",
+          "이름": "송철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1019",
+          "이름": "오도현",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1020",
+          "이름": "류정희",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1021",
+          "이름": "권소영",
           "grade": 5,
           "grade_name": "신규간호사"
         },
         {
-          "staff_id": "1014",
-          "이름": "권소영",
+          "staff_id": "1022",
+          "이름": "강태현",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1023",
+          "이름": "윤영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1024",
+          "이름": "황채영",
           "grade": 5,
           "grade_name": "신규간호사"
         }
@@ -108,22 +168,22 @@
   ],
   "2025-09-02": [
     {
-      "shift": "LongDay",
+      "shift": "FullShift",
       "people": [
         {
-          "staff_id": "1001",
-          "이름": "임소영",
-          "grade": 2,
-          "grade_name": "주임간호사"
+          "staff_id": "1000",
+          "이름": "조영희",
+          "grade": 1,
+          "grade_name": "수간호사"
         }
       ]
     },
     {
-      "shift": "ShortNight",
+      "shift": "HalfShift",
       "people": [
         {
-          "staff_id": "1000",
-          "이름": "김민수",
+          "staff_id": "1001",
+          "이름": "송태현",
           "grade": 1,
           "grade_name": "수간호사"
         }
@@ -134,79 +194,139 @@
       "people": [
         {
           "staff_id": "1002",
-          "이름": "류상훈",
+          "이름": "전예준",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1003",
+          "이름": "서상훈",
           "grade": 2,
           "grade_name": "주임간호사"
         },
         {
-          "staff_id": "1003",
-          "이름": "박철수",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
           "staff_id": "1004",
-          "이름": "윤영수",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "김태현",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1005",
-          "이름": "김은정",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "한예준",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1006",
-          "이름": "황승호",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "안정희",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1007",
-          "이름": "권진우",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "오영수",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1008",
-          "이름": "류현우",
+          "이름": "오채영",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1009",
-          "이름": "신미영",
+          "이름": "정상훈",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1010",
-          "이름": "서수빈",
+          "이름": "오상훈",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1011",
-          "이름": "정소영",
-          "grade": 4,
-          "grade_name": "간호사"
+          "이름": "김소영",
+          "grade": 3,
+          "grade_name": "일반간호사"
         },
         {
           "staff_id": "1012",
-          "이름": "권진우",
+          "이름": "권은정",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1013",
+          "이름": "강정희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "최철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1015",
+          "이름": "윤혜진",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1016",
+          "이름": "송승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1017",
+          "이름": "김태현",
           "grade": 4,
           "grade_name": "간호사"
         },
         {
-          "staff_id": "1013",
-          "이름": "조미영",
+          "staff_id": "1018",
+          "이름": "송철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1019",
+          "이름": "오도현",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1020",
+          "이름": "류정희",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1021",
+          "이름": "권소영",
           "grade": 5,
           "grade_name": "신규간호사"
         },
         {
-          "staff_id": "1014",
-          "이름": "권소영",
+          "staff_id": "1022",
+          "이름": "강태현",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1023",
+          "이름": "윤영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1024",
+          "이름": "황채영",
           "grade": 5,
           "grade_name": "신규간호사"
         }
@@ -215,22 +335,22 @@
   ],
   "2025-09-03": [
     {
-      "shift": "LongDay",
+      "shift": "FullShift",
       "people": [
         {
           "staff_id": "1001",
-          "이름": "임소영",
-          "grade": 2,
-          "grade_name": "주임간호사"
+          "이름": "송태현",
+          "grade": 1,
+          "grade_name": "수간호사"
         }
       ]
     },
     {
-      "shift": "ShortNight",
+      "shift": "HalfShift",
       "people": [
         {
           "staff_id": "1000",
-          "이름": "김민수",
+          "이름": "조영희",
           "grade": 1,
           "grade_name": "수간호사"
         }
@@ -241,79 +361,139 @@
       "people": [
         {
           "staff_id": "1002",
-          "이름": "류상훈",
+          "이름": "전예준",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1003",
+          "이름": "서상훈",
           "grade": 2,
           "grade_name": "주임간호사"
         },
         {
-          "staff_id": "1003",
-          "이름": "박철수",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
           "staff_id": "1004",
-          "이름": "윤영수",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "김태현",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1005",
-          "이름": "김은정",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "한예준",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1006",
-          "이름": "황승호",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "안정희",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1007",
-          "이름": "권진우",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "오영수",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1008",
-          "이름": "류현우",
+          "이름": "오채영",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1009",
-          "이름": "신미영",
+          "이름": "정상훈",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1010",
-          "이름": "서수빈",
+          "이름": "오상훈",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1011",
-          "이름": "정소영",
-          "grade": 4,
-          "grade_name": "간호사"
+          "이름": "김소영",
+          "grade": 3,
+          "grade_name": "일반간호사"
         },
         {
           "staff_id": "1012",
-          "이름": "권진우",
+          "이름": "권은정",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1013",
+          "이름": "강정희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "최철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1015",
+          "이름": "윤혜진",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1016",
+          "이름": "송승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1017",
+          "이름": "김태현",
           "grade": 4,
           "grade_name": "간호사"
         },
         {
-          "staff_id": "1013",
-          "이름": "조미영",
+          "staff_id": "1018",
+          "이름": "송철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1019",
+          "이름": "오도현",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1020",
+          "이름": "류정희",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1021",
+          "이름": "권소영",
           "grade": 5,
           "grade_name": "신규간호사"
         },
         {
-          "staff_id": "1014",
-          "이름": "권소영",
+          "staff_id": "1022",
+          "이름": "강태현",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1023",
+          "이름": "윤영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1024",
+          "이름": "황채영",
           "grade": 5,
           "grade_name": "신규간호사"
         }
@@ -322,24 +502,24 @@
   ],
   "2025-09-04": [
     {
-      "shift": "LongDay",
+      "shift": "FullShift",
       "people": [
         {
           "staff_id": "1000",
-          "이름": "김민수",
+          "이름": "조영희",
           "grade": 1,
           "grade_name": "수간호사"
         }
       ]
     },
     {
-      "shift": "ShortNight",
+      "shift": "HalfShift",
       "people": [
         {
           "staff_id": "1001",
-          "이름": "임소영",
-          "grade": 2,
-          "grade_name": "주임간호사"
+          "이름": "송태현",
+          "grade": 1,
+          "grade_name": "수간호사"
         }
       ]
     },
@@ -348,79 +528,139 @@
       "people": [
         {
           "staff_id": "1002",
-          "이름": "류상훈",
+          "이름": "전예준",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1003",
+          "이름": "서상훈",
           "grade": 2,
           "grade_name": "주임간호사"
         },
         {
-          "staff_id": "1003",
-          "이름": "박철수",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
           "staff_id": "1004",
-          "이름": "윤영수",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "김태현",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1005",
-          "이름": "김은정",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "한예준",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1006",
-          "이름": "황승호",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "안정희",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1007",
-          "이름": "권진우",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "오영수",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1008",
-          "이름": "류현우",
+          "이름": "오채영",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1009",
-          "이름": "신미영",
+          "이름": "정상훈",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1010",
-          "이름": "서수빈",
+          "이름": "오상훈",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1011",
-          "이름": "정소영",
-          "grade": 4,
-          "grade_name": "간호사"
+          "이름": "김소영",
+          "grade": 3,
+          "grade_name": "일반간호사"
         },
         {
           "staff_id": "1012",
-          "이름": "권진우",
+          "이름": "권은정",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1013",
+          "이름": "강정희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "최철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1015",
+          "이름": "윤혜진",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1016",
+          "이름": "송승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1017",
+          "이름": "김태현",
           "grade": 4,
           "grade_name": "간호사"
         },
         {
-          "staff_id": "1013",
-          "이름": "조미영",
+          "staff_id": "1018",
+          "이름": "송철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1019",
+          "이름": "오도현",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1020",
+          "이름": "류정희",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1021",
+          "이름": "권소영",
           "grade": 5,
           "grade_name": "신규간호사"
         },
         {
-          "staff_id": "1014",
-          "이름": "권소영",
+          "staff_id": "1022",
+          "이름": "강태현",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1023",
+          "이름": "윤영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1024",
+          "이름": "황채영",
           "grade": 5,
           "grade_name": "신규간호사"
         }
@@ -429,24 +669,30 @@
   ],
   "2025-09-05": [
     {
-      "shift": "LongDay",
+      "shift": "FullShift",
       "people": [
         {
           "staff_id": "1000",
-          "이름": "김민수",
+          "이름": "조영희",
           "grade": 1,
           "grade_name": "수간호사"
         }
       ]
     },
     {
-      "shift": "ShortNight",
+      "shift": "HalfShift",
       "people": [
         {
-          "staff_id": "1002",
-          "이름": "류상훈",
-          "grade": 2,
-          "grade_name": "주임간호사"
+          "staff_id": "1008",
+          "이름": "오채영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1020",
+          "이름": "류정희",
+          "grade": 4,
+          "grade_name": "간호사"
         }
       ]
     },
@@ -455,79 +701,133 @@
       "people": [
         {
           "staff_id": "1001",
-          "이름": "임소영",
+          "이름": "송태현",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1002",
+          "이름": "전예준",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1003",
+          "이름": "서상훈",
           "grade": 2,
           "grade_name": "주임간호사"
         },
         {
-          "staff_id": "1003",
-          "이름": "박철수",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
           "staff_id": "1004",
-          "이름": "윤영수",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "김태현",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1005",
-          "이름": "김은정",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "한예준",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1006",
-          "이름": "황승호",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "안정희",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1007",
-          "이름": "권진우",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1008",
-          "이름": "류현우",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "오영수",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1009",
-          "이름": "신미영",
+          "이름": "정상훈",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1010",
-          "이름": "서수빈",
+          "이름": "오상훈",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1011",
-          "이름": "정소영",
-          "grade": 4,
-          "grade_name": "간호사"
+          "이름": "김소영",
+          "grade": 3,
+          "grade_name": "일반간호사"
         },
         {
           "staff_id": "1012",
-          "이름": "권진우",
+          "이름": "권은정",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1013",
+          "이름": "강정희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "최철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1015",
+          "이름": "윤혜진",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1016",
+          "이름": "송승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1017",
+          "이름": "김태현",
           "grade": 4,
           "grade_name": "간호사"
         },
         {
-          "staff_id": "1013",
-          "이름": "조미영",
+          "staff_id": "1018",
+          "이름": "송철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1019",
+          "이름": "오도현",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1021",
+          "이름": "권소영",
           "grade": 5,
           "grade_name": "신규간호사"
         },
         {
-          "staff_id": "1014",
-          "이름": "권소영",
+          "staff_id": "1022",
+          "이름": "강태현",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1023",
+          "이름": "윤영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1024",
+          "이름": "황채영",
           "grade": 5,
           "grade_name": "신규간호사"
         }
@@ -536,40 +836,64 @@
   ],
   "2025-09-06": [
     {
-      "shift": "LongDay",
+      "shift": "FullShift",
       "people": [
         {
-          "staff_id": "1002",
-          "이름": "류상훈",
-          "grade": 2,
-          "grade_name": "주임간호사"
-        }
-      ]
-    },
-    {
-      "shift": "ShortNight",
-      "people": [
-        {
-          "staff_id": "1005",
-          "이름": "김은정",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1007",
-          "이름": "권진우",
+          "staff_id": "1008",
+          "이름": "오채영",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1009",
-          "이름": "신미영",
+          "이름": "정상훈",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1011",
-          "이름": "정소영",
+          "이름": "김소영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1012",
+          "이름": "권은정",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1015",
+          "이름": "윤혜진",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1020",
+          "이름": "류정희",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1022",
+          "이름": "강태현",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1023",
+          "이름": "윤영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "HalfShift",
+      "people": [
+        {
+          "staff_id": "1019",
+          "이름": "오도현",
           "grade": 4,
           "grade_name": "간호사"
         }
@@ -580,61 +904,97 @@
       "people": [
         {
           "staff_id": "1000",
-          "이름": "김민수",
+          "이름": "조영희",
           "grade": 1,
           "grade_name": "수간호사"
         },
         {
           "staff_id": "1001",
-          "이름": "임소영",
+          "이름": "송태현",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1002",
+          "이름": "전예준",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1003",
+          "이름": "서상훈",
           "grade": 2,
           "grade_name": "주임간호사"
         },
         {
-          "staff_id": "1003",
-          "이름": "박철수",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "staff_id": "1004",
+          "이름": "김태현",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
-          "staff_id": "1004",
-          "이름": "윤영수",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "staff_id": "1005",
+          "이름": "한예준",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1006",
-          "이름": "황승호",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "안정희",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
-          "staff_id": "1008",
-          "이름": "류현우",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "staff_id": "1007",
+          "이름": "오영수",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1010",
-          "이름": "서수빈",
+          "이름": "오상훈",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
-          "staff_id": "1012",
-          "이름": "권진우",
+          "staff_id": "1013",
+          "이름": "강정희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "최철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1016",
+          "이름": "송승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1017",
+          "이름": "김태현",
           "grade": 4,
           "grade_name": "간호사"
         },
         {
-          "staff_id": "1013",
-          "이름": "조미영",
+          "staff_id": "1018",
+          "이름": "송철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1021",
+          "이름": "권소영",
           "grade": 5,
           "grade_name": "신규간호사"
         },
         {
-          "staff_id": "1014",
-          "이름": "권소영",
+          "staff_id": "1024",
+          "이름": "황채영",
           "grade": 5,
           "grade_name": "신규간호사"
         }
@@ -643,78 +1003,126 @@
   ],
   "2025-09-07": [
     {
-      "shift": "LongDay",
+      "shift": "FullShift",
       "people": [
         {
-          "staff_id": "1005",
-          "이름": "김은정",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1007",
-          "이름": "권진우",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "staff_id": "1001",
+          "이름": "송태현",
+          "grade": 1,
+          "grade_name": "수간호사"
         },
         {
           "staff_id": "1008",
-          "이름": "류현우",
+          "이름": "오채영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1009",
+          "이름": "정상훈",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1010",
-          "이름": "서수빈",
+          "이름": "오상훈",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1011",
-          "이름": "정소영",
+          "이름": "김소영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1012",
+          "이름": "권은정",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1015",
+          "이름": "윤혜진",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1019",
+          "이름": "오도현",
           "grade": 4,
           "grade_name": "간호사"
         },
         {
-          "staff_id": "1014",
+          "staff_id": "1020",
+          "이름": "류정희",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1021",
           "이름": "권소영",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1022",
+          "이름": "강태현",
           "grade": 5,
           "grade_name": "신규간호사"
         }
       ]
     },
     {
-      "shift": "ShortNight",
+      "shift": "HalfShift",
       "people": [
         {
-          "staff_id": "1002",
-          "이름": "류상훈",
+          "staff_id": "1000",
+          "이름": "조영희",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1003",
+          "이름": "서상훈",
           "grade": 2,
           "grade_name": "주임간호사"
         },
         {
-          "staff_id": "1003",
-          "이름": "박철수",
+          "staff_id": "1005",
+          "이름": "한예준",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1006",
+          "이름": "안정희",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1007",
+          "이름": "오영수",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1016",
+          "이름": "송승호",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
-          "staff_id": "1004",
-          "이름": "윤영수",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1009",
-          "이름": "신미영",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1012",
-          "이름": "권진우",
+          "staff_id": "1017",
+          "이름": "김태현",
           "grade": 4,
           "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1023",
+          "이름": "윤영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
         }
       ]
     },
@@ -722,26 +1130,38 @@
       "shift": "Off",
       "people": [
         {
-          "staff_id": "1000",
-          "이름": "김민수",
+          "staff_id": "1002",
+          "이름": "전예준",
           "grade": 1,
           "grade_name": "수간호사"
         },
         {
-          "staff_id": "1001",
-          "이름": "임소영",
+          "staff_id": "1004",
+          "이름": "김태현",
           "grade": 2,
           "grade_name": "주임간호사"
         },
         {
-          "staff_id": "1006",
-          "이름": "황승호",
+          "staff_id": "1013",
+          "이름": "강정희",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
-          "staff_id": "1013",
-          "이름": "조미영",
+          "staff_id": "1014",
+          "이름": "최철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1018",
+          "이름": "송철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1024",
+          "이름": "황채영",
           "grade": 5,
           "grade_name": "신규간호사"
         }
@@ -750,24 +1170,30 @@
   ],
   "2025-09-08": [
     {
-      "shift": "LongDay",
+      "shift": "FullShift",
       "people": [
         {
           "staff_id": "1000",
-          "이름": "김민수",
+          "이름": "조영희",
           "grade": 1,
           "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1006",
+          "이름": "안정희",
+          "grade": 2,
+          "grade_name": "주임간호사"
         }
       ]
     },
     {
-      "shift": "ShortNight",
+      "shift": "HalfShift",
       "people": [
         {
           "staff_id": "1001",
-          "이름": "임소영",
-          "grade": 2,
-          "grade_name": "주임간호사"
+          "이름": "송태현",
+          "grade": 1,
+          "grade_name": "수간호사"
         }
       ]
     },
@@ -776,79 +1202,133 @@
       "people": [
         {
           "staff_id": "1002",
-          "이름": "류상훈",
+          "이름": "전예준",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1003",
+          "이름": "서상훈",
           "grade": 2,
           "grade_name": "주임간호사"
         },
         {
-          "staff_id": "1003",
-          "이름": "박철수",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
           "staff_id": "1004",
-          "이름": "윤영수",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "김태현",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1005",
-          "이름": "김은정",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1006",
-          "이름": "황승호",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "한예준",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1007",
-          "이름": "권진우",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "오영수",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1008",
-          "이름": "류현우",
+          "이름": "오채영",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1009",
-          "이름": "신미영",
+          "이름": "정상훈",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1010",
-          "이름": "서수빈",
+          "이름": "오상훈",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1011",
-          "이름": "정소영",
-          "grade": 4,
-          "grade_name": "간호사"
+          "이름": "김소영",
+          "grade": 3,
+          "grade_name": "일반간호사"
         },
         {
           "staff_id": "1012",
-          "이름": "권진우",
+          "이름": "권은정",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1013",
+          "이름": "강정희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "최철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1015",
+          "이름": "윤혜진",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1016",
+          "이름": "송승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1017",
+          "이름": "김태현",
           "grade": 4,
           "grade_name": "간호사"
         },
         {
-          "staff_id": "1013",
-          "이름": "조미영",
+          "staff_id": "1018",
+          "이름": "송철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1019",
+          "이름": "오도현",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1020",
+          "이름": "류정희",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1021",
+          "이름": "권소영",
           "grade": 5,
           "grade_name": "신규간호사"
         },
         {
-          "staff_id": "1014",
-          "이름": "권소영",
+          "staff_id": "1022",
+          "이름": "강태현",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1023",
+          "이름": "윤영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1024",
+          "이름": "황채영",
           "grade": 5,
           "grade_name": "신규간호사"
         }
@@ -857,24 +1337,84 @@
   ],
   "2025-09-09": [
     {
-      "shift": "LongDay",
+      "shift": "FullShift",
       "people": [
         {
           "staff_id": "1000",
-          "이름": "김민수",
+          "이름": "조영희",
           "grade": 1,
           "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1001",
+          "이름": "송태현",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1012",
+          "이름": "권은정",
+          "grade": 3,
+          "grade_name": "일반간호사"
         }
       ]
     },
     {
-      "shift": "ShortNight",
+      "shift": "HalfShift",
       "people": [
         {
-          "staff_id": "1001",
-          "이름": "임소영",
+          "staff_id": "1003",
+          "이름": "서상훈",
           "grade": 2,
           "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1006",
+          "이름": "안정희",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1011",
+          "이름": "김소영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "최철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1015",
+          "이름": "윤혜진",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1020",
+          "이름": "류정희",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1021",
+          "이름": "권소영",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1022",
+          "이름": "강태현",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1023",
+          "이름": "윤영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
         }
       ]
     },
@@ -883,79 +1423,79 @@
       "people": [
         {
           "staff_id": "1002",
-          "이름": "류상훈",
+          "이름": "전예준",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1004",
+          "이름": "김태현",
           "grade": 2,
           "grade_name": "주임간호사"
         },
         {
-          "staff_id": "1003",
-          "이름": "박철수",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1004",
-          "이름": "윤영수",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
           "staff_id": "1005",
-          "이름": "김은정",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1006",
-          "이름": "황승호",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "한예준",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1007",
-          "이름": "권진우",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "오영수",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1008",
-          "이름": "류현우",
+          "이름": "오채영",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1009",
-          "이름": "신미영",
+          "이름": "정상훈",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1010",
-          "이름": "서수빈",
+          "이름": "오상훈",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
-          "staff_id": "1011",
-          "이름": "정소영",
-          "grade": 4,
-          "grade_name": "간호사"
-        },
-        {
-          "staff_id": "1012",
-          "이름": "권진우",
-          "grade": 4,
-          "grade_name": "간호사"
-        },
-        {
           "staff_id": "1013",
-          "이름": "조미영",
-          "grade": 5,
-          "grade_name": "신규간호사"
+          "이름": "강정희",
+          "grade": 3,
+          "grade_name": "일반간호사"
         },
         {
-          "staff_id": "1014",
-          "이름": "권소영",
+          "staff_id": "1016",
+          "이름": "송승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1017",
+          "이름": "김태현",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1018",
+          "이름": "송철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1019",
+          "이름": "오도현",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1024",
+          "이름": "황채영",
           "grade": 5,
           "grade_name": "신규간호사"
         }
@@ -964,34 +1504,154 @@
   ],
   "2025-09-10": [
     {
-      "shift": "LongDay",
+      "shift": "FullShift",
       "people": [
         {
           "staff_id": "1000",
-          "이름": "김민수",
+          "이름": "조영희",
           "grade": 1,
           "grade_name": "수간호사"
-        }
-      ]
-    },
-    {
-      "shift": "ShortNight",
-      "people": [
+        },
         {
           "staff_id": "1003",
-          "이름": "박철수",
+          "이름": "서상훈",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1005",
+          "이름": "한예준",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1007",
+          "이름": "오영수",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1008",
+          "이름": "오채영",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
-          "staff_id": "1005",
-          "이름": "김은정",
+          "staff_id": "1009",
+          "이름": "정상훈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1010",
+          "이름": "오상훈",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1011",
-          "이름": "정소영",
+          "이름": "김소영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1013",
+          "이름": "강정희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "최철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1015",
+          "이름": "윤혜진",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1016",
+          "이름": "송승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1017",
+          "이름": "김태현",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1019",
+          "이름": "오도현",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1021",
+          "이름": "권소영",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1022",
+          "이름": "강태현",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1023",
+          "이름": "윤영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1024",
+          "이름": "황채영",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "HalfShift",
+      "people": [
+        {
+          "staff_id": "1002",
+          "이름": "전예준",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1004",
+          "이름": "김태현",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1006",
+          "이름": "안정희",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1012",
+          "이름": "권은정",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1018",
+          "이름": "송철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1020",
+          "이름": "류정희",
           "grade": 4,
           "grade_name": "간호사"
         }
@@ -1002,159 +1662,165 @@
       "people": [
         {
           "staff_id": "1001",
-          "이름": "임소영",
-          "grade": 2,
-          "grade_name": "주임간호사"
-        },
-        {
-          "staff_id": "1002",
-          "이름": "류상훈",
-          "grade": 2,
-          "grade_name": "주임간호사"
-        },
-        {
-          "staff_id": "1004",
-          "이름": "윤영수",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1006",
-          "이름": "황승호",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1007",
-          "이름": "권진우",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1008",
-          "이름": "류현우",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1009",
-          "이름": "신미영",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1010",
-          "이름": "서수빈",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1012",
-          "이름": "권진우",
-          "grade": 4,
-          "grade_name": "간호사"
-        },
-        {
-          "staff_id": "1013",
-          "이름": "조미영",
-          "grade": 5,
-          "grade_name": "신규간호사"
-        },
-        {
-          "staff_id": "1014",
-          "이름": "권소영",
-          "grade": 5,
-          "grade_name": "신규간호사"
+          "이름": "송태현",
+          "grade": 1,
+          "grade_name": "수간호사"
         }
       ]
     }
   ],
   "2025-09-11": [
     {
-      "shift": "LongDay",
-      "people": [
-        {
-          "staff_id": "1003",
-          "이름": "박철수",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1005",
-          "이름": "김은정",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1006",
-          "이름": "황승호",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1011",
-          "이름": "정소영",
-          "grade": 4,
-          "grade_name": "간호사"
-        }
-      ]
-    },
-    {
-      "shift": "ShortNight",
+      "shift": "FullShift",
       "people": [
         {
           "staff_id": "1002",
-          "이름": "류상훈",
+          "이름": "전예준",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1003",
+          "이름": "서상훈",
           "grade": 2,
           "grade_name": "주임간호사"
         },
         {
           "staff_id": "1004",
-          "이름": "윤영수",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "김태현",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1005",
+          "이름": "한예준",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1006",
+          "이름": "안정희",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1007",
-          "이름": "권진우",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "오영수",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1008",
-          "이름": "류현우",
+          "이름": "오채영",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1009",
-          "이름": "신미영",
+          "이름": "정상훈",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1010",
-          "이름": "서수빈",
+          "이름": "오상훈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1011",
+          "이름": "김소영",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1012",
-          "이름": "권진우",
+          "이름": "권은정",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1013",
+          "이름": "강정희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "최철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1015",
+          "이름": "윤혜진",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1016",
+          "이름": "송승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1017",
+          "이름": "김태현",
           "grade": 4,
           "grade_name": "간호사"
         },
         {
-          "staff_id": "1013",
-          "이름": "조미영",
+          "staff_id": "1018",
+          "이름": "송철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1019",
+          "이름": "오도현",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1020",
+          "이름": "류정희",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1021",
+          "이름": "권소영",
           "grade": 5,
           "grade_name": "신규간호사"
         },
         {
-          "staff_id": "1014",
-          "이름": "권소영",
+          "staff_id": "1022",
+          "이름": "강태현",
           "grade": 5,
           "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1023",
+          "이름": "윤영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1024",
+          "이름": "황채영",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "HalfShift",
+      "people": [
+        {
+          "staff_id": "1000",
+          "이름": "조영희",
+          "grade": 1,
+          "grade_name": "수간호사"
         }
       ]
     },
@@ -1162,106 +1828,166 @@
       "shift": "Off",
       "people": [
         {
-          "staff_id": "1000",
-          "이름": "김민수",
+          "staff_id": "1001",
+          "이름": "송태현",
           "grade": 1,
           "grade_name": "수간호사"
-        },
-        {
-          "staff_id": "1001",
-          "이름": "임소영",
-          "grade": 2,
-          "grade_name": "주임간호사"
         }
       ]
     }
   ],
   "2025-09-12": [
     {
-      "shift": "LongDay",
+      "shift": "FullShift",
       "people": [
         {
+          "staff_id": "1000",
+          "이름": "조영희",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
           "staff_id": "1002",
-          "이름": "류상훈",
+          "이름": "전예준",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1003",
+          "이름": "서상훈",
           "grade": 2,
           "grade_name": "주임간호사"
         },
         {
-          "staff_id": "1003",
-          "이름": "박철수",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
           "staff_id": "1004",
-          "이름": "윤영수",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "김태현",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1005",
-          "이름": "김은정",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1006",
-          "이름": "황승호",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "한예준",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1007",
-          "이름": "권진우",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "오영수",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1008",
-          "이름": "류현우",
+          "이름": "오채영",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1009",
-          "이름": "신미영",
+          "이름": "정상훈",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1010",
-          "이름": "서수빈",
+          "이름": "오상훈",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
-          "staff_id": "1012",
-          "이름": "권진우",
+          "staff_id": "1013",
+          "이름": "강정희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "최철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1016",
+          "이름": "송승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1017",
+          "이름": "김태현",
           "grade": 4,
           "grade_name": "간호사"
         },
         {
-          "staff_id": "1013",
-          "이름": "조미영",
+          "staff_id": "1018",
+          "이름": "송철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1019",
+          "이름": "오도현",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1020",
+          "이름": "류정희",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1021",
+          "이름": "권소영",
           "grade": 5,
           "grade_name": "신규간호사"
         },
         {
-          "staff_id": "1014",
-          "이름": "권소영",
+          "staff_id": "1023",
+          "이름": "윤영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1024",
+          "이름": "황채영",
           "grade": 5,
           "grade_name": "신규간호사"
         }
       ]
     },
     {
-      "shift": "ShortNight",
+      "shift": "HalfShift",
       "people": [
         {
+          "staff_id": "1006",
+          "이름": "안정희",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
           "staff_id": "1011",
-          "이름": "정소영",
-          "grade": 4,
-          "grade_name": "간호사"
+          "이름": "김소영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1012",
+          "이름": "권은정",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1015",
+          "이름": "윤혜진",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1022",
+          "이름": "강태현",
+          "grade": 5,
+          "grade_name": "신규간호사"
         }
       ]
     },
@@ -1269,86 +1995,163 @@
       "shift": "Off",
       "people": [
         {
-          "staff_id": "1000",
-          "이름": "김민수",
+          "staff_id": "1001",
+          "이름": "송태현",
           "grade": 1,
           "grade_name": "수간호사"
-        },
-        {
-          "staff_id": "1001",
-          "이름": "임소영",
-          "grade": 2,
-          "grade_name": "주임간호사"
         }
       ]
     }
   ],
   "2025-09-13": [
     {
-      "shift": "LongDay",
+      "shift": "FullShift",
       "people": [
         {
           "staff_id": "1002",
-          "이름": "류상훈",
+          "이름": "전예준",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1003",
+          "이름": "서상훈",
           "grade": 2,
           "grade_name": "주임간호사"
         },
         {
           "staff_id": "1004",
-          "이름": "윤영수",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "김태현",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1005",
+          "이름": "한예준",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1006",
-          "이름": "황승호",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "안정희",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1007",
-          "이름": "권진우",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "오영수",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1008",
-          "이름": "류현우",
+          "이름": "오채영",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1009",
-          "이름": "신미영",
+          "이름": "정상훈",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1010",
-          "이름": "서수빈",
+          "이름": "오상훈",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1011",
-          "이름": "정소영",
-          "grade": 4,
-          "grade_name": "간호사"
+          "이름": "김소영",
+          "grade": 3,
+          "grade_name": "일반간호사"
         },
         {
           "staff_id": "1012",
-          "이름": "권진우",
+          "이름": "권은정",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1013",
+          "이름": "강정희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1015",
+          "이름": "윤혜진",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1016",
+          "이름": "송승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1017",
+          "이름": "김태현",
           "grade": 4,
           "grade_name": "간호사"
         },
         {
-          "staff_id": "1013",
-          "이름": "조미영",
+          "staff_id": "1018",
+          "이름": "송철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1019",
+          "이름": "오도현",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1020",
+          "이름": "류정희",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1022",
+          "이름": "강태현",
           "grade": 5,
           "grade_name": "신규간호사"
         },
         {
+          "staff_id": "1023",
+          "이름": "윤영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1024",
+          "이름": "황채영",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "HalfShift",
+      "people": [
+        {
+          "staff_id": "1001",
+          "이름": "송태현",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
           "staff_id": "1014",
+          "이름": "최철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1021",
           "이름": "권소영",
           "grade": 5,
           "grade_name": "신규간호사"
@@ -1356,126 +2159,169 @@
       ]
     },
     {
-      "shift": "ShortNight",
-      "people": [
-        {
-          "staff_id": "1000",
-          "이름": "김민수",
-          "grade": 1,
-          "grade_name": "수간호사"
-        },
-        {
-          "staff_id": "1003",
-          "이름": "박철수",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1005",
-          "이름": "김은정",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        }
-      ]
-    },
-    {
       "shift": "Off",
       "people": [
         {
-          "staff_id": "1001",
-          "이름": "임소영",
-          "grade": 2,
-          "grade_name": "주임간호사"
+          "staff_id": "1000",
+          "이름": "조영희",
+          "grade": 1,
+          "grade_name": "수간호사"
         }
       ]
     }
   ],
   "2025-09-14": [
     {
-      "shift": "LongDay",
+      "shift": "FullShift",
       "people": [
         {
           "staff_id": "1002",
-          "이름": "류상훈",
+          "이름": "전예준",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1004",
+          "이름": "김태현",
           "grade": 2,
           "grade_name": "주임간호사"
         },
         {
-          "staff_id": "1004",
-          "이름": "윤영수",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "staff_id": "1005",
+          "이름": "한예준",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1007",
-          "이름": "권진우",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "오영수",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1008",
-          "이름": "류현우",
+          "이름": "오채영",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1009",
-          "이름": "신미영",
+          "이름": "정상훈",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1010",
-          "이름": "서수빈",
+          "이름": "오상훈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1011",
+          "이름": "김소영",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1012",
-          "이름": "권진우",
+          "이름": "권은정",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1013",
+          "이름": "강정희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "최철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1015",
+          "이름": "윤혜진",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1016",
+          "이름": "송승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1017",
+          "이름": "김태현",
           "grade": 4,
           "grade_name": "간호사"
         },
         {
-          "staff_id": "1013",
-          "이름": "조미영",
+          "staff_id": "1018",
+          "이름": "송철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1019",
+          "이름": "오도현",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1020",
+          "이름": "류정희",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1021",
+          "이름": "권소영",
           "grade": 5,
           "grade_name": "신규간호사"
         },
         {
-          "staff_id": "1014",
-          "이름": "권소영",
+          "staff_id": "1022",
+          "이름": "강태현",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1024",
+          "이름": "황채영",
           "grade": 5,
           "grade_name": "신규간호사"
         }
       ]
     },
     {
-      "shift": "ShortNight",
+      "shift": "HalfShift",
       "people": [
         {
-          "staff_id": "1003",
-          "이름": "박철수",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "staff_id": "1001",
+          "이름": "송태현",
+          "grade": 1,
+          "grade_name": "수간호사"
         },
         {
-          "staff_id": "1005",
-          "이름": "김은정",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "staff_id": "1003",
+          "이름": "서상훈",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1006",
-          "이름": "황승호",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "안정희",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
-          "staff_id": "1011",
-          "이름": "정소영",
-          "grade": 4,
-          "grade_name": "간호사"
+          "staff_id": "1023",
+          "이름": "윤영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
         }
       ]
     },
@@ -1484,39 +2330,51 @@
       "people": [
         {
           "staff_id": "1000",
-          "이름": "김민수",
+          "이름": "조영희",
           "grade": 1,
           "grade_name": "수간호사"
-        },
-        {
-          "staff_id": "1001",
-          "이름": "임소영",
-          "grade": 2,
-          "grade_name": "주임간호사"
         }
       ]
     }
   ],
   "2025-09-15": [
     {
-      "shift": "LongDay",
+      "shift": "FullShift",
       "people": [
         {
           "staff_id": "1000",
-          "이름": "김민수",
+          "이름": "조영희",
           "grade": 1,
           "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1001",
+          "이름": "송태현",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1008",
+          "이름": "오채영",
+          "grade": 3,
+          "grade_name": "일반간호사"
         }
       ]
     },
     {
-      "shift": "ShortNight",
+      "shift": "HalfShift",
       "people": [
         {
-          "staff_id": "1001",
-          "이름": "임소영",
+          "staff_id": "1005",
+          "이름": "한예준",
           "grade": 2,
           "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1021",
+          "이름": "권소영",
+          "grade": 5,
+          "grade_name": "신규간호사"
         }
       ]
     },
@@ -1525,79 +2383,121 @@
       "people": [
         {
           "staff_id": "1002",
-          "이름": "류상훈",
+          "이름": "전예준",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1003",
+          "이름": "서상훈",
           "grade": 2,
           "grade_name": "주임간호사"
         },
         {
-          "staff_id": "1003",
-          "이름": "박철수",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
           "staff_id": "1004",
-          "이름": "윤영수",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1005",
-          "이름": "김은정",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "김태현",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1006",
-          "이름": "황승호",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "안정희",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1007",
-          "이름": "권진우",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1008",
-          "이름": "류현우",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "오영수",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1009",
-          "이름": "신미영",
+          "이름": "정상훈",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1010",
-          "이름": "서수빈",
+          "이름": "오상훈",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1011",
-          "이름": "정소영",
-          "grade": 4,
-          "grade_name": "간호사"
+          "이름": "김소영",
+          "grade": 3,
+          "grade_name": "일반간호사"
         },
         {
           "staff_id": "1012",
-          "이름": "권진우",
+          "이름": "권은정",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1013",
+          "이름": "강정희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "최철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1015",
+          "이름": "윤혜진",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1016",
+          "이름": "송승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1017",
+          "이름": "김태현",
           "grade": 4,
           "grade_name": "간호사"
         },
         {
-          "staff_id": "1013",
-          "이름": "조미영",
+          "staff_id": "1018",
+          "이름": "송철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1019",
+          "이름": "오도현",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1020",
+          "이름": "류정희",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1022",
+          "이름": "강태현",
           "grade": 5,
           "grade_name": "신규간호사"
         },
         {
-          "staff_id": "1014",
-          "이름": "권소영",
+          "staff_id": "1023",
+          "이름": "윤영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1024",
+          "이름": "황채영",
           "grade": 5,
           "grade_name": "신규간호사"
         }
@@ -1606,24 +2506,96 @@
   ],
   "2025-09-16": [
     {
-      "shift": "LongDay",
+      "shift": "FullShift",
       "people": [
         {
+          "staff_id": "1000",
+          "이름": "조영희",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
           "staff_id": "1001",
-          "이름": "임소영",
-          "grade": 2,
-          "grade_name": "주임간호사"
+          "이름": "송태현",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1010",
+          "이름": "오상훈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1011",
+          "이름": "김소영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "최철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1021",
+          "이름": "권소영",
+          "grade": 5,
+          "grade_name": "신규간호사"
         }
       ]
     },
     {
-      "shift": "ShortNight",
+      "shift": "HalfShift",
       "people": [
         {
-          "staff_id": "1000",
-          "이름": "김민수",
+          "staff_id": "1002",
+          "이름": "전예준",
           "grade": 1,
           "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1003",
+          "이름": "서상훈",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1005",
+          "이름": "한예준",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1007",
+          "이름": "오영수",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1008",
+          "이름": "오채영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1013",
+          "이름": "강정희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1019",
+          "이름": "오도현",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1022",
+          "이름": "강태현",
+          "grade": 5,
+          "grade_name": "신규간호사"
         }
       ]
     },
@@ -1631,80 +2603,68 @@
       "shift": "Off",
       "people": [
         {
-          "staff_id": "1002",
-          "이름": "류상훈",
+          "staff_id": "1004",
+          "이름": "김태현",
           "grade": 2,
           "grade_name": "주임간호사"
         },
         {
-          "staff_id": "1003",
-          "이름": "박철수",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1004",
-          "이름": "윤영수",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1005",
-          "이름": "김은정",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
           "staff_id": "1006",
-          "이름": "황승호",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1007",
-          "이름": "권진우",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1008",
-          "이름": "류현우",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "안정희",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1009",
-          "이름": "신미영",
+          "이름": "정상훈",
           "grade": 3,
           "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1010",
-          "이름": "서수빈",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1011",
-          "이름": "정소영",
-          "grade": 4,
-          "grade_name": "간호사"
         },
         {
           "staff_id": "1012",
-          "이름": "권진우",
+          "이름": "권은정",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1015",
+          "이름": "윤혜진",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1016",
+          "이름": "송승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1017",
+          "이름": "김태현",
           "grade": 4,
           "grade_name": "간호사"
         },
         {
-          "staff_id": "1013",
-          "이름": "조미영",
+          "staff_id": "1018",
+          "이름": "송철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1020",
+          "이름": "류정희",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1023",
+          "이름": "윤영수",
           "grade": 5,
           "grade_name": "신규간호사"
         },
         {
-          "staff_id": "1014",
-          "이름": "권소영",
+          "staff_id": "1024",
+          "이름": "황채영",
           "grade": 5,
           "grade_name": "신규간호사"
         }
@@ -1713,24 +2673,156 @@
   ],
   "2025-09-17": [
     {
-      "shift": "LongDay",
+      "shift": "FullShift",
       "people": [
         {
           "staff_id": "1000",
-          "이름": "김민수",
+          "이름": "조영희",
           "grade": 1,
           "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1002",
+          "이름": "전예준",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1003",
+          "이름": "서상훈",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1004",
+          "이름": "김태현",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1005",
+          "이름": "한예준",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1006",
+          "이름": "안정희",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1007",
+          "이름": "오영수",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1009",
+          "이름": "정상훈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1010",
+          "이름": "오상훈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1012",
+          "이름": "권은정",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1013",
+          "이름": "강정희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "최철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1015",
+          "이름": "윤혜진",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1016",
+          "이름": "송승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1017",
+          "이름": "김태현",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1018",
+          "이름": "송철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1019",
+          "이름": "오도현",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1020",
+          "이름": "류정희",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1022",
+          "이름": "강태현",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1023",
+          "이름": "윤영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1024",
+          "이름": "황채영",
+          "grade": 5,
+          "grade_name": "신규간호사"
         }
       ]
     },
     {
-      "shift": "ShortNight",
+      "shift": "HalfShift",
       "people": [
         {
-          "staff_id": "1007",
-          "이름": "권진우",
+          "staff_id": "1008",
+          "이름": "오채영",
           "grade": 3,
           "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1011",
+          "이름": "김소영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1021",
+          "이름": "권소영",
+          "grade": 5,
+          "grade_name": "신규간호사"
         }
       ]
     },
@@ -1739,139 +2831,162 @@
       "people": [
         {
           "staff_id": "1001",
-          "이름": "임소영",
-          "grade": 2,
-          "grade_name": "주임간호사"
-        },
-        {
-          "staff_id": "1002",
-          "이름": "류상훈",
-          "grade": 2,
-          "grade_name": "주임간호사"
-        },
-        {
-          "staff_id": "1003",
-          "이름": "박철수",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1004",
-          "이름": "윤영수",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1005",
-          "이름": "김은정",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1006",
-          "이름": "황승호",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1008",
-          "이름": "류현우",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1009",
-          "이름": "신미영",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1010",
-          "이름": "서수빈",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1011",
-          "이름": "정소영",
-          "grade": 4,
-          "grade_name": "간호사"
-        },
-        {
-          "staff_id": "1012",
-          "이름": "권진우",
-          "grade": 4,
-          "grade_name": "간호사"
-        },
-        {
-          "staff_id": "1013",
-          "이름": "조미영",
-          "grade": 5,
-          "grade_name": "신규간호사"
-        },
-        {
-          "staff_id": "1014",
-          "이름": "권소영",
-          "grade": 5,
-          "grade_name": "신규간호사"
+          "이름": "송태현",
+          "grade": 1,
+          "grade_name": "수간호사"
         }
       ]
     }
   ],
   "2025-09-18": [
     {
-      "shift": "LongDay",
+      "shift": "FullShift",
       "people": [
         {
+          "staff_id": "1000",
+          "이름": "조영희",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
           "staff_id": "1002",
-          "이름": "류상훈",
+          "이름": "전예준",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1003",
+          "이름": "서상훈",
           "grade": 2,
           "grade_name": "주임간호사"
         },
         {
-          "staff_id": "1003",
-          "이름": "박철수",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "staff_id": "1004",
+          "이름": "김태현",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
-          "staff_id": "1004",
-          "이름": "윤영수",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "staff_id": "1005",
+          "이름": "한예준",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1006",
-          "이름": "황승호",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "안정희",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1007",
-          "이름": "권진우",
+          "이름": "오영수",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1009",
+          "이름": "정상훈",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
-          "staff_id": "1009",
-          "이름": "신미영",
+          "staff_id": "1010",
+          "이름": "오상훈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1011",
+          "이름": "김소영",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1012",
-          "이름": "권진우",
+          "이름": "권은정",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1013",
+          "이름": "강정희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "최철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1015",
+          "이름": "윤혜진",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1016",
+          "이름": "송승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1017",
+          "이름": "김태현",
           "grade": 4,
           "grade_name": "간호사"
         },
         {
-          "staff_id": "1013",
-          "이름": "조미영",
+          "staff_id": "1018",
+          "이름": "송철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1019",
+          "이름": "오도현",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1020",
+          "이름": "류정희",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1022",
+          "이름": "강태현",
           "grade": 5,
           "grade_name": "신규간호사"
         },
         {
-          "staff_id": "1014",
+          "staff_id": "1023",
+          "이름": "윤영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1024",
+          "이름": "황채영",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "HalfShift",
+      "people": [
+        {
+          "staff_id": "1008",
+          "이름": "오채영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1021",
           "이름": "권소영",
           "grade": 5,
           "grade_name": "신규간호사"
@@ -1879,138 +2994,169 @@
       ]
     },
     {
-      "shift": "ShortNight",
-      "people": [
-        {
-          "staff_id": "1005",
-          "이름": "김은정",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1008",
-          "이름": "류현우",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1010",
-          "이름": "서수빈",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1011",
-          "이름": "정소영",
-          "grade": 4,
-          "grade_name": "간호사"
-        }
-      ]
-    },
-    {
       "shift": "Off",
       "people": [
         {
-          "staff_id": "1000",
-          "이름": "김민수",
+          "staff_id": "1001",
+          "이름": "송태현",
           "grade": 1,
           "grade_name": "수간호사"
-        },
-        {
-          "staff_id": "1001",
-          "이름": "임소영",
-          "grade": 2,
-          "grade_name": "주임간호사"
         }
       ]
     }
   ],
   "2025-09-19": [
     {
-      "shift": "LongDay",
+      "shift": "FullShift",
       "people": [
         {
-          "staff_id": "1002",
-          "이름": "류상훈",
+          "staff_id": "1000",
+          "이름": "조영희",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1003",
+          "이름": "서상훈",
           "grade": 2,
           "grade_name": "주임간호사"
         },
         {
           "staff_id": "1004",
-          "이름": "윤영수",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "김태현",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1005",
-          "이름": "김은정",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "한예준",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1006",
-          "이름": "황승호",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "안정희",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
-          "staff_id": "1008",
-          "이름": "류현우",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "staff_id": "1007",
+          "이름": "오영수",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1009",
-          "이름": "신미영",
+          "이름": "정상훈",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1010",
-          "이름": "서수빈",
+          "이름": "오상훈",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
-          "staff_id": "1011",
-          "이름": "정소영",
-          "grade": 4,
-          "grade_name": "간호사"
-        },
-        {
           "staff_id": "1012",
-          "이름": "권진우",
-          "grade": 4,
-          "grade_name": "간호사"
+          "이름": "권은정",
+          "grade": 3,
+          "grade_name": "일반간호사"
         },
         {
           "staff_id": "1013",
-          "이름": "조미영",
+          "이름": "강정희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "최철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1015",
+          "이름": "윤혜진",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1016",
+          "이름": "송승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1017",
+          "이름": "김태현",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1018",
+          "이름": "송철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1019",
+          "이름": "오도현",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1020",
+          "이름": "류정희",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1023",
+          "이름": "윤영수",
           "grade": 5,
           "grade_name": "신규간호사"
         },
         {
-          "staff_id": "1014",
-          "이름": "권소영",
+          "staff_id": "1024",
+          "이름": "황채영",
           "grade": 5,
           "grade_name": "신규간호사"
         }
       ]
     },
     {
-      "shift": "ShortNight",
+      "shift": "HalfShift",
       "people": [
         {
-          "staff_id": "1003",
-          "이름": "박철수",
+          "staff_id": "1002",
+          "이름": "전예준",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1008",
+          "이름": "오채영",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
-          "staff_id": "1007",
-          "이름": "권진우",
+          "staff_id": "1011",
+          "이름": "김소영",
           "grade": 3,
           "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1021",
+          "이름": "권소영",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1022",
+          "이름": "강태현",
+          "grade": 5,
+          "grade_name": "신규간호사"
         }
       ]
     },
@@ -2018,112 +3164,166 @@
       "shift": "Off",
       "people": [
         {
-          "staff_id": "1000",
-          "이름": "김민수",
+          "staff_id": "1001",
+          "이름": "송태현",
           "grade": 1,
           "grade_name": "수간호사"
-        },
-        {
-          "staff_id": "1001",
-          "이름": "임소영",
-          "grade": 2,
-          "grade_name": "주임간호사"
         }
       ]
     }
   ],
   "2025-09-20": [
     {
-      "shift": "LongDay",
+      "shift": "FullShift",
       "people": [
         {
-          "staff_id": "1001",
-          "이름": "임소영",
-          "grade": 2,
-          "grade_name": "주임간호사"
-        },
-        {
           "staff_id": "1002",
-          "이름": "류상훈",
+          "이름": "전예준",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1004",
+          "이름": "김태현",
           "grade": 2,
           "grade_name": "주임간호사"
         },
         {
-          "staff_id": "1003",
-          "이름": "박철수",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1005",
-          "이름": "김은정",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "staff_id": "1006",
+          "이름": "안정희",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1008",
-          "이름": "류현우",
+          "이름": "오채영",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
-          "staff_id": "1010",
-          "이름": "서수빈",
+          "staff_id": "1009",
+          "이름": "정상훈",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1011",
-          "이름": "정소영",
+          "이름": "김소영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1012",
+          "이름": "권은정",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1013",
+          "이름": "강정희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1015",
+          "이름": "윤혜진",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1016",
+          "이름": "송승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1017",
+          "이름": "김태현",
           "grade": 4,
           "grade_name": "간호사"
         },
         {
-          "staff_id": "1014",
+          "staff_id": "1018",
+          "이름": "송철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1020",
+          "이름": "류정희",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1021",
           "이름": "권소영",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1022",
+          "이름": "강태현",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1023",
+          "이름": "윤영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1024",
+          "이름": "황채영",
           "grade": 5,
           "grade_name": "신규간호사"
         }
       ]
     },
     {
-      "shift": "ShortNight",
+      "shift": "HalfShift",
       "people": [
         {
-          "staff_id": "1004",
-          "이름": "윤영수",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "staff_id": "1001",
+          "이름": "송태현",
+          "grade": 1,
+          "grade_name": "수간호사"
         },
         {
-          "staff_id": "1006",
-          "이름": "황승호",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "staff_id": "1003",
+          "이름": "서상훈",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1005",
+          "이름": "한예준",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1007",
-          "이름": "권진우",
+          "이름": "오영수",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1010",
+          "이름": "오상훈",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
-          "staff_id": "1009",
-          "이름": "신미영",
+          "staff_id": "1014",
+          "이름": "최철수",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
-          "staff_id": "1012",
-          "이름": "권진우",
+          "staff_id": "1019",
+          "이름": "오도현",
           "grade": 4,
           "grade_name": "간호사"
-        },
-        {
-          "staff_id": "1013",
-          "이름": "조미영",
-          "grade": 5,
-          "grade_name": "신규간호사"
         }
       ]
     },
@@ -2132,7 +3332,7 @@
       "people": [
         {
           "staff_id": "1000",
-          "이름": "김민수",
+          "이름": "조영희",
           "grade": 1,
           "grade_name": "수간호사"
         }
@@ -2141,96 +3341,156 @@
   ],
   "2025-09-21": [
     {
-      "shift": "LongDay",
+      "shift": "FullShift",
       "people": [
         {
           "staff_id": "1001",
-          "이름": "임소영",
+          "이름": "송태현",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1002",
+          "이름": "전예준",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1003",
+          "이름": "서상훈",
           "grade": 2,
           "grade_name": "주임간호사"
         },
         {
-          "staff_id": "1003",
-          "이름": "박철수",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
           "staff_id": "1004",
-          "이름": "윤영수",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1005",
-          "이름": "김은정",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "김태현",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1006",
-          "이름": "황승호",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "안정희",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1007",
-          "이름": "권진우",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1008",
-          "이름": "류현우",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "오영수",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1009",
-          "이름": "신미영",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1010",
-          "이름": "서수빈",
+          "이름": "정상훈",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1011",
-          "이름": "정소영",
-          "grade": 4,
-          "grade_name": "간호사"
+          "이름": "김소영",
+          "grade": 3,
+          "grade_name": "일반간호사"
         },
         {
           "staff_id": "1012",
-          "이름": "권진우",
+          "이름": "권은정",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1015",
+          "이름": "윤혜진",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1016",
+          "이름": "송승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1017",
+          "이름": "김태현",
           "grade": 4,
           "grade_name": "간호사"
         },
         {
-          "staff_id": "1013",
-          "이름": "조미영",
+          "staff_id": "1018",
+          "이름": "송철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1019",
+          "이름": "오도현",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1020",
+          "이름": "류정희",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1021",
+          "이름": "권소영",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1022",
+          "이름": "강태현",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1023",
+          "이름": "윤영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1024",
+          "이름": "황채영",
           "grade": 5,
           "grade_name": "신규간호사"
         }
       ]
     },
     {
-      "shift": "ShortNight",
+      "shift": "HalfShift",
       "people": [
         {
-          "staff_id": "1002",
-          "이름": "류상훈",
+          "staff_id": "1005",
+          "이름": "한예준",
           "grade": 2,
           "grade_name": "주임간호사"
         },
         {
+          "staff_id": "1008",
+          "이름": "오채영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1010",
+          "이름": "오상훈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1013",
+          "이름": "강정희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
           "staff_id": "1014",
-          "이름": "권소영",
-          "grade": 5,
-          "grade_name": "신규간호사"
+          "이름": "최철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
         }
       ]
     },
@@ -2239,7 +3499,7 @@
       "people": [
         {
           "staff_id": "1000",
-          "이름": "김민수",
+          "이름": "조영희",
           "grade": 1,
           "grade_name": "수간호사"
         }
@@ -2248,24 +3508,24 @@
   ],
   "2025-09-22": [
     {
-      "shift": "LongDay",
+      "shift": "FullShift",
       "people": [
         {
-          "staff_id": "1000",
-          "이름": "김민수",
-          "grade": 1,
-          "grade_name": "수간호사"
+          "staff_id": "1012",
+          "이름": "권은정",
+          "grade": 3,
+          "grade_name": "일반간호사"
         }
       ]
     },
     {
-      "shift": "ShortNight",
+      "shift": "HalfShift",
       "people": [
         {
-          "staff_id": "1001",
-          "이름": "임소영",
-          "grade": 2,
-          "grade_name": "주임간호사"
+          "staff_id": "1000",
+          "이름": "조영희",
+          "grade": 1,
+          "grade_name": "수간호사"
         }
       ]
     },
@@ -2273,80 +3533,140 @@
       "shift": "Off",
       "people": [
         {
+          "staff_id": "1001",
+          "이름": "송태현",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
           "staff_id": "1002",
-          "이름": "류상훈",
+          "이름": "전예준",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1003",
+          "이름": "서상훈",
           "grade": 2,
           "grade_name": "주임간호사"
         },
         {
-          "staff_id": "1003",
-          "이름": "박철수",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
           "staff_id": "1004",
-          "이름": "윤영수",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "김태현",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1005",
-          "이름": "김은정",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "한예준",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1006",
-          "이름": "황승호",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "안정희",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1007",
-          "이름": "권진우",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "오영수",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1008",
-          "이름": "류현우",
+          "이름": "오채영",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1009",
-          "이름": "신미영",
+          "이름": "정상훈",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1010",
-          "이름": "서수빈",
+          "이름": "오상훈",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1011",
-          "이름": "정소영",
-          "grade": 4,
-          "grade_name": "간호사"
-        },
-        {
-          "staff_id": "1012",
-          "이름": "권진우",
-          "grade": 4,
-          "grade_name": "간호사"
+          "이름": "김소영",
+          "grade": 3,
+          "grade_name": "일반간호사"
         },
         {
           "staff_id": "1013",
-          "이름": "조미영",
+          "이름": "강정희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "최철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1015",
+          "이름": "윤혜진",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1016",
+          "이름": "송승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1017",
+          "이름": "김태현",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1018",
+          "이름": "송철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1019",
+          "이름": "오도현",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1020",
+          "이름": "류정희",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1021",
+          "이름": "권소영",
           "grade": 5,
           "grade_name": "신규간호사"
         },
         {
-          "staff_id": "1014",
-          "이름": "권소영",
+          "staff_id": "1022",
+          "이름": "강태현",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1023",
+          "이름": "윤영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1024",
+          "이름": "황채영",
           "grade": 5,
           "grade_name": "신규간호사"
         }
@@ -2355,24 +3675,78 @@
   ],
   "2025-09-23": [
     {
-      "shift": "LongDay",
+      "shift": "FullShift",
       "people": [
         {
           "staff_id": "1000",
-          "이름": "김민수",
+          "이름": "조영희",
           "grade": 1,
           "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1021",
+          "이름": "권소영",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1023",
+          "이름": "윤영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
         }
       ]
     },
     {
-      "shift": "ShortNight",
+      "shift": "HalfShift",
       "people": [
         {
           "staff_id": "1001",
-          "이름": "임소영",
+          "이름": "송태현",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1002",
+          "이름": "전예준",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1003",
+          "이름": "서상훈",
           "grade": 2,
           "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1009",
+          "이름": "정상훈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1011",
+          "이름": "김소영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1012",
+          "이름": "권은정",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1020",
+          "이름": "류정희",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1024",
+          "이름": "황채영",
+          "grade": 5,
+          "grade_name": "신규간호사"
         }
       ]
     },
@@ -2380,80 +3754,86 @@
       "shift": "Off",
       "people": [
         {
-          "staff_id": "1002",
-          "이름": "류상훈",
+          "staff_id": "1004",
+          "이름": "김태현",
           "grade": 2,
           "grade_name": "주임간호사"
         },
         {
-          "staff_id": "1003",
-          "이름": "박철수",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1004",
-          "이름": "윤영수",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
           "staff_id": "1005",
-          "이름": "김은정",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "한예준",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1006",
-          "이름": "황승호",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "안정희",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1007",
-          "이름": "권진우",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "오영수",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1008",
-          "이름": "류현우",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1009",
-          "이름": "신미영",
+          "이름": "오채영",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1010",
-          "이름": "서수빈",
+          "이름": "오상훈",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
-          "staff_id": "1011",
-          "이름": "정소영",
-          "grade": 4,
-          "grade_name": "간호사"
-        },
-        {
-          "staff_id": "1012",
-          "이름": "권진우",
-          "grade": 4,
-          "grade_name": "간호사"
-        },
-        {
           "staff_id": "1013",
-          "이름": "조미영",
-          "grade": 5,
-          "grade_name": "신규간호사"
+          "이름": "강정희",
+          "grade": 3,
+          "grade_name": "일반간호사"
         },
         {
           "staff_id": "1014",
-          "이름": "권소영",
+          "이름": "최철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1015",
+          "이름": "윤혜진",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1016",
+          "이름": "송승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1017",
+          "이름": "김태현",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1018",
+          "이름": "송철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1019",
+          "이름": "오도현",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1022",
+          "이름": "강태현",
           "grade": 5,
           "grade_name": "신규간호사"
         }
@@ -2462,24 +3842,156 @@
   ],
   "2025-09-24": [
     {
-      "shift": "LongDay",
+      "shift": "FullShift",
       "people": [
         {
-          "staff_id": "1000",
-          "이름": "김민수",
+          "staff_id": "1001",
+          "이름": "송태현",
           "grade": 1,
           "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1002",
+          "이름": "전예준",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1004",
+          "이름": "김태현",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1005",
+          "이름": "한예준",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1006",
+          "이름": "안정희",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1007",
+          "이름": "오영수",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1008",
+          "이름": "오채영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1009",
+          "이름": "정상훈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1010",
+          "이름": "오상훈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1011",
+          "이름": "김소영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1013",
+          "이름": "강정희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "최철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1015",
+          "이름": "윤혜진",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1016",
+          "이름": "송승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1017",
+          "이름": "김태현",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1018",
+          "이름": "송철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1019",
+          "이름": "오도현",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1020",
+          "이름": "류정희",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1021",
+          "이름": "권소영",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1022",
+          "이름": "강태현",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1023",
+          "이름": "윤영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1024",
+          "이름": "황채영",
+          "grade": 5,
+          "grade_name": "신규간호사"
         }
       ]
     },
     {
-      "shift": "ShortNight",
+      "shift": "HalfShift",
       "people": [
         {
-          "staff_id": "1011",
-          "이름": "정소영",
-          "grade": 4,
-          "grade_name": "간호사"
+          "staff_id": "1003",
+          "이름": "서상훈",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1012",
+          "이름": "권은정",
+          "grade": 3,
+          "grade_name": "일반간호사"
         }
       ]
     },
@@ -2487,170 +3999,164 @@
       "shift": "Off",
       "people": [
         {
-          "staff_id": "1001",
-          "이름": "임소영",
-          "grade": 2,
-          "grade_name": "주임간호사"
-        },
-        {
-          "staff_id": "1002",
-          "이름": "류상훈",
-          "grade": 2,
-          "grade_name": "주임간호사"
-        },
-        {
-          "staff_id": "1003",
-          "이름": "박철수",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1004",
-          "이름": "윤영수",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1005",
-          "이름": "김은정",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1006",
-          "이름": "황승호",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1007",
-          "이름": "권진우",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1008",
-          "이름": "류현우",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1009",
-          "이름": "신미영",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1010",
-          "이름": "서수빈",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1012",
-          "이름": "권진우",
-          "grade": 4,
-          "grade_name": "간호사"
-        },
-        {
-          "staff_id": "1013",
-          "이름": "조미영",
-          "grade": 5,
-          "grade_name": "신규간호사"
-        },
-        {
-          "staff_id": "1014",
-          "이름": "권소영",
-          "grade": 5,
-          "grade_name": "신규간호사"
+          "staff_id": "1000",
+          "이름": "조영희",
+          "grade": 1,
+          "grade_name": "수간호사"
         }
       ]
     }
   ],
   "2025-09-25": [
     {
-      "shift": "LongDay",
+      "shift": "FullShift",
       "people": [
         {
-          "staff_id": "1002",
-          "이름": "류상훈",
+          "staff_id": "1001",
+          "이름": "송태현",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1003",
+          "이름": "서상훈",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1004",
+          "이름": "김태현",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1005",
+          "이름": "한예준",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1006",
+          "이름": "안정희",
           "grade": 2,
           "grade_name": "주임간호사"
         },
         {
           "staff_id": "1007",
-          "이름": "권진우",
+          "이름": "오영수",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1008",
+          "이름": "오채영",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
-          "staff_id": "1011",
-          "이름": "정소영",
-          "grade": 4,
-          "grade_name": "간호사"
+          "staff_id": "1009",
+          "이름": "정상훈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1010",
+          "이름": "오상훈",
+          "grade": 3,
+          "grade_name": "일반간호사"
         },
         {
           "staff_id": "1012",
-          "이름": "권진우",
+          "이름": "권은정",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1013",
+          "이름": "강정희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "최철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1015",
+          "이름": "윤혜진",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1016",
+          "이름": "송승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1017",
+          "이름": "김태현",
           "grade": 4,
           "grade_name": "간호사"
         },
         {
-          "staff_id": "1014",
-          "이름": "권소영",
+          "staff_id": "1018",
+          "이름": "송철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1019",
+          "이름": "오도현",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1020",
+          "이름": "류정희",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1022",
+          "이름": "강태현",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1023",
+          "이름": "윤영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1024",
+          "이름": "황채영",
           "grade": 5,
           "grade_name": "신규간호사"
         }
       ]
     },
     {
-      "shift": "ShortNight",
+      "shift": "HalfShift",
       "people": [
         {
-          "staff_id": "1003",
-          "이름": "박철수",
+          "staff_id": "1002",
+          "이름": "전예준",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1011",
+          "이름": "김소영",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
-          "staff_id": "1004",
-          "이름": "윤영수",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1005",
-          "이름": "김은정",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1006",
-          "이름": "황승호",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1008",
-          "이름": "류현우",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1009",
-          "이름": "신미영",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1010",
-          "이름": "서수빈",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1013",
-          "이름": "조미영",
+          "staff_id": "1021",
+          "이름": "권소영",
           "grade": 5,
           "grade_name": "신규간호사"
         }
@@ -2661,109 +4167,163 @@
       "people": [
         {
           "staff_id": "1000",
-          "이름": "김민수",
+          "이름": "조영희",
           "grade": 1,
           "grade_name": "수간호사"
-        },
-        {
-          "staff_id": "1001",
-          "이름": "임소영",
-          "grade": 2,
-          "grade_name": "주임간호사"
         }
       ]
     }
   ],
   "2025-09-26": [
     {
-      "shift": "LongDay",
+      "shift": "FullShift",
       "people": [
         {
-          "staff_id": "1001",
-          "이름": "임소영",
-          "grade": 2,
-          "grade_name": "주임간호사"
-        },
-        {
           "staff_id": "1002",
-          "이름": "류상훈",
-          "grade": 2,
-          "grade_name": "주임간호사"
+          "이름": "전예준",
+          "grade": 1,
+          "grade_name": "수간호사"
         },
         {
           "staff_id": "1003",
-          "이름": "박철수",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "서상훈",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1004",
-          "이름": "윤영수",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "김태현",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1005",
-          "이름": "김은정",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "한예준",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1006",
-          "이름": "황승호",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "안정희",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1007",
-          "이름": "권진우",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "오영수",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1008",
-          "이름": "류현우",
+          "이름": "오채영",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1009",
-          "이름": "신미영",
+          "이름": "정상훈",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1010",
-          "이름": "서수빈",
+          "이름": "오상훈",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
-          "staff_id": "1012",
-          "이름": "권진우",
+          "staff_id": "1011",
+          "이름": "김소영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1013",
+          "이름": "강정희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "최철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1015",
+          "이름": "윤혜진",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1016",
+          "이름": "송승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1017",
+          "이름": "김태현",
           "grade": 4,
           "grade_name": "간호사"
         },
         {
-          "staff_id": "1013",
-          "이름": "조미영",
+          "staff_id": "1018",
+          "이름": "송철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1019",
+          "이름": "오도현",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1020",
+          "이름": "류정희",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1021",
+          "이름": "권소영",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1022",
+          "이름": "강태현",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1024",
+          "이름": "황채영",
           "grade": 5,
           "grade_name": "신규간호사"
         }
       ]
     },
     {
-      "shift": "ShortNight",
+      "shift": "HalfShift",
       "people": [
         {
-          "staff_id": "1011",
-          "이름": "정소영",
-          "grade": 4,
-          "grade_name": "간호사"
+          "staff_id": "1001",
+          "이름": "송태현",
+          "grade": 1,
+          "grade_name": "수간호사"
         },
         {
-          "staff_id": "1014",
-          "이름": "권소영",
+          "staff_id": "1012",
+          "이름": "권은정",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1023",
+          "이름": "윤영수",
           "grade": 5,
           "grade_name": "신규간호사"
         }
@@ -2774,7 +4334,7 @@
       "people": [
         {
           "staff_id": "1000",
-          "이름": "김민수",
+          "이름": "조영희",
           "grade": 1,
           "grade_name": "수간호사"
         }
@@ -2783,96 +4343,156 @@
   ],
   "2025-09-27": [
     {
-      "shift": "LongDay",
+      "shift": "FullShift",
       "people": [
         {
           "staff_id": "1001",
-          "이름": "임소영",
-          "grade": 2,
-          "grade_name": "주임간호사"
+          "이름": "송태현",
+          "grade": 1,
+          "grade_name": "수간호사"
         },
         {
           "staff_id": "1002",
-          "이름": "류상훈",
+          "이름": "전예준",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1003",
+          "이름": "서상훈",
           "grade": 2,
           "grade_name": "주임간호사"
         },
         {
-          "staff_id": "1003",
-          "이름": "박철수",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
           "staff_id": "1004",
-          "이름": "윤영수",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "김태현",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1005",
-          "이름": "김은정",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "한예준",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1006",
-          "이름": "황승호",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "안정희",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1007",
-          "이름": "권진우",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "오영수",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1008",
-          "이름": "류현우",
+          "이름": "오채영",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1009",
-          "이름": "신미영",
+          "이름": "정상훈",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1010",
-          "이름": "서수빈",
+          "이름": "오상훈",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
-          "staff_id": "1012",
-          "이름": "권진우",
+          "staff_id": "1011",
+          "이름": "김소영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1013",
+          "이름": "강정희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "최철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1015",
+          "이름": "윤혜진",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1016",
+          "이름": "송승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1017",
+          "이름": "김태현",
           "grade": 4,
           "grade_name": "간호사"
         },
         {
-          "staff_id": "1013",
-          "이름": "조미영",
+          "staff_id": "1018",
+          "이름": "송철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1019",
+          "이름": "오도현",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1020",
+          "이름": "류정희",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1021",
+          "이름": "권소영",
           "grade": 5,
           "grade_name": "신규간호사"
         },
         {
-          "staff_id": "1014",
-          "이름": "권소영",
+          "staff_id": "1022",
+          "이름": "강태현",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1023",
+          "이름": "윤영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1024",
+          "이름": "황채영",
           "grade": 5,
           "grade_name": "신규간호사"
         }
       ]
     },
     {
-      "shift": "ShortNight",
+      "shift": "HalfShift",
       "people": [
         {
-          "staff_id": "1011",
-          "이름": "정소영",
-          "grade": 4,
-          "grade_name": "간호사"
+          "staff_id": "1012",
+          "이름": "권은정",
+          "grade": 3,
+          "grade_name": "일반간호사"
         }
       ]
     },
@@ -2881,7 +4501,7 @@
       "people": [
         {
           "staff_id": "1000",
-          "이름": "김민수",
+          "이름": "조영희",
           "grade": 1,
           "grade_name": "수간호사"
         }
@@ -2890,96 +4510,156 @@
   ],
   "2025-09-28": [
     {
-      "shift": "LongDay",
+      "shift": "FullShift",
       "people": [
         {
+          "staff_id": "1001",
+          "이름": "송태현",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1002",
+          "이름": "전예준",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
           "staff_id": "1003",
-          "이름": "박철수",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "서상훈",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1004",
-          "이름": "윤영수",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "김태현",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1005",
-          "이름": "김은정",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "한예준",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1006",
-          "이름": "황승호",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "안정희",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1007",
+          "이름": "오영수",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1008",
-          "이름": "류현우",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1009",
-          "이름": "신미영",
+          "이름": "오채영",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1010",
-          "이름": "서수빈",
+          "이름": "오상훈",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1011",
-          "이름": "정소영",
+          "이름": "김소영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1013",
+          "이름": "강정희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "최철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1015",
+          "이름": "윤혜진",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1016",
+          "이름": "송승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1017",
+          "이름": "김태현",
           "grade": 4,
           "grade_name": "간호사"
         },
         {
-          "staff_id": "1013",
-          "이름": "조미영",
-          "grade": 5,
-          "grade_name": "신규간호사"
+          "staff_id": "1018",
+          "이름": "송철수",
+          "grade": 4,
+          "grade_name": "간호사"
         },
         {
-          "staff_id": "1014",
-          "이름": "권소영",
+          "staff_id": "1019",
+          "이름": "오도현",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1022",
+          "이름": "강태현",
           "grade": 5,
           "grade_name": "신규간호사"
         }
       ]
     },
     {
-      "shift": "ShortNight",
+      "shift": "HalfShift",
       "people": [
         {
-          "staff_id": "1001",
-          "이름": "임소영",
-          "grade": 2,
-          "grade_name": "주임간호사"
-        },
-        {
-          "staff_id": "1002",
-          "이름": "류상훈",
-          "grade": 2,
-          "grade_name": "주임간호사"
-        },
-        {
-          "staff_id": "1007",
-          "이름": "권진우",
+          "staff_id": "1009",
+          "이름": "정상훈",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1012",
-          "이름": "권진우",
+          "이름": "권은정",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1020",
+          "이름": "류정희",
           "grade": 4,
           "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1021",
+          "이름": "권소영",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1023",
+          "이름": "윤영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1024",
+          "이름": "황채영",
+          "grade": 5,
+          "grade_name": "신규간호사"
         }
       ]
     },
@@ -2988,7 +4668,7 @@
       "people": [
         {
           "staff_id": "1000",
-          "이름": "김민수",
+          "이름": "조영희",
           "grade": 1,
           "grade_name": "수간호사"
         }
@@ -2997,96 +4677,156 @@
   ],
   "2025-09-29": [
     {
-      "shift": "LongDay",
+      "shift": "FullShift",
       "people": [
         {
           "staff_id": "1001",
-          "이름": "임소영",
+          "이름": "송태현",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1002",
+          "이름": "전예준",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1003",
+          "이름": "서상훈",
           "grade": 2,
           "grade_name": "주임간호사"
         },
         {
-          "staff_id": "1003",
-          "이름": "박철수",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "staff_id": "1004",
+          "이름": "김태현",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
-          "staff_id": "1004",
-          "이름": "윤영수",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "staff_id": "1005",
+          "이름": "한예준",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1006",
-          "이름": "황승호",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "안정희",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1007",
-          "이름": "권진우",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "오영수",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1008",
-          "이름": "류현우",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
-          "staff_id": "1009",
-          "이름": "신미영",
+          "이름": "오채영",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1010",
-          "이름": "서수빈",
+          "이름": "오상훈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1011",
+          "이름": "김소영",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1012",
-          "이름": "권진우",
+          "이름": "권은정",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "최철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1016",
+          "이름": "송승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1017",
+          "이름": "김태현",
           "grade": 4,
           "grade_name": "간호사"
         },
         {
-          "staff_id": "1013",
-          "이름": "조미영",
+          "staff_id": "1018",
+          "이름": "송철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1019",
+          "이름": "오도현",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1021",
+          "이름": "권소영",
           "grade": 5,
           "grade_name": "신규간호사"
         },
         {
-          "staff_id": "1014",
-          "이름": "권소영",
+          "staff_id": "1022",
+          "이름": "강태현",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1023",
+          "이름": "윤영수",
           "grade": 5,
           "grade_name": "신규간호사"
         }
       ]
     },
     {
-      "shift": "ShortNight",
+      "shift": "HalfShift",
       "people": [
         {
-          "staff_id": "1002",
-          "이름": "류상훈",
-          "grade": 2,
-          "grade_name": "주임간호사"
-        },
-        {
-          "staff_id": "1005",
-          "이름": "김은정",
+          "staff_id": "1009",
+          "이름": "정상훈",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
-          "staff_id": "1011",
-          "이름": "정소영",
+          "staff_id": "1013",
+          "이름": "강정희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1015",
+          "이름": "윤혜진",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1020",
+          "이름": "류정희",
           "grade": 4,
           "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1024",
+          "이름": "황채영",
+          "grade": 5,
+          "grade_name": "신규간호사"
         }
       ]
     },
@@ -3095,7 +4835,7 @@
       "people": [
         {
           "staff_id": "1000",
-          "이름": "김민수",
+          "이름": "조영희",
           "grade": 1,
           "grade_name": "수간호사"
         }
@@ -3104,96 +4844,156 @@
   ],
   "2025-09-30": [
     {
-      "shift": "LongDay",
+      "shift": "FullShift",
       "people": [
         {
           "staff_id": "1001",
-          "이름": "임소영",
+          "이름": "송태현",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1002",
+          "이름": "전예준",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1004",
+          "이름": "김태현",
           "grade": 2,
           "grade_name": "주임간호사"
         },
         {
-          "staff_id": "1004",
-          "이름": "윤영수",
-          "grade": 3,
-          "grade_name": "일반간호사"
-        },
-        {
           "staff_id": "1005",
-          "이름": "김은정",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "한예준",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1006",
-          "이름": "황승호",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "이름": "안정희",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
           "staff_id": "1007",
-          "이름": "권진우",
+          "이름": "오영수",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1008",
+          "이름": "오채영",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1009",
-          "이름": "신미영",
+          "이름": "정상훈",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
           "staff_id": "1010",
-          "이름": "서수빈",
+          "이름": "오상훈",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
-          "staff_id": "1011",
-          "이름": "정소영",
-          "grade": 4,
-          "grade_name": "간호사"
-        },
-        {
           "staff_id": "1012",
-          "이름": "권진우",
-          "grade": 4,
-          "grade_name": "간호사"
+          "이름": "권은정",
+          "grade": 3,
+          "grade_name": "일반간호사"
         },
         {
           "staff_id": "1013",
-          "이름": "조미영",
+          "이름": "강정희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "최철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1015",
+          "이름": "윤혜진",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1016",
+          "이름": "송승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1017",
+          "이름": "김태현",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1018",
+          "이름": "송철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1019",
+          "이름": "오도현",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1023",
+          "이름": "윤영수",
           "grade": 5,
           "grade_name": "신규간호사"
         },
         {
-          "staff_id": "1014",
-          "이름": "권소영",
+          "staff_id": "1024",
+          "이름": "황채영",
           "grade": 5,
           "grade_name": "신규간호사"
         }
       ]
     },
     {
-      "shift": "ShortNight",
+      "shift": "HalfShift",
       "people": [
         {
-          "staff_id": "1002",
-          "이름": "류상훈",
+          "staff_id": "1003",
+          "이름": "서상훈",
           "grade": 2,
           "grade_name": "주임간호사"
         },
         {
-          "staff_id": "1003",
-          "이름": "박철수",
+          "staff_id": "1011",
+          "이름": "김소영",
           "grade": 3,
           "grade_name": "일반간호사"
         },
         {
-          "staff_id": "1008",
-          "이름": "류현우",
-          "grade": 3,
-          "grade_name": "일반간호사"
+          "staff_id": "1020",
+          "이름": "류정희",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1021",
+          "이름": "권소영",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1022",
+          "이름": "강태현",
+          "grade": 5,
+          "grade_name": "신규간호사"
         }
       ]
     },
@@ -3202,7 +5002,7 @@
       "people": [
         {
           "staff_id": "1000",
-          "이름": "김민수",
+          "이름": "조영희",
           "grade": 1,
           "grade_name": "수간호사"
         }
