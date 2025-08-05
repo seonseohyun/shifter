@@ -1,0 +1,106 @@
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
+using ShifterUser.Enums;
+using ShifterUser.Messages;
+using ShifterUser.Models;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows;
+
+namespace ShifterUser.ViewModels
+{
+    public partial class MyReqStatusViewModel : ObservableObject
+    {
+        private readonly WorkRequestManager _reqModel;
+        private readonly UserSession _session;
+        private readonly string _uid;
+
+        public ObservableCollection<int> Years { get; } = new() { 2023, 2024, 2025 };
+        public ObservableCollection<int> Months { get; } = new() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
+
+        [ObservableProperty] private int selectedYear;
+        [ObservableProperty] private int selectedMonth;
+        [ObservableProperty] private WorkRequestStatus? filterStatus;
+
+        private List<WorkRequestModel> allRequests = new();
+
+        public ObservableCollection<WorkRequestModel> Requests { get; } = new();
+
+        [ObservableProperty] private WorkRequestModel? selectedRequest;
+
+        public IAsyncRelayCommand LoadRequestsCommand { get; }
+        public IRelayCommand GoToReqScheCommand { get; }
+
+        public MyReqStatusViewModel(WorkRequestManager manager, UserSession session)
+        {
+            _reqModel = manager;
+            _session = session;
+            _uid = session.GetUid(); // UID 확보
+
+            // 명령 먼저 초기화
+            LoadRequestsCommand = new AsyncRelayCommand(LoadRequestsAsync);
+            GoToReqScheCommand = new RelayCommand(GoToReqSche);
+
+            //  이후에 속성 설정 (이 순서 매우 중요!)
+            SelectedYear = DateTime.Now.Year;
+            SelectedMonth = DateTime.Now.Month;
+            FilterStatus = null;
+        }
+
+        // 서버에서 연/월에 해당하는 근무 요청 목록 불러오기
+        private async Task LoadRequestsAsync()
+        {
+            allRequests = await _reqModel.LoadMonthRequestsAsync(_uid, SelectedYear, SelectedMonth);
+            UpdateFilteredList();
+        }
+
+        // 필터 상태에 따라 리스트를 갱신
+        private void UpdateFilteredList()
+        {
+            Requests.Clear();
+
+            var filtered = allRequests
+                .Where(r => FilterStatus == null || r.Status == FilterStatus)
+                .ToList();
+
+            foreach (var item in filtered)
+                Requests.Add(item);
+        }
+
+        //  속성 변경 감지 → 자동 필터링 or 서버 호출
+        partial void OnSelectedYearChanged(int oldValue, int newValue)
+        {
+            if (LoadRequestsCommand?.CanExecute(null) == true)
+                LoadRequestsCommand.Execute(null);
+        }
+
+        partial void OnSelectedMonthChanged(int oldValue, int newValue)
+        {
+            if (LoadRequestsCommand?.CanExecute(null) == true)
+                LoadRequestsCommand.Execute(null);
+        }
+
+        partial void OnFilterStatusChanged(WorkRequestStatus? oldValue, WorkRequestStatus? newValue)
+        {
+            UpdateFilteredList();
+        }
+
+        //  근무 희망 요청 화면 이동
+        private void GoToReqSche()
+        {
+            Console.WriteLine("근무 희망 요청 화면으로 이동");
+            WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.ReqSche)); 
+        }
+
+        [RelayCommand]
+        private static void GoBack()
+        {
+            Console.WriteLine("[MyScheViewModel] GoBack command executed.");
+            WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.Home));
+        }
+    }
+}

@@ -5,7 +5,7 @@ using ShifterUser.Enums;
 
 namespace ShifterUser.Models
 {
-    public partial class WorkScheduleModel : ObservableObject
+    public partial class ConfirmedWorkScheModel : ObservableObject
     {
         [ObservableProperty] private ShiftType shiftType;
         [ObservableProperty] private TimeSpan startTime;

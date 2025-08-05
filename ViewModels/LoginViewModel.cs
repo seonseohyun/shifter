@@ -15,12 +15,12 @@ namespace ShifterUser.ViewModels
 {
     public partial class LoginViewModel : ObservableObject
     {
-        public LoginViewModel(UserModel userModel)
+        public LoginViewModel(UserManager userModel)
         {
             _userModel = userModel;
         }
-        
-        UserModel _userModel;
+
+        UserManager _userModel;
 
         [ObservableProperty] private string? id;
         [ObservableProperty] private string? password;

@@ -10,17 +10,16 @@ using Newtonsoft.Json.Linq;
 
 namespace ShifterUser.Models
 {
-    public class UserModel
+    public class UserManager
     {
         // Meber Variables
         private readonly SocketManager _socket;
         private readonly UserSession _session;
 
-
         // 생성자
-        public UserModel(SocketManager socket, UserSession session)
+        public UserManager(SocketManager socket, UserSession session)
         {
-            Console.WriteLine("[UserModel] UserModel 인스턴스가 생성되었습니다.");
+            Console.WriteLine("[UserManager] UserManager 인스턴스가 생성되었습니다.");
             _socket = socket;
             _session = session;
         }
@@ -92,7 +91,7 @@ namespace ShifterUser.Models
                 //    _session.SetCurrentChildUid(ChildrenInfo[0].Uid);
                 //}
 
-                //Console.WriteLine($"[UserModel] LogIn Completed");
+                //Console.WriteLine($"[UserManager] LogIn Completed");
                 return true;
             }
             else if (protocol == "login" && result == "fail")
@@ -101,7 +100,7 @@ namespace ShifterUser.Models
             }
             else
             {
-                Console.WriteLine($"[UserModel] 로그인 응답 오류: {result}");
+                Console.WriteLine($"[UserManager] 로그인 응답 오류: {result}");
                 return false;
             }
         }

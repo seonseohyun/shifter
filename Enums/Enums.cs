@@ -13,10 +13,18 @@ namespace ShifterUser.Enums
         Info,
         MySche,
         QR,
+        ReqStatus,
+        ReqSche,
         Goback
     }
 
     public enum ShiftType { Off, Day, Evening, Night }
 
+    public enum WorkRequestStatus
+    {
+        Pending,  // 대기
+        Approved, // 승인
+        Rejected  // 반려
+    }
 }
 

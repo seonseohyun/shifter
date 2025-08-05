@@ -72,7 +72,7 @@
                     <TextBlock Text="비밀번호"
                                FontSize="14"
                                FontFamily="Noto Sans KR"
-                               Foreground="#007BFF"
+                               Foreground="#007AFF"
                                Margin="12,0,0,0"
                                VerticalAlignment="Center"
                                IsHitTestVisible="False"
@@ -86,7 +86,7 @@
                     FontSize="15"
                     FontFamily="Noto Sans KR Medium"
                     Foreground="White"
-                    Background="#007BFF"
+                    Background="#007AFF"
                     BorderThickness="0"
                     Height="52"
                     Margin="0,0,0,30">
@@ -107,7 +107,7 @@
                            FontSize="13"
                            FontFamily="Noto Sans KR">
                     <Run Text="하루고리에 대해 궁금하신가요? " Foreground="#A7A7A7"/>
-                    <Run Text="알아보기" Foreground="#007BFF" TextDecorations="Underline" Cursor="Hand"/>
+                    <Run Text="알아보기" Foreground="#007AFF" TextDecorations="Underline" Cursor="Hand"/>
                 </TextBlock>
             </Button>
         </StackPanel>

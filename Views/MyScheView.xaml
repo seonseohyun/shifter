@@ -17,7 +17,7 @@
         </Grid.RowDefinitions>
 
         <!-- 상단 바 -->
-        <DockPanel Grid.Row="0" Background="#007BFF">
+        <DockPanel Grid.Row="0" Background="#007AFF">
             <Button Content="&lt;" Width="40"
                     Command="{Binding GoBackCommand}"
                     Background="Transparent" 

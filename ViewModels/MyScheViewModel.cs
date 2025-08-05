@@ -15,7 +15,7 @@ namespace ShifterUser.ViewModels
 {
     public partial class MyScheViewModel : ObservableObject
     {
-        public MyScheViewModel(WorkScheReqModel scheModel, UserSession userSession, SocketManager socket)
+        public MyScheViewModel(WorkRequestManager scheModel, UserSession userSession, SocketManager socket)
         {
             Console.WriteLine("MyScheViewModel 생성됨");
 
@@ -28,7 +28,7 @@ namespace ShifterUser.ViewModels
             UpdateSummary();
         }
 
-        private WorkScheReqModel _scheModel;
+        private WorkRequestManager _scheModel;
         private UserSession _session;
         private SocketManager _socket;
 
@@ -38,7 +38,7 @@ namespace ShifterUser.ViewModels
         [ObservableProperty] private string scheduleSummaryText;
 
         // 팝업 관련 프로퍼티 추가
-        [ObservableProperty] private WorkScheReqModel? selectedDayData;
+        [ObservableProperty] private WorkRequestManager? selectedDayData;
         [ObservableProperty] private bool isDetailVisible;
 
         // 날짜 클릭 시 호출되는 커맨드
@@ -50,7 +50,7 @@ namespace ShifterUser.ViewModels
 
             Console.WriteLine($"[MyScheViewModel] {day.Date.Value:yyyy-MM-dd} 클릭됨");
 
-            var newModel = new WorkScheReqModel(_socket, _session);
+            var newModel = new WorkRequestManager(_socket, _session);
 
             await newModel.LoadFromServerAsync(_session.GetUid(), day.Date.Value);
 
@@ -67,10 +67,10 @@ namespace ShifterUser.ViewModels
             Console.WriteLine($"[MyScheViewModel] {day.Date.Value:yyyy-MM-dd} 클릭됨");
 
             // 테스트 데이터 생성
-            var testModel = new WorkScheReqModel(_socket, _session)
+            var testModel = new WorkRequestManager(_socket, _session)
             {
                 Date = day.Date.Value,
-                Schedule = new WorkScheduleModel
+                Schedule = new ConfirmedWorkScheModel
                 {
                     ShiftType = ShiftType.Day,
                     StartTime = TimeSpan.Parse("09:00"),
@@ -79,8 +79,8 @@ namespace ShifterUser.ViewModels
                 },
                 Attendance = new AttendanceModel
                 {
-                    ClockInTime = DateTime.Parse("2025-08-06 09:03:00"),
-                    ClockOutTime = DateTime.Parse("2025-08-06 18:01:00")
+                    ClockInTime = DateTime.Parse("2025-08-06 09:03"),
+                    ClockOutTime = DateTime.Parse("2025-08-06 18:01")
                 },
                 IsRequested = true,
                 RequestReason = "개인 사유"

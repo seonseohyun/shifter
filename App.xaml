@@ -11,6 +11,9 @@
         <conv:BooleanToAlertIconConverter x:Key="AlertIconConverter" />
         <conv:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <conv:ZeroToVisibleConverter x:Key="ZeroToVisibleConverter" />
+        <conv:StatusToColorConverter x:Key="StatusToColorConverter"/>
+        <conv:StatusToBoolConverter x:Key="StatusToBoolConverter"/>
+        <conv:StatusToIconConverter x:Key="StatusToIconConverter"/>
 
         <!-- 워터마크 텍스트박스 스타일 -->
         <Style x:Key="BlueWatermarkTextBoxStyle" TargetType="TextBox">

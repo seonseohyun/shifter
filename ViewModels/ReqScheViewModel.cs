@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShifterUser.Models
+namespace ShifterUser.ViewModels
 {
-    internal class GroupNoticeModel
+    internal class ReqScheViewModel
     {
     }
 }

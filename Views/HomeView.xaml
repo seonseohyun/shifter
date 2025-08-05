@@ -25,12 +25,13 @@
 
     <Grid>
         <!-- 상단 바 -->
-        <Border Background="#007BFF" Height="56" VerticalAlignment="Top">
+        <Border Background="#007AFF" Height="56" VerticalAlignment="Top">
             <Grid>
                 <TextBlock Text="하루고리"
                            Foreground="White"
                            FontSize="18"
                            FontWeight="Bold"
+                           FontFamily="Noto Sans KR"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"
                            TextAlignment="Center"/>
@@ -60,13 +61,13 @@
                             <StackPanel>
                                 <TextBlock Text="2025.07.30" FontSize="14" Foreground="Gray"/>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="출근 완료" FontSize="16" FontWeight="Bold" />
+                                    <TextBlock Text="출근 완료" FontSize="16" FontWeight="Bold" FontFamily="Noto Sans KR" />
                                     <Ellipse Width="10" Height="10" Fill="Green" Margin="6,3,0,0"/>
                                 </StackPanel>
                             </StackPanel>
                         </StackPanel>
-                        <Button Content="QR 체크하러 가기" Height="44" Margin="0,8,0,0" FontSize="16"
-                                Background="#007BFF" Foreground="White" FontWeight="SemiBold"
+                        <Button Content="QR 체크하러 가기" Height="44" Margin="0,8,0,0" FontSize="16" FontFamily="Noto Sans KR"
+                                Background="#007AFF" Foreground="White" FontWeight="SemiBold"
                                 Command="{Binding GoToQrCheckCommand}">
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
@@ -86,7 +87,7 @@
                 <Border Background="White" CornerRadius="16" Padding="16" BorderBrush="#CCCCCC" BorderThickness="1">
                     <StackPanel>
                         <DockPanel Margin="0,0,0,15">
-                            <TextBlock Text="그룹 활동 보기" FontSize="18" FontWeight="Bold"/>
+                            <TextBlock Text="그룹 활동 보기" FontSize="18" FontWeight="Bold" FontFamily="Noto Sans KR"/>
                             <Image Source="/Resources/images/arrow_right.png" Width="15" Height="15" DockPanel.Dock="Right"
                                    Cursor="Hand" HorizontalAlignment="Right">
                                 <Image.InputBindings>
@@ -98,8 +99,8 @@
                             <TextBox Text="응급실 A팀" BorderThickness="0" Padding="8,0" VerticalContentAlignment="Center" Background="Transparent" Height="44" VerticalAlignment="Center" FontSize="14"/>
                         </Border>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,12,0,0">
-                            <Button Content="공지사항 보기" Width="163" Height="44" Margin="0,0,8,0"
-                                    BorderBrush="#007BFF" BorderThickness="1" Background="White" Foreground="#007BFF"
+                            <Button Content="공지사항 보기" Width="163" Height="44" Margin="0,0,8,0" FontFamily="Noto Sans KR"
+                                    BorderBrush="#007AFF" BorderThickness="1" Background="White" Foreground="#007AFF"
                                     FontWeight="SemiBold" FontSize="16"
                                     Command="{Binding GoToNoticeCommand}">
                                 <Button.Template>
@@ -110,12 +111,12 @@
                                     </ControlTemplate>
                                 </Button.Template>
                             </Button>
-                            <Button Content="인수인계 보기" Width="163" Height="44" Background="#007BFF" Foreground="White"
+                            <Button Content="인수인계 보기" Width="163" Height="44" Background="#007AFF" Foreground="White" FontFamily="Noto Sans KR"
                                     FontWeight="SemiBold" BorderThickness="0" FontSize="16"
                                     Command="{Binding GoToHandoverCommand}">
                                 <Button.Template>
                                     <ControlTemplate TargetType="Button">
-                                        <Border CornerRadius="22" Background="#007BFF">
+                                        <Border CornerRadius="22" Background="#007AFF">
                                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         </Border>
                                     </ControlTemplate>
@@ -132,7 +133,7 @@
                 <Border Background="White" CornerRadius="16" Padding="16" BorderBrush="#CCCCCC" BorderThickness="1" Height="150">
                     <StackPanel>
                         <DockPanel Margin="0,0,0,15">
-                            <TextBlock Text="이번 주 스케줄" FontSize="18" FontWeight="Bold" VerticalAlignment="Center"/>
+                            <TextBlock Text="이번 주 스케줄" FontSize="18" FontWeight="Bold" VerticalAlignment="Center" FontFamily="Noto Sans KR"/>
                             <Image Source="/Resources/images/arrow_right.png" Width="15" Height="15" HorizontalAlignment="Right"
                                    Cursor="Hand">
                                 <Image.InputBindings>
@@ -145,23 +146,23 @@
                         <UniformGrid Columns="7" HorizontalAlignment="Stretch">
                             <StackPanel HorizontalAlignment="Center">
                                 <TextBlock Text="월" Background="#EEF6FF" Padding="5,2" Width="50" TextAlignment="Center" Height="30" FontSize="16"/>
-                                <TextBlock Text="D" FontWeight="Bold" Foreground="#007BFF" TextAlignment="Center" Width="50" Height="30" FontSize="16"/>
+                                <TextBlock Text="D" FontWeight="Bold" Foreground="#007AFF" TextAlignment="Center" Width="50" Height="30" FontSize="16"/>
                             </StackPanel>
                             <StackPanel HorizontalAlignment="Center">
                                 <TextBlock Text="화" Background="#EEF6FF" Padding="5,2" Width="50" TextAlignment="Center" Height="30" FontSize="16"/>
-                                <TextBlock Text="N" FontWeight="Bold" Foreground="#007BFF" TextAlignment="Center" Width="50" Height="30" FontSize="16"/>
+                                <TextBlock Text="N" FontWeight="Bold" Foreground="#007AFF" TextAlignment="Center" Width="50" Height="30" FontSize="16"/>
                             </StackPanel>
                             <StackPanel HorizontalAlignment="Center">
                                 <TextBlock Text="수" Background="#EEF6FF" Padding="5,2" Width="50" TextAlignment="Center" Height="30" FontSize="16"/>
-                                <TextBlock Text="N" FontWeight="Bold" Foreground="#007BFF" TextAlignment="Center" Width="50" Height="30" FontSize="16"/>
+                                <TextBlock Text="N" FontWeight="Bold" Foreground="#007AFF" TextAlignment="Center" Width="50" Height="30" FontSize="16"/>
                             </StackPanel>
                             <StackPanel HorizontalAlignment="Center">
                                 <TextBlock Text="목" Background="#EEF6FF" Padding="5,2" Width="50" TextAlignment="Center" Height="30" FontSize="16"/>
-                                <TextBlock Text="E" FontWeight="Bold" Foreground="#007BFF" TextAlignment="Center" Width="50" Height="30" FontSize="16"/>
+                                <TextBlock Text="E" FontWeight="Bold" Foreground="#007AFF" TextAlignment="Center" Width="50" Height="30" FontSize="16"/>
                             </StackPanel>
                             <StackPanel HorizontalAlignment="Center">
                                 <TextBlock Text="금" Background="#EEF6FF" Padding="5,2" Width="50" TextAlignment="Center" Height="30" FontSize="16"/>
-                                <TextBlock Text="O" FontWeight="Bold" Foreground="#007BFF" TextAlignment="Center" Width="50" Height="30" FontSize="16"/>
+                                <TextBlock Text="O" FontWeight="Bold" Foreground="#007AFF" TextAlignment="Center" Width="50" Height="30" FontSize="16"/>
                             </StackPanel>
                             <StackPanel HorizontalAlignment="Center">
                                 <TextBlock Text="토" Background="#EEF6FF" Padding="5,2" Width="50" TextAlignment="Center" Height="30" FontSize="16"/>
@@ -183,7 +184,7 @@
                 <Border Background="White" CornerRadius="16" Padding="16" BorderBrush="#CCCCCC" BorderThickness="1" Height="128" VerticalAlignment="Top">
                     <StackPanel>
                         <DockPanel Margin="0,0,0,15">
-                            <TextBlock Text="근무 요청 현황" FontSize="18" FontWeight="Bold"/>
+                            <TextBlock Text="근무 요청 현황" FontSize="18" FontWeight="Bold" FontFamily="Noto Sans KR"/>
                             <Image Source="/Resources/images/arrow_right.png" Width="15" Height="20" DockPanel.Dock="Right" HorizontalAlignment="Right"
                                    Cursor="Hand">
                                 <Image.InputBindings>

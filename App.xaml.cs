@@ -37,9 +37,8 @@ namespace ShifterUser
         {
             // Models
             services.AddSingleton<Models.UserSession>();
-            services.AddSingleton<Models.GroupNoticeModel>();
-            services.AddSingleton<Models.UserModel>();
-            services.AddSingleton<Models.WorkScheReqModel>();
+            services.AddSingleton<Models.UserManager>();
+            services.AddSingleton<Models.WorkRequestManager>();
 
             // Helpers
             services.AddSingleton<SocketManager>();
@@ -52,6 +51,7 @@ namespace ShifterUser
             services.AddTransient<InfoViewModel>();
             services.AddTransient<MyScheViewModel>();
             services.AddTransient<QRCheckViewModel>();
+            services.AddTransient<MyReqStatusViewModel>();
         }
     }
 }

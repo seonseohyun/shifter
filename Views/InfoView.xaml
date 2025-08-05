@@ -16,7 +16,7 @@
         </Grid.RowDefinitions>
 
         <!-- 상단 바 -->
-        <Grid Grid.Row="0" Background="#007BFF" Height="50">
+        <Grid Grid.Row="0" Background="#007AFF" Height="50">
             <Button Content="＜"
                     Command="{Binding GoBackCommand}"
                     Width="40" Height="40"
@@ -110,7 +110,7 @@
                     <TextBlock Text="✅ 매번 다른 인수인계 방식, 불편하지 않으셨나요?"
                                FontSize="13" Margin="0,0,0,10"/>
                     <TextBlock Text="👉 하루고리는 이 모든 불편을 하나로 해결합니다."
-                               FontSize="14" FontWeight="Bold" Foreground="#007BFF"/>
+                               FontSize="14" FontWeight="Bold" Foreground="#007AFF"/>
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>
