@@ -52,6 +52,6 @@ nursing_request = {
             {"name": "신신규간호사", "staff_id": 107, "grade": 5, "grade_name": "신규간호사", "position": "간호", "total_monthly_work_hours": 188}
           ]            
     },
-    "shift_type": 3,    
+    "shift_type": 3,     //없어지고 shifts배열의 크기로 변경될듯
     "target_month": "2025-09" 
 }
