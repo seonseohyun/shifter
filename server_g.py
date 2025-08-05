@@ -62,7 +62,16 @@ def parse_target_month(target_month):
         # 기본값: 2025년 8월
         return datetime(2025, 8, 1), 31
 
-def apply_position_constraints(model, schedule, person, days, shifts, shift_hours, num_weeks, rules, position):
+def detect_night_shift(shifts):
+    """shifts 목록에서 야간 시프트를 자동 인식"""
+    night_keywords = ['n', 'night', '밤', '야간', 'nacht']  # 추가 키워드 확장 가능
+    for s in shifts:
+        s_lower = s.lower()
+        if any(keyword in s_lower for keyword in night_keywords):
+            return s
+    return None
+
+def apply_position_constraints(model, schedule, person, days, shifts, shift_hours, num_weeks, rules, position, night_shift):
     """직군별 제약조건 적용"""
     sid = str(person["staff_id"])
     grade = person.get("grade", 1)
@@ -73,25 +82,23 @@ def apply_position_constraints(model, schedule, person, days, shifts, shift_hour
     if position == "간호":
         # 신규간호사는 야간 근무 금지
         if rules.get("newbie_no_night", False) and grade == rules.get("newbie_grade", 5):
-            if 'N' in shifts:
+            if night_shift and night_shift in shifts:
                 for d in days:
-                    model.Add(schedule[(sid, d, 'N')] == 0)
-                print(f"[INFO] {name}: 신규간호사 야간 근무 금지 적용")
+                    model.Add(schedule[(sid, d, night_shift)] == 0)
+                print(f"[INFO] {name}: 신규간호사 야간 근무 금지 적용 (야간: {night_shift})")
         
         # 야간 근무 후 반드시 휴무
-        if rules.get("night_after_off", False) and 'N' in shifts and 'O' in shifts:
+        if rules.get("night_after_off", False) and night_shift and night_shift in shifts and 'O' in shifts:
             for d in range(len(days) - 1):
-                night = schedule[(sid, d, 'N')]
+                night = schedule[(sid, d, night_shift)]
                 off_next = schedule[(sid, d + 1, 'O')]
                 model.AddImplication(night, off_next)
                 
-                # 야간 근무 후 다른 근무 금지
-                if 'D' in shifts:
-                    day_next = schedule[(sid, d + 1, 'D')]
-                    model.AddBoolOr([night.Not(), day_next.Not()])
-                if 'E' in shifts:
-                    eve_next = schedule[(sid, d + 1, 'E')]
-                    model.AddBoolOr([night.Not(), eve_next.Not()])
+                # 야간 근무 후 다른 근무 금지 (D, E 등)
+                for other_shift in shifts:
+                    if other_shift not in [night_shift, 'O']:
+                        other_next = schedule[(sid, d + 1, other_shift)]
+                        model.AddBoolOr([night.Not(), other_next.Not()])
         
         # 최소 휴무일
         min_off_days = rules.get("min_off_days", 3)
@@ -126,6 +133,7 @@ def apply_position_constraints(model, schedule, person, days, shifts, shift_hour
         model.Add(weekly_hours <= max_weekly_hours)
     
     # 월 총 근무시간 제한
+    # 월 총 근무시간 제한
     base_monthly_hours = person.get("total_monthly_work_hours", rules.get("max_monthly_hours", 190)) # 법정최고 209
     max_monthly_hours = int(base_monthly_hours * 1.1)  # 10% 여유분
     # 최소 월 총 근무시간 설정 (base_monthly_hours에서 20을 뺀 값)
@@ -139,34 +147,25 @@ def apply_position_constraints(model, schedule, person, days, shifts, shift_hour
     
     print(f"[INFO] {name}: 주당 최대 {max_weekly_hours}시간, 월 최대 {base_monthly_hours}시간(여유분: {max_monthly_hours}시간)")
 
-def create_individual_shift_schedule(staff_data, shift_type, change_requests=None, position="default", target_month=None):
+def create_individual_shift_schedule(staff_data, shift_type, change_requests=None, position="default", target_month=None, custom_rules=None):
     model = cp_model.CpModel()
     
     # 직군별 규칙 가져오기
-    rules = POSITION_RULES.get(position, POSITION_RULES["default"])
-    print(f"[INFO] 직군: {position}, 적용 규칙: {list(rules.keys())}")
+    rules = POSITION_RULES.get(position, POSITION_RULES["default"]).copy()  # 복사하여 수정 가능하게 함
+    print(f"[INFO] 직군: {position}, 기본 규칙: {list(rules.keys())}")
     
-    # 직군별 시프트 정의 사용
-    if position in POSITION_RULES:
-        shifts = rules["shifts"]
-        shift_hours = rules["shift_hours"]
-        night_shift = 'N' if 'N' in shifts else None
-    else:
-        # 기존 로직 유지 (호환성)
-        if shift_type not in [2, 3, 4]:
-            raise ValueError("shift_type must be 2, 3, or 4")
-            
-        if shift_type == 2:
-            shifts = ['D', 'N', 'O'] # ['','','','']
-            night_shift = 'N'
-        elif shift_type == 3:
-            shifts = ['D', 'E', 'N', 'O']
-            night_shift = 'N'
-        elif shift_type == 4:
-            shifts = ['M', 'D', 'E', 'N', 'O']
-            night_shift = 'N'
-        
-        shift_hours = {s: 8 if s != 'O' else 0 for s in shifts}
+    # 커스텀 규칙이 있으면 오버라이드
+    if custom_rules:
+        rules.update(custom_rules)
+        print(f"[INFO] 커스텀 규칙 적용: {list(custom_rules.keys())}")
+    
+    # 직군별 또는 커스텀 시프트 정의 사용
+    shifts = rules["shifts"]
+    shift_hours = rules["shift_hours"]
+    
+    # 야간 시프트 자동 인식
+    night_shift = detect_night_shift(shifts)
+    print(f"[INFO] 인식된 야간 시프트: {night_shift if night_shift else '없음'}")
     
     # 동적 날짜 계산
     start_date, num_days = parse_target_month(target_month)
@@ -184,32 +183,35 @@ def create_individual_shift_schedule(staff_data, shift_type, change_requests=Non
         sid = str(person["staff_id"])
         for d in days:
             for s in shifts:
-                # 불린변수를생성 : 해당직원이 해당날짜에 해당 shift를 배정받았는지(1) or (0)
-                #sid 직원 d 날짜 s deno중 하나
+                # 불린변수를 생성 : 해당직원이 해당날짜에 해당 shift를 배정받았는지(1) or (0)
                 schedule[(sid, d, s)] = model.NewBoolVar(f"{sid}_d{d}_{s}")    
 
     for person in all_people:
         sid = str(person["staff_id"])
         for d in days:
-            #각 직원별로 매일 정확히 하나의 shift를 배정
+            # 각 직원별로 매일 정확히 하나의 shift를 배정
             model.AddExactlyOne([schedule[(sid, d, s)] for s in shifts])
 
     # 각 교대에 최소 인원 보장 (오프 제외)
     for d in days:
         for s in shifts:
-            if s != 'O':
-                #각 날짜와 비휴무 shift에 최소 1명의 직원을 배정한다.
+            if s != 'O':  # 'O'가 휴무로 가정, 커스텀 시 'O'가 없을 수 있음 (개선 필요)
+                # 각 날짜와 비휴무 shift에 최소 1명의 직원을 배정한다.
                 model.Add(sum(schedule[(str(person["staff_id"]), d, s)] for person in all_people) >= 1)
 
     # 직군별 제약조건 적용
     for person in all_people:
         # 개별 직원의 position 우선, 없으면 전체 position 사용
         person_position = person.get("position", position)  
-        person_rules = POSITION_RULES.get(person_position, rules)
+        person_rules = POSITION_RULES.get(person_position, rules).copy()
+        
+        # 개인별 커스텀 규칙이 있으면 추가 오버라이드 (현재는 전체 custom_rules 사용)
+        if custom_rules:
+            person_rules.update(custom_rules)
 
-        apply_position_constraints(model, schedule, person, days, shifts, shift_hours, num_weeks, person_rules, person_position)
+        apply_position_constraints(model, schedule, person, days, shifts, shift_hours, num_weeks, person_rules, person_position, night_shift)
 
-    # 야간 근무 균등 분배 (야간 근무가 있는 경우만 소방은 24시간)
+    # 야간 근무 균등 분배 (야간 시프트가 인식된 경우만)
     if night_shift and night_shift in shifts:
         night_counts = [sum(schedule[(str(person["staff_id"]), d, night_shift)] for d in days) for person in all_people]
         max_nights = model.NewIntVar(0, num_days, "max_night")
@@ -282,13 +284,22 @@ def create_individual_shift_schedule(staff_data, shift_type, change_requests=Non
         for name, stats in monthly_hours_summary.items():
             print(f"{name}: {stats['actual_hours']}시간/{stats['max_hours']}시간 (여유: {stats['remaining_hours']}시간)")
 
-          # JSON 파일로 저장
-        output_path = "./data/result_schedule.json"
+        # JSON 파일로 저장
+        # output_path = "./data/result_schedule.json"
+        # os.makedirs(os.path.dirname(output_path), exist_ok=True)
+        # with open(output_path, "w", encoding="utf-8") as f:
+        #     json.dump(result, f, ensure_ascii=False, indent=2)
+
+        # print(f"[INFO] 근무표가 저장되었습니다: {output_path}")
+
+        # 현재 시간 기반 파일명 생성
+        now = datetime.now().strftime("%Y%m%d_%H%M%S")
+        output_path = f"./data/result_schedule_{now}.json"
+
+        # 디렉토리 생성 후 저장
         os.makedirs(os.path.dirname(output_path), exist_ok=True)
         with open(output_path, "w", encoding="utf-8") as f:
             json.dump(result, f, ensure_ascii=False, indent=2)
-
-        print(f"[INFO] 근무표가 저장되었습니다: {output_path}")
 
         return result
     else:
@@ -300,15 +311,16 @@ def handle_request(request_json):
         data = json.loads(request_json)
         staff_data = data.get("staff_data")
         shift_type = data.get("shift_type", 3)
-        change_requests = data.get("change_requests", [])  #수정요청은 추후에 넣을수도 있지만 현재는 필요가 없음 빈배열
+        change_requests = data.get("change_requests", [])  # 수정요청은 추후에 넣을수도 있지만 현재는 필요가 없음 빈배열
         position = data.get("position", "default")  # 직군 정보 추가
         target_month = data.get("target_month")  # 대상 월 정보 추가
+        custom_rules = data.get("custom_rules")  # 커스텀 규칙 추가
 
         if not staff_data or "staff" not in staff_data:
             return json.dumps({"error": "유효한 staff_data가 필요합니다."})
 
-        print(f"[INFO] 요청 받음 - 직군: {position}, 직원 수: {len(staff_data['staff'])}, 대상 월: {target_month}")
-        result = create_individual_shift_schedule(staff_data, shift_type, change_requests, position, target_month)
+        print(f"[INFO] 요청 받음 - 직군: {position}, 직원 수: {len(staff_data['staff'])}, 대상 월: {target_month}, 커스텀 규칙: {bool(custom_rules)}")
+        result = create_individual_shift_schedule(staff_data, shift_type, change_requests, position, target_month, custom_rules)
 
         if result is None:
             return json.dumps({"status": "error", "message": "근무표를 생성할 수 없습니다."})

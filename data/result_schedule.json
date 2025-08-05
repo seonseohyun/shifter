@@ -1,3960 +1,1920 @@
 {
   "2025-09-01": [
     {
-      "shift": "D24",
+      "shift": "아침",
       "people": [
         {
-          "staff_id": "202",
-          "이름": "박소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
+          "staff_id": "105",
+          "이름": "정간호사",
+          "grade": 3,
+          "grade_name": "일반간호사"
         },
         {
-          "staff_id": "207",
-          "이름": "조소방관",
+          "staff_id": "106",
+          "이름": "한간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "212",
-          "이름": "오소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "214",
-          "이름": "노소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "218",
-          "이름": "신소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
         }
       ]
     },
     {
-      "shift": "O",
+      "shift": "낮",
       "people": [
         {
-          "staff_id": "201",
-          "이름": "김소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
+          "staff_id": "102",
+          "이름": "박신규",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
         {
-          "staff_id": "203",
-          "이름": "이소방관",
+          "staff_id": "101",
+          "이름": "김간호사",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴일",
+      "people": [
+        {
+          "staff_id": "103",
+          "이름": "이수간호사",
           "grade": 1,
-          "grade_name": "소방장"
+          "grade_name": "수간호사"
         },
         {
-          "staff_id": "204",
-          "이름": "최소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "205",
-          "이름": "정소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "206",
-          "이름": "강소방관",
+          "staff_id": "104",
+          "이름": "최간호사",
           "grade": 2,
-          "grade_name": "선임소방사"
+          "grade_name": "주임간호사"
         },
         {
-          "staff_id": "208",
-          "이름": "윤소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "209",
-          "이름": "장소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "210",
-          "이름": "임소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "211",
-          "이름": "한소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "213",
-          "이름": "서소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "215",
-          "이름": "배소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "216",
-          "이름": "문소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "217",
-          "이름": "송소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "219",
-          "이름": "안소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "220",
-          "이름": "양소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
+          "staff_id": "107",
+          "이름": "신신규간호사",
+          "grade": 5,
+          "grade_name": "신규간호사"
         }
       ]
     }
   ],
   "2025-09-02": [
     {
-      "shift": "D24",
+      "shift": "아침",
       "people": [
         {
-          "staff_id": "203",
-          "이름": "이소방관",
-          "grade": 1,
-          "grade_name": "소방장"
+          "staff_id": "104",
+          "이름": "최간호사",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
-          "staff_id": "204",
-          "이름": "최소방관",
+          "staff_id": "105",
+          "이름": "정간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "205",
-          "이름": "정소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "216",
-          "이름": "문소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
         }
       ]
     },
     {
-      "shift": "O",
+      "shift": "낮",
       "people": [
         {
-          "staff_id": "201",
-          "이름": "김소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
+          "staff_id": "102",
+          "이름": "박신규",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
         {
-          "staff_id": "202",
-          "이름": "박소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "206",
-          "이름": "강소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "207",
-          "이름": "조소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "208",
-          "이름": "윤소방관",
+          "staff_id": "103",
+          "이름": "이수간호사",
           "grade": 1,
-          "grade_name": "소방장"
-        },
+          "grade_name": "수간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴일",
+      "people": [
         {
-          "staff_id": "209",
-          "이름": "장소방관",
+          "staff_id": "101",
+          "이름": "김간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
         },
         {
-          "staff_id": "210",
-          "이름": "임소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "211",
-          "이름": "한소방관",
+          "staff_id": "106",
+          "이름": "한간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
         },
         {
-          "staff_id": "212",
-          "이름": "오소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "213",
-          "이름": "서소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "214",
-          "이름": "노소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "215",
-          "이름": "배소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "217",
-          "이름": "송소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "218",
-          "이름": "신소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "219",
-          "이름": "안소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "220",
-          "이름": "양소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
+          "staff_id": "107",
+          "이름": "신신규간호사",
+          "grade": 5,
+          "grade_name": "신규간호사"
         }
       ]
     }
   ],
   "2025-09-03": [
     {
-      "shift": "D24",
+      "shift": "아침",
       "people": [
         {
-          "staff_id": "206",
-          "이름": "강소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "211",
-          "이름": "한소방관",
+          "staff_id": "101",
+          "이름": "김간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
         },
         {
-          "staff_id": "213",
-          "이름": "서소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "215",
-          "이름": "배소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "217",
-          "이름": "송소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "218",
-          "이름": "신소방관",
+          "staff_id": "105",
+          "이름": "정간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "219",
-          "이름": "안소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "220",
-          "이름": "양소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
+          "grade_name": "일반간호사"
         }
       ]
     },
     {
-      "shift": "O",
+      "shift": "낮",
       "people": [
         {
-          "staff_id": "201",
-          "이름": "김소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
+          "staff_id": "102",
+          "이름": "박신규",
+          "grade": 5,
+          "grade_name": "신규간호사"
         },
         {
-          "staff_id": "202",
-          "이름": "박소방관",
+          "staff_id": "106",
+          "이름": "한간호사",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
+        {
+          "staff_id": "104",
+          "이름": "최간호사",
           "grade": 2,
-          "grade_name": "선임소방사"
-        },
+          "grade_name": "주임간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴일",
+      "people": [
         {
-          "staff_id": "203",
-          "이름": "이소방관",
+          "staff_id": "103",
+          "이름": "이수간호사",
           "grade": 1,
-          "grade_name": "소방장"
+          "grade_name": "수간호사"
         },
         {
-          "staff_id": "204",
-          "이름": "최소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "205",
-          "이름": "정소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "207",
-          "이름": "조소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "208",
-          "이름": "윤소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "209",
-          "이름": "장소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "210",
-          "이름": "임소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "212",
-          "이름": "오소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "214",
-          "이름": "노소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "216",
-          "이름": "문소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
+          "staff_id": "107",
+          "이름": "신신규간호사",
+          "grade": 5,
+          "grade_name": "신규간호사"
         }
       ]
     }
   ],
   "2025-09-04": [
     {
-      "shift": "D24",
+      "shift": "아침",
       "people": [
         {
-          "staff_id": "204",
-          "이름": "최소방관",
+          "staff_id": "101",
+          "이름": "김간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
         },
         {
-          "staff_id": "205",
-          "이름": "정소방관",
+          "staff_id": "105",
+          "이름": "정간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "209",
-          "이름": "장소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "212",
-          "이름": "오소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "214",
-          "이름": "노소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "216",
-          "이름": "문소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
         }
       ]
     },
     {
-      "shift": "O",
+      "shift": "낮",
       "people": [
         {
-          "staff_id": "201",
-          "이름": "김소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
+          "staff_id": "102",
+          "이름": "박신규",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
         {
-          "staff_id": "202",
-          "이름": "박소방관",
+          "staff_id": "104",
+          "이름": "최간호사",
           "grade": 2,
-          "grade_name": "선임소방사"
-        },
+          "grade_name": "주임간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴일",
+      "people": [
         {
-          "staff_id": "203",
-          "이름": "이소방관",
+          "staff_id": "103",
+          "이름": "이수간호사",
           "grade": 1,
-          "grade_name": "소방장"
+          "grade_name": "수간호사"
         },
         {
-          "staff_id": "206",
-          "이름": "강소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "207",
-          "이름": "조소방관",
+          "staff_id": "106",
+          "이름": "한간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
         },
         {
-          "staff_id": "208",
-          "이름": "윤소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "210",
-          "이름": "임소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "211",
-          "이름": "한소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "213",
-          "이름": "서소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "215",
-          "이름": "배소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "217",
-          "이름": "송소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "218",
-          "이름": "신소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "219",
-          "이름": "안소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "220",
-          "이름": "양소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
+          "staff_id": "107",
+          "이름": "신신규간호사",
+          "grade": 5,
+          "grade_name": "신규간호사"
         }
       ]
     }
   ],
   "2025-09-05": [
     {
-      "shift": "D24",
+      "shift": "아침",
       "people": [
         {
-          "staff_id": "202",
-          "이름": "박소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "207",
-          "이름": "조소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "210",
-          "이름": "임소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "211",
-          "이름": "한소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "213",
-          "이름": "서소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "215",
-          "이름": "배소방관",
+          "staff_id": "103",
+          "이름": "이수간호사",
           "grade": 1,
-          "grade_name": "소방장"
+          "grade_name": "수간호사"
         },
         {
-          "staff_id": "217",
-          "이름": "송소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "219",
-          "이름": "안소방관",
+          "staff_id": "105",
+          "이름": "정간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "220",
-          "이름": "양소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
+          "grade_name": "일반간호사"
         }
       ]
     },
     {
-      "shift": "O",
+      "shift": "낮",
       "people": [
         {
-          "staff_id": "201",
-          "이름": "김소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
+          "staff_id": "102",
+          "이름": "박신규",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
         {
-          "staff_id": "203",
-          "이름": "이소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "204",
-          "이름": "최소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "205",
-          "이름": "정소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "206",
-          "이름": "강소방관",
+          "staff_id": "104",
+          "이름": "최간호사",
           "grade": 2,
-          "grade_name": "선임소방사"
-        },
+          "grade_name": "주임간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴일",
+      "people": [
         {
-          "staff_id": "208",
-          "이름": "윤소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "209",
-          "이름": "장소방관",
+          "staff_id": "101",
+          "이름": "김간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
         },
         {
-          "staff_id": "212",
-          "이름": "오소방관",
+          "staff_id": "106",
+          "이름": "한간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
         },
         {
-          "staff_id": "214",
-          "이름": "노소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "216",
-          "이름": "문소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "218",
-          "이름": "신소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
+          "staff_id": "107",
+          "이름": "신신규간호사",
+          "grade": 5,
+          "grade_name": "신규간호사"
         }
       ]
     }
   ],
   "2025-09-06": [
     {
-      "shift": "D24",
+      "shift": "아침",
       "people": [
         {
-          "staff_id": "204",
-          "이름": "최소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
+          "staff_id": "104",
+          "이름": "최간호사",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
-          "staff_id": "209",
-          "이름": "장소방관",
+          "staff_id": "105",
+          "이름": "정간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "212",
-          "이름": "오소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "214",
-          "이름": "노소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "216",
-          "이름": "문소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "218",
-          "이름": "신소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
         }
       ]
     },
     {
-      "shift": "O",
+      "shift": "낮",
       "people": [
         {
-          "staff_id": "201",
-          "이름": "김소방관",
+          "staff_id": "102",
+          "이름": "박신규",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
+        {
+          "staff_id": "101",
+          "이름": "김간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
-        },
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴일",
+      "people": [
         {
-          "staff_id": "202",
-          "이름": "박소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "203",
-          "이름": "이소방관",
+          "staff_id": "103",
+          "이름": "이수간호사",
           "grade": 1,
-          "grade_name": "소방장"
+          "grade_name": "수간호사"
         },
         {
-          "staff_id": "205",
-          "이름": "정소방관",
+          "staff_id": "106",
+          "이름": "한간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
         },
         {
-          "staff_id": "206",
-          "이름": "강소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "207",
-          "이름": "조소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "208",
-          "이름": "윤소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "210",
-          "이름": "임소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "211",
-          "이름": "한소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "213",
-          "이름": "서소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "215",
-          "이름": "배소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "217",
-          "이름": "송소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "219",
-          "이름": "안소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "220",
-          "이름": "양소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
+          "staff_id": "107",
+          "이름": "신신규간호사",
+          "grade": 5,
+          "grade_name": "신규간호사"
         }
       ]
     }
   ],
   "2025-09-07": [
     {
-      "shift": "D24",
+      "shift": "아침",
       "people": [
         {
-          "staff_id": "205",
-          "이름": "정소방관",
+          "staff_id": "101",
+          "이름": "김간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
         },
         {
-          "staff_id": "208",
-          "이름": "윤소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "211",
-          "이름": "한소방관",
+          "staff_id": "105",
+          "이름": "정간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "213",
-          "이름": "서소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "215",
-          "이름": "배소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "217",
-          "이름": "송소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "219",
-          "이름": "안소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "220",
-          "이름": "양소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
+          "grade_name": "일반간호사"
         }
       ]
     },
     {
-      "shift": "O",
+      "shift": "낮",
       "people": [
         {
-          "staff_id": "201",
-          "이름": "김소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
+          "staff_id": "102",
+          "이름": "박신규",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
         {
-          "staff_id": "202",
-          "이름": "박소방관",
+          "staff_id": "104",
+          "이름": "최간호사",
           "grade": 2,
-          "grade_name": "선임소방사"
-        },
+          "grade_name": "주임간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴일",
+      "people": [
         {
-          "staff_id": "203",
-          "이름": "이소방관",
+          "staff_id": "103",
+          "이름": "이수간호사",
           "grade": 1,
-          "grade_name": "소방장"
+          "grade_name": "수간호사"
         },
         {
-          "staff_id": "204",
-          "이름": "최소방관",
+          "staff_id": "106",
+          "이름": "한간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
         },
         {
-          "staff_id": "206",
-          "이름": "강소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "207",
-          "이름": "조소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "209",
-          "이름": "장소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "210",
-          "이름": "임소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "212",
-          "이름": "오소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "214",
-          "이름": "노소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "216",
-          "이름": "문소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "218",
-          "이름": "신소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
+          "staff_id": "107",
+          "이름": "신신규간호사",
+          "grade": 5,
+          "grade_name": "신규간호사"
         }
       ]
     }
   ],
   "2025-09-08": [
     {
-      "shift": "D24",
+      "shift": "아침",
       "people": [
         {
-          "staff_id": "201",
-          "이름": "김소방관",
+          "staff_id": "101",
+          "이름": "김간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
         },
         {
-          "staff_id": "202",
-          "이름": "박소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "204",
-          "이름": "최소방관",
+          "staff_id": "105",
+          "이름": "정간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "212",
-          "이름": "오소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "214",
-          "이름": "노소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "216",
-          "이름": "문소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
         }
       ]
     },
     {
-      "shift": "O",
+      "shift": "낮",
       "people": [
         {
-          "staff_id": "203",
-          "이름": "이소방관",
+          "staff_id": "102",
+          "이름": "박신규",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
+        {
+          "staff_id": "103",
+          "이름": "이수간호사",
           "grade": 1,
-          "grade_name": "소방장"
-        },
+          "grade_name": "수간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴일",
+      "people": [
         {
-          "staff_id": "205",
-          "이름": "정소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "206",
-          "이름": "강소방관",
+          "staff_id": "104",
+          "이름": "최간호사",
           "grade": 2,
-          "grade_name": "선임소방사"
+          "grade_name": "주임간호사"
         },
         {
-          "staff_id": "207",
-          "이름": "조소방관",
+          "staff_id": "106",
+          "이름": "한간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
         },
         {
-          "staff_id": "208",
-          "이름": "윤소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "209",
-          "이름": "장소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "210",
-          "이름": "임소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "211",
-          "이름": "한소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "213",
-          "이름": "서소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "215",
-          "이름": "배소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "217",
-          "이름": "송소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "218",
-          "이름": "신소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "219",
-          "이름": "안소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "220",
-          "이름": "양소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
+          "staff_id": "107",
+          "이름": "신신규간호사",
+          "grade": 5,
+          "grade_name": "신규간호사"
         }
       ]
     }
   ],
   "2025-09-09": [
     {
-      "shift": "D24",
+      "shift": "아침",
       "people": [
         {
-          "staff_id": "209",
-          "이름": "장소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "211",
-          "이름": "한소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "213",
-          "이름": "서소방관",
+          "staff_id": "104",
+          "이름": "최간호사",
           "grade": 2,
-          "grade_name": "선임소방사"
+          "grade_name": "주임간호사"
         },
         {
-          "staff_id": "215",
-          "이름": "배소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "217",
-          "이름": "송소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "218",
-          "이름": "신소방관",
+          "staff_id": "105",
+          "이름": "정간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
         },
         {
-          "staff_id": "219",
-          "이름": "안소방관",
+          "staff_id": "106",
+          "이름": "한간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
         },
         {
-          "staff_id": "220",
-          "이름": "양소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
+          "staff_id": "107",
+          "이름": "신신규간호사",
+          "grade": 5,
+          "grade_name": "신규간호사"
         }
       ]
     },
     {
-      "shift": "O",
+      "shift": "낮",
       "people": [
         {
-          "staff_id": "201",
-          "이름": "김소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
+          "staff_id": "102",
+          "이름": "박신규",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
         {
-          "staff_id": "202",
-          "이름": "박소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "203",
-          "이름": "이소방관",
+          "staff_id": "103",
+          "이름": "이수간호사",
           "grade": 1,
-          "grade_name": "소방장"
-        },
+          "grade_name": "수간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴일",
+      "people": [
         {
-          "staff_id": "204",
-          "이름": "최소방관",
+          "staff_id": "101",
+          "이름": "김간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "205",
-          "이름": "정소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "206",
-          "이름": "강소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "207",
-          "이름": "조소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "208",
-          "이름": "윤소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "210",
-          "이름": "임소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "212",
-          "이름": "오소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "214",
-          "이름": "노소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "216",
-          "이름": "문소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
         }
       ]
     }
   ],
   "2025-09-10": [
     {
-      "shift": "D24",
+      "shift": "아침",
       "people": [
         {
-          "staff_id": "203",
-          "이름": "이소방관",
+          "staff_id": "103",
+          "이름": "이수간호사",
           "grade": 1,
-          "grade_name": "소방장"
+          "grade_name": "수간호사"
         },
         {
-          "staff_id": "205",
-          "이름": "정소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "207",
-          "이름": "조소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "210",
-          "이름": "임소방관",
+          "staff_id": "104",
+          "이름": "최간호사",
           "grade": 2,
-          "grade_name": "선임소방사"
+          "grade_name": "주임간호사"
         },
         {
-          "staff_id": "216",
-          "이름": "문소방관",
+          "staff_id": "105",
+          "이름": "정간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "107",
+          "이름": "신신규간호사",
+          "grade": 5,
+          "grade_name": "신규간호사"
         }
       ]
     },
     {
-      "shift": "O",
+      "shift": "낮",
       "people": [
         {
-          "staff_id": "201",
-          "이름": "김소방관",
+          "staff_id": "102",
+          "이름": "박신규",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
+        {
+          "staff_id": "101",
+          "이름": "김간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
-        },
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴일",
+      "people": [
         {
-          "staff_id": "202",
-          "이름": "박소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "204",
-          "이름": "최소방관",
+          "staff_id": "106",
+          "이름": "한간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "206",
-          "이름": "강소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "208",
-          "이름": "윤소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "209",
-          "이름": "장소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "211",
-          "이름": "한소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "212",
-          "이름": "오소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "213",
-          "이름": "서소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "214",
-          "이름": "노소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "215",
-          "이름": "배소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "217",
-          "이름": "송소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "218",
-          "이름": "신소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "219",
-          "이름": "안소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "220",
-          "이름": "양소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
+          "grade_name": "일반간호사"
         }
       ]
     }
   ],
   "2025-09-11": [
     {
-      "shift": "D24",
+      "shift": "아침",
       "people": [
         {
-          "staff_id": "201",
-          "이름": "김소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "204",
-          "이름": "최소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "211",
-          "이름": "한소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "212",
-          "이름": "오소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "213",
-          "이름": "서소방관",
+          "staff_id": "104",
+          "이름": "최간호사",
           "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "214",
-          "이름": "노소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "215",
-          "이름": "배소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "217",
-          "이름": "송소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "218",
-          "이름": "신소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "219",
-          "이름": "안소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "220",
-          "이름": "양소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
+          "grade_name": "주임간호사"
         }
       ]
     },
     {
-      "shift": "O",
+      "shift": "낮",
       "people": [
         {
-          "staff_id": "202",
-          "이름": "박소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
+          "staff_id": "107",
+          "이름": "신신규간호사",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
+        {
+          "staff_id": "101",
+          "이름": "김간호사",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴일",
+      "people": [
+        {
+          "staff_id": "102",
+          "이름": "박신규",
+          "grade": 5,
+          "grade_name": "신규간호사"
         },
         {
-          "staff_id": "203",
-          "이름": "이소방관",
+          "staff_id": "103",
+          "이름": "이수간호사",
           "grade": 1,
-          "grade_name": "소방장"
+          "grade_name": "수간호사"
         },
         {
-          "staff_id": "205",
-          "이름": "정소방관",
+          "staff_id": "105",
+          "이름": "정간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
         },
         {
-          "staff_id": "206",
-          "이름": "강소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "207",
-          "이름": "조소방관",
+          "staff_id": "106",
+          "이름": "한간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "208",
-          "이름": "윤소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "209",
-          "이름": "장소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "210",
-          "이름": "임소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "216",
-          "이름": "문소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
         }
       ]
     }
   ],
   "2025-09-12": [
     {
-      "shift": "D24",
+      "shift": "아침",
       "people": [
         {
-          "staff_id": "203",
-          "이름": "이소방관",
+          "staff_id": "101",
+          "이름": "김간호사",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "103",
+          "이름": "이수간호사",
           "grade": 1,
-          "grade_name": "소방장"
+          "grade_name": "수간호사"
         },
         {
-          "staff_id": "206",
-          "이름": "강소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "209",
-          "이름": "장소방관",
+          "staff_id": "105",
+          "이름": "정간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
         },
         {
-          "staff_id": "210",
-          "이름": "임소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "216",
-          "이름": "문소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
+          "staff_id": "107",
+          "이름": "신신규간호사",
+          "grade": 5,
+          "grade_name": "신규간호사"
         }
       ]
     },
     {
-      "shift": "O",
+      "shift": "낮",
       "people": [
         {
-          "staff_id": "201",
-          "이름": "김소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
+          "staff_id": "102",
+          "이름": "박신규",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
         {
-          "staff_id": "202",
-          "이름": "박소방관",
+          "staff_id": "106",
+          "이름": "한간호사",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴일",
+      "people": [
+        {
+          "staff_id": "104",
+          "이름": "최간호사",
           "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "204",
-          "이름": "최소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "205",
-          "이름": "정소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "207",
-          "이름": "조소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "208",
-          "이름": "윤소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "211",
-          "이름": "한소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "212",
-          "이름": "오소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "213",
-          "이름": "서소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "214",
-          "이름": "노소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "215",
-          "이름": "배소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "217",
-          "이름": "송소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "218",
-          "이름": "신소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "219",
-          "이름": "안소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "220",
-          "이름": "양소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
+          "grade_name": "주임간호사"
         }
       ]
     }
   ],
   "2025-09-13": [
     {
-      "shift": "D24",
+      "shift": "아침",
       "people": [
         {
-          "staff_id": "201",
-          "이름": "김소방관",
+          "staff_id": "101",
+          "이름": "김간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
         },
         {
-          "staff_id": "211",
-          "이름": "한소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "212",
-          "이름": "오소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "213",
-          "이름": "서소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "214",
-          "이름": "노소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "215",
-          "이름": "배소방관",
+          "staff_id": "103",
+          "이름": "이수간호사",
           "grade": 1,
-          "grade_name": "소방장"
+          "grade_name": "수간호사"
         },
         {
-          "staff_id": "217",
-          "이름": "송소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "218",
-          "이름": "신소방관",
+          "staff_id": "105",
+          "이름": "정간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "219",
-          "이름": "안소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "220",
-          "이름": "양소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
+          "grade_name": "일반간호사"
         }
       ]
     },
     {
-      "shift": "O",
+      "shift": "낮",
       "people": [
         {
-          "staff_id": "202",
-          "이름": "박소방관",
+          "staff_id": "107",
+          "이름": "신신규간호사",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
+        {
+          "staff_id": "106",
+          "이름": "한간호사",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴일",
+      "people": [
+        {
+          "staff_id": "102",
+          "이름": "박신규",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "104",
+          "이름": "최간호사",
           "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "203",
-          "이름": "이소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "204",
-          "이름": "최소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "205",
-          "이름": "정소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "206",
-          "이름": "강소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "207",
-          "이름": "조소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "208",
-          "이름": "윤소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "209",
-          "이름": "장소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "210",
-          "이름": "임소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "216",
-          "이름": "문소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "주임간호사"
         }
       ]
     }
   ],
   "2025-09-14": [
     {
-      "shift": "D24",
+      "shift": "아침",
       "people": [
         {
-          "staff_id": "202",
-          "이름": "박소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "207",
-          "이름": "조소방관",
+          "staff_id": "101",
+          "이름": "김간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
         },
         {
-          "staff_id": "208",
-          "이름": "윤소방관",
+          "staff_id": "103",
+          "이름": "이수간호사",
           "grade": 1,
-          "grade_name": "소방장"
+          "grade_name": "수간호사"
         },
         {
-          "staff_id": "210",
-          "이름": "임소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
+          "staff_id": "107",
+          "이름": "신신규간호사",
+          "grade": 5,
+          "grade_name": "신규간호사"
         }
       ]
     },
     {
-      "shift": "O",
+      "shift": "낮",
       "people": [
         {
-          "staff_id": "201",
-          "이름": "김소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "203",
-          "이름": "이소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "204",
-          "이름": "최소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "205",
-          "이름": "정소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "206",
-          "이름": "강소방관",
+          "staff_id": "104",
+          "이름": "최간호사",
           "grade": 2,
-          "grade_name": "선임소방사"
+          "grade_name": "주임간호사"
         },
         {
-          "staff_id": "209",
-          "이름": "장소방관",
+          "staff_id": "106",
+          "이름": "한간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
-        },
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
         {
-          "staff_id": "211",
-          "이름": "한소방관",
+          "staff_id": "105",
+          "이름": "정간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
-        },
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴일",
+      "people": [
         {
-          "staff_id": "212",
-          "이름": "오소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "213",
-          "이름": "서소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "214",
-          "이름": "노소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "215",
-          "이름": "배소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "216",
-          "이름": "문소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "217",
-          "이름": "송소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "218",
-          "이름": "신소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "219",
-          "이름": "안소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "220",
-          "이름": "양소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
+          "staff_id": "102",
+          "이름": "박신규",
+          "grade": 5,
+          "grade_name": "신규간호사"
         }
       ]
     }
   ],
   "2025-09-15": [
     {
-      "shift": "D24",
+      "shift": "아침",
       "people": [
         {
-          "staff_id": "205",
-          "이름": "정소방관",
+          "staff_id": "101",
+          "이름": "김간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "206",
-          "이름": "강소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "209",
-          "이름": "장소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "211",
-          "이름": "한소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "213",
-          "이름": "서소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "215",
-          "이름": "배소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "216",
-          "이름": "문소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "217",
-          "이름": "송소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "218",
-          "이름": "신소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "219",
-          "이름": "안소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "220",
-          "이름": "양소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
+          "grade_name": "일반간호사"
         }
       ]
     },
     {
-      "shift": "O",
+      "shift": "낮",
       "people": [
         {
-          "staff_id": "201",
-          "이름": "김소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
+          "staff_id": "102",
+          "이름": "박신규",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
         {
-          "staff_id": "202",
-          "이름": "박소방관",
+          "staff_id": "104",
+          "이름": "최간호사",
           "grade": 2,
-          "grade_name": "선임소방사"
-        },
+          "grade_name": "주임간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴일",
+      "people": [
         {
-          "staff_id": "203",
-          "이름": "이소방관",
+          "staff_id": "103",
+          "이름": "이수간호사",
           "grade": 1,
-          "grade_name": "소방장"
+          "grade_name": "수간호사"
         },
         {
-          "staff_id": "204",
-          "이름": "최소방관",
+          "staff_id": "105",
+          "이름": "정간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
         },
         {
-          "staff_id": "207",
-          "이름": "조소방관",
+          "staff_id": "106",
+          "이름": "한간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
         },
         {
-          "staff_id": "208",
-          "이름": "윤소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "210",
-          "이름": "임소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "212",
-          "이름": "오소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "214",
-          "이름": "노소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
+          "staff_id": "107",
+          "이름": "신신규간호사",
+          "grade": 5,
+          "grade_name": "신규간호사"
         }
       ]
     }
   ],
   "2025-09-16": [
     {
-      "shift": "D24",
+      "shift": "아침",
       "people": [
         {
-          "staff_id": "203",
-          "이름": "이소방관",
-          "grade": 1,
-          "grade_name": "소방장"
+          "staff_id": "101",
+          "이름": "김간호사",
+          "grade": 3,
+          "grade_name": "일반간호사"
         },
         {
-          "staff_id": "208",
-          "이름": "윤소방관",
+          "staff_id": "103",
+          "이름": "이수간호사",
           "grade": 1,
-          "grade_name": "소방장"
+          "grade_name": "수간호사"
         },
         {
-          "staff_id": "210",
-          "이름": "임소방관",
+          "staff_id": "104",
+          "이름": "최간호사",
           "grade": 2,
-          "grade_name": "선임소방사"
+          "grade_name": "주임간호사"
         }
       ]
     },
     {
-      "shift": "O",
+      "shift": "낮",
       "people": [
         {
-          "staff_id": "201",
-          "이름": "김소방관",
+          "staff_id": "106",
+          "이름": "한간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
-        },
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
         {
-          "staff_id": "202",
-          "이름": "박소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "204",
-          "이름": "최소방관",
+          "staff_id": "105",
+          "이름": "정간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴일",
+      "people": [
+        {
+          "staff_id": "102",
+          "이름": "박신규",
+          "grade": 5,
+          "grade_name": "신규간호사"
         },
         {
-          "staff_id": "205",
-          "이름": "정소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "206",
-          "이름": "강소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "207",
-          "이름": "조소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "209",
-          "이름": "장소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "211",
-          "이름": "한소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "212",
-          "이름": "오소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "213",
-          "이름": "서소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "214",
-          "이름": "노소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "215",
-          "이름": "배소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "216",
-          "이름": "문소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "217",
-          "이름": "송소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "218",
-          "이름": "신소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "219",
-          "이름": "안소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "220",
-          "이름": "양소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
+          "staff_id": "107",
+          "이름": "신신규간호사",
+          "grade": 5,
+          "grade_name": "신규간호사"
         }
       ]
     }
   ],
   "2025-09-17": [
     {
-      "shift": "D24",
+      "shift": "아침",
       "people": [
         {
-          "staff_id": "204",
-          "이름": "최소방관",
+          "staff_id": "101",
+          "이름": "김간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "103",
+          "이름": "이수간호사",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "104",
+          "이름": "최간호사",
+          "grade": 2,
+          "grade_name": "주임간호사"
         }
       ]
     },
     {
-      "shift": "O",
+      "shift": "낮",
       "people": [
         {
-          "staff_id": "201",
-          "이름": "김소방관",
+          "staff_id": "106",
+          "이름": "한간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
-        },
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
         {
-          "staff_id": "202",
-          "이름": "박소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "203",
-          "이름": "이소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "205",
-          "이름": "정소방관",
+          "staff_id": "105",
+          "이름": "정간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴일",
+      "people": [
+        {
+          "staff_id": "102",
+          "이름": "박신규",
+          "grade": 5,
+          "grade_name": "신규간호사"
         },
         {
-          "staff_id": "206",
-          "이름": "강소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "207",
-          "이름": "조소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "208",
-          "이름": "윤소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "209",
-          "이름": "장소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "210",
-          "이름": "임소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "211",
-          "이름": "한소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "212",
-          "이름": "오소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "213",
-          "이름": "서소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "214",
-          "이름": "노소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "215",
-          "이름": "배소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "216",
-          "이름": "문소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "217",
-          "이름": "송소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "218",
-          "이름": "신소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "219",
-          "이름": "안소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "220",
-          "이름": "양소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
+          "staff_id": "107",
+          "이름": "신신규간호사",
+          "grade": 5,
+          "grade_name": "신규간호사"
         }
       ]
     }
   ],
   "2025-09-18": [
     {
-      "shift": "D24",
+      "shift": "아침",
       "people": [
         {
-          "staff_id": "201",
-          "이름": "김소방관",
+          "staff_id": "101",
+          "이름": "김간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
         },
         {
-          "staff_id": "206",
-          "이름": "강소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "208",
-          "이름": "윤소방관",
+          "staff_id": "103",
+          "이름": "이수간호사",
           "grade": 1,
-          "grade_name": "소방장"
+          "grade_name": "수간호사"
         },
         {
-          "staff_id": "210",
-          "이름": "임소방관",
+          "staff_id": "104",
+          "이름": "최간호사",
           "grade": 2,
-          "grade_name": "선임소방사"
+          "grade_name": "주임간호사"
         }
       ]
     },
     {
-      "shift": "O",
+      "shift": "낮",
       "people": [
         {
-          "staff_id": "202",
-          "이름": "박소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "203",
-          "이름": "이소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "204",
-          "이름": "최소방관",
+          "staff_id": "105",
+          "이름": "정간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
-        },
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
         {
-          "staff_id": "205",
-          "이름": "정소방관",
+          "staff_id": "106",
+          "이름": "한간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴일",
+      "people": [
+        {
+          "staff_id": "102",
+          "이름": "박신규",
+          "grade": 5,
+          "grade_name": "신규간호사"
         },
         {
-          "staff_id": "207",
-          "이름": "조소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "209",
-          "이름": "장소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "211",
-          "이름": "한소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "212",
-          "이름": "오소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "213",
-          "이름": "서소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "214",
-          "이름": "노소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "215",
-          "이름": "배소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "216",
-          "이름": "문소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "217",
-          "이름": "송소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "218",
-          "이름": "신소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "219",
-          "이름": "안소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "220",
-          "이름": "양소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
+          "staff_id": "107",
+          "이름": "신신규간호사",
+          "grade": 5,
+          "grade_name": "신규간호사"
         }
       ]
     }
   ],
   "2025-09-19": [
     {
-      "shift": "D24",
+      "shift": "아침",
       "people": [
         {
-          "staff_id": "202",
-          "이름": "박소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "203",
-          "이름": "이소방관",
+          "staff_id": "103",
+          "이름": "이수간호사",
           "grade": 1,
-          "grade_name": "소방장"
+          "grade_name": "수간호사"
         },
         {
-          "staff_id": "205",
-          "이름": "정소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "207",
-          "이름": "조소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "209",
-          "이름": "장소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
+          "staff_id": "104",
+          "이름": "최간호사",
+          "grade": 2,
+          "grade_name": "주임간호사"
         }
       ]
     },
     {
-      "shift": "O",
+      "shift": "낮",
       "people": [
         {
-          "staff_id": "201",
-          "이름": "김소방관",
+          "staff_id": "107",
+          "이름": "신신규간호사",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
+        {
+          "staff_id": "101",
+          "이름": "김간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴일",
+      "people": [
+        {
+          "staff_id": "102",
+          "이름": "박신규",
+          "grade": 5,
+          "grade_name": "신규간호사"
         },
         {
-          "staff_id": "204",
-          "이름": "최소방관",
+          "staff_id": "105",
+          "이름": "정간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
         },
         {
-          "staff_id": "206",
-          "이름": "강소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "208",
-          "이름": "윤소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "210",
-          "이름": "임소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "211",
-          "이름": "한소방관",
+          "staff_id": "106",
+          "이름": "한간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "212",
-          "이름": "오소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "213",
-          "이름": "서소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "214",
-          "이름": "노소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "215",
-          "이름": "배소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "216",
-          "이름": "문소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "217",
-          "이름": "송소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "218",
-          "이름": "신소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "219",
-          "이름": "안소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "220",
-          "이름": "양소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
+          "grade_name": "일반간호사"
         }
       ]
     }
   ],
   "2025-09-20": [
     {
-      "shift": "D24",
+      "shift": "아침",
       "people": [
         {
-          "staff_id": "201",
-          "이름": "김소방관",
+          "staff_id": "101",
+          "이름": "김간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
         },
         {
-          "staff_id": "206",
-          "이름": "강소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "208",
-          "이름": "윤소방관",
+          "staff_id": "103",
+          "이름": "이수간호사",
           "grade": 1,
-          "grade_name": "소방장"
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "104",
+          "이름": "최간호사",
+          "grade": 2,
+          "grade_name": "주임간호사"
         }
       ]
     },
     {
-      "shift": "O",
+      "shift": "낮",
       "people": [
         {
-          "staff_id": "202",
-          "이름": "박소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "203",
-          "이름": "이소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "204",
-          "이름": "최소방관",
+          "staff_id": "105",
+          "이름": "정간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
-        },
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
         {
-          "staff_id": "205",
-          "이름": "정소방관",
+          "staff_id": "106",
+          "이름": "한간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴일",
+      "people": [
+        {
+          "staff_id": "102",
+          "이름": "박신규",
+          "grade": 5,
+          "grade_name": "신규간호사"
         },
         {
-          "staff_id": "207",
-          "이름": "조소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "209",
-          "이름": "장소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "210",
-          "이름": "임소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "211",
-          "이름": "한소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "212",
-          "이름": "오소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "213",
-          "이름": "서소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "214",
-          "이름": "노소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "215",
-          "이름": "배소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "216",
-          "이름": "문소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "217",
-          "이름": "송소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "218",
-          "이름": "신소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "219",
-          "이름": "안소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "220",
-          "이름": "양소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
+          "staff_id": "107",
+          "이름": "신신규간호사",
+          "grade": 5,
+          "grade_name": "신규간호사"
         }
       ]
     }
   ],
   "2025-09-21": [
     {
-      "shift": "D24",
+      "shift": "아침",
       "people": [
         {
-          "staff_id": "203",
-          "이름": "이소방관",
+          "staff_id": "101",
+          "이름": "김간호사",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "103",
+          "이름": "이수간호사",
           "grade": 1,
-          "grade_name": "소방장"
+          "grade_name": "수간호사"
         },
         {
-          "staff_id": "204",
-          "이름": "최소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "209",
-          "이름": "장소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "210",
-          "이름": "임소방관",
+          "staff_id": "104",
+          "이름": "최간호사",
           "grade": 2,
-          "grade_name": "선임소방사"
+          "grade_name": "주임간호사"
         }
       ]
     },
     {
-      "shift": "O",
+      "shift": "낮",
       "people": [
         {
-          "staff_id": "201",
-          "이름": "김소방관",
+          "staff_id": "105",
+          "이름": "정간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
         },
         {
-          "staff_id": "202",
-          "이름": "박소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
+          "staff_id": "107",
+          "이름": "신신규간호사",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
         {
-          "staff_id": "205",
-          "이름": "정소방관",
+          "staff_id": "106",
+          "이름": "한간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
-        },
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴일",
+      "people": [
         {
-          "staff_id": "206",
-          "이름": "강소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "207",
-          "이름": "조소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "208",
-          "이름": "윤소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "211",
-          "이름": "한소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "212",
-          "이름": "오소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "213",
-          "이름": "서소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "214",
-          "이름": "노소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "215",
-          "이름": "배소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "216",
-          "이름": "문소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "217",
-          "이름": "송소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "218",
-          "이름": "신소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "219",
-          "이름": "안소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "220",
-          "이름": "양소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
+          "staff_id": "102",
+          "이름": "박신규",
+          "grade": 5,
+          "grade_name": "신규간호사"
         }
       ]
     }
   ],
   "2025-09-22": [
     {
-      "shift": "D24",
+      "shift": "아침",
       "people": [
         {
-          "staff_id": "202",
-          "이름": "박소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "206",
-          "이름": "강소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "208",
-          "이름": "윤소방관",
-          "grade": 1,
-          "grade_name": "소방장"
+          "staff_id": "101",
+          "이름": "김간호사",
+          "grade": 3,
+          "grade_name": "일반간호사"
         }
       ]
     },
     {
-      "shift": "O",
+      "shift": "낮",
       "people": [
         {
-          "staff_id": "201",
-          "이름": "김소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
+          "staff_id": "102",
+          "이름": "박신규",
+          "grade": 5,
+          "grade_name": "신규간호사"
         },
         {
-          "staff_id": "203",
-          "이름": "이소방관",
+          "staff_id": "106",
+          "이름": "한간호사",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
+        {
+          "staff_id": "104",
+          "이름": "최간호사",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴일",
+      "people": [
+        {
+          "staff_id": "103",
+          "이름": "이수간호사",
           "grade": 1,
-          "grade_name": "소방장"
+          "grade_name": "수간호사"
         },
         {
-          "staff_id": "204",
-          "이름": "최소방관",
+          "staff_id": "105",
+          "이름": "정간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
         },
         {
-          "staff_id": "205",
-          "이름": "정소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "207",
-          "이름": "조소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "209",
-          "이름": "장소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "210",
-          "이름": "임소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "211",
-          "이름": "한소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "212",
-          "이름": "오소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "213",
-          "이름": "서소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "214",
-          "이름": "노소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "215",
-          "이름": "배소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "216",
-          "이름": "문소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "217",
-          "이름": "송소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "218",
-          "이름": "신소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "219",
-          "이름": "안소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "220",
-          "이름": "양소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
+          "staff_id": "107",
+          "이름": "신신규간호사",
+          "grade": 5,
+          "grade_name": "신규간호사"
         }
       ]
     }
   ],
   "2025-09-23": [
     {
-      "shift": "D24",
+      "shift": "아침",
       "people": [
         {
-          "staff_id": "201",
-          "이름": "김소방관",
+          "staff_id": "101",
+          "이름": "김간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
         },
         {
-          "staff_id": "207",
-          "이름": "조소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
+          "staff_id": "103",
+          "이름": "이수간호사",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "104",
+          "이름": "최간호사",
+          "grade": 2,
+          "grade_name": "주임간호사"
         }
       ]
     },
     {
-      "shift": "O",
+      "shift": "낮",
       "people": [
         {
-          "staff_id": "202",
-          "이름": "박소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "203",
-          "이름": "이소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "204",
-          "이름": "최소방관",
+          "staff_id": "106",
+          "이름": "한간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
-        },
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
         {
-          "staff_id": "205",
-          "이름": "정소방관",
+          "staff_id": "105",
+          "이름": "정간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴일",
+      "people": [
+        {
+          "staff_id": "102",
+          "이름": "박신규",
+          "grade": 5,
+          "grade_name": "신규간호사"
         },
         {
-          "staff_id": "206",
-          "이름": "강소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "208",
-          "이름": "윤소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "209",
-          "이름": "장소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "210",
-          "이름": "임소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "211",
-          "이름": "한소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "212",
-          "이름": "오소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "213",
-          "이름": "서소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "214",
-          "이름": "노소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "215",
-          "이름": "배소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "216",
-          "이름": "문소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "217",
-          "이름": "송소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "218",
-          "이름": "신소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "219",
-          "이름": "안소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "220",
-          "이름": "양소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
+          "staff_id": "107",
+          "이름": "신신규간호사",
+          "grade": 5,
+          "grade_name": "신규간호사"
         }
       ]
     }
   ],
   "2025-09-24": [
     {
-      "shift": "D24",
+      "shift": "아침",
       "people": [
         {
-          "staff_id": "202",
-          "이름": "박소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "205",
-          "이름": "정소방관",
+          "staff_id": "101",
+          "이름": "김간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
         },
         {
-          "staff_id": "208",
-          "이름": "윤소방관",
+          "staff_id": "103",
+          "이름": "이수간호사",
           "grade": 1,
-          "grade_name": "소방장"
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "104",
+          "이름": "최간호사",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "105",
+          "이름": "정간호사",
+          "grade": 3,
+          "grade_name": "일반간호사"
         }
       ]
     },
     {
-      "shift": "O",
+      "shift": "낮",
       "people": [
         {
-          "staff_id": "201",
-          "이름": "김소방관",
+          "staff_id": "102",
+          "이름": "박신규",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
+        {
+          "staff_id": "106",
+          "이름": "한간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
-        },
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴일",
+      "people": [
         {
-          "staff_id": "203",
-          "이름": "이소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "204",
-          "이름": "최소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "206",
-          "이름": "강소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "207",
-          "이름": "조소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "209",
-          "이름": "장소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "210",
-          "이름": "임소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "211",
-          "이름": "한소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "212",
-          "이름": "오소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "213",
-          "이름": "서소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "214",
-          "이름": "노소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "215",
-          "이름": "배소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "216",
-          "이름": "문소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "217",
-          "이름": "송소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "218",
-          "이름": "신소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "219",
-          "이름": "안소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "220",
-          "이름": "양소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
+          "staff_id": "107",
+          "이름": "신신규간호사",
+          "grade": 5,
+          "grade_name": "신규간호사"
         }
       ]
     }
   ],
   "2025-09-25": [
     {
-      "shift": "D24",
+      "shift": "아침",
       "people": [
         {
-          "staff_id": "207",
-          "이름": "조소방관",
+          "staff_id": "101",
+          "이름": "김간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
         },
         {
-          "staff_id": "210",
-          "이름": "임소방관",
+          "staff_id": "104",
+          "이름": "최간호사",
           "grade": 2,
-          "grade_name": "선임소방사"
+          "grade_name": "주임간호사"
         }
       ]
     },
     {
-      "shift": "O",
+      "shift": "낮",
       "people": [
         {
-          "staff_id": "201",
-          "이름": "김소방관",
+          "staff_id": "105",
+          "이름": "정간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
-        },
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
         {
-          "staff_id": "202",
-          "이름": "박소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "203",
-          "이름": "이소방관",
+          "staff_id": "103",
+          "이름": "이수간호사",
           "grade": 1,
-          "grade_name": "소방장"
+          "grade_name": "수간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴일",
+      "people": [
+        {
+          "staff_id": "102",
+          "이름": "박신규",
+          "grade": 5,
+          "grade_name": "신규간호사"
         },
         {
-          "staff_id": "204",
-          "이름": "최소방관",
+          "staff_id": "106",
+          "이름": "한간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
         },
         {
-          "staff_id": "205",
-          "이름": "정소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "206",
-          "이름": "강소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "208",
-          "이름": "윤소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "209",
-          "이름": "장소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "211",
-          "이름": "한소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "212",
-          "이름": "오소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "213",
-          "이름": "서소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "214",
-          "이름": "노소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "215",
-          "이름": "배소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "216",
-          "이름": "문소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "217",
-          "이름": "송소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "218",
-          "이름": "신소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "219",
-          "이름": "안소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "220",
-          "이름": "양소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
+          "staff_id": "107",
+          "이름": "신신규간호사",
+          "grade": 5,
+          "grade_name": "신규간호사"
         }
       ]
     }
   ],
   "2025-09-26": [
     {
-      "shift": "D24",
+      "shift": "아침",
       "people": [
         {
-          "staff_id": "201",
-          "이름": "김소방관",
+          "staff_id": "101",
+          "이름": "김간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
         },
         {
-          "staff_id": "202",
-          "이름": "박소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "203",
-          "이름": "이소방관",
+          "staff_id": "103",
+          "이름": "이수간호사",
           "grade": 1,
-          "grade_name": "소방장"
+          "grade_name": "수간호사"
         },
         {
-          "staff_id": "205",
-          "이름": "정소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "206",
-          "이름": "강소방관",
+          "staff_id": "104",
+          "이름": "최간호사",
           "grade": 2,
-          "grade_name": "선임소방사"
+          "grade_name": "주임간호사"
         }
       ]
     },
     {
-      "shift": "O",
+      "shift": "낮",
       "people": [
         {
-          "staff_id": "204",
-          "이름": "최소방관",
+          "staff_id": "107",
+          "이름": "신신규간호사",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
+        {
+          "staff_id": "105",
+          "이름": "정간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴일",
+      "people": [
+        {
+          "staff_id": "102",
+          "이름": "박신규",
+          "grade": 5,
+          "grade_name": "신규간호사"
         },
         {
-          "staff_id": "207",
-          "이름": "조소방관",
+          "staff_id": "106",
+          "이름": "한간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "208",
-          "이름": "윤소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "209",
-          "이름": "장소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "210",
-          "이름": "임소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "211",
-          "이름": "한소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "212",
-          "이름": "오소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "213",
-          "이름": "서소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "214",
-          "이름": "노소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "215",
-          "이름": "배소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "216",
-          "이름": "문소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "217",
-          "이름": "송소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "218",
-          "이름": "신소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "219",
-          "이름": "안소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "220",
-          "이름": "양소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
+          "grade_name": "일반간호사"
         }
       ]
     }
   ],
   "2025-09-27": [
     {
-      "shift": "D24",
+      "shift": "아침",
       "people": [
         {
-          "staff_id": "209",
-          "이름": "장소방관",
+          "staff_id": "101",
+          "이름": "김간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "104",
+          "이름": "최간호사",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "107",
+          "이름": "신신규간호사",
+          "grade": 5,
+          "grade_name": "신규간호사"
         }
       ]
     },
     {
-      "shift": "O",
+      "shift": "낮",
       "people": [
         {
-          "staff_id": "201",
-          "이름": "김소방관",
+          "staff_id": "105",
+          "이름": "정간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
-        },
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
         {
-          "staff_id": "202",
-          "이름": "박소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "203",
-          "이름": "이소방관",
+          "staff_id": "103",
+          "이름": "이수간호사",
           "grade": 1,
-          "grade_name": "소방장"
+          "grade_name": "수간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴일",
+      "people": [
+        {
+          "staff_id": "102",
+          "이름": "박신규",
+          "grade": 5,
+          "grade_name": "신규간호사"
         },
         {
-          "staff_id": "204",
-          "이름": "최소방관",
+          "staff_id": "106",
+          "이름": "한간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "205",
-          "이름": "정소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "206",
-          "이름": "강소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "207",
-          "이름": "조소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "208",
-          "이름": "윤소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "210",
-          "이름": "임소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "211",
-          "이름": "한소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "212",
-          "이름": "오소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "213",
-          "이름": "서소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "214",
-          "이름": "노소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "215",
-          "이름": "배소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "216",
-          "이름": "문소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "217",
-          "이름": "송소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "218",
-          "이름": "신소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "219",
-          "이름": "안소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "220",
-          "이름": "양소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
+          "grade_name": "일반간호사"
         }
       ]
     }
   ],
   "2025-09-28": [
     {
-      "shift": "D24",
+      "shift": "아침",
       "people": [
         {
-          "staff_id": "203",
-          "이름": "이소방관",
-          "grade": 1,
-          "grade_name": "소방장"
+          "staff_id": "101",
+          "이름": "김간호사",
+          "grade": 3,
+          "grade_name": "일반간호사"
         },
         {
-          "staff_id": "212",
-          "이름": "오소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
+          "staff_id": "104",
+          "이름": "최간호사",
+          "grade": 2,
+          "grade_name": "주임간호사"
         },
         {
-          "staff_id": "214",
-          "이름": "노소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
+          "staff_id": "107",
+          "이름": "신신규간호사",
+          "grade": 5,
+          "grade_name": "신규간호사"
         }
       ]
     },
     {
-      "shift": "O",
+      "shift": "낮",
       "people": [
         {
-          "staff_id": "201",
-          "이름": "김소방관",
+          "staff_id": "105",
+          "이름": "정간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
-        },
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
         {
-          "staff_id": "202",
-          "이름": "박소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "204",
-          "이름": "최소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "205",
-          "이름": "정소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "206",
-          "이름": "강소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "207",
-          "이름": "조소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "208",
-          "이름": "윤소방관",
+          "staff_id": "103",
+          "이름": "이수간호사",
           "grade": 1,
-          "grade_name": "소방장"
+          "grade_name": "수간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴일",
+      "people": [
+        {
+          "staff_id": "102",
+          "이름": "박신규",
+          "grade": 5,
+          "grade_name": "신규간호사"
         },
         {
-          "staff_id": "209",
-          "이름": "장소방관",
+          "staff_id": "106",
+          "이름": "한간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "210",
-          "이름": "임소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "211",
-          "이름": "한소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "213",
-          "이름": "서소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "215",
-          "이름": "배소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "216",
-          "이름": "문소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "217",
-          "이름": "송소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "218",
-          "이름": "신소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "219",
-          "이름": "안소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "220",
-          "이름": "양소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
+          "grade_name": "일반간호사"
         }
       ]
     }
   ],
   "2025-09-29": [
     {
-      "shift": "D24",
+      "shift": "아침",
       "people": [
         {
-          "staff_id": "206",
-          "이름": "강소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "208",
-          "이름": "윤소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "216",
-          "이름": "문소방관",
+          "staff_id": "101",
+          "이름": "김간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
         },
         {
-          "staff_id": "220",
-          "이름": "양소방관",
+          "staff_id": "103",
+          "이름": "이수간호사",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "104",
+          "이름": "최간호사",
           "grade": 2,
-          "grade_name": "선임소방사"
+          "grade_name": "주임간호사"
         }
       ]
     },
     {
-      "shift": "O",
+      "shift": "낮",
       "people": [
         {
-          "staff_id": "201",
-          "이름": "김소방관",
+          "staff_id": "106",
+          "이름": "한간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
-        },
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
         {
-          "staff_id": "202",
-          "이름": "박소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "203",
-          "이름": "이소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "204",
-          "이름": "최소방관",
+          "staff_id": "105",
+          "이름": "정간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴일",
+      "people": [
+        {
+          "staff_id": "102",
+          "이름": "박신규",
+          "grade": 5,
+          "grade_name": "신규간호사"
         },
         {
-          "staff_id": "205",
-          "이름": "정소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "207",
-          "이름": "조소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "209",
-          "이름": "장소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "210",
-          "이름": "임소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "211",
-          "이름": "한소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "212",
-          "이름": "오소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "213",
-          "이름": "서소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "214",
-          "이름": "노소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "215",
-          "이름": "배소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "217",
-          "이름": "송소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "218",
-          "이름": "신소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "219",
-          "이름": "안소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
+          "staff_id": "107",
+          "이름": "신신규간호사",
+          "grade": 5,
+          "grade_name": "신규간호사"
         }
       ]
     }
   ],
   "2025-09-30": [
     {
-      "shift": "D24",
+      "shift": "아침",
       "people": [
         {
-          "staff_id": "201",
-          "이름": "김소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "204",
-          "이름": "최소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "207",
-          "이름": "조소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "211",
-          "이름": "한소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "212",
-          "이름": "오소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "213",
-          "이름": "서소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "214",
-          "이름": "노소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "215",
-          "이름": "배소방관",
+          "staff_id": "103",
+          "이름": "이수간호사",
           "grade": 1,
-          "grade_name": "소방장"
+          "grade_name": "수간호사"
         },
         {
-          "staff_id": "217",
-          "이름": "송소방관",
+          "staff_id": "104",
+          "이름": "최간호사",
           "grade": 2,
-          "grade_name": "선임소방사"
+          "grade_name": "주임간호사"
         },
         {
-          "staff_id": "218",
-          "이름": "신소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "219",
-          "이름": "안소방관",
-          "grade": 3,
-          "grade_name": "정규소방사"
+          "staff_id": "107",
+          "이름": "신신규간호사",
+          "grade": 5,
+          "grade_name": "신규간호사"
         }
       ]
     },
     {
-      "shift": "O",
+      "shift": "낮",
       "people": [
         {
-          "staff_id": "202",
-          "이름": "박소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "203",
-          "이름": "이소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "205",
-          "이름": "정소방관",
+          "staff_id": "105",
+          "이름": "정간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
-        },
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
         {
-          "staff_id": "206",
-          "이름": "강소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "208",
-          "이름": "윤소방관",
-          "grade": 1,
-          "grade_name": "소방장"
-        },
-        {
-          "staff_id": "209",
-          "이름": "장소방관",
+          "staff_id": "101",
+          "이름": "김간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴일",
+      "people": [
+        {
+          "staff_id": "102",
+          "이름": "박신규",
+          "grade": 5,
+          "grade_name": "신규간호사"
         },
         {
-          "staff_id": "210",
-          "이름": "임소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
-        },
-        {
-          "staff_id": "216",
-          "이름": "문소방관",
+          "staff_id": "106",
+          "이름": "한간호사",
           "grade": 3,
-          "grade_name": "정규소방사"
-        },
-        {
-          "staff_id": "220",
-          "이름": "양소방관",
-          "grade": 2,
-          "grade_name": "선임소방사"
+          "grade_name": "일반간호사"
         }
       ]
     }

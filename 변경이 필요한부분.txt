@@ -4,14 +4,14 @@
 create_individual_shift_schedule()의 change_requests << 매개변수 삭제  
 추후 수정요청은 필요시 별도의 프로토콜을 통해서 구현 
 
-2. 클라이언트로부터 간호직군의 rules / shifts와 shift_hours/를 받아서 제약조건을 적용하는방식 으로 수정  (팀장 컨펌떨어지면 바로 적용 해야함)
+2. 클라이언트로부터 간호직군의 shifts와 shift_hours/를 받아서 제약조건을 적용하는방식 으로 수정해야한다
     (기본 rules는 서버에 두되, 필요 변경만 클라이언트가 보낸다  클라이언트가 변경하고 싶은 항목만 전달하면,서버에서 그 변경 항목으로 기본 규칙을 override하는 방식.)
 
   "staff_data": {
         "rules": {
           ...
-        "shifts": ['D', 'E', 'N', 'O'],  # 3교대
-        "shift_hours": {'D': 8, 'E': 8, 'N': 8, 'O': 0}
+        "shifts": ['D', 'E', 'N', 'O'],                  # shift_type 
+        "shift_hours": {'D': 8, 'E': 8, 'N': 8, 'O': 0}  # shift_hours 
         },
       ...
   }  
@@ -26,22 +26,18 @@ create_individual_shift_schedule()의 change_requests << 매개변수 삭제
 테스트3
 "shifts:['D','N','O']
 "shift_hours":{'D':12,'N':12,'O':0}
-테스트4
-"shifts:['E','F','G','H','O']
-"shift_hours":{'E':6,'F':6,'G':6,'H':6,'O':0}
 
 
 
 
-예시) 
+
+예시) 테스팅 요청형식 
 nursing_request = {
     "position": "간호",
+    "shift_type": 3,    
     "target_month": "2025-09",  # 9월 근무표 생성
     "staff_data": {
-        "custom_rules": {
-               "shifts": ['D', 'E', 'N', 'O'],  # 3교대
-                "shift_hours": {'D': 8, 'E': 8, 'N': 8, 'O': 0}
-        },
+        
         "staff": [
             {"name": "김간호사", "staff_id": 101, "grade": 3, "grade_name": "일반간호사", "position": "간호", "total_monthly_work_hours": 194},
             {"name": "박신규", "staff_id": 102, "grade": 5, "grade_name": "신규간호사", "position": "간호", "total_monthly_work_hours": 204},
@@ -52,6 +48,9 @@ nursing_request = {
             {"name": "신신규간호사", "staff_id": 107, "grade": 5, "grade_name": "신규간호사", "position": "간호", "total_monthly_work_hours": 188}
           ]            
     },
-    "shift_type": 3,     //없어지고 shifts배열의 크기로 변경될듯
-    "target_month": "2025-09" 
+    "custom_rules": {
+               "shifts": ['D', 'E', 'N', 'O'],  # 3교대
+                "shift_hours": {'D': 8, 'E': 8, 'N': 8, 'O': 0}
+    },
+    
 }
