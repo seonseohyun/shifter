@@ -137,6 +137,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DateUtil.cpp" />
     <ClCompile Include="DBManager.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -146,6 +147,7 @@
     <ClCompile Include="TcpServer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DateUtil.h" />
     <ClInclude Include="DBManager.h" />
     <ClInclude Include="ProtocolHandler.h" />
     <ClInclude Include="TcpServer.h" />

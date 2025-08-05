@@ -50,14 +50,14 @@ bool TcpServer::start() {
 
     // 소켓 바인딩 (주소와 연결)
     if (::bind(listenSocket_, (sockaddr*)&serverAddr, sizeof(serverAddr)) == SOCKET_ERROR) {
-        std::cerr << "바인딩 실패\n";
+        std::cerr << u8"바인딩 실패\n";
         closesocket(listenSocket_);
         return false;
     }
 
     // 리슨 상태 진입 (클라이언트 연결 대기)
     if (listen(listenSocket_, SOMAXCONN) == SOCKET_ERROR) {
-        std::cerr << "리스닝 실패\n";
+        std::cerr << u8"리스닝 실패\n";
         closesocket(listenSocket_);
         return false;
     }
@@ -78,7 +78,7 @@ SOCKET TcpServer::acceptClient() {
     // 클라이언트 수락 (연결 요청 받아들이기)
     SOCKET clientSocket = accept(listenSocket_, (sockaddr*)&clientAddr, &clientSize);
     if (clientSocket == INVALID_SOCKET) {
-        std::cerr << "클라이언트 수락 실패\n";
+        std::cerr << u8"클라이언트 수락 실패\n";
     }
     //std::cout << "[클라이언트] 연결 성공\n";
 
@@ -147,28 +147,9 @@ bool TcpServer::receivePacket(SOCKET clientSocket, std::string& out_json, std::v
     try {
         out_json = std::string(buffer.begin(), buffer.begin() + jsonSize);
 
-        //// 덤프 확인
-        //std::cout << u8"[DEBUG] JSON 첫 바이트 HEX: ";
-        //for (int i = 0; i < 10 && i < out_json.size(); ++i)
-        //    printf("%02X ", (unsigned char)out_json[i]);
-        //printf("\n");
-
-        //// 1. BOM 제거
-        //if (out_json.size() >= 3 &&
-        //    (unsigned char)out_json[0] == 0xEF &&
-        //    (unsigned char)out_json[1] == 0xBB &&
-        //    (unsigned char)out_json[2] == 0xBF) {
-        //    out_json = out_json.substr(3);
-        //}
-
-        //std::cout << u8"[DEBUG] out_json 전체 HEX: ";
-        //for (int i = 0; i < out_json.size(); ++i)
-        //    printf("%02X ", (unsigned char)out_json[i]);
-        //printf("\n");
-
         // 2. UTF-8 비정상 바이트 제거
         while (!out_json.empty() && ((unsigned char)out_json[0] == 0xC0 || (unsigned char)out_json[0] == 0xC1 || (unsigned char)out_json[0] < 0x20)) {
-            std::cerr << "[경고] JSON 앞에 비정상 바이트(0x" << std::hex << (int)(unsigned char)out_json[0] << ") 발견 → 제거\n";
+            std::cerr << u8"[경고] JSON 앞에 비정상 바이트(0x" << std::hex << (int)(unsigned char)out_json[0] << ") 발견 → 제거\n";
             out_json = out_json.substr(1);
         }
     }

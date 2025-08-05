@@ -1,7 +1,7 @@
 #define WIN32_LEAN_AND_MEAN     // 윈도우 헤더 경량화 (불필요한 macro 제거)
 #include "TcpServer.h"          // TCP 서버 클래스 헤더
 #include "DBManager.h"          // DB 실행 클래스 헤더
-
+#include "ProtocolHandler.h"
 #include <iostream>
 #include <thread>
 #include <string>
@@ -9,8 +9,9 @@
 #include <locale>
 #include <nlohmann/json.hpp>
 
-#define LINE_LABEL(label) cout << "=======================[" << label << "] =======================\n";
+#define LINE_LABEL(label) cout << "=======================[" << label << "]=======================\n";
 #define LINE cout << "=====================================================\n";
+#define MIDDLELINE cout << u8"-----------------------------------------------------\n[ 응답 ]\n";
 
 using json = nlohmann::json;
 using namespace std;
@@ -41,58 +42,93 @@ bool ReadExactBytes(SOCKET sock, char* buffer, int totalBytes) {
 // =======================================================================
 void handleClient(SOCKET clientSocket) {
     DBManager db;
-    std::string jsonStr;
-    std::vector<char> payload;
+    string jsonStr;
+    vector<char> payload;
+    while (1) {
+        // [1] JSON + payload 수신 (헤더 포함)
+        if (!TcpServer::receivePacket(clientSocket, jsonStr, payload)) {
+            cerr << u8"[패킷 수신 실패] JSON 수신 실패\n";
+            TcpServer::sendJsonResponse(clientSocket, R"({"protocol":"unknown","resp":"fail","message":"receive_fail"})");
+            closesocket(clientSocket);
+            return;
+        }
 
-    // [1] JSON + payload 수신 (헤더 포함)
-    if (!TcpServer::receivePacket(clientSocket, jsonStr, payload)) {
-        std::cerr << u8"[패킷 수신 실패] JSON 수신 실패\n";
-        TcpServer::sendJsonResponse(clientSocket, R"({"PROTOCOL":"UNKNOWN","RESP":"FAIL","MESSAGE":"RECEIVE_FAIL"})");
-        closesocket(clientSocket);
-        return;
-    }
+        // [2] JSON 유효성 검사
+        if (!json::accept(jsonStr)) {
+            cerr << u8"[JSON 검증 실패] 유효하지 않은 JSON입니다.\n";
+            TcpServer::sendJsonResponse(clientSocket, R"({"protocol":"unknown","resp":"fail","message":"invaild_json"})");
+            closesocket(clientSocket);
+            return;
+        }
 
-      // [2] JSON 유효성 검사
-    if (!nlohmann::json::accept(jsonStr)) {
-        std::cerr << u8"[JSON 검증 실패] 유효하지 않은 JSON입니다.\n";
-        TcpServer::sendJsonResponse(clientSocket, R"({"PROTOCOL":"UNKNOWN","RESP":"FAIL","MESSAGE":"INVALID_JSON"})");
-        closesocket(clientSocket);
-        return;
-    }
+        try {
+            //[STEP 1] JSON 파싱
+            json json = nlohmann::json::parse(jsonStr);
+            //[STEP 2] 프로토콜 파싱
+            string protocol = json.value("protocol", "");
 
-    try {
-        //std::cout << u8"[STEP 1] JSON 파싱 시작" << std::endl;
-        nlohmann::json json = nlohmann::json::parse(jsonStr);
-        //std::cout << u8"[STEP 1-OK] JSON 파싱 성공" << std::endl;
-
-        std::string protocol = json.value("PROTOCOL", "");
-        //std::cout << u8"[STEP 2] 프로토콜: " << protocol << std::endl;
-
-        //if (protocol == u8"LOGIN") {
-        //    LINE_LABEL("LOGIN") //라인
-        //    db.connect(); // 디비연결
-
-        //    nlohmann::json response = ProtocolHandler::handle_Login(json, db);// 프로토콜 처리
-        //    TcpServer::sendJsonResponse(clientSocket, response.dump()); // 제이슨 전송
-        //    LINE // 끗
-        //}
-        //else {
-        //    std::cerr << u8"[에러] 알 수 없는 프로토콜: " << protocol << std::endl;
-        //    TcpServer::sendJsonResponse(clientSocket, R"({"PROTOCOL":"UNKNOWN","RESP":"FAIL","MESSAGE":"UNSUPPORTED_PROTOCOL"})");
-        //}
-
-    }
-    catch (const nlohmann::json::parse_error& e) {
-        std::cerr << u8"[에러] JSON 파싱 실패 (parse_error): " << e.what() << std::endl;
-    }
-    catch (const nlohmann::json::type_error& e) {
-        std::cerr << u8"[에러] JSON 타입 오류 (type_error): " << e.what() << std::endl;
-    }
-    catch (const std::exception& e) {
-        std::cerr << u8"[에러] 기타 예외: " << e.what() << std::endl;
+            if (protocol == u8"login") {
+                LINE_LABEL("login") //라인
+                db.connect(); // DB연결
+                nlohmann::json response = ProtocolHandler::handle_login(json, db);// 프로토콜 처리 핸들러로 전송
+                TcpServer::sendJsonResponse(clientSocket, response.dump()); // 제이슨 전송
+                MIDDLELINE
+                cout << response.dump(2) << endl;
+                LINE 
+            }
+            else if (protocol == u8"login_admin") {
+                LINE_LABEL("login_admin")
+                db.connect();
+                nlohmann::json response = ProtocolHandler::handle_login_admin(json, db);
+                TcpServer::sendJsonResponse(clientSocket, response.dump());
+                MIDDLELINE
+                cout << response.dump(2) << endl;
+                LINE
+            }
+            else if (protocol == u8"shift_change_detail") {
+                LINE_LABEL("shift_change_detail")
+                db.connect();
+                nlohmann::json response = ProtocolHandler::handle_shift_change_detail(json, db);
+                TcpServer::sendJsonResponse(clientSocket, response.dump());
+                MIDDLELINE
+                cout << response.dump(2) << endl;
+                LINE
+            }
+            else if (protocol == u8"ask_shift_change") {
+                LINE_LABEL("ask_shift_change")
+                db.connect();
+                nlohmann::json response = ProtocolHandler::handle_ask_shift_change(json, db);
+                TcpServer::sendJsonResponse(clientSocket, response.dump());
+                MIDDLELINE
+                cout << response.dump(2) << endl;
+                LINE
+            }
+            else if (protocol == u8"cancel_shift_change") {
+                LINE_LABEL("ask_shift_change")
+                db.connect();
+                nlohmann::json response = ProtocolHandler::handle_cancel_shift_change(json, db);
+                TcpServer::sendJsonResponse(clientSocket, response.dump());
+                MIDDLELINE
+                cout << response.dump(2) << endl;
+                LINE
+            }
+            
+            else {
+                std::cerr << u8"[에러] 알 수 없는 프로토콜: " << protocol << std::endl;
+                TcpServer::sendJsonResponse(clientSocket, R"({"protocol":"unknown","resp":"fail","messege":"unknown_protocol"})");
+            }
+        }
+        catch (const nlohmann::json::parse_error& e) {
+            std::cerr << u8"[에러] JSON 파싱 실패 (parse_error): " << e.what() << std::endl;
+        }
+        catch (const nlohmann::json::type_error& e) {
+            std::cerr << u8"[에러] JSON 타입 오류 (type_error): " << e.what() << std::endl;
+        }
+        catch (const std::exception& e) {
+            std::cerr << u8"[에러] 기타 예외: " << e.what() << std::endl;
+        }
     }
 }
-
 
 
 int main() {
@@ -125,6 +161,5 @@ int main() {
             th.detach();  // 독립적으로 실행
         }
     }
-
     return 0;
 }
