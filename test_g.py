@@ -3,7 +3,7 @@ import json
 import time
 
 HOST = '127.0.0.1'
-PORT = 6001
+PORT = 6002
 
 def send_request(request_data):
     """TCP 소켓을 통해 서버에 요청을 보내고 응답을 받음"""

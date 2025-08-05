@@ -1,0 +1,3362 @@
+{
+  "2025-09-01": [
+    {
+      "shift": "Day",
+      "people": [
+        {
+          "staff_id": "2010",
+          "이름": "조승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Evening",
+      "people": [
+        {
+          "staff_id": "2006",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2011",
+          "이름": "조지영",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Night",
+      "people": [
+        {
+          "staff_id": "2002",
+          "이름": "윤민수",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2003",
+          "이름": "강승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2004",
+          "이름": "이지영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2008",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2012",
+          "이름": "조철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Off",
+      "people": [
+        {
+          "staff_id": "2000",
+          "이름": "조현우",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "2001",
+          "이름": "김미영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2005",
+          "이름": "장철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2007",
+          "이름": "최미영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2009",
+          "이름": "장영희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2013",
+          "이름": "최정희",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "2014",
+          "이름": "장영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-02": [
+    {
+      "shift": "Day",
+      "people": [
+        {
+          "staff_id": "2000",
+          "이름": "조현우",
+          "grade": 1,
+          "grade_name": "수간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Evening",
+      "people": [
+        {
+          "staff_id": "2001",
+          "이름": "김미영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2011",
+          "이름": "조지영",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Night",
+      "people": [
+        {
+          "staff_id": "2007",
+          "이름": "최미영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2012",
+          "이름": "조철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "2014",
+          "이름": "장영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Off",
+      "people": [
+        {
+          "staff_id": "2002",
+          "이름": "윤민수",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2003",
+          "이름": "강승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2004",
+          "이름": "이지영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2005",
+          "이름": "장철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2006",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2008",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2009",
+          "이름": "장영희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2010",
+          "이름": "조승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2013",
+          "이름": "최정희",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-03": [
+    {
+      "shift": "Day",
+      "people": [
+        {
+          "staff_id": "2000",
+          "이름": "조현우",
+          "grade": 1,
+          "grade_name": "수간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Evening",
+      "people": [
+        {
+          "staff_id": "2001",
+          "이름": "김미영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2003",
+          "이름": "강승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2012",
+          "이름": "조철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Night",
+      "people": [
+        {
+          "staff_id": "2014",
+          "이름": "장영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Off",
+      "people": [
+        {
+          "staff_id": "2002",
+          "이름": "윤민수",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2004",
+          "이름": "이지영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2005",
+          "이름": "장철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2006",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2007",
+          "이름": "최미영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2008",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2009",
+          "이름": "장영희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2010",
+          "이름": "조승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2011",
+          "이름": "조지영",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "2013",
+          "이름": "최정희",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-04": [
+    {
+      "shift": "Day",
+      "people": [
+        {
+          "staff_id": "2007",
+          "이름": "최미영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Evening",
+      "people": [
+        {
+          "staff_id": "2008",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Night",
+      "people": [
+        {
+          "staff_id": "2000",
+          "이름": "조현우",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "2001",
+          "이름": "김미영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2002",
+          "이름": "윤민수",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2003",
+          "이름": "강승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2014",
+          "이름": "장영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Off",
+      "people": [
+        {
+          "staff_id": "2004",
+          "이름": "이지영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2005",
+          "이름": "장철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2006",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2009",
+          "이름": "장영희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2010",
+          "이름": "조승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2011",
+          "이름": "조지영",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "2012",
+          "이름": "조철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "2013",
+          "이름": "최정희",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-05": [
+    {
+      "shift": "Day",
+      "people": [
+        {
+          "staff_id": "2001",
+          "이름": "김미영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2014",
+          "이름": "장영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Evening",
+      "people": [
+        {
+          "staff_id": "2003",
+          "이름": "강승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2005",
+          "이름": "장철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2006",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2007",
+          "이름": "최미영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Night",
+      "people": [
+        {
+          "staff_id": "2000",
+          "이름": "조현우",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "2002",
+          "이름": "윤민수",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2008",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2011",
+          "이름": "조지영",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "2012",
+          "이름": "조철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "2013",
+          "이름": "최정희",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Off",
+      "people": [
+        {
+          "staff_id": "2004",
+          "이름": "이지영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2009",
+          "이름": "장영희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2010",
+          "이름": "조승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-06": [
+    {
+      "shift": "Day",
+      "people": [
+        {
+          "staff_id": "2008",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2009",
+          "이름": "장영희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2010",
+          "이름": "조승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2011",
+          "이름": "조지영",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "2012",
+          "이름": "조철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Evening",
+      "people": [
+        {
+          "staff_id": "2000",
+          "이름": "조현우",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "2005",
+          "이름": "장철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2006",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2013",
+          "이름": "최정희",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "2014",
+          "이름": "장영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Night",
+      "people": [
+        {
+          "staff_id": "2001",
+          "이름": "김미영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2002",
+          "이름": "윤민수",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2004",
+          "이름": "이지영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2007",
+          "이름": "최미영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Off",
+      "people": [
+        {
+          "staff_id": "2003",
+          "이름": "강승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-07": [
+    {
+      "shift": "Day",
+      "people": [
+        {
+          "staff_id": "2002",
+          "이름": "윤민수",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2004",
+          "이름": "이지영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2005",
+          "이름": "장철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2008",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2009",
+          "이름": "장영희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2010",
+          "이름": "조승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2012",
+          "이름": "조철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "2013",
+          "이름": "최정희",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Evening",
+      "people": [
+        {
+          "staff_id": "2006",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2007",
+          "이름": "최미영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2011",
+          "이름": "조지영",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "2014",
+          "이름": "장영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Night",
+      "people": [
+        {
+          "staff_id": "2000",
+          "이름": "조현우",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "2001",
+          "이름": "김미영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Off",
+      "people": [
+        {
+          "staff_id": "2003",
+          "이름": "강승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-08": [
+    {
+      "shift": "Day",
+      "people": [
+        {
+          "staff_id": "2002",
+          "이름": "윤민수",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2007",
+          "이름": "최미영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2008",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2009",
+          "이름": "장영희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2012",
+          "이름": "조철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "2013",
+          "이름": "최정희",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "2014",
+          "이름": "장영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Evening",
+      "people": [
+        {
+          "staff_id": "2000",
+          "이름": "조현우",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "2006",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Night",
+      "people": [
+        {
+          "staff_id": "2001",
+          "이름": "김미영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2003",
+          "이름": "강승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2004",
+          "이름": "이지영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2010",
+          "이름": "조승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2011",
+          "이름": "조지영",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Off",
+      "people": [
+        {
+          "staff_id": "2005",
+          "이름": "장철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-09": [
+    {
+      "shift": "Day",
+      "people": [
+        {
+          "staff_id": "2003",
+          "이름": "강승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2007",
+          "이름": "최미영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2008",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2010",
+          "이름": "조승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2011",
+          "이름": "조지영",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Evening",
+      "people": [
+        {
+          "staff_id": "2002",
+          "이름": "윤민수",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2004",
+          "이름": "이지영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2009",
+          "이름": "장영희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Night",
+      "people": [
+        {
+          "staff_id": "2000",
+          "이름": "조현우",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "2001",
+          "이름": "김미영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2005",
+          "이름": "장철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2006",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2012",
+          "이름": "조철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Off",
+      "people": [
+        {
+          "staff_id": "2013",
+          "이름": "최정희",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "2014",
+          "이름": "장영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-10": [
+    {
+      "shift": "Day",
+      "people": [
+        {
+          "staff_id": "2001",
+          "이름": "김미영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2002",
+          "이름": "윤민수",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2004",
+          "이름": "이지영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2006",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2007",
+          "이름": "최미영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2010",
+          "이름": "조승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2011",
+          "이름": "조지영",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "2013",
+          "이름": "최정희",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Evening",
+      "people": [
+        {
+          "staff_id": "2000",
+          "이름": "조현우",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "2003",
+          "이름": "강승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2008",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2009",
+          "이름": "장영희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Night",
+      "people": [
+        {
+          "staff_id": "2005",
+          "이름": "장철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2014",
+          "이름": "장영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Off",
+      "people": [
+        {
+          "staff_id": "2012",
+          "이름": "조철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-11": [
+    {
+      "shift": "Day",
+      "people": [
+        {
+          "staff_id": "2004",
+          "이름": "이지영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2005",
+          "이름": "장철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2008",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2009",
+          "이름": "장영희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2011",
+          "이름": "조지영",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "2013",
+          "이름": "최정희",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "2014",
+          "이름": "장영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Evening",
+      "people": [
+        {
+          "staff_id": "2002",
+          "이름": "윤민수",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2003",
+          "이름": "강승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2006",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2007",
+          "이름": "최미영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Night",
+      "people": [
+        {
+          "staff_id": "2001",
+          "이름": "김미영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2010",
+          "이름": "조승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2012",
+          "이름": "조철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Off",
+      "people": [
+        {
+          "staff_id": "2000",
+          "이름": "조현우",
+          "grade": 1,
+          "grade_name": "수간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-12": [
+    {
+      "shift": "Day",
+      "people": [
+        {
+          "staff_id": "2001",
+          "이름": "김미영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2003",
+          "이름": "강승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2008",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2009",
+          "이름": "장영희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2013",
+          "이름": "최정희",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "2014",
+          "이름": "장영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Evening",
+      "people": [
+        {
+          "staff_id": "2000",
+          "이름": "조현우",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "2002",
+          "이름": "윤민수",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2004",
+          "이름": "이지영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2005",
+          "이름": "장철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2006",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2010",
+          "이름": "조승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Night",
+      "people": [
+        {
+          "staff_id": "2011",
+          "이름": "조지영",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "2012",
+          "이름": "조철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Off",
+      "people": [
+        {
+          "staff_id": "2007",
+          "이름": "최미영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-13": [
+    {
+      "shift": "Day",
+      "people": [
+        {
+          "staff_id": "2003",
+          "이름": "강승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2004",
+          "이름": "이지영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2005",
+          "이름": "장철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2007",
+          "이름": "최미영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2010",
+          "이름": "조승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2013",
+          "이름": "최정희",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Evening",
+      "people": [
+        {
+          "staff_id": "2000",
+          "이름": "조현우",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "2006",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2008",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2011",
+          "이름": "조지영",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "2012",
+          "이름": "조철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Night",
+      "people": [
+        {
+          "staff_id": "2001",
+          "이름": "김미영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2002",
+          "이름": "윤민수",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2009",
+          "이름": "장영희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Off",
+      "people": [
+        {
+          "staff_id": "2014",
+          "이름": "장영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-14": [
+    {
+      "shift": "Day",
+      "people": [
+        {
+          "staff_id": "2003",
+          "이름": "강승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2005",
+          "이름": "장철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2009",
+          "이름": "장영희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2010",
+          "이름": "조승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2011",
+          "이름": "조지영",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Evening",
+      "people": [
+        {
+          "staff_id": "2002",
+          "이름": "윤민수",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2004",
+          "이름": "이지영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2006",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2007",
+          "이름": "최미영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2008",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Night",
+      "people": [
+        {
+          "staff_id": "2000",
+          "이름": "조현우",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "2001",
+          "이름": "김미영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2012",
+          "이름": "조철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Off",
+      "people": [
+        {
+          "staff_id": "2013",
+          "이름": "최정희",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "2014",
+          "이름": "장영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-15": [
+    {
+      "shift": "Day",
+      "people": [
+        {
+          "staff_id": "2004",
+          "이름": "이지영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2008",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2010",
+          "이름": "조승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2012",
+          "이름": "조철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Evening",
+      "people": [
+        {
+          "staff_id": "2001",
+          "이름": "김미영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2002",
+          "이름": "윤민수",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2006",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2013",
+          "이름": "최정희",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "2014",
+          "이름": "장영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Night",
+      "people": [
+        {
+          "staff_id": "2000",
+          "이름": "조현우",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "2003",
+          "이름": "강승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2005",
+          "이름": "장철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2009",
+          "이름": "장영희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2011",
+          "이름": "조지영",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Off",
+      "people": [
+        {
+          "staff_id": "2007",
+          "이름": "최미영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-16": [
+    {
+      "shift": "Day",
+      "people": [
+        {
+          "staff_id": "2002",
+          "이름": "윤민수",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2005",
+          "이름": "장철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2006",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2010",
+          "이름": "조승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2011",
+          "이름": "조지영",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Evening",
+      "people": [
+        {
+          "staff_id": "2004",
+          "이름": "이지영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2007",
+          "이름": "최미영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2008",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2009",
+          "이름": "장영희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2012",
+          "이름": "조철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "2014",
+          "이름": "장영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Night",
+      "people": [
+        {
+          "staff_id": "2000",
+          "이름": "조현우",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "2001",
+          "이름": "김미영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2013",
+          "이름": "최정희",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Off",
+      "people": [
+        {
+          "staff_id": "2003",
+          "이름": "강승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-17": [
+    {
+      "shift": "Day",
+      "people": [
+        {
+          "staff_id": "2002",
+          "이름": "윤민수",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2004",
+          "이름": "이지영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2005",
+          "이름": "장철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2009",
+          "이름": "장영희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2014",
+          "이름": "장영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Evening",
+      "people": [
+        {
+          "staff_id": "2003",
+          "이름": "강승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2006",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2007",
+          "이름": "최미영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2012",
+          "이름": "조철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Night",
+      "people": [
+        {
+          "staff_id": "2001",
+          "이름": "김미영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2008",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2010",
+          "이름": "조승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2011",
+          "이름": "조지영",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "2013",
+          "이름": "최정희",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Off",
+      "people": [
+        {
+          "staff_id": "2000",
+          "이름": "조현우",
+          "grade": 1,
+          "grade_name": "수간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-18": [
+    {
+      "shift": "Day",
+      "people": [
+        {
+          "staff_id": "2007",
+          "이름": "최미영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2011",
+          "이름": "조지영",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Evening",
+      "people": [
+        {
+          "staff_id": "2004",
+          "이름": "이지영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2005",
+          "이름": "장철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2006",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2008",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2010",
+          "이름": "조승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2012",
+          "이름": "조철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "2013",
+          "이름": "최정희",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "2014",
+          "이름": "장영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Night",
+      "people": [
+        {
+          "staff_id": "2000",
+          "이름": "조현우",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "2001",
+          "이름": "김미영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2002",
+          "이름": "윤민수",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2003",
+          "이름": "강승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Off",
+      "people": [
+        {
+          "staff_id": "2009",
+          "이름": "장영희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-19": [
+    {
+      "shift": "Day",
+      "people": [
+        {
+          "staff_id": "2006",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2008",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2010",
+          "이름": "조승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2011",
+          "이름": "조지영",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Evening",
+      "people": [
+        {
+          "staff_id": "2000",
+          "이름": "조현우",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "2001",
+          "이름": "김미영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2002",
+          "이름": "윤민수",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2005",
+          "이름": "장철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2012",
+          "이름": "조철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Night",
+      "people": [
+        {
+          "staff_id": "2004",
+          "이름": "이지영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2007",
+          "이름": "최미영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2009",
+          "이름": "장영희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2013",
+          "이름": "최정희",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "2014",
+          "이름": "장영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Off",
+      "people": [
+        {
+          "staff_id": "2003",
+          "이름": "강승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-20": [
+    {
+      "shift": "Day",
+      "people": [
+        {
+          "staff_id": "2000",
+          "이름": "조현우",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "2005",
+          "이름": "장철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2007",
+          "이름": "최미영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2010",
+          "이름": "조승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Evening",
+      "people": [
+        {
+          "staff_id": "2002",
+          "이름": "윤민수",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2006",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2008",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2009",
+          "이름": "장영희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2013",
+          "이름": "최정희",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Night",
+      "people": [
+        {
+          "staff_id": "2001",
+          "이름": "김미영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2003",
+          "이름": "강승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2004",
+          "이름": "이지영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2012",
+          "이름": "조철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "2014",
+          "이름": "장영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Off",
+      "people": [
+        {
+          "staff_id": "2011",
+          "이름": "조지영",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-21": [
+    {
+      "shift": "Day",
+      "people": [
+        {
+          "staff_id": "2003",
+          "이름": "강승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2005",
+          "이름": "장철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2011",
+          "이름": "조지영",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Evening",
+      "people": [
+        {
+          "staff_id": "2004",
+          "이름": "이지영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2006",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2008",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2010",
+          "이름": "조승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Night",
+      "people": [
+        {
+          "staff_id": "2002",
+          "이름": "윤민수",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2009",
+          "이름": "장영희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2013",
+          "이름": "최정희",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "2014",
+          "이름": "장영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Off",
+      "people": [
+        {
+          "staff_id": "2000",
+          "이름": "조현우",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "2001",
+          "이름": "김미영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2007",
+          "이름": "최미영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2012",
+          "이름": "조철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-22": [
+    {
+      "shift": "Day",
+      "people": [
+        {
+          "staff_id": "2003",
+          "이름": "강승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2005",
+          "이름": "장철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2007",
+          "이름": "최미영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2010",
+          "이름": "조승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2011",
+          "이름": "조지영",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "2014",
+          "이름": "장영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Evening",
+      "people": [
+        {
+          "staff_id": "2000",
+          "이름": "조현우",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "2004",
+          "이름": "이지영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2008",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2012",
+          "이름": "조철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "2013",
+          "이름": "최정희",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Night",
+      "people": [
+        {
+          "staff_id": "2002",
+          "이름": "윤민수",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2006",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2009",
+          "이름": "장영희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Off",
+      "people": [
+        {
+          "staff_id": "2001",
+          "이름": "김미영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-23": [
+    {
+      "shift": "Day",
+      "people": [
+        {
+          "staff_id": "2000",
+          "이름": "조현우",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "2002",
+          "이름": "윤민수",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2007",
+          "이름": "최미영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2009",
+          "이름": "장영희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Evening",
+      "people": [
+        {
+          "staff_id": "2003",
+          "이름": "강승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2004",
+          "이름": "이지영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2006",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2008",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2010",
+          "이름": "조승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2012",
+          "이름": "조철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Night",
+      "people": [
+        {
+          "staff_id": "2005",
+          "이름": "장철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2011",
+          "이름": "조지영",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "2013",
+          "이름": "최정희",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "2014",
+          "이름": "장영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Off",
+      "people": [
+        {
+          "staff_id": "2001",
+          "이름": "김미영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-24": [
+    {
+      "shift": "Day",
+      "people": [
+        {
+          "staff_id": "2001",
+          "이름": "김미영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2003",
+          "이름": "강승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2004",
+          "이름": "이지영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2006",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2008",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2009",
+          "이름": "장영희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2010",
+          "이름": "조승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Evening",
+      "people": [
+        {
+          "staff_id": "2005",
+          "이름": "장철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2007",
+          "이름": "최미영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2012",
+          "이름": "조철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Night",
+      "people": [
+        {
+          "staff_id": "2013",
+          "이름": "최정희",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "2014",
+          "이름": "장영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Off",
+      "people": [
+        {
+          "staff_id": "2000",
+          "이름": "조현우",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "2002",
+          "이름": "윤민수",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2011",
+          "이름": "조지영",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-25": [
+    {
+      "shift": "Day",
+      "people": [
+        {
+          "staff_id": "2003",
+          "이름": "강승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2004",
+          "이름": "이지영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2009",
+          "이름": "장영희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2011",
+          "이름": "조지영",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "2012",
+          "이름": "조철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Evening",
+      "people": [
+        {
+          "staff_id": "2000",
+          "이름": "조현우",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "2001",
+          "이름": "김미영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2006",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2008",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2010",
+          "이름": "조승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2014",
+          "이름": "장영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Night",
+      "people": [
+        {
+          "staff_id": "2005",
+          "이름": "장철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2007",
+          "이름": "최미영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2013",
+          "이름": "최정희",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Off",
+      "people": [
+        {
+          "staff_id": "2002",
+          "이름": "윤민수",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-26": [
+    {
+      "shift": "Day",
+      "people": [
+        {
+          "staff_id": "2000",
+          "이름": "조현우",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "2002",
+          "이름": "윤민수",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2004",
+          "이름": "이지영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2006",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2007",
+          "이름": "최미영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2008",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2009",
+          "이름": "장영희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2014",
+          "이름": "장영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Evening",
+      "people": [
+        {
+          "staff_id": "2003",
+          "이름": "강승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2005",
+          "이름": "장철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2012",
+          "이름": "조철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Night",
+      "people": [
+        {
+          "staff_id": "2001",
+          "이름": "김미영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2010",
+          "이름": "조승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2013",
+          "이름": "최정희",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Off",
+      "people": [
+        {
+          "staff_id": "2011",
+          "이름": "조지영",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-27": [
+    {
+      "shift": "Day",
+      "people": [
+        {
+          "staff_id": "2002",
+          "이름": "윤민수",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2003",
+          "이름": "강승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2004",
+          "이름": "이지영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2008",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Evening",
+      "people": [
+        {
+          "staff_id": "2005",
+          "이름": "장철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2006",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2007",
+          "이름": "최미영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2009",
+          "이름": "장영희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2010",
+          "이름": "조승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2012",
+          "이름": "조철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "2014",
+          "이름": "장영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Night",
+      "people": [
+        {
+          "staff_id": "2000",
+          "이름": "조현우",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "2001",
+          "이름": "김미영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2011",
+          "이름": "조지영",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Off",
+      "people": [
+        {
+          "staff_id": "2013",
+          "이름": "최정희",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-28": [
+    {
+      "shift": "Day",
+      "people": [
+        {
+          "staff_id": "2003",
+          "이름": "강승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2004",
+          "이름": "이지영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2006",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2007",
+          "이름": "최미영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2009",
+          "이름": "장영희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2010",
+          "이름": "조승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2011",
+          "이름": "조지영",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Evening",
+      "people": [
+        {
+          "staff_id": "2000",
+          "이름": "조현우",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "2001",
+          "이름": "김미영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2002",
+          "이름": "윤민수",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2005",
+          "이름": "장철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2008",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2014",
+          "이름": "장영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Night",
+      "people": [
+        {
+          "staff_id": "2013",
+          "이름": "최정희",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Off",
+      "people": [
+        {
+          "staff_id": "2012",
+          "이름": "조철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-29": [
+    {
+      "shift": "Day",
+      "people": [
+        {
+          "staff_id": "2002",
+          "이름": "윤민수",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2003",
+          "이름": "강승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2009",
+          "이름": "장영희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2010",
+          "이름": "조승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2012",
+          "이름": "조철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Evening",
+      "people": [
+        {
+          "staff_id": "2001",
+          "이름": "김미영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2004",
+          "이름": "이지영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2005",
+          "이름": "장철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2006",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2007",
+          "이름": "최미영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2013",
+          "이름": "최정희",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Night",
+      "people": [
+        {
+          "staff_id": "2008",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Off",
+      "people": [
+        {
+          "staff_id": "2000",
+          "이름": "조현우",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "2011",
+          "이름": "조지영",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "2014",
+          "이름": "장영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-30": [
+    {
+      "shift": "Day",
+      "people": [
+        {
+          "staff_id": "2000",
+          "이름": "조현우",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "2003",
+          "이름": "강승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2004",
+          "이름": "이지영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2005",
+          "이름": "장철수",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2006",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2010",
+          "이름": "조승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2012",
+          "이름": "조철수",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "2013",
+          "이름": "최정희",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Evening",
+      "people": [
+        {
+          "staff_id": "2002",
+          "이름": "윤민수",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2008",
+          "이름": "이태현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2009",
+          "이름": "장영희",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "2011",
+          "이름": "조지영",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Night",
+      "people": [
+        {
+          "staff_id": "2014",
+          "이름": "장영수",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "Off",
+      "people": [
+        {
+          "staff_id": "2001",
+          "이름": "김미영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "2007",
+          "이름": "최미영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    }
+  ]
+}

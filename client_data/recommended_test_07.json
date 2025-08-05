@@ -1,0 +1,3362 @@
+{
+  "2025-09-01": [
+    {
+      "shift": "아침",
+      "people": [
+        {
+          "staff_id": "1008",
+          "이름": "김예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "저녁",
+      "people": [
+        {
+          "staff_id": "1011",
+          "이름": "윤상훈",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
+        {
+          "staff_id": "1006",
+          "이름": "강채영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1010",
+          "이름": "전수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴무",
+      "people": [
+        {
+          "staff_id": "1000",
+          "이름": "박민수",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1001",
+          "이름": "최소영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1002",
+          "이름": "최영희",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1003",
+          "이름": "박준호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1004",
+          "이름": "이예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1005",
+          "이름": "류승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1007",
+          "이름": "윤수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1009",
+          "이름": "안도현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1012",
+          "이름": "이은정",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1013",
+          "이름": "황상훈",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "정혜진",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-02": [
+    {
+      "shift": "아침",
+      "people": [
+        {
+          "staff_id": "1000",
+          "이름": "박민수",
+          "grade": 1,
+          "grade_name": "수간호사"
+        }
+      ]
+    },
+    {
+      "shift": "저녁",
+      "people": [
+        {
+          "staff_id": "1001",
+          "이름": "최소영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
+        {
+          "staff_id": "1008",
+          "이름": "김예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1013",
+          "이름": "황상훈",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "정혜진",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴무",
+      "people": [
+        {
+          "staff_id": "1002",
+          "이름": "최영희",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1003",
+          "이름": "박준호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1004",
+          "이름": "이예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1005",
+          "이름": "류승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1006",
+          "이름": "강채영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1007",
+          "이름": "윤수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1009",
+          "이름": "안도현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1010",
+          "이름": "전수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1011",
+          "이름": "윤상훈",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1012",
+          "이름": "이은정",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-03": [
+    {
+      "shift": "아침",
+      "people": [
+        {
+          "staff_id": "1005",
+          "이름": "류승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1007",
+          "이름": "윤수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1009",
+          "이름": "안도현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "저녁",
+      "people": [
+        {
+          "staff_id": "1001",
+          "이름": "최소영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1003",
+          "이름": "박준호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1006",
+          "이름": "강채영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
+        {
+          "staff_id": "1000",
+          "이름": "박민수",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1013",
+          "이름": "황상훈",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "정혜진",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴무",
+      "people": [
+        {
+          "staff_id": "1002",
+          "이름": "최영희",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1004",
+          "이름": "이예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1008",
+          "이름": "김예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1010",
+          "이름": "전수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1011",
+          "이름": "윤상훈",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1012",
+          "이름": "이은정",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-04": [
+    {
+      "shift": "아침",
+      "people": [
+        {
+          "staff_id": "1000",
+          "이름": "박민수",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1001",
+          "이름": "최소영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1013",
+          "이름": "황상훈",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "저녁",
+      "people": [
+        {
+          "staff_id": "1005",
+          "이름": "류승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1007",
+          "이름": "윤수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1009",
+          "이름": "안도현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
+        {
+          "staff_id": "1003",
+          "이름": "박준호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1006",
+          "이름": "강채영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1008",
+          "이름": "김예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "정혜진",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴무",
+      "people": [
+        {
+          "staff_id": "1002",
+          "이름": "최영희",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1004",
+          "이름": "이예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1010",
+          "이름": "전수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1011",
+          "이름": "윤상훈",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1012",
+          "이름": "이은정",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-05": [
+    {
+      "shift": "아침",
+      "people": [
+        {
+          "staff_id": "1005",
+          "이름": "류승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1007",
+          "이름": "윤수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1008",
+          "이름": "김예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1009",
+          "이름": "안도현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1011",
+          "이름": "윤상훈",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "저녁",
+      "people": [
+        {
+          "staff_id": "1001",
+          "이름": "최소영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1003",
+          "이름": "박준호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1013",
+          "이름": "황상훈",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
+        {
+          "staff_id": "1000",
+          "이름": "박민수",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1002",
+          "이름": "최영희",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1006",
+          "이름": "강채영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "정혜진",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴무",
+      "people": [
+        {
+          "staff_id": "1004",
+          "이름": "이예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1010",
+          "이름": "전수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1012",
+          "이름": "이은정",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-06": [
+    {
+      "shift": "아침",
+      "people": [
+        {
+          "staff_id": "1002",
+          "이름": "최영희",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1004",
+          "이름": "이예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1009",
+          "이름": "안도현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1011",
+          "이름": "윤상훈",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1012",
+          "이름": "이은정",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1013",
+          "이름": "황상훈",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "정혜진",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "저녁",
+      "people": [
+        {
+          "staff_id": "1006",
+          "이름": "강채영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1007",
+          "이름": "윤수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1008",
+          "이름": "김예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
+        {
+          "staff_id": "1000",
+          "이름": "박민수",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1001",
+          "이름": "최소영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1003",
+          "이름": "박준호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1005",
+          "이름": "류승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴무",
+      "people": [
+        {
+          "staff_id": "1010",
+          "이름": "전수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-07": [
+    {
+      "shift": "아침",
+      "people": [
+        {
+          "staff_id": "1001",
+          "이름": "최소영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1003",
+          "이름": "박준호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1004",
+          "이름": "이예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1005",
+          "이름": "류승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1006",
+          "이름": "강채영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1008",
+          "이름": "김예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1009",
+          "이름": "안도현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1012",
+          "이름": "이은정",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "저녁",
+      "people": [
+        {
+          "staff_id": "1000",
+          "이름": "박민수",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1002",
+          "이름": "최영희",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
+        {
+          "staff_id": "1007",
+          "이름": "윤수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1011",
+          "이름": "윤상훈",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1013",
+          "이름": "황상훈",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "정혜진",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴무",
+      "people": [
+        {
+          "staff_id": "1010",
+          "이름": "전수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-08": [
+    {
+      "shift": "아침",
+      "people": [
+        {
+          "staff_id": "1002",
+          "이름": "최영희",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1008",
+          "이름": "김예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1009",
+          "이름": "안도현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1010",
+          "이름": "전수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1011",
+          "이름": "윤상훈",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "저녁",
+      "people": [
+        {
+          "staff_id": "1000",
+          "이름": "박민수",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1001",
+          "이름": "최소영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1003",
+          "이름": "박준호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1004",
+          "이름": "이예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1005",
+          "이름": "류승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1012",
+          "이름": "이은정",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1013",
+          "이름": "황상훈",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
+        {
+          "staff_id": "1006",
+          "이름": "강채영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1007",
+          "이름": "윤수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴무",
+      "people": [
+        {
+          "staff_id": "1014",
+          "이름": "정혜진",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-09": [
+    {
+      "shift": "아침",
+      "people": [
+        {
+          "staff_id": "1001",
+          "이름": "최소영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1003",
+          "이름": "박준호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1005",
+          "이름": "류승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1007",
+          "이름": "윤수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1010",
+          "이름": "전수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1012",
+          "이름": "이은정",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "저녁",
+      "people": [
+        {
+          "staff_id": "1002",
+          "이름": "최영희",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1004",
+          "이름": "이예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1008",
+          "이름": "김예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1009",
+          "이름": "안도현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1013",
+          "이름": "황상훈",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "정혜진",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
+        {
+          "staff_id": "1006",
+          "이름": "강채영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1011",
+          "이름": "윤상훈",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴무",
+      "people": [
+        {
+          "staff_id": "1000",
+          "이름": "박민수",
+          "grade": 1,
+          "grade_name": "수간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-10": [
+    {
+      "shift": "아침",
+      "people": [
+        {
+          "staff_id": "1003",
+          "이름": "박준호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1005",
+          "이름": "류승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1008",
+          "이름": "김예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1010",
+          "이름": "전수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1012",
+          "이름": "이은정",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "정혜진",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "저녁",
+      "people": [
+        {
+          "staff_id": "1002",
+          "이름": "최영희",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1009",
+          "이름": "안도현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
+        {
+          "staff_id": "1000",
+          "이름": "박민수",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1001",
+          "이름": "최소영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1004",
+          "이름": "이예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1006",
+          "이름": "강채영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1007",
+          "이름": "윤수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1011",
+          "이름": "윤상훈",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴무",
+      "people": [
+        {
+          "staff_id": "1013",
+          "이름": "황상훈",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-11": [
+    {
+      "shift": "아침",
+      "people": [
+        {
+          "staff_id": "1000",
+          "이름": "박민수",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1003",
+          "이름": "박준호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1007",
+          "이름": "윤수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1009",
+          "이름": "안도현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1010",
+          "이름": "전수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1012",
+          "이름": "이은정",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "저녁",
+      "people": [
+        {
+          "staff_id": "1004",
+          "이름": "이예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1005",
+          "이름": "류승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1006",
+          "이름": "강채영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1008",
+          "이름": "김예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1011",
+          "이름": "윤상훈",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "정혜진",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
+        {
+          "staff_id": "1001",
+          "이름": "최소영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1002",
+          "이름": "최영희",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴무",
+      "people": [
+        {
+          "staff_id": "1013",
+          "이름": "황상훈",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-12": [
+    {
+      "shift": "아침",
+      "people": [
+        {
+          "staff_id": "1002",
+          "이름": "최영희",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1004",
+          "이름": "이예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1006",
+          "이름": "강채영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1007",
+          "이름": "윤수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1011",
+          "이름": "윤상훈",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1012",
+          "이름": "이은정",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "저녁",
+      "people": [
+        {
+          "staff_id": "1001",
+          "이름": "최소영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1005",
+          "이름": "류승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1008",
+          "이름": "김예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1009",
+          "이름": "안도현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1010",
+          "이름": "전수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
+        {
+          "staff_id": "1003",
+          "이름": "박준호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1013",
+          "이름": "황상훈",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "정혜진",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴무",
+      "people": [
+        {
+          "staff_id": "1000",
+          "이름": "박민수",
+          "grade": 1,
+          "grade_name": "수간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-13": [
+    {
+      "shift": "아침",
+      "people": [
+        {
+          "staff_id": "1002",
+          "이름": "최영희",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1003",
+          "이름": "박준호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1004",
+          "이름": "이예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1007",
+          "이름": "윤수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1009",
+          "이름": "안도현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1011",
+          "이름": "윤상훈",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1012",
+          "이름": "이은정",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "저녁",
+      "people": [
+        {
+          "staff_id": "1001",
+          "이름": "최소영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1005",
+          "이름": "류승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1006",
+          "이름": "강채영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1008",
+          "이름": "김예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "정혜진",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
+        {
+          "staff_id": "1000",
+          "이름": "박민수",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1010",
+          "이름": "전수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴무",
+      "people": [
+        {
+          "staff_id": "1013",
+          "이름": "황상훈",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-14": [
+    {
+      "shift": "아침",
+      "people": [
+        {
+          "staff_id": "1004",
+          "이름": "이예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1008",
+          "이름": "김예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1009",
+          "이름": "안도현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1012",
+          "이름": "이은정",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "정혜진",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "저녁",
+      "people": [
+        {
+          "staff_id": "1001",
+          "이름": "최소영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1002",
+          "이름": "최영희",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1011",
+          "이름": "윤상훈",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
+        {
+          "staff_id": "1000",
+          "이름": "박민수",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1003",
+          "이름": "박준호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1005",
+          "이름": "류승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1006",
+          "이름": "강채영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1007",
+          "이름": "윤수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1010",
+          "이름": "전수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴무",
+      "people": [
+        {
+          "staff_id": "1013",
+          "이름": "황상훈",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-15": [
+    {
+      "shift": "아침",
+      "people": [
+        {
+          "staff_id": "1002",
+          "이름": "최영희",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1004",
+          "이름": "이예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1005",
+          "이름": "류승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1006",
+          "이름": "강채영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1007",
+          "이름": "윤수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1009",
+          "이름": "안도현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1013",
+          "이름": "황상훈",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "저녁",
+      "people": [
+        {
+          "staff_id": "1001",
+          "이름": "최소영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1003",
+          "이름": "박준호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1012",
+          "이름": "이은정",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "정혜진",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
+        {
+          "staff_id": "1000",
+          "이름": "박민수",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1010",
+          "이름": "전수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1011",
+          "이름": "윤상훈",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴무",
+      "people": [
+        {
+          "staff_id": "1008",
+          "이름": "김예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-16": [
+    {
+      "shift": "아침",
+      "people": [
+        {
+          "staff_id": "1000",
+          "이름": "박민수",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1003",
+          "이름": "박준호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1004",
+          "이름": "이예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1005",
+          "이름": "류승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1007",
+          "이름": "윤수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1012",
+          "이름": "이은정",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "저녁",
+      "people": [
+        {
+          "staff_id": "1006",
+          "이름": "강채영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1009",
+          "이름": "안도현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1011",
+          "이름": "윤상훈",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "정혜진",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
+        {
+          "staff_id": "1001",
+          "이름": "최소영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1002",
+          "이름": "최영희",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1010",
+          "이름": "전수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1013",
+          "이름": "황상훈",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴무",
+      "people": [
+        {
+          "staff_id": "1008",
+          "이름": "김예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-17": [
+    {
+      "shift": "아침",
+      "people": [
+        {
+          "staff_id": "1002",
+          "이름": "최영희",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1003",
+          "이름": "박준호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1004",
+          "이름": "이예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1007",
+          "이름": "윤수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1010",
+          "이름": "전수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "저녁",
+      "people": [
+        {
+          "staff_id": "1000",
+          "이름": "박민수",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1005",
+          "이름": "류승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1006",
+          "이름": "강채영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1008",
+          "이름": "김예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1013",
+          "이름": "황상훈",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
+        {
+          "staff_id": "1009",
+          "이름": "안도현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1011",
+          "이름": "윤상훈",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1012",
+          "이름": "이은정",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "정혜진",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴무",
+      "people": [
+        {
+          "staff_id": "1001",
+          "이름": "최소영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-18": [
+    {
+      "shift": "아침",
+      "people": [
+        {
+          "staff_id": "1003",
+          "이름": "박준호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1007",
+          "이름": "윤수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1009",
+          "이름": "안도현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1012",
+          "이름": "이은정",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "저녁",
+      "people": [
+        {
+          "staff_id": "1002",
+          "이름": "최영희",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1004",
+          "이름": "이예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1005",
+          "이름": "류승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1006",
+          "이름": "강채영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1011",
+          "이름": "윤상훈",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "정혜진",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
+        {
+          "staff_id": "1000",
+          "이름": "박민수",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1001",
+          "이름": "최소영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1010",
+          "이름": "전수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1013",
+          "이름": "황상훈",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴무",
+      "people": [
+        {
+          "staff_id": "1008",
+          "이름": "김예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-19": [
+    {
+      "shift": "아침",
+      "people": [
+        {
+          "staff_id": "1000",
+          "이름": "박민수",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1004",
+          "이름": "이예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1005",
+          "이름": "류승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1007",
+          "이름": "윤수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1008",
+          "이름": "김예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1010",
+          "이름": "전수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1012",
+          "이름": "이은정",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "저녁",
+      "people": [
+        {
+          "staff_id": "1002",
+          "이름": "최영희",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1006",
+          "이름": "강채영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1009",
+          "이름": "안도현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1013",
+          "이름": "황상훈",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "정혜진",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
+        {
+          "staff_id": "1011",
+          "이름": "윤상훈",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴무",
+      "people": [
+        {
+          "staff_id": "1001",
+          "이름": "최소영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1003",
+          "이름": "박준호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-20": [
+    {
+      "shift": "아침",
+      "people": [
+        {
+          "staff_id": "1001",
+          "이름": "최소영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1004",
+          "이름": "이예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1006",
+          "이름": "강채영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1007",
+          "이름": "윤수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1008",
+          "이름": "김예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1010",
+          "이름": "전수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1012",
+          "이름": "이은정",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "저녁",
+      "people": [
+        {
+          "staff_id": "1003",
+          "이름": "박준호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1005",
+          "이름": "류승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1009",
+          "이름": "안도현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1011",
+          "이름": "윤상훈",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1013",
+          "이름": "황상훈",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
+        {
+          "staff_id": "1002",
+          "이름": "최영희",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "정혜진",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴무",
+      "people": [
+        {
+          "staff_id": "1000",
+          "이름": "박민수",
+          "grade": 1,
+          "grade_name": "수간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-21": [
+    {
+      "shift": "아침",
+      "people": [
+        {
+          "staff_id": "1000",
+          "이름": "박민수",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1002",
+          "이름": "최영희",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1005",
+          "이름": "류승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1006",
+          "이름": "강채영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "정혜진",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "저녁",
+      "people": [
+        {
+          "staff_id": "1003",
+          "이름": "박준호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1004",
+          "이름": "이예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1007",
+          "이름": "윤수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1009",
+          "이름": "안도현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1010",
+          "이름": "전수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1011",
+          "이름": "윤상훈",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1012",
+          "이름": "이은정",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
+        {
+          "staff_id": "1008",
+          "이름": "김예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1013",
+          "이름": "황상훈",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴무",
+      "people": [
+        {
+          "staff_id": "1001",
+          "이름": "최소영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-22": [
+    {
+      "shift": "아침",
+      "people": [
+        {
+          "staff_id": "1000",
+          "이름": "박민수",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1005",
+          "이름": "류승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1008",
+          "이름": "김예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1012",
+          "이름": "이은정",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "저녁",
+      "people": [
+        {
+          "staff_id": "1002",
+          "이름": "최영희",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1003",
+          "이름": "박준호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1006",
+          "이름": "강채영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1007",
+          "이름": "윤수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1009",
+          "이름": "안도현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1010",
+          "이름": "전수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1011",
+          "이름": "윤상훈",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
+        {
+          "staff_id": "1004",
+          "이름": "이예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1013",
+          "이름": "황상훈",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "정혜진",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴무",
+      "people": [
+        {
+          "staff_id": "1001",
+          "이름": "최소영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-23": [
+    {
+      "shift": "아침",
+      "people": [
+        {
+          "staff_id": "1002",
+          "이름": "최영희",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1006",
+          "이름": "강채영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1008",
+          "이름": "김예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1010",
+          "이름": "전수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1012",
+          "이름": "이은정",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "정혜진",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "저녁",
+      "people": [
+        {
+          "staff_id": "1001",
+          "이름": "최소영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1003",
+          "이름": "박준호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1004",
+          "이름": "이예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1005",
+          "이름": "류승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1011",
+          "이름": "윤상훈",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1013",
+          "이름": "황상훈",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
+        {
+          "staff_id": "1007",
+          "이름": "윤수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1009",
+          "이름": "안도현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴무",
+      "people": [
+        {
+          "staff_id": "1000",
+          "이름": "박민수",
+          "grade": 1,
+          "grade_name": "수간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-24": [
+    {
+      "shift": "아침",
+      "people": [
+        {
+          "staff_id": "1000",
+          "이름": "박민수",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1002",
+          "이름": "최영희",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1006",
+          "이름": "강채영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1007",
+          "이름": "윤수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1009",
+          "이름": "안도현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1010",
+          "이름": "전수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1012",
+          "이름": "이은정",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "저녁",
+      "people": [
+        {
+          "staff_id": "1003",
+          "이름": "박준호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1004",
+          "이름": "이예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1011",
+          "이름": "윤상훈",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1013",
+          "이름": "황상훈",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
+        {
+          "staff_id": "1001",
+          "이름": "최소영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1005",
+          "이름": "류승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1008",
+          "이름": "김예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴무",
+      "people": [
+        {
+          "staff_id": "1014",
+          "이름": "정혜진",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-25": [
+    {
+      "shift": "아침",
+      "people": [
+        {
+          "staff_id": "1003",
+          "이름": "박준호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1005",
+          "이름": "류승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1006",
+          "이름": "강채영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1008",
+          "이름": "김예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1012",
+          "이름": "이은정",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1013",
+          "이름": "황상훈",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "저녁",
+      "people": [
+        {
+          "staff_id": "1004",
+          "이름": "이예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1007",
+          "이름": "윤수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1009",
+          "이름": "안도현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
+        {
+          "staff_id": "1000",
+          "이름": "박민수",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1001",
+          "이름": "최소영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1002",
+          "이름": "최영희",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1010",
+          "이름": "전수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1011",
+          "이름": "윤상훈",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴무",
+      "people": [
+        {
+          "staff_id": "1014",
+          "이름": "정혜진",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-26": [
+    {
+      "shift": "아침",
+      "people": [
+        {
+          "staff_id": "1000",
+          "이름": "박민수",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1004",
+          "이름": "이예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1006",
+          "이름": "강채영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1008",
+          "이름": "김예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1012",
+          "이름": "이은정",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1013",
+          "이름": "황상훈",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "저녁",
+      "people": [
+        {
+          "staff_id": "1001",
+          "이름": "최소영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
+        {
+          "staff_id": "1002",
+          "이름": "최영희",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1003",
+          "이름": "박준호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1005",
+          "이름": "류승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1007",
+          "이름": "윤수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1009",
+          "이름": "안도현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1010",
+          "이름": "전수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1011",
+          "이름": "윤상훈",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴무",
+      "people": [
+        {
+          "staff_id": "1014",
+          "이름": "정혜진",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-27": [
+    {
+      "shift": "아침",
+      "people": [
+        {
+          "staff_id": "1005",
+          "이름": "류승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1008",
+          "이름": "김예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "저녁",
+      "people": [
+        {
+          "staff_id": "1002",
+          "이름": "최영희",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1003",
+          "이름": "박준호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1004",
+          "이름": "이예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1009",
+          "이름": "안도현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1010",
+          "이름": "전수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1011",
+          "이름": "윤상훈",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1012",
+          "이름": "이은정",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1013",
+          "이름": "황상훈",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "정혜진",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
+        {
+          "staff_id": "1000",
+          "이름": "박민수",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1006",
+          "이름": "강채영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1007",
+          "이름": "윤수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴무",
+      "people": [
+        {
+          "staff_id": "1001",
+          "이름": "최소영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-28": [
+    {
+      "shift": "아침",
+      "people": [
+        {
+          "staff_id": "1001",
+          "이름": "최소영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1002",
+          "이름": "최영희",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1003",
+          "이름": "박준호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1004",
+          "이름": "이예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1005",
+          "이름": "류승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1007",
+          "이름": "윤수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1008",
+          "이름": "김예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1009",
+          "이름": "안도현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1010",
+          "이름": "전수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1011",
+          "이름": "윤상훈",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1012",
+          "이름": "이은정",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "저녁",
+      "people": [
+        {
+          "staff_id": "1000",
+          "이름": "박민수",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1006",
+          "이름": "강채영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
+        {
+          "staff_id": "1014",
+          "이름": "정혜진",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴무",
+      "people": [
+        {
+          "staff_id": "1013",
+          "이름": "황상훈",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-29": [
+    {
+      "shift": "아침",
+      "people": [
+        {
+          "staff_id": "1000",
+          "이름": "박민수",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1005",
+          "이름": "류승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1006",
+          "이름": "강채영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1010",
+          "이름": "전수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1011",
+          "이름": "윤상훈",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1012",
+          "이름": "이은정",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1013",
+          "이름": "황상훈",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "저녁",
+      "people": [
+        {
+          "staff_id": "1002",
+          "이름": "최영희",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1003",
+          "이름": "박준호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1004",
+          "이름": "이예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1007",
+          "이름": "윤수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1008",
+          "이름": "김예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
+        {
+          "staff_id": "1009",
+          "이름": "안도현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴무",
+      "people": [
+        {
+          "staff_id": "1001",
+          "이름": "최소영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "정혜진",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    }
+  ],
+  "2025-09-30": [
+    {
+      "shift": "아침",
+      "people": [
+        {
+          "staff_id": "1000",
+          "이름": "박민수",
+          "grade": 1,
+          "grade_name": "수간호사"
+        },
+        {
+          "staff_id": "1003",
+          "이름": "박준호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1005",
+          "이름": "류승호",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1007",
+          "이름": "윤수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1008",
+          "이름": "김예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1009",
+          "이름": "안도현",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1011",
+          "이름": "윤상훈",
+          "grade": 4,
+          "grade_name": "간호사"
+        },
+        {
+          "staff_id": "1014",
+          "이름": "정혜진",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "저녁",
+      "people": [
+        {
+          "staff_id": "1002",
+          "이름": "최영희",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1004",
+          "이름": "이예준",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1010",
+          "이름": "전수빈",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        },
+        {
+          "staff_id": "1012",
+          "이름": "이은정",
+          "grade": 4,
+          "grade_name": "간호사"
+        }
+      ]
+    },
+    {
+      "shift": "밤",
+      "people": [
+        {
+          "staff_id": "1013",
+          "이름": "황상훈",
+          "grade": 5,
+          "grade_name": "신규간호사"
+        }
+      ]
+    },
+    {
+      "shift": "휴무",
+      "people": [
+        {
+          "staff_id": "1001",
+          "이름": "최소영",
+          "grade": 2,
+          "grade_name": "주임간호사"
+        },
+        {
+          "staff_id": "1006",
+          "이름": "강채영",
+          "grade": 3,
+          "grade_name": "일반간호사"
+        }
+      ]
+    }
+  ]
+}
