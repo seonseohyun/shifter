@@ -9,14 +9,23 @@ using System.Threading.Tasks;
 namespace Shifter.ViewModels {
     public partial class MngEmpStartViewModel : ObservableObject {
 
+
+
         /** Constructor **/
         public MngEmpStartViewModel(Session? session) {
             _session = session;
         }
 
 
+
         /** Member Variables **/
         private readonly Session? _session;
+
+
+
         /** Member Methods **/
+
+
+
     }
 }

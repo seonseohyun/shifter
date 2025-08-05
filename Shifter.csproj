@@ -17,6 +17,7 @@
     <None Remove="Resources\Icons\checklist_icon.png" />
     <None Remove="Resources\Icons\clip_icon.png" />
     <None Remove="Resources\Icons\home-button.png" />
+    <None Remove="Resources\Icons\magnifying-glass.png" />
     <None Remove="Resources\Icons\power-button.png" />
     <None Remove="Resources\Icons\right-arrows.png" />
     <None Remove="Resources\Logo\Logo.png" />
@@ -59,6 +60,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Icons\home-button.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\magnifying-glass.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Icons\power-button.png">

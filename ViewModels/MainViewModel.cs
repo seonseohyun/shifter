@@ -42,13 +42,12 @@ public partial class MainViewModel : ObservableObject {
     public void SetFrame(Frame frame) {  // 메인 프레임 설정(예: MainWindow.xaml.cs에서 호출)
         Console.WriteLine("[MainViewModel] Executed SetFrame");
         _mainFrame = frame;              // 프레임을 설정
-        Navigate(PageType.Home);        // 첫 페이지 로딩 ( Enum PageType.LogIn )
+        Navigate(PageType.MngEmpStart);        // 첫 페이지 로딩 ( Enum PageType.LogIn )
     }
 
 
     private void Navigate(PageType page) {
         if (_mainFrame == null) return;
-        Console.WriteLine($"[MainViewModel] 페이지 전환 요청: {page}");
 
         switch (page) {
             case PageType.LogIn:
@@ -96,13 +95,49 @@ public partial class MainViewModel : ObservableObject {
 
     /* Go to Home */
     [RelayCommand] void GoToHome() {
+        Console.WriteLine("[MainViewModel] GoToHome() Executed");
+        Session.VisGoBack = true;
         Navigate(PageType.Home);
     }
 
 
     /* Go Back */
     [RelayCommand] void GoBack() {
+        Console.WriteLine("[MainViewModel] GoBack() Executed");
+        Session.VisGoBack = true;
         Navigate(PageType.GoBack);
+    }
+
+
+    /* Go To MngEmpView */
+    [RelayCommand] void GoToMngEmp() {
+        Console.WriteLine("[MainViewModel] GoToMngEmp() Executed");
+        Session.VisGoBack = true;
+        Navigate(PageType.MngEmpStart);
+    }
+
+
+    /* Go To GenDiaryView */
+    [RelayCommand] void GoToGenScd() {
+        Console.WriteLine("[MainViewModel] GoToGenScd() Executed");
+        Session.VisGoBack = true;
+        Navigate(PageType.GenScd);
+    }
+
+
+    /* Go To MngScdView */
+    [RelayCommand] void GoToMngScd() {
+        Console.WriteLine("[MainViewModel] GoToMngScd() Executed");
+        Session.VisGoBack = true;
+        Navigate(PageType.MngScd);
+    }
+
+
+    /* Go To StatusView */
+    [RelayCommand] void GoToStatus() {
+        Console.WriteLine("[MainViewModel] GoToStatus() Executed");
+        Session.VisGoBack = true;
+        Navigate(PageType.Status);
     }
 
 

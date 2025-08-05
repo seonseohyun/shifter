@@ -85,7 +85,8 @@
                     Grid.Column="0"
                     Grid.Row="0"
                     Background="#282828"
-                    BorderBrush="Transparent">
+                    BorderBrush="Transparent"
+                    Command="{Binding GoToMngEmpCommand}">
                     <TextBlock Text="직원관리"
                                FontSize="15"
                                FontFamily="Noto Sans KR"
@@ -98,7 +99,8 @@
                     Grid.Column="1"
                     Grid.Row="0"
                     Background="#282828"
-                    BorderBrush="Transparent">
+                    BorderBrush="Transparent"
+                    Command="{Binding GoToGenScdCommand}">
                     <TextBlock Text="근무표생성"
                                FontSize="15"
                                FontFamily="Noto Sans KR"
@@ -111,7 +113,8 @@
                     Grid.Column="2"
                     Grid.Row="0"
                     Background="#282828"
-                    BorderBrush="Transparent">
+                    BorderBrush="Transparent"
+                    Command="{Binding GoToMngScdCommand}">
                     <TextBlock Text="근무표관리"
                                FontSize="15"
                                FontFamily="Noto Sans KR"
@@ -124,7 +127,8 @@
                     Grid.Column="3"
                     Grid.Row="0"
                     Background="#282828"
-                    BorderBrush="Transparent">
+                    BorderBrush="Transparent"
+                    Command="{Binding GoToStatusCommand}">
                     <TextBlock Text="근무기록"
                                FontSize="15"
                                FontFamily="Noto Sans KR"
