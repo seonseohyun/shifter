@@ -4,7 +4,7 @@
 create_individual_shift_schedule()의 change_requests << 매개변수 삭제  
 추후 수정요청은 필요시 별도의 프로토콜을 통해서 구현 
 
-2. 클라이언트로부터 간호직군의 rules / shifts와 shift_hours/를 받아서 제약조건을 적용하는방식 (팀장 컨펌떨어지면 바로 적용 해야함)
+2. 클라이언트로부터 간호직군의 rules / shifts와 shift_hours/를 받아서 제약조건을 적용하는방식 으로 수정  (팀장 컨펌떨어지면 바로 적용 해야함)
     (기본 rules는 서버에 두되, 필요 변경만 클라이언트가 보낸다  클라이언트가 변경하고 싶은 항목만 전달하면,서버에서 그 변경 항목으로 기본 규칙을 override하는 방식.)
 
   "staff_data": {
@@ -16,6 +16,18 @@ create_individual_shift_schedule()의 change_requests << 매개변수 삭제
       ...
   }
 
+2_1 테스트 예시 3교대,3교대, 2교대 ,4교대 
+"shifts": ['A','B','C','O']
+"shift_hours":{'A':8,'B':8,'C':8,'O':0}
+
+"shifts":['아침','낮','밤','휴일']
+"shift_hours":{'아침':7,'낮':7,'밤':10','휴일':0}
+
+"shifts:['D','N','O']
+"shift_hours":{'D':12,'N':12,'O':0}
+
+"shifts:['E','F','G','H','O']
+"shift_hours":{'E':6,'F':6,'G':6,'H':6,'O':0}
 
 
 
