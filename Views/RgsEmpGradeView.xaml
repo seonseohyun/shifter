@@ -11,8 +11,9 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="7*"/>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="73*"/>
+            <ColumnDefinition Width="67*"/>
         </Grid.ColumnDefinitions>
 
         <Border BorderBrush="#A7A7A7" BorderThickness="0.5">
@@ -37,7 +38,7 @@
                             </Style>
                         </Button.Resources>
                     </Button>
-                    <Button Grid.Row="1" Margin="0,3,0,3" BorderBrush="Transparent" BorderThickness="0" Background="#F7F7F7"
+                    <Button Grid.Row="1" Margin="0,3,0,3" BorderBrush="Transparent" BorderThickness="0" Background="#DCDCDC"
                             Content="직급정보" FontSize="15" FontFamily="Noto Sans KR" FontWeight="Medium">
                         <Button.Resources>
                             <Style TargetType="Border">
@@ -56,12 +57,93 @@
                 </Grid>
             </Grid>
         </Border>
-        <Grid Grid.Column="1" Margin="50">
+        <Grid Grid.Column="1" Margin="50" Grid.ColumnSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="10*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="1">
+
+            <!-- Panel -->
+            <Border Background="#F7F7F7" CornerRadius="30" BorderThickness="0" Margin="30">
+                <Grid Margin="40">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1.2*"/>
+                        <RowDefinition Height="8*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+
+                    <!--Title-->
+                    <Grid Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1.7*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Text="직급정보" FontSize="30" FontFamily="Noto Sans KR" FontWeight="Bold" Foreground="#000000"/>
+                        <TextBlock Grid.Row="1" Text="직급갯수를 추가하고, 각 직급의 이름을 입력해주세요. (최대 5개)" FontSize="15" 
+                                   FontFamily="Noto Sans KR" FontWeight="Medium" Foreground="#000000"/>
+                    </Grid>
+                    <!--Grade-->
+                    <Grid Grid.Row="1" Margin="0,30,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="10*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Text="직급" FontSize="15" FontFamily="Noto Sans KR" FontWeight="Medium" VerticalAlignment="Bottom" Foreground="#A4A4A4"/>
+                        <ItemsControl ItemsSource="{Binding Grades}" Grid.Row="1">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="0,2,2,2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="8*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Border Grid.Column="0" Background="#FFFFFF" BorderThickness="0"
+                                                CornerRadius="10" Margin="3" Height="50">
+                                            <TextBlock Text="{Binding GradeNum, UpdateSourceTrigger=PropertyChanged}"
+                                                       FontSize="18" FontFamily="Noto Sans KR" FontWeight="Medium"
+                                                       Foreground="#000000" TextWrapping="Wrap" TextAlignment="Center"
+                                                       VerticalAlignment="Center">
+                                            </TextBlock>
+                                        </Border>
+
+                                        <Border Grid.Column="1" Background="#FFFFFF" BorderThickness="0"
+                                                CornerRadius="10" Height="50" Margin="3">
+                                            <TextBox Text="{Binding GradeName, UpdateSourceTrigger=PropertyChanged}"
+                                                     FontSize="18" FontFamily="Noto Sans KR" FontWeight="Medium"
+                                                     Foreground="#000000" TextWrapping="Wrap" Background="Transparent"
+                                                     BorderThickness="0" TextAlignment="Center" VerticalAlignment="Center">
+                                            </TextBox>
+                                        </Border>
+
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Grid>
+                    <!--Add Button-->
+                    <Button Grid.Row="2" Background="#002EFF" Foreground="#FFFFFF" BorderThickness="0" Content="+추가"
+                            FontSize="15" FontFamily="Noto Sans KR" FontWeight="Bold"
+                            Command="{Binding AddGradeCommand}">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                </Grid>
+                <Border.Effect>
+                    <DropShadowEffect
+                                    Color="Black"
+                                    ShadowDepth="5"
+                                    BlurRadius="10"
+                                    Opacity="0.5">
+                    </DropShadowEffect>
+                </Border.Effect>
+            </Border>
+
+            <!-- Next Button -->
+            <Grid Grid.Row="1" Margin="30, 0, 30, 0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="7*"/>
                     <ColumnDefinition Width="1*"/>

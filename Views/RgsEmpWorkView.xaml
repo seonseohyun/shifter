@@ -15,7 +15,7 @@
             <ColumnDefinition Width="7*"/>
         </Grid.ColumnDefinitions>
 
-        
+
         <!-- [0] Left Panel -->
         <Border BorderBrush="#A7A7A7" BorderThickness="0.5">
             <Grid Grid.Column="0">
@@ -58,23 +58,23 @@
                 </Grid>
             </Grid>
         </Border>
-        
-        
+
+
         <!-- [1] Right Panel -->
         <Grid Grid.Column="1" Margin="50">
             <Grid.RowDefinitions>
                 <RowDefinition Height="10*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            
-            
+
+
             <!-- [1][0] Panels(Center) -->
             <Grid Grid.Row="0" Margin="30">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
-                
+
                 <!-- [1][0][0] CompanyInfo -->
                 <Border Grid.Column="0"
                         Background="#F7F7F7" BorderBrush="Transparent" BorderThickness="0" CornerRadius="20" Margin="0,0,10,0">
@@ -144,11 +144,11 @@
                                 <RowDefinition Height="1*"/>
                                 <RowDefinition Height="1*"/>
                             </Grid.RowDefinitions>
-                            
+
                             <!-- TextBlock -->
                             <TextBlock Grid.Row="0" VerticalAlignment="Bottom" Margin="5"
                                        Text="직군" FontSize="15" FontFamily="Noto Sans KR" FontWeight="Medium"></TextBlock>
-                            
+
                             <!-- Buttons -->
                             <Button Grid.Row="1" Tag="간호"
                                     Content="간호" Margin="0,5,0,5" FontSize="13" FontFamily="Noto Sans KR"
@@ -249,7 +249,7 @@
                         </Grid>
                     </Grid>
                 </Border>
-                
+
                 <!-- [1][0][1] ShiftInfo -->
                 <Border Grid.Column="1"
                         Background="#F7F7F7" BorderBrush="Transparent" BorderThickness="0" CornerRadius="20" Margin="10,0,0,0">
@@ -278,7 +278,7 @@
                             <TextBlock Grid.Row="1" Text="교대근무유형을 입력해주세요.(최대4교대. 휴무일 기본포함)"
                                        FontSize="15" FontFamily="Noto Sans KR" FontWeight="Medium"></TextBlock>
                         </Grid>
-                        
+
                         <!-- [1][0][1][1] Shift -->
                         <ItemsControl ItemsSource="{Binding Shifts}" Grid.Row="1">
                             <ItemsControl.ItemTemplate>
@@ -325,17 +325,23 @@
                         <Button Grid.Row="2" Margin="0, 10, 0, 10" Background="#002EFF" Foreground="#ffffff" BorderThickness="0"
                                 Content="추가" FontSize="15" FontFamily="Noto Sans KR" FontWeight="Bold"
                                 Command="{Binding AddShiftCommand}">
-                            <Button.Resources> <Style TargetType="Border"> <Setter Property="CornerRadius" Value="10"/> </Style> </Button.Resources>
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="10"/>
+                                </Style>
+                            </Button.Resources>
                         </Button>
                     </Grid>
                 </Border>
             </Grid>
             <Grid Grid.Row="1" Margin="30,0,30,0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="7*"/>
-                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="245*"/>
+                    <ColumnDefinition Width="572*"/>
+                    <ColumnDefinition Width="268*"/>
+                    <ColumnDefinition Width="155*"/>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="1" 
+                <Button Grid.Column="3" 
                         Foreground="#FFFFFF" Background="#002EFF" BorderThickness="0"
                         Margin="0,5,0,5" Content="다음 >" FontSize="20" FontFamily="Noto Sans KR" FontWeight="Bold"
                         Command="{Binding GoToRgsEmpGradeCommand}">
