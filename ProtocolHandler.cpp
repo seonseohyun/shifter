@@ -176,29 +176,29 @@ json ProtocolHandler::handle_ask_shift_change(const json& root, DBManager& db) {
     return response;
 }
 
-json ProtocolHandler::handle_cancel_shift_change(const json& root, DBManager& db) {
-    json response;
-    response["protocol"] = "cancel_shift_change";
-    cout << u8"[cancel_shift_change] 요청:\n" << root.dump(2) << endl;
-
-    if (!root.contains("data") || !root["data"].is_object()) {
-        response["resp"] = "fail";
-        response["message"] = u8"요청 데이터 형식 오류";
-        return response;
-    }
-    const nlohmann::json& data = root["data"];
-
-    if (!data.contains("duty_request_uid")) {
-        response["resp"] = "fail";
-        response["message"] = u8"필수 파라미터 누락";
-        return response;
-    }
-    json result_data;
-
-    int duty_request_uid = data[duty_request_uid];
-    if (db.cancel_shift_change(duty_request_uid)) {
-        response["resp"] = "success";
-        response["data"] = result_data;
-        response["message"] = u8"조회 성공!";
-    }
-}
+//json ProtocolHandler::handle_cancel_shift_change(const json& root, DBManager& db) {
+//    json response;
+//    response["protocol"] = "cancel_shift_change";
+//    cout << u8"[cancel_shift_change] 요청:\n" << root.dump(2) << endl;
+//
+//    if (!root.contains("data") || !root["data"].is_object()) {
+//        response["resp"] = "fail";
+//        response["message"] = u8"요청 데이터 형식 오류";
+//        return response;
+//    }
+//    const nlohmann::json& data = root["data"];
+//
+//    if (!data.contains("duty_request_uid")) {
+//        response["resp"] = "fail";
+//        response["message"] = u8"필수 파라미터 누락";
+//        return response;
+//    }
+//    json result_data;
+//
+//    int duty_request_uid = data[duty_request_uid];
+//    if (db.cancel_shift_change(duty_request_uid, result_data)) {
+//        response["resp"] = "success";
+//        response["data"] = result_data;
+//        response["message"] = u8"조회 성공!";
+//    }
+//}

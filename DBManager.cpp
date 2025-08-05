@@ -234,25 +234,25 @@ bool DBManager::ask_shift_change(int staff_uid, const string& yyyymmdd, const st
     }
 }
 //============ [근무 변경 요청 삭제 - 유저] ============
-bool DBManager::cancel_shift_change(int& duty_request_uid, json& out_data, string& out_err_msg) {
-    if (!conn_) {
-        out_err_msg = u8"[DB 오류] DB 연결 실패";
-        return false;
-    }
-    try {
-        string query = "UPDATE duty_request SET is_deleted = 1 WHERE duty_request_uid = ?";
-        std::unique_ptr<sql::PreparedStatement> cancel_duty(conn_->prepareStatement(query));
-        cancel_duty->setInt(1, duty_request_uid);
-
-        int rows_affected = cancel_duty->executeUpdate();
-        if (rows_affected == 0) {
-            out_err_msg = "해당 요청이 존재하지 않습니다.";
-            return false;
-        }
-        return true;
-    }
-    catch (const sql::SQLException& e) {
-        out_err_msg = string("SQL 예외 발생: ") + e.what();
-        return false;
-    }
-}
+//bool DBManager::cancel_shift_change(int& duty_request_uid, json& out_data, string& out_err_msg) {
+//    if (!conn_) {
+//        out_err_msg = u8"[DB 오류] DB 연결 실패";
+//        return false;
+//    }
+//    try {
+//        string query = "UPDATE duty_request SET is_deleted = 1 WHERE duty_request_uid = ?";
+//        std::unique_ptr<sql::PreparedStatement> cancel_duty(conn_->prepareStatement(query));
+//        cancel_duty->setInt(1, duty_request_uid);
+//
+//        int rows_affected = cancel_duty->executeUpdate();
+//        if (rows_affected == 0) {
+//            out_err_msg = "해당 요청이 존재하지 않습니다.";
+//            return false;
+//        }
+//        return true;
+//    }
+//    catch (const sql::SQLException& e) {
+//        out_err_msg = string("SQL 예외 발생: ") + e.what();
+//        return false;
+//    }
+//}
