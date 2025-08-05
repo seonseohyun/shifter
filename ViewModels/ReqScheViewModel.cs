@@ -6,12 +6,14 @@ using ShifterUser.Messages;
 using ShifterUser.Models;
 using System;
 using System.Collections.ObjectModel;
+using System.Drawing;
+using System.Windows;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ShifterUser.ViewModels
 {
     public partial class ReqScheViewModel : ObservableObject
     {
-        // 요청 객체 (날짜, 타입, 사유 포함)
         [ObservableProperty]
         private WorkRequestModel request = new()
         {
@@ -19,29 +21,20 @@ namespace ShifterUser.ViewModels
             ShiftType = ShiftType.Day,
             Reason = ""
         };
-
-        // 제목 바인딩용 (ex. 09월 근무 희망 일정 요청)
+        private readonly WorkRequestManager _workRequestManager;
         [ObservableProperty]
         private string requestTitle = "";
 
-        // 날짜 선택 목록 
-        public ObservableCollection<DateTime> AvailableDates { get; } = new()
-        {
-            DateTime.Today,
-            DateTime.Today.AddDays(1),
-            DateTime.Today.AddDays(2)
-        };
+        public ObservableCollection<DateTime> AvailableDates { get; } = new();
 
-        // 교대 종류 선택 목록
         public ObservableCollection<ShiftType> ShiftTypes { get; } = new()
-        {
-            ShiftType.Day,
-            ShiftType.Night,
-            ShiftType.Off,
-            ShiftType.Evening
-        };
+    {
+        ShiftType.Day,
+        ShiftType.Night,
+        ShiftType.Off,
+        ShiftType.Evening
+    };
 
-        // 바인딩용 프로퍼티들
         public DateTime SelectedDate
         {
             get => Request.RequestDate;
@@ -60,21 +53,46 @@ namespace ShifterUser.ViewModels
             set => Request.Reason = value;
         }
 
-        // 생성자
-        public ReqScheViewModel()
+        public ReqScheViewModel(WorkRequestManager workRequestManager)
         {
-            RequestTitle = $"{DateTime.Now.AddMonths(1):MM}월 근무 희망 일정 요청";
+            // 다음 달 계산
+            DateTime now = DateTime.Now;
+            int nextMonth = now.Month == 12 ? 1 : now.Month + 1;
+            int nextYear = now.Month == 12 ? now.Year + 1 : now.Year;
+
+            int daysInNextMonth = DateTime.DaysInMonth(nextYear, nextMonth);
+            for (int day = 1; day <= daysInNextMonth; day++)
+            {
+                AvailableDates.Add(new DateTime(nextYear, nextMonth, day));
+            }
+
+            // 기본 선택 날짜: 다음 달 1일
+            SelectedDate = new DateTime(nextYear, nextMonth, 1);
+
+            // 제목 설정
+            RequestTitle = $"{nextMonth:00}월 근무 희망 일정 요청";
+            _workRequestManager = workRequestManager;
         }
 
-        // 등록 명령
         [RelayCommand]
         private void RegisterReq()
         {
             Console.WriteLine($"[등록됨] 날짜: {SelectedDate}, 타입: {SelectedShiftType}, 사유: {Reason}");
-            // 서버 전송
+
+            bool success = _workRequestManager.SendRequest(SelectedDate, SelectedShiftType, Reason);
+
+            if (success)
+            {
+                Console.WriteLine("요청 성공");
+                WeakReferenceMessenger.Default.Send(new RequestUpdatedMessage());
+                GoBack(); // 혹은 메시지 전송
+            }
+            else
+            {
+                Console.WriteLine("요청 실패");
+            }
         }
 
-        // 뒤로가기 
         [RelayCommand]
         private void GoBack()
         {
@@ -82,4 +100,5 @@ namespace ShifterUser.ViewModels
             WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.Goback));
         }
     }
+
 }

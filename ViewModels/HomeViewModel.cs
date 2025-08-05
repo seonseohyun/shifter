@@ -53,6 +53,7 @@ namespace ShifterUser.ViewModels
         [RelayCommand]
         private void GoToRequestStatus()
         {
+            Console.WriteLine("근무 요청 페이지로 이동합니다.");
             WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.ReqStatus));
         }
     }

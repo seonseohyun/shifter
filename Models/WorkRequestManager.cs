@@ -176,153 +176,54 @@ namespace ShifterUser.Models
             return new();
         }
 
+        public bool SendRequest(DateTime date, ShiftType shiftType, string reason)
+        {
+            string shiftCode = shiftType switch
+            {
+                ShiftType.Day => "D",
+                ShiftType.Night => "N",
+                ShiftType.Evening => "E",
+                ShiftType.Off => "O",
+                _ => "?"
+            };
 
+            JObject requestJson = new()
+            {
+                ["protocol"] = "ask_shift_change",
+                ["data"] = new JObject
+                {
+                    ["staff_uid"] = _session.GetUid(),
+                    ["req_date"] = date.ToString("yyyy-MM-dd"),
+                    ["shift_type"] = shiftCode,
+                    ["reason"] = reason
+                }
+            };
 
-        //public async Task<List<WorkRequestModel>> LoadMonthRequestsAsync(int uid, int year, int month)
-        //{
-        //    try
-        //    {
-        //        JObject requestJson = new()
-        //        {
-        //            ["protocol"] = "shift_change_detail",
-        //            ["data"] = new JObject
-        //            {
-        //                ["staff_uid"] = uid,
-        //                ["req_year"] = year,
-        //                ["req_month"] = month
-        //            },
-        //            ["resp"] = "",
-        //            ["message"] = ""
-        //        };
+            WorkItem sendItem = new()
+            {
+                json = requestJson.ToString(),
+                payload = [],
+                path = ""
+            };
 
-        //        WorkItem sendItem = new()
-        //        {
-        //            json = requestJson.ToString(),
-        //            payload = [],
-        //            path = ""
-        //        };
+            _socket.Send(sendItem);
+            WorkItem response = _socket.Receive();
 
-        //        _socket.Send(sendItem);
+            JObject res = JObject.Parse(response.json);
+            string protocol = res["protocol"]?.ToString() ?? "";
+            string result = res["resp"]?.ToString() ?? "fail";
 
-        //        WorkItem response = _socket.Receive();
-
-        //        JObject res = JObject.Parse(response.json);
-        //        string protocol = res["protocol"]?.ToString() ?? "";
-
-        //        if (protocol == "shift_change_detail")
-        //        {
-        //            Console.WriteLine("들어옴!!!");
-        //            //return res["REQUESTS"]?.ToObject<List<WorkRequestModel>>() ?? new();
-        //        }
-
-        //        Console.WriteLine("[WorkRequestManager] 응답 실패. 임시 데이터로 대체함.");
-        //        return GetDummyData(year, month);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine("[WorkRequestManager] 서버 응답 실패. 예외 발생. 임시 데이터로 대체함.");
-        //        Console.WriteLine(ex.Message);
-        //        return GetDummyData(year, month);
-        //    }
-        //}
-
-        //    private List<WorkRequestModel> GetDummyData(int year, int month)
-        //    {
-        //        return new List<WorkRequestModel>
-        //{
-        //    new WorkRequestModel
-        //    {
-        //        RequestDate = new DateTime(year, month == 0 ? 1 : month, 1),
-        //        ShiftType = ShiftType.Day,
-        //        Status = WorkRequestStatus.Approved,
-        //        Reason = "결혼식 참석"
-        //    },
-        //    new WorkRequestModel
-        //    {
-        //        RequestDate = new DateTime(year, month == 0 ? 1 : month, 4),
-        //        ShiftType = ShiftType.Off,
-        //        Status = WorkRequestStatus.Rejected,
-        //        Reason = "가족 여행",
-        //        RejectionReason = "인력 부족"
-        //    },
-        //    new WorkRequestModel
-        //    {
-        //        RequestDate = new DateTime(year, month == 0 ? 1 : month, 7),
-        //        ShiftType = ShiftType.Evening,
-        //        Status = WorkRequestStatus.Pending,
-        //        Reason = "학원 수업"
-        //    }
-        //};
-        //    }
-
-        //public async Task<List<WorkRequestModel>> LoadMonthRequestsAsync(int uid, int year, int month)
-        //{
-        //    try
-        //    {
-        //        JObject requestJson = new()
-        //        {
-        //            ["PROTOCOL"] = "GET_MONTH_REQUESTS",
-        //            ["UID"] = uid,
-        //            ["YEAR"] = year,
-        //            ["MONTH"] = month
-        //        };
-
-        //        WorkItem sendItem = new()
-        //        {
-        //            json = requestJson.ToString(),
-        //            payload = [],
-        //            path = ""
-        //        };
-
-        //        _socket.Send(sendItem);
-        //        WorkItem response = _socket.Receive();
-
-        //        JObject res = JObject.Parse(response.json);
-        //        string protocol = res["PROTOCOL"]?.ToString() ?? "";
-        //        string resp = res["RESP"]?.ToString() ?? "FAIL";
-
-        //        if (protocol == "GET_MONTH_REQUESTS" && resp == "SUCCESS")
-        //        {
-        //            return res["REQUESTS"]?.ToObject<List<WorkRequestModel>>() ?? new();
-        //        }
-
-        //        Console.WriteLine("[WorkRequestManager] 응답은 왔지만 실패 처리됨");
-        //        return new(); // 빈 리스트 반환
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine("[WorkRequestManager] 서버 응답 실패. 임시 데이터로 대체함.");
-        //        Console.WriteLine(ex.Message);
-
-        //        // 임시 Mock 데이터 반환
-        //        return new List<WorkRequestModel>
-        //{
-        //    new()
-        //    {
-        //        RequestDate = new DateTime(year, month == 0 ? 1 : month, 1),
-        //        ShiftType = ShiftType.Day,
-        //        Status = WorkRequestStatus.Approved,
-        //        Reason = "결혼식 참석"
-        //    },
-        //    new()
-        //    {
-        //        RequestDate = new DateTime(year, month == 0 ? 1 : month, 4),
-        //        ShiftType = ShiftType.Off,
-        //        Status = WorkRequestStatus.Rejected,
-        //        Reason = "가족 여행",
-        //        RejectionReason = "인력 부족"
-        //    },
-        //    new()
-        //    {
-        //        RequestDate = new DateTime(year, month == 0 ? 1 : month, 7),
-        //        ShiftType = ShiftType.Evening,
-        //        Status = WorkRequestStatus.Pending,
-        //        Reason = "학원 수업"
-        //    }
-        //};
-        //    }
-        //}
-
-
+            if (protocol == "ask_shift_change" && result == "success")
+            {
+                Console.WriteLine($"[WorkRequestManager] {date:yyyy-MM-dd} 요청 성공");
+                return true;
+            }
+            else
+            {
+                string error = res["error"]?.ToString() ?? "알 수 없는 오류";
+                Console.WriteLine($"[WorkRequestManager] 요청 실패 - {error}");
+                return false;
+            }
+        }
     }
 }

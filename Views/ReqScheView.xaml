@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:ShifterUser.Views"
       mc:Ignorable="d"
       Background="#F0F2F5"
+      FontFamily="Noto Sans KR"
       d:DesignWidth="400" d:DesignHeight="800">
 
     <Page.Resources>
@@ -31,7 +32,7 @@
                 VerticalAlignment="Center"
                 Effect="{StaticResource CardShadow}"/>
 
-        <!--  실제 콘텐츠 Layer -->
+        <!-- 실제 콘텐츠 Layer -->
         <Border Background="White"
                 Width="350"
                 Padding="25"
@@ -58,7 +59,7 @@
                 <!-- 제목 + 닫기 버튼 -->
                 <DockPanel Grid.Row="0" LastChildFill="False">
                     <TextBlock Text="{Binding RequestTitle}"
-                               FontSize="16"
+                               FontSize="18"
                                FontWeight="Bold"
                                VerticalAlignment="Center"
                                Margin="0,0,10,0"/>
@@ -71,6 +72,7 @@
                                VerticalAlignment="Center" HorizontalAlignment="Left"/>
                     </Button>
                 </DockPanel>
+
 
                 <!-- 날짜 선택 -->
                 <ComboBox Grid.Row="2" Height="32"
@@ -88,44 +90,50 @@
 
                 <!-- 사유 입력란 -->
                 <Grid Grid.Row="6">
-                    <TextBox x:Name="ReasonTextBox"
-                             Text="{Binding Reason, UpdateSourceTrigger=PropertyChanged}"
-                             Height="32" Padding="8" FontSize="13"
-                             Background="White" BorderBrush="#DDD"
-                             BorderThickness="1" VerticalContentAlignment="Center"/>
+                    <Border CornerRadius="10"
+                            Background="White"
+                            BorderBrush="#DDD"
+                            BorderThickness="1"
+                            VerticalAlignment="Center"
+                            Height="64">
+                        <TextBox x:Name="ReasonTextBox"
+                                 Text="{Binding Reason, UpdateSourceTrigger=PropertyChanged}"
+                                 Padding="10,6"
+                                 FontSize="13"
+                                 AcceptsReturn="True"
+                                 TextWrapping="Wrap"
+                                 Background="Transparent"
+                                 BorderThickness="0"
+                                 VerticalContentAlignment="Top"/>
+                    </Border>
+
                     <TextBlock Text="사유를 입력하세요"
-                               Margin="10,0,0,0"
-                               VerticalAlignment="Center"
+                               Margin="15,0,0,0"
+                               VerticalAlignment="Top"
                                Foreground="Gray"
                                FontSize="13"
+                               Padding="0,6,0,0"
                                IsHitTestVisible="False"
                                Visibility="{Binding Text, ElementName=ReasonTextBox, Converter={StaticResource EmptyStringToVisibilityConverter}}"/>
                 </Grid>
 
-                <!-- 요청 등록 버튼
-                <Button Grid.Row="8"
-                        Content="📩 요청 등록하기"
-                        Height="40"
-                        FontWeight="Bold"
-                        FontSize="14"
-                        Foreground="White"
-                        Background="#007BFF"
-                        BorderBrush="Transparent"
-                        Command="{Binding RegisterReqCommand}"/> -->
-                
+                <!-- 요청 등록 버튼 (버튼 안 눌림 문제 해결 + 둥근 모서리) -->
                 <Border Grid.Row="8"
-                    CornerRadius="22"
-                    Background="#007BFF"
-                    Height="40">
+                        Height="40"
+                        CornerRadius="22"
+                        Background="#007BFF"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center">
                     <Button Content="📩 요청 등록하기"
-                    FontWeight="Bold"
-                    FontSize="14"
-                    Foreground="White"
-                    Background="Transparent"
-                    BorderBrush="Transparent"
-                    Command="{Binding RegisterReqCommand}"/>
+                            Command="{Binding RegisterReqCommand}"
+                            Background="Transparent"
+                            BorderBrush="Transparent"
+                            Foreground="White"
+                            FontWeight="Bold"
+                            FontSize="14"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center" />
                 </Border>
-
 
                 <!-- 안내 문구 -->
                 <TextBlock Grid.Row="10"
