@@ -15,7 +15,7 @@ POSITION_RULES = {
         "newbie_no_night": True,
         "night_after_off": True,
         "max_weekly_hours": 60,
-        "max_monthly_hours": 180,
+        "max_monthly_hours": 190,
         "newbie_grade": 5,  # 신규간호사 등급
         "shifts": ['D', 'E', 'N', 'O'],  # 3교대
         "shift_hours": {'D': 8, 'E': 8, 'N': 8, 'O': 0}
@@ -25,7 +25,7 @@ POSITION_RULES = {
         "duty_per_cycle": 1,
         "night_after_off": True,
         "max_weekly_hours": 72,
-        "max_monthly_hours": 192,
+        "max_monthly_hours": 190,
         "cycle_days": 3,  # 3일 주기
         "shifts": ['D24', 'O'],  # 24시간 당직, 오프
         "shift_hours": {'D24': 24, 'O': 0}
