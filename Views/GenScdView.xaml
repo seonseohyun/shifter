@@ -5,10 +5,142 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Shifter.Views"
       mc:Ignorable="d" 
-      d:DesignHeight="900" d:DesignWidth="1600"
-      Title="GenScdView">
+      d:DesignHeight="850" d:DesignWidth="1600"
+      Title="GenScdView"
+      Background="#FFFFFF">
 
-    <Grid>
-        
+    <Grid Margin="60">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Image Grid.Column="0" 
+               Source="/Resources/Icons/GenScd.png" Margin="100"/>
+        <Border Grid.Column="1" 
+                Background="#F7F7F7" CornerRadius="30">
+            <Border.Effect>
+                <DropShadowEffect
+                    Color="Black"
+                    ShadowDepth="5"
+                    BlurRadius="10"
+                    Opacity="0.5">
+                </DropShadowEffect>
+            </Border.Effect>
+            <Grid Margin="30">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.6*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="1.5*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1.5*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0"
+                               Text="근무표 생성하기" FontSize="30" FontFamily="Noto Sans KR" FontWeight="Bold"></TextBlock>
+                    <TextBlock Grid.Row="1"
+                               Text="직원정보를 기반으로 근무표를 생성합니다" FontSize="20" FontFamily="Noto Sans KR" FontWeight="Medium"></TextBlock>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0"
+                                   Text="팀 선택하기" FontSize="15" FontFamily="Noto Sans KR" FontWeight="Medium"
+                                   Foreground="#222222" VerticalAlignment="Bottom" Margin="0,0,0,10"></TextBlock>
+                        <Border Grid.Row="1"
+                                CornerRadius="10"
+                                Background="#FFFFFF"
+                                BorderBrush="Transparent"
+                                BorderThickness="1">
+                            <ComboBox Margin="5" Padding="10" Width="670" Height="55"
+                                      BorderBrush="LightGray"
+                                      HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
+                                      IsEditable="False" FontSize="15" FontFamily="Noto Sans KR"
+                                      Style="{StaticResource {x:Static ToolBar.ComboBoxStyleKey}}"
+                                      ItemsSource="{Binding}">
+                                <ComboBox.ItemContainerStyle>
+                                    <Style TargetType="ComboBoxItem">
+                                        <Setter Property="Background" Value="Transparent"/>
+                                        <Setter Property="BorderBrush" Value="Transparent"/>
+                                    </Style>
+                                </ComboBox.ItemContainerStyle>
+                            </ComboBox>
+                        </Border>
+
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0"
+                                   Text="월 선택하기" FontSize="15" FontFamily="Noto Sans KR" FontWeight="Medium"
+                                   Foreground="#222222" VerticalAlignment="Bottom" Margin="0,0,0,10" Grid.ColumnSpan="2"></TextBlock>
+                        <Border Grid.Row="1"
+                                CornerRadius="10"
+                                Background="#FFFFFF"
+                                BorderBrush="Transparent"
+                                BorderThickness="1">
+                            <ComboBox Margin="5" Padding="10" Width="670" Height="55"
+                                      BorderBrush="LightGray"
+                                      HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
+                                      IsEditable="False" FontSize="15" FontFamily="Noto Sans KR"
+                                      Style="{StaticResource {x:Static ToolBar.ComboBoxStyleKey}}">
+                                <ComboBox.ItemContainerStyle>
+                                    <Style TargetType="ComboBoxItem">
+                                        <Setter Property="Background" Value="Transparent"/>
+                                        <Setter Property="BorderBrush" Value="Transparent"/>
+                                    </Style>
+                                </ComboBox.ItemContainerStyle>
+                                <ComboBoxItem Content="1월" />
+                                <ComboBoxItem Content="2월" />
+                                <ComboBoxItem Content="3월" />
+                                <ComboBoxItem Content="4월" />
+                                <ComboBoxItem Content="5월" />
+                                <ComboBoxItem Content="6월" />
+                                <ComboBoxItem Content="7월" />
+                                <ComboBoxItem Content="8월" />
+                                <ComboBoxItem Content="9월" />
+                                <ComboBoxItem Content="10월" />
+                                <ComboBoxItem Content="11월" />
+                                <ComboBoxItem Content="12월" />
+                            </ComboBox>
+                        </Border>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="3">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0"
+                                   Text="이전에 생성한 근무표가 있다면, 새롭게 생성할 수 없어요."
+                                   Foreground="#999999" FontFamily="Noto Sans KR"
+                                   FontSize="15" VerticalAlignment="Bottom"
+                                   Margin="5"></TextBlock>
+                        <Button Grid.Row="1" 
+                                Command="{Binding GenScdCommand}"
+                                Background="#002EFF" Foreground="#FFFFFF" BorderBrush="Transparent"
+                                Content="근무표 생성하기 >" FontSize="20" FontFamily="Noto Sans KR" FontWeight="Bold">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="10"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Border>
     </Grid>
 </Page>

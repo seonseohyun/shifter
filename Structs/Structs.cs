@@ -13,4 +13,11 @@ namespace Shifter.Structs {
         public byte[] payload; // 보낼 파일 데이터 (없으면 null 또는 빈 배열)
         public string path;    // 파일 경로 (클라이언트 개인용)
     }
+
+
+
+    public class TeamInfo {
+        public int TeamId = 0;
+        public string TeamName = "";
+    }
 }
