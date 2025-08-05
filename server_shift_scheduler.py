@@ -126,7 +126,7 @@ def apply_position_constraints(model, schedule, person, days, shifts, shift_hour
         model.Add(weekly_hours <= max_weekly_hours)
     
     # 월 총 근무시간 제한
-    base_monthly_hours = person.get("total_monthly_work_hours", rules.get("max_monthly_hours", 180))
+    base_monthly_hours = person.get("total_monthly_work_hours", rules.get("max_monthly_hours", 190)) # 법정최고 209
     max_monthly_hours = int(base_monthly_hours * 1.1)  # 10% 여유분
     monthly_hours = sum(schedule[(sid, d, s)] * shift_hours[s] for d in days for s in shifts)
     model.Add(monthly_hours <= max_monthly_hours)
@@ -151,7 +151,7 @@ def create_individual_shift_schedule(staff_data, shift_type, change_requests=Non
             raise ValueError("shift_type must be 2, 3, or 4")
             
         if shift_type == 2:
-            shifts = ['D', 'N', 'O']
+            shifts = ['D', 'N', 'O'] # ['','','','']
             night_shift = 'N'
         elif shift_type == 3:
             shifts = ['D', 'E', 'N', 'O']
@@ -178,26 +178,32 @@ def create_individual_shift_schedule(staff_data, shift_type, change_requests=Non
         sid = str(person["staff_id"])
         for d in days:
             for s in shifts:
+                # 불린변수를생성 : 해당직원이 해당날짜에 해당 shift를 배정받았는지(1) or (0)
+                #sid 직원 d 날짜 s deno중 하나
                 schedule[(sid, d, s)] = model.NewBoolVar(f"{sid}_d{d}_{s}")    
 
     for person in all_people:
         sid = str(person["staff_id"])
         for d in days:
+            #각 직원별로 매일 정확히 하나의 shift를 배정
             model.AddExactlyOne([schedule[(sid, d, s)] for s in shifts])
 
     # 각 교대에 최소 인원 보장 (오프 제외)
     for d in days:
         for s in shifts:
             if s != 'O':
+                #각 날짜와 비휴무 shift에 최소 1명의 직원을 배정한다.
                 model.Add(sum(schedule[(str(person["staff_id"]), d, s)] for person in all_people) >= 1)
 
     # 직군별 제약조건 적용
     for person in all_people:
-        person_position = person.get("position", position)  # 개별 직원의 position 우선, 없으면 전체 position 사용
+        # 개별 직원의 position 우선, 없으면 전체 position 사용
+        person_position = person.get("position", position)  
         person_rules = POSITION_RULES.get(person_position, rules)
+
         apply_position_constraints(model, schedule, person, days, shifts, shift_hours, num_weeks, person_rules, person_position)
 
-    # 야간 근무 균등 분배 (야간 근무가 있는 경우만)
+    # 야간 근무 균등 분배 (야간 근무가 있는 경우만 소방은 24시간)
     if night_shift and night_shift in shifts:
         night_counts = [sum(schedule[(str(person["staff_id"]), d, night_shift)] for d in days) for person in all_people]
         max_nights = model.NewIntVar(0, num_days, "max_night")
@@ -221,6 +227,7 @@ def create_individual_shift_schedule(staff_data, shift_type, change_requests=Non
 
     print(f"솔버 상태: {solver.StatusName(status)}")
     print(f"해결 시간: {solver.WallTime():.2f}초")
+
     if status in (cp_model.OPTIMAL, cp_model.FEASIBLE):
         if night_shift and night_shift in shifts:
             night_balance_value = solver.Value(max_nights) - solver.Value(min_nights)

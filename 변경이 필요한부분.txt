@@ -1,5 +1,45 @@
-8월1일 이런식으로 서버측에 하드코딩되었는데 그게아닌 클라이언트에서 
 
-9월, 10월, 11월, 12월, 2026 1월 이런식으로 동적으로 요청하면 해당 달에 맞게 생성되도록 변경되어야한다.
 
-  "target_month": "2025-09"
+1.
+create_individual_shift_schedule()의 change_requests << 매개변수 삭제  
+추후 수정요청은 필요시 별도의 프로토콜을 통해서 구현 
+
+2. 클라이언트로부터 간호직군의 rules / shifts와 shift_hours/를 받아서 제약조건을 적용하는방식 (팀장 컨펌떨어지면 바로 적용 해야함)
+    (기본 rules는 서버에 두되, 필요 변경만 클라이언트가 보낸다  클라이언트가 변경하고 싶은 항목만 전달하면,서버에서 그 변경 항목으로 기본 규칙을 override하는 방식.)
+
+  "staff_data": {
+        "rules": {
+          ...
+        "shifts": ['D', 'E', 'N', 'O'],  # 3교대
+        "shift_hours": {'D': 8, 'E': 8, 'N': 8, 'O': 0}
+        },
+      ...
+  }
+
+
+
+
+
+예시) 
+nursing_request = {
+    "position": "간호",
+    "target_month": "2025-09",  # 9월 근무표 생성
+    "staff_data": {
+        "rules": {
+               "shifts": ['D', 'E', 'N', 'O'],  # 3교대
+                "shift_hours": {'D': 8, 'E': 8, 'N': 8, 'O': 0}
+        },
+        "staff": [
+            {"name": "김간호사", "staff_id": 101, "grade": 3, "grade_name": "일반간호사", "position": "간호", "total_monthly_work_hours": 194},
+            {"name": "박신규", "staff_id": 102, "grade": 5, "grade_name": "신규간호사", "position": "간호", "total_monthly_work_hours": 204},
+            {"name": "이수간호사", "staff_id": 103, "grade": 1, "grade_name": "수간호사", "position": "간호", "total_monthly_work_hours": 199},
+            {"name": "최간호사", "staff_id": 104, "grade": 2, "grade_name": "주임간호사", "position": "간호", "total_monthly_work_hours": 203},
+            {"name": "정간호사", "staff_id": 105, "grade": 3, "grade_name": "일반간호사", "position": "간호", "total_monthly_work_hours": 184},
+            {"name": "한간호사", "staff_id": 106, "grade": 3, "grade_name": "일반간호사", "position": "간호", "total_monthly_work_hours": 192},
+            {"name": "신신규간호사", "staff_id": 107, "grade": 5, "grade_name": "신규간호사", "position": "간호", "total_monthly_work_hours": 188}
+          ]            
+    },
+    "shift_type": 3,
+    "change_requests": [],     ㅊ
+    "target_month": "2025-09" #이런식으로 요청이 오면 좋겠다.
+}
