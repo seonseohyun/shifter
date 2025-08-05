@@ -96,7 +96,7 @@
                             </Image>
                         </DockPanel>
                         <Border CornerRadius="12" Background="#F7F7F7" BorderBrush="#CCC" BorderThickness="1" Height="36">
-                            <TextBox Text="응급실 A팀" BorderThickness="0" Padding="8,0" VerticalContentAlignment="Center" Background="Transparent" Height="44" VerticalAlignment="Center" FontSize="14"/>
+                            <TextBox Text="{Binding TeamName}" BorderThickness="0" Padding="8,0" VerticalContentAlignment="Center" Background="Transparent" Height="44" VerticalAlignment="Center" FontSize="14"/>
                         </Border>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,12,0,0">
                             <Button Content="공지사항 보기" Width="163" Height="44" Margin="0,0,8,0" FontFamily="Noto Sans KR"
@@ -195,15 +195,15 @@
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <StackPanel Orientation="Horizontal" Margin="0,0,16,0">
                                 <Image Source="/Resources/images/check_green.png" Width="28" Height="28"/>
-                                <TextBlock Text=" 승인 2건" Margin="4,0" FontSize="16"/>
+                                <TextBlock Text="{Binding ApprovedText}" Margin="4,0" FontSize="16"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0,0,16,0">
                                 <Image Source="/Resources/images/pending.png" Width="28" Height="28"/>
-                                <TextBlock Text=" 대기 1건" Margin="4,0" FontSize="16"/>
+                                <TextBlock Text="{Binding PendingText}" Margin="4,0" FontSize="16"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Image Source="/Resources/images/cancel_red.png" Width="28" Height="28"/>
-                                <TextBlock Text=" 반려 1건" Margin="4,0" FontSize="16"/>
+                                <Image Source="/Resources/images/cancle_red.png" Width="28" Height="28"/>
+                                <TextBlock Text="{Binding RejectedText}" Margin="4,0" FontSize="16"/>
                             </StackPanel>
                         </StackPanel>
                     </StackPanel>

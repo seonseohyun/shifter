@@ -61,43 +61,31 @@ namespace ShifterUser.Models
             if (protocol == "login" && result == "success")
             {
                 Console.WriteLine("Success Communication with Server");
-                int staff_id = jsonData["data"]?["staff_uid"]?.ToObject<int>() ?? -1;
-                _session.SetUid(staff_id);
-                Console.WriteLine($"Staff_UID: {staff_id}");
 
-                //ParentInfo parentInfo = new()
-                //{
-                //    Name = jsonData["NICKNAME"]?.ToString() ?? "",
-                //    Uid = jsonData["PARENTS_UID"]?.ToObject<int>() ?? -1
-                //};
+                var data = jsonData["data"];
+                int staffUid = data?["staff_uid"]?.ToObject<int>() ?? -1;
+                int teamUid = data?["team_uid"]?.ToObject<int>() ?? -1;
+                string teamName = data?["team_name"]?.ToString() ?? "";
+                string date = data?["date"]?.ToString() ?? "";
 
-                //JArray childrenArray = (JArray)jsonData["CHILDREN"]!;
-                //foreach (JObject child in childrenArray.Cast<JObject>())
-                //{
-                //    string birth = (string)child["BIRTH"]!;
-                //    if (string.IsNullOrWhiteSpace(birth)) birth = "00000000";
+                var status = data?["work_request_status"];
+                int approved = status?["approved"]?.ToObject<int>() ?? 0;
+                int pending = status?["pending"]?.ToObject<int>() ?? 0;
+                int rejected = status?["rejected"]?.ToObject<int>() ?? 0;
 
-                //    ChildInfo childInfo = new()
-                //    {
-                //        Uid = (int)child["CHILDUID"]!,
-                //        Name = (string)child["NAME"]!,
-                //        BirthDate = birth,
-                //        Age = DateTime.Now.Year - int.Parse(birth[..4]),
-                //        Gender = (string)child["GENDER"]!,
-                //        IconColor = (string)child["ICON_COLOR"]!
-                //    };
+                // UserSession에 정보 저장
+                _session.SetUid(staffUid);
+                _session.SetTeamCode(teamUid);
+                _session.SetTeamName(teamName);
+                _session.SetDate(date);
+                _session.SetRequestStatus(approved, pending, rejected);
 
-                //    AddChildInfo(childInfo);
-                //}
+                Console.WriteLine($"로그인 정보 저장 완료: UID={staffUid}, 팀={teamName}({teamUid}), 날짜={date}");
+                Console.WriteLine($"요청 현황 - 승인:{approved}, 대기:{pending}, 반려:{rejected}");
 
-                //_session.SetCurrentParentUid(parentInfo.Uid);
-                //if(ChildrenInfo.Count > 0 ) {
-                //    _session.SetCurrentChildUid(ChildrenInfo[0].Uid);
-                //}
-
-                //Console.WriteLine($"[UserManager] LogIn Completed");
                 return true;
             }
+
             else if (protocol == "login" && result == "fail")
             {
                 return false;

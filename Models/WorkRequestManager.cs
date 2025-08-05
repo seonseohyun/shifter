@@ -31,10 +31,14 @@ namespace ShifterUser.Models
                 return value.ToLower() switch
                 {
                     "day" => ShiftType.Day,
-                    "evening" => ShiftType.Evening,
                     "night" => ShiftType.Night,
+                    "evening" => ShiftType.Evening,
                     "off" => ShiftType.Off,
-                    
+                    "d" => ShiftType.Day,
+                    "n" => ShiftType.Night,
+                    "e" => ShiftType.Evening,
+                    "o" => ShiftType.Off,
+                    _ => throw new ArgumentException($"Unknown shift type: {value}")
                 };
             }
 
@@ -193,9 +197,9 @@ namespace ShifterUser.Models
                 ["data"] = new JObject
                 {
                     ["staff_uid"] = _session.GetUid(),
-                    ["req_date"] = date.ToString("yyyy-MM-dd"),
-                    ["shift_type"] = shiftCode,
-                    ["reason"] = reason
+                    ["date"] = date.ToString("yyyy-MM-dd"),
+                    ["duty_type"] = shiftCode,
+                    ["message"] = reason
                 }
             };
 

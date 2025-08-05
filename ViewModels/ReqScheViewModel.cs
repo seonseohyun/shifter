@@ -84,7 +84,8 @@ namespace ShifterUser.ViewModels
             if (success)
             {
                 Console.WriteLine("요청 성공");
-                WeakReferenceMessenger.Default.Send(new RequestUpdatedMessage());
+                //WeakReferenceMessenger.Default.Send(new RequestUpdatedMessage());
+                MessageBox.Show("요청이 전송되었습니다!");
                 GoBack(); // 혹은 메시지 전송
             }
             else
