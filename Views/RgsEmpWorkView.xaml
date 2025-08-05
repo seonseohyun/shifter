@@ -6,9 +6,346 @@
       xmlns:local="clr-namespace:Shifter.Views"
       mc:Ignorable="d" 
       d:DesignHeight="900" d:DesignWidth="1600"
-      Title="RgsEmpWorkView">
+      Title="RgsEmpWorkView"
+      Background="#FFFFFF">
 
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="7*"/>
+        </Grid.ColumnDefinitions>
+
         
+        <!-- [0] Left Panel -->
+        <Border BorderBrush="#A7A7A7" BorderThickness="0.5">
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="20*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="정보등록" FontSize="18" FontFamily="Noto Sans KR" FontWeight="Bold" Margin="5"/>
+                <Grid Grid.Row="1" Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="20*"/>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Row="0" Margin="0,3,0,3" BorderBrush="Transparent" BorderThickness="0" Background="#DCDCDC"
+                            Content="근무정보" FontSize="15" FontFamily="Noto Sans KR" FontWeight="Medium">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    <Button Grid.Row="1" Margin="0,3,0,3" BorderBrush="Transparent" BorderThickness="0" Background="#F7F7F7"
+                            Content="직급정보" FontSize="15" FontFamily="Noto Sans KR" FontWeight="Medium">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    <Button Grid.Row="2" Margin="0,3,0,3" BorderBrush="Transparent" BorderThickness="0" Background="#F7F7F7"
+                            Content="직원정보" FontSize="15" FontFamily="Noto Sans KR" FontWeight="Medium">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                </Grid>
+            </Grid>
+        </Border>
+        
+        
+        <!-- [1] Right Panel -->
+        <Grid Grid.Column="1" Margin="50">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            
+            
+            <!-- [1][0] Panels(Center) -->
+            <Grid Grid.Row="0" Margin="30">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                
+                <!-- [1][0][0] CompanyInfo -->
+                <Border Grid.Column="0"
+                        Background="#F7F7F7" BorderBrush="Transparent" BorderThickness="0" CornerRadius="20" Margin="0,0,10,0">
+                    <Border.Effect>
+                        <DropShadowEffect
+                            Color="Black"
+                            ShadowDepth="5"
+                            BlurRadius="10"
+                            Opacity="0.5">
+                        </DropShadowEffect>
+                    </Border.Effect>
+                    <Grid Margin="30">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1.5*"/>
+                            <RowDefinition Height="1.5*"/>
+                            <RowDefinition Height="5*"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- [1][0][0][0] Title -->
+                        <TextBlock Grid.Row="0" Text="회사정보" FontSize="30" FontFamily="Noto Sans KR" FontWeight="Bold"/>
+
+                        <!-- [1][0][0][1] Company Name -->
+                        <Grid Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1.5*"/>
+                            </Grid.RowDefinitions>
+
+                            <!-- [1][0][0][1][0] TextBlock -->
+                            <TextBlock Grid.Row="0" VerticalAlignment="Bottom" Margin="5"
+                                       Text="회사명" FontSize="15" FontFamily="Noto Sans KR" FontWeight="Medium"></TextBlock>
+
+                            <!-- [1][0][0][1][1] TextBox -->
+                            <Border Grid.Row="1" CornerRadius="15" Background="#FFFFFF" BorderBrush="Transparent" BorderThickness="0" >
+                                <TextBox FontSize="15" FontFamily="Noto Sans KR" FontWeight="Medium"
+                                         Background="Transparent" BorderBrush="Transparent" BorderThickness="0"
+                                         VerticalContentAlignment="Center" TextAlignment="Center"></TextBox>
+                            </Border>
+                        </Grid>
+
+                        <!-- [1][0][0][2] Team Name -->
+                        <Grid Grid.Row="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1.5*"/>
+                            </Grid.RowDefinitions>
+
+                            <!-- [1][0][0][2][0] TextBlock -->
+                            <TextBlock Grid.Row="0" VerticalAlignment="Bottom" Margin="5"
+                                       Text="팀명" FontSize="15" FontFamily="Noto Sans KR" FontWeight="Medium"></TextBlock>
+
+                            <!-- [1][0][0][2][1] TextBox -->
+                            <Border Grid.Row="1" CornerRadius="15" Background="#FFFFFF" BorderBrush="Transparent" BorderThickness="0" >
+                                <TextBox FontSize="15" FontFamily="Noto Sans KR" FontWeight="Medium"
+                                         Background="Transparent" BorderBrush="Transparent" BorderThickness="0"
+                                         VerticalContentAlignment="Center" TextAlignment="Center"></TextBox>
+                            </Border>
+                        </Grid>
+
+                        <!-- [1][0][0][3] Industry -->
+                        <Grid Grid.Row="3">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                            </Grid.RowDefinitions>
+                            
+                            <!-- TextBlock -->
+                            <TextBlock Grid.Row="0" VerticalAlignment="Bottom" Margin="5"
+                                       Text="직군" FontSize="15" FontFamily="Noto Sans KR" FontWeight="Medium"></TextBlock>
+                            
+                            <!-- Buttons -->
+                            <Button Grid.Row="1" Tag="간호"
+                                    Content="간호" Margin="0,5,0,5" FontSize="13" FontFamily="Noto Sans KR"
+                                    FontWeight="Medium" BorderThickness="0"
+                                    Command="{Binding SelectIndustryCommand}"
+                                    CommandParameter="간호">
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Background" Value="#FFFFFF"/>
+                                        <Setter Property="Foreground" Value="#A4A4A4"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding SelectedIndustry}" Value="간호">
+                                                <Setter Property="Background" Value="#002EFF"/>
+                                                <Setter Property="Foreground" Value="#FFFFFF"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                                <Button.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="10"/>
+                                    </Style>
+                                </Button.Resources>
+                            </Button>
+
+
+                            <Button Grid.Row="2" Tag="소방"
+                                    Content="소방" Margin="0,5,0,5" FontSize="13" FontFamily="Noto Sans KR"
+                                    FontWeight="Medium" BorderThickness="0"
+                                    Command="{Binding SelectIndustryCommand}"
+                                    CommandParameter="소방">
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Background" Value="#FFFFFF"/>
+                                        <Setter Property="Foreground" Value="#A4A4A4"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding SelectedIndustry}" Value="소방">
+                                                <Setter Property="Background" Value="#002EFF"/>
+                                                <Setter Property="Foreground" Value="#FFFFFF"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                                <Button.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="10"/>
+                                    </Style>
+                                </Button.Resources>
+                            </Button>
+
+                            <Button Grid.Row="3" Tag="경찰"
+                                    Content="경찰" Margin="0,5,0,5" FontSize="13" FontFamily="Noto Sans KR"
+                                    FontWeight="Medium" BorderThickness="0"
+                                    Command="{Binding SelectIndustryCommand}"
+                                    CommandParameter="경찰">
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Background" Value="#FFFFFF"/>
+                                        <Setter Property="Foreground" Value="#A4A4A4"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding SelectedIndustry}" Value="경찰">
+                                                <Setter Property="Background" Value="#002EFF"/>
+                                                <Setter Property="Foreground" Value="#FFFFFF"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                                <Button.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="10"/>
+                                    </Style>
+                                </Button.Resources>
+                            </Button>
+
+                            <Button Grid.Row="4" Tag="기타"
+                                    Content="기타" Margin="0,5,0,5" FontSize="13" FontFamily="Noto Sans KR"
+                                    FontWeight="Medium" BorderThickness="0"
+                                    Command="{Binding SelectIndustryCommand}"
+                                    CommandParameter="기타">
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Background" Value="#FFFFFF"/>
+                                        <Setter Property="Foreground" Value="#A4A4A4"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding SelectedIndustry}" Value="기타">
+                                                <Setter Property="Background" Value="#002EFF"/>
+                                                <Setter Property="Foreground" Value="#FFFFFF"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                                <Button.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="10"/>
+                                    </Style>
+                                </Button.Resources>
+                            </Button>
+                        </Grid>
+                    </Grid>
+                </Border>
+                
+                <!-- [1][0][1] ShiftInfo -->
+                <Border Grid.Column="1"
+                        Background="#F7F7F7" BorderBrush="Transparent" BorderThickness="0" CornerRadius="20" Margin="10,0,0,0">
+                    <Border.Effect>
+                        <DropShadowEffect
+                            Color="Black"
+                            ShadowDepth="5"
+                            BlurRadius="10"
+                            Opacity="0.5">
+                        </DropShadowEffect>
+                    </Border.Effect>
+                    <Grid Margin="30">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="5*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- [1][0][1][0] Title -->
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Text="교대근무" FontSize="30" FontFamily="Noto Sans KR" FontWeight="Bold"></TextBlock>
+                            <TextBlock Grid.Row="1" Text="교대근무유형을 입력해주세요.(최대4교대. 휴무일 기본포함)"
+                                       FontSize="15" FontFamily="Noto Sans KR" FontWeight="Medium"></TextBlock>
+                        </Grid>
+                        
+                        <!-- [1][0][1][1] Shift -->
+                        <ItemsControl ItemsSource="{Binding Shifts}" Grid.Row="1">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="0,2,2,2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="2*"/>
+                                            <ColumnDefinition Width="2*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Border Grid.Column="0" Background="#FFFFFF" CornerRadius="15" BorderThickness="0"
+                                                Margin="0,2,2,2">
+                                            <TextBox 
+                                                 Text="{Binding ShiftType, UpdateSourceTrigger=PropertyChanged}"
+                                                 FontFamily="Noto Sans KR" FontSize="14" Background="Transparent"
+                                                 Margin="5" Height="50" BorderBrush="Transparent" BorderThickness="0"
+                                                 VerticalContentAlignment="Center" TextAlignment="Center"/>
+                                        </Border>
+
+                                        <Border Grid.Column="1" Background="#FFFFFF" CornerRadius="15" BorderThickness="0"
+                                                Margin="2,2,2,2">
+                                            <TextBox 
+                                                 Text="{Binding StartTime, UpdateSourceTrigger=PropertyChanged}"
+                                                 FontFamily="Noto Sans KR" FontSize="14" Background="Transparent"
+                                                 Margin="5" Height="50" BorderBrush="Transparent" BorderThickness="0"
+                                                VerticalContentAlignment="Center" TextAlignment="Center"/>
+                                        </Border>
+
+                                        <Border Grid.Column="2" Background="#FFFFFF" CornerRadius="15" BorderThickness="0"
+                                                Margin="5,5,0,5">
+                                            <TextBox 
+                                                 Text="{Binding EndTime, UpdateSourceTrigger=PropertyChanged}"
+                                                 FontFamily="Noto Sans KR" FontSize="14" Background="Transparent"
+                                                 Margin="5" Height="50" BorderBrush="Transparent" BorderThickness="0"
+                                                VerticalContentAlignment="Center" TextAlignment="Center"/>
+                                        </Border>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        <!-- [1][0][1][2] AddButton -->
+                        <Button Grid.Row="2" Margin="0, 10, 0, 10" Background="#002EFF" Foreground="#ffffff" BorderThickness="0"
+                                Content="추가" FontSize="15" FontFamily="Noto Sans KR" FontWeight="Bold"
+                                Command="{Binding AddShiftCommand}">
+                            <Button.Resources> <Style TargetType="Border"> <Setter Property="CornerRadius" Value="10"/> </Style> </Button.Resources>
+                        </Button>
+                    </Grid>
+                </Border>
+            </Grid>
+            <Grid Grid.Row="1" Margin="30,0,30,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="7*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="1" 
+                        Foreground="#FFFFFF" Background="#002EFF" BorderThickness="0"
+                        Margin="0,5,0,5" Content="다음 >" FontSize="20" FontFamily="Noto Sans KR" FontWeight="Bold"
+                        Command="{Binding GoToRgsEmpGradeCommand}">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Grid>
+        </Grid>
     </Grid>
 </Page>

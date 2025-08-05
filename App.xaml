@@ -9,8 +9,8 @@
         <!-- Converters -->
         <local:BoolToVisibilityConverter x:Key="BoolToVis"/>
         <local:ZeroToVisConv x:Key="ZeroToVisibility"/>
+        <local:EqualityConverter x:Key="EqualityConverter" />
 
-        
         <!-- Style Gray Watermark -->
         <Style x:Key="GrayWatermarkTextBoxStyle" TargetType="TextBox">
             <Setter Property="Foreground" Value="#2A2A2A"/>

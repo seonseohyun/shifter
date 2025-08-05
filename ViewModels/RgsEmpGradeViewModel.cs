@@ -15,8 +15,12 @@ namespace Shifter.ViewModels {
         }
 
 
+
         /** Member Variables **/
         private readonly Session? _session;
+
+
+
         /** Member Methods **/
     }
 }

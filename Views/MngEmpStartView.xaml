@@ -23,23 +23,23 @@
                 <RowDefinition Height="20*"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="0" Text="Text" Margin="5"
-                       FontSize="20" FontFamily="Noto Sans KR" FontWeight="Bold"
+            <TextBlock Grid.Row="0" Text="직원관리" Margin="5"
+                       FontSize="18" FontFamily="Noto Sans KR" FontWeight="Bold"
                        Foreground="#000000" Background="Transparent"></TextBlock>
 
             <StackPanel Grid.Row="1" Orientation="Vertical">
-                <Button MinHeight="30" Content="Button" Margin="5,2,5,2"
+                <Button MinHeight="30" Content="정보등록" Margin="5,2,5,2"
                         Foreground="#000000" Background="#F7F7F7" BorderBrush="Transparent"
-                        FontSize="17" FontFamily="Noto Sans KR" FontWeight="Medium">
+                        FontSize="15" FontFamily="Noto Sans KR" FontWeight="Medium">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="6"/>
                         </Style>
                     </Button.Resources>
                 </Button>
-                <Button MinHeight="30" Content="Button" Margin="5,2,5,2"
+                <Button MinHeight="30" Content="정보확인" Margin="5,2,5,2"
                         Foreground="#000000" Background="#F7F7F7" BorderBrush="Transparent"
-                        FontSize="17" FontFamily="Noto Sans KR" FontWeight="Medium">
+                        FontSize="15" FontFamily="Noto Sans KR" FontWeight="Medium">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="6"/>
@@ -52,11 +52,10 @@
 
         
         <!-- 우측패널 -->
-        <Grid Grid.Column="1" Margin="60">
+        <Grid Grid.Column="1" Margin="50">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="10*"/>
-                    <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
 
                 <Grid Grid.Row="0" Margin="30">
@@ -89,14 +88,14 @@
                                     <RowDefinition Height="1.5*"/>
                                     <RowDefinition Height="1*"/>
                                 </Grid.RowDefinitions>
-                                <TextBlock Grid.Row="0" Text="Title" FontSize="35" FontFamily="Noto Sans KR" FontWeight="Bold"></TextBlock>
-                                <TextBlock Grid.Row="1" Text="Loren" FontSize="20" FontFamily="Noto Sans KR" FontWeight="Medium"></TextBlock>
+                                <TextBlock Grid.Row="0" Text="직원정보 새로등록" FontSize="35" FontFamily="Noto Sans KR" FontWeight="Bold"></TextBlock>
+                                <TextBlock Grid.Row="1" Text="이전에 등록한 직원정보가 없다면, 새롭게 등록해요." FontSize="20" FontFamily="Noto Sans KR" FontWeight="Medium"></TextBlock>
                             </Grid>
 
                             <Image Grid.Row="1" Source="/Resources/Icons/Character_2.png"></Image>
 
                             <Button Grid.Row="2" Foreground="#FFFFFF" Background="#002EFF" Margin="0,10,0,10"
-                                    Content="Text"
+                                    Content="직원추가" Command="{Binding GoToRgsEmpWorkCommand}"
                                     FontSize="20" FontFamily="Noto Sans KR" FontWeight="Bold">
                                 <Button.Resources>
                                     <Style TargetType="Border">
@@ -109,7 +108,7 @@
 
                     <!-- 등록된 직원 관리 -->
                     <Border Grid.Column="1"
-                            Margin="0,0,10,0"
+                            Margin="10,0,0,0"
                             Background="#F4F4F4"
                             CornerRadius="20">
                         <Border.Effect>
@@ -131,14 +130,14 @@
                                     <RowDefinition Height="1.5*"/>
                                     <RowDefinition Height="1*"/>
                                 </Grid.RowDefinitions>
-                                <TextBlock Grid.Row="0" Text="Title" FontSize="35" FontFamily="Noto Sans KR" FontWeight="Bold"></TextBlock>
-                                <TextBlock Grid.Row="1" Text="Loren" FontSize="20" FontFamily="Noto Sans KR" FontWeight="Medium"></TextBlock>
+                                <TextBlock Grid.Row="0" Text="등록된 직원 관리" FontSize="35" FontFamily="Noto Sans KR" FontWeight="Bold"></TextBlock>
+                                <TextBlock Grid.Row="1" Text="이전에 등록한 직원정보가 있다면, 여기서 관리할 수 있어요." FontSize="20" FontFamily="Noto Sans KR" FontWeight="Medium"></TextBlock>
                             </Grid>
 
                             <Image Grid.Row="1" Source="/Resources/Icons/Character_1.png"></Image>
 
                             <Button Grid.Row="2" Foreground="#FFFFFF" Background="#002EFF" Margin="0,10,0,10"
-                                    Content="Text"
+                                    Content="직원관리" Command="{Binding GoToMngEmpCommand}"
                                     FontSize="20" FontFamily="Noto Sans KR" FontWeight="Bold">
                                 <Button.Resources>
                                     <Style TargetType="Border">
@@ -148,23 +147,6 @@
                             </Button>
                         </Grid>
                     </Border>
-
-                </Grid>
-
-                <Grid Grid.Row="1" Margin="30,0,30,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="7*"/>
-                        <ColumnDefinition Width="1*"/>
-                    </Grid.ColumnDefinitions>
-                    <Button Grid.Column="1" 
-                            Foreground="#FFFFFF" Background="#002EFF" 
-                            Margin="0,5,0,5" Content="다음 >" FontSize="20" FontFamily="Noto Sans KR" FontWeight="Bold">
-                        <Button.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="10"/>
-                            </Style>
-                        </Button.Resources>
-                    </Button>
                 </Grid>
             </Grid>
         </Grid>

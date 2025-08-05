@@ -7,10 +7,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Shifter.ViewModels {
-    public partial class RgsEmpInfoViewModel : ObservableObject{
+    public partial class ChkTmpEmpViewModel : ObservableObject {
 
         /** Constructor **/
-        public RgsEmpInfoViewModel(Session? session) {
+        public ChkTmpEmpViewModel(Session? session) {
             _session = session;
         }
 

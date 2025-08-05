@@ -23,8 +23,10 @@ namespace Shifter
         }
 
 
+
         /** Member Variables **/
         public static IServiceProvider? Services { get; private set; }
+
 
 
         /** Member Methods **/
@@ -46,6 +48,7 @@ namespace Shifter
             services.AddTransient<ViewModels.RgsEmpWorkViewModel>   ();
             services.AddTransient<ViewModels.RgsEmpGradeViewModel>  ();
             services.AddTransient<ViewModels.RgsEmpInfoViewModel>   ();
+            services.AddTransient<ViewModels.ChkTmpEmpViewModel>    ();
             services.AddTransient<ViewModels.MngEmpViewModel>       ();
             services.AddTransient<ViewModels.GenScdViewModel>       ();
             services.AddTransient<ViewModels.MdfScdViewModel>       ();

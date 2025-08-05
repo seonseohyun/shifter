@@ -6,9 +6,76 @@
       xmlns:local="clr-namespace:Shifter.Views"
       mc:Ignorable="d" 
       d:DesignHeight="900" d:DesignWidth="1600"
-      Title="RgsEmpGradeView">
+      Title="RgsEmpGradeView"
+      Background="#FFFFFF">
 
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="7*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border BorderBrush="#A7A7A7" BorderThickness="0.5">
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="20*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="정보등록" FontSize="18" FontFamily="Noto Sans KR" FontWeight="Bold" Margin="5"/>
+                <Grid Grid.Row="1" Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="20*"/>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Row="0" Margin="0,3,0,3" BorderBrush="Transparent" BorderThickness="0" Background="#F7F7F7"
+                            Content="근무정보" FontSize="15" FontFamily="Noto Sans KR" FontWeight="Medium">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    <Button Grid.Row="1" Margin="0,3,0,3" BorderBrush="Transparent" BorderThickness="0" Background="#F7F7F7"
+                            Content="직급정보" FontSize="15" FontFamily="Noto Sans KR" FontWeight="Medium">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    <Button Grid.Row="2" Margin="0,3,0,3" BorderBrush="Transparent" BorderThickness="0" Background="#F7F7F7"
+                            Content="직원정보" FontSize="15" FontFamily="Noto Sans KR" FontWeight="Medium">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                </Grid>
+            </Grid>
+        </Border>
+        <Grid Grid.Column="1" Margin="50">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="7*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="1" 
+                            Foreground="#FFFFFF" Background="#002EFF" 
+                            Margin="0,5,0,5" Content="다음 >" FontSize="20" FontFamily="Noto Sans KR" FontWeight="Bold">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Grid>
+        </Grid>
     </Grid>
 </Page>

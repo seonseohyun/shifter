@@ -135,6 +135,7 @@
                                    FontSize="18" FontFamily="Noto Sans KR" FontWeight="Medium"
                                    Foreground="#222222"/>
                     </Grid>
+                    <!-- 동적생성 필요 -->
                 </WrapPanel>
             </Border>
         </Grid>

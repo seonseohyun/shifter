@@ -32,17 +32,19 @@ public partial class MainViewModel : ObservableObject {
     }
 
     
+
     /** Member Variables **/
     private Frame? _mainFrame;
     private Session? _session;
     public Session Session => _session!; // binding을 위해 public변수 생성
 
 
+
     /** Member Methods **/
     public void SetFrame(Frame frame) {  // 메인 프레임 설정(예: MainWindow.xaml.cs에서 호출)
         Console.WriteLine("[MainViewModel] Executed SetFrame");
         _mainFrame = frame;              // 프레임을 설정
-        Navigate(PageType.GenScd);        // 첫 페이지 로딩 ( Enum PageType.LogIn )
+        Navigate(PageType.RgsEmpWork);        // 첫 페이지 로딩 ( Enum PageType.LogIn )
     }
 
 
@@ -54,6 +56,7 @@ public partial class MainViewModel : ObservableObject {
                 _mainFrame.Navigate(new LogInView { DataContext = App.Services!.GetService(typeof(LogInViewModel)) });
                 break;
             case PageType.Home:
+                Session.VisToolbar = true;
                 _mainFrame.Navigate(new HomeView { DataContext = App.Services!.GetService(typeof(HomeViewModel)) });
                 break;
             case PageType.MngEmpStart:
@@ -70,6 +73,9 @@ public partial class MainViewModel : ObservableObject {
                 break;
             case PageType.RgsEmpInfo:
                 _mainFrame.Navigate(new RgsEmpInfoView { DataContext = App.Services!.GetService(typeof(RgsEmpInfoViewModel)) });
+                break;
+            case PageType.ChkTmpEmpInfo:
+                //_mainFrame.Navigate(new )
                 break;
             case PageType.GenScd:
                 _mainFrame.Navigate(new GenScdView { DataContext = App.Services!.GetService(typeof(GenScdViewModel)) });
