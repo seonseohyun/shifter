@@ -52,6 +52,7 @@ namespace ShifterUser
             services.AddTransient<MyScheViewModel>();
             services.AddTransient<QRCheckViewModel>();
             services.AddTransient<MyReqStatusViewModel>();
+            services.AddTransient<ReqScheViewModel>();
         }
     }
 }

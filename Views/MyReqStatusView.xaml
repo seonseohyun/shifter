@@ -7,7 +7,7 @@
       mc:Ignorable="d"
       Background="White"
       Width="400" Height="800"
-      FontFamily="Noto Sans KR">
+      FontFamily="Noto Sans KR" Loaded="Page_Loaded">
 
     <Page.Resources>
         <DropShadowEffect x:Key="CardShadow"

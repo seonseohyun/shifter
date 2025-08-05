@@ -27,7 +27,7 @@ namespace ShifterUser.Services
         private bool isConnecting = false;
         private bool isConnected = false;
 
-        private readonly string ip = "10.10.20.113";
+        private readonly string ip = "10.10.20.112";
         private readonly int port = 5556;
 
         public bool IsConnected => isConnected && client?.Connected == true;

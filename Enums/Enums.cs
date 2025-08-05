@@ -18,7 +18,7 @@ namespace ShifterUser.Enums
         Goback
     }
 
-    public enum ShiftType { Off, Day, Evening, Night }
+    public enum ShiftType { Off, Day, Evening, Night,  }
 
     public enum WorkRequestStatus
     {

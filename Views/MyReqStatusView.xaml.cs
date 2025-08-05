@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShifterUser.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,16 @@ namespace ShifterUser.Views
         public MyReqStatusView()
         {
             InitializeComponent();
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (DataContext is MyReqStatusViewModel vm)
+            {
+                // ViewModel의 LoadOnAppearCommand 실행
+                if (vm.LoadOnAppearCommand.CanExecute(null))
+                    vm.LoadOnAppearCommand.Execute(null);
+            }
         }
     }
 }

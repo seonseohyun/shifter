@@ -61,8 +61,9 @@ namespace ShifterUser.Models
             if (protocol == "login" && result == "success")
             {
                 Console.WriteLine("Success Communication with Server");
-                int staff_id = jsonData["staff_uid"]?.ToObject<int>() ?? -1;
+                int staff_id = jsonData["data"]?["staff_uid"]?.ToObject<int>() ?? -1;
                 _session.SetUid(staff_id);
+                Console.WriteLine($"Staff_UID: {staff_id}");
 
                 //ParentInfo parentInfo = new()
                 //{
