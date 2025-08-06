@@ -17,6 +17,7 @@ namespace Shifter.Models {
         private string? CurrentTeamName;
         [ObservableProperty] bool visToolbar = true;
         [ObservableProperty] bool visGoBack  = true;
+        public List<GradeItem> Grades { get; set; } = new();
 
 
         /** Member Mathods **/
