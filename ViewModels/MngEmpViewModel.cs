@@ -2,6 +2,7 @@
 using Shifter.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,7 +19,7 @@ namespace Shifter.ViewModels {
 
         /** Member Variables **/
         private readonly Session? _session;
-
+        [ObservableProperty] private ObservableCollection<GradeItem> grades = new();
 
 
         /** Member Methods **/

@@ -129,29 +129,29 @@
                             </Grid.ColumnDefinitions>
 
                             <TextBlock Grid.Column="0" Text="직급" FontSize="15" FontFamily="Noto Sans KR"
-                            FontWeight="Medium" Foreground="#111111" VerticalAlignment="Center"/>
+                            FontWeight="Medium" Foreground="#111111" VerticalAlignment="Bottom"/>
 
                             <TextBlock Grid.Column="1" Text="직원명" FontSize="15" FontFamily="Noto Sans KR"
-                            FontWeight="Medium" Foreground="#111111" VerticalAlignment="Center"/>
+                            FontWeight="Medium" Foreground="#111111" VerticalAlignment="Bottom"/>
 
                             <TextBlock Grid.Column="2" Text="전화번호" FontSize="15" FontFamily="Noto Sans KR"
-                            FontWeight="Medium" Foreground="#111111" VerticalAlignment="Center"/>
+                            FontWeight="Medium" Foreground="#111111" VerticalAlignment="Bottom"/>
 
                             <TextBlock Grid.Column="3" Text="총 근무시간" FontSize="15" FontFamily="Noto Sans KR"
-                            FontWeight="Medium" Foreground="#111111" VerticalAlignment="Center"/>
+                            FontWeight="Medium" Foreground="#111111" VerticalAlignment="Bottom"/>
 
                             <TextBlock Grid.Column="4" Text="임시 아이디" FontSize="15" FontFamily="Noto Sans KR"
-                            FontWeight="Medium" Foreground="#111111" VerticalAlignment="Center"/>
+                            FontWeight="Medium" Foreground="#111111" VerticalAlignment="Bottom"/>
 
                             <TextBlock Grid.Column="5" Text="임시 비밀번호" FontSize="15" FontFamily="Noto Sans KR"
-                            FontWeight="Medium" Foreground="#111111" VerticalAlignment="Center"/>
+                            FontWeight="Medium" Foreground="#111111" VerticalAlignment="Bottom"/>
 
                         </Grid>
 
-                        <!-- UserInput Panel -->
+                        <!-- TempEmpInfo Panel -->
                         <ScrollViewer Grid.Row="1" 
                                       VerticalScrollBarVisibility="Auto">
-                            <ItemsControl ItemsSource="{Binding Employees}">
+                            <ItemsControl ItemsSource="{Binding TempEmpInfo}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <!-- 직원 한 명에 대한 정보: ComboBox, TextBox 등 -->
@@ -172,46 +172,50 @@
                                             </Grid.ColumnDefinitions>
 
                                             <!-- 0 직급 -->
-                                            <Border Grid.Column="0" Margin="5" Height="40" Background="#FFFFFF" BorderThickness="0"
+                                            <Border Grid.Column="0" Margin="3" Height="40" Background="#FFFFFF" BorderThickness="0"
                                              CornerRadius="10">
-                                                <TextBlock Background="Transparent"
-                                                           FontSize="15"
-                                                           FontFamily="Noto Sans KR"
-                                                           FontWeight="Medium"></TextBlock>
+                                                <TextBlock Text="{Binding TeamName}"
+                                                           Background="Transparent" VerticalAlignment="Center" Padding="5"
+                                                           FontSize="15" FontFamily="Noto Sans KR" FontWeight="Medium"></TextBlock>
                                             </Border>
 
                                             <!-- 1 직원명 -->
-                                            <Border Grid.Column="1" Margin="5" Height="40" Background="#FFFFFF" CornerRadius="10"
+                                            <Border Grid.Column="1" Margin="3" Height="40" Background="#FFFFFF" CornerRadius="10"
                                                     BorderThickness="0">
-                                                <TextBlock Text="{Binding EmpName}" FontSize="14" 
-                                                  Background="Transparent" VerticalAlignment="Center" Padding="5"/>
+                                                <TextBlock Text="{Binding EmpName}" 
+                                                           FontSize="14" FontFamily="Noto Sans KR" FontWeight="Medium" Foreground="#444444"
+                                                           Background="Transparent" VerticalAlignment="Center" Padding="5"/>
                                             </Border>
 
                                             <!-- 2 전화번호 -->
-                                            <Border Grid.Column="2" Margin="5" Height="40" Background="#FFFFFF" CornerRadius="10"
+                                            <Border Grid.Column="2" Margin="3" Height="40" Background="#FFFFFF" CornerRadius="10"
                                                     BorderThickness="0">
-                                                <TextBlock Text="{Binding EmpPhoneNum}" FontSize="14" 
+                                                <TextBlock Text="{Binding EmpPhoneNum}"
+                                                           FontSize="14" FontFamily="Noto Sans KR" FontWeight="Medium" Foreground="#444444"
                                                            Background="Transparent" VerticalAlignment="Center" Padding="5"/>
                                             </Border>
 
                                             <!-- 3 총 근무시간 -->
-                                            <Border Grid.Column="3" Margin="5" Height="40" Background="#FFFFFF" CornerRadius="10"
+                                            <Border Grid.Column="3" Margin="3" Height="40" Background="#FFFFFF" CornerRadius="10"
                                                     BorderThickness="0">
-                                                <TextBlock Text="{Binding EmpTotalHours}" FontSize="14" 
-                                                            Background="Transparent" VerticalAlignment="Center" Padding="5"/>
+                                                <TextBlock Text="{Binding EmpTotalHours}"
+                                                           FontSize="14" FontFamily="Noto Sans KR" FontWeight="Medium" Foreground="#444444"
+                                                           Background="Transparent" VerticalAlignment="Center" Padding="5"/>
                                             </Border>
 
                                             <!-- 4 임시 아이디 -->
-                                            <Border Grid.Column="4" Margin="5" Height="40" Background="#FFFFFF" CornerRadius="10"
+                                            <Border Grid.Column="4" Margin="3" Height="40" Background="#FFFFFF" CornerRadius="10"
                                                     BorderThickness="0">
-                                                <TextBlock Text="{Binding EmpTmpId}" FontSize="14" 
+                                                <TextBlock Text="{Binding EmpTmpId}"
+                                                           FontSize="14" FontFamily="Noto Sans KR" FontWeight="Medium" Foreground="#444444"
                                                            Background="Transparent" VerticalAlignment="Center" Padding="5"/>
                                             </Border>
 
                                             <!-- 5 임시 비밀번호 -->
-                                            <Border Grid.Column="5" Margin="5" Height="40" Background="#FFFFFF" CornerRadius="10"
+                                            <Border Grid.Column="5" Margin="3" Height="40" Background="#FFFFFF" CornerRadius="10"
                                                     BorderThickness="0">
-                                                <TextBlock Text="{Binding EmpTmpPw}" FontSize="14" 
+                                                <TextBlock Text="{Binding EmpTmpPw}"
+                                                           FontSize="14" FontFamily="Noto Sans KR" FontWeight="Medium" Foreground="#444444"
                                                            Background="Transparent" VerticalAlignment="Center" Padding="5"/>
                                             </Border>
                                         </Grid>

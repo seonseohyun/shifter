@@ -67,7 +67,7 @@
                 <TextBlock
                     Grid.Row="1"
                     Text="하루고리에 로그인"
-                    Foreground="#222222"
+                    Foreground="#444444"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
                     TextAlignment="Center"
@@ -132,7 +132,7 @@
                 <Button
                     Grid.Row="3"
                     Command="{Binding LogInCommand}"
-                    Background="#222222"
+                    Background="#444444"
                     Margin="15,16,15,16"
                     Content="로그인"
                     Foreground="#FFFFFF"

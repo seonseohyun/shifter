@@ -7,7 +7,8 @@
       mc:Ignorable="d" 
       d:DesignHeight="900" d:DesignWidth="1600"
       Title="MngEmpView"
-      Background="#FFFFFF">
+      Background="#FFFFFF"
+      x:Name="Root">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -61,7 +62,7 @@
                 
                 <!-- 검색창 -->
                 <Border Grid.Column="0" Background="#F7F7F7"
-                        BorderBrush="Transparent" CornerRadius="20">
+                        BorderBrush="Transparent" CornerRadius="35">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="10*"/>
@@ -89,10 +90,10 @@
                 <Button Grid.Column="1" Margin="10,0,10,0"
                         Background="#002EFF" Foreground="#FFFFFF"
                         Content="변경사항 저장" FontSize="17" FontFamily="Noto Sans KR"
-                        FontWeight="Medium">
+                        FontWeight="Medium" BorderThickness="0">
                     <Button.Resources>
                         <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="10"/>
+                            <Setter Property="CornerRadius" Value="35"/>
                         </Style>
                     </Button.Resources>
                 </Button>
@@ -109,9 +110,14 @@
                     Opacity="0.5">
                     </DropShadowEffect>
                 </Border.Effect>
-                <WrapPanel Margin="25" Orientation="Vertical">
-                    <!-- Text -->
-                    <Grid Width="1290" Height="30">
+                <Grid Margin="30">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="12*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <!-- Column Names -->
+                    <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="7*"/>
                             <ColumnDefinition Width="4*"/>
@@ -119,24 +125,98 @@
                             <ColumnDefinition Width="7*"/>
                             <ColumnDefinition Width="8*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="팀명" TextAlignment="Left"
+                        
+                        <!-- Column Names -->
+                        <TextBlock Grid.Column="0" 
+                                   Text="팀명" TextAlignment="Left" Foreground="#444444"
                                    FontSize="18" FontFamily="Noto Sans KR" FontWeight="Medium"
-                                   Foreground="#222222"/>
-                        <TextBlock Grid.Column="1" Text="직원ID" TextAlignment="Left"
+                                   VerticalAlignment="Center" Padding="5"/>
+                        
+                        <TextBlock Grid.Column="1" 
+                                   Text="직원ID" TextAlignment="Left" Foreground="#444444"
                                    FontSize="18" FontFamily="Noto Sans KR" FontWeight="Medium"
-                                   Foreground="#222222"/>
-                        <TextBlock Grid.Column="2" Text="직원명" TextAlignment="Left"
+                                   VerticalAlignment="Center" Padding="5"/>
+                        
+                        <TextBlock Grid.Column="2" 
+                                   Text="직원명" TextAlignment="Left" Foreground="#444444"
                                    FontSize="18" FontFamily="Noto Sans KR" FontWeight="Medium"
-                                   Foreground="#222222"/>
-                        <TextBlock Grid.Column="3" Text="직급" TextAlignment="Left"
+                                   VerticalAlignment="Center" Padding="5"/>
+                        
+                        <TextBlock Grid.Column="3" 
+                                   Text="직급" TextAlignment="Left" Foreground="#444444"
                                    FontSize="18" FontFamily="Noto Sans KR" FontWeight="Medium"
-                                   Foreground="#222222"/>
-                        <TextBlock Grid.Column="4" Text="월별 총근무시간" TextAlignment="Left"
+                                   VerticalAlignment="Center" Padding="5"/>
+                        
+                        <TextBlock Grid.Column="4" 
+                                   Text="월별 총근무시간" TextAlignment="Left" Foreground="#444444"
                                    FontSize="18" FontFamily="Noto Sans KR" FontWeight="Medium"
-                                   Foreground="#222222"/>
+                                   VerticalAlignment="Center" Padding="5"/>
                     </Grid>
-                    <!-- 동적생성 필요 -->
-                </WrapPanel>
+                    
+                    <!-- List of Employee -->
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                        <ItemsControl ItemsSource="{Binding TempEmpInfo}">
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="7*"/>
+                                        <ColumnDefinition Width="4*"/>
+                                        <ColumnDefinition Width="10*"/>
+                                        <ColumnDefinition Width="7*"/>
+                                        <ColumnDefinition Width="8*"/>
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <!-- 0 TeamName   -->
+                                    <Border Grid.Column="0" Margin="5" Height="40" Background="#FFFFFF" BorderThickness="0"
+                                            CornerRadius="10">
+                                        <TextBlock Grid.Row="0"
+                                               Text="{Binding TeamName}"></TextBlock>
+                                    </Border>
+
+                                    <!-- 1 EmpId      -->
+                                    <Border Grid.Column="0" Margin="5" Height="40" Background="#FFFFFF" BorderThickness="0"
+                                            CornerRadius="10">
+                                        <TextBlock Grid.Row="1"
+                                               Text="{Binding EmpId}"></TextBlock>
+                                    </Border>
+
+                                    <!-- 2 EmpName    -->
+                                    <Border Grid.Column="0" Margin="5" Height="40" Background="#FFFFFF" BorderThickness="0"
+                                            CornerRadius="10">
+                                        <TextBox Grid.Row="2"
+                                                 Text="{Binding EmpName, Mode=TwoWay}"></TextBox>
+                                    </Border>
+
+                                    <!-- 3 GradeItem  -->
+                                    <Border Grid.Column="0" Margin="5" Height="40" Background="#FFFFFF" BorderThickness="0"
+                                                    CornerRadius="10">
+                                        <ComboBox  Grid.Row="3"
+                                               ItemsSource ="{Binding DataContext.Grades, ElementName=Root}"
+                                               SelectedItem="{Binding GradeItem, Mode=TwoWay}"
+                                               DisplayMemberPath="GradeName"
+                                               VerticalAlignment="Center" Padding="5" BorderThickness="0"
+                                               Style="{StaticResource {x:Static ToolBar.ComboBoxStyleKey}}"
+                                               Width="200">
+                                            <ComboBox.ItemContainerStyle>
+                                                <Style TargetType="ComboBoxItem">
+                                                    <Setter Property="Background" Value="Transparent"/>
+                                                    <Setter Property="BorderBrush" Value="Transparent"/>
+                                                </Style>
+                                            </ComboBox.ItemContainerStyle>
+                                        </ComboBox>
+                                    </Border>
+                                    
+                                    <!-- 4 TotalHours -->
+                                    <Border Grid.Column="0" Margin="5" Height="40" Background="#FFFFFF" BorderThickness="0"
+                                            CornerRadius="10">
+                                        <TextBox   Grid.Row="4"
+                                               Text="{Binding TotalHours, Mode=TwoWay}"></TextBox>
+                                    </Border>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Grid>
             </Border>
         </Grid>
     </Grid>
