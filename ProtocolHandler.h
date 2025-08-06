@@ -14,6 +14,10 @@ public:
     static json handle_shift_change_detail  (const json& root, DBManager& db);
     static json handle_ask_shift_change     (const json& root, DBManager& db);
     static json handle_cancel_shift_change  (const json& root, DBManager& db);
+    //출퇴근 관련
+    static json handle_check_in             (const json& root, DBManager& db);
+    static json handle_check_out            (const json& root, DBManager& db);
+
 };
 
 //“헤더로 길이 파악 → json 파싱 → 프로토콜 분기 → DBManager로 로직 실행
