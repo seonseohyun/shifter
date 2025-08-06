@@ -157,11 +157,11 @@ def identify_shifts(custom_rules, position_rules):
     return detected_night, detected_off
 
 def validate_request_parameters(staff_data, position, custom_rules):
-    """요청 파라미터 상세 검증 및 오류 분석"""
+    """요청 파라미터 필수 검증 (명시적 시프트 지정 환경 최적화)"""
     errors = []
     warnings = []
     
-    # 1. 기본 필수 필드 검증
+    # 1. 기본 데이터 구조 검증 (필수)
     if not staff_data or "staff" not in staff_data:
         errors.append("staff_data.staff 필드가 없거나 비어있음")
         return errors, warnings
@@ -171,43 +171,48 @@ def validate_request_parameters(staff_data, position, custom_rules):
         errors.append("직원 데이터가 비어있음")
         return errors, warnings
     
-    # 2. 직원별 필수 필드 검증
+    # 2. 직원별 필수 필드 검증 (필수)
     required_fields = ["name", "staff_id", "position", "total_monthly_work_hours"]
     for i, person in enumerate(staff_list):
         for field in required_fields:
             if field not in person:
                 errors.append(f"직원 {i+1}: '{field}' 필드 누락")
+                
+        # 데이터 타입 검증 (안전성)
+        if "total_monthly_work_hours" in person:
+            try:
+                hours = person["total_monthly_work_hours"]
+                if not isinstance(hours, (int, float)) or hours < 0:
+                    errors.append(f"직원 {i+1}: 월 근무시간이 유효하지 않음 ({hours})")
+            except (ValueError, TypeError):
+                errors.append(f"직원 {i+1}: 월 근무시간 형식 오류")
     
-    # 3. 시프트 설정 검증
+    # 3. custom_rules 기본 구조 검증 (필수)
     if custom_rules:
         shifts = custom_rules.get("shifts", [])
         shift_hours = custom_rules.get("shift_hours", {})
         
         if not shifts:
-            warnings.append("custom_rules.shifts가 비어있음, 기본값 사용")
+            warnings.append("shifts가 비어있음, 기본값 사용")
         else:
-            # 시프트-시간 매핑 확인
+            # 시프트-시간 매핑 확인 (필수)
             missing_hours = [s for s in shifts if s not in shift_hours]
             if missing_hours:
                 errors.append(f"시프트 시간 정보 누락: {missing_hours}")
             
-            # 최대 근무시간 계산
+            # 모든 시프트가 0시간인지만 확인 (필수)
             work_hours = [shift_hours.get(s, 0) for s in shifts if shift_hours.get(s, 0) > 0]
-            daily_max = sum(work_hours)
+            if len(work_hours) == 0:
+                errors.append("모든 시프트가 휴무 (근무 시프트 없음)")
             
-            if daily_max <= 0:
-                errors.append("하루 총 근무시간이 0시간 (모든 시프트가 휴무)")
-            elif daily_max > 24:
-                warnings.append(f"하루 총 근무시간이 24시간 초과: {daily_max}시간")
+            # 시프트 시간 범위 검증 (안전성)
+            for shift, hours in shift_hours.items():
+                if not isinstance(hours, (int, float)) or hours < 0 or hours > 24:
+                    errors.append(f"시프트 '{shift}': 근무시간이 유효하지 않음 ({hours}시간)")
     
-    # 4. 직군별 제약 확인
-    position_rules = POSITION_RULES.get(position, POSITION_RULES["default"])
-    max_monthly = position_rules.get("max_monthly_hours", 180)
-    
-    for person in staff_list:
-        monthly_hours = person.get("total_monthly_work_hours", 0)
-        if monthly_hours > max_monthly:
-            warnings.append(f"{person.get('name', '미명')}: 월 근무시간 {monthly_hours}h > 한도 {max_monthly}h")
+    # 4. 직원 수 적정성 확인 (경고만)
+    if len(staff_list) < 3:
+        warnings.append(f"직원 수 부족: {len(staff_list)}명 (최소 3명 권장)")
     
     return errors, warnings
 
@@ -219,6 +224,16 @@ def apply_constraints(model, schedule, staff_data, shifts, shift_hours, days, po
     print(f"[INFO] 제약조건 적용 시작 ({position} 직군)")
     print(f"[INFO] 야간 시프트: {night_shifts}")
     print(f"[INFO] 휴무 시프트: {off_shifts}")
+    
+    # 엣지 케이스 검증
+    if len(days) < 2:
+        print(f"[WARN] 근무일 수가 너무 적음: {len(days)}일, 일부 제약 스킵")
+    
+    if not night_shifts:
+        print(f"[WARN] 야간 시프트가 없음, 야간 관련 제약 스킵")
+    
+    if not off_shifts:
+        print(f"[WARN] 휴무 시프트가 없음, 휴무 관련 제약 스킵")
     
     # 각 날짜, 각 시프트마다 최소 1명 배정
     for day in days:
@@ -295,6 +310,46 @@ def apply_constraints(model, schedule, staff_data, shifts, shift_hours, days, po
         
         if work_hours:
             model.Add(sum(work_hours) <= monthly_limit)
+    
+    # 소방 직군 전용 제약조건
+    if position == "소방":
+        print(f"[INFO] 소방 직군 제약조건 적용")
+        
+        # D24 (24시간 당직) 시프트 식별
+        duty_shifts = [s for s in shifts if "d24" in s.lower() or "24" in s.lower() or "당직" in s.lower()]
+        if not duty_shifts:
+            duty_shifts = night_shifts  # 폴백: 야간 시프트를 당직으로 처리
+        
+        if duty_shifts and off_shifts and len(days) >= 3:
+            print(f"[INFO] 소방 당직 시프트: {duty_shifts}")
+            
+            for person in staff_list:
+                staff_id = str(person["staff_id"])
+                name = person.get("name", f"staff_{staff_id}")
+                
+                # 24시간 당직 후 최소 1일 이상 휴무
+                for day in range(len(days) - 1):
+                    duty_vars = [schedule[(staff_id, day, ds)] for ds in duty_shifts if ds in shifts]
+                    off_next_vars = [schedule[(staff_id, day + 1, os)] for os in off_shifts if os in shifts]
+                    
+                    if duty_vars and off_next_vars:
+                        total_duty = sum(duty_vars)
+                        total_off_next = sum(off_next_vars)
+                        # 당직 근무 → 다음날 휴무 필수
+                        model.Add(total_duty <= total_off_next)
+                
+                # 월 당직 횟수 제한 (8-12회 권장, 최대 15회)
+                monthly_duty_count = []
+                for day in days:
+                    for duty_shift in duty_shifts:
+                        if duty_shift in shifts:
+                            monthly_duty_count.append(schedule[(staff_id, day, duty_shift)])
+                
+                if monthly_duty_count:
+                    model.Add(sum(monthly_duty_count) <= 15)  # 최대 15회
+                    model.Add(sum(monthly_duty_count) >= 6)   # 최소 6회
+                    
+            print(f"[INFO] 소방 제약 적용 완료: 당직 후 휴무, 월 6-15회 제한")
 
 def analyze_infeasible_model(staff_data, shifts, shift_hours, days, position, night_shifts, off_shifts):
     """INFEASIBLE 모델 상세 분석"""
@@ -360,13 +415,24 @@ def generate_shift_schedule(request_data):
     start_time = time.time()
     
     try:
-        # 1. 요청 데이터 정규화
-        raw_staff_data = request_data.get("staff_data", {})
+        # 1. C++ 프로토콜 호환성 처리
+        if "protocol" in request_data and "data" in request_data:
+            # C++ 클라이언트 프로토콜 (data 래퍼 존재)
+            protocol = request_data.get("protocol", "")
+            actual_data = request_data.get("data", {})
+            print(f"[INFO] C++ 프로토콜 요청: {protocol}")
+        else:
+            # Python 클라이언트 프로토콜 (직접 데이터)
+            actual_data = request_data
+            protocol = "python_direct"
+        
+        # 2. 요청 데이터 정규화
+        raw_staff_data = actual_data.get("staff_data", {})
         staff_data = normalize_staff_data(raw_staff_data)
         
-        position = request_data.get("position", "default")
-        target_month = request_data.get("target_month", None)
-        custom_rules = request_data.get("custom_rules", {})
+        position = actual_data.get("position", "default")
+        target_month = actual_data.get("target_month", None)
+        custom_rules = actual_data.get("custom_rules", {})
         
         print(f"[INFO] === 시프트 스케줄 생성 시작 ===")
         print(f"[INFO] 직군: {position}")
@@ -376,7 +442,7 @@ def generate_shift_schedule(request_data):
         errors, warnings = validate_request_parameters(staff_data, position, custom_rules)
         
         if errors:
-            return {
+            validation_error_response = {
                 "result": "생성실패",
                 "reason": f"입력 데이터 오류: {'; '.join(errors)}",
                 "status": "error",
@@ -387,6 +453,15 @@ def generate_shift_schedule(request_data):
                     "solve_time": f"{time.time() - start_time:.2f}초"
                 }
             }
+            
+            # C++ 프로토콜 응답 형식
+            if protocol != "python_direct":
+                validation_error_response = {
+                    "protocol": "py_gen_schedule",
+                    **validation_error_response
+                }
+            
+            return validation_error_response
         
         if warnings:
             print(f"[WARN] 경고사항: {'; '.join(warnings)}")
@@ -454,7 +529,7 @@ def generate_shift_schedule(request_data):
                             "people": people
                         })
             
-            return {
+            response = {
                 "status": "ok",
                 "schedule": result_schedule,
                 "details": {
@@ -467,12 +542,21 @@ def generate_shift_schedule(request_data):
                     }
                 }
             }
+            
+            # C++ 프로토콜 응답 형식
+            if protocol != "python_direct":
+                response = {
+                    "protocol": "py_gen_schedule",
+                    **response
+                }
+            
+            return response
         
         else:
             # 실패 - 상세 분석
             analysis = analyze_infeasible_model(staff_data, shifts, shift_hours, days, position, night_shifts, off_shifts)
             
-            return {
+            error_response = {
                 "result": "생성실패",
                 "reason": f"수학적 모델 해결 불가 ({solver.StatusName(status)})",
                 "status": "error", 
@@ -489,11 +573,20 @@ def generate_shift_schedule(request_data):
                     ]
                 }
             }
+            
+            # C++ 프로토콜 응답 형식
+            if protocol != "python_direct":
+                error_response = {
+                    "protocol": "py_gen_schedule",
+                    **error_response
+                }
+            
+            return error_response
     
     except Exception as e:
         solve_time = time.time() - start_time
         print(f"[ERROR] 예외 발생: {e}")
-        return {
+        exception_response = {
             "result": "생성실패",
             "reason": f"서버 내부 오류: {str(e)}",
             "status": "error",
@@ -504,6 +597,18 @@ def generate_shift_schedule(request_data):
                 "error_message": str(e)
             }
         }
+        
+        # C++ 프로토콜 응답 형식
+        try:
+            if protocol != "python_direct":
+                exception_response = {
+                    "protocol": "py_gen_schedule",
+                    **exception_response
+                }
+        except:
+            pass  # protocol 변수가 없을 경우 무시
+        
+        return exception_response
 
 def handle_client(conn, addr):
     """클라이언트 연결 처리"""
