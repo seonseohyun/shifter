@@ -85,19 +85,6 @@
                                 </StackPanel>
                             </StackPanel>
 
-
-                            <!-- 상태 필터 -->
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5,0,0,20">
-                                <RadioButton FontSize="14" Content="전체" Margin="8" GroupName="StatusFilter"
-                                             IsChecked="{Binding FilterStatus, Converter={StaticResource StatusToBoolConverter}, ConverterParameter=None}"/>
-                                <RadioButton FontSize="14" Content="대기" Margin="8" GroupName="StatusFilter"
-                                             IsChecked="{Binding FilterStatus, Converter={StaticResource StatusToBoolConverter}, ConverterParameter=Pending}"/>
-                                <RadioButton FontSize="14" Content="승인" Margin="8" GroupName="StatusFilter"
-                                             IsChecked="{Binding FilterStatus, Converter={StaticResource StatusToBoolConverter}, ConverterParameter=Approved}"/>
-                                <RadioButton FontSize="14" Content="반려" Margin="8" GroupName="StatusFilter"
-                                             IsChecked="{Binding FilterStatus, Converter={StaticResource StatusToBoolConverter}, ConverterParameter=Rejected}"/>
-                            </StackPanel>
-
                             <!-- 요청 리스트 -->
                             <ItemsControl ItemsSource="{Binding Requests}">
                                 <ItemsControl.ItemTemplate>
@@ -153,6 +140,81 @@
                                 BorderThickness="0"
                                 Command="{Binding GoToReqScheCommand}"/>
                     </Border>
+
+                    <!-- 팝업 배경 + 카드 -->
+                    <Grid Grid.RowSpan="2"
+                       Visibility="{Binding IsDetailVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
+                       Panel.ZIndex="99">
+
+                        <!-- 어두운 배경 -->
+                        <Rectangle Fill="#80000000" MouseDown="DetailBackground_MouseDown" Margin="-32,-78,-33,-32"/>
+
+                        <!-- 하얀 카드 -->
+                        <Border Background="#F7F7F7"
+                             CornerRadius="25,25,0,0"
+                             Margin="-32,326,-33,-32"
+                             Padding="24"
+                             SnapsToDevicePixels="True">
+
+                            <StackPanel>
+                                <!-- 상단 핸들 -->
+                                <Rectangle Height="6" Width="60" Fill="LightGray" RadiusX="3" RadiusY="3"
+                                    HorizontalAlignment="Center" Margin="0,0,0,12"/>
+
+                                <!-- 근무 요약 -->
+                                <TextBlock Text="근무 요약" FontWeight="Bold" FontSize="18" Margin="0,5,0,15"/>
+
+                                <Border Background="White" CornerRadius="10" Padding="12" Margin="0,0,0,12">
+                                    <StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="0,0,0,6">
+                                            <TextBlock Text="근무 유형" Foreground="Gray" Width="80" FontSize="14"/>
+                                            <TextBlock Text="{Binding SelectedDayData.Schedule.ShiftType}" FontWeight="SemiBold" FontSize="14"/>
+                                        </StackPanel>
+
+                                        <StackPanel Orientation="Horizontal" Margin="0,0,0,6">
+                                            <TextBlock Text="근무 시간" Foreground="Gray" Width="80" FontSize="14"/>
+                                            <TextBlock FontSize="14">
+                             <Run Text="{Binding SelectedDayData.Schedule.StartTime}" />
+                             <Run Text=" - " />
+                             <Run Text="{Binding SelectedDayData.Schedule.EndTime}" />
+                                            </TextBlock>
+                                        </StackPanel>
+
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="그룹" Foreground="Gray" Width="80" FontSize="14"/>
+                                            <TextBlock Text="{Binding SelectedDayData.Schedule.GroupName}" FontSize="14"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Border>
+
+                                <!-- 출퇴근 기록 -->
+                                <TextBlock Text="출퇴근 기록" FontWeight="Bold" FontSize="18" Margin="0,5,0,15"/>
+
+                                <Border Background="White" CornerRadius="10" Padding="12">
+                                    <StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
+                                            <Image Source="/Resources/images/check_green.png" Width="20" Height="20" Margin="0,0,6,0"/>
+                                            <TextBlock FontSize="14">
+                         <Run Text="출근 시각 "/>
+                         <Run Text="{Binding SelectedDayData.Attendance.ClockInTime}" FontWeight="SemiBold"/>
+                         <Run Text=" 출근 완료"/>
+                                            </TextBlock>
+                                        </StackPanel>
+
+                                        <StackPanel Orientation="Horizontal" >
+                                            <Image Source="/Resources/images/check_green.png" Width="20" Height="20" Margin="0,0,6,0"/>
+                                            <TextBlock FontSize="14">
+                         <Run Text="퇴근 시각 "/>
+                         <Run Text="{Binding SelectedDayData.Attendance.ClockOutTime}" FontWeight="SemiBold"/>
+                         <Run Text=" 퇴근 완료"/>
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Border>
+
+                            </StackPanel>
+                        </Border>
+                    </Grid>
                 </Grid>
             </Border>
         </Grid>

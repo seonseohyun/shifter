@@ -117,7 +117,7 @@
                                Visibility="{Binding Text, ElementName=ReasonTextBox, Converter={StaticResource EmptyStringToVisibilityConverter}}"/>
                 </Grid>
 
-                <!-- 요청 등록 버튼 (버튼 안 눌림 문제 해결 + 둥근 모서리) -->
+                <!-- 요청 등록 버튼 -->
                 <Border Grid.Row="8"
                         Height="40"
                         CornerRadius="22"

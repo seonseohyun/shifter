@@ -52,15 +52,6 @@ namespace ShifterUser.ViewModels
             SelectedMonth = DateTime.Now.Month;
             FilterStatus = null;
             suppressEvent = false;
-
-            //WeakReferenceMessenger.Default.Register<RequestUpdatedMessage>(this, (r, m) =>
-            //{
-            //    Console.WriteLine("[MyReqStatusViewModel] RequestUpdatedMessage 수신됨");
-
-            //    // 요청 목록 다시 로드
-            //    if (LoadRequestsCommand.CanExecute(null))
-            //        LoadRequestsCommand.Execute(null);
-            //});
         }
 
 
