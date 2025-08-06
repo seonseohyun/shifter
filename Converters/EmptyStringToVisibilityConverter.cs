@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Data;
 
 namespace ShifterUser.Converters
+
 {
     // 텍스트가 비어 있으면 → 보이게(Visible)
     // 텍스트가 있으면 → 안 보이게(Collapsed)

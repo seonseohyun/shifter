@@ -114,7 +114,7 @@
                                FontSize="13"
                                Padding="0,6,0,0"
                                IsHitTestVisible="False"
-                               Visibility="{Binding Text, ElementName=ReasonTextBox, Converter={StaticResource EmptyStringToVisibilityConverter}}"/>
+                               Visibility="{Binding Text, ElementName=ReasonTextBox, Converter={StaticResource DataOrEmptyToVisibilityConverter}}"/>
                 </Grid>
 
                 <!-- 요청 등록 버튼 -->

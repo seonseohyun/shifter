@@ -26,7 +26,7 @@ namespace ShifterUser.Models
         // 사용자 정보
         // 근무표 정보
 
-        /* Method for Protocol-LogIn */
+        // 로그인
         public bool LogIn(string id, string password)
         {
 
@@ -93,6 +93,51 @@ namespace ShifterUser.Models
             else
             {
                 Console.WriteLine($"[UserManager] 로그인 응답 오류: {result}");
+                return false;
+            }
+        }
+
+        // 출근
+        public bool AskCheckIn()
+        {
+            JObject jsonData = new()
+            {
+                { "protocol", "ask_check_in" },
+                {
+                    "data", new JObject
+                    {
+                        {"staff_uid", _session.GetUid() },
+                        {"team_uid", _session.GetTeamCode() }
+                    }
+                }
+            };
+
+            WorkItem sendItem = new()
+            {
+                json = JsonConvert.SerializeObject(jsonData),
+                payload = [],
+                path = ""
+            };
+
+            _socket.Send(sendItem);
+
+            WorkItem response = _socket.Receive();
+            JObject respJson = JObject.Parse(response.json);
+
+            string protocol = respJson["protocol"]?.ToString() ?? "";
+            string result = respJson["resp"]?.ToString() ?? "";
+            int checkInUid = respJson["data"]?["check_in_uid"]?.Value<int>() ?? -1;
+
+            //  응답 검증
+            if (protocol == "ask_check_in" && result == "success")
+            {
+                // UID 저장
+                _session.SetCheckInUid(checkInUid);
+                return true;
+
+            }
+            else
+            {   
                 return false;
             }
         }

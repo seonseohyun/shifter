@@ -14,13 +14,14 @@
       TextOptions.TextFormattingMode="Display">
 
     <Page.Resources>
-       
         <DropShadowEffect x:Key="ShadowEffect"
                           Color="Black"
                           Direction="270"
                           ShadowDepth="5"
                           BlurRadius="6"
                           Opacity="0.1"/>
+        <conv:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <conv:NullToVisibilityConverter x:Key="NullToVisibilityConverter"/>
     </Page.Resources>
 
     <Grid>
@@ -31,7 +32,6 @@
                            Foreground="White"
                            FontSize="18"
                            FontWeight="Bold"
-                           FontFamily="Noto Sans KR"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"
                            TextAlignment="Center"/>
@@ -42,7 +42,7 @@
                             <Image Source="/Resources/images/bell_on.png" Width="20" Height="20"/>
                             <Ellipse Width="8" Height="8" Fill="Red"
                                      HorizontalAlignment="Right" VerticalAlignment="Top"
-                                     Visibility="{Binding HasAlert}"/>
+                                     Visibility="{Binding HasAlert, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                         </Grid>
                     </Button>
                 </Grid>
@@ -50,23 +50,34 @@
         </Border>
 
         <StackPanel Margin="16,72,16,16">
-
             <!-- 출퇴근 카드 -->
-            <Grid Margin="0,0,0,15">
-                <Border Background="White" CornerRadius="16" Effect="{StaticResource ShadowEffect}"/>
+            <Grid Margin="0,0,0,15" Visibility="Visible">
+                <Border Background="White" CornerRadius="16" Effect="{StaticResource ShadowEffect}" />
                 <Border Background="White" CornerRadius="16" Padding="16" BorderBrush="#CCCCCC" BorderThickness="1">
                     <StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
                             <Image Source="/Resources/images/qr_icon.png" Width="45" Height="42" Margin="0,0,12,0"/>
                             <StackPanel>
-                                <TextBlock Text="2025.07.30" FontSize="14" Foreground="Gray"/>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="출근 완료" FontSize="16" FontWeight="Bold" FontFamily="Noto Sans KR" />
-                                    <Ellipse Width="10" Height="10" Fill="Green" Margin="6,3,0,0"/>
+                                <TextBlock Text="{Binding TodayDate}" FontSize="14" Foreground="Gray"/>
+                                <StackPanel Orientation="Horizontal" Margin="0,4,0,0" VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding AttendanceText}" 
+                                       FontSize="16" 
+                                       FontWeight="Bold" 
+                                       VerticalAlignment="Center"/>
+
+                                     <Ellipse Width="10" Height="10" 
+                                     Margin="6,3,0,0"
+                                     Fill="{Binding AttendanceColor}" 
+                                     VerticalAlignment="Center"/>
                                 </StackPanel>
+
                             </StackPanel>
                         </StackPanel>
-                        <Button Content="QR 체크하러 가기" Height="44" Margin="0,8,0,0" FontSize="16" FontFamily="Noto Sans KR"
+                        
+                        
+                        <Button Content="QR 체크하러 가기"
+                                Height="44" Margin="0,8,0,0"
+                                FontSize="16"
                                 Background="#007AFF" Foreground="White" FontWeight="SemiBold"
                                 Command="{Binding GoToQrCheckCommand}">
                             <Button.Template>
@@ -80,7 +91,6 @@
                     </StackPanel>
                 </Border>
             </Grid>
-
             <!-- 그룹 활동 -->
             <Grid Margin="0,0,0,15">
                 <Border Background="White" CornerRadius="16" Effect="{StaticResource ShadowEffect}"/>
@@ -209,7 +219,6 @@
                     </StackPanel>
                 </Border>
             </Grid>
-
         </StackPanel>
     </Grid>
 </Page>

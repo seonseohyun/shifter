@@ -50,13 +50,5 @@ namespace ShifterUser.Views
             _capture?.Release();
             _frame?.Dispose();
         }
-
-        private void MockCheckButton_Click(object sender, RoutedEventArgs e)
-        {
-            // 현재 시간 찍어서 StatusBox에 표시
-            StatusText.Text = $"출근 완료! {DateTime.Now:HH:mm}";
-            StatusBox.Visibility = Visibility.Visible;
-        }
-
     }
 }

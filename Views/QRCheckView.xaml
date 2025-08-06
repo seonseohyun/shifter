@@ -43,25 +43,15 @@
                     <Run Text="수동 입력" Foreground="#007AFF" TextDecorations="Underline" />
                 </TextBlock>
 
-                <!-- 안내 문구 -->
+                <!-- 출근 버튼 -->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,16,0,0">
                     <Button Background="Transparent" BorderThickness="0"
-                            Click="MockCheckButton_Click" Cursor="Hand">
+            Command="{Binding CheckInCommand}" Cursor="Hand">
                         <Image Source="/Resources/images/pin.png" Width="16" Height="16" Margin="0,0,6,0"/>
                     </Button>
                     <TextBlock Text="하루고리 출퇴근 체크는 본인 인증 후 자동 기록됩니다."
-                               FontSize="13" Foreground="Gray" />
+               FontSize="13" Foreground="Gray" />
                 </StackPanel>
-
-                <!-- 출근/퇴근 완료 메시지 -->
-                <Border x:Name="StatusBox" Background="#E0FFF0" CornerRadius="12"
-                        Padding="12" Margin="0,24" Width="260" Visibility="Collapsed">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock x:Name="StatusIcon" Text="✔" Foreground="Green" FontSize="18" Margin="0,0,10,0"/>
-                        <TextBlock x:Name="StatusText" Text="출근 완료! 08:03" FontWeight="SemiBold" FontSize="15" />
-                    </StackPanel>
-                </Border>
-
             </StackPanel>
         </ScrollViewer>
 

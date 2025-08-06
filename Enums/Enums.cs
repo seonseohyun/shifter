@@ -26,5 +26,11 @@ namespace ShifterUser.Enums
         Approved, // 승인
         Rejected  // 반려
     }
+
+    public enum AttendanceStatus
+    {
+        출근완료,
+        퇴근완료,  
+    }
 }
 

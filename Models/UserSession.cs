@@ -17,6 +17,8 @@ namespace ShifterUser.Models
         private int pendingCount = 0;                    // 대기 요청 수
         private int rejectedCount = 0;                   // 반려 요청 수
 
+        private int _checkInUid;                         // 출퇴근 UID
+
         /** Member Methods **/
 
         // UID
@@ -47,5 +49,9 @@ namespace ShifterUser.Models
         {
             return (approvedCount, pendingCount, rejectedCount);
         }
+
+        public void SetCheckInUid(int uid) => _checkInUid = uid;
+        public int GetCheckInUid() => _checkInUid;
+
     }
 }

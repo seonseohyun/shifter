@@ -16,6 +16,7 @@
         <conv:RejectOnlyVisibilityConverter x:Key="RejectOnlyVisibilityConverter"/>
         <conv:PendingOnlyVisibilityConverter x:Key="PendingOnlyVisibilityConverter"/>
         <conv:ApprovedOrRejectedVisibilityConverter x:Key="ApprovedOrRejectedVisibilityConverter"/>
+        <conv:NullToVisibilityConverter x:Key="NullToVisibilityConverter"/>
 
         <!-- 워터마크 텍스트박스 스타일 -->
         <Style x:Key="BlueWatermarkTextBoxStyle" TargetType="TextBox">
