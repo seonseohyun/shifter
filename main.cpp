@@ -9,9 +9,9 @@
 #include <locale>
 #include <nlohmann/json.hpp>
 
-#define LINE_LABEL(label) cout << "=======================[" << label << "]=======================\n";
-#define LINE cout << "=====================================================\n";
-#define MIDDLELINE cout << u8"-----------------------------------------------------\n[ 응답 ]\n";
+#define LINE_LABEL(label) cout << "====================[" << label << "]====================\n";
+#define LINE cout << "================================================\n";
+#define MIDDLELINE cout << u8"------------------------------------------------\n[ 응답 ]\n";
 
 using json = nlohmann::json;
 using namespace std;
@@ -74,7 +74,7 @@ void handleClient(SOCKET clientSocket) {
                 TcpServer::sendJsonResponse(clientSocket, response.dump()); // 제이슨 전송
                 MIDDLELINE
                 cout << response.dump(2) << endl;
-                LINE 
+                LINE
             }
             else if (protocol == u8"login_admin") {
                 LINE_LABEL("login_admin")
@@ -103,16 +103,33 @@ void handleClient(SOCKET clientSocket) {
                 cout << response.dump(2) << endl;
                 LINE
             }
-            //else if (protocol == u8"cancel_shift_change") {
-            //    LINE_LABEL("ask_shift_change")
-            //    db.connect();
-            //    nlohmann::json response = ProtocolHandler::handle_cancel_shift_change(json, db);
-            //    TcpServer::sendJsonResponse(clientSocket, response.dump());
-            //    MIDDLELINE
-            //    cout << response.dump(2) << endl;
-            //    LINE
-            //}
-            
+            else if (protocol == u8"cancel_shift_change") {
+                LINE_LABEL("cancel_shift_change")
+                db.connect();
+                nlohmann::json response = ProtocolHandler::handle_cancel_shift_change(json, db);
+                TcpServer::sendJsonResponse(clientSocket, response.dump());
+                MIDDLELINE
+                cout << response.dump(2) << endl;
+                LINE
+            }
+            else if (protocol == u8"ask_check_in") {
+                LINE_LABEL("ask_check_in")
+                db.connect();
+                nlohmann::json response = ProtocolHandler::handle_check_in(json, db);
+                TcpServer::sendJsonResponse(clientSocket, response.dump());
+                MIDDLELINE
+                cout << response.dump(2) << endl;
+                LINE
+            }
+            else if (protocol == u8"ask_check_out") {
+                LINE_LABEL("ask_check_out")
+                db.connect();
+                nlohmann::json response = ProtocolHandler::handle_check_out(json, db);
+                TcpServer::sendJsonResponse(clientSocket, response.dump());
+                MIDDLELINE
+                cout << response.dump(2) << endl;
+                LINE
+            }
             else {
                 std::cerr << u8"[에러] 알 수 없는 프로토콜: " << protocol << std::endl;
                 TcpServer::sendJsonResponse(clientSocket, R"({"protocol":"unknown","resp":"fail","messege":"unknown_protocol"})");
@@ -129,7 +146,6 @@ void handleClient(SOCKET clientSocket) {
         }
     }
 }
-
 
 int main() {
     // 콘솔 한글 깨짐 방지 설정

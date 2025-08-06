@@ -183,3 +183,38 @@ void TcpServer::sendJsonResponse(SOCKET sock, const std::string& jsonStr) {
     send(sock, header, 8, 0);
     send(sock, jsonStr.c_str(), jsonStr.size(), 0);
 }
+
+// =======================================================================
+// [connectToPythonServer]
+// - 파이썬 서버와 연결
+// =======================================================================
+SOCKET TcpServer::connectToPythonServer(const std::string& ip, int port) {
+    WSADATA wsaData;
+    SOCKET sock = INVALID_SOCKET;
+    sockaddr_in serverAddr{};
+
+    if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
+        std::cerr << "[PythonConnect] WSAStartup 실패\n";
+        return INVALID_SOCKET;
+    }
+
+    sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+    if (sock == INVALID_SOCKET) {
+        std::cerr << "[PythonConnect] 소켓 생성 실패\n";
+        WSACleanup();
+        return INVALID_SOCKET;
+    }
+
+    serverAddr.sin_family = AF_INET;
+    serverAddr.sin_port = htons(port);
+    inet_pton(AF_INET, ip.c_str(), &serverAddr.sin_addr);
+
+    if (connect(sock, (sockaddr*)&serverAddr, sizeof(serverAddr)) == SOCKET_ERROR) {
+        std::cerr << "[PythonConnect] 연결 실패\n";
+        closesocket(sock);
+        WSACleanup();
+        return INVALID_SOCKET;
+    }
+
+    return sock;  // 연결 성공 시 소켓 반환 (나중에 closesocket 꼭 할 것!)
+}
