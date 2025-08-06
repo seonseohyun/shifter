@@ -62,7 +62,7 @@ def parse_target_month(target_month):
         # 기본값: 2025년 8월
         return datetime(2025, 8, 1), 31
 
-def apply_position_constraints(model, schedule, person, days, shifts, shift_hours, num_weeks, rules, position, night_shifts):
+def apply_position_constraints(model, schedule, person, days, shifts, shift_hours, num_weeks, rules, position, night_shifts, off_shifts):
     """직군별 제약조건 적용"""
     sid = str(person["staff_id"])
     grade = person.get("grade", 1)
@@ -89,21 +89,25 @@ def apply_position_constraints(model, schedule, person, days, shifts, shift_hour
         
         
         #야간 근무 후 반드시 휴무
-        if rules.get("night_after_off", False) and 'O' in shifts:
+        if rules.get("night_after_off", False) and off_shifts:
             for ns in night_shifts:
                 if ns in shifts:
                     for d in range(len(days) -1):
                         night = schedule[(sid, d, ns)]
-                        off_next = schedule[(sid, d + 1, 'O')]
-                        model.AddImplication(night, off_next)
+                        # off_next = schedule[(sid, d + 1, 'O')]
+                        # model.AddImplication(night, off_next)
+                        
+                        off_next_vars = [schedule[(sid, d + 1, os)] for os in off_shifts if os in shifts]
+                        if off_next_vars:
+                            model.Add(sum(off_next_vars) == 1).OnlyEnforceIf(night)  # 야간 시 휴무 하나만
+
+                        # 야간 근무 후 다른 근무 금지 (동적 확장: 비야간/비휴무 시프트)
+                        for other_shift in shifts:
+                            if other_shift not in off_shifts and other_shift not in night_shifts:
+                                next_shift = schedule[(sid, d + 1, other_shift)]
+                                model.AddBoolOr([night.Not(), next_shift.Not()])
                 
-                        # 야간 근무 후 다른 근무 금지
-                        if 'D' in shifts:
-                            day_next = schedule[(sid, d + 1, 'D')]
-                            model.AddBoolOr([night.Not(), day_next.Not()])
-                        if 'E' in shifts:
-                            eve_next = schedule[(sid, d + 1, 'E')]
-                            model.AddBoolOr([night.Not(), eve_next.Not()])
+                        
        
         
         # 최소 휴무일
@@ -269,6 +273,22 @@ def create_individual_shift_schedule(staff_data, shift_type, position="default",
         else:
             print(f"[info] 식별된 야간 시프트 : {night_shifts}")
 
+        #휴무 시프트 동적 식별 추가
+        off_keywords = ['o', 'off', 'rest', '휴무', '쉼', 'free','Off','REST','Free']
+        off_shifts = []
+        if custom_rules and "off_shifts" in custom_rules:
+            off_shifts = custom_rules["off_shifts"]
+        else:
+            for s in shifts:
+                if any(keyword.lower() in s.lower() for keyword in off_keywords):
+                    off_shifts.append(s)
+        
+        if not off_shifts:
+            print(f"[WARNING] 휴무 시프트가 식별되지 않음. 제약 일부 무시될 수 있음.")
+        else:
+            print(f"[INFO] 식별된 휴무 시프트: {off_shifts}")
+
+
         # custom_rules에서 shifts와 shift_hours만 추출하여 적용 (다른 제약조건은 무시)
         if custom_rules and "shifts" in custom_rules and "shift_hours" in custom_rules:
             shifts = custom_rules["shifts"]
@@ -346,7 +366,7 @@ def create_individual_shift_schedule(staff_data, shift_type, position="default",
             person_position = person.get("position", position)  
             person_rules = POSITION_RULES.get(person_position, base_rules)
 
-            apply_position_constraints(model, schedule, person, days, shifts, shift_hours, num_weeks, person_rules, person_position, night_shifts)
+            apply_position_constraints(model, schedule, person, days, shifts, shift_hours, num_weeks, person_rules, person_position, night_shifts, off_shifts)
 
         # 야간 근무 균등 분배 (야간 근무가 있는 경우만 소방은 24시간)
         if night_shift and night_shift in shifts:

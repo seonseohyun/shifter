@@ -73,9 +73,16 @@ def send_request(request_data):
         print(f"[ERROR] 서버 연결 또는 요청 처리 중 오류: {e}")
         return None, 0
 
-def test_recommended_scenario(test_id, shifts, shift_hours, staff_data, description):
+def test_recommended_scenario(test_id, shifts, shift_hours, staff_data, description, off_shifts=None):
     """권장 테스트 조건으로 테스트 수행"""
-    
+    custom_rules = {
+        "shifts": shifts,
+        "shift_hours": shift_hours
+    }
+    if off_shifts:  # off_shifts가 제공된 경우에만 추가
+        custom_rules["off_shifts"] = off_shifts
+
+
     request = {
         "position": "간호",
         "shift_type": 3,
@@ -83,10 +90,7 @@ def test_recommended_scenario(test_id, shifts, shift_hours, staff_data, descript
         "staff_data": {
             "staff": staff_data
         },
-        "custom_rules": {
-            "shifts": shifts,
-            "shift_hours": shift_hours
-        }
+        "custom_rules": custom_rules
     }
     
     print(f"\n{'='*60}")
@@ -97,7 +101,7 @@ def test_recommended_scenario(test_id, shifts, shift_hours, staff_data, descript
     print(f"직원 수: {len(staff_data)}명")
     
     # 수학적 검증
-    non_off_shifts = [s for s in shifts if s not in ['O', 'Off', 'REST', '휴무', '쉼']]
+    non_off_shifts = [s for s in shifts if s not in  ['o', 'off', 'rest', '휴무', '쉼', 'free','Off','REST','Free']]
     max_daily_hours = sum(shift_hours[s] for s in non_off_shifts)
     max_monthly_hours = max_daily_hours * 31 # 보통 한달 31일 
     avg_target_hours = sum(staff["total_monthly_work_hours"] for staff in staff_data) / len(staff_data)
@@ -157,85 +161,160 @@ def run_recommended_tests():
     common_staff = generate_random_staff(23)
     
     # 권장 테스트 시나리오들
+    # test_scenarios = [
+    #     # 2교대 시스템 (5개)
+    #     {
+    #         "shifts": ["주간", "야간", "휴무"],
+    #         "shift_hours": {"주간": 12, "야간": 12, "휴무": 0},
+    #         "description": "2교대 한글 12시간 시스템"
+    #     },
+    #     {
+    #         "shifts": ["Day", "Night", "Off"],
+    #         "shift_hours": {"Day": 10, "Night": 14, "Off": 0},
+    #         "description": "2교대 영문 비대칭 시간"
+    #     },
+    #     {
+    #         "shifts": ["오전", "오후", "쉼"],
+    #         "shift_hours": {"오전": 8, "오후": 16, "쉼": 0},
+    #         "description": "2교대 오전-오후 시스템"
+    #     },
+    #     {
+    #         "shifts": ["Early", "Late", "REST"],
+    #         "shift_hours": {"Early": 9, "Late": 15, "REST": 0},
+    #         "description": "2교대 Early-Late 시스템"
+    #     },
+    #     {
+    #         "shifts": ["A", "B", "O"],
+    #         "shift_hours": {"A": 11, "B": 13, "O": 0},
+    #         "description": "2교대 A-B 시스템"
+    #     },
+        
+    #     # 3교대 시스템 (5개)
+    #     # {
+    #     #     "shifts": ["D", "E", "N", "O"],
+    #     #     "shift_hours": {"D": 8, "E": 8, "N": 8, "O": 0},
+    #     #     "description": "3교대 표준 시스템"
+    #     # },
+    #     {
+    #         "shifts": ["아침", "저녁", "밤", "휴무"],
+    #         "shift_hours": {"아침": 8, "저녁": 8, "밤": 8, "휴무": 0},
+    #         "description": "3교대 한글 시스템"
+    #     },
+    #     {
+    #         "shifts": ["Morning", "Evening", "Night", "Off"],
+    #         "shift_hours": {"Morning": 7, "Evening": 8, "Night": 9, "Off": 0},
+    #         "description": "3교대 영문 비대칭"
+    #     },
+    #     {
+    #         "shifts": ["06-14", "14-22", "22-06", "Off"],
+    #         "shift_hours": {"06-14": 8, "14-22": 8, "22-06": 8, "Off": 0},
+    #         "description": "3교대 시간대 표기"
+    #     },
+    #     {
+    #         "shifts": ["Shift1", "Shift2", "Shift3", "Free"],
+    #         "shift_hours": {"Shift1": 8, "Shift2": 8, "Shift3": 8, "Free": 0},
+    #         "description": "3교대 번호 시스템"
+    #     },
+        
+    #     # 4교대 시스템 (3개) - 시간 증가로 수정
+    #     {
+    #         "shifts": ["새벽", "오전", "오후", "밤", "휴무"],
+    #         "shift_hours": {"새벽": 8, "오전": 8, "오후": 8, "밤": 8, "휴무": 0},
+    #         "description": "4교대 한글 8시간"
+    #     },       
+    #     {
+    #         "shifts": ["Alpha", "Beta", "Gamma", "Delta", "REST"],
+    #         "shift_hours": {"Alpha": 8, "Beta": 7, "Gamma": 7, "Delta": 8, "REST": 0},
+    #         "description": "4교대 그리스 문자 혼합시간"
+    #     },
+        
+    #     # 특수 시스템 (2개)
+    #     {
+    #         "shifts": ["LongDay", "ShortNight", "Off"],
+    #         "shift_hours": {"LongDay": 16, "ShortNight": 8, "Off": 0},
+    #         "description": "특수 Long-Short 시스템"
+    #     },
+    #     {
+    #         "shifts": ["FullShift", "HalfShift", "Off"],
+    #         "shift_hours": {"FullShift": 12, "HalfShift": 6, "Off": 0},
+    #         "description": "특수 Full-Half 시스템"
+    #     }
+    # ]
+    
+    # 좀더 현실적 시나리오
     test_scenarios = [
-        # 2교대 시스템 (5개)
-        {
-            "shifts": ["주간", "야간", "휴무"],
-            "shift_hours": {"주간": 12, "야간": 12, "휴무": 0},
-            "description": "2교대 한글 12시간 시스템"
-        },
-        {
-            "shifts": ["Day", "Night", "Off"],
-            "shift_hours": {"Day": 10, "Night": 14, "Off": 0},
-            "description": "2교대 영문 비대칭 시간"
-        },
-        {
-            "shifts": ["오전", "오후", "쉼"],
-            "shift_hours": {"오전": 8, "오후": 16, "쉼": 0},
-            "description": "2교대 오전-오후 시스템"
-        },
-        {
-            "shifts": ["Early", "Late", "REST"],
-            "shift_hours": {"Early": 9, "Late": 15, "REST": 0},
-            "description": "2교대 Early-Late 시스템"
-        },
-        {
-            "shifts": ["A", "B", "O"],
-            "shift_hours": {"A": 11, "B": 13, "O": 0},
-            "description": "2교대 A-B 시스템"
-        },
-        
-        # 3교대 시스템 (5개)
-        # {
-        #     "shifts": ["D", "E", "N", "O"],
-        #     "shift_hours": {"D": 8, "E": 8, "N": 8, "O": 0},
-        #     "description": "3교대 표준 시스템"
-        # },
-        {
-            "shifts": ["아침", "저녁", "밤", "휴무"],
-            "shift_hours": {"아침": 8, "저녁": 8, "밤": 8, "휴무": 0},
-            "description": "3교대 한글 시스템"
-        },
-        {
-            "shifts": ["Morning", "Evening", "Night", "Off"],
-            "shift_hours": {"Morning": 7, "Evening": 8, "Night": 9, "Off": 0},
-            "description": "3교대 영문 비대칭"
-        },
-        {
-            "shifts": ["06-14", "14-22", "22-06", "Off"],
-            "shift_hours": {"06-14": 8, "14-22": 8, "22-06": 8, "Off": 0},
-            "description": "3교대 시간대 표기"
-        },
-        {
-            "shifts": ["Shift1", "Shift2", "Shift3", "Free"],
-            "shift_hours": {"Shift1": 8, "Shift2": 8, "Shift3": 8, "Free": 0},
-            "description": "3교대 번호 시스템"
-        },
-        
-        # 4교대 시스템 (3개) - 시간 증가로 수정
-        {
-            "shifts": ["새벽", "오전", "오후", "밤", "휴무"],
-            "shift_hours": {"새벽": 8, "오전": 8, "오후": 8, "밤": 8, "휴무": 0},
-            "description": "4교대 한글 8시간"
-        },       
-        {
-            "shifts": ["Alpha", "Beta", "Gamma", "Delta", "REST"],
-            "shift_hours": {"Alpha": 8, "Beta": 7, "Gamma": 7, "Delta": 8, "REST": 0},
-            "description": "4교대 그리스 문자 혼합시간"
-        },
-        
-        # 특수 시스템 (2개)
-        {
-            "shifts": ["LongDay", "ShortNight", "Off"],
-            "shift_hours": {"LongDay": 16, "ShortNight": 8, "Off": 0},
-            "description": "특수 Long-Short 시스템"
-        },
-        {
-            "shifts": ["FullShift", "HalfShift", "Off"],
-            "shift_hours": {"FullShift": 12, "HalfShift": 6, "Off": 0},
-            "description": "특수 Full-Half 시스템"
-        }
-    ]
+    {
+        "shifts": ["Day", "Night", "Off"],
+        "shift_hours": {"Day": 12, "Night": 12, "Off": 0},
+        "description": "2교대 표준 시스템"
+    },
+    {
+        "shifts": ["D", "N", "O"],
+        "shift_hours": {"D": 10, "N": 14, "O": 0},
+        "description": "2교대 비대칭 시스템"
+    },
+    {
+        "shifts": ["주간", "야간", "휴무"],
+        "shift_hours": {"주간": 12, "야간": 12, "휴무": 0},
+        "description": "2교대 한글 시스템"
+    },
+    {
+        "shifts": ["AM", "PM", "Night", "Off"],
+        "shift_hours": {"AM": 6, "PM": 6, "Night": 12, "Off": 0},
+        "description": "요양병원 2.5교대"
+    },
+    {
+        "shifts": ["오전", "야간", "휴무"],
+        "shift_hours": {"오전": 8, "야간": 16, "휴무": 0},
+        "description": "야간 16시간형"
+    },
+    {
+        "shifts": ["D", "E", "N", "Off"],
+        "shift_hours": {"D": 8, "E": 8, "N": 8, "Off": 0},
+        "description": "3교대 병원 표준"
+    },
+    {
+        "shifts": ["Morning", "Evening", "Night", "Off"],
+        "shift_hours": {"Morning": 8, "Evening": 8, "Night": 8, "Off": 0},
+        "description": "3교대 영문 시스템"
+    },
+    {
+        "shifts": ["06-14", "14-22", "22-06", "Off"],
+        "shift_hours": {"06-14": 8, "14-22": 8, "22-06": 8, "Off": 0},
+        "description": "3교대 시간대 표기"
+    },
+    {
+        "shifts": ["D", "E", "N", "O"],
+        "shift_hours": {"D": 8, "E": 8, "N": 6, "O": 0},
+        "description": "3교대 야간단축형"
+    },
+    {
+        "shifts": ["FullDay", "HalfDay", "Night", "Off"],
+        "shift_hours": {"FullDay": 8, "HalfDay": 4, "Night": 8, "Off": 0},
+        "description": "파트타임 포함형"
+    },
+    {
+        "shifts": ["Day", "Evening", "Night", "Off"],
+        "shift_hours": {"Day": 9, "Evening": 7, "Night": 8, "Off": 0},
+        "description": "병원형 유연 3교대"
+    },
+    {
+        "shifts": ["M", "A", "N", "R"],
+        "shift_hours": {"M": 8, "A": 8, "N": 8, "R": 0},
+        "description": "3교대 축약형"
+    },
+    {
+        "shifts": ["오전", "오후", "심야", "휴무"],
+        "shift_hours": {"오전": 7, "오후": 7, "심야": 10, "휴무": 0},
+        "description": "장시간 심야형"
+    },
+    {
+        "shifts": ["Day", "Night", "Off"],
+        "shift_hours": {"Day": 11, "Night": 13, "Off": 0},
+        "description": "2교대 비율조정형"
+    }
+]
+
     
     # 결과 추적
     success_count = 0
