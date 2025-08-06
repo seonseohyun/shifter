@@ -2,6 +2,7 @@
 
 public class WorkRequestModel
 {
+    public int Uid { get; set; }
     public DateTime RequestDate { get; set; }
     public ShiftType ShiftType { get; set; }
     public WorkRequestStatus Status { get; set; }

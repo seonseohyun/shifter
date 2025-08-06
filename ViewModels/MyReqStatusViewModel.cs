@@ -22,7 +22,6 @@ namespace ShifterUser.ViewModels
 
         public IRelayCommand LoadOnAppearCommand { get; }
         public IAsyncRelayCommand LoadRequestsCommand { get; }
-        public IRelayCommand GoToReqScheCommand { get; }
 
         public ObservableCollection<int> Years { get; } = new() { 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025 };
         public ObservableCollection<int> Months { get; } = new() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
@@ -30,6 +29,8 @@ namespace ShifterUser.ViewModels
         [ObservableProperty] private int selectedYear;
         [ObservableProperty] private int selectedMonth;
         [ObservableProperty] private WorkRequestStatus? filterStatus;
+        [ObservableProperty] private bool isDetailVisible;
+
 
         private List<WorkRequestModel> allRequests = new();
 
@@ -43,7 +44,7 @@ namespace ShifterUser.ViewModels
             _uid = session.GetUid(); // UID 저장
 
             LoadRequestsCommand = new AsyncRelayCommand(LoadRequestsAsync);
-            GoToReqScheCommand = new RelayCommand(GoToReqSche);
+            //GoToReqScheCommand = new RelayCommand(GoToReqSche);
             LoadOnAppearCommand = new RelayCommand(LoadInitialData);
 
             // 이벤트 차단 후 초기 설정
@@ -95,6 +96,47 @@ namespace ShifterUser.ViewModels
         {
             UpdateFilteredList();
         }
+
+        [RelayCommand]
+        private void ShowRequestDetail(WorkRequestModel item)
+        {
+            SelectedRequest = item;
+            IsDetailVisible = true;
+
+        }
+
+        [RelayCommand]
+        private async Task CancelRequestAsync()
+        {
+            if (SelectedRequest == null)
+                return;
+
+            int requestUid = SelectedRequest.Uid;
+
+            bool result = await _reqModel.CancelShiftRequestAsync(requestUid);
+
+            if (result)
+            {
+                Console.WriteLine("들어옴!!!!!!");
+                // 다시 요청 목록 불러오기
+                await LoadRequestsAsync();
+                IsDetailVisible = false;
+            }
+            else
+            {
+                // 실패 메시지 출력
+                Console.WriteLine("근무 요청 취소 실패");
+            }
+        }
+
+        [RelayCommand]
+        private void CloseDetail()
+        {
+            IsDetailVisible = false;
+        }
+
+
+        [RelayCommand]  
 
         private void GoToReqSche()
         {

@@ -16,6 +16,7 @@
                           ShadowDepth="10"
                           BlurRadius="6"
                           Opacity="0.5"/>
+        <conv:ApprovedOrRejectedVisibilityConverter x:Key="ApprovedOrRejectedVisibilityConverter"/>
     </Page.Resources>
 
     <Grid>
@@ -60,27 +61,23 @@
                                   VerticalScrollBarVisibility="Hidden"
                                   CanContentScroll="False">
                         <StackPanel>
-
-                            <!-- 타이틀 -->
                             <TextBlock Text="내 근무 요청 현황 보기"
                                        FontSize="22" FontWeight="Bold"
-                                       Margin="10,10,0,15"/>
+                                       Margin="10,10,0,30"/>
 
                             <!-- 연도/월 선택 -->
-                            <StackPanel Orientation="Horizontal" Margin="10,0,0,10" VerticalAlignment="Center">
-                                <!-- 연도 -->
+                            <StackPanel Orientation="Horizontal" Margin="10,0,0,30" VerticalAlignment="Center">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
                                     <ComboBox Width="135" Height="25" FontSize="14"
-                                      ItemsSource="{Binding Years}"
-                                      SelectedItem="{Binding SelectedYear}"/>
+                                              ItemsSource="{Binding Years}"
+                                              SelectedItem="{Binding SelectedYear}"/>
                                     <TextBlock Text="년" Margin="5,0,10,0" VerticalAlignment="Center" FontSize="14"/>
                                 </StackPanel>
 
-                                <!-- 월 -->
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                     <ComboBox Width="135" Height="25" FontSize="14"
-                                      ItemsSource="{Binding Months}"
-                                      SelectedItem="{Binding SelectedMonth}"/>
+                                              ItemsSource="{Binding Months}"
+                                              SelectedItem="{Binding SelectedMonth}"/>
                                     <TextBlock Text="월" Margin="5,0,0,0" VerticalAlignment="Center" FontSize="14"/>
                                 </StackPanel>
                             </StackPanel>
@@ -95,121 +92,125 @@
                                             CornerRadius="10"
                                             Margin="5,0,5,10"
                                             Padding="10,14">
-                                            <!-- 상하 Padding 증가 -->
+                                            <Border.InputBindings>
+                                                <MouseBinding Gesture="LeftClick"
+                                  Command="{Binding DataContext.ShowRequestDetailCommand, RelativeSource={RelativeSource AncestorType=Page}}"
+                                  CommandParameter="{Binding}"/>
+                                            </Border.InputBindings>
+
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="*"/>
                                                     <ColumnDefinition Width="Auto"/>
                                                 </Grid.ColumnDefinitions>
 
-                                                <!-- 왼쪽 정보 -->
                                                 <StackPanel>
                                                     <StackPanel Orientation="Horizontal" Margin="0,0,0,2">
                                                         <TextBlock Text="{Binding RequestDate, StringFormat=yyyy.MM.dd}"
-                                                        FontWeight="Bold" FontSize="15"/>
+                                       FontWeight="Bold" FontSize="15"/>
                                                         <Border Background="#F5F5F5" CornerRadius="10" Margin="5,0,0,0" Padding="5,0">
                                                             <TextBlock Text="{Binding ShiftType}" FontSize="12"/>
                                                         </Border>
                                                     </StackPanel>
-                                                    <TextBlock Text="{Binding Reason}" FontSize="13" Foreground="Gray"/>
+                                                    <!-- 줄바꿈 추가 -->
+                                                    <TextBlock Text="{Binding Reason}" 
+                                                       FontSize="13" 
+                                                       Foreground="Gray"
+                                                       TextWrapping="Wrap"/>
                                                 </StackPanel>
 
-                                                <!-- 오른쪽 상태 -->
                                                 <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,10,0">
-                                                    <Image Width="16" Height="16" Source="{Binding Status, Converter={StaticResource StatusToIconConverter}}" Margin="0,0,5,0"/>
-                                                    <TextBlock Text="{Binding StatusText}" FontWeight="Bold" FontSize="14"
-                                                    Foreground="{Binding Status, Converter={StaticResource StatusToColorConverter}}"/>
+                                                    <Image Width="16" Height="16"
+                               Source="{Binding Status, Converter={StaticResource StatusToIconConverter}}"
+                               Margin="0,0,5,0"/>
+                                                    <TextBlock Text="{Binding StatusText}"
+                                   FontWeight="Bold" FontSize="14"
+                                   Foreground="{Binding Status, Converter={StaticResource StatusToColorConverter}}"/>
                                                 </StackPanel>
                                             </Grid>
                                         </Border>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
-
                         </StackPanel>
                     </ScrollViewer>
 
                     <!-- 하단 고정 버튼 -->
-                    <Border Grid.Row="1" Margin="0,10,0,10" CornerRadius="22"
-                            Background="#007AFF" Height="44">
+                    <Border Grid.Row="1" Margin="0,10,0,10" CornerRadius="22" Background="#007AFF" Height="44">
                         <Button Content="+ 근무 희망 일정 요청하기"
-                                FontSize="17"
-                                FontWeight="Bold"
-                                Background="Transparent"
-                                Foreground="White"
-                                BorderThickness="0"
+                                FontSize="17" FontWeight="Bold" Background="Transparent"
+                                Foreground="White" BorderThickness="0"
                                 Command="{Binding GoToReqScheCommand}"/>
                     </Border>
 
-                    <!-- 팝업 배경 + 카드 -->
-                    <Grid Grid.RowSpan="2"
-                       Visibility="{Binding IsDetailVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
-                       Panel.ZIndex="99">
+                    <!-- 팝업 -->
+                    <Grid Visibility="{Binding IsDetailVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="179*"/>
+                            <RowDefinition Height="444*"/>
+                        </Grid.RowDefinitions>
+                        <Rectangle Fill="#80000000" MouseDown="DetailBackground_MouseDown" Margin="-39,-82,-33,-97" Grid.RowSpan="2"/>
 
-                        <!-- 어두운 배경 -->
-                        <Rectangle Fill="#80000000" MouseDown="DetailBackground_MouseDown" Margin="-32,-78,-33,-32"/>
-
-                        <!-- 하얀 카드 -->
-                        <Border Background="#F7F7F7"
-                             CornerRadius="25,25,0,0"
-                             Margin="-32,326,-33,-32"
-                             Padding="24"
-                             SnapsToDevicePixels="True">
-
-                            <StackPanel>
-                                <!-- 상단 핸들 -->
+                        <Border Background="White" CornerRadius="25,25,0,0" Padding="24" Margin="-31,180,-33,-97" Grid.Row="1">
+                            <StackPanel HorizontalAlignment="Center">
                                 <Rectangle Height="6" Width="60" Fill="LightGray" RadiusX="3" RadiusY="3"
-                                    HorizontalAlignment="Center" Margin="0,0,0,12"/>
+                                           HorizontalAlignment="Center" Margin="0,0,0,20"/>
 
-                                <!-- 근무 요약 -->
-                                <TextBlock Text="근무 요약" FontWeight="Bold" FontSize="18" Margin="0,5,0,15"/>
+                                <Image Width="55" Height="55" Margin="0,0,0,15"
+                                       Source="{Binding SelectedRequest.Status, Converter={StaticResource StatusToIconConverter}}"/>
 
-                                <Border Background="White" CornerRadius="10" Padding="12" Margin="0,0,0,12">
+                                <TextBlock FontSize="18" FontWeight="Bold" TextAlignment="Center" Margin="0,0,0,15" Width="334">
+                                    <Run Text="{Binding SelectedRequest.RequestDate, StringFormat={}{0:MM월 dd일}}"/>
+                                    <Run Text=" 근무 요청 결과"/>
+                                </TextBlock>
+
+                                <!-- 요청 상세 정보 회색 카드 -->
+                                <Border Background="#F5F5F5"
+                                    CornerRadius="10"
+                                    Padding="12"
+                                    Margin="0,0,0,10">
                                     <StackPanel>
-                                        <StackPanel Orientation="Horizontal" Margin="0,0,0,6">
-                                            <TextBlock Text="근무 유형" Foreground="Gray" Width="80" FontSize="14"/>
-                                            <TextBlock Text="{Binding SelectedDayData.Schedule.ShiftType}" FontWeight="SemiBold" FontSize="14"/>
-                                        </StackPanel>
 
-                                        <StackPanel Orientation="Horizontal" Margin="0,0,0,6">
-                                            <TextBlock Text="근무 시간" Foreground="Gray" Width="80" FontSize="14"/>
-                                            <TextBlock FontSize="14">
-                             <Run Text="{Binding SelectedDayData.Schedule.StartTime}" />
-                             <Run Text=" - " />
-                             <Run Text="{Binding SelectedDayData.Schedule.EndTime}" />
-                                            </TextBlock>
-                                        </StackPanel>
+                                        <TextBlock FontSize="14" TextWrapping="Wrap" Margin="0,0,0,5">
+                                            <Run Text="요청 근무 유형: "/>
+                                            <Run Text="{Binding SelectedRequest.ShiftType}"/>
+                                        </TextBlock>
 
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="그룹" Foreground="Gray" Width="80" FontSize="14"/>
-                                            <TextBlock Text="{Binding SelectedDayData.Schedule.GroupName}" FontSize="14"/>
-                                        </StackPanel>
+                                        <TextBlock FontSize="14" TextWrapping="Wrap" Margin="0,0,0,5">
+                                            <Run Text="작성 사유: "/>
+                                            <Run Text="{Binding SelectedRequest.Reason}"/>
+                                        </TextBlock>
+
+                                        <TextBlock FontSize="14" TextWrapping="Wrap" Foreground="Gray"
+                                             Visibility="{Binding SelectedRequest.Status, Converter={StaticResource RejectOnlyVisibilityConverter}}">
+                                            <Run Text="반려 사유: "/>
+                                            <Run Text="{Binding SelectedRequest.RejectionReason}"/>
+                                        </TextBlock>
                                     </StackPanel>
                                 </Border>
 
-                                <!-- 출퇴근 기록 -->
-                                <TextBlock Text="출퇴근 기록" FontWeight="Bold" FontSize="18" Margin="0,5,0,15"/>
+                                <!-- 취소하기 버튼 (Pending 전용) -->
+                                <Border CornerRadius="22"
+                                    Height="44" Width="332"
+                                    Background="#007AFF"
+                                    Visibility="{Binding SelectedRequest.Status, Converter={StaticResource PendingOnlyVisibilityConverter}}"
+                                    Margin="0,10,0,0">
+                                    <Button Content="취소하기"
+                                        FontSize="15" FontWeight="Bold" Foreground="White"
+                                        Background="Transparent" BorderThickness="0"
+                                        Command="{Binding CancelRequestCommand}"/>
+                                </Border>
 
-                                <Border Background="White" CornerRadius="10" Padding="12">
-                                    <StackPanel>
-                                        <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
-                                            <Image Source="/Resources/images/check_green.png" Width="20" Height="20" Margin="0,0,6,0"/>
-                                            <TextBlock FontSize="14">
-                         <Run Text="출근 시각 "/>
-                         <Run Text="{Binding SelectedDayData.Attendance.ClockInTime}" FontWeight="SemiBold"/>
-                         <Run Text=" 출근 완료"/>
-                                            </TextBlock>
-                                        </StackPanel>
-
-                                        <StackPanel Orientation="Horizontal" >
-                                            <Image Source="/Resources/images/check_green.png" Width="20" Height="20" Margin="0,0,6,0"/>
-                                            <TextBlock FontSize="14">
-                         <Run Text="퇴근 시각 "/>
-                         <Run Text="{Binding SelectedDayData.Attendance.ClockOutTime}" FontWeight="SemiBold"/>
-                         <Run Text=" 퇴근 완료"/>
-                                            </TextBlock>
-                                        </StackPanel>
-                                    </StackPanel>
+                                <!-- 확인 버튼 (Approved, Rejected 전용) -->
+                                <Border CornerRadius="22"
+                                    Height="44" Width="332"
+                                    Background="#007AFF"
+                                    Visibility="{Binding SelectedRequest.Status, Converter={StaticResource ApprovedOrRejectedVisibilityConverter}}"
+                                    Margin="0,10,0,0">
+                                    <Button Content="확인"
+                                        FontSize="15" FontWeight="Bold" Foreground="White"
+                                        Background="Transparent" BorderThickness="0"
+                                        Command="{Binding CloseDetailCommand}"/>
                                 </Border>
 
                             </StackPanel>

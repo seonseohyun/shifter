@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using System.Windows.Input;
 namespace ShifterUser.Views
 {
     /// <summary>
@@ -35,5 +35,13 @@ namespace ShifterUser.Views
                     vm.LoadOnAppearCommand.Execute(null);
             }
         }
+        private void DetailBackground_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (DataContext is MyReqStatusViewModel vm)
+            {
+                vm.IsDetailVisible = false;
+            }
+        }
+
     }
 }

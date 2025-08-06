@@ -13,6 +13,9 @@
         <conv:ZeroToVisibleConverter x:Key="ZeroToVisibleConverter" />
         <conv:StatusToColorConverter x:Key="StatusToColorConverter"/>
         <conv:StatusToIconConverter x:Key="StatusToIconConverter"/>
+        <conv:RejectOnlyVisibilityConverter x:Key="RejectOnlyVisibilityConverter"/>
+        <conv:PendingOnlyVisibilityConverter x:Key="PendingOnlyVisibilityConverter"/>
+        <conv:ApprovedOrRejectedVisibilityConverter x:Key="ApprovedOrRejectedVisibilityConverter"/>
 
         <!-- 워터마크 텍스트박스 스타일 -->
         <Style x:Key="BlueWatermarkTextBoxStyle" TargetType="TextBox">

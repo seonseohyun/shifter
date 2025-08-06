@@ -8,6 +8,7 @@ using System.Net.Sockets;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Web;
+using System.Windows;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ShifterUser.Models
@@ -152,6 +153,7 @@ namespace ShifterUser.Models
 
                     foreach (var item in dataArray)
                     {
+                        int requestUid = item["duty_request_uid"]?.ToObject<int>() ?? 0;
                         string dateStr = item["request_date"]?.ToString() ?? "";
                         string shiftStr = item["desire_shift"]?.ToString() ?? "";
                         string statusStr = item["status"]?.ToString() ?? "";
@@ -162,6 +164,7 @@ namespace ShifterUser.Models
                         {
                             list.Add(new WorkRequestModel
                             {
+                                Uid = requestUid,
                                 RequestDate = date,
                                 ShiftType = EnumHelper.ParseShiftType(shiftStr),
                                 Status = EnumHelper.ParseWorkRequestStatus(statusStr),
@@ -229,5 +232,41 @@ namespace ShifterUser.Models
                 return false;
             }
         }
+
+        public async Task<bool> CancelShiftRequestAsync(int requestUid)
+        {
+            JObject reqJson = new()
+            {
+                ["protocol"] = "cancel_shift_change",
+                ["data"] = new JObject
+                {
+                    ["duty_request_uid"] = requestUid
+                }
+            };
+
+            WorkItem sendItem = new()
+            {
+                json = reqJson.ToString(),
+                payload = [],
+                path = ""
+            };
+
+            _socket.Send(sendItem);
+
+            WorkItem response = _socket.Receive();
+            JObject res = JObject.Parse(response.json);
+
+            if (res?["protocol"]?.ToString() == "cancel_shift_change" &&
+                res["resp"]?.ToString() == "success")
+            {
+                Console.WriteLine("[WorkRequestManager] 근무 요청 취소 성공");
+                MessageBox.Show("요청이 취소되었습니다.");
+                return true;
+            }
+
+            Console.WriteLine("[WorkRequestManager] 근무 요청 취소 실패");
+            return false;
+        }
+
     }
 }
