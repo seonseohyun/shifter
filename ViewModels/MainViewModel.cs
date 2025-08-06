@@ -75,7 +75,7 @@ public partial class MainViewModel : ObservableObject {
                 _mainFrame.Navigate(new RgsEmpInfoView { DataContext = App.Services!.GetService(typeof(RgsEmpInfoViewModel)) });
                 break;
             case PageType.ChkTmpEmpInfo:
-                //_mainFrame.Navigate(new )
+                _mainFrame.Navigate(new ChkTmpEmpView { DataContext = App.Services!.GetService(typeof(ChkTmpEmpViewModel)) });
                 break;
             case PageType.GenScd:
                 _mainFrame.Navigate(new GenScdView { DataContext = App.Services!.GetService(typeof(GenScdViewModel)) });

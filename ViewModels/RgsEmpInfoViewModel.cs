@@ -1,5 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
+using Shifter.Messages;
 using Shifter.Models;
 using System;
 using System.Collections.Generic;
@@ -7,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Shifter.Enums;
 
 namespace Shifter.ViewModels {
     public partial class RgsEmpInfoViewModel : ObservableObject{
@@ -41,6 +44,16 @@ namespace Shifter.ViewModels {
             });
         }
 
+
+        /* Register Employee Information */
+        [RelayCommand] private void RgsEmpInfo() {
+            Console.WriteLine("[RgsEmpInfoViewModel] Executed RgsEmpInfo()");
+
+            /* Register Employee Info on Server */
+
+            /* Change Page */
+            WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.ChkTmpEmpInfo));
+        }
     }
 }
 

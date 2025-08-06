@@ -5,10 +5,240 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Shifter.Views"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="ChkTmpEmpView">
+      d:DesignHeight="900" d:DesignWidth="1600"
+      Title="ChkTmpEmpView"
+      Background="#FFFFFF">
 
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="7*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Left Panel -->
+        <Border Grid.Column="0" BorderBrush="#A7A7A7" BorderThickness="0.5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="10*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="직원관리" FontSize="18" FontFamily="Noto Sans KR" FontWeight="Bold" Margin="5"/>
+                    <Grid Grid.Row="1" Margin="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="10*"/>
+                        </Grid.RowDefinitions>
+                        <Button Grid.Row="0" Margin="0,3,0,3" BorderBrush="Transparent" BorderThickness="0" Background="#F7F7F7"
+                            Content="{Binding TeamName}" FontSize="15" FontFamily="Noto Sans KR" FontWeight="Medium">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="5"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                    </Grid>
+                </Grid>
+                
+                <Grid Grid.Row="1" Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="10*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Text="임시팀정보" FontSize="18" FontFamily="Noto Sans KR" FontWeight="Bold" Margin="5"/>
+                    
+                    <Grid Grid.Row="1" Margin="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="10*"/>
+                        </Grid.RowDefinitions>
+                        <Button Grid.Row="0" Margin="0,3,0,3" BorderBrush="Transparent" BorderThickness="0" Background="#DCDCDC"
+                                Content="임시직원정보" FontSize="15" FontFamily="Noto Sans KR" FontWeight="Medium">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="5"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Border>
+
+        <!-- Right Panel -->
+        <Grid Grid.Column="1" Margin="30">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Emp Info Panel -->
+            <Border Grid.Row="0" Margin="30" Background="#F7F7F7" CornerRadius="30">
+                <Border.Effect>
+                    <DropShadowEffect
+                         Color="Black"
+                         ShadowDepth="5"
+                         BlurRadius="10"
+                         Opacity="0.5">
+                    </DropShadowEffect>
+                </Border.Effect>
+
+                <Grid Margin="30">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="8*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Title -->
+                    <Grid Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1.7*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Text="임시직원정보" FontSize="30" FontFamily="Noto Sans KR" FontWeight="Bold"/>
+                        <TextBlock Grid.Row="1" Text="임시로 발급된 직원 id와 pw를 확인해요." FontSize="15" FontFamily="Noto Sans KR" FontWeight="Medium" />
+                    </Grid>
+
+                    <!-- EmpInfo -->
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="12*"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- Column Names -->
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1.5*"/>
+                                <!-- 0 직급 -->
+                                <ColumnDefinition Width="2*"/>
+                                <!-- 1 직원명 -->
+                                <ColumnDefinition Width="2*"/>
+                                <!-- 2 전화번호 -->
+                                <ColumnDefinition Width="1*"/>
+                                <!-- 3 총 근무시간 -->
+                                <ColumnDefinition Width="2*"/>
+                                <!-- 4 임시 아이디 -->
+                                <ColumnDefinition Width="2*"/>
+                                <!-- 5 임시 비밀번호 -->
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" Text="직급" FontSize="15" FontFamily="Noto Sans KR"
+                            FontWeight="Medium" Foreground="#111111" VerticalAlignment="Center"/>
+
+                            <TextBlock Grid.Column="1" Text="직원명" FontSize="15" FontFamily="Noto Sans KR"
+                            FontWeight="Medium" Foreground="#111111" VerticalAlignment="Center"/>
+
+                            <TextBlock Grid.Column="2" Text="전화번호" FontSize="15" FontFamily="Noto Sans KR"
+                            FontWeight="Medium" Foreground="#111111" VerticalAlignment="Center"/>
+
+                            <TextBlock Grid.Column="3" Text="총 근무시간" FontSize="15" FontFamily="Noto Sans KR"
+                            FontWeight="Medium" Foreground="#111111" VerticalAlignment="Center"/>
+
+                            <TextBlock Grid.Column="4" Text="임시 아이디" FontSize="15" FontFamily="Noto Sans KR"
+                            FontWeight="Medium" Foreground="#111111" VerticalAlignment="Center"/>
+
+                            <TextBlock Grid.Column="5" Text="임시 비밀번호" FontSize="15" FontFamily="Noto Sans KR"
+                            FontWeight="Medium" Foreground="#111111" VerticalAlignment="Center"/>
+
+                        </Grid>
+
+                        <!-- UserInput Panel -->
+                        <ScrollViewer Grid.Row="1" 
+                                      VerticalScrollBarVisibility="Auto">
+                            <ItemsControl ItemsSource="{Binding Employees}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <!-- 직원 한 명에 대한 정보: ComboBox, TextBox 등 -->
+                                        <Grid Margin="0, 5">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="1.5*"/>
+                                                <!-- 0 직급 -->
+                                                <ColumnDefinition Width="2*"/>
+                                                <!-- 1 직원명 -->
+                                                <ColumnDefinition Width="2*"/>
+                                                <!-- 2 전화번호 -->
+                                                <ColumnDefinition Width="1*"/>
+                                                <!-- 3 총 근무시간 -->
+                                                <ColumnDefinition Width="2*"/>
+                                                <!-- 4 임시 아이디 -->
+                                                <ColumnDefinition Width="2*"/>
+                                                <!-- 5 임시 비밀번호 -->
+                                            </Grid.ColumnDefinitions>
+
+                                            <!-- 0 직급 -->
+                                            <Border Grid.Column="0" Margin="5" Height="40" Background="#FFFFFF" BorderThickness="0"
+                                             CornerRadius="10">
+                                                <TextBlock Background="Transparent"
+                                                           FontSize="15"
+                                                           FontFamily="Noto Sans KR"
+                                                           FontWeight="Medium"></TextBlock>
+                                            </Border>
+
+                                            <!-- 1 직원명 -->
+                                            <Border Grid.Column="1" Margin="5" Height="40" Background="#FFFFFF" CornerRadius="10"
+                                                    BorderThickness="0">
+                                                <TextBlock Text="{Binding EmpName}" FontSize="14" 
+                                                  Background="Transparent" VerticalAlignment="Center" Padding="5"/>
+                                            </Border>
+
+                                            <!-- 2 전화번호 -->
+                                            <Border Grid.Column="2" Margin="5" Height="40" Background="#FFFFFF" CornerRadius="10"
+                                                    BorderThickness="0">
+                                                <TextBlock Text="{Binding EmpPhoneNum}" FontSize="14" 
+                                                           Background="Transparent" VerticalAlignment="Center" Padding="5"/>
+                                            </Border>
+
+                                            <!-- 3 총 근무시간 -->
+                                            <Border Grid.Column="3" Margin="5" Height="40" Background="#FFFFFF" CornerRadius="10"
+                                                    BorderThickness="0">
+                                                <TextBlock Text="{Binding EmpTotalHours}" FontSize="14" 
+                                                            Background="Transparent" VerticalAlignment="Center" Padding="5"/>
+                                            </Border>
+
+                                            <!-- 4 임시 아이디 -->
+                                            <Border Grid.Column="4" Margin="5" Height="40" Background="#FFFFFF" CornerRadius="10"
+                                                    BorderThickness="0">
+                                                <TextBlock Text="{Binding EmpTmpId}" FontSize="14" 
+                                                           Background="Transparent" VerticalAlignment="Center" Padding="5"/>
+                                            </Border>
+
+                                            <!-- 5 임시 비밀번호 -->
+                                            <Border Grid.Column="5" Margin="5" Height="40" Background="#FFFFFF" CornerRadius="10"
+                                                    BorderThickness="0">
+                                                <TextBlock Text="{Binding EmpTmpPw}" FontSize="14" 
+                                                           Background="Transparent" VerticalAlignment="Center" Padding="5"/>
+                                            </Border>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </Grid>
+                </Grid>
+            </Border>
+
+            <!-- Next Button -->
+            <Grid Grid.Row="1" Margin="30, 0, 30, 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="7*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="1" 
+                     Foreground="#FFFFFF" Background="#002EFF" 
+                     Margin="0,5,0,5" Content="다음 >" FontSize="20" FontFamily="Noto Sans KR" FontWeight="Bold">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Grid>
+        </Grid>
     </Grid>
 </Page>
