@@ -73,14 +73,8 @@ def send_request(request_data):
         print(f"[ERROR] 서버 연결 또는 요청 처리 중 오류: {e}")
         return None, 0
 
-def test_recommended_scenario(test_id, shifts, shift_hours, staff_data, description, off_shifts=None):
+def test_recommended_scenario(test_id, shifts, shift_hours, staff_data, description):
     """권장 테스트 조건으로 테스트 수행"""
-    custom_rules = {
-        "shifts": shifts,
-        "shift_hours": shift_hours
-    }
-    
-
 
     request = {
         "position": "간호",
@@ -89,7 +83,10 @@ def test_recommended_scenario(test_id, shifts, shift_hours, staff_data, descript
         "staff_data": {
             "staff": staff_data
         },
-        "custom_rules": custom_rules
+        "custom_rules": {
+            "shifts": shifts,
+            "shift_hours": shift_hours
+        }
     }
     
     print(f"\n{'='*60}")

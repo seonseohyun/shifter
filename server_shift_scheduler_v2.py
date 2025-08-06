@@ -251,17 +251,38 @@ def apply_constraints(model, schedule, staff_data, shifts, shift_hours, days, po
                     print(f"[INFO] {name}: 신규간호사 야간 근무 금지 (대상: {night_shifts})")
         
         # 야간 근무 후 휴무 제약
+        # if position_rules.get("night_after_off", False) and night_shifts and off_shifts:
+        #     for day in range(len(days) - 1):
+        #         night_vars = [schedule[(staff_id, day, ns)] for ns in night_shifts if ns in shifts]
+        #         off_next_vars = [schedule[(staff_id, day + 1, os)] for os in off_shifts if os in shifts]
+                
+        #         if night_vars and off_next_vars:
+        #             # 야간 근무 → 다음날 휴무 중 하나 (수정된 로직)
+        #             total_night = sum(night_vars)
+        #             total_off_next = sum(off_next_vars)
+        #             # 야간 근무가 있으면 다음날 휴무가 있어야 함
+        #             model.Add(total_night <= total_off_next)
+
+        # 야간 근무 후 휴무 제약
         if position_rules.get("night_after_off", False) and night_shifts and off_shifts:
             for day in range(len(days) - 1):
                 night_vars = [schedule[(staff_id, day, ns)] for ns in night_shifts if ns in shifts]
                 off_next_vars = [schedule[(staff_id, day + 1, os)] for os in off_shifts if os in shifts]
                 
                 if night_vars and off_next_vars:
-                    # 야간 근무 → 다음날 휴무 중 하나 (수정된 로직)
+                    # 기존 로직: 야간 근무가 있으면 다음날 휴무가 있어야 함
                     total_night = sum(night_vars)
                     total_off_next = sum(off_next_vars)
-                    # 야간 근무가 있으면 다음날 휴무가 있어야 함
                     model.Add(total_night <= total_off_next)
+                    
+                    # 추가 제약: 야간 후 다음 날 비야간/비휴무 근무 금지 (동적 루프)
+                    for other_shift in shifts:
+                        if other_shift not in off_shifts and other_shift not in night_shifts:
+                            next_shift = schedule[(staff_id, day + 1, other_shift)]
+                            # 야간 근무 중 하나라도 있으면, 해당 other_shift 금지
+                            for night_var in night_vars:
+                                model.AddBoolOr([night_var.Not(), next_shift.Not()])
+
         
         # 월간 근무시간 제한
         monthly_limit = person.get("total_monthly_work_hours", position_rules.get("max_monthly_hours", 180))

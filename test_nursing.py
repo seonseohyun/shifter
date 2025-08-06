@@ -4,7 +4,7 @@ import json
 import time
 
 HOST = '127.0.0.1'
-PORT = 6001
+PORT = 6002
 
 # 간호 직군 테스트 데이터 (20명)
 nursing_request = {
