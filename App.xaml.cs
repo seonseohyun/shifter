@@ -47,7 +47,7 @@ namespace ShifterUser
             services.AddSingleton<MainViewModel>();
             services.AddTransient<LoginViewModel>();
             services.AddTransient<QRCheckViewModel>();
-            services.AddTransient<HomeViewModel>();
+            services.AddSingleton<HomeViewModel>();
             services.AddTransient<InfoViewModel>();
             services.AddTransient<MyScheViewModel>();
             services.AddTransient<QRCheckViewModel>();

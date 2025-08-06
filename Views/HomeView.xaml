@@ -5,11 +5,11 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:conv="clr-namespace:ShifterUser.Converters"
       mc:Ignorable="d"
-      FontFamily="Noto Sans KR"
       Width="400" Height="800"
       Background="White"
       SnapsToDevicePixels="True"
       UseLayoutRounding="True"
+      FontFamily="Noto Sans KR"
       TextOptions.TextRenderingMode="ClearType"
       TextOptions.TextFormattingMode="Display">
 
@@ -73,20 +73,13 @@
 
                             </StackPanel>
                         </StackPanel>
-                        
-                        
+
+
                         <Button Content="QR 체크하러 가기"
                                 Height="44" Margin="0,8,0,0"
-                                FontSize="16"
+                                Style="{StaticResource RoundedBlueButtonStyle}"
                                 Background="#007AFF" Foreground="White" FontWeight="SemiBold"
                                 Command="{Binding GoToQrCheckCommand}">
-                            <Button.Template>
-                                <ControlTemplate TargetType="Button">
-                                    <Border Background="{TemplateBinding Background}" CornerRadius="22">
-                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Border>
-                                </ControlTemplate>
-                            </Button.Template>
                         </Button>
                     </StackPanel>
                 </Border>
@@ -113,24 +106,16 @@
                                     BorderBrush="#007AFF" BorderThickness="1" Background="White" Foreground="#007AFF"
                                     FontWeight="SemiBold" FontSize="16"
                                     Command="{Binding GoToNoticeCommand}">
-                                <Button.Template>
-                                    <ControlTemplate TargetType="Button">
-                                        <Border CornerRadius="22" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" Background="{TemplateBinding Background}">
-                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Button.Template>
+                                <Button.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="22"/>
+                                    </Style>
+                                </Button.Resources>
                             </Button>
                             <Button Content="인수인계 보기" Width="163" Height="44" Background="#007AFF" Foreground="White" FontFamily="Noto Sans KR"
                                     FontWeight="SemiBold" BorderThickness="0" FontSize="16"
+                                    Style="{StaticResource RoundedBlueButtonStyle}"
                                     Command="{Binding GoToHandoverCommand}">
-                                <Button.Template>
-                                    <ControlTemplate TargetType="Button">
-                                        <Border CornerRadius="22" Background="#007AFF">
-                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Button.Template>
                             </Button>
                         </StackPanel>
                     </StackPanel>

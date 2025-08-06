@@ -27,7 +27,17 @@ namespace ShifterUser.ViewModels
             PendingText = $" 대기 {pending}건";
             RejectedText = $" 반려 {rejected}건";
 
-            //AttendanceStatus = AttendanceStatus.출근완료;
+            var att = _session.GetAttendance();
+            if (att != null)
+            {
+                if (att.ClockOutTime != null)
+                    AttendanceStatus = AttendanceStatus.퇴근완료;
+                else if (att.ClockInTime != null)
+                    AttendanceStatus = AttendanceStatus.출근완료;
+                else
+                    AttendanceStatus = AttendanceStatus.출근전;
+            }
+
         }
 
         // 바인딩 속성
@@ -37,31 +47,39 @@ namespace ShifterUser.ViewModels
         [ObservableProperty] private string approvedText;
         [ObservableProperty] private string pendingText;
         [ObservableProperty] private string rejectedText;
+        [ObservableProperty] private AttendanceStatus attendanceStatus = AttendanceStatus.출근전;
 
-        // enum 기반 출근 상태
-        [ObservableProperty] private AttendanceStatus attendanceStatus;
+        [ObservableProperty]
+        private Brush attendanceColor = Brushes.Gray;
 
-        // 색상 바인딩용
-        [ObservableProperty] private Brush attendanceColor = Brushes.Transparent;
-
-        // 상태 변경 시 색상 자동 변경
         partial void OnAttendanceStatusChanged(AttendanceStatus value)
         {
             AttendanceColor = value switch
             {
                 AttendanceStatus.출근완료 => Brushes.Green,
                 AttendanceStatus.퇴근완료 => Brushes.Blue,
+                AttendanceStatus.출근전 => Brushes.Gray,
                 _ => Brushes.Transparent
             };
         }
 
-        // 텍스트 출력용
         public string AttendanceText => AttendanceStatus switch
         {
             AttendanceStatus.출근완료 => "출근 완료",
             AttendanceStatus.퇴근완료 => "퇴근 완료",
+            AttendanceStatus.출근전 => "출근 전입니다",
             _ => string.Empty
         };
+
+        public void UpdateAttendanceStatusFromMessage(string message)
+        {
+            AttendanceStatus = message switch
+            {
+                        "출근 완료" => AttendanceStatus.출근완료,
+                        "퇴근 완료" => AttendanceStatus.퇴근완료,
+                        _ => AttendanceStatus.출근전
+            };
+        }
 
         // 페이지 이동 커맨드
         [RelayCommand]

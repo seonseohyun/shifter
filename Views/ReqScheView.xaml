@@ -67,7 +67,7 @@
                             Background="Transparent" BorderBrush="Transparent"
                             DockPanel.Dock="Right"
                             Command="{Binding GoBackCommand}">
-                        <Image Source="/Resources/images/x.png"
+                        <Image Source="/Resources/images/cancel.png"
                                Width="24" Height="24"
                                VerticalAlignment="Center" HorizontalAlignment="Left"/>
                     </Button>
@@ -114,26 +114,24 @@
                                FontSize="13"
                                Padding="0,6,0,0"
                                IsHitTestVisible="False"
-                               Visibility="{Binding Text, ElementName=ReasonTextBox, Converter={StaticResource DataOrEmptyToVisibilityConverter}}"/>
+                               Visibility="{Binding Text, ElementName=ReasonTextBox, Converter={StaticResource EmptyStringToVisibilityConverter}}"/>
                 </Grid>
 
                 <!-- 요청 등록 버튼 -->
-                <Border Grid.Row="8"
-                        Height="40"
-                        CornerRadius="22"
-                        Background="#007BFF"
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Center">
-                    <Button Content="📩 요청 등록하기"
-                            Command="{Binding RegisterReqCommand}"
-                            Background="Transparent"
-                            BorderBrush="Transparent"
-                            Foreground="White"
-                            FontWeight="Bold"
-                            FontSize="14"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center" />
-                </Border>
+                <Button Grid.Row="8"
+                Height="40"
+                Background="#007BFF"
+                Foreground="White"
+                FontWeight="Bold"
+                FontSize="14"
+                Command="{Binding RegisterReqCommand}"
+                Content="📩 요청 등록하기"
+                BorderThickness="0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Center"
+                Style="{StaticResource RoundedBlueButtonStyle}"
+                Cursor="Hand">
+                </Button>
 
                 <!-- 안내 문구 -->
                 <TextBlock Grid.Row="10"

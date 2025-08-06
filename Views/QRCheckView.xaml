@@ -37,11 +37,33 @@
                     <Image x:Name="CameraPreview" Stretch="UniformToFill" />
                 </Border>
 
-                <!-- 수동 입력 링크 -->
-                <TextBlock HorizontalAlignment="Center" Margin="0,40,0,0" FontSize="16">
-                    <Run Text="QR 인식이 안 되나요? "/>
-                    <Run Text="수동 입력" Foreground="#007AFF" TextDecorations="Underline" />
-                </TextBlock>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,40,0,0">
+                    <TextBlock FontSize="16" VerticalAlignment="Center" Text="QR 인식이 안 되나요? " />
+                    <Button 
+                    Content="수동 입력" 
+                    FontSize="16" 
+                    Foreground="White"
+                    Background="#007AFF"
+                    Padding="4,2"
+                    Cursor="Hand"
+                    Command="{Binding CheckOutCommand}">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border CornerRadius="4" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
+                                                <TextBlock Text="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" 
+                                           TextDecorations="Underline" />
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </StackPanel>
+
 
                 <!-- 출근 버튼 -->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,16,0,0">

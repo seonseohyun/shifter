@@ -29,8 +29,9 @@ namespace ShifterUser.Enums
 
     public enum AttendanceStatus
     {
+        출근전,
         출근완료,
-        퇴근완료,  
+        퇴근완료
     }
 }
 

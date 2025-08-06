@@ -18,9 +18,12 @@ namespace ShifterUser.ViewModels
     public partial class QRCheckViewModel : ObservableObject
     {
         private readonly UserManager _userManager;
-        public QRCheckViewModel(UserManager userManager )
+        private readonly HomeViewModel _homeViewModel;
+
+        public QRCheckViewModel(UserManager userManager, HomeViewModel homeViewModel)
         {
             _userManager = userManager;
+            _homeViewModel = homeViewModel;
         }
 
         [RelayCommand]
@@ -32,11 +35,11 @@ namespace ShifterUser.ViewModels
         [RelayCommand]
         private void CheckIn()
         {
-            bool result = _userManager.AskCheckIn(); // 서버 요청 전송
+            //var homeViewModel = new HomeViewModel(); // HomeViewModel 인스턴스 생성
+            bool result = _userManager.AskCheckIn(_homeViewModel);
             if (result)
             {
                 MessageBox.Show($"출근 완료! {DateTime.Now:HH:mm}", "알림", MessageBoxButton.OK, MessageBoxImage.Information);
-                //Thread.Sleep(1000);
                 WeakReferenceMessenger.Default.Send((new PageChangeMessage(PageType.Home)));
             }
             else
@@ -45,9 +48,32 @@ namespace ShifterUser.ViewModels
             }
         }
 
+        [RelayCommand]
+        private void CheckOut()
+        {
+            // 퇴근 요청
+            bool success = _userManager.AskCheckOut(_homeViewModel); 
+
+            if (success)
+            {
+                MessageBox.Show("퇴근 완료되었습니다.");
+                WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.Home));
+            }
+            else
+            {
+                MessageBox.Show("퇴근 실패. 다시 시도해주세요.");
+            }
+        }
+
     }
 
 }
+
+
+
+
+
+
 
 
 

@@ -49,6 +49,7 @@
                          Tag="아이디"
                          Height="52"
                          Margin="4,0,0,0"/>
+         
             </Border>
 
             <!-- 비밀번호 -->
@@ -89,14 +90,8 @@
                     Background="#007AFF"
                     BorderThickness="0"
                     Height="52"
+                    Style="{StaticResource RoundedBlueButtonStyle}"
                     Margin="0,0,0,30">
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" CornerRadius="26">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
             </Button>
 
             <!-- 회원가입 안내 -->

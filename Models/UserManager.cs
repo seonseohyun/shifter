@@ -1,12 +1,14 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using ShifterUser.Enums;
+using ShifterUser.Helpers;
+using ShifterUser.Services;
+using ShifterUser.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ShifterUser.Services;
-using ShifterUser.Helpers;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace ShifterUser.Models
 {
@@ -73,6 +75,34 @@ namespace ShifterUser.Models
                 int pending = status?["pending"]?.ToObject<int>() ?? 0;
                 int rejected = status?["rejected"]?.ToObject<int>() ?? 0;
 
+                var attendance = data?["attendance"];
+                if (attendance != null)
+                {
+                    string att_status = attendance["status"]?.ToString() ?? "";
+                    string? checkInStr = attendance["check_in_time"]?.ToString();
+                    string? checkOutStr = attendance["check_out_time"]?.ToString();
+
+                    DateTime? checkIn = null;
+                    DateTime? checkOut = null;
+
+                    if (DateTime.TryParse(checkInStr, out DateTime inTime))
+                        checkIn = inTime;
+
+                    if (DateTime.TryParse(checkOutStr, out DateTime outTime))
+                        checkOut = outTime;
+
+                    AttendanceModel model = new()
+                    {
+                        ClockInTime = checkIn,
+                        ClockInStatus = att_status == "출근" ? "출근 완료" : null,
+                        ClockOutTime = checkOut,
+                        ClockOutStatus = (att_status == "퇴근" || checkOut != null) ? "퇴근 완료" : null,
+                    };
+
+                    _session.SetAttendance(model);
+                }
+
+
                 // UserSession에 정보 저장
                 _session.SetUid(staffUid);
                 _session.SetTeamCode(teamUid);
@@ -98,7 +128,7 @@ namespace ShifterUser.Models
         }
 
         // 출근
-        public bool AskCheckIn()
+        public bool AskCheckIn(HomeViewModel homeViewModel)
         {
             JObject jsonData = new()
             {
@@ -128,18 +158,66 @@ namespace ShifterUser.Models
             string result = respJson["resp"]?.ToString() ?? "";
             int checkInUid = respJson["data"]?["check_in_uid"]?.Value<int>() ?? -1;
 
-            //  응답 검증
             if (protocol == "ask_check_in" && result == "success")
             {
-                // UID 저장
+                // 상태 반영!
                 _session.SetCheckInUid(checkInUid);
-                return true;
+                // HomeViewModel 상태 갱신
+                homeViewModel.AttendanceStatus = AttendanceStatus.출근완료;
 
+                return true;
+            }
+
+            return false;
+        }
+
+
+
+        public bool AskCheckOut(HomeViewModel homeVM)
+        {
+            JObject jsonData = new()
+            {
+                { "protocol", "ask_check_out" },
+                {
+                    "data", new JObject
+                    {
+                        { "check_in_uid", _session.GetCheckInUid() }
+                    }
+                }
+            };
+
+            WorkItem sendItem = new()
+            {
+                json = JsonConvert.SerializeObject(jsonData),
+                payload = [],
+                path = ""
+            };
+
+            _socket.Send(sendItem);
+
+            WorkItem response = _socket.Receive();
+            JObject respJson = JObject.Parse(response.json);
+
+            string protocol = respJson["protocol"]?.ToString() ?? "";
+            string result = respJson["resp"]?.ToString() ?? "";
+            string message = respJson["message"]?.ToString() ?? "";
+
+            if (protocol == "ask_check_out" && result == "success")
+            {
+                //  상태 반영
+                homeVM.UpdateAttendanceStatusFromMessage(message);
+                // HomeViewModel 상태 갱신
+                homeVM.AttendanceStatus = AttendanceStatus.퇴근완료;
+                return true;
             }
             else
-            {   
+            {
                 return false;
             }
         }
+
+
     }
 }
+
+

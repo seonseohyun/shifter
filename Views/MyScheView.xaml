@@ -4,6 +4,7 @@
       xmlns:local="clr-namespace:ShifterUser.Helpers"
       xmlns:converters="clr-namespace:ShifterUser.Converters"
       Background="White"
+      FontFamily="Noto Sans KR"
       Width="400"
       Height="800">
 
@@ -35,7 +36,6 @@
                    VerticalAlignment="Center"
                    FontSize="13"
                    FontWeight="Bold"
-                   FontFamily="Noto Sans KR"
                    Foreground="Black"/>
 
         <!-- 월 표시 -->
@@ -54,7 +54,7 @@
                        Grid.Column="1"
                        HorizontalAlignment="Center" VerticalAlignment="Center"
                        FontWeight="Bold"
-                       FontFamily="Noto Sans KR"/>
+                       />
 
             <Button Content="&gt;" Grid.Column="2"
                     Command="{Binding NextMonthCommand}"
@@ -63,13 +63,13 @@
 
         <!-- 요일 -->
         <UniformGrid Grid.Row="3" Columns="7">
-            <TextBlock Text="일" HorizontalAlignment="Center" Foreground="Red" FontFamily="Noto Sans KR"/>
-            <TextBlock Text="월" HorizontalAlignment="Center" FontFamily="Noto Sans KR"/>
-            <TextBlock Text="화" HorizontalAlignment="Center" FontFamily="Noto Sans KR"/>
-            <TextBlock Text="수" HorizontalAlignment="Center" FontFamily="Noto Sans KR"/>
-            <TextBlock Text="목" HorizontalAlignment="Center" FontFamily="Noto Sans KR"/>
-            <TextBlock Text="금" HorizontalAlignment="Center" FontFamily="Noto Sans KR"/>
-            <TextBlock Text="토" HorizontalAlignment="Center" Foreground="Blue" FontFamily="Noto Sans KR"/>
+            <TextBlock Text="일" HorizontalAlignment="Center" Foreground="Red" />
+            <TextBlock Text="월" HorizontalAlignment="Center"/>
+            <TextBlock Text="화" HorizontalAlignment="Center" />
+            <TextBlock Text="수" HorizontalAlignment="Center"/>
+            <TextBlock Text="목" HorizontalAlignment="Center"/>
+            <TextBlock Text="금" HorizontalAlignment="Center"/>
+            <TextBlock Text="토" HorizontalAlignment="Center" Foreground="Blue"/>
         </UniformGrid>
 
         <!-- 달력 날짜 -->
@@ -101,7 +101,7 @@
                                            FontSize="12"
                                            Foreground="Black"
                                            FontWeight="SemiBold" 
-                                           FontFamily="Noto Sans KR"/>
+                                           />
                             </Grid>
                         </Border>
                     </Button>
@@ -186,7 +186,6 @@
                             </StackPanel>
                         </StackPanel>
                     </Border>
-
                 </StackPanel>
             </Border>
         </Grid>

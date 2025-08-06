@@ -18,8 +18,13 @@ namespace ShifterUser.Models
         private int rejectedCount = 0;                   // 반려 요청 수
 
         private int _checkInUid;                         // 출퇴근 UID
+        private AttendanceModel? _attendance;
+
 
         /** Member Methods **/
+        public void SetAttendance(AttendanceModel model) => _attendance = model;
+        public AttendanceModel? GetAttendance() => _attendance;
+
 
         // UID
         public void SetUid(int uid) => currentUid = uid;
