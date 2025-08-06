@@ -25,3 +25,76 @@ night_shifts 식별 키워드 오류 → 'O', '휴무' 제거
 야간 근무 후 휴무 및 다른 근무 금지 제약
 
 이런 제약들이 기존처럼 무리없이 적용되도록 해야한다.
+
+
+서버코드들 문제점 
+
+1.
+
+문제 설명: 야간 근무 후 다른 근무 금지 제약에서 'D'와 'E'만 명시적으로 확인하고 있습니다. 만약 shifts 리스트에 'D' 또는 'E'가 포함되지 않은 커스텀 시프트(예: '주간', '아침', '저녁')를 사용하는 경우, 이 제약이 무시되어 야간 근무 후 비야간 근무가 허용될 수 있습니다. 이는 신규 간호사 야간 금지와 연계된 전체 제약 체계의 일관성을 해칩니다
+개선 방향: 'D'와 'E'를 하드코딩하는 대신, shifts 리스트를 순회하며 'O'(휴무)와 night_shifts를 제외한 모든 시프트를 동적으로 금지 대상으로 지정하십시오. 예시 코드:
+
+2.
+휴무 시프트('O')의 하드코딩 문제
+
+문제 설명: 최소 휴무일 제약과 야간 후 휴무 제약에서 'O' 시프트만 확인합니다. validate_request_parameters 함수에서 휴무 시프트(예: 'O', 'Off', 'REST', '휴무', '쉼')를 검증하지만, 실제 제약 적용 시 'O'가 아닌 다른 명칭(예: '휴무')을 사용하면 'O' in shifts가 False가 되어 해당 제약이 적용되지 않습니다.
+
+개선 방향: 야간 시프트와 유사하게 휴무 시프트를 동적으로 식별하는 off_shifts 리스트를 도입하십시오. 키워드 기반(예: ['o', 'off', 'rest', '휴무', '쉼']) 또는 custom_rules에 'off_shifts' 키를 추가로 지원합니다. 제약 적용 시 'O'를 off_shifts로 대체하십시오.
+
+3.
+소방 position의 시프트 하드코딩
+
+문제 설명: 소방 직군 제약에서 'D24'와 'O'를 직접 하드코딩하고 있습니다. POSITION_RULES에서 shifts를 정의하지만, custom_rules로 오버라이드될 때 'D24'가 존재하지 않으면 제약이 무시됩니다. 또한, D24 후 오프 제약이 최소 1일로 제한되지만, 사이클 규칙(예: "D24-O-O")이 완전히 반영되지 않을 수 있습니다.
+영향: 소방 직군 스케줄링 시 유연성이 부족하여, 다양한 시프트 패턴(예: '24시간당직' 명칭 변경)에 대응하지 못합니다.
+개선 방향: 'D24'를 동적 키워드(예: ['d24', '24', '당직'])로 식별하거나, rules에 'duty_shift' 키를 추가하여 커스텀 지원을 강화하십시오.
+
+4.
+엣지 케이스 처리 부족
+
+문제 설명: night_shifts가 빈 리스트일 경우 야간 관련 제약이 무시되지만, 로그나 예외 처리가 없습니다. 또한, days가 1일 미만(비현실적이지만)일 때 range(len(days) - 1)가 음수가 되어 루프가 실행되지 않거나, monthly_hours 계산에서 underflow가 발생할 수 있습니다. grade나 position 값이 예상 외(예: grade=None)일 때 기본값 처리만으로 충분하지 않을 수 있습니다.
+영향: 입력 데이터 오류 시 모델이 불완전하게 구성되어 solver가 INFEASIBLE 결과를 반환하거나, 디버깅이 어려워집니다.
+개선 방향: night_shifts가 빈 경우 경고 로그를 추가하고, len(days) < 2일 때 제약을 스킵하는 조건을 삽입하십시오. person.get("grade", 1)처럼 기본값을 강화하되, validate_request_parameters에서 더 엄격한 검증을 추가합니다.
+
+5.
+문제 설명: 제약 추가(예: for ns, for d 루프)가 중첩되어 모델 변수가 많아지면 solver 시간이 증가할 수 있습니다. 특히 num_days가 31일이고 여러 night_shifts가 있을 때, OR-Tools의 cp_model이 메모리나 시간 초과를 초래할 위험이 있습니다. weekly_hours와 monthly_hours 계산에서 sum이 반복적으로 호출되지만, 최적화되지 않았습니다.
+영향: 대규모 직원 수(25명 이상)나 긴 기간에서 생성 실패율이 높아질 수 있습니다.
+개선 방향: solver.parameters.max_time_in_seconds를 동적으로 조정하거나, 제약을 BoolVar 배열로 미리 최적화하십시오. 필요 시 PuLP 같은 대체 solver로 마이그레이션하는 것을 고려합니다.
+
+6.
+문제 설명: print 문이 많아 로그가 과도하게 출력되지만, night_shifts가 적용된 후 실제 제약 수를 확인하는 로그가 없습니다. 오류 발생 시(예: shift_hours[s] 키 오류) 예외 처리가 부족합니다.
+영향: 프로덕션 환경에서 로그 오버플로우가 발생하거나, 문제 진단이 어려워집니다.
+개선 방향: logging 모듈로 전환하고, 레벨 기반(INFO, DEBUG)으로 세분화하십시오. try-except 블록을 추가하여 키 오류를 캐치합니다.
+
+테스트코드들 문제점들
+
+1. 하드코딩된 시프트 및 키워드 의존성
+문제 설명: 신규 간호사 야간 근무 확인 로직에서 night_shifts를 ['N', 'night' in s.lower(), '야간' in s, '밤' in s]와 같은 키워드로 식별합니다. 이는 서버 코드의 night_keywords(['n', 'night', '야간', '밤'])와 유사하나, 서버에서 custom_rules['night_shifts']를 지원할 때 클라이언트가 이를 활용하지 않습니다. 또한, 휴무 시프트(non_off_shifts 식별)에서 ['O', 'Off', 'REST', '휴무', '쉼']을 사용하나, 서버의 POSITION_RULES나 custom_rules와 완벽히 동기화되지 않을 수 있습니다. 테스트 시나리오에서 새로운 키워드(예: 'Nocturnal')가 등장하면 식별 실패가 발생합니다.
+영향: 서버와 클라이언트 간 불일치로 인해 테스트 결과(예: 신규간호사 보호 여부)가 왜곡될 수 있으며, 실제 운영 시 디버깅이 복잡해집니다.
+개선 방향: 클라이언트에서 night_shifts와 off_shifts를 서버와 동일한 키워드 목록으로 공유하거나, request에 custom_rules['night_shifts']를 동적으로 추가하여 서버 측 식별을 의존하도록 변경하십시오. 예: request["custom_rules"]["night_shifts"] = ["야간", "Night", "밤"].
+
+
+3. 오류 처리 및 안정성 부족
+
+문제 설명: send_request 함수에서 Exception as e를 광범위하게 캐치하나, 구체적인 오류(예: ConnectionRefusedError, JSONDecodeError)를 분리 처리하지 않습니다. 서버가 실행 중이지 않을 때 단순히 None 반환으로 끝나며, test_recommended_scenario에서 else: print("🚨 오류 - 응답 없음")만 출력합니다. 또한, response.get("status") == "ok" 확인 시 "schedule" 키가 없으면 KeyError가 발생할 수 있으며, json.dump에서 ensure_ascii=False를 사용하나, 유니코드 오류가 발생할 가능성을 고려하지 않습니다. os.makedirs("./client_data")는 권한 문제로 실패할 수 있으나, try-except가 없습니다.
+영향: 서버 연결 실패나 JSON 파싱 오류 시 테스트가 중단되지 않고 계속 진행되지만, 결과가 불완전해 전체 테스트 신뢰성이 저하됩니다. 파일 저장 실패 시 디스크 오류가 무시됩니다.
+개선 방향: send_request에 구체적인 except 블록(예: except ConnectionError: return {"error": "서버 연결 실패"}, None)을 추가하고, test_recommended_scenario에서 response가 dict가 아닌 경우 early return을 적용하십시오. 파일 저장 부분에 try-except를 추가하여 OSError를 처리하십시오.
+
+4. 성능 및 확장성 문제
+
+문제 설명: 각 테스트마다 generate_random_staff(25)를 호출하여 새로운 staff_data를 생성하나, common_staff = generate_random_staff(23)을 미리 생성하나 사용하지 않습니다(버그: common_staff가 run_recommended_tests에서 정의되나 실제로 staff_data = generate_random_staff(25)로 오버라이드됨). time.sleep(0.1)은 서버 부하를 줄이지만, 테스트 수가 많아지면 총 시간이 불필요하게 길어집니다. 또한, schedule.items() 순회에서 newbie_night_count를 계산하나, 대규모 schedule(31일 * shifts)에서 효율이 낮습니다. results.append에서 max_daily_hours를 /2로 계산하는 부분이 앞서 언급한 대로 부정확합니다.
+영향: 불필요한 랜덤 생성으로 재현성이 떨어지고, 대규모 테스트 시 시간 지연이 발생합니다. common_staff가 미사용되어 코드가 비효율적입니다.
+개선 방향: common_staff를 실제로 사용하도록 수정하거나, seed를 고정하여(random.seed(42)) 재현성을 높이십시오. time.sleep을 제거하거나 옵션으로 만들고, newbie_night_count 계산을 최적화(예: sum comprehension)하십시오.
+
+5. 엣지 케이스 및 호환성 문제
+
+문제 설명: test_scenarios에 13개 시나리오가 정의되어 있으나, 주석 처리된 3교대 표준 시스템이 있어 총 14개로 오인될 수 있습니다. staff 수(25명)가 서버의 validate_request_parameters에서 "최소 10-15명 권장"과 맞으나, 5명 미만 테스트가 없어 엣지 케이스를 커버하지 않습니다. target_month="2025-09"가 하드코딩되어 현재 날짜(2025-08-06)를 무시하며, 서버의 parse_target_month 기본값(2025-08)과 불일치할 수 있습니다. 신규간호사 확인 로직이 'N' in shifts or any(...)로 트리거되나, night_shifts가 빈 경우에도 실행되어 불필요한 계산이 발생합니다.
+영향: 실제 월 일수나 서버 기본값과 불일치 시 테스트 실패가 증가할 수 있으며, 다양한 staff 수나 month에 대한 검증이 부족합니다.
+개선 방향: test_scenarios에 엣지 케이스(예: staff 수 5명, shifts 1개)를 추가하고, target_month를 datetime.now()로 동적으로 설정하십시오. night_shifts가 비어 있을 때 확인 로직을 스킵하는 if 조건을 삽입하십시오.
+
+6. 로그 및 출력 과다/부족
+
+문제 설명: print 문이 과도하게 사용되어(예: 각 테스트마다 '='*60, 이모지 출력), 콘솔이 복잡해집니다. 그러나 실패 시 상세 이유(response 전체 출력)가 부족하며, "❌ 실패 - {response}"로만 표시됩니다. 또한, 성능 분석에서 실패 테스트 분석만 있으나, 성공 케이스의 상세 통계(예: 평균 야간 근무 횟수)가 없습니다.
+영향: 프로덕션 수준 테스트에서 로그 관리가 어려워지며, 실패 원인 진단이 불충분합니다.
+개선 방향: logging 모듈을 도입하여 레벨 기반(INFO, ERROR) 출력을 적용하고, 실패 시 response.get("reason")을 상세히 출력하십시오. 최종 결과에 추가 통계(예: 평균 newbie_night_count)를 포함하십시오.
+
+이 문제점들은 테스트 코드가 기본적으로 동작하나, 서버와의 연동성, 정확성, 유지보수성을 강화하기 위해 수정이 필요함을 나타냅니다. 특히, 서버 코드의 동적 시프트 식별과 클라이언트의 키워드 로직을 일치시키는 것이 우선입니다.

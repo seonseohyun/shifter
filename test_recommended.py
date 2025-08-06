@@ -99,7 +99,7 @@ def test_recommended_scenario(test_id, shifts, shift_hours, staff_data, descript
     # 수학적 검증
     non_off_shifts = [s for s in shifts if s not in ['O', 'Off', 'REST', '휴무', '쉼']]
     max_daily_hours = sum(shift_hours[s] for s in non_off_shifts)
-    max_monthly_hours = max_daily_hours * 20 # 보통 한달 20일 
+    max_monthly_hours = max_daily_hours * 31 # 보통 한달 31일 
     avg_target_hours = sum(staff["total_monthly_work_hours"] for staff in staff_data) / len(staff_data)
     
     print(f"수학적 검증:")
@@ -265,7 +265,7 @@ def run_recommended_tests():
             "success": success,
             "time": gen_time,
             "shifts": len(scenario["shifts"]) - 1,  # 휴무 제외
-            "max_daily_hours": sum(h for s, h in scenario["shift_hours"].items() if h > 0)/2
+            "max_daily_hours": sum(h for s, h in scenario["shift_hours"].items() if h > 0)
         })
         
         time.sleep(0.1)  # 서버 부담 줄이기

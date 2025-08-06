@@ -364,7 +364,7 @@ def create_individual_shift_schedule(staff_data, shift_type, position="default",
 
         solver = cp_model.CpSolver()
         # 성능 우선 솔버 설정 (호환성 고려)
-        solver.parameters.max_time_in_seconds = 20.0  # 시간을 20초로 단축
+        solver.parameters.max_time_in_seconds = 25.0  # 시간을 20초로 단축
         solver.parameters.log_search_progress = False  # 로그 비활성화
         solver.parameters.num_search_workers = 1  # 단일 워커로 오버헤드 최소화
         solver.parameters.cp_model_presolve = True  # 전처리 활성화 유지
