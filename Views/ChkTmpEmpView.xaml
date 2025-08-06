@@ -174,7 +174,7 @@
                                             <!-- 0 직급 -->
                                             <Border Grid.Column="0" Margin="3" Height="40" Background="#FFFFFF" BorderThickness="0"
                                              CornerRadius="10">
-                                                <TextBlock Text="{Binding TeamName}"
+                                                <TextBlock Text="{Binding GradeItem.GradeName}"
                                                            Background="Transparent" VerticalAlignment="Center" Padding="5"
                                                            FontSize="15" FontFamily="Noto Sans KR" FontWeight="Medium"></TextBlock>
                                             </Border>
@@ -234,13 +234,9 @@
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
                 <Button Grid.Column="1" 
-                     Foreground="#FFFFFF" Background="#002EFF" 
-                     Margin="0,5,0,5" Content="다음 >" FontSize="20" FontFamily="Noto Sans KR" FontWeight="Bold">
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="10"/>
-                        </Style>
-                    </Button.Resources>
+                        Foreground="#FFFFFF" Background="#002EFF" 
+                        Margin="0,5,0,5" Content="다음 >" FontSize="20" FontFamily="Noto Sans KR" FontWeight="Bold"
+                        Style="{StaticResource LargeRoundedBlueButtonStyle}">
                 </Button>
             </Grid>
         </Grid>

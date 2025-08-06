@@ -36,12 +36,12 @@ namespace Shifter.ViewModels {
 
         /** Member Methods **/
         [RelayCommand] async Task LogInAsync() {
+            Console.WriteLine("[LogInViewModel] Executed LogInAsync()");
             if( Id.Length>0 && Pw.Length>0) {
                 bool result = await _userModel!.LogInAsync(Id, Pw);
 
                 if( result ) {
                     WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.Home));
-                    
                 }
             }
         }

@@ -110,16 +110,16 @@
                                 <ColumnDefinition Width="2*"/>
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Column="0" Text="직급" FontSize="15" FontFamily="Noto Sans KR"
+                            <TextBlock Grid.Column="0" Text=" 직급" FontSize="15" FontFamily="Noto Sans KR"
                                    FontWeight="Medium" Foreground="#111111" VerticalAlignment="Center"/>
 
-                            <TextBlock Grid.Column="1" Text="직원명" FontSize="15" FontFamily="Noto Sans KR"
+                            <TextBlock Grid.Column="1" Text=" 직원명" FontSize="15" FontFamily="Noto Sans KR"
                                    FontWeight="Medium" Foreground="#111111" VerticalAlignment="Center"/>
 
-                            <TextBlock Grid.Column="2" Text="전화번호" FontSize="15" FontFamily="Noto Sans KR"
+                            <TextBlock Grid.Column="2" Text=" 전화번호" FontSize="15" FontFamily="Noto Sans KR"
                                    FontWeight="Medium" Foreground="#111111" VerticalAlignment="Center"/>
 
-                            <TextBlock Grid.Column="3" Text="총 근무시간" FontSize="15" FontFamily="Noto Sans KR"
+                            <TextBlock Grid.Column="3" Text=" 총 근무시간" FontSize="15" FontFamily="Noto Sans KR"
                                    FontWeight="Medium" Foreground="#111111" VerticalAlignment="Center"/>
                         </Grid>
 
@@ -138,7 +138,7 @@
                                             </Grid.ColumnDefinitions>
 
                                             <!-- 직급 -->
-                                            <Border Grid.Column="0" Margin="5" Height="40" Background="#FFFFFF" BorderThickness="0"
+                                            <Border Grid.Column="0" Margin="3,1,3,1" Height="40" Background="#FFFFFF" BorderThickness="0"
                                                     CornerRadius="10">
                                                 <ComboBox
                                                     ItemsSource="{Binding DataContext.Grades, ElementName=Root}"
@@ -157,7 +157,7 @@
                                             </Border>
 
                                             <!-- 이름 -->
-                                            <Border Grid.Column="1" Margin="5" Height="40" Background="#FFFFFF" CornerRadius="10"
+                                            <Border Grid.Column="1" Margin="3,1,3,1" Height="40" Background="#FFFFFF" CornerRadius="10"
                                                     BorderThickness="0">
                                                 <TextBox Text="{Binding EmpName}" FontSize="14" 
                                                          Background="Transparent" BorderThickness="0"
@@ -165,7 +165,7 @@
                                             </Border>
 
                                             <!-- 전화번호 -->
-                                            <Border Grid.Column="2" Margin="5" Height="40" Background="#FFFFFF" CornerRadius="10"
+                                            <Border Grid.Column="2" Margin="3,1,3,1" Height="40" Background="#FFFFFF" CornerRadius="10"
                                                     BorderThickness="0">
                                                 <TextBox Text="{Binding PhoneNum}" FontSize="14" 
                                                          Background="Transparent" BorderThickness="0"
@@ -173,7 +173,7 @@
                                             </Border>
 
                                             <!-- 근무시간 (읽기전용 또는 바인딩) -->
-                                            <Border Grid.Column="3" Margin="5" Height="40" Background="#FFFFFF" CornerRadius="10"
+                                            <Border Grid.Column="3" Margin="3,1,3,1" Height="40" Background="#FFFFFF" CornerRadius="10"
                                                     BorderThickness="0">
                                                 <TextBox Text="{Binding TotalHours}" IsReadOnly="True" FontSize="14"
                                                          Background="Transparent" BorderThickness="0"
@@ -188,12 +188,8 @@
                     
                     <!-- AddButton -->
                     <Button Grid.Row="2" Background="#002EFF" BorderThickness="0" Content="+추가" FontSize="15" FontFamily="Noto Sans KR" FontWeight="Bold" Foreground="#FFFFFF"
-                            Command="{Binding AddEmpCommand}">
-                        <Button.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="10"/>
-                            </Style>
-                        </Button.Resources>
+                            Command="{Binding AddEmpCommand}"
+                            Style="{StaticResource LargeRoundedBlueButtonStyle}">
                     </Button>
                 </Grid>
             </Border>
@@ -207,12 +203,8 @@
                 <Button Grid.Column="1" 
                         Command="{Binding RgsEmpInfoCommand}"
                         Foreground="#FFFFFF" Background="#002EFF" 
-                        Margin="0,5,0,5" Content="완료 >" FontSize="20" FontFamily="Noto Sans KR" FontWeight="Bold">
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="10"/>
-                        </Style>
-                    </Button.Resources>
+                        Margin="0,5,0,5" Content="완료 >" FontSize="20" FontFamily="Noto Sans KR" FontWeight="Bold"
+                        Style="{StaticResource LargeRoundedBlueButtonStyle}">
                 </Button>
             </Grid>
         </Grid>

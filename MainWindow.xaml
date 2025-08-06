@@ -16,7 +16,7 @@
         <!-- Menu Bar -->
         <Grid Grid.Row="0"
               Visibility="{Binding Session.VisToolbar, Converter={StaticResource BoolToVis}}"
-              Background="#444444">
+              Background="#282828">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.7*"/>
                 <ColumnDefinition Width="4*"/>
@@ -151,7 +151,7 @@
                 <StackPanel Orientation="Horizontal"
                             Grid.Column="1"
                             Margin="5">
-                    <Button Margin="5" Background="#444444" BorderBrush="Transparent">
+                    <Button Margin="5" Background="#282828" BorderBrush="Transparent">
                         <Image Source="/Resources/Icons/bell_on_white.png" Margin="5"></Image>
                     </Button>
                     <Button MinWidth="130" Margin="5" Background="#FFFFFF">

@@ -96,7 +96,7 @@
 
                             <Button Grid.Row="2" Foreground="#FFFFFF" Background="#002EFF" Margin="0,10,0,10"
                                     Content="직원추가" Command="{Binding GoToRgsEmpWorkCommand}"
-                                    FontSize="20" FontFamily="Noto Sans KR" FontWeight="Bold">
+                                    FontSize="20" FontFamily="Noto Sans KR" FontWeight="Bold" BorderThickness="0">
                                 <Button.Resources>
                                     <Style TargetType="Border">
                                         <Setter Property="CornerRadius" Value="10"/>
@@ -138,7 +138,7 @@
 
                             <Button Grid.Row="2" Foreground="#FFFFFF" Background="#002EFF" Margin="0,10,0,10"
                                     Content="직원관리" Command="{Binding GoToMngEmpCommand}"
-                                    FontSize="20" FontFamily="Noto Sans KR" FontWeight="Bold">
+                                    FontSize="20" FontFamily="Noto Sans KR" FontWeight="Bold" BorderThickness="0">
                                 <Button.Resources>
                                     <Style TargetType="Border">
                                         <Setter Property="CornerRadius" Value="10"/>

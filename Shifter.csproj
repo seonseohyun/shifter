@@ -19,10 +19,18 @@
     <None Remove="Resources\Icons\GenScd.png" />
     <None Remove="Resources\Icons\home-button.png" />
     <None Remove="Resources\Icons\magnifying-glass.png" />
+    <None Remove="Resources\Icons\minus.png" />
+    <None Remove="Resources\Icons\plus.png" />
     <None Remove="Resources\Icons\power-button.png" />
     <None Remove="Resources\Icons\right-arrows.png" />
     <None Remove="Resources\Logo\Logo.png" />
     <None Remove="Resources\Logo\LogoNoMargin.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Icons\plus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
@@ -67,6 +75,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Icons\magnifying-glass.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\minus.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Icons\power-button.png">

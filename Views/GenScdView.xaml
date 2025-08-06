@@ -54,26 +54,35 @@
                             <RowDefinition Height="1*"/>
                         </Grid.RowDefinitions>
                         <TextBlock Grid.Row="0"
-                                   Text="팀 선택하기" FontSize="15" FontFamily="Noto Sans KR" FontWeight="Medium"
+                                   Text="년도 선택하기" FontSize="15" FontFamily="Noto Sans KR" FontWeight="Medium"
                                    Foreground="#444444" VerticalAlignment="Bottom" Margin="0,0,0,10"></TextBlock>
                         <Border Grid.Row="1"
-                                CornerRadius="10"
+                                CornerRadius="30"
                                 Background="#FFFFFF"
                                 BorderBrush="Transparent"
                                 BorderThickness="1">
-                            <ComboBox Margin="5" Padding="10" Width="670" Height="55"
-                                      BorderBrush="LightGray"
-                                      HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
-                                      IsEditable="False" FontSize="15" FontFamily="Noto Sans KR"
-                                      Style="{StaticResource {x:Static ToolBar.ComboBoxStyleKey}}"
-                                      ItemsSource="{Binding}">
-                                <ComboBox.ItemContainerStyle>
-                                    <Style TargetType="ComboBoxItem">
-                                        <Setter Property="Background" Value="Transparent"/>
-                                        <Setter Property="BorderBrush" Value="Transparent"/>
-                                    </Style>
-                                </ComboBox.ItemContainerStyle>
-                            </ComboBox>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="8.5*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <Button Grid.Column="0" Margin="7" Style="{StaticResource EllipseRoundedBlueButtonStyle}"
+                                        Command="{Binding MinusYearCommand}">
+                                    <Image Source="/Resources/Icons/minus.png" Margin="15" Opacity="0.6"></Image>
+                                </Button>
+
+                                <TextBlock Grid.Column="1" Text="{Binding Year}"
+                                           FontSize="20" FontFamily="Noto Sans KR"
+                                           FontWeight="Medium" VerticalAlignment="Center"
+                                           TextAlignment="Center"></TextBlock>
+                                
+                                <Button Grid.Column="2" Margin="7" Style="{StaticResource EllipseRoundedBlueButtonStyle}"
+                                        Command="{Binding PlusYearCommand}">
+                                    <Image Source="/Resources/Icons/plus.png" Margin="15" Opacity="0.6"></Image>
+                                </Button>
+                            </Grid>
                         </Border>
 
                     </Grid>
@@ -86,34 +95,32 @@
                                    Text="월 선택하기" FontSize="15" FontFamily="Noto Sans KR" FontWeight="Medium"
                                    Foreground="#444444" VerticalAlignment="Bottom" Margin="0,0,0,10" Grid.ColumnSpan="2"></TextBlock>
                         <Border Grid.Row="1"
-                                CornerRadius="10"
+                                CornerRadius="30"
                                 Background="#FFFFFF"
                                 BorderBrush="Transparent"
                                 BorderThickness="1">
-                            <ComboBox Margin="5" Padding="10" Width="670" Height="55"
-                                      BorderBrush="LightGray"
-                                      HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
-                                      IsEditable="False" FontSize="15" FontFamily="Noto Sans KR"
-                                      Style="{StaticResource {x:Static ToolBar.ComboBoxStyleKey}}">
-                                <ComboBox.ItemContainerStyle>
-                                    <Style TargetType="ComboBoxItem">
-                                        <Setter Property="Background" Value="Transparent"/>
-                                        <Setter Property="BorderBrush" Value="Transparent"/>
-                                    </Style>
-                                </ComboBox.ItemContainerStyle>
-                                <ComboBoxItem Content="1월" />
-                                <ComboBoxItem Content="2월" />
-                                <ComboBoxItem Content="3월" />
-                                <ComboBoxItem Content="4월" />
-                                <ComboBoxItem Content="5월" />
-                                <ComboBoxItem Content="6월" />
-                                <ComboBoxItem Content="7월" />
-                                <ComboBoxItem Content="8월" />
-                                <ComboBoxItem Content="9월" />
-                                <ComboBoxItem Content="10월" />
-                                <ComboBoxItem Content="11월" />
-                                <ComboBoxItem Content="12월" />
-                            </ComboBox>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="8.5*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Button Grid.Column="0" Margin="7" Style="{StaticResource EllipseRoundedBlueButtonStyle}"
+                                        Command="{Binding MinusMonthCommand}">
+                                    <Image Source="/Resources/Icons/minus.png" Margin="15" Opacity="0.6"></Image>
+                                </Button>
+
+                                <TextBlock Grid.Column="1" Text="{Binding Month}"
+                                           FontSize="20" FontFamily="Noto Sans KR"
+                                           FontWeight="Medium" VerticalAlignment="Center"
+                                           TextAlignment="Center"></TextBlock>
+
+                                <Button Grid.Column="2" Margin="7" Style="{StaticResource EllipseRoundedBlueButtonStyle}"
+                                        Command="{Binding PlusMonthCommand}">
+                                    <Image Source="/Resources/Icons/plus.png" Margin="15" Opacity="0.6"></Image>
+                                </Button>
+                            </Grid>
                         </Border>
                     </Grid>
                 </Grid>
@@ -131,12 +138,8 @@
                         <Button Grid.Row="1" 
                                 Command="{Binding GenScdCommand}"
                                 Background="#002EFF" Foreground="#FFFFFF" BorderBrush="Transparent"
-                                Content="근무표 생성하기 >" FontSize="20" FontFamily="Noto Sans KR" FontWeight="Bold">
-                            <Button.Resources>
-                                <Style TargetType="Border">
-                                    <Setter Property="CornerRadius" Value="10"/>
-                                </Style>
-                            </Button.Resources>
+                                Content="근무표 생성하기 >" FontSize="20" FontFamily="Noto Sans KR" FontWeight="Bold"
+                                Style="{StaticResource LargeRoundedBlueButtonStyle}">
                         </Button>
                     </Grid>
                 </Grid>

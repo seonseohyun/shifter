@@ -46,7 +46,7 @@
                         <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Grid>
+                    <Grid Grid.Row="0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="1*"/>
                             <RowDefinition Height="1*"/>
@@ -62,26 +62,35 @@
                         </TextBlock>
                     </Grid>
 
-                    <ComboBox Grid.Column="1"
-                              Margin="0,15,0,15"></ComboBox>
+                    <!-- TeamName -->
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0"
+                                   Text="{Binding TeamName}" Background="Transparent" TextAlignment="Right"
+                                   FontSize="25" FontFamily="Noto Sans KR" FontWeight="Bold"></TextBlock>
+                        <TextBlock Grid.Row="1"
+                                   Text="{Binding DateOfToday}" Background="Transparent" TextAlignment="Right"
+                                   FontSize="15" FontFamily="Noto Sans KR" FontWeight="Medium"></TextBlock>
+                    </Grid>
                 </Grid>
 
                 <Grid Grid.Row="1"></Grid>
 
                 <Button Grid.Row="2"
                         BorderBrush="Transparent"
-                        Margin="30, 20, 30, 20"
+                        Margin="30, 10, 30, 30"
                         Foreground="#FFFFFF"
                         Background="#002EFF"
                         Content="이달의 근무정보 확인하기 >"
                         FontSize="20"
                         FontFamily="Noto Sans KR"
-                        FontWeight="Normal">
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="10"/>
-                        </Style>
-                    </Button.Resources>
+                        FontWeight="Normal"
+                        BorderThickness="0"
+                        Style="{StaticResource LargeRoundedBlueButtonStyle}">
                 </Button>
             </Grid>
         </Border>
@@ -142,13 +151,9 @@
                                 Background="#002EFF"
                                 Foreground="#FFFFFF"
                                 BorderBrush="Transparent"
-                                MinWidth="40">
+                                MinWidth="40"
+                                Style="{StaticResource MiddleRoundedBlueButtonStyle}">
                             <Image Source="/Resources/Icons/right-arrows.png"></Image>
-                            <Button.Resources>
-                                <Style TargetType="Border">
-                                    <Setter Property="CornerRadius" Value="20"/>
-                                </Style>
-                            </Button.Resources>
                         </Button>
                     </Grid>
                 </Grid>
@@ -202,13 +207,9 @@
                                 Background="#002EFF"
                                 Foreground="#FFFFFF"
                                 BorderBrush="Transparent"
-                                MinWidth="40">
+                                MinWidth="40"
+                                Style="{StaticResource MiddleRoundedBlueButtonStyle}">
                             <Image Source="/Resources/Icons/right-arrows.png"></Image>
-                            <Button.Resources>
-                                <Style TargetType="Border">
-                                    <Setter Property="CornerRadius" Value="20"/>
-                                </Style>
-                            </Button.Resources>
                         </Button>
                     </Grid>
                 </Grid>

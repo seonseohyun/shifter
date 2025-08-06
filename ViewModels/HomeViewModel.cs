@@ -19,12 +19,16 @@ namespace Shifter.ViewModels {
             _session = session!;
 
             _session.VisGoBack = false;
+
+            TeamName = _session.GetCurrentTeamName();
         }
 
 
 
         /** Member Variables **/
         private readonly Session? _session;
+        [ObservableProperty] private string? teamName = "";
+        [ObservableProperty] private string? dateOfToday = DateTime.Today.Date.ToString()[..10];
 
 
 

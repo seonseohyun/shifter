@@ -36,7 +36,11 @@ namespace Shifter.ViewModels {
 
             TempEmpInfo TestTempEmpInfo = new()
             {
-                TeamName      = "Test Team",
+                GradeItem     = new()
+                {
+                    GradeName = "Test Grade",
+                    GradeNum  = 1
+                },
                 EmpName       = "Test Name",
                 EmpPhoneNum   = "010-0000-0000",
                 EmpTotalHours = 80,
@@ -63,7 +67,7 @@ namespace Shifter.ViewModels {
     public partial class TempEmpInfo : ObservableObject {
 
         /** Member Variables **/
-        [ObservableProperty] private string? teamName      = "";
+        [ObservableProperty] private GradeItem? gradeItem  = null;
         [ObservableProperty] private string? empName       = "";
         [ObservableProperty] private string? empPhoneNum   = "";
         [ObservableProperty] private float ? empTotalHours = 0;
