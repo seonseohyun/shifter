@@ -1,0 +1,73 @@
+{
+  "protocol": "gen_schedule",
+  "data": {
+    "staff_data": {
+      "staff": [
+        {
+          "name": "김수련",
+          "staff_id": 4001,
+          "grade": 1,
+          "grade_name": "수간호사",
+          "total_monthly_work_hours": 209
+        },
+        {
+          "name": "이영희",
+          "staff_id": 4002,
+          "grade": 2,
+          "grade_name": "주임간호사",
+          "total_monthly_work_hours": 208
+        },
+        {
+          "name": "박민정",
+          "staff_id": 4003,
+          "grade": 3,
+          "grade_name": "책임간호사",
+          "total_monthly_work_hours": 205
+        },
+        {
+          "name": "최은영",
+          "staff_id": 4004,
+          "grade": 4,
+          "grade_name": "일반간호사",
+          "total_monthly_work_hours": 200
+        },
+        {
+          "name": "정소희",
+          "staff_id": 4005,
+          "grade": 4,
+          "grade_name": "일반간호사",
+          "total_monthly_work_hours": 195
+        },
+        {
+          "name": "한미래",
+          "staff_id": 4006,
+          "grade": 5,
+          "grade_name": "신규간호사",
+          "total_monthly_work_hours": 180
+        }
+      ]
+    },
+    "position": "간호",
+    "target_month": "2025-09",
+    "custom_rules": {
+      "shifts": [
+        "Day",
+        "Evening",
+        "Night",
+        "Off"
+      ],
+      "shift_hours": {
+        "Day": 8,
+        "Evening": 8,
+        "Night": 8,
+        "Off": 0
+      },
+      "night_shifts": [
+        "Night"
+      ],
+      "off_shifts": [
+        "Off"
+      ]
+    }
+  }
+}

@@ -1,0 +1,157 @@
+{
+  "protocol": "gen_schedule",
+  "data": {
+    "staff_data": {
+      "staff": [
+        {
+          "name": "김응급",
+          "staff_id": 6001,
+          "grade": 1,
+          "grade_name": "수간호사",
+          "total_monthly_work_hours": 195
+        },
+        {
+          "name": "이응급",
+          "staff_id": 6002,
+          "grade": 2,
+          "grade_name": "주임간호사",
+          "total_monthly_work_hours": 190
+        },
+        {
+          "name": "박응급",
+          "staff_id": 6003,
+          "grade": 2,
+          "grade_name": "주임간호사",
+          "total_monthly_work_hours": 188
+        },
+        {
+          "name": "최응급",
+          "staff_id": 6004,
+          "grade": 2,
+          "grade_name": "주임간호사",
+          "total_monthly_work_hours": 192
+        },
+        {
+          "name": "정응급",
+          "staff_id": 6005,
+          "grade": 3,
+          "grade_name": "책임간호사",
+          "total_monthly_work_hours": 185
+        },
+        {
+          "name": "한응급",
+          "staff_id": 6006,
+          "grade": 3,
+          "grade_name": "책임간호사",
+          "total_monthly_work_hours": 187
+        },
+        {
+          "name": "윤응급",
+          "staff_id": 6007,
+          "grade": 3,
+          "grade_name": "책임간호사",
+          "total_monthly_work_hours": 190
+        },
+        {
+          "name": "강응급",
+          "staff_id": 6008,
+          "grade": 3,
+          "grade_name": "책임간호사",
+          "total_monthly_work_hours": 186
+        },
+        {
+          "name": "오응급",
+          "staff_id": 6009,
+          "grade": 4,
+          "grade_name": "일반간호사",
+          "total_monthly_work_hours": 180
+        },
+        {
+          "name": "송응급",
+          "staff_id": 6010,
+          "grade": 4,
+          "grade_name": "일반간호사",
+          "total_monthly_work_hours": 182
+        },
+        {
+          "name": "임응급",
+          "staff_id": 6011,
+          "grade": 4,
+          "grade_name": "일반간호사",
+          "total_monthly_work_hours": 184
+        },
+        {
+          "name": "조응급",
+          "staff_id": 6012,
+          "grade": 4,
+          "grade_name": "일반간호사",
+          "total_monthly_work_hours": 183
+        },
+        {
+          "name": "김신규",
+          "staff_id": 6013,
+          "grade": 4,
+          "grade_name": "일반간호사",
+          "total_monthly_work_hours": 181
+        },
+        {
+          "name": "이신규",
+          "staff_id": 6014,
+          "grade": 4,
+          "grade_name": "일반간호사",
+          "total_monthly_work_hours": 179
+        },
+        {
+          "name": "박신규",
+          "staff_id": 6015,
+          "grade": 5,
+          "grade_name": "신규간호사",
+          "total_monthly_work_hours": 170
+        },
+        {
+          "name": "최신규",
+          "staff_id": 6016,
+          "grade": 5,
+          "grade_name": "신규간호사",
+          "total_monthly_work_hours": 175
+        },
+        {
+          "name": "정신규",
+          "staff_id": 6017,
+          "grade": 5,
+          "grade_name": "신규간호사",
+          "total_monthly_work_hours": 172
+        },
+        {
+          "name": "한신규",
+          "staff_id": 6018,
+          "grade": 5,
+          "grade_name": "신규간호사",
+          "total_monthly_work_hours": 168
+        }
+      ]
+    },
+    "position": "간호",
+    "target_month": "2025-09",
+    "custom_rules": {
+      "shifts": [
+        "Day",
+        "Evening",
+        "Night",
+        "Off"
+      ],
+      "shift_hours": {
+        "Day": 8,
+        "Evening": 8,
+        "Night": 8,
+        "Off": 0
+      },
+      "night_shifts": [
+        "Night"
+      ],
+      "off_shifts": [
+        "Off"
+      ]
+    }
+  }
+}

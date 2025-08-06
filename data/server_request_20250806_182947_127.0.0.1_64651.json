@@ -1,0 +1,206 @@
+{
+  "protocol": "gen_schedule",
+  "data": {
+    "staff_data": {
+      "staff": [
+        {
+          "name": "김수련",
+          "staff_id": 3001,
+          "grade": 1,
+          "grade_name": "수간호사",
+          "total_monthly_work_hours": 205
+        },
+        {
+          "name": "이영희",
+          "staff_id": 3002,
+          "grade": 1,
+          "grade_name": "수간호사",
+          "total_monthly_work_hours": 200
+        },
+        {
+          "name": "박민정",
+          "staff_id": 3003,
+          "grade": 2,
+          "grade_name": "주임간호사",
+          "total_monthly_work_hours": 198
+        },
+        {
+          "name": "최은영",
+          "staff_id": 3004,
+          "grade": 2,
+          "grade_name": "주임간호사",
+          "total_monthly_work_hours": 195
+        },
+        {
+          "name": "정소희",
+          "staff_id": 3005,
+          "grade": 2,
+          "grade_name": "주임간호사",
+          "total_monthly_work_hours": 192
+        },
+        {
+          "name": "한미래",
+          "staff_id": 3006,
+          "grade": 2,
+          "grade_name": "주임간호사",
+          "total_monthly_work_hours": 197
+        },
+        {
+          "name": "윤서영",
+          "staff_id": 3007,
+          "grade": 2,
+          "grade_name": "주임간호사",
+          "total_monthly_work_hours": 193
+        },
+        {
+          "name": "강혜진",
+          "staff_id": 3008,
+          "grade": 3,
+          "grade_name": "책임간호사",
+          "total_monthly_work_hours": 190
+        },
+        {
+          "name": "오지은",
+          "staff_id": 3009,
+          "grade": 3,
+          "grade_name": "책임간호사",
+          "total_monthly_work_hours": 188
+        },
+        {
+          "name": "송나리",
+          "staff_id": 3010,
+          "grade": 3,
+          "grade_name": "책임간호사",
+          "total_monthly_work_hours": 191
+        },
+        {
+          "name": "임지현",
+          "staff_id": 3011,
+          "grade": 3,
+          "grade_name": "책임간호사",
+          "total_monthly_work_hours": 189
+        },
+        {
+          "name": "조은서",
+          "staff_id": 3012,
+          "grade": 3,
+          "grade_name": "책임간호사",
+          "total_monthly_work_hours": 194
+        },
+        {
+          "name": "김하늘",
+          "staff_id": 3013,
+          "grade": 4,
+          "grade_name": "일반간호사",
+          "total_monthly_work_hours": 185
+        },
+        {
+          "name": "이지원",
+          "staff_id": 3014,
+          "grade": 4,
+          "grade_name": "일반간호사",
+          "total_monthly_work_hours": 187
+        },
+        {
+          "name": "박소연",
+          "staff_id": 3015,
+          "grade": 4,
+          "grade_name": "일반간호사",
+          "total_monthly_work_hours": 186
+        },
+        {
+          "name": "최하린",
+          "staff_id": 3016,
+          "grade": 4,
+          "grade_name": "일반간호사",
+          "total_monthly_work_hours": 184
+        },
+        {
+          "name": "정민수",
+          "staff_id": 3017,
+          "grade": 4,
+          "grade_name": "일반간호사",
+          "total_monthly_work_hours": 188
+        },
+        {
+          "name": "한지민",
+          "staff_id": 3018,
+          "grade": 4,
+          "grade_name": "일반간호사",
+          "total_monthly_work_hours": 183
+        },
+        {
+          "name": "윤채영",
+          "staff_id": 3019,
+          "grade": 4,
+          "grade_name": "일반간호사",
+          "total_monthly_work_hours": 189
+        },
+        {
+          "name": "강서준",
+          "staff_id": 3020,
+          "grade": 5,
+          "grade_name": "신규간호사",
+          "total_monthly_work_hours": 175
+        },
+        {
+          "name": "오예린",
+          "staff_id": 3021,
+          "grade": 5,
+          "grade_name": "신규간호사",
+          "total_monthly_work_hours": 172
+        },
+        {
+          "name": "송다은",
+          "staff_id": 3022,
+          "grade": 5,
+          "grade_name": "신규간호사",
+          "total_monthly_work_hours": 178
+        },
+        {
+          "name": "임수아",
+          "staff_id": 3023,
+          "grade": 5,
+          "grade_name": "신규간호사",
+          "total_monthly_work_hours": 170
+        },
+        {
+          "name": "조민준",
+          "staff_id": 3024,
+          "grade": 5,
+          "grade_name": "신규간호사",
+          "total_monthly_work_hours": 174
+        },
+        {
+          "name": "김예은",
+          "staff_id": 3025,
+          "grade": 5,
+          "grade_name": "신규간호사",
+          "total_monthly_work_hours": 176
+        }
+      ]
+    },
+    "position": "간호",
+    "target_month": "2025-09",
+    "custom_rules": {
+      "shifts": [
+        "Day",
+        "Evening",
+        "Night",
+        "Off"
+      ],
+      "shift_hours": {
+        "Day": 8,
+        "Evening": 8,
+        "Night": 8,
+        "Off": 0
+      },
+      "night_shifts": [
+        "Night"
+      ],
+      "off_shifts": [
+        "Off"
+      ]
+    }
+  }
+}

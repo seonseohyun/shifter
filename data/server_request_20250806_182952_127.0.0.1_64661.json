@@ -1,0 +1,167 @@
+{
+  "protocol": "gen_schedule",
+  "data": {
+    "staff_data": {
+      "staff": [
+        {
+          "name": "김소방",
+          "staff_id": 1001,
+          "grade": 1,
+          "grade_name": "소방관",
+          "total_monthly_work_hours": 180
+        },
+        {
+          "name": "이소방",
+          "staff_id": 1002,
+          "grade": 1,
+          "grade_name": "소방관",
+          "total_monthly_work_hours": 175
+        },
+        {
+          "name": "박소방",
+          "staff_id": 1003,
+          "grade": 2,
+          "grade_name": "소방교",
+          "total_monthly_work_hours": 185
+        },
+        {
+          "name": "최소방",
+          "staff_id": 1004,
+          "grade": 2,
+          "grade_name": "소방교",
+          "total_monthly_work_hours": 182
+        },
+        {
+          "name": "정소방",
+          "staff_id": 1005,
+          "grade": 2,
+          "grade_name": "소방교",
+          "total_monthly_work_hours": 178
+        },
+        {
+          "name": "한소방",
+          "staff_id": 1006,
+          "grade": 2,
+          "grade_name": "소방교",
+          "total_monthly_work_hours": 180
+        },
+        {
+          "name": "윤소방",
+          "staff_id": 1007,
+          "grade": 3,
+          "grade_name": "소방사",
+          "total_monthly_work_hours": 170
+        },
+        {
+          "name": "강소방",
+          "staff_id": 1008,
+          "grade": 3,
+          "grade_name": "소방사",
+          "total_monthly_work_hours": 172
+        },
+        {
+          "name": "오소방",
+          "staff_id": 1009,
+          "grade": 3,
+          "grade_name": "소방사",
+          "total_monthly_work_hours": 175
+        },
+        {
+          "name": "송소방",
+          "staff_id": 1010,
+          "grade": 3,
+          "grade_name": "소방사",
+          "total_monthly_work_hours": 173
+        },
+        {
+          "name": "임소방",
+          "staff_id": 1011,
+          "grade": 3,
+          "grade_name": "소방사",
+          "total_monthly_work_hours": 174
+        },
+        {
+          "name": "조소방",
+          "staff_id": 1012,
+          "grade": 3,
+          "grade_name": "소방사",
+          "total_monthly_work_hours": 171
+        },
+        {
+          "name": "김소방2",
+          "staff_id": 1013,
+          "grade": 4,
+          "grade_name": "소방위",
+          "total_monthly_work_hours": 165
+        },
+        {
+          "name": "이소방2",
+          "staff_id": 1014,
+          "grade": 4,
+          "grade_name": "소방위",
+          "total_monthly_work_hours": 168
+        },
+        {
+          "name": "박소방2",
+          "staff_id": 1015,
+          "grade": 4,
+          "grade_name": "소방위",
+          "total_monthly_work_hours": 167
+        },
+        {
+          "name": "최소방2",
+          "staff_id": 1016,
+          "grade": 4,
+          "grade_name": "소방위",
+          "total_monthly_work_hours": 169
+        },
+        {
+          "name": "정소방2",
+          "staff_id": 1017,
+          "grade": 5,
+          "grade_name": "소방장",
+          "total_monthly_work_hours": 160
+        },
+        {
+          "name": "한소방2",
+          "staff_id": 1018,
+          "grade": 5,
+          "grade_name": "소방장",
+          "total_monthly_work_hours": 162
+        },
+        {
+          "name": "윤소방2",
+          "staff_id": 1019,
+          "grade": 5,
+          "grade_name": "소방장",
+          "total_monthly_work_hours": 158
+        },
+        {
+          "name": "강소방2",
+          "staff_id": 1020,
+          "grade": 5,
+          "grade_name": "소방장",
+          "total_monthly_work_hours": 163
+        }
+      ]
+    },
+    "position": "소방",
+    "target_month": "2025-09",
+    "custom_rules": {
+      "shifts": [
+        "D24",
+        "Off"
+      ],
+      "shift_hours": {
+        "D24": 24,
+        "Off": 0
+      },
+      "night_shifts": [
+        "D24"
+      ],
+      "off_shifts": [
+        "Off"
+      ]
+    }
+  }
+}

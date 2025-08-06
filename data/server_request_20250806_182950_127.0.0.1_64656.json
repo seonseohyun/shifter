@@ -1,0 +1,101 @@
+{
+  "protocol": "gen_schedule",
+  "data": {
+    "staff_data": {
+      "staff": [
+        {
+          "name": "김중환",
+          "staff_id": 7001,
+          "grade": 1,
+          "grade_name": "수간호사",
+          "total_monthly_work_hours": 200
+        },
+        {
+          "name": "이중환",
+          "staff_id": 7002,
+          "grade": 2,
+          "grade_name": "주임간호사",
+          "total_monthly_work_hours": 195
+        },
+        {
+          "name": "박중환",
+          "staff_id": 7003,
+          "grade": 2,
+          "grade_name": "주임간호사",
+          "total_monthly_work_hours": 192
+        },
+        {
+          "name": "최중환",
+          "staff_id": 7004,
+          "grade": 3,
+          "grade_name": "책임간호사",
+          "total_monthly_work_hours": 190
+        },
+        {
+          "name": "정중환",
+          "staff_id": 7005,
+          "grade": 3,
+          "grade_name": "책임간호사",
+          "total_monthly_work_hours": 188
+        },
+        {
+          "name": "한중환",
+          "staff_id": 7006,
+          "grade": 3,
+          "grade_name": "책임간호사",
+          "total_monthly_work_hours": 193
+        },
+        {
+          "name": "윤중환",
+          "staff_id": 7007,
+          "grade": 4,
+          "grade_name": "일반간호사",
+          "total_monthly_work_hours": 185
+        },
+        {
+          "name": "강중환",
+          "staff_id": 7008,
+          "grade": 4,
+          "grade_name": "일반간호사",
+          "total_monthly_work_hours": 187
+        },
+        {
+          "name": "오중환",
+          "staff_id": 7009,
+          "grade": 4,
+          "grade_name": "일반간호사",
+          "total_monthly_work_hours": 180
+        },
+        {
+          "name": "송중환",
+          "staff_id": 7010,
+          "grade": 5,
+          "grade_name": "신규간호사",
+          "total_monthly_work_hours": 175
+        }
+      ]
+    },
+    "position": "간호",
+    "target_month": "2025-09",
+    "custom_rules": {
+      "shifts": [
+        "Day",
+        "Evening",
+        "Night",
+        "Off"
+      ],
+      "shift_hours": {
+        "Day": 8,
+        "Evening": 8,
+        "Night": 8,
+        "Off": 0
+      },
+      "night_shifts": [
+        "Night"
+      ],
+      "off_shifts": [
+        "Off"
+      ]
+    }
+  }
+}

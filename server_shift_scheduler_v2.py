@@ -15,6 +15,7 @@ from datetime import datetime, timedelta
 import calendar
 from ortools.sat.python import cp_model
 import time
+import os
 
 HOST = '127.0.0.1'
 PORT = 6004
@@ -171,12 +172,19 @@ def validate_request_parameters(staff_data, position, custom_rules):
         errors.append("직원 데이터가 비어있음")
         return errors, warnings
     
-    # 2. 직원별 필수 필드 검증 (필수)
-    required_fields = ["name", "staff_id", "position", "total_monthly_work_hours"]
+    # 2. 직원별 필수 필드 검증 (필수) - position은 data 레벨에서 추가되므로 검증에서 확인
+    required_fields = ["name", "staff_id", "total_monthly_work_hours", "position", "grade"]
+    optional_fields = ["grade_name"]  # 선택적 필드
+    
     for i, person in enumerate(staff_list):
         for field in required_fields:
             if field not in person:
                 errors.append(f"직원 {i+1}: '{field}' 필드 누락")
+        
+        # 선택적 필드는 로그만 (경고 제거)
+        # for field in optional_fields:
+        #     if field not in person:
+        #         warnings.append(f"직원 {i+1}: '{field}' 필드 없음 (선택사항)")
                 
         # 데이터 타입 검증 (안전성)
         if "total_monthly_work_hours" in person:
@@ -410,6 +418,34 @@ def analyze_infeasible_model(staff_data, shifts, shift_hours, days, position, ni
     
     return analysis
 
+def save_request_to_file(request_data, client_addr):
+    """요청 데이터를 data 디렉토리에 저장"""
+    try:
+        os.makedirs("data", exist_ok=True)
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        filename = f"data/server_request_{timestamp}_{client_addr[0]}_{client_addr[1]}.json"
+        with open(filename, 'w', encoding='utf-8') as f:
+            json.dump(request_data, f, ensure_ascii=False, indent=2)
+        print(f"[INFO] 📝 요청 데이터 저장: {filename}")
+        return filename
+    except Exception as e:
+        print(f"[WARN] 요청 데이터 저장 실패: {e}")
+        return None
+
+def save_response_to_file(response_data, client_addr):
+    """응답 데이터를 data 디렉토리에 저장"""
+    try:
+        os.makedirs("data", exist_ok=True)
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        filename = f"data/server_response_{timestamp}_{client_addr[0]}_{client_addr[1]}.json"
+        with open(filename, 'w', encoding='utf-8') as f:
+            json.dump(response_data, f, ensure_ascii=False, indent=2)
+        print(f"[INFO] 📝 응답 데이터 저장: {filename}")
+        return filename
+    except Exception as e:
+        print(f"[WARN] 응답 데이터 저장 실패: {e}")
+        return None
+
 def generate_shift_schedule(request_data):
     """시프트 스케줄 생성 메인 함수"""
     start_time = time.time()
@@ -430,15 +466,21 @@ def generate_shift_schedule(request_data):
         raw_staff_data = actual_data.get("staff_data", {})
         staff_data = normalize_staff_data(raw_staff_data)
         
+        # position은 data 레벨에서 가져옴 (프로토콜 규격 준수)
         position = actual_data.get("position", "default")
         target_month = actual_data.get("target_month", None)
         custom_rules = actual_data.get("custom_rules", {})
+        
+        # staff_data의 모든 직원에 position 정보 추가 (내부 처리용)
+        if "staff" in staff_data:
+            for person in staff_data["staff"]:
+                person["position"] = position
         
         print(f"[INFO] === 시프트 스케줄 생성 시작 ===")
         print(f"[INFO] 직군: {position}")
         print(f"[INFO] 직원 수: {len(staff_data.get('staff', []))}명")
         
-        # 2. 파라미터 검증
+        # 3. 파라미터 검증 (position 추가 후 실행)
         errors, warnings = validate_request_parameters(staff_data, position, custom_rules)
         
         if errors:
@@ -515,12 +557,15 @@ def generate_shift_schedule(request_data):
                     for person in staff_data["staff"]:
                         staff_id = str(person["staff_id"])
                         if solver.Value(schedule[(staff_id, day, shift)]):
-                            people.append({
+                            person_info = {
+                                "staff_id": person["staff_id"],
                                 "이름": person["name"],
-                                "직원번호": person["staff_id"],
-                                "등급": person.get("grade", 1),
-                                "grade": person.get("grade", 1)  # test_recommended.py 호환성
-                            })
+                                "grade": person.get("grade", 1)
+                            }
+                            # grade_name이 있으면 추가
+                            if "grade_name" in person:
+                                person_info["grade_name"] = person["grade_name"]
+                            people.append(person_info)
                     
                     if people:  # 배정된 사람이 있는 시프트만 포함
                         result_schedule[date_str].append({
@@ -640,8 +685,14 @@ def handle_client(conn, addr):
             conn.sendall(response.encode('utf-8'))
             return
         
+        # 요청 데이터 저장
+        save_request_to_file(request_data, addr)
+        
         # 스케줄 생성
         result = generate_shift_schedule(request_data)
+        
+        # 응답 데이터 저장 (응답 전에)
+        save_response_to_file(result, addr)
         
         # 응답 전송
         response = json.dumps(result, ensure_ascii=False, indent=2)
