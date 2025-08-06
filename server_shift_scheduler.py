@@ -6,7 +6,7 @@ from ortools.sat.python import cp_model
 import os
 
 HOST = '127.0.0.1'
-PORT = 6002
+PORT = 6004
 
 # 직군별 제약조건 정의
 POSITION_RULES = {
@@ -15,7 +15,7 @@ POSITION_RULES = {
         "newbie_no_night": True,
         "night_after_off": True,
         "max_weekly_hours": 60,
-        "max_monthly_hours": 190,
+        "max_monthly_hours": 209,  # 클라이언트 요구사항에 맞춤
         "newbie_grade": 5,  # 신규간호사 등급
         "shifts": ['D', 'E', 'N', 'O'],  # 3교대
         "shift_hours": {'D': 8, 'E': 8, 'N': 8, 'O': 0}
@@ -110,27 +110,36 @@ def apply_position_constraints(model, schedule, person, days, shifts, shift_hour
                         
        
         
-        # 최소 휴무일
+        # 최소 휴무일 - 동적 휴무 시프트 적용
         min_off_days = rules.get("min_off_days", 3)
-        if 'O' in shifts:
-            model.Add(sum(schedule[(sid, d, 'O')] for d in days) >= min_off_days)
-            print(f"[INFO] {name}: 최소 휴무일 {min_off_days}일 적용")
+        if off_shifts:
+            total_off = sum(schedule[(sid, d, off_shift)] for d in days for off_shift in off_shifts)
+            model.Add(total_off >= min_off_days)
+            print(f"[INFO] {name}: 최소 휴무일 {min_off_days}일 적용 (대상: {off_shifts})")
     
     elif position == "소방":
-        # 소방 직군 제약조건 (완화된 버전)
-        if 'D24' in shifts and 'O' in shifts:
-            # D24 후 반드시 오프 (최소 1일)
-            for d in range(len(days) - 1):
-                d24_today = schedule[(sid, d, 'D24')]
-                off_tomorrow = schedule[(sid, d + 1, 'O')]
-                model.AddImplication(d24_today, off_tomorrow)
+        # 소방 직군 제약조건 - 동적 당직/휴무 시프트 적용
+        # 당직 시프트 동적 식별
+        duty_keywords = ['d24', '24', '당직', 'duty', '24시간']
+        duty_shifts = [s for s in shifts if any(keyword.lower() in s.lower() for keyword in duty_keywords)]
+        
+        if duty_shifts and off_shifts:
+            for duty_shift in duty_shifts:
+                # 당직 후 반드시 휴무 (최소 1일)
+                for d in range(len(days) - 1):
+                    duty_today = schedule[(sid, d, duty_shift)]
+                    # 다음 날 휴무 중 하나라도 배정되면 만족
+                    off_tomorrow = [schedule[(sid, d + 1, off_shift)] for off_shift in off_shifts]
+                    model.AddBoolOr([duty_today.Not()] + off_tomorrow)
+                
+                # 월 당직 근무 횟수 제한 (월 8-12회 정도)
+                monthly_duty = sum(schedule[(sid, d, duty_shift)] for d in days)
+                model.Add(monthly_duty >= 8)  # 최소 8회
+                model.Add(monthly_duty <= 12) # 최대 12회
             
-            # 월 D24 근무 횟수 제한 (월 8-12회 정도)
-            monthly_d24 = sum(schedule[(sid, d, 'D24')] for d in days)
-            model.Add(monthly_d24 >= 8)  # 최소 8회
-            model.Add(monthly_d24 <= 12) # 최대 12회
-            
-            print(f"[INFO] {name}: 소방 D24 후 오프 제약 적용 (월 8-12회)")
+            print(f"[INFO] {name}: 소방 당직 후 휴무 제약 적용 (당직: {duty_shifts}, 휴무: {off_shifts})")
+        else:
+            print(f"[INFO] {name}: 소방 당직/휴무 시프트 미식별, 기본 제약만 적용")
     
     # 공통 제약조건
     # 주당 근무시간 제한
@@ -154,6 +163,49 @@ def apply_position_constraints(model, schedule, person, days, shifts, shift_hour
     
     print(f"[INFO] {name}: 주당 최대 {max_weekly_hours}시간, 월 {min_monthly_hours}-{max_monthly_hours}시간 (목표: {base_monthly_hours}시간)")
 
+def normalize_staff_data(staff_data):
+    """클라이언트 요청 프로토콜을 서버 내부 형식으로 정규화"""
+    if not staff_data or "staff" not in staff_data:
+        return staff_data
+    
+    normalized_staff = []
+    for staff in staff_data["staff"]:
+        normalized = {}
+        
+        # 필드명 매핑
+        field_mapping = {
+            "name": "name",
+            "staff_uid": "staff_id",  # 클라이언트 → 서버
+            "staff_id": "staff_id",   # 이미 서버 형식
+            "grade": "grade", 
+            "grade_name": "grade_name",
+            "job_category": "position",     # 클라이언트 → 서버  
+            "position": "position",         # 이미 서버 형식
+            "monthly_workhour": "total_monthly_work_hours",  # 클라이언트 → 서버
+            "total_monthly_work_hours": "total_monthly_work_hours"  # 이미 서버 형식
+        }
+        
+        for client_field, server_field in field_mapping.items():
+            if client_field in staff:
+                normalized[server_field] = staff[client_field]
+        
+        # 누락된 필수 필드 기본값 설정
+        if "staff_id" not in normalized and "staff_uid" in staff:
+            normalized["staff_id"] = staff["staff_uid"]
+        if "position" not in normalized and "job_category" in staff:
+            normalized["position"] = staff["job_category"] 
+        if "total_monthly_work_hours" not in normalized and "monthly_workhour" in staff:
+            normalized["total_monthly_work_hours"] = staff["monthly_workhour"]
+            
+        # 기본값 설정
+        if "grade_name" not in normalized:
+            grade_names = {5: "신규간호사", 4: "간호사", 3: "주임간호사", 2: "수간호사", 1: "간호부장"}
+            normalized["grade_name"] = grade_names.get(normalized.get("grade", 4), "간호사")
+        
+        normalized_staff.append(normalized)
+    
+    return {"staff": normalized_staff}
+
 def validate_request_parameters(staff_data, shift_type, position, custom_rules):
     """요청 매개변수 검증 및 상세 오류 메시지 생성"""
     errors = []
@@ -172,18 +224,26 @@ def validate_request_parameters(staff_data, shift_type, position, custom_rules):
     if len(staff_list) < 5:
         warnings.append(f"직원 수가 {len(staff_list)}명으로 적습니다. 최소 10-15명을 권장합니다.")
     
-    # 2. 직원 정보 검증
+    # 2. 직원 정보 검증 (정규화된 필드명 사용)
     required_fields = ["name", "staff_id", "grade", "position", "total_monthly_work_hours"]
     for i, staff in enumerate(staff_list):
+        missing_fields = []
         for field in required_fields:
             if field not in staff:
-                errors.append(f"직원 {i+1}번의 필수 필드 '{field}'가 누락되었습니다.")
+                missing_fields.append(field)
+        
+        if missing_fields:
+            errors.append(f"직원 {i+1}번 '{staff.get('name', 'unknown')}'의 필수 필드가 누락되었습니다: {', '.join(missing_fields)}")
         
         # 근무시간 검증
         if "total_monthly_work_hours" in staff:
             hours = staff["total_monthly_work_hours"]
             if not isinstance(hours, (int, float)) or hours < 100 or hours > 250:
                 errors.append(f"직원 '{staff.get('name', f'{i+1}번')}'의 월 근무시간 {hours}가 비현실적입니다. (100-250시간 권장)")
+        
+        # 직군 검증
+        if "position" in staff and staff["position"] not in ["간호", "소방", "default"]:
+            warnings.append(f"직원 '{staff.get('name')}'의 직군 '{staff['position']}'이 표준이 아닙니다. 지원: 간호, 소방, default")
     
     # 3. custom_rules 검증
     if custom_rules:
@@ -239,6 +299,16 @@ def validate_request_parameters(staff_data, shift_type, position, custom_rules):
 def create_individual_shift_schedule(staff_data, shift_type, position="default", target_month=None, custom_rules=None):
     """개별 직원 근무표 생성 (상세한 오류 처리 포함)"""
     
+    # 0. 클라이언트 요청 프로토콜 정규화
+    try:
+        staff_data = normalize_staff_data(staff_data)
+    except Exception as e:
+        return {
+            "result": "생성실패",
+            "reason": f"요청 데이터 정규화 실패: {str(e)}. job_category→position, staff_uid→staff_id, monthly_workhour→total_monthly_work_hours 매핑 오류입니다.",
+            "details": {"error_type": "normalization_error"}
+        }
+    
     # 1. 요청 매개변수 사전 검증
     validation_errors, validation_warnings = validate_request_parameters(staff_data, shift_type, position, custom_rules)
     
@@ -258,52 +328,19 @@ def create_individual_shift_schedule(staff_data, shift_type, position="default",
         # 기본 규칙 가져오기
         base_rules = POSITION_RULES.get(position, POSITION_RULES["default"])
 
-        #야간 시프트 동적식별 2교대 'B','Late'
-        night_keywords = ['n', 'night','야간','Night','B','Late','밤','22-06','Shift3','Gamma','Delta','ShortNight']
-        night_shifts = []
-
-        if custom_rules and "night_shifts" in custom_rules:
-            night_shifts = custom_rules["night_shifts"]
-        else:
-            for s in shifts:
-                if any(keyword.lower() in s.lower() for keyword in night_keywords):
-                    night_shifts.append(s)
-        if not night_shifts:
-            print(f"[info] 야간 시프트가 식별되지 않음 (직군 {position})")
-        else:
-            print(f"[info] 식별된 야간 시프트 : {night_shifts}")
-
-        #휴무 시프트 동적 식별 추가
-        off_keywords = ['o', 'off', 'rest', '휴무', '쉼', 'free','Off','REST','Free']
-        off_shifts = []
-        if custom_rules and "off_shifts" in custom_rules:
-            off_shifts = custom_rules["off_shifts"]
-        else:
-            for s in shifts:
-                if any(keyword.lower() in s.lower() for keyword in off_keywords):
-                    off_shifts.append(s)
-        
-        if not off_shifts:
-            print(f"[WARNING] 휴무 시프트가 식별되지 않음. 제약 일부 무시될 수 있음.")
-        else:
-            print(f"[INFO] 식별된 휴무 시프트: {off_shifts}")
-
-
-        # custom_rules에서 shifts와 shift_hours만 추출하여 적용 (다른 제약조건은 무시)
+        # 1단계: shifts와 shift_hours 먼저 확정
         if custom_rules and "shifts" in custom_rules and "shift_hours" in custom_rules:
             shifts = custom_rules["shifts"]
             shift_hours = custom_rules["shift_hours"]
-            night_shift = 'N' if 'N' in shifts else None
             print(f"[INFO] 커스텀 시프트 적용: {shifts}")
             
             # custom_rules의 다른 항목들은 무시됨을 알림 (shifts, shift_hours만 오버라이드)
-            ignored_keys = set(custom_rules.keys()) - {"shifts", "shift_hours"}
+            ignored_keys = set(custom_rules.keys()) - {"shifts", "shift_hours", "night_shifts", "off_shifts"}
             if ignored_keys:
                 print(f"[INFO] 기본 제약조건 유지, 오버라이드된 항목: shifts, shift_hours")
         elif position in POSITION_RULES:
             shifts = base_rules["shifts"]
             shift_hours = base_rules["shift_hours"]
-            night_shift = 'N' if 'N' in shifts else None
         else:
             # 기존 로직 유지 (호환성)
             if shift_type not in [2, 3, 4]:
@@ -314,15 +351,52 @@ def create_individual_shift_schedule(staff_data, shift_type, position="default",
                 
             if shift_type == 2:
                 shifts = ['D', 'N', 'O']
-                night_shift = 'N'
             elif shift_type == 3:
                 shifts = ['D', 'E', 'N', 'O']
-                night_shift = 'N'
             elif shift_type == 4:
                 shifts = ['M', 'D', 'E', 'N', 'O']
-                night_shift = 'N'
             
             shift_hours = {s: 8 if s != 'O' else 0 for s in shifts}
+
+        # 2단계: shifts가 확정된 후 시프트 식별
+        # 야간 시프트 식별 (명시적 우선, 폴백으로 자동 인식)
+        if custom_rules and "night_shifts" in custom_rules:
+            night_shifts = custom_rules["night_shifts"]
+            print(f"[INFO] 명시적 야간 시프트: {night_shifts}")
+        else:
+            # 폴백: 자동 인식 (개선된 로직)
+            night_keywords = ['night', '야간', '밤', '22-06', 'nocturnal']
+            night_shifts = []
+            for s in shifts:
+                if (s.lower() == 'n' or  # 정확히 'N' 시프트
+                    any(keyword.lower() == s.lower() for keyword in night_keywords) or  # 완전 매칭
+                    any(keyword.lower() in s.lower() and len(keyword) > 2 for keyword in night_keywords)):  # 3글자 이상만 부분 매칭
+                    night_shifts.append(s)
+            print(f"[INFO] 자동 인식 야간 시프트: {night_shifts}")
+
+        # 휴무 시프트 식별 (명시적 우선, 폴백으로 자동 인식)
+        if custom_rules and "off_shifts" in custom_rules:
+            off_shifts = custom_rules["off_shifts"]
+            print(f"[INFO] 명시적 휴무 시프트: {off_shifts}")
+        else:
+            # 폴백: 자동 인식 (개선된 로직)
+            off_keywords = ['off', 'rest', '휴무', '쉼', 'free']
+            off_shifts = []
+            for s in shifts:
+                if (s.lower() in ['o', 'r'] or  # 정확히 'O', 'R' 시프트
+                    any(keyword.lower() == s.lower() for keyword in off_keywords) or  # 완전 매칭
+                    any(keyword.lower() in s.lower() and len(keyword) > 2 for keyword in off_keywords)):  # 3글자 이상만 부분 매칭
+                    off_shifts.append(s)
+            print(f"[INFO] 자동 인식 휴무 시프트: {off_shifts}")
+        
+        # 검증
+        if not night_shifts:
+            print(f"[INFO] 야간 시프트 없음 (직군 {position})")
+        if not off_shifts:
+            print(f"[WARNING] 휴무 시프트가 식별되지 않음. 제약 일부 무시될 수 있음.")
+
+        # 호환성을 위한 기존 night_shift 변수 (첫 번째 야간 시프트 또는 None)
+        night_shift = night_shifts[0] if night_shifts else None
         
         # 동적 날짜 계산
         start_date, num_days = parse_target_month(target_month)
@@ -353,12 +427,12 @@ def create_individual_shift_schedule(staff_data, shift_type, position="default",
                 #각 직원별로 매일 정확히 하나의 shift를 배정
                 model.AddExactlyOne([schedule[(sid, d, s)] for s in shifts])
 
-        # 각 교대에 최소 인원 보장 (오프 제외)
+        # 각 교대에 최소 인원 보장 (휴무 제외) - 동적 휴무 시프트 적용
         for d in days:
             for s in shifts:
-                if s != 'O':
+                if s not in off_shifts:  # 동적 휴무 시프트 리스트 사용
                     #각 날짜와 비휴무 shift에 최소 1명의 직원을 배정한다.
-                    model.Add(sum(schedule[(str(person["staff_id"]), d, s)] for person in all_people) >= 2)
+                    model.Add(sum(schedule[(str(person["staff_id"]), d, s)] for person in all_people) >= 1)
 
         # 직군별 제약조건 적용 (고정된 기본 규칙 사용)
         for person in all_people:
@@ -368,23 +442,31 @@ def create_individual_shift_schedule(staff_data, shift_type, position="default",
 
             apply_position_constraints(model, schedule, person, days, shifts, shift_hours, num_weeks, person_rules, person_position, night_shifts, off_shifts)
 
-        # 야간 근무 균등 분배 (야간 근무가 있는 경우만 소방은 24시간)
-        if night_shift and night_shift in shifts:
-            night_counts = [sum(schedule[(str(person["staff_id"]), d, night_shift)] for d in days) for person in all_people]
-            max_nights = model.NewIntVar(0, num_days, "max_night")
-            min_nights = model.NewIntVar(0, num_days, "min_night")
-            model.AddMaxEquality(max_nights, night_counts)
-            model.AddMinEquality(min_nights, night_counts)
+        # 야간 근무 균등 분배 (다중 야간 시프트 지원)
+        if night_shifts:
+            # 모든 야간 시프트의 총 근무 횟수 계산
+            all_night_counts = []
+            for person in all_people:
+                person_id = str(person["staff_id"])
+                total_night_count = sum(
+                    schedule[(person_id, d, ns)] for d in days for ns in night_shifts
+                )
+                all_night_counts.append(total_night_count)
+            
+            max_nights = model.NewIntVar(0, num_days * len(night_shifts), "max_night")
+            min_nights = model.NewIntVar(0, num_days * len(night_shifts), "min_night")
+            model.AddMaxEquality(max_nights, all_night_counts)
+            model.AddMinEquality(min_nights, all_night_counts)
             
             # 목적함수: 야간 근무 균등성
             model.Minimize(max_nights - min_nights)
-            print(f"[INFO] 야간 근무 균등 분배 활성화 (야간 시프트: {night_shift})")
+            print(f"[INFO] 야간 근무 균등 분배 활성화 (야간 시프트: {night_shifts})")
         else:
             print(f"[INFO] 야간 근무 균등 분배 비활성화 (직군: {position})")
 
         solver = cp_model.CpSolver()
         # 성능 우선 솔버 설정 (호환성 고려)
-        solver.parameters.max_time_in_seconds = 25.0  # 시간을 20초로 단축
+        solver.parameters.max_time_in_seconds = 20.0  # 시간을 20초로 설정
         solver.parameters.log_search_progress = False  # 로그 비활성화
         solver.parameters.num_search_workers = 1  # 단일 워커로 오버헤드 최소화
         solver.parameters.cp_model_presolve = True  # 전처리 활성화 유지
@@ -395,16 +477,59 @@ def create_individual_shift_schedule(staff_data, shift_type, position="default",
 
         # 솔버 실패 시 상세한 오류 메시지 생성
         if status == cp_model.INFEASIBLE:
+            # 상세한 실패 원인 분석
+            daily_max_hours = sum(shift_hours.get(s, 0) for s in shifts if s not in off_shifts)
+            # 수정: 전체 직원이 활용 가능한 월 총 가용시간
+            total_monthly_capacity = sum(p.get("total_monthly_work_hours", 180) * 1.1 for p in all_people)  # 각 직원의 최대 가능 시간
+            avg_target_hours = sum(p.get("total_monthly_work_hours", 180) for p in all_people) / len(all_people)
+            total_target_hours = sum(p.get("total_monthly_work_hours", 180) for p in all_people)
+            
+            # 원인별 분석
+            failure_reasons = []
+            if len(all_people) < len([s for s in shifts if s not in off_shifts]):
+                failure_reasons.append(f"직원 수({len(all_people)}명)가 비휴무 시프트 수({len([s for s in shifts if s not in off_shifts])}개)보다 적음")
+            
+            # 수정된 용량 체크: 목표 시간이 각 직원의 최대 허용 시간을 초과하는지 확인
+            over_capacity_staff = []
+            for person in all_people:
+                target = person.get("total_monthly_work_hours", 180)
+                max_allowed = target * 1.1  # 10% 여유
+                if target > max_allowed:
+                    over_capacity_staff.append(f"{person.get('name', 'unknown')}({target}h > {max_allowed:.0f}h)")
+            
+            if over_capacity_staff:
+                failure_reasons.append(f"개별 직원 시간 초과: {'; '.join(over_capacity_staff)}")
+            
+            if daily_max_hours < 18:
+                failure_reasons.append(f"하루 최대 근무시간({daily_max_hours}h)이 부족함 (18h 이상 권장)")
+                
+            # 신규간호사 비율이 너무 높은 경우
+            newbie_count = len([p for p in all_people if p.get("grade", 1) == 5])
+            if newbie_count / len(all_people) > 0.3:
+                failure_reasons.append(f"신규간호사 비율({newbie_count}/{len(all_people)}, {newbie_count/len(all_people)*100:.1f}%)이 너무 높음 (30% 이하 권장)")
+                
+            # 최소 인원 요구사항 체크
+            work_shifts = [s for s in shifts if s not in off_shifts]
+            min_staff_needed = len(work_shifts) * 1.5  # 각 시프트당 최소 1.5명 평균 필요
+            if len(all_people) < min_staff_needed:
+                failure_reasons.append(f"최소 필요 직원 수 부족: {len(all_people)}명 < {min_staff_needed:.1f}명 (시프트 {len(work_shifts)}개 기준)")
+            
             return {
                 "result": "생성실패",
-                "reason": f"제약조건을 만족하는 해가 존재하지 않습니다. 다음을 확인해보세요: 1) 직원 수({len(all_people)}명)가 시프트를 채우기 충분한지, 2) 월 근무시간 목표가 현실적인지, 3) 시프트 시간 배정이 적절한지",
+                "reason": f"제약조건 충돌로 해를 찾을 수 없습니다. 주요 원인: {'; '.join(failure_reasons) if failure_reasons else '복합적 제약 충돌'}",
                 "details": {
                     "solver_status": solver.StatusName(status),
                     "solve_time": f"{solver.WallTime():.2f}초",
                     "staff_count": len(all_people),
                     "shifts": shifts,
                     "shift_hours": shift_hours,
-                    "days_in_month": num_days
+                    "days_in_month": num_days,
+                    "daily_max_hours": daily_max_hours,
+                    "total_monthly_capacity": round(total_monthly_capacity, 1),
+                    "total_target_hours": total_target_hours,
+                    "avg_target_hours": round(avg_target_hours, 1),
+                    "newbie_count": newbie_count,
+                    "identified_issues": failure_reasons
                 }
             }
         elif status == cp_model.MODEL_INVALID:

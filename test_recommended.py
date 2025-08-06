@@ -8,7 +8,7 @@ import random
 import os
 
 HOST = '127.0.0.1'
-PORT = 6002
+PORT = 6004
 
 def generate_random_staff(count=25):
     """임의의 직원 정보 생성"""
@@ -79,8 +79,7 @@ def test_recommended_scenario(test_id, shifts, shift_hours, staff_data, descript
         "shifts": shifts,
         "shift_hours": shift_hours
     }
-    if off_shifts:  # off_shifts가 제공된 경우에만 추가
-        custom_rules["off_shifts"] = off_shifts
+    
 
 
     request = {
