@@ -21,5 +21,11 @@ namespace ShifterUser.ViewModels
         {
             WeakReferenceMessenger.Default.Send((new PageChangeMessage(PageType.Goback)));
         }
+
+        [RelayCommand]
+        private static void GoToHandover()
+        {
+            WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.GroupHandover));
+        }
     }
 }

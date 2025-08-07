@@ -17,13 +17,9 @@ namespace ShifterUser
     public partial class App : Application
     {
         public static IServiceProvider Services { get; private set; }
-        //[DllImport("user32.dll")]
-        //private static extern bool SetProcessDPIAware();
 
         public App()
         {
-            //SetProcessDPIAware();
-
             var serviceCollection = new ServiceCollection();
             ConfigureServices(serviceCollection);
             Services = serviceCollection.BuildServiceProvider();
@@ -54,6 +50,7 @@ namespace ShifterUser
             services.AddTransient<MyReqStatusViewModel>();
             services.AddTransient<ReqScheViewModel>();
             services.AddTransient<GroupDashboardViewModel>();
+            services.AddTransient<GroupHandoverViewModel>();
         }
     }
 }

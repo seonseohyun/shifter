@@ -66,10 +66,13 @@ namespace ShifterUser.ViewModels
                 case PageType.GroupDashboard:
                     _mainFrame.Navigate(new GroupDashboardView { DataContext = App.Services.GetService(typeof(GroupDashboardViewModel)) });
                     break;
-                case PageType.Goback:
-                    _mainFrame.GoBack();
+                case PageType.GroupHandover:
+                    _mainFrame.Navigate(new GroupHandoverView {  DataContext = App.Services.GetService(typeof(GroupHandoverViewModel)) });
                     break;
-            }
+                case PageType.Goback:
+                        _mainFrame.GoBack();
+                        break;
+                    }
         }
     }
 }

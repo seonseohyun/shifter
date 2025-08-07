@@ -16,6 +16,7 @@ namespace ShifterUser.Enums
         ReqStatus,
         ReqSche,
         GroupDashboard,
+        GroupHandover,
         Goback
     }
 

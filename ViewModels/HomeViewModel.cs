@@ -102,7 +102,10 @@ namespace ShifterUser.ViewModels
 
         [RelayCommand]
         private void GoToHandover()
-            => MessageBox.Show("인수인계 페이지로 이동합니다.");
+        {
+            Console.WriteLine("인수인계 페이지로 이동합니다.");
+            WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.GroupHandover));
+        }
 
         [RelayCommand]
         private void GoToSchedule()
