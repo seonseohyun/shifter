@@ -8,6 +8,7 @@ using ShifterUser.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using ShifterUser.Services;
 using System.Runtime.InteropServices;
+using Microsoft.Xaml.Behaviors;
 
 namespace ShifterUser
 {

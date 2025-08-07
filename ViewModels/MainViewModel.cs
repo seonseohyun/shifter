@@ -75,7 +75,7 @@ namespace ShifterUser.ViewModels
                 case PageType.Goback:
                         _mainFrame.GoBack();
                         break;
-                    }
+            }
         }
     }
 }

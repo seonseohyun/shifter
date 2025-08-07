@@ -36,5 +36,16 @@ namespace ShifterUser.Enums
         출근완료,
         퇴근완료
     }
+
+    public enum HandoverType
+    {
+        교대,
+        출장,
+        휴가및부재,
+        퇴사,
+        장비및물품,
+        기타
+    }
+
 }
 

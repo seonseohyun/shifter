@@ -22,6 +22,7 @@
     <None Remove="Resources\images\pending.png" />
     <None Remove="Resources\images\pin.png" />
     <None Remove="Resources\images\qr_icon.png" />
+    <None Remove="Resources\images\search.png" />
     <None Remove="Resources\images\teamimg.png" />
     <None Remove="Resources\images\WhiteBell.png" />
   </ItemGroup>
@@ -29,6 +30,7 @@
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.7" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.135" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="OpenCvSharp4" Version="4.11.0.20250507" />
     <PackageReference Include="OpenCvSharp4.Extensions" Version="4.11.0.20250507" />
@@ -55,6 +57,7 @@
     <Resource Include="Resources\images\pending.png" />
     <Resource Include="Resources\images\pin.png" />
     <Resource Include="Resources\images\qr_icon.png" />
+    <Resource Include="Resources\images\search.png" />
     <Resource Include="Resources\images\teamimg.png" />
     <Resource Include="Resources\images\WhiteBell.png" />
   </ItemGroup>

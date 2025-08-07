@@ -144,7 +144,7 @@
                     Height="44"
                     VerticalAlignment="Bottom">
 
-                        <Button Content="+ 근무 희망 일정 요청하기"
+                        <Button Content="근무 희망 일정 요청하기"
                         Style="{StaticResource RoundedBlueButtonStyle}"
                         Command="{Binding GoToReqScheCommand}"
                         Background="Transparent"
@@ -163,7 +163,7 @@
                         <Rectangle Fill="#80000000" MouseDown="DetailBackground_MouseDown" Margin="-39,-82,-33,-97" Grid.RowSpan="2"/>
 
                         <Border Background="White" CornerRadius="25,25,0,0" Padding="24" Margin="-31,180,-33,-97" Grid.Row="1">
-                            <StackPanel HorizontalAlignment="Center">
+                            <StackPanel HorizontalAlignment="Center" Height="312" VerticalAlignment="Bottom">
                                 <Rectangle Height="6" Width="60" Fill="LightGray" RadiusX="3" RadiusY="3"
                                            HorizontalAlignment="Center" Margin="0,0,0,20"/>
 

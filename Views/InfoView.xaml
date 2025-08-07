@@ -4,6 +4,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d"
+      FontFamily="Noto Sans KR"
       Background="White"
       Width="400" Height="800">
 
@@ -41,9 +42,9 @@
                 <!-- 하루고리 소개 -->
                 <TextBlock Text="하루고리란?" 
                            FontSize="24" FontWeight="Bold" Margin="0,0,0,10"/>
-                <TextBlock Text="“교대 근무자들을 위한 똑똑한 출퇴근 기록과 근무       소통 플랫폼”"
+                <TextBlock Text="“교대 근무자들을 위한 똑똑한 출퇴근 기록과 근무 소통 플랫폼”"
                            TextWrapping="Wrap"
-                           FontSize="14"
+                           FontSize="13.9"
                            Foreground="Gray"
                            Margin="0,0,0,30"/>
 
@@ -57,8 +58,8 @@
                         <Image Source="/Resources/images/qr_icon.png" Width="40" Height="40" Margin="0,0,10,0"/>
                         <StackPanel Width="300">
                             <TextBlock Text="출퇴근 QR 기록" FontWeight="Bold" FontSize="14"/>
-                            <TextBlock Text="QR코드로 간편하게 출근/퇴근을 기록하고 확인할      수 있어요." 
-                                       TextWrapping="Wrap" FontSize="12"/>
+                            <TextBlock Text="QR코드로 간편하게 출근/퇴근을 기록하고 확인할 수 있어요." 
+                                       TextWrapping="Wrap" FontSize="11.8"/>
                         </StackPanel>
                     </StackPanel>
                 </Border>
@@ -69,7 +70,7 @@
                         <Image Source="/Resources/images/calender.png" Width="40" Height="40" Margin="0,0,10,0"/>
                         <StackPanel Width="300">
                             <TextBlock Text="내 근무표 보기" FontWeight="Bold" FontSize="14"/>
-                            <TextBlock Text="이번 주부터 한 달까지 근무 스케줄을 직관적으로      확인해요." 
+                            <TextBlock Text="이번 주부터 한 달까지 근무 스케줄을 직관적으로 확인해요." 
                                        TextWrapping="Wrap" FontSize="12"/>
                         </StackPanel>
                     </StackPanel>
@@ -93,7 +94,7 @@
                         <Image Source="/Resources/images/bell.png" Width="40" Height="40" Margin="0,0,10,0"/>
                         <StackPanel Width="300">
                             <TextBlock Text="근무 요청/승인 시스템" FontWeight="Bold" FontSize="14"/>
-                            <TextBlock Text="휴가/교대 요청을 간편하게 보내고 승인 현황도           실시간으로 확인해요." 
+                            <TextBlock Text="휴가/교대 요청을 간편하게 보내고 승인 현황도 실시간으로  확인해요." 
                                        TextWrapping="Wrap" FontSize="12"/>
                         </StackPanel>
                     </StackPanel>

@@ -40,6 +40,7 @@ namespace ShifterUser.Views
             if (DataContext is MyReqStatusViewModel vm)
             {
                 vm.IsDetailVisible = false;
+                Console.WriteLine("오버레이 클릭됨 → 닫기 실행");
             }
         }
 

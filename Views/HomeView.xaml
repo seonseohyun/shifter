@@ -98,7 +98,7 @@
                             </Image>
                         </DockPanel>
                         <Border CornerRadius="12" Background="#F7F7F7" BorderBrush="#CCC" BorderThickness="1" Height="36">
-                            <TextBox Text="{Binding TeamName}" BorderThickness="0" Padding="8,0" VerticalContentAlignment="Center" Background="Transparent" Height="44" VerticalAlignment="Center" FontSize="14"/>
+                            <TextBlock Text="{Binding TeamName}" Padding="8,11"  Background="Transparent" Height="44" VerticalAlignment="Center" FontSize="14" HorizontalAlignment="Left"/>
                         </Border>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,12,0,0">
                             <Button Content="공지사항 보기" Width="163" Height="44" Margin="0,0,8,0" FontFamily="Noto Sans KR"
