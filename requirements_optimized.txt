@@ -1,8 +1,12 @@
 # Requirements for optimized shift scheduler server
-# Core dependencies only - no external AI services
+# Core dependencies and optional AI services
 
 # OR-Tools for constraint programming solver
 ortools>=9.5.0
+
+# OpenAI API for handover summarization (optional)
+openai>=1.0.0
+python-dotenv>=1.0.0
 
 # Standard library dependencies (built-in Python modules):
 # - socket (TCP server)

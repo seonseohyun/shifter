@@ -10,17 +10,38 @@ import socket
 import json
 import logging
 import calendar
+import os
+import time
 from datetime import datetime, timedelta
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Tuple, Any, Union
 from enum import Enum
 from ortools.sat.python import cp_model
 
+# OpenAI import (optional)
+try:
+    from openai import OpenAI
+    from dotenv import load_dotenv
+    OPENAI_AVAILABLE = True
+except ImportError:
+    OPENAI_AVAILABLE = False
+
 
 # Configuration
 HOST = '127.0.0.1'
 PORT = 6004
 SOLVER_TIMEOUT_SECONDS = 30.0
+
+# Load environment variables
+if OPENAI_AVAILABLE:
+    load_dotenv()
+
+# OpenAI configuration
+openai_client = None
+if OPENAI_AVAILABLE:
+    OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
+    if OPENAI_API_KEY:
+        openai_client = OpenAI(api_key=OPENAI_API_KEY)
 
 # Logging setup
 logging.basicConfig(
@@ -130,6 +151,72 @@ POSITION_RULES: Dict[str, PositionRules] = {
 class ShiftSchedulerError(Exception):
     """Custom exception for shift scheduler errors"""
     pass
+
+
+def summarize_handover(input_text: str) -> Dict[str, Any]:
+    """OpenAI를 활용한 인수인계 내용 요약"""
+    start_time = time.time()
+    
+    try:
+        # OpenAI 클라이언트 체크
+        if openai_client is None:
+            return {
+                "status": "error",
+                "task": "summarize_handover", 
+                "reason": "OpenAI API 키가 설정되지 않았습니다."
+            }
+        
+        # 입력 검증
+        if not input_text or input_text.strip() == "":
+            return {
+                "status": "error",
+                "task": "summarize_handover",
+                "reason": "input_text가 비어 있습니다."
+            }
+        
+        logger.info("=== 인수인계 요약 시작 ===")
+        logger.info(f"입력 텍스트 길이: {len(input_text)} 문자")
+        
+        # Master Handover AI 프롬프트
+        system_prompt = """넌 Master Handover AI야. 
+간결하고 명확하게 인수인계 내용을 요약하는 전문가야.
+
+입력된 내용을 빠르게 파악할 수 있도록 핵심만 뽑아 요약해줘.  
+중요한 일정, 변경사항, 위험요소는 우선순위로 정리하고,  
+불필요한 말은 생략하고 실무에 바로 도움이 되도록 써줘."""
+        
+        # OpenAI API 호출
+        logger.info("OpenAI API 호출 중...")
+        response = openai_client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": input_text}
+            ],
+            max_tokens=1000,
+            temperature=0.3
+        )
+        
+        summary = response.choices[0].message.content.strip()
+        process_time = time.time() - start_time
+        
+        logger.info(f"요약 완료: {process_time:.2f}초")
+        logger.info(f"요약 결과 길이: {len(summary)} 문자")
+        
+        return {
+            "status": "success",
+            "task": "summarize_handover",
+            "result": summary
+        }
+        
+    except Exception as e:
+        process_time = time.time() - start_time
+        logger.error(f"인수인계 요약 오류 ({process_time:.2f}초): {e}")
+        return {
+            "status": "error",
+            "task": "summarize_handover", 
+            "reason": f"요약 처리 중 오류 발생: {str(e)}"
+        }
 
 
 class RequestValidator:
@@ -556,11 +643,26 @@ class ShiftSchedulerServer:
             logger.error(f"Failed to send error response: {e}")
     
     def _process_request(self, request_data: Dict[str, Any]) -> Dict[str, Any]:
-        """Process shift scheduling request"""
+        """Process request with task-based routing"""
         try:
             start_time = datetime.now()
             
-            # Handle protocol wrapper if present
+            # 1. Check for task-based requests (handover summarization)
+            if "task" in request_data:
+                task = request_data.get("task", "")
+                logger.info(f"Processing task request: {task}")
+                
+                if task == "summarize_handover":
+                    input_text = request_data.get("input_text", "")
+                    return summarize_handover(input_text)
+                else:
+                    return {
+                        "status": "error",
+                        "task": task,
+                        "reason": f"Unknown task: {task}"
+                    }
+            
+            # 2. Handle protocol wrapper if present (schedule generation)
             if "protocol" in request_data and "data" in request_data:
                 protocol = request_data.get("protocol", "")
                 actual_data = request_data.get("data", {})
