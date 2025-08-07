@@ -575,7 +575,7 @@ def generate_shift_schedule(request_data):
                         })
             
             response = {
-                "status": "ok",
+                "status": "success",
                 "schedule": result_schedule,
                 "details": {
                     "solver_status": solver.StatusName(status),
@@ -602,7 +602,7 @@ def generate_shift_schedule(request_data):
             analysis = analyze_infeasible_model(staff_data, shifts, shift_hours, days, position, night_shifts, off_shifts)
             
             error_response = {
-                "result": "생성실패",
+                "result": "fail",
                 "reason": f"수학적 모델 해결 불가 ({solver.StatusName(status)})",
                 "status": "error", 
                 "details": {
@@ -684,6 +684,16 @@ def handle_client(conn, addr):
             response = json.dumps(error_response, ensure_ascii=False)
             conn.sendall(response.encode('utf-8'))
             return
+        
+        except UnicodeDecodeError as e:
+            error_response = {
+                "result": "생성실패",
+                "reason": f"인코딩 오류: {str(e)} (UTF-8 또는 CP949 시도 실패)",
+                "status": "error"
+            }
+            conn.sendall(json.dumps(error_response, ensure_ascii=False).encode('utf-8'))
+            return
+
         
         # 요청 데이터 저장
         save_request_to_file(request_data, addr)
