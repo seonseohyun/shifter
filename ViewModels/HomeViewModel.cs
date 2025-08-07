@@ -91,7 +91,10 @@ namespace ShifterUser.ViewModels
 
         [RelayCommand]
         private void GoToGroupActivity()
-            => MessageBox.Show("그룹 활동 페이지로 이동합니다.");
+        {
+            Console.WriteLine("그룹 페이지로 이동합니다.");
+            WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.GroupDashboard));
+        }
 
         [RelayCommand]
         private void GoToNotice()

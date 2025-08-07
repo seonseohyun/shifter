@@ -63,6 +63,9 @@ namespace ShifterUser.ViewModels
                 case PageType.ReqSche:
                     _mainFrame.Navigate(new ReqScheView { DataContext = App.Services.GetService(typeof(ReqScheViewModel)) });
                     break;
+                case PageType.GroupDashboard:
+                    _mainFrame.Navigate(new GroupDashboardView { DataContext = App.Services.GetService(typeof(GroupDashboardViewModel)) });
+                    break;
                 case PageType.Goback:
                     _mainFrame.GoBack();
                     break;

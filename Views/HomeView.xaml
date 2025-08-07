@@ -16,10 +16,9 @@
     <Page.Resources>
         <DropShadowEffect x:Key="ShadowEffect"
                           Color="Black"
-                          Direction="270"
-                          ShadowDepth="5"
+                          ShadowDepth="10"
                           BlurRadius="6"
-                          Opacity="0.1"/>
+                          Opacity="0.2"/>
         <conv:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <conv:NullToVisibilityConverter x:Key="NullToVisibilityConverter"/>
     </Page.Resources>
@@ -94,7 +93,7 @@
                             <Image Source="/Resources/images/arrow_right.png" Width="15" Height="15" DockPanel.Dock="Right"
                                    Cursor="Hand" HorizontalAlignment="Right">
                                 <Image.InputBindings>
-                                    <MouseBinding Gesture="LeftClick" Command="{Binding GoToGroupActivityCommand}" />
+                                    <MouseBinding Gesture="LeftClick"  Command="{Binding GoToGroupActivityCommand}" />
                                 </Image.InputBindings>
                             </Image>
                         </DockPanel>
