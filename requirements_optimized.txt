@@ -1,0 +1,18 @@
+# Requirements for optimized shift scheduler server
+# Core dependencies only - no external AI services
+
+# OR-Tools for constraint programming solver
+ortools>=9.5.0
+
+# Standard library dependencies (built-in Python modules):
+# - socket (TCP server)
+# - json (JSON parsing)
+# - logging (logging system)
+# - calendar (date calculations)  
+# - datetime (date/time handling)
+# - dataclasses (data structures)
+# - typing (type hints)
+# - enum (enumerations)
+
+# Optional: for development/testing
+# pytest>=7.0.0  # Uncomment for testing

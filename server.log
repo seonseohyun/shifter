@@ -1,0 +1,33 @@
+2025-08-07 23:29:11 [INFO] Starting Optimized Shift Scheduler Server
+2025-08-07 23:29:11 [INFO] Shift scheduler server started on 127.0.0.1:6004
+2025-08-07 23:29:13 [INFO] Client connected: ('127.0.0.1', 52612)
+2025-08-07 23:29:13 [INFO] Successfully decoded with utf-8
+2025-08-07 23:29:13 [INFO] Processing protocol request: py_gen_timetable
+2025-08-07 23:29:13 [INFO] Processing schedule request for position: 간호
+2025-08-07 23:29:13 [INFO] Staff count: 4
+2025-08-07 23:29:13 [INFO] Shifts: ['Day', 'Evening', 'Night', 'Off']
+2025-08-07 23:29:13 [INFO] Night shifts: ['Night']
+2025-08-07 23:29:13 [INFO] Off shifts: ['Off']
+2025-08-07 23:29:13 [INFO] Target month: 2025-09 (30 days)
+2025-08-07 23:29:13 [INFO] Applying constraints...
+2025-08-07 23:29:13 [INFO] Applying 간호 position constraints
+2025-08-07 23:29:13 [INFO] 박간호사: Newbie night shift restriction applied
+2025-08-07 23:29:13 [INFO] Starting CP-SAT solver...
+2025-08-07 23:29:13 [WARNING] No feasible solution found
+2025-08-07 23:29:13 [INFO] Processing completed in 0.06 seconds
+2025-08-07 23:29:13 [INFO] Response sent to ('127.0.0.1', 52612): fail
+2025-08-07 23:29:47 [INFO] Client connected: ('127.0.0.1', 52816)
+2025-08-07 23:29:47 [INFO] Successfully decoded with utf-8
+2025-08-07 23:29:47 [INFO] Processing protocol request: py_gen_timetable
+2025-08-07 23:29:47 [INFO] Processing schedule request for position: 간호
+2025-08-07 23:29:47 [INFO] Staff count: 6
+2025-08-07 23:29:47 [INFO] Shifts: ['Day', 'Evening', 'Night', 'Off']
+2025-08-07 23:29:47 [INFO] Night shifts: ['Night']
+2025-08-07 23:29:47 [INFO] Off shifts: ['Off']
+2025-08-07 23:29:47 [INFO] Target month: 2025-09 (30 days)
+2025-08-07 23:29:47 [INFO] Applying constraints...
+2025-08-07 23:29:47 [INFO] Applying 간호 position constraints
+2025-08-07 23:29:47 [INFO] Starting CP-SAT solver...
+2025-08-07 23:29:47 [INFO] Optimal solution found
+2025-08-07 23:29:47 [INFO] Processing completed in 0.02 seconds
+2025-08-07 23:29:47 [INFO] Response sent to ('127.0.0.1', 52816): success
