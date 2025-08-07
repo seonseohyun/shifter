@@ -98,7 +98,10 @@ namespace ShifterUser.ViewModels
 
         [RelayCommand]
         private void GoToNotice()
-            => MessageBox.Show("공지사항 페이지로 이동합니다.");
+        {
+            Console.WriteLine("공지사항 페이지로 이동합니다.");
+            WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.GroupNotice));
+        }
 
         [RelayCommand]
         private void GoToHandover()

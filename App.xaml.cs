@@ -51,6 +51,7 @@ namespace ShifterUser
             services.AddTransient<ReqScheViewModel>();
             services.AddTransient<GroupDashboardViewModel>();
             services.AddTransient<GroupHandoverViewModel>();
+            services.AddTransient<GroupNoticeViewModel>();
         }
     }
 }
