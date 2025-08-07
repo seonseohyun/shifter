@@ -16,9 +16,15 @@ import calendar
 from ortools.sat.python import cp_model
 import time
 import os
+from openai import OpenAI
 
 HOST = '127.0.0.1'
 PORT = 6004
+
+# OpenAI 설정
+# 환경변수에서 API 키를 가져오거나 기본값 설정
+OPENAI_API_KEY = os.getenv('OPENAI_API_KEY', 'sk-proj-your-api-key-here')  # 실제 키로 변경 필요
+openai_client = OpenAI(api_key=OPENAI_API_KEY) if OPENAI_API_KEY != 'sk-proj-your-api-key-here' else None
 
 # 직군별 기본 제약조건
 POSITION_RULES = {
@@ -446,6 +452,110 @@ def save_response_to_file(response_data, client_addr):
         print(f"[WARN] 응답 데이터 저장 실패: {e}")
         return None
 
+def summarize_handover(input_text):
+    """OpenAI를 활용한 인수인계 내용 요약"""
+    start_time = time.time()
+    
+    try:
+        # OpenAI 클라이언트 체크
+        if openai_client is None:
+            return {
+                "status": "error",
+                "task": "summarize_handover", 
+                "reason": "OpenAI API 키가 설정되지 않았습니다."
+            }
+        
+        # 입력 검증
+        if not input_text or input_text.strip() == "":
+            return {
+                "status": "error",
+                "task": "summarize_handover",
+                "reason": "input_text가 비어 있습니다."
+            }
+        
+        print(f"[INFO] === 인수인계 요약 시작 ===")
+        print(f"[INFO] 입력 텍스트 길이: {len(input_text)} 문자")
+        
+        # Master Handover AI 프롬프트
+        system_prompt = """넌 Master Handover AI야. 
+간결하고 명확하게 인수인계 내용을 요약하는 전문가야.
+
+입력된 내용을 빠르게 파악할 수 있도록 핵심만 뽑아 요약해줘.  
+중요한 일정, 변경사항, 위험요소는 우선순위로 정리하고,  
+불필요한 말은 생략하고 실무에 바로 도움이 되도록 써줘."""
+        
+        # OpenAI API 호출
+        print(f"[INFO] OpenAI API 호출 중...")
+        response = openai_client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": input_text}
+            ],
+            max_tokens=1000,
+            temperature=0.3
+        )
+        
+        summary = response.choices[0].message.content.strip()
+        process_time = time.time() - start_time
+        
+        print(f"[INFO] 요약 완료: {process_time:.2f}초")
+        print(f"[INFO] 요약 결과 길이: {len(summary)} 문자")
+        
+        return {
+            "status": "success",
+            "task": "summarize_handover",
+            "result": summary
+        }
+        
+    except Exception as e:
+        process_time = time.time() - start_time
+        print(f"[ERROR] 인수인계 요약 오류 ({process_time:.2f}초): {e}")
+        return {
+            "status": "error",
+            "task": "summarize_handover", 
+            "reason": f"요약 처리 중 오류 발생: {str(e)}"
+        }
+
+def process_request(request_data):
+    """요청 처리 메인 함수 - task 기반 라우팅"""
+    start_time = time.time()
+    
+    try:
+        print(f"[INFO] === 요청 처리 시작 ===")
+        
+        # 1. 요청 타입 확인
+        if "task" in request_data:
+            # Task 기반 요청 (인수인계 요약 등)
+            task = request_data.get("task", "")
+            print(f"[INFO] Task 요청: {task}")
+            
+            if task == "summarize_handover":
+                input_text = request_data.get("input_text", "")
+                return summarize_handover(input_text)
+            else:
+                return {
+                    "status": "error",
+                    "task": task,
+                    "reason": f"알 수 없는 task: {task}"
+                }
+        
+        elif "protocol" in request_data and "data" in request_data:
+            # 기존 프로토콜 기반 요청 (스케줄 생성)
+            return generate_shift_schedule(request_data)
+        
+        else:
+            # 직접 스케줄 생성 요청 (Python 클라이언트)
+            return generate_shift_schedule(request_data)
+            
+    except Exception as e:
+        process_time = time.time() - start_time
+        print(f"[ERROR] 요청 처리 오류 ({process_time:.2f}초): {e}")
+        return {
+            "status": "error",
+            "reason": f"요청 처리 중 오류 발생: {str(e)}"
+        }
+
 def generate_shift_schedule(request_data):
     """시프트 스케줄 생성 메인 함수"""
     start_time = time.time()
@@ -457,6 +567,10 @@ def generate_shift_schedule(request_data):
             protocol = request_data.get("protocol", "")
             actual_data = request_data.get("data", {})
             print(f"[INFO] C++ 프로토콜 요청: {protocol}")
+            
+            # py_gen_timetable 요청을 py_gen_schedule 응답으로 처리
+            if protocol == "py_gen_timetable":
+                print(f"[INFO] 근무표 생성 요청 처리 중...")
         else:
             # Python 클라이언트 프로토콜 (직접 데이터)
             actual_data = request_data
@@ -485,23 +599,10 @@ def generate_shift_schedule(request_data):
         
         if errors:
             validation_error_response = {
-                "result": "생성실패",
-                "reason": f"입력 데이터 오류: {'; '.join(errors)}",
-                "status": "error",
-                "details": {
-                    "solver_status": "INVALID_INPUT",
-                    "validation_errors": errors,
-                    "validation_warnings": warnings,
-                    "solve_time": f"{time.time() - start_time:.2f}초"
-                }
+                "protocol": "py_gen_schedule",
+                "resp": "fail",
+                "data": []
             }
-            
-            # C++ 프로토콜 응답 형식
-            if protocol != "python_direct":
-                validation_error_response = {
-                    "protocol": "py_gen_schedule",
-                    **validation_error_response
-                }
             
             return validation_error_response
         
@@ -547,10 +648,9 @@ def generate_shift_schedule(request_data):
         # 8. 결과 처리
         if status == cp_model.OPTIMAL or status == cp_model.FEASIBLE:
             # 성공 - 스케줄 생성
-            result_schedule = {}
+            schedule_data = []
             for day in days:
                 date_str = (start_date + timedelta(days=day)).strftime('%Y-%m-%d')
-                result_schedule[date_str] = []
                 
                 for shift in shifts:
                     people = []
@@ -558,42 +658,25 @@ def generate_shift_schedule(request_data):
                         staff_id = str(person["staff_id"])
                         if solver.Value(schedule[(staff_id, day, shift)]):
                             person_info = {
+                                "name": person["name"],
                                 "staff_id": person["staff_id"],
-                                "이름": person["name"],
                                 "grade": person.get("grade", 1)
                             }
-                            # grade_name이 있으면 추가
-                            if "grade_name" in person:
-                                person_info["grade_name"] = person["grade_name"]
                             people.append(person_info)
                     
                     if people:  # 배정된 사람이 있는 시프트만 포함
-                        result_schedule[date_str].append({
+                        schedule_data.append({
+                            "date": date_str,
                             "shift": shift,
                             "hours": shift_hours.get(shift, 0),
                             "people": people
                         })
             
             response = {
-                "status": "success",
-                "schedule": result_schedule,
-                "details": {
-                    "solver_status": solver.StatusName(status),
-                    "solve_time": f"{solve_time:.2f}초",
-                    "staff_count": len(staff_data["staff"]),
-                    "shifts_identified": {
-                        "night_shifts": night_shifts,
-                        "off_shifts": off_shifts
-                    }
-                }
+                "protocol": "py_gen_schedule",
+                "resp": "success",
+                "data": schedule_data
             }
-            
-            # C++ 프로토콜 응답 형식
-            if protocol != "python_direct":
-                response = {
-                    "protocol": "py_gen_schedule",
-                    **response
-                }
             
             return response
         
@@ -602,29 +685,10 @@ def generate_shift_schedule(request_data):
             analysis = analyze_infeasible_model(staff_data, shifts, shift_hours, days, position, night_shifts, off_shifts)
             
             error_response = {
-                "result": "fail",
-                "reason": f"수학적 모델 해결 불가 ({solver.StatusName(status)})",
-                "status": "error", 
-                "details": {
-                    "solver_status": solver.StatusName(status),
-                    "solve_time": f"{solve_time:.2f}초",
-                    "staff_count": len(staff_data["staff"]),
-                    "analysis": analysis,
-                    "identified_issues": analysis["identified_issues"],
-                    "suggestions": [
-                        "직원 수 증가 또는 근무시간 한도 상향 조정",
-                        "시프트 구조 단순화 (시프트 수 줄이기)",
-                        "제약조건 완화 (신규간호사 야간근무 허용 등)"
-                    ]
-                }
+                "protocol": "py_gen_schedule",
+                "resp": "fail",
+                "data": []
             }
-            
-            # C++ 프로토콜 응답 형식
-            if protocol != "python_direct":
-                error_response = {
-                    "protocol": "py_gen_schedule",
-                    **error_response
-                }
             
             return error_response
     
@@ -632,26 +696,10 @@ def generate_shift_schedule(request_data):
         solve_time = time.time() - start_time
         print(f"[ERROR] 예외 발생: {e}")
         exception_response = {
-            "result": "생성실패",
-            "reason": f"서버 내부 오류: {str(e)}",
-            "status": "error",
-            "details": {
-                "solver_status": "EXCEPTION",
-                "solve_time": f"{solve_time:.2f}초",
-                "error_type": type(e).__name__,
-                "error_message": str(e)
-            }
+            "protocol": "py_gen_schedule",
+            "resp": "fail",
+            "data": []
         }
-        
-        # C++ 프로토콜 응답 형식
-        try:
-            if protocol != "python_direct":
-                exception_response = {
-                    "protocol": "py_gen_schedule",
-                    **exception_response
-                }
-        except:
-            pass  # protocol 변수가 없을 경우 무시
         
         return exception_response
 
@@ -672,34 +720,55 @@ def handle_client(conn, addr):
             print(f"[WARN] {addr}: 빈 요청")
             return
         
-        # JSON 파싱
+        # JSON 파싱 (한글 인코딩 이슈 대응)
+        request_data = None
+        decode_success = False
+        
+        # UTF-8 우선 시도
         try:
-            request_data = json.loads(data.decode('utf-8'))
+            decoded_text = data.decode('utf-8')
+            request_data = json.loads(decoded_text)
+            decode_success = True
+            print(f"[INFO] UTF-8 디코딩 성공")
+        except UnicodeDecodeError:
+            print(f"[WARN] UTF-8 디코딩 실패, CP949 시도...")
+            # CP949(한국어 윈도우) 시도
+            try:
+                decoded_text = data.decode('cp949')
+                request_data = json.loads(decoded_text)
+                decode_success = True
+                print(f"[INFO] CP949 디코딩 성공")
+            except UnicodeDecodeError:
+                print(f"[WARN] CP949 디코딩 실패, latin-1 시도...")
+                # latin-1 (모든 바이트를 허용) 시도
+                try:
+                    decoded_text = data.decode('latin-1')
+                    request_data = json.loads(decoded_text)
+                    decode_success = True
+                    print(f"[INFO] latin-1 디코딩 성공")
+                except:
+                    pass
         except json.JSONDecodeError as e:
+            print(f"[ERROR] JSON 파싱 오류: {e}")
+        
+        # 디코딩 실패 시 오류 응답
+        if not decode_success or request_data is None:
+            print(f"[ERROR] 모든 인코딩 방식 실패")
             error_response = {
-                "result": "생성실패",
-                "reason": f"JSON 파싱 오류: {str(e)}",
-                "status": "error"
+                "protocol": "py_gen_schedule",
+                "resp": "fail",
+                "data": []
             }
             response = json.dumps(error_response, ensure_ascii=False)
             conn.sendall(response.encode('utf-8'))
-            return
-        
-        except UnicodeDecodeError as e:
-            error_response = {
-                "result": "생성실패",
-                "reason": f"인코딩 오류: {str(e)} (UTF-8 또는 CP949 시도 실패)",
-                "status": "error"
-            }
-            conn.sendall(json.dumps(error_response, ensure_ascii=False).encode('utf-8'))
             return
 
         
         # 요청 데이터 저장
         save_request_to_file(request_data, addr)
         
-        # 스케줄 생성
-        result = generate_shift_schedule(request_data)
+        # 요청 처리 (task 기반 라우팅)
+        result = process_request(request_data)
         
         # 응답 데이터 저장 (응답 전에)
         save_response_to_file(result, addr)
@@ -714,9 +783,9 @@ def handle_client(conn, addr):
         print(f"[ERROR] 클라이언트 처리 오류 {addr}: {e}")
         try:
             error_response = {
-                "result": "생성실패",
-                "reason": f"서버 처리 오류: {str(e)}",
-                "status": "error"
+                "protocol": "py_gen_schedule",
+                "resp": "fail",
+                "data": []
             }
             response = json.dumps(error_response, ensure_ascii=False)
             conn.sendall(response.encode('utf-8'))

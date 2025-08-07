@@ -1,0 +1,103 @@
+{
+  "data": {
+    "custom_rules": {
+      "night_shifts": [
+        "Night"
+      ],
+      "off_shifts": [
+        "Off"
+      ],
+      "shift_hours": {
+        "Day": 8,
+        "Evening": 8,
+        "Night": 8,
+        "Off": 0
+      },
+      "shifts": [
+        "Day",
+        "Evening",
+        "Night",
+        "Off"
+      ]
+    },
+    "position": "간호",
+    "staff_data": {
+      "staff": [
+        {
+          "grade": 5,
+          "name": "김간호사",
+          "staff_id": 1001,
+          "total_monthly_work_hours": 195
+        },
+        {
+          "grade": 5,
+          "name": "이간호사",
+          "staff_id": 1002,
+          "total_monthly_work_hours": 195
+        },
+        {
+          "grade": 3,
+          "name": "박간호사",
+          "staff_id": 1003,
+          "total_monthly_work_hours": 195
+        },
+        {
+          "grade": 3,
+          "name": "최간호사",
+          "staff_id": 1004,
+          "total_monthly_work_hours": 195
+        },
+        {
+          "grade": 3,
+          "name": "정간호사",
+          "staff_id": 1005,
+          "total_monthly_work_hours": 195
+        },
+        {
+          "grade": 3,
+          "name": "강간호사",
+          "staff_id": 1006,
+          "total_monthly_work_hours": 195
+        },
+        {
+          "grade": 3,
+          "name": "조간호사",
+          "staff_id": 1007,
+          "total_monthly_work_hours": 195
+        },
+        {
+          "grade": 3,
+          "name": "윤간호사",
+          "staff_id": 1008,
+          "total_monthly_work_hours": 195
+        },
+        {
+          "grade": 3,
+          "name": "장간호사",
+          "staff_id": 1009,
+          "total_monthly_work_hours": 195
+        },
+        {
+          "grade": 3,
+          "name": "임간호사",
+          "staff_id": 1010,
+          "total_monthly_work_hours": 195
+        },
+        {
+          "grade": 3,
+          "name": "한간호사",
+          "staff_id": 1011,
+          "total_monthly_work_hours": 195
+        },
+        {
+          "grade": 3,
+          "name": "오간호사",
+          "staff_id": 1012,
+          "total_monthly_work_hours": 195
+        }
+      ]
+    },
+    "target_month": "2025-09"
+  },
+  "protocol": "py_gen_timetable"
+}

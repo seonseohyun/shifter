@@ -1,0 +1,37 @@
+{
+  "protocol": "py_gen_timetable",
+  "data": {
+    "staff_data": {
+      "staff": [
+        {
+          "name": "테스트간호사",
+          "staff_id": 9999,
+          "grade": 3,
+          "total_monthly_work_hours": 195
+        }
+      ]
+    },
+    "position": "간호",
+    "target_month": "2025-09",
+    "custom_rules": {
+      "shifts": [
+        "Day",
+        "Evening",
+        "Night",
+        "Off"
+      ],
+      "shift_hours": {
+        "Day": 8,
+        "Evening": 8,
+        "Night": 8,
+        "Off": 0
+      },
+      "night_shifts": [
+        "Night"
+      ],
+      "off_shifts": [
+        "Off"
+      ]
+    }
+  }
+}
