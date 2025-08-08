@@ -24,7 +24,13 @@ namespace ShifterUser.ViewModels
         // 생성자
         public WriteHandoverViewModel(UserSession session) {
             _session = session;
-        } 
+        }
+
+        [RelayCommand]
+        private void GoToHandover()
+        {
+            WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.HandoverPopup));
+        }
 
         [RelayCommand]
         private void GoBack()

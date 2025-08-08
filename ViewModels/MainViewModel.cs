@@ -81,6 +81,9 @@ namespace ShifterUser.ViewModels
                 case PageType.WriteHandover:
                     _mainFrame.Navigate(new WriteHandoverView { DataContext = App.Services.GetRequiredService<WriteHandoverViewModel>() });
                     break;
+                case PageType.HandoverPopup:
+                    _mainFrame.Navigate(new HandoverPopupView { DataContext = App.Services.GetRequiredService<HandoverPopupViewModel>() });
+                    break;
                 case PageType.Goback:
                         _mainFrame.GoBack();
                         break;
