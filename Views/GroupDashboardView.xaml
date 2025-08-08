@@ -27,7 +27,7 @@
         </Border>
 
         <!-- 콘텐츠 카드 -->
-        <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Grid VerticalAlignment="Top" HorizontalAlignment="Left" Margin="27,215,0,0">
             <!-- 그림자용 Border (배경만 있고 콘텐츠 없음) -->
             <Border Width="350" Height="Auto" CornerRadius="20" Margin="0,-77,0,38"
             Background="White"
@@ -38,18 +38,18 @@
             BorderThickness="1"
             CornerRadius="20" Margin="0,-77,0,38"
             Background="White"
-            BorderBrush="#DDDDDD">
+            BorderBrush="#DDDDDD" Height="500">
 
                 <StackPanel>
 
                     <!-- 상단 텍스트박스 -->
-                    <TextBlock Text="응급실 A팀" FontSize="20" FontWeight="Bold" Margin="0,0,0,15" TextAlignment="Center"/>
+                    <TextBlock Text="응급실 A팀" FontSize="21" FontWeight="Bold" Margin="0,10,0,20" TextAlignment="Center"/>
 
                     <!-- 팀 선택 콤보박스 -->
                     <ComboBox ItemsSource="{Binding TeamName}"
                               SelectedItem="{Binding SelectedTeam}"
                               Height="36" FontSize="14" Margin="0,0,0,25"
-                              Padding="8,0" VerticalContentAlignment="Center">
+                              Padding="8,0" VerticalContentAlignment="Center" Width="310">
                         <ComboBox.Template>
                             <ControlTemplate TargetType="ComboBox">
                                 <Border Background="White" BorderBrush="#CCCCCC" BorderThickness="1" CornerRadius="8">
@@ -63,13 +63,13 @@
                     </ComboBox>
 
                     <!-- 버튼 2개 -->
-                    <UniformGrid Columns="2" Margin="0,0,0,16">
-                        <Button Height="100">
+                    <UniformGrid Columns="2" Margin="0,0,0,20">
+                        <Button Height="120" Width="150" Command="{Binding GoToNoticeCommand}">
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
                                     <Border BorderThickness="1" BorderBrush="#007AFF" Background="#007AFF" CornerRadius="12">
                                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                            <Image Source="/Resources/images/bell_on.png" Width="24" Height="24"/>
+                                            <Image Source="/Resources/images/WhiteBell.png" Width="40" Height="40" Margin="0,10,0,9"/>
                                             <TextBlock Text="공지사항 보기" FontWeight="Bold" Foreground="White" FontSize="16" HorizontalAlignment="Center"/>
                                         </StackPanel>
                                     </Border>
@@ -77,17 +77,22 @@
                             </Button.Template>
                         </Button>
 
-                        <Button Margin="4" Height="100">
+                        <Button Margin="4" Height="120" Width="150" Command="{Binding GoToHandoverCommand}">
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
-                                    <Border BorderThickness="1" BorderBrush="#007AFF" Background="White" CornerRadius="12">
+                                    <Border BorderThickness="2" BorderBrush="#007AFF" Background="White" CornerRadius="12">
                                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                            <Image Source="/Resources/images/bell.png" Width="24" Height="24"/>
+                                            <Image Source="/Resources/images/Doc.png" Width="35" Height="35" Margin="10"/>
                                             <TextBlock Text="인수인계 보기" FontWeight="Bold" Foreground="#007AFF" FontSize="16" HorizontalAlignment="Center"/>
                                         </StackPanel>
                                     </Border>
                                 </ControlTemplate>
                             </Button.Template>
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="22"/>
+                                </Style>
+                            </Button.Resources>
                         </Button>
                     </UniformGrid>
 
@@ -150,7 +155,7 @@
                             Command="{Binding GoToFullScheduleCommand}">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
-                                <Border BorderThickness="1" BorderBrush="#007AFF" Background="Transparent" CornerRadius="22">
+                                <Border BorderThickness="2" BorderBrush="#007AFF" Background="Transparent" CornerRadius="22">
                                     <TextBlock Text="전체 근무표 보기 →"
                                                Foreground="#007AFF"
                                                FontSize="16"
@@ -160,6 +165,11 @@
                                 </Border>
                             </ControlTemplate>
                         </Button.Template>
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="22"/>
+                            </Style>
+                        </Button.Resources>
                     </Button>
                 </StackPanel>
             </Border>
@@ -170,7 +180,7 @@
                        Height="100"
                        VerticalAlignment="Top"
                        HorizontalAlignment="Center"
-                       Stretch="Uniform" Margin="0,723,0,0" RenderTransformOrigin="0,3.07"/>
+                       Stretch="Uniform" Margin="0,700,0,0" RenderTransformOrigin="0,3.07"/>
     </Grid>
 
 </Page>

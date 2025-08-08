@@ -83,6 +83,63 @@ public class HandoverManager
         return list;
     }
 
+    public HandoverDetailModel? LoadHandoverDetail(int handoverUid)
+    {
+   
+        JObject request = new()
+        {
+            ["protocol"] = "ask_handover_detail",
+            ["data"] = new JObject
+            {
+                ["handover_uid"] = handoverUid
+            }
+        };
+
+        WorkItem sendItem = new()
+        {
+            json = request.ToString(),
+            payload = [],
+            path = ""
+        };
+
+        Console.WriteLine($"[송신] {sendItem.json}");
+        _socket.Send(sendItem);
+
+        Console.WriteLine("[디버그] 응답 대기 중...");
+        WorkItem resp = _socket.Receive();
+        Console.WriteLine("[디버그] 응답 수신: " + resp.json);
+
+        try
+        {
+            JObject root = JObject.Parse(resp.json);
+            if ((string?)root["protocol"] != "ask_handover_detail") return null;
+            if ((string?)root["resp"] != "success") return null;
+
+            JObject? data = (JObject?)root["data"];
+            if (data == null) return null;
+
+            var model = new HandoverDetailModel
+            {
+                HandoverUid = handoverUid,
+                HandoverTime = data["handover_time"]?.ToString() ?? "",
+                ShiftType = ParseShiftTime(data["shift_type"]?.ToString()),
+                NoteType = ParseHandoverType(data["note_type"]?.ToString()),
+                Title = data["title"]?.ToString() ?? "",
+                Text = data["text"]?.ToString() ?? "",
+                TextParticular = data["text_particular"]?.ToString() ?? "",
+                AdditionalInfo = data["additional_info"]?.ToString() ?? "",
+                IsAttached = (int?)data["is_attached"] ?? 0,
+                FileName = data["file_name"]?.ToString() ?? ""
+            };
+
+            return model;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("[오류] 상세 파싱 실패: " + ex.Message);
+            return null;
+        }
+    }
 
     private ShiftType ParseShiftTime(string? str) => str?.ToLower() switch
     {

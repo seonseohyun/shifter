@@ -25,6 +25,7 @@ namespace ShifterUser.ViewModels
         [ObservableProperty] private string selectedHandoverType = "전체";
         [ObservableProperty] private bool isDetailVisible;
         [ObservableProperty] private HandoverModel? selectedHandover;
+        [ObservableProperty] private HandoverDetailModel? selectedHandoverDetail;
 
         public ObservableCollection<string> HandoverTypes { get; } = new()
         {
@@ -74,7 +75,7 @@ namespace ShifterUser.ViewModels
             HandoverList.Clear();
 
             Console.WriteLine("====== 필터링 시작 ======");
-            Console.WriteLine($"▶ 현재 선택된 필터: {SelectedHandoverType}");
+            Console.WriteLine($" 현재 선택된 필터: {SelectedHandoverType}");
 
             List<HandoverModel> filtered = new();
 
@@ -89,12 +90,41 @@ namespace ShifterUser.ViewModels
 
             foreach (var h in filtered)
             {
-                Console.WriteLine($"✅ 추가됨: {h.Title} / {GetDisplayName(h.ShiftTypeTag)}");
+                Console.WriteLine($" 추가됨: {h.Title} / {GetDisplayName(h.ShiftTypeTag)}");
                 HandoverList.Add(h);
             }
 
-            Console.WriteLine($"🔍 최종 추가된 인수인계 수: {HandoverList.Count}");
+            Console.WriteLine($" 최종 추가된 인수인계 수: {HandoverList.Count}");
             Console.WriteLine("====== 필터링 종료 ======");
+        }
+
+        [RelayCommand]
+        private void ShowHandoverDetail(HandoverModel item)
+        {
+            try
+            {
+                // 선택된 항목 저장
+                SelectedHandover = item;
+
+                // 서버에서 상세 데이터 요청
+                var detail = _manager.LoadHandoverDetail(item.HandoverUid);
+                if (detail == null)
+                {
+                    Console.WriteLine("[경고] 상세 데이터 로드 실패");
+                    return;
+                }
+
+                // 상세 데이터를 바인딩 가능한 프로퍼티에 저장
+                //     → 상세 뷰에서 바로 보여줄 수 있도록
+                SelectedHandoverDetail = detail; // 새 ObservableProperty로 추가 필요
+
+                // 상세 보기 활성화
+                IsDetailVisible = true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[오류] 상세보기 처리 중 예외: {ex.Message}");
+            }
         }
 
 
@@ -115,12 +145,6 @@ namespace ShifterUser.ViewModels
             UpdateFilteredList();
         }
 
-        [RelayCommand]
-        private void ShowHandoverDetail(HandoverModel item)
-        {
-            SelectedHandover = item;
-            IsDetailVisible = true;
-        }
 
         [RelayCommand]
         private void CloseDetail()
@@ -133,5 +157,6 @@ namespace ShifterUser.ViewModels
         {
             WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.Goback));
         }
+
     }
 }
