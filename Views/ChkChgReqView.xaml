@@ -9,7 +9,172 @@
       Title="ChkChgReqView"
       Background="#FFFFFF">
 
-    <Grid>
 
+    <Grid Background="White">
+        <Border Margin="20" Background="#F7F7F7" CornerRadius="10" BorderBrush="#E0E0E0" BorderThickness="1" Padding="20">
+            <StackPanel>
+
+
+                <!-- 소제목 -->
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="6*" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" Text="스케줄 변경 요청사항" FontSize="18" FontWeight="Bold" Margin="0,0,0,0"/>
+                    <Border Grid.Column="1"
+                            CornerRadius="30"
+                            Background="#444444"
+                            BorderBrush="Transparent"
+                            BorderThickness="1">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="27*"/>
+                                <RowDefinition Height="17*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="8.5*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+
+
+                            <!--＜ > -->
+                            <Button Content="＜"
+                                Width="40" Height="40"
+                                 Padding="0,0,0,5"  
+                                FontSize="22"
+                                FontWeight="Bold"
+                                Background="#444444"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top" Margin="-1,2,0,0" Grid.RowSpan="2" Grid.ColumnSpan="2"
+                                Command="{Binding ValueNameCommand}"    
+                                BorderBrush="Transparent"
+                                >
+
+
+
+                                <Button.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="20"/>
+                                    </Style>
+                                </Button.Resources>
+                            </Button>
+
+                            <TextBlock Grid.Column="1" Text="{Binding Month}"
+                               FontSize="20" FontFamily="Noto Sans KR"
+                               FontWeight="Medium" VerticalAlignment="Top"
+                               TextAlignment="Center" Grid.ColumnSpan="2" Margin="0,8,29,0" Grid.RowSpan="2"></TextBlock>   
+
+                            <Button Content=">"
+                                Width="40" Height="40"
+                                 Padding="0,0,0,5"  
+                                FontSize="22"
+                                FontWeight="Bold"
+                                Background="#444444"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top" Margin="234,2,0,0" Grid.RowSpan="2"
+                                Command="{Binding ValueNameCommand}"    
+                                BorderBrush="Transparent" Grid.Column="1" Grid.ColumnSpan="2"
+                                >
+                                <Button.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="20"/>
+                                    </Style>
+                                </Button.Resources>
+                            </Button>
+
+
+                        </Grid>
+                    </Border>
+
+                </Grid>
+
+
+                <!-- 설명 텍스트 -->
+                <TextBlock Text="이벤트 관련 수정 요청사항을 확인할 수 있습니다." FontSize="12" Foreground="#666666" Margin="0,0,0,20"/>
+
+
+                <ItemsControl ItemsSource="{Binding []}">
+                    <ItemsControl.ItemTemplate>
+                    <!-- 하나의 카드 항목 -->
+                        <DataTemplate>
+                            <Border Margin="20" Background="White" CornerRadius="10" BorderBrush="#E0E0E0" BorderThickness="1" Padding="20">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <!-- 날짜 -->
+                                        <ColumnDefinition Width="Auto"/>
+                                        <!-- 교대 변경 -->
+                                        <ColumnDefinition Width="Auto"/>
+                                        <!-- 직원 이름 -->
+                                        <ColumnDefinition Width="*"/>
+                                        <!-- 설명 텍스트 -->
+                                        <ColumnDefinition Width="Auto"/>
+                                        <!-- 반려 버튼 -->
+                                        <ColumnDefinition Width="Auto"/>
+                                        <!-- 승인 버튼 -->
+                                    </Grid.ColumnDefinitions>
+
+
+                                    <!--동적구성 -->
+                                    <!-- 날짜 라벨 -->
+                                    <Border Grid.Column="0" Background="#000000" CornerRadius="5" Margin="0,0,5,0">
+                                        <TextBlock Text="{Binding Date}" Foreground="White" Padding="5,2" FontSize="12" FontWeight="Bold"/>
+                                    </Border>
+                                    <!-- 교대 변경 라벨 -->
+                                    <Border Grid.Column="1" Background="#000000" CornerRadius="5" Margin="0,0,5,0">
+                                        <TextBlock Text="{Binding ShiftChange}" Foreground="White" Padding="5,2" FontSize="12" FontWeight="Bold"/>
+                                    </Border>
+
+                                    <!-- 직원 이름 라벨 -->
+                                    <Border Grid.Column="2" Background="#000000" CornerRadius="5" Margin="0,0,5,0">
+                                        <TextBlock Text="{Binding StaffName}" Foreground="White" Padding="5,2" FontSize="12" FontWeight="Bold"/>
+                                    </Border>
+
+                                    <!-- 설명 텍스트 -->
+                                    <TextBlock Grid.Column="3" Text="{Binding Description}" TextWrapping="Wrap" FontSize="12" Foreground="#666666" VerticalAlignment="Center" Margin="5,0"/>
+
+                                    <!-- 반려 버튼 -->
+                                    <Button  Grid.Column="4" Width="150" Content="반려" BorderBrush="#002EFF" BorderThickness="1" Background="Transparent" Foreground="#0078D4" Padding="10,5" Margin="5,0">
+
+                                        <Button.Resources>
+                                            <Style TargetType="Border">
+                                                <Setter Property="CornerRadius" Value="10"/>
+                                            </Style>
+                                        </Button.Resources>
+                                    </Button>
+                                    <!-- 승인 버튼 -->
+                                    <Button Grid.Column="5" Width="150" Content="승인" Background="#002EFF" Foreground="White" Padding="10,5">
+                                        <Button.Resources>
+                                            <Style TargetType="Border">
+                                                <Setter Property="CornerRadius" Value="10"/>
+                                            </Style>
+                                        </Button.Resources>
+                                    </Button>
+
+                                </Grid>
+
+
+                            </Border>
+                        </DataTemplate>
+                        <!-- 하나의 카드 항목 끝 -->
+                        
+                    </ItemsControl.ItemTemplate>
+
+                </ItemsControl>
+            </StackPanel>
+        </Border>
     </Grid>
+
+
+
+
+
+
+
 </Page>

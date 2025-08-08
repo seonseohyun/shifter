@@ -21,5 +21,10 @@ namespace Shifter.Views {
         public ChkChgReqView() {
             InitializeComponent();
         }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

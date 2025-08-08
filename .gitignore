@@ -36,3 +36,6 @@ artifacts/
 *.tmp
 *.db
 *.bak
+
+
+/venv/
