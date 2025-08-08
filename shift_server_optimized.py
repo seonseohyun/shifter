@@ -18,13 +18,11 @@ from typing import Dict, List, Optional, Tuple, Any, Union
 from enum import Enum
 from ortools.sat.python import cp_model
 
-# OpenAI import (optional)
-try:
-    from openai import OpenAI
-    from dotenv import load_dotenv
-    OPENAI_AVAILABLE = True
-except ImportError:
-    OPENAI_AVAILABLE = False
+from dotenv import load_dotenv
+import os
+from openai import OpenAI
+
+
 
 
 # Configuration
@@ -32,16 +30,28 @@ HOST = '127.0.0.1'
 PORT = 6004
 SOLVER_TIMEOUT_SECONDS = 30.0
 
-# Load environment variables
-if OPENAI_AVAILABLE:
-    load_dotenv()
+
+
+# Load environment variables from .env file
+load_dotenv()  # Load .env file unconditionally
 
 # OpenAI configuration
 openai_client = None
+
+# Define OPENAI_AVAILABLE (set to True or False based on your setup)
+OPENAI_AVAILABLE = True  # Adjust this based on your environment or configuration
+
 if OPENAI_AVAILABLE:
     OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
     if OPENAI_API_KEY:
         openai_client = OpenAI(api_key=OPENAI_API_KEY)
+    else:
+        print("OPENAI_API_KEY is not set in .env file or environment variables.")
+else:
+    print("OpenAI is not available.")
+
+
+
 
 # Logging setup
 logging.basicConfig(
@@ -188,7 +198,7 @@ def summarize_handover(input_text: str) -> Dict[str, Any]:
         # OpenAI API 호출
         logger.info("OpenAI API 호출 중...")
         response = openai_client.chat.completions.create(
-            model="gpt-3.5-turbo",
+            model="gpt-4o",
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": input_text}

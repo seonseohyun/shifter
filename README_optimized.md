@@ -137,7 +137,7 @@ python test_optimized_server.py
 }
 ```
 
-### Auto-Detection
+### Auto-Detection 만약 클라이언트에서 명시하지 않는다면 아래의 키워드들을 보고 자동으로 야/휴를 감지
 Server automatically detects night and off shifts based on keywords:
 
 **Night Keywords**: night, nocturnal, 야간, 밤, 심야

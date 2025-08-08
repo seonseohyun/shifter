@@ -26,8 +26,8 @@
 │  │ - handover      │  │ - Staff validation                  │   │
 │  │ - summarization │  │ - Constraint application            │   │
 │  └─────────────────┘  │ - OR-Tools CP-SAT solving           │   │
-│           │            │ - Result formatting                 │   │
-│           ▼            └─────────────────────────────────────┘   │
+│           │           │ - Result formatting                 │   │
+│           ▼           └─────────────────────────────────────┘   │
 │  ┌─────────────────┐                                            │
 │  │ OpenAI          │                                            │
 │  │ Integration     │                                            │
@@ -143,7 +143,7 @@
 ```python
 @dataclass
 class Staff:
-    name: str              # 직원명
+    name: str             # 직원명
     staff_id: int         # 직원 ID
     grade: int            # 직급/등급
     total_hours: int      # 월 근무시간 상한
