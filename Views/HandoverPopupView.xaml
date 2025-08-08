@@ -9,15 +9,6 @@
       FontFamily="Noto Sans KR"
       Title="HandoverPopupView">
 
-
-    <Page.Resources>
-        <!-- 그림자 -->
-        <DropShadowEffect x:Key="CardShadow"
-                          Color="Black" BlurRadius="12" ShadowDepth="4" Opacity="0.25"/>
-
-
-    </Page.Resources>
-
     <Grid>
         <!-- 반투명 오버레이 -->
         <Rectangle Fill="#80000000"/>
@@ -26,7 +17,7 @@
         <Border Width="380" Padding="20" CornerRadius="20"
                 Background="White"
                 HorizontalAlignment="Center" VerticalAlignment="Center"
-                Effect="{StaticResource CardShadow}" Height="362">
+                 Height="362">
             <StackPanel>
                 <!-- 아이콘 -->
                 <Image Width="56" Height="56" Margin="0,0,0,12"
