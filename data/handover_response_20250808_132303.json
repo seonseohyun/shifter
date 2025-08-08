@@ -1,0 +1,12 @@
+{
+  "timestamp": "2025-08-08T13:23:03.662915",
+  "request_type": "handover",
+  "response_data": {
+    "status": "error",
+    "task": "summarize_handover",
+    "reason": "input_text가 비어 있습니다."
+  },
+  "metadata": {
+    "processing_time_seconds": 3e-06
+  }
+}

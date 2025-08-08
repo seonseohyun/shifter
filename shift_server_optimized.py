@@ -16,6 +16,7 @@ from datetime import datetime, timedelta
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Tuple, Any, Union
 from enum import Enum
+from pathlib import Path
 from ortools.sat.python import cp_model
 
 from dotenv import load_dotenv
@@ -161,6 +162,187 @@ POSITION_RULES: Dict[str, PositionRules] = {
 class ShiftSchedulerError(Exception):
     """Custom exception for shift scheduler errors"""
     pass
+
+
+class ResponseLogger:
+    """
+    Sophisticated response logging system for shift scheduler responses.
+    
+    Saves both schedule generation and handover summarization responses to the /data 
+    directory with English filenames in the format {request_type}_{datetime}.json.
+    
+    Features:
+    - Automatic directory creation
+    - Graceful error handling with comprehensive logging
+    - UTF-8 encoding with pretty JSON formatting
+    - Type-safe implementation with comprehensive docstrings
+    - Separate methods for different request types
+    """
+    
+    def __init__(self, data_dir: str = "data") -> None:
+        """
+        Initialize the ResponseLogger.
+        
+        Args:
+            data_dir: Directory to save response logs (default: "data")
+        """
+        self.data_dir = Path(data_dir)
+        self._ensure_data_directory()
+    
+    def _ensure_data_directory(self) -> None:
+        """
+        Ensure the data directory exists, create if necessary.
+        
+        Raises:
+            OSError: If directory creation fails
+        """
+        try:
+            self.data_dir.mkdir(exist_ok=True)
+            logger.debug(f"Data directory ensured: {self.data_dir}")
+        except OSError as e:
+            logger.error(f"Failed to create data directory {self.data_dir}: {e}")
+            raise
+    
+    def _generate_filename(self, request_type: str, timestamp: datetime) -> str:
+        """
+        Generate standardized filename for response logs.
+        
+        Args:
+            request_type: Type of request (e.g., "schedule", "handover")
+            timestamp: Timestamp for the request
+            
+        Returns:
+            Formatted filename string
+        """
+        datetime_str = timestamp.strftime("%Y%m%d_%H%M%S")
+        return f"{request_type}_response_{datetime_str}.json"
+    
+    def _save_response(
+        self,
+        response_data: Dict[str, Any],
+        request_type: str,
+        timestamp: datetime,
+        additional_metadata: Optional[Dict[str, Any]] = None
+    ) -> bool:
+        """
+        Save response data to file with comprehensive error handling.
+        
+        Args:
+            response_data: The response data to save
+            request_type: Type of request for filename generation
+            timestamp: Timestamp for the request
+            additional_metadata: Optional additional metadata to include
+            
+        Returns:
+            True if save successful, False otherwise
+        """
+        try:
+            filename = self._generate_filename(request_type, timestamp)
+            filepath = self.data_dir / filename
+            
+            # Prepare log entry with metadata
+            log_entry = {
+                "timestamp": timestamp.isoformat(),
+                "request_type": request_type,
+                "response_data": response_data
+            }
+            
+            # Add additional metadata if provided
+            if additional_metadata:
+                log_entry["metadata"] = additional_metadata
+            
+            # Write to file with proper encoding and formatting
+            with filepath.open('w', encoding='utf-8') as f:
+                json.dump(log_entry, f, ensure_ascii=False, indent=2)
+            
+            logger.info(f"Response logged successfully: {filepath}")
+            return True
+            
+        except (OSError, IOError, TypeError) as e:
+            logger.error(f"Failed to save {request_type} response: {e}")
+            return False
+        except json.JSONEncodeError as e:
+            logger.error(f"JSON encoding error for {request_type} response: {e}")
+            return False
+        except Exception as e:
+            logger.error(f"Unexpected error saving {request_type} response: {e}")
+            return False
+    
+    def log_schedule_response(
+        self,
+        response_data: Dict[str, Any],
+        timestamp: Optional[datetime] = None,
+        staff_count: Optional[int] = None,
+        position: Optional[str] = None,
+        target_month: Optional[str] = None
+    ) -> bool:
+        """
+        Log schedule generation response with metadata.
+        
+        Args:
+            response_data: Schedule generation response data
+            timestamp: Request timestamp (defaults to current time)
+            staff_count: Number of staff members in request
+            position: Position type for the schedule
+            target_month: Target month for the schedule
+            
+        Returns:
+            True if logging successful, False otherwise
+        """
+        if timestamp is None:
+            timestamp = datetime.now()
+        
+        # Prepare schedule-specific metadata
+        metadata = {}
+        if staff_count is not None:
+            metadata["staff_count"] = staff_count
+        if position is not None:
+            metadata["position"] = position
+        if target_month is not None:
+            metadata["target_month"] = target_month
+        
+        return self._save_response(
+            response_data=response_data,
+            request_type="schedule",
+            timestamp=timestamp,
+            additional_metadata=metadata if metadata else None
+        )
+    
+    def log_handover_response(
+        self,
+        response_data: Dict[str, Any],
+        timestamp: Optional[datetime] = None,
+        input_text_length: Optional[int] = None,
+        processing_time: Optional[float] = None
+    ) -> bool:
+        """
+        Log handover summarization response with metadata.
+        
+        Args:
+            response_data: Handover summarization response data
+            timestamp: Request timestamp (defaults to current time)
+            input_text_length: Length of original input text
+            processing_time: Processing time in seconds
+            
+        Returns:
+            True if logging successful, False otherwise
+        """
+        if timestamp is None:
+            timestamp = datetime.now()
+        
+        # Prepare handover-specific metadata
+        metadata = {}
+        if input_text_length is not None:
+            metadata["input_text_length"] = input_text_length
+        if processing_time is not None:
+            metadata["processing_time_seconds"] = processing_time
+        
+        return self._save_response(
+            response_data=response_data,
+            request_type="handover",
+            timestamp=timestamp,
+            additional_metadata=metadata if metadata else None
+        )
 
 
 def summarize_handover(input_text: str) -> Dict[str, Any]:
@@ -549,12 +731,21 @@ class ShiftScheduler:
 
 
 class ShiftSchedulerServer:
-    """TCP server for shift scheduling requests"""
+    """
+    TCP server for shift scheduling requests.
+    
+    Features:
+    - Handles both schedule generation and handover summarization requests
+    - Automatic response logging with comprehensive metadata
+    - Multi-encoding support for Korean content
+    - Graceful error handling and recovery
+    """
     
     def __init__(self, host: str = HOST, port: int = PORT):
         self.host = host
         self.port = port
         self.socket = None
+        self.response_logger = ResponseLogger()
     
     def start(self):
         """Start the TCP server"""
@@ -664,7 +855,19 @@ class ShiftSchedulerServer:
                 
                 if task == "summarize_handover":
                     input_text = request_data.get("input_text", "")
-                    return summarize_handover(input_text)
+                    process_start = datetime.now()
+                    response = summarize_handover(input_text)
+                    process_time = (datetime.now() - process_start).total_seconds()
+                    
+                    # Log handover response
+                    self.response_logger.log_handover_response(
+                        response_data=response,
+                        timestamp=process_start,
+                        input_text_length=len(input_text) if input_text else None,
+                        processing_time=process_time
+                    )
+                    
+                    return response
                 else:
                     return {
                         "status": "error",
@@ -719,35 +922,80 @@ class ShiftSchedulerServer:
                     solution["schedule"], start_date
                 )
                 
-                return {
+                response = {
                     "protocol": "py_gen_schedule",
                     "resp": "success",
                     "data": schedule_data
                 }
+                
+                # Log schedule response
+                self.response_logger.log_schedule_response(
+                    response_data=response,
+                    timestamp=start_time,
+                    staff_count=len(staff),
+                    position=position,
+                    target_month=target_month
+                )
+                
+                return response
             else:
-                return {
+                response = {
                     "protocol": "py_gen_schedule",
                     "resp": "fail",
                     "data": [],
                     "reason": "No feasible schedule found"
                 }
+                
+                # Log failed schedule response
+                self.response_logger.log_schedule_response(
+                    response_data=response,
+                    timestamp=start_time,
+                    staff_count=len(staff) if 'staff' in locals() else None,
+                    position=position,
+                    target_month=target_month
+                )
+                
+                return response
         
         except ShiftSchedulerError as e:
             logger.error(f"Validation error: {e}")
-            return {
+            error_response = {
                 "protocol": "py_gen_schedule",
                 "resp": "fail",
                 "data": [],
                 "error": str(e)
             }
+            
+            # Log validation error response
+            self.response_logger.log_schedule_response(
+                response_data=error_response,
+                timestamp=start_time,
+                staff_count=None,
+                position=request_data.get("data", {}).get("position") if "data" in request_data else request_data.get("position"),
+                target_month=request_data.get("data", {}).get("target_month") if "data" in request_data else request_data.get("target_month")
+            )
+            
+            return error_response
+            
         except Exception as e:
             logger.error(f"Processing error: {e}")
-            return {
+            error_response = {
                 "protocol": "py_gen_schedule", 
                 "resp": "fail",
                 "data": [],
                 "error": "Internal server error"
             }
+            
+            # Log internal error response  
+            self.response_logger.log_schedule_response(
+                response_data=error_response,
+                timestamp=start_time,
+                staff_count=None,
+                position=request_data.get("data", {}).get("position") if "data" in request_data else request_data.get("position"),
+                target_month=request_data.get("data", {}).get("target_month") if "data" in request_data else request_data.get("target_month")
+            )
+            
+            return error_response
     
     def _parse_target_month(self, target_month: Optional[str]) -> Tuple[datetime, int]:
         """Parse target month string and return start date and number of days"""
