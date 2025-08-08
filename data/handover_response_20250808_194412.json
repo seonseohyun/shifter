@@ -1,0 +1,8 @@
+{
+  "timestamp": "2025-08-08T19:44:12.134038",
+  "request_type": "handover",
+  "status": "error",
+  "task": "summarize_handover",
+  "reason": "input_text가 비어 있습니다.",
+  "processing_time_seconds": 0.0
+}

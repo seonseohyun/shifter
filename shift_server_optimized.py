@@ -125,16 +125,42 @@ class ResponseLogger:
         datetime_str = timestamp.strftime("%Y%m%d_%H%M%S")
         return f"{request_type}_response_{datetime_str}.json"
     def _save_response(self, response_data: Dict[str, Any], request_type: str, timestamp: datetime, additional_metadata: Optional[Dict[str, Any]] = None) -> bool:
+        """
+        Save response data to file with comprehensive error handling.
+        
+        Args:
+            response_data: The response data to save
+            request_type: Type of request for filename generation
+            timestamp: Timestamp for the request
+            additional_metadata: Optional additional metadata to include
+            
+        Returns:
+            True if save successful, False otherwise
+        """
         try:
             filename = self._generate_filename(request_type, timestamp)
             filepath = self.data_dir / filename
-            log_entry = {"timestamp": timestamp.isoformat(), "request_type": request_type, "response_data": response_data}
+            
+            # Initialize log entry with timestamp and request type
+            log_entry = {
+                "timestamp": timestamp.isoformat(),
+                "request_type": request_type
+            }
+            
+            # Merge response_data directly into log_entry
+            log_entry.update(response_data)
+            
+            # Add additional metadata if provided
             if additional_metadata:
-                log_entry["metadata"] = additional_metadata
+                log_entry.update(additional_metadata)
+            
+            # Write to file with proper encoding and formatting
             with filepath.open('w', encoding='utf-8') as f:
                 json.dump(log_entry, f, ensure_ascii=False, indent=2)
+            
             logger.info(f"Response logged successfully: {filepath}")
             return True
+            
         except (OSError, IOError, TypeError) as e:
             logger.error(f"Failed to save {request_type} response: {e}")
             return False
@@ -765,6 +791,7 @@ class ShiftSchedulerServer:
             if request_data is not None:
                 # Process the request
                 response = self._process_request(request_data)
+                # JSON 문자열로 변환 (ensure_ascii=False로 한글 등 유지)
                 response_json = json.dumps(response, ensure_ascii=False)
                 
                 # Send response based on protocol
@@ -782,7 +809,7 @@ class ShiftSchedulerServer:
                     BinaryProtocolHandler.send_json_response(conn, error_response)
                 else:
                     LegacyProtocolHandler.send_json_response(conn, error_response)
-                
+                    
         except Exception as e:
             logger.error(f"[{addr}] Client handling error: {e}")
             try:

@@ -125,3 +125,11 @@ resp_bytes = json.dumps(response, ensure_ascii=False).encode('utf-8')
 conn.sendall(len(resp_bytes).to_bytes(4, 'big'))
 conn.sendall(resp_bytes)
 
+
+
+
+(venv) C:\workspace\shifter>python a.py
+2025-08-08 16:59:58 [INFO] Starting Optimized Shift Scheduler Server
+2025-08-08 16:59:58 [INFO] Shift scheduler server started on 0.0.0.0:6004
+2025-08-08 17:00:53 [INFO] Client connected: ('10.10.20.112', 51550)
+2025-08-08 17:00:53 [ERROR] 헤더 정보 비정상: jsonSize=3825401856, totalSize=3825401856
