@@ -1,0 +1,182 @@
+﻿<Page x:Class="ShifterUser.Views.HandoverDetailView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ShifterUser.Views"
+      mc:Ignorable="d" 
+      Background="White"
+      FontFamily="Noto Sans KR"
+      d:DesignHeight="800" d:DesignWidth="400"
+      Title="HandoverDetailView">
+
+    <Page.Resources>
+        <DropShadowEffect x:Key="ShadowEffect"
+                          Color="Black"
+                          ShadowDepth="5"
+                          BlurRadius="10"
+                          Opacity="0.5"/>
+        <!-- 본인 여부용 -->
+        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+    </Page.Resources>
+
+    <Grid>
+        <!-- 상단바 -->
+        <Border Background="#007AFF" Height="56" VerticalAlignment="Top">
+            <Grid>
+                <Button Content="＜"
+                        Command="{Binding GoBackCommand}"
+                        Width="40" Height="40"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        FontSize="16"
+                        FontWeight="Bold"
+                        Foreground="White"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"/>
+            </Grid>
+        </Border>
+
+        <!-- 본문 -->
+        <Grid Margin="16,6,16,26">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- 카드 그림자 배경 -->
+            <Border Background="White" CornerRadius="20" Effect="{StaticResource ShadowEffect}" Height="700" Margin="0,68,0,0"/>
+            <!-- 카드 본체 -->
+            <Border Background="White" CornerRadius="20" BorderBrush="#DDDDDD" BorderThickness="1" Margin="0,68,0,0">
+                <Grid Margin="16">
+                    <!-- 1:3:1 + 버튼 -->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <!-- 기본 정보 (1) -->
+                        <RowDefinition Height="3*"/>
+                        <!-- 업무 개요 (3) -->
+                        <RowDefinition Height="*"/>
+                        <!-- 첨부 자료 (1) -->
+                        <RowDefinition Height="Auto"/>
+                        <!-- 수정하기 버튼 -->
+                    </Grid.RowDefinitions>
+
+                    <!-- ====== 기본 정보 ====== -->
+                    <StackPanel Grid.Row="0" Margin="0,0,0,8">
+                        <TextBlock Text="기본 정보" FontWeight="Bold" FontSize="15" Margin="0,0,0,8"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="70"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Text="작성자" Foreground="#8A8A8A"/>
+                            <TextBlock Text="{Binding SelectedHandoverDetail.Author}" Grid.Column="1"/>
+
+                            <TextBlock Text="작성시간" Foreground="#8A8A8A" Grid.Row="1" Margin="0,4,0,0"/>
+                            <TextBlock Text="{Binding SelectedHandoverDetail.HandoverTime}" Grid.Row="1" Grid.Column="1" Margin="0,4,0,0"/>
+
+                            <TextBlock Text="유형" Foreground="#8A8A8A" Grid.Row="2" Margin="0,4,0,0"/>
+                            <TextBlock Text="{Binding SelectedHandoverDetail.NoteType}" Grid.Row="2" Grid.Column="1" Margin="0,4,0,0"/>
+
+
+                        </Grid>
+                    </StackPanel>
+
+                    <Border Grid.Row="0" VerticalAlignment="Top" Height="1" Background="#E6E6E6" Margin="0,103,0,0"/>
+
+                    <!-- ====== 업무 개요 (가운데만 스크롤) ====== -->
+                    <Border Grid.Row="1" Margin="0,8,0,8" Background="Transparent">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,-12,0,12">
+                            <StackPanel>
+                                <TextBlock Text="업무 개요" FontWeight="Bold" FontSize="15" Margin="0,0,0,8"/>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="70"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock Text="업무명" Foreground="#8A8A8A"/>
+                                    <TextBlock Text="{Binding SelectedHandoverDetail.Title}" Grid.Column="1"/>
+
+                                    <TextBlock Text="업무 내용" Foreground="#8A8A8A" Grid.Row="1" Margin="0,6,0,0"/>
+                                    <StackPanel Grid.Column="1" Grid.Row="1" Margin="0,6,0,0">
+                                        <TextBlock Text="{Binding SelectedHandoverDetail.Text}" TextWrapping="Wrap" Margin="0,2,0,0"/>
+                                    </StackPanel>
+
+                                    <TextBlock Text="특이사항" Foreground="#8A8A8A" Grid.Row="2" Margin="0,6,0,0"/>
+                                    <StackPanel Grid.Column="1" Grid.Row="2" Margin="0,6,0,0">
+                                        <TextBlock Text="{Binding SelectedHandoverDetail.TextParticular}" TextWrapping="Wrap" Margin="0,2,0,0"/>
+                                    </StackPanel>
+
+                                    <TextBlock Text="비고" Foreground="#8A8A8A" Grid.Row="3" Margin="0,6,0,0"/>
+                                    <TextBlock Text="{Binding SelectedHandoverDetail.AdditionalInfo}" Grid.Column="1" Grid.Row="3" Margin="0,6,0,0" TextWrapping="Wrap"/>
+                                </Grid>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Border>
+
+                    <Border Grid.Row="1" VerticalAlignment="Top" Height="1" Background="#E6E6E6" Margin="0,356,0,0"/>
+
+                    <!-- ====== 첨부 자료 ====== -->
+                    <StackPanel Grid.Row="2" Margin="0,8,0,8">
+                        <TextBlock Text="첨부 자료" FontWeight="Bold" FontSize="15" Margin="0,0,0,8"/>
+                        <ItemsControl ItemsSource="{Binding SelectedHandoverDetail.Attachments}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="0,6,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="28"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackPanel Orientation="Horizontal">
+                                            <Border Width="28" Height="28" CornerRadius="6" BorderBrush="#CFCFCF" BorderThickness="1" Background="#F8F8F8" Margin="0,0,8,0">
+                                                <TextBlock Text="📄" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                            <TextBlock Text="{Binding FileName}" VerticalAlignment="Center"/>
+                                        </StackPanel>
+
+                                        <Button Grid.Column="1"
+                      Width="28" Height="28"
+                      Background="Transparent" BorderBrush="#CFCFCF" BorderThickness="1"
+                      Command="{Binding DataContext.DownloadCommand, RelativeSource={RelativeSource AncestorType=Page}}"
+                      CommandParameter="{Binding}">
+                                            <TextBlock Text="⤓" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Button>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+
+                    <!-- ====== 수정하기 버튼 ====== -->
+                    <Border Grid.Row="3" Background="#007AFF" CornerRadius="24" Margin="0,8,0,8"
+                    Visibility="{Binding IsOwner, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <Button Content="수정하기"
+              Background="Transparent"
+              Foreground="White"
+              FontSize="16"
+              FontWeight="Bold"
+              Padding="10"
+              BorderThickness="0"
+              Command="{Binding EditCommand}"/>
+                    </Border>
+                </Grid>
+            </Border>
+
+        </Grid>
+    </Grid>
+</Page>

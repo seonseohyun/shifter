@@ -75,6 +75,13 @@ namespace ShifterUser.ViewModels
                 case PageType.NoticeDetail:
                     _mainFrame.Navigate(new GroupNoticeView { DataContext = App.Services.GetService(typeof(NoticeDetailViewModel)) });
                     break;
+                case PageType.HandoverDetail:
+                    _mainFrame.Navigate(new HandoverDetailView
+                    {
+                        DataContext = App.Services.GetRequiredService<HandoverDetailViewModel>()
+                    });
+                    break;
+
                 case PageType.Goback:
                         _mainFrame.GoBack();
                         break;
