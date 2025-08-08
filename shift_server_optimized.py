@@ -117,7 +117,6 @@ class ResponseLogger:
     def _ensure_data_directory(self):
         try:
             self.data_dir.mkdir(exist_ok=True)
-            logger.debug(f"Data directory ensured: {self.data_dir}")
         except OSError as e:
             logger.error(f"Failed to create data directory {self.data_dir}: {e}")
             raise
@@ -466,7 +465,6 @@ class BinaryProtocolHandler:
             total_size = struct.unpack('<I', header[:4])[0]  # Changed from '>I' to '<I'
             json_size = struct.unpack('<I', header[4:8])[0]  # Changed from '>I' to '<I'
             
-            logger.debug(f"[BINARY] Received header from {conn.getpeername()} - totalSize: {total_size}, jsonSize: {json_size}")
 
             # 3. Validate header with enhanced endian mismatch detection
             if json_size == 0 or json_size > total_size or total_size > BinaryProtocolHandler.MAX_PACKET_SIZE:
@@ -521,7 +519,6 @@ class BinaryProtocolHandler:
                 
             except json.JSONDecodeError as e:
                 logger.error(f"[BINARY] JSON parsing failed from {conn.getpeername()}: {e}")
-                logger.debug(f"[BINARY] JSON data (first 200 chars): {repr(json_data[:200])}")
                 return None, None
 
         except ConnectionError as e:
@@ -554,7 +551,6 @@ class BinaryProtocolHandler:
             # Send header + data
             conn.sendall(header + json_bytes)
             
-            logger.debug(f"[BINARY] Sent response to {conn.getpeername()}: totalSize={total_size}, jsonSize={json_size}")
             
         except Exception as e:
             logger.error(f"[BINARY] Failed to send response to {conn.getpeername()}: {e}")
@@ -603,7 +599,6 @@ class LegacyProtocolHandler:
         try:
             json_bytes = json_str.encode('utf-8')
             conn.sendall(json_bytes)
-            logger.debug(f"[LEGACY] Sent response to {conn.getpeername()}")
         except Exception as e:
             logger.error(f"[LEGACY] Failed to send response to {conn.getpeername()}: {e}")
             raise
@@ -631,7 +626,6 @@ class ShiftSchedulerServer:
             header_peek = conn.recv(8, socket.MSG_PEEK)
             
             if len(header_peek) < 8:
-                logger.debug(f"[PROTOCOL] Not enough data for binary header from {conn.getpeername()}, using legacy")
                 return "legacy"
             
             # Try to interpret as little-endian binary header (correct format)
@@ -645,7 +639,6 @@ class ShiftSchedulerServer:
                     total_size <= BinaryProtocolHandler.MAX_PACKET_SIZE and
                     total_size < 1000000):  # Reasonable size for typical requests
                     
-                    logger.debug(f"[PROTOCOL] Valid little-endian binary header detected from {conn.getpeername()}: totalSize={total_size}, jsonSize={json_size}")
                     return "binary"
                 
                 # Check for potential big-endian mismatch
@@ -670,30 +663,15 @@ class ShiftSchedulerServer:
                     pass
                 
                 # Neither interpretation gives valid values
-                logger.debug(f"[PROTOCOL] Invalid binary header values from {conn.getpeername()}: totalSize={total_size}, jsonSize={json_size}, using legacy")
                 return "legacy"
                     
             except struct.error:
-                logger.debug(f"[PROTOCOL] Binary header parsing failed from {conn.getpeername()}, using legacy")
                 return "legacy"
                 
         except Exception as e:
             logger.warning(f"[PROTOCOL] Protocol detection error from {conn.getpeername()}: {e}, defaulting to legacy")
             return "legacy"
 
-    # Keep old methods for backward compatibility but mark them as deprecated
-    def recv_exact(self, conn: socket.socket, n: int) -> bytes:
-        """Deprecated: Use BinaryProtocolHandler.recv_exact instead"""
-        return BinaryProtocolHandler.recv_exact(conn, n)
-
-    def receive_packet(self, conn: socket.socket) -> tuple[Optional[Dict[str, Any]], list]:
-        """Deprecated: Use protocol-specific handlers instead"""
-        request_data, payload = BinaryProtocolHandler.receive_packet(conn)
-        return request_data, list(payload) if payload else []
-
-    def send_json_response(self, conn: socket.socket, json_str: str):
-        """Deprecated: Use protocol-specific handlers instead"""
-        BinaryProtocolHandler.send_json_response(conn, json_str)
 
     def _is_handover_request(self, request_data: Dict[str, Any]) -> bool:
         """인수인계 요청인지 확인"""
@@ -1003,7 +981,6 @@ class ShiftSchedulerServer:
                 try:
                     # First, consume the invalid header that was peeked
                     invalid_header = conn.recv(8)
-                    logger.debug(f"[{addr}] Consumed invalid header: {invalid_header.hex()}")
                     
                     # Create and send endian error response
                     endian_error = BinaryProtocolHandler.create_endian_error_response()
@@ -1088,7 +1065,6 @@ class ShiftSchedulerServer:
         finally:
             try:
                 conn.close()
-                logger.debug(f"[{addr}] Connection closed")
             except Exception as close_error:
                 logger.error(f"[{addr}] Error closing connection: {close_error}")
 

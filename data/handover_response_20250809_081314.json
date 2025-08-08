@@ -1,0 +1,12 @@
+{
+  "timestamp": "2025-08-09T08:13:14.140680",
+  "request_type": "handover",
+  "protocol": "res_handover_summary",
+  "data": {
+    "task": "summarize_handover",
+    "result": "- 환자: 301호 이할아버지\n- 문제: 당뇨 수치 상승\n- 조치: 인슐린 용량 조정 필요\n- 일정: 내일 내분비과 상담 예정\n- 주의사항: 혈당 4시간마다 측정"
+  },
+  "resp": "success",
+  "input_text_length": 65,
+  "processing_time_seconds": 1.508956
+}
