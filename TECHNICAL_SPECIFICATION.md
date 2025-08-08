@@ -318,6 +318,92 @@ python3 test_error_scenarios.py # 오류 시나리오
 
 ---
 
+## ⚠️ 프로토콜 호환성 및 주의사항
+
+### 바이너리 프로토콜 엔디언 설정
+
+#### 🔴 **CRITICAL: Little-Endian 필수 사용**
+
+**C++ 클라이언트와의 호환성을 위해 반드시 Little-endian 사용**
+
+```python
+# ✅ 올바른 구현 (Little-endian)
+PROTOCOL_HEADER_FORMAT = '<II'  # Little-endian uint32_t × 2
+header = struct.pack('<II', total_size, json_size)
+
+# ❌ 절대 사용 금지 (Big-endian)
+header = struct.pack('>II', total_size, json_size)  # C++ 클라이언트 통신 불가!
+```
+
+#### 🕵️ **과거 발생했던 실제 문제 사례**
+
+**증상**: `"[Python 통신] 응답 수신 실패"` 오류
+```
+C++ 클라이언트 로그:
+[ERROR] 헤더 정보 비정상: jsonSize=1919951483, totalSize=1668248687
+```
+
+**원인**: Big-endian (`'>II'`) 사용으로 인한 바이트 순서 불일치
+- Python 서버: 125바이트 → Big-endian `[0x00,0x00,0x00,0x7D]`
+- C++ 클라이언트: Little-endian 해석 → `0x7D000000` (2GB)
+
+**해결**: Little-endian (`'<II'`) 변경으로 완전 해결
+
+#### 📋 **아키텍처별 엔디언 특성**
+
+| 아키텍처 | 엔디언 | 시장 점유율 | 비고 |
+|----------|--------|-------------|------|
+| x86-64 | Little | 90%+ (서버) | Intel/AMD PC |
+| ARM64 | Little | 95%+ (모바일) | Apple Silicon, 스마트폰 |
+| PowerPC | Big | <1% | 구형 시스템 |
+
+**결론**: 현재 시스템 대부분이 Little-endian이므로 `'<II'` 사용이 표준
+
+#### 🛡️ **안전한 프로토콜 설계 원칙**
+
+```python
+# 1. 상수로 명시적 정의
+BINARY_PROTOCOL_ENDIAN = '<'  # Little-endian for C++ compatibility
+HEADER_STRUCT = struct.Struct(BINARY_PROTOCOL_ENDIAN + 'II')
+
+def pack_header(total_size: int, json_size: int) -> bytes:
+    """
+    Pack binary header for C++ client compatibility.
+    
+    IMPORTANT: Uses little-endian to match x86-64 uint32_t layout.
+    DO NOT change to big-endian - will break C++ communication.
+    
+    Args:
+        total_size: Total packet size in bytes
+        json_size: JSON data size in bytes
+        
+    Returns:
+        8-byte binary header (little-endian)
+    """
+    return HEADER_STRUCT.pack(total_size, json_size)
+```
+
+#### 🔧 **개발/운영 체크리스트**
+
+**개발 시 필수 확인사항:**
+- [ ] `struct.pack` 사용 시 항상 `'<II'` (Little-endian) 사용
+- [ ] C++ 클라이언트와 실제 통합 테스트 수행
+- [ ] 바이트 레벨 헤더 검증 테스트 작성
+- [ ] 크로스 플랫폼 호환성 확인
+
+**코드 리뷰 시 점검사항:**
+- [ ] 엔디언 설정 변경 여부 확인 (`'<'` → `'>'` 변경 금지)
+- [ ] struct.pack 포맷 문자열 검토
+- [ ] 네트워크 바이트 순서 개념 혼동 확인
+- [ ] 테스트 커버리지에 C++ 클라이언트 포함 여부
+
+**운영 모니터링:**
+- [ ] C++ 클라이언트 통신 실패율 추적
+- [ ] "헤더 정보 비정상" 오류 알림 설정
+- [ ] 바이트 순서 관련 오류 패턴 감지
+
+---
+
 ## 📈 제약사항 및 권장사항
 
 ### 제약사항
