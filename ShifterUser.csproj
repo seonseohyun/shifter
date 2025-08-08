@@ -16,6 +16,7 @@
     <None Remove="Resources\images\calender.png" />
     <None Remove="Resources\images\cancel.png" />
     <None Remove="Resources\images\check_green.png" />
+    <None Remove="Resources\images\clip.png" />
     <None Remove="Resources\images\clock.png" />
     <None Remove="Resources\images\Doc.png" />
     <None Remove="Resources\images\fix.png" />
@@ -25,6 +26,7 @@
     <None Remove="Resources\images\qr_icon.png" />
     <None Remove="Resources\images\search.png" />
     <None Remove="Resources\images\teamimg.png" />
+    <None Remove="Resources\images\twinkle.png" />
     <None Remove="Resources\images\WhiteBell.png" />
   </ItemGroup>
 
@@ -48,6 +50,7 @@
     <Resource Include="Resources\images\cancel.png" />
     <Resource Include="Resources\images\cancle_red.png" />
     <Resource Include="Resources\images\check_green.png" />
+    <Resource Include="Resources\images\clip.png" />
     <Resource Include="Resources\images\clock.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -61,6 +64,7 @@
     <Resource Include="Resources\images\qr_icon.png" />
     <Resource Include="Resources\images\search.png" />
     <Resource Include="Resources\images\teamimg.png" />
+    <Resource Include="Resources\images\twinkle.png" />
     <Resource Include="Resources\images\WhiteBell.png" />
   </ItemGroup>
 

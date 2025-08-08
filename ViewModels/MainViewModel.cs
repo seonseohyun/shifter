@@ -78,7 +78,9 @@ namespace ShifterUser.ViewModels
                 case PageType.HandoverDetail:
                     _mainFrame.Navigate(new HandoverDetailView { DataContext = App.Services.GetRequiredService<HandoverDetailViewModel>() });
                     break;
-
+                case PageType.WriteHandover:
+                    _mainFrame.Navigate(new WriteHandoverView { DataContext = App.Services.GetRequiredService<WriteHandoverViewModel>() });
+                    break;
                 case PageType.Goback:
                         _mainFrame.GoBack();
                         break;

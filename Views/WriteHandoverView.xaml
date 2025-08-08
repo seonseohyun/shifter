@@ -1,0 +1,291 @@
+﻿<Page x:Class="ShifterUser.Views.WriteHandoverView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ShifterUser.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="400"
+      Background="White"
+      FontFamily="Noto Sans KR"
+      Title="WriteHandoverView">
+
+    <Page.Resources>
+        <DropShadowEffect x:Key="ShadowEffect"
+                          Color="Black"
+                          ShadowDepth="5"
+                          BlurRadius="10"
+                          Opacity="0.5"/>
+    </Page.Resources>
+
+    <Grid>
+        <!-- 상단바 -->
+        <Border Background="#007AFF" Height="56" VerticalAlignment="Top">
+            <Grid>
+                <Button Content="＜"
+                        Command="{Binding GoBackCommand}"
+                        Style="{StaticResource RoundedBlueButtonStyle}"
+                        Width="40" Height="40"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        FontSize="16"
+                        FontWeight="Bold"
+                        Foreground="White"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center" Margin="2,0,0,0"/>
+            </Grid>
+        </Border>
+
+        <!-- 본문 -->
+        <Grid Margin="16,6,16,26">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- 카드 그림자 배경 -->
+            <Border Background="White" CornerRadius="20" Effect="{StaticResource ShadowEffect}" Height="700" Margin="0,68,0,0"/>
+            <!-- 카드 본체 -->
+            <Border Background="White" CornerRadius="20" BorderBrush="#DDDDDD" BorderThickness="1" Margin="0,68,0,0">
+                <Grid Margin="16">
+                    <!-- 1:3:1 + 버튼 -->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="122*"/>
+                        <!-- 기본 정보 (1) -->
+                        <RowDefinition Height="343*"/>
+                        <RowDefinition Height="23*"/>
+                        <!-- 업무 개요 (3) -->
+                        <RowDefinition Height="122*"/>
+                        <!-- 자료 첨부 (1) -->
+                        <RowDefinition Height="Auto"/>
+                        <!-- 하단 버튼 -->
+                    </Grid.RowDefinitions>
+
+                    <!-- ====== 기본 정보 ====== -->
+                    <!-- ====== 기본 정보 ====== -->
+                    <StackPanel Grid.Row="0" Margin="0,0,0,8">
+                        <TextBlock Text="기본 정보" FontWeight="Bold" FontSize="15" Margin="0,0,0,8"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="70"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <!-- 작성자 -->
+                            <TextBlock Text="작성자" Foreground="#8A8A8A" FontSize="12"/>
+                            <TextBlock Text="{Binding SelectedHandoverDetail.Author}" Grid.Column="1"/>
+
+                            <!-- 작성 날짜 -->
+                            <TextBlock Foreground="#8A8A8A" Grid.Row="1" Margin="0,4,0,0">
+                            <Run Text="작성"/><Run Language="ko-kr" Text="날짜"/>
+                            </TextBlock>
+                            <TextBlock Text="{Binding SelectedHandoverDetail.HandoverTime}" 
+                            Grid.Row="1" Grid.Column="1" Margin="0,4,0,0"/>
+
+                            <!-- 유형: ComboBox로 변경 -->
+                            <TextBlock Text="유형" Foreground="#8A8A8A" Grid.Row="2" Margin="0,4,0,0" />
+                            <ComboBox Grid.Row="2" Grid.Column="1" Margin="0,3,114,1"
+                              ItemsSource="{Binding HandoverTypes}"
+                              SelectedItem="{Binding SelectedHandoverDetail.NoteType, Mode=TwoWay}"
+                              Width="150" Height="28"
+                              VerticalContentAlignment="Center" Grid.RowSpan="2"/>
+                        </Grid>
+                    </StackPanel>
+
+
+                    <Border Grid.Row="0" VerticalAlignment="Top" Height="1" Background="#E6E6E6" Margin="0,112,0,0"/>
+
+                    <!-- ====== 업무 개요 (제목만 / 버튼 제거) ====== -->
+                    <Border Margin="0,113,0,2" Background="Transparent" Grid.RowSpan="2">
+                        <Grid Margin="0,8,0,-26">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <!-- 헤더 -->
+                                <RowDefinition Height="*"/>
+                                <!-- 내용(스크롤) -->
+                            </Grid.RowDefinitions>
+
+                            <!-- 헤더: 제목만 -->
+                            <TextBlock Grid.Row="0" Text="업무 개요" FontWeight="Bold" FontSize="15" Margin="0,2,0,6"/>
+
+                            <!-- 내용: 스크롤 -->
+                            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Margin="0,4,0,12">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="70"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock Text="업무명" Foreground="#8A8A8A"/>
+                                    <TextBox Grid.Column="1"/>
+
+                                    <TextBlock Text="업무 내용" Foreground="#8A8A8A" Grid.Row="1" Margin="0,6,0,0"/>
+                                    <StackPanel Grid.Column="1" Grid.Row="1" Margin="0,6,0,0">
+                                        <TextBox Text="{Binding SelectedHandoverDetail.Text}" TextWrapping="Wrap" Margin="0,2,0,0" Height="186"/>
+                                    </StackPanel>
+
+                                    <TextBlock Text="특이사항" Foreground="#8A8A8A" Grid.Row="2" Margin="0,6,0,0"/>
+                                    <StackPanel Grid.Column="1" Grid.Row="2" Margin="0,6,0,0">
+                                        <TextBox Text="{Binding SelectedHandoverDetail.TextParticular}" TextWrapping="Wrap" Margin="0,2,0,0" Height="45"/>
+                                    </StackPanel>
+
+                                    <TextBlock Text="비고" Foreground="#8A8A8A" Grid.Row="3" Margin="0,6,0,0"/>
+                                    <TextBox Text="{Binding SelectedHandoverDetail.AdditionalInfo}"
+                                             Grid.Column="1" Grid.Row="3" Margin="0,6,0,-27" TextWrapping="Wrap"/>
+                                </Grid>
+                            </ScrollViewer>
+                        </Grid>
+                    </Border>
+
+                    <Border Grid.Row="2" VerticalAlignment="Top" Height="1" Background="#E6E6E6" Margin="0,22,0,0"/>
+
+                    <!-- ====== 자료 첨부 (제목 + 우측 버튼) ====== -->
+                    <StackPanel Grid.Row="3" Margin="0,8,0,8">
+                        <!-- 헤더: 제목(좌) + 자료 첨부 버튼(우) -->
+                        <Grid Margin="0,0,0,8">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="226*"/>
+                                <ColumnDefinition Width="19*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="자료 첨부" FontWeight="Bold" FontSize="15" VerticalAlignment="Top" Margin="0,6,0,0" Grid.ColumnSpan="2"/>
+
+                            <!-- 우측 '자료 첨부' 버튼 -->
+                            <Button Grid.Column="2"
+                                    Command="{Binding AttachFilesCommand}"
+                                    Cursor="Hand"
+                                    Background="#F9F9F9"
+                                    Foreground="#444"
+                                    BorderBrush="#CFCFCF"
+                                    BorderThickness="1"
+                                    Margin="8,2,0,-2">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}"
+                                                BorderBrush="{TemplateBinding BorderBrush}"
+                                                BorderThickness="{TemplateBinding BorderThickness}"
+                                                CornerRadius="12">
+                                            <StackPanel Orientation="Horizontal" Margin="2,0">
+                                                <Image Source="/Resources/images/clip.png"
+                                                       Width="15" Height="15" Margin="3,0,2,0"
+                                                       VerticalAlignment="Center"/>
+                                                <TextBlock Text="자료 첨부"
+                                                           FontSize="12" FontWeight="SemiBold"
+                                                           Padding="4,4,4,4"
+                                                           VerticalAlignment="Center"/>
+                                            </StackPanel>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                        </Grid>
+
+                        <!-- 첨부 파일 목록 -->
+                        <ItemsControl ItemsSource="{Binding SelectedHandoverDetail.Attachments}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="0,6,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="28"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackPanel Orientation="Horizontal">
+                                            <Border Width="28" Height="28" CornerRadius="6" BorderBrush="#CFCFCF" BorderThickness="1" Background="#F8F8F8" Margin="0,0,8,0">
+                                                <TextBlock Text="📄" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                            <TextBlock Text="{Binding FileName}" VerticalAlignment="Center"/>
+                                        </StackPanel>
+
+                                        <Button Grid.Column="1"
+                                                Width="28" Height="28"
+                                                Background="Transparent" BorderBrush="#CFCFCF" BorderThickness="1"
+                                                Command="{Binding DataContext.DownloadCommand, RelativeSource={RelativeSource AncestorType=Page}}"
+                                                CommandParameter="{Binding}">
+                                            <TextBlock Text="⤓" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Button>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+
+
+                    <!-- ====== 하단 버튼 ====== -->
+                    <Border Grid.Row="4" Background="Transparent" Margin="0,12,0,0">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <!-- 공통 '필 버튼' 스타일 -->
+                            <StackPanel.Resources>
+                                <Style x:Key="PillButton" TargetType="Button">
+                                    <Setter Property="Width" Value="163"/>
+                                    <Setter Property="Height" Value="44"/>
+                                    <Setter Property="FontFamily" Value="Noto Sans KR"/>
+                                    <Setter Property="FontWeight" Value="SemiBold"/>
+                                    <Setter Property="FontSize" Value="16"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="Button">
+                                                <Border CornerRadius="22"
+                                                        Background="{TemplateBinding Background}"
+                                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                                        BorderThickness="{TemplateBinding BorderThickness}">
+                                                    <ContentPresenter HorizontalAlignment="Center"
+                                                                      VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </StackPanel.Resources>
+
+                            <!-- 아웃라인 버튼 -->
+                            <Button Content="    AI 문장 정리하기"
+                                    Style="{StaticResource PillButton}"
+                                    Margin="0,0,8,0"
+                                    Background="White"
+                                    Foreground="#007AFF"
+                                    BorderBrush="#007AFF"
+                                    BorderThickness="1"
+                                    Command="{Binding GoToNoticeCommand}"/>
+
+                            <!-- 꽉 찬 파란 버튼 -->
+                            <Button Content="인수인계 등록하기"
+                                    Style="{StaticResource PillButton}"
+                                    Background="#007AFF"
+                                    Foreground="White"
+                                    BorderThickness="0"
+                                    Style="{StaticResource RoundedBlueButtonStyle}"
+                                    Command="{Binding GoToHandoverCommand}"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </Border>
+        </Grid>
+        <Grid>
+            <Image Source="/Resources/images/twinkle.png"
+                   Margin="0,717,335,51" HorizontalAlignment="Right" Width="25" RenderTransformOrigin="0.5,0.5">
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-163.408"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+        </Grid>
+    </Grid>
+</Page>
