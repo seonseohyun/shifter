@@ -1,38 +1,127 @@
+프로토콜 불일치.
 
-server_shift_scheduler_v2.py 서버의 json 응답 형태를 아래와같이 변경해야한다.
+C++은 요청/응답 모두 **8바이트 헤더(2×uint32_t)**를 기대/보내고 있음.
 
-성공시 응답
+sendJsonResponse()가 8바이트 헤더 + JSON 바디를 전송.
 
-{
-  "protocol": "py_gen_schedule",
-  "resp": "success",
-  "data": [
-    {
-      "date": "2025-09-01",
-      "shift": "Day",
-      "hours": 8,
-      "people": [
-        {
-          "name": "김간호사",
-          "staff_id": 1001,
-          "grade": 3,
+receivePacket()은 8바이트 헤더를 먼저 읽고 길이를 해석.
 
-        },
-        {
-          "name": "이간호사",
-          "staff_id": 1002,
-          "grade": 3
+파이썬 서버는 헤더 없이 그냥 JSON 바디만 보내고/받음(EOF로 메시지 경계 판단).
 
-        }
-      ]
+그래서,
+
+파이썬이 보낸 응답의 **처음 8바이트(JSON의 ‘{ …’)**를 C++이 “헤더”라고 해석 →
+로그처럼 totalSize=1919951483, jsonSize=1668248687 같은 쓰레기 숫자가 나옴 → “헤더 비정상”.
+
+반대로 C++이 보낸 8바이트 헤더는 파이썬 입장에선 JSON 앞에 끼어든 이상 바이트 → JSON 파싱 실패 → 에러 바디만 보내거나 연결만 닫음.
+
+
+
+아래는 cpp 서버의 통신구조 
+
+파이썬 서버는 cpp서버와의 통신 구조를 통일시켜서 통신하여야한다. 
+
+C++ 서버 프로토콜 요약
+
+보내기 (sendJsonResponse):
+
+8바이트 헤더: totalSize (4바이트) + jsonSize (4바이트).
+JSON 데이터: jsonStr (UTF-8 인코딩).
+
+
+받기 (receivePacket):
+
+8바이트 헤더 수신 후 totalSize와 jsonSize 파싱.
+totalSize 바이트 데이터 수신.
+JSON(jsonSize)와 페이로드(totalSize - jsonSize) 분리.
+
+
+void TcpServer::sendJsonResponse(SOCKET sock, const std::string& jsonStr) {
+    uint32_t totalSize = static_cast<uint32_t>(jsonStr.size());
+    uint32_t jsonSize = totalSize;
+
+    char header[8];
+    memcpy(header, &totalSize, 4);
+    memcpy(header + 4, &jsonSize, 4);
+
+    send(sock, header, 8, 0);
+    send(sock, jsonStr.c_str(), jsonStr.size(), 0);
+}
+
+보내는 함수
+bool TcpServer::receivePacket(SOCKET clientSocket, std::string& out_json, std::vector<char>& out_payload) {
+    //std::cout << u8"[DEBUG] receivePacket 진입\n";
+
+    // 1. 8바이트 헤더 수신
+    char header[8];
+    if (!readExact(clientSocket, header, 8)) {
+        std::cerr << u8"[ERROR] 헤더 수신 실패\n";
+        closesocket(clientSocket); //  반드시 소켓 닫아야 함
+        return false;
     }
-  ]
+
+    // 2. 헤더 파싱
+    uint32_t totalSize = 0, jsonSize = 0;
+    memcpy(&totalSize, header, 4);
+    memcpy(&jsonSize, header + 4, 4);
+
+    std::cout << u8"[DEBUG] totalSize: " << totalSize << u8", jsonSize: " << jsonSize << "\n";
+
+    // 3. 헤더 유효성 검증
+    if (jsonSize == 0  jsonSize > totalSize  totalSize > 10 * 1024 * 1024) {
+        std::cerr << u8"[ERROR] 헤더 정보 비정상: jsonSize=" << jsonSize << u8", totalSize=" << totalSize << "\n";
+        return false;
+    }
+
+    // 4. 바디 수신
+    std::vector<char> buffer(totalSize);
+    if (!readExact(clientSocket, buffer.data(), totalSize)) {
+        std::cerr << "[ERROR] 바디 수신 실패\n";
+        return false;
+    }
+
+    // 5. JSON 분리 및 BOM 제거
+    try {
+        out_json = std::string(buffer.begin(), buffer.begin() + jsonSize);
+
+        // 2. UTF-8 비정상 바이트 제거
+        while (!out_json.empty() && ((unsigned char)out_json[0] == 0xC0  (unsigned char)out_json[0] == 0xC1  (unsigned char)out_json[0] < 0x20)) {
+            std::cerr << u8"[경고] JSON 앞에 비정상 바이트(0x" << std::hex << (int)(unsigned char)out_json[0] << ") 발견 → 제거\n";
+            out_json = out_json.substr(1);
+        }
+    }
+    catch (const std::exception& e) {
+        std::cerr << u8"[ERROR] JSON 문자열 처리 중 예외 발생: " << e.what() << "\n";
+        return false;
+    }
+
+    // 6. payload 분리
+    if (jsonSize < totalSize)
+        out_payload.assign(buffer.begin() + jsonSize, buffer.end());
+    else
+        out_payload.clear();
+
+    return true;
 }
 
-실패시 응답 
+받는 함수
+def recv_exact(conn, n):
+    buf = b''
+    while len(buf) < n:
+        chunk = conn.recv(n - len(buf))
+        if not chunk:
+            raise ConnectionError("socket closed")
+        buf += chunk
+    return buf
 
-{
-  "protocol": "py_gen_schedule",
-  "resp": "fail",
-  "data": []
-}
+받기
+hdr = recv_exact(conn, 4)
+length = int.from_bytes(hdr, 'big')
+data = recv_exact(conn, length)
+request = json.loads(data.decode('utf-8'))
+
+보내기
+resp_bytes = json.dumps(response, ensure_ascii=False).encode('utf-8')
+conn.sendall(len(resp_bytes).to_bytes(4, 'big'))
+conn.sendall(resp_bytes)
+

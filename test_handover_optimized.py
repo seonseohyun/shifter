@@ -39,7 +39,7 @@ def test_handover_summary():
         
         # 소켓 연결
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-            s.connect(('127.0.0.1', 6004))
+            s.connect(('10.10.20.116', 6004))
             
             # 요청 전송
             request_json = json.dumps(request, ensure_ascii=False)

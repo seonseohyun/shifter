@@ -729,82 +729,315 @@ class ShiftScheduler:
         
         return {"schedule": schedule_data}
 
+
 class ShiftSchedulerServer:
-    def __init__(self, host: str = '0.0.0.0', port: int = 6004):
+    """
+    TCP server for shift scheduling requests.
+    
+    Features:
+    - Handles both schedule generation and handover summarization requests
+    - Automatic response logging with comprehensive metadata
+    - Multi-encoding support for Korean content
+    - Graceful error handling and recovery
+    """
+    
+    def __init__(self, host: str = HOST, port: int = PORT):
         self.host = host
         self.port = port
-        self.server_socket = None
+        self.socket = None
         self.response_logger = ResponseLogger()
-
-    def recv_exact(self, conn: socket.socket, n: int) -> bytes:
-        buf = b''
-        while len(buf) < n:
-            chunk = conn.recv(n - len(buf))
-            if not chunk:
-                raise ConnectionError(f"소켓 연결 끊김: {conn.getpeername()}")
-            buf += chunk
-        return buf
-
-    def receive_packet(self, conn: socket.socket) -> tuple[Optional[Dict[str, Any]], list]:
-        try:
-            header = self.recv_exact(conn, 8)
-            total_size = struct.unpack('>I', header[:4])[0]
-            json_size = struct.unpack('>I', header[4:8])[0]
-            logger.debug(f"Received header - totalSize: {total_size}, jsonSize: {json_size}")
-
-            if json_size == 0 or json_size > total_size or total_size > 10 * 1024 * 1024:
-                logger.error(f"헤더 정보 비정상: jsonSize={json_size}, totalSize={total_size}")
-                return None, []
-
-            buffer = self.recv_exact(conn, total_size)
-            json_data = buffer[:json_size].decode('utf-8', errors='ignore')
-            while json_data and ord(json_data[0]) in (0xC0, 0xC1) or ord(json_data[0]) < 0x20:
-                logger.warning(f"JSON 앞에 비정상 바이트(0x{ord(json_data[0]):x}) 발견 → 제거")
-                json_data = json_data[1:]
-
-            try:
-                request_data = json.loads(json_data)
-                logger.info(f"Successfully parsed JSON from {conn.getpeername()}")
-                return request_data, buffer[json_size:]
-            except json.JSONDecodeError as e:
-                logger.error(f"JSON 파싱 실패: {e}")
-                return None, []
-
-        except Exception as e:
-            logger.error(f"패킷 처리 중 오류 발생 {conn.getpeername()}: {e}")
-            return None, []
-
-    def send_json_response(self, conn: socket.socket, json_str: str):
-        json_bytes = json_str.encode('utf-8')
-        total_size = len(json_bytes)
-        header = struct.pack('>I', total_size) + struct.pack('>I', total_size)
-        conn.sendall(header + json_bytes)
-        logger.debug(f"Sent response to {conn.getpeername()}: {json_str}")
-
-    def start(self):
-        self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        self.server_socket.bind((self.host, self.port))
-        self.server_socket.listen(5)
-        logger.info(f"Shift scheduler server started on {self.host}:{self.port}")
-
-        while True:
-            conn, addr = self.server_socket.accept()
-            logger.info(f"Client connected: {addr}")
-            try:
-                request_data, _ = self.receive_packet(conn)
-                if request_data is not None:
-                    response = self._process_request(request_data)
-                    response_json = json.dumps(response, ensure_ascii=False)
-                    self.send_json_response(conn, response_json)
-            except Exception as e:
-                logger.error(f"Client handling error {addr}: {e}")
-                self.send_json_response(conn, json.dumps({"resp": "fail", "error": str(e)}))
-            finally:
-                conn.close()
-
-
     
+    def start(self):
+        """Start the TCP server"""
+        self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        
+        try:
+            self.socket.bind((self.host, self.port))
+            self.socket.listen(5)
+            logger.info(f"Shift scheduler server started on {self.host}:{self.port}")
+            
+            while True:
+                try:
+                    conn, addr = self.socket.accept()
+                    self._handle_client(conn, addr)
+                except KeyboardInterrupt:
+                    logger.info("Server shutdown requested")
+                    break
+                except Exception as e:
+                    logger.error(f"Connection accept error: {e}")
+                    continue
+        
+        except Exception as e:
+            logger.error(f"Server start error: {e}")
+        finally:
+            if self.socket:
+                self.socket.close()
+                logger.info("Server socket closed")
+    
+    def _handle_client(self, conn: socket.socket, addr: Tuple[str, int]):
+        """Handle individual client connection"""
+        try:
+            logger.info(f"Client connected: {addr}")
+            
+            # Receive data
+            data = b''
+            while True:
+                chunk = conn.recv(4096)
+                if not chunk:
+                    break
+                data += chunk
+            
+            if not data:
+                logger.warning(f"Empty request from {addr}")
+                return
+            
+            # Parse JSON with encoding fallback
+            request_data = self._parse_json_with_encoding(data, addr)
+            if request_data is None:
+                self._send_error_response(conn, "Failed to parse request")
+                return
+            
+            # Process request
+            response = self._process_request(request_data)
+            
+            # Send response
+            response_json = json.dumps(response, ensure_ascii=False, indent=2)
+            conn.sendall(response_json.encode('utf-8'))
+            
+            logger.info(f"Response sent to {addr}: {response.get('resp', 'unknown')}")
+            
+        except Exception as e:
+            logger.error(f"Client handling error {addr}: {e}")
+            self._send_error_response(conn, str(e))
+        finally:
+            conn.close()
+    
+    def _parse_json_with_encoding(self, data: bytes, addr: Tuple[str, int]) -> Optional[Dict[str, Any]]:
+        """Parse JSON with multiple encoding attempts"""
+        encodings = ['utf-8', 'cp949', 'latin-1']
+        logger.debug(f"Received raw data from {addr}: {data.hex()}")  # 원시 데이터 로그
+        
+        for encoding in encodings:
+            try:
+                decoded_text = data.decode(encoding)
+                logger.debug(f"Decoded with {encoding}: {decoded_text}")
+                request_data = json.loads(decoded_text)
+                logger.info(f"Successfully decoded with {encoding}")
+                return request_data
+            except UnicodeDecodeError as ude:
+                logger.warning(f"Decode failed with {encoding}: {ude}")
+                continue
+            except json.JSONDecodeError as jde:
+                logger.warning(f"JSON parse failed with {encoding}: {jde}")
+                continue
+        
+        logger.error(f"All encoding attempts failed for {addr}")
+        return None
+    
+    def _send_error_response(self, conn: socket.socket, error_message: str):
+        """Send error response to client"""
+        try:
+            error_response = {
+                "protocol": "py_gen_schedule",
+                "resp": "fail", 
+                "data": [],
+                "error": error_message
+            }
+            response_json = json.dumps(error_response, ensure_ascii=False)
+            conn.sendall(response_json.encode('utf-8'))
+        except Exception as e:
+            logger.error(f"Failed to send error response: {e}")
+    
+    def _process_request(self, request_data: Dict[str, Any]) -> Dict[str, Any]:
+        """Process request with task-based routing"""
+        try:
+            start_time = datetime.now()
+            
+            # 1. Check for task-based requests (handover summarization)
+            if "task" in request_data:
+                task = request_data.get("task", "")
+                logger.info(f"Processing task request: {task}")
+                
+                if task == "summarize_handover":
+                    input_text = request_data.get("input_text", "")
+                    process_start = datetime.now()
+                    response = summarize_handover(input_text)
+                    process_time = (datetime.now() - process_start).total_seconds()
+                    
+                    # Log handover response
+                    self.response_logger.log_handover_response(
+                        response_data=response,
+                        timestamp=process_start,
+                        input_text_length=len(input_text) if input_text else None,
+                        processing_time=process_time
+                    )
+                    
+                    return response
+                else:
+                    return {
+                        "status": "error",
+                        "task": task,
+                        "reason": f"Unknown task: {task}"
+                    }
+            
+            # 2. Handle protocol wrapper if present (schedule generation)
+            if "protocol" in request_data and "data" in request_data:
+                protocol = request_data.get("protocol", "")
+                actual_data = request_data.get("data", {})
+                logger.info(f"Processing protocol request: {protocol}")
+            else:
+                actual_data = request_data
+            
+            # Extract request parameters
+            staff_data = actual_data.get("staff_data", {})
+            position = actual_data.get("position", "default")
+            target_month = actual_data.get("target_month", None)
+            custom_rules = actual_data.get("custom_rules", {})
+            
+            logger.info(f"Processing schedule request for position: {position}")
+            
+            # Validate and parse data
+            staff = RequestValidator.validate_staff_data(staff_data)
+            # Add position to all staff members
+            for staff_member in staff:
+                staff_member.position = position
+            
+            position_rules = POSITION_RULES.get(position, POSITION_RULES["default"])
+            shift_rules = RequestValidator.validate_shift_rules(custom_rules, position_rules)
+            
+            logger.info(f"Staff count: {len(staff)}")
+            logger.info(f"Shifts: {shift_rules.shifts}")
+            logger.info(f"Night shifts: {shift_rules.night_shifts}")
+            logger.info(f"Off shifts: {shift_rules.off_shifts}")
+            
+            # Parse target month
+            start_date, num_days = self._parse_target_month(target_month)
+            
+            # Create and solve schedule
+            scheduler = ShiftScheduler(staff, shift_rules, position, num_days)
+            status, solution = scheduler.solve()
+            
+            processing_time = (datetime.now() - start_time).total_seconds()
+            logger.info(f"Processing completed in {processing_time:.2f} seconds")
+            
+            # Format response
+            if status in [SolverStatus.OPTIMAL, SolverStatus.FEASIBLE]:
+                # Convert solution to date-based format
+                schedule_data = self._format_schedule_response(
+                    solution["schedule"], start_date
+                )
+                
+                response = {
+                    "protocol": "py_gen_schedule",
+                    "resp": "success",
+                    "data": schedule_data
+                }
+                
+                # Log schedule response
+                self.response_logger.log_schedule_response(
+                    response_data=response,
+                    timestamp=start_time,
+                    staff_count=len(staff),
+                    position=position,
+                    target_month=target_month
+                )
+                
+                return response
+            else:
+                response = {
+                    "protocol": "py_gen_schedule",
+                    "resp": "fail",
+                    "data": [],
+                    "reason": "No feasible schedule found"
+                }
+                
+                # Log failed schedule response
+                self.response_logger.log_schedule_response(
+                    response_data=response,
+                    timestamp=start_time,
+                    staff_count=len(staff) if 'staff' in locals() else None,
+                    position=position,
+                    target_month=target_month
+                )
+                
+                return response
+        
+        except ShiftSchedulerError as e:
+            logger.error(f"Validation error: {e}")
+            error_response = {
+                "protocol": "py_gen_schedule",
+                "resp": "fail",
+                "data": [],
+                "error": str(e)
+            }
+            
+            # Log validation error response
+            self.response_logger.log_schedule_response(
+                response_data=error_response,
+                timestamp=start_time,
+                staff_count=None,
+                position=request_data.get("data", {}).get("position") if "data" in request_data else request_data.get("position"),
+                target_month=request_data.get("data", {}).get("target_month") if "data" in request_data else request_data.get("target_month")
+            )
+            
+            return error_response
+            
+        except Exception as e:
+            logger.error(f"Processing error: {e}")
+            error_response = {
+                "protocol": "py_gen_schedule", 
+                "resp": "fail",
+                "data": [],
+                "error": "Internal server error"
+            }
+            
+            # Log internal error response  
+            self.response_logger.log_schedule_response(
+                response_data=error_response,
+                timestamp=start_time,
+                staff_count=None,
+                position=request_data.get("data", {}).get("position") if "data" in request_data else request_data.get("position"),
+                target_month=request_data.get("data", {}).get("target_month") if "data" in request_data else request_data.get("target_month")
+            )
+            
+            return error_response
+    
+    def _parse_target_month(self, target_month: Optional[str]) -> Tuple[datetime, int]:
+        """Parse target month string and return start date and number of days"""
+        try:
+            if target_month:
+                year, month = map(int, target_month.split('-'))
+            else:
+                now = datetime.now()
+                year, month = now.year, now.month
+            
+            start_date = datetime(year, month, 1)
+            num_days = calendar.monthrange(year, month)[1]
+            
+            logger.info(f"Target month: {year}-{month:02d} ({num_days} days)")
+            return start_date, num_days
+            
+        except Exception as e:
+            logger.warning(f"Target month parsing error: {e}, using default")
+            return datetime(2025, 9, 1), 30
+    
+    def _format_schedule_response(self, schedule: List[Dict], start_date: datetime) -> List[Dict]:
+        """Format schedule data with proper date strings"""
+        formatted_schedule = []
+        
+        for entry in schedule:
+            date_str = (start_date + timedelta(days=entry["day"])).strftime('%Y-%m-%d')
+            formatted_entry = {
+                "date": date_str,
+                "shift": entry["shift"],
+                "hours": entry["hours"],
+                "people": entry["people"]
+            }
+            formatted_schedule.append(formatted_entry)
+        
+        return formatted_schedule
+
 
 def main():
     """Main server entry point"""
@@ -819,9 +1052,92 @@ def main():
         logger.error(f"Server error: {e}")
     finally:
         logger.info("Server shutdown complete")
-        if server.server_socket:
-            server.server_socket.close()
+
+
+
+# 로깅 설정
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
+
+def recv_exact(conn, n):
+    """정확한 바이트 수를 수신"""
+    buf = b''
+    while len(buf) < n:
+        chunk = conn.recv(n - len(buf))
+        if not chunk:
+            raise ConnectionError(f"소켓 연결 끊김: {conn.getpeername()}")
+        buf += chunk
+    return buf
+
+
+def receive_packet(conn) -> tuple[dict, list]:
+    """C++ 서버와 동일한 프로토콜로 패킷 수신"""
+    try:
+        # 1. 8바이트 헤더 수신
+        header = recv_exact(conn, 8)
+        if len(header) != 8:
+            logger.error(f"헤더 수신 실패: {conn.getpeername()}")
+            return None, []
+
+        # 2. 헤더 파싱 (totalSize, jsonSize)
+        total_size = struct.unpack('>I', header[:4])[0]  # 빅엔디안 4바이트
+        json_size = struct.unpack('>I', header[4:8])[0]  # 빅엔디안 4바이트
+        logger.debug(f"Received header - totalSize: {total_size}, jsonSize: {json_size}")
+
+        # 3. 헤더 유효성 검증
+        if json_size == 0 or json_size > total_size or total_size > 10 * 1024 * 1024:
+            logger.error(f"헤더 정보 비정상: jsonSize={json_size}, totalSize={total_size}")
+            return None, []
+
+        # 4. 바디 수신
+        buffer = recv_exact(conn, total_size)
+        if len(buffer) != total_size:
+            logger.error(f"바디 수신 실패: 예상 {total_size} 바이트, 실제 {len(buffer)} 바이트")
+            return None, []
+
+        # 5. JSON 분리 및 BOM 제거
+        json_data = buffer[:json_size].decode('utf-8', errors='ignore')  # UTF-8로 디코딩, 오류 무시
+        while json_data and ord(json_data[0]) in (0xC0, 0xC1) or ord(json_data[0]) < 0x20:
+            logger.warning(f"JSON 앞에 비정상 바이트(0x{ord(json_data[0]):x}) 발견 → 제거")
+            json_data = json_data[1:]
+
+        # 6. JSON 파싱
+        try:
+            request_data = json.loads(json_data)
+            logger.info(f"Successfully parsed JSON from {conn.getpeername()}")
+        except json.JSONDecodeError as e:
+            logger.error(f"JSON 파싱 실패: {e}")
+            return None, []
+
+        # 7. 페이로드 분리
+        payload = buffer[json_size:] if json_size < total_size else []
+        return request_data, payload
+
+    except Exception as e:
+        logger.error(f"패킷 처리 중 오류 발생 {conn.getpeername()}: {e}")
+        return None, []
+
+
+# 서버 메인 로직 예시
+def start_server():
+    server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server.bind(('0.0.0.0', 6004))
+    server.listen(5)
+    logger.info("Starting Optimized Shift Scheduler Server")
+    logger.info(f"Shift scheduler server started on 0.0.0.0:6004")
+
+    while True:
+        conn, addr = server.accept()
+        logger.info(f"Client connected: {addr}")
+        request_data, payload = receive_packet(conn)
+        if request_data is not None:
+            logger.info(f"Received request: {request_data}")
+            # 응답 생성 및 전송 (C++와 동일 프로토콜)
+            response = {"status": "success", "message": "Request received"}
+            resp_bytes = json.dumps(response, ensure_ascii=False).encode('utf-8')
+            conn.sendall(struct.pack('>I', len(resp_bytes)) + struct.pack('>I', len(resp_bytes)) + resp_bytes)
+        conn.close()
 
 
 if __name__ == "__main__":
-    main()
+    start_server()
