@@ -18,7 +18,8 @@ namespace ShifterUser.Enums
         GroupDashboard,
         GroupHandover,
         Goback,
-        GroupNotice
+        GroupNotice,
+        NoticeDetail
     }
 
     public enum ShiftType { Off, Day, Evening, Night,  }

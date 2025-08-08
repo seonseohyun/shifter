@@ -18,11 +18,11 @@ namespace ShifterUser.Views
     /// <summary>
     /// GroupDashboardView.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class GroupDashboardView : Page
-    {
-        public GroupDashboardView()
-        {
-            InitializeComponent();
-        }
-    }
+    //public partial class GroupDashboardView : Page
+    //{
+    //    public GroupDashboardView()
+    //    {
+    //        //InitializeComponent();
+    //    }
+    //}
 }
