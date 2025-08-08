@@ -150,6 +150,7 @@
     <ClInclude Include="DateUtil.h" />
     <ClInclude Include="DBManager.h" />
     <ClInclude Include="ProtocolHandler.h" />
+    <ClInclude Include="struct.h" />
     <ClInclude Include="TcpServer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

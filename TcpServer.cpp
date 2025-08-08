@@ -1,6 +1,8 @@
 // TcpServer.cpp
 #include "TcpServer.h"
 #include <fstream>
+#include <nlohmann/json.hpp>
+using json = nlohmann::json;
 
 
 // 링크: 윈속 라이브러리
@@ -188,7 +190,51 @@ void TcpServer::sendJsonResponse(SOCKET sock, const std::string& jsonStr) {
 // [connectToPythonServer]
 // - 파이썬 서버와 연결
 // =======================================================================
-SOCKET TcpServer::connectToPythonServer(const std::string& ip, int port) {
+bool TcpServer::connectToPythonServer(const json& request, json& response, std::string& out_err_msg) {
+    const std::string ip = "127.0.0.1";
+    const int port = 5555;
+
+    SOCKET sock = connectToPythonServerSocket(ip, port);  // 이름 수정
+    if (sock == INVALID_SOCKET) {
+        out_err_msg = "[Python 통신] 서버 연결 실패";
+        return false;
+    }
+
+    bool success = false;
+    try {
+        // [1] JSON → 문자열 변환 및 전송
+        std::string reqStr = request.dump();
+        sendJsonResponse(sock, reqStr);  // 반환값 없는 함수이므로 그냥 호출
+
+        // [2] 응답 수신
+        std::string resp_json_str;
+        std::vector<char> unused_payload;
+
+        if (!receivePacket(sock, resp_json_str, unused_payload)) {
+            out_err_msg = "[Python 통신] 응답 수신 실패";
+            goto cleanup;
+        }
+
+        // [3] 응답 파싱
+        try {
+            response = json::parse(resp_json_str);
+            success = true;
+        }
+        catch (const std::exception& e) {
+            out_err_msg = std::string("[Python 통신] 응답 JSON 파싱 실패: ") + e.what();
+        }
+    }
+    catch (const std::exception& e) {
+        out_err_msg = std::string("[Python 통신] 예외 발생: ") + e.what();
+    }
+
+cleanup:
+    closesocket(sock);
+    WSACleanup();
+    return success;
+}
+
+SOCKET TcpServer::connectToPythonServerSocket(const std::string& ip, int port) {
     WSADATA wsaData;
     SOCKET sock = INVALID_SOCKET;
     sockaddr_in serverAddr{};
@@ -216,5 +262,5 @@ SOCKET TcpServer::connectToPythonServer(const std::string& ip, int port) {
         return INVALID_SOCKET;
     }
 
-    return sock;  // 연결 성공 시 소켓 반환 (나중에 closesocket 꼭 할 것!)
+    return sock;  // 연결 성공 시 소켓 반환
 }

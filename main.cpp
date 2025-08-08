@@ -69,66 +69,103 @@ void handleClient(SOCKET clientSocket) {
 
             if (protocol == u8"login") {
                 LINE_LABEL("login") //라인
-                db.connect(); // DB연결
+                    db.connect(); // DB연결
                 nlohmann::json response = ProtocolHandler::handle_login(json, db);// 프로토콜 처리 핸들러로 전송
                 TcpServer::sendJsonResponse(clientSocket, response.dump()); // 제이슨 전송
                 MIDDLELINE
-                cout << response.dump(2) << endl;
+                    cout << response.dump(2) << endl;
                 LINE
             }
             else if (protocol == u8"login_admin") {
                 LINE_LABEL("login_admin")
-                db.connect();
+                    db.connect();
                 nlohmann::json response = ProtocolHandler::handle_login_admin(json, db);
                 TcpServer::sendJsonResponse(clientSocket, response.dump());
                 MIDDLELINE
-                cout << response.dump(2) << endl;
+                    cout << response.dump(2) << endl;
                 LINE
             }
             else if (protocol == u8"shift_change_detail") {
                 LINE_LABEL("shift_change_detail")
-                db.connect();
+                    db.connect();
                 nlohmann::json response = ProtocolHandler::handle_shift_change_detail(json, db);
                 TcpServer::sendJsonResponse(clientSocket, response.dump());
                 MIDDLELINE
-                cout << response.dump(2) << endl;
+                    cout << response.dump(2) << endl;
                 LINE
             }
             else if (protocol == u8"ask_shift_change") {
                 LINE_LABEL("ask_shift_change")
-                db.connect();
+                    db.connect();
                 nlohmann::json response = ProtocolHandler::handle_ask_shift_change(json, db);
                 TcpServer::sendJsonResponse(clientSocket, response.dump());
                 MIDDLELINE
-                cout << response.dump(2) << endl;
+                    cout << response.dump(2) << endl;
                 LINE
             }
             else if (protocol == u8"cancel_shift_change") {
                 LINE_LABEL("cancel_shift_change")
-                db.connect();
+                    db.connect();
                 nlohmann::json response = ProtocolHandler::handle_cancel_shift_change(json, db);
                 TcpServer::sendJsonResponse(clientSocket, response.dump());
                 MIDDLELINE
-                cout << response.dump(2) << endl;
+                    cout << response.dump(2) << endl;
                 LINE
             }
             else if (protocol == u8"ask_check_in") {
                 LINE_LABEL("ask_check_in")
-                db.connect();
+                    db.connect();
                 nlohmann::json response = ProtocolHandler::handle_check_in(json, db);
+                TcpServer::sendJsonResponse(clientSocket, response.dump());
+                MIDDLELINE
+                    cout << response.dump(2) << endl;
+                LINE
+            }
+            else if (protocol == u8"ask_check_out") {
+                LINE_LABEL("ask_check_out")
+                    db.connect();
+                nlohmann::json response = ProtocolHandler::handle_check_out(json, db);
+                TcpServer::sendJsonResponse(clientSocket, response.dump());
+                MIDDLELINE
+                    cout << response.dump(2) << endl;
+                LINE
+            }
+            else if (protocol == u8"gen_schedule") {
+                LINE_LABEL("gen_schedule")
+                db.connect();
+                nlohmann::json response = ProtocolHandler::handle_gen_schedule(json, db);
                 TcpServer::sendJsonResponse(clientSocket, response.dump());
                 MIDDLELINE
                 cout << response.dump(2) << endl;
                 LINE
             }
-            else if (protocol == u8"ask_check_out") {
-                LINE_LABEL("ask_check_out")
+            else if (protocol == u8"ask_handover_list") {
+                LINE_LABEL("ask_handover_list")
                 db.connect();
-                nlohmann::json response = ProtocolHandler::handle_check_out(json, db);
+                nlohmann::json response = ProtocolHandler::handle_ask_handover_list(json, db);
                 TcpServer::sendJsonResponse(clientSocket, response.dump());
                 MIDDLELINE
                 cout << response.dump(2) << endl;
                 LINE
+            }
+            else if (protocol == u8"ask_handover_detail") {
+                LINE_LABEL("ask_handover_detail")
+                db.connect();
+                nlohmann::json response = ProtocolHandler::handle_ask_handover_detail(json, db);
+                TcpServer::sendJsonResponse(clientSocket, response.dump());
+                MIDDLELINE
+                cout << response.dump(2) << endl;
+                LINE
+            }
+            else if (protocol == u8"ask_timetable_user") {
+                LINE_LABEL("ask_timetable_user")
+                db.connect();
+                nlohmann::json response = ProtocolHandler::handle_ask_timetable_user(json, db);
+                TcpServer::sendJsonResponse(clientSocket, response.dump());
+                MIDDLELINE
+                cout << response.dump(2) << endl;
+                LINE
+
             }
             else {
                 std::cerr << u8"[에러] 알 수 없는 프로토콜: " << protocol << std::endl;
