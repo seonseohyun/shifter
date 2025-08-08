@@ -1,0 +1,13 @@
+{
+  "timestamp": "2025-08-08T20:12:11.888389",
+  "request_type": "handover",
+  "response_data": {
+    "status": "success",
+    "task": "summarize_handover",
+    "result": "**Handover Summary:**\n\n1. **Key Dates:**\n   - Project Deadline: [Insert Date]\n   - Next Team Meeting: [Insert Date & Time]\n\n2. **Recent Changes:**\n   - Updated software version to [Version Number].\n   - New protocol for client communication implemented.\n\n3. **Current Risks:**\n   - Potential delay due to [Reason].\n   - Resource shortage in [Department/Area].\n\n4. **Immediate Actions Required:**\n   - Review updated project guidelines by [Deadline].\n   - Confirm resource allocation for [Task/Project].\n\n5. **Contacts:**\n   - Project Lead: [Name & Contact Information]\n   - IT Support: [Name & Contact Information]\n\nEnsure all team members are briefed on these points for a smooth transition."
+  },
+  "metadata": {
+    "input_text_length": 45,
+    "processing_time_seconds": 3.824521
+  }
+}

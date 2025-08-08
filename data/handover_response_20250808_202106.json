@@ -1,0 +1,9 @@
+{
+  "timestamp": "2025-08-08T20:21:06.756223",
+  "request_type": "handover",
+  "status": "success",
+  "task": "summarize_handover",
+  "result": "1. A 환자: 수술 예정 - 일정 및 준비사항 확인 필요.\n2. B 환자: 약물 변경 - 변경된 약물 리스트 및 복용 방법 확인 필요.",
+  "input_text_length": 35,
+  "processing_time_seconds": 1.435984
+}

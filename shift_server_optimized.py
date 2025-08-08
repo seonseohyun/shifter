@@ -415,11 +415,33 @@ class BinaryProtocolHandler:
     C++ Protocol Format:
     - 8-byte header: totalSize (4 bytes, little-endian) + jsonSize (4 bytes, little-endian)
     - JSON data: UTF-8 encoded string
+    
+    IMPORTANT: Uses little-endian format for x86/x64 compatibility.
+    Big-endian clients will cause parsing errors and should be fixed at the client side.
     """
     
     MAX_PACKET_SIZE = 10 * 1024 * 1024  # 10MB limit
     
     @staticmethod
+    def create_endian_error_response() -> Dict[str, Any]:
+        """
+        Create a standardized error response for endian mismatch issues.
+        """
+        return {
+            "status": "error",
+            "protocol": "binary_protocol_error",
+            "error_type": "endian_mismatch",
+            "message": "Client is using big-endian format. Server requires little-endian format for x86 compatibility.",
+            "solution": "Update client to use little-endian format (struct.pack('<I', value)) instead of big-endian.",
+            "technical_details": {
+                "expected_format": "little-endian uint32_t (x86 standard)",
+                "detected_format": "big-endian uint32_t (network byte order)",
+                "header_size": 8,
+                "max_packet_size": BinaryProtocolHandler.MAX_PACKET_SIZE
+            }
+        }
+    
+    @staticmethod  
     def recv_exact(conn: socket.socket, n: int) -> bytes:
         """Receive exactly n bytes from socket."""
         buf = b''
@@ -446,9 +468,26 @@ class BinaryProtocolHandler:
             
             logger.debug(f"[BINARY] Received header from {conn.getpeername()} - totalSize: {total_size}, jsonSize: {json_size}")
 
-            # 3. Validate header
+            # 3. Validate header with enhanced endian mismatch detection
             if json_size == 0 or json_size > total_size or total_size > BinaryProtocolHandler.MAX_PACKET_SIZE:
-                logger.error(f"[BINARY] Invalid header from {conn.getpeername()}: jsonSize={json_size}, totalSize={total_size}")
+                logger.error(f"[BINARY] 🚨 Invalid header from {conn.getpeername()}: jsonSize={json_size}, totalSize={total_size}")
+                
+                # Check if this might be a big-endian mismatch
+                if total_size > 1000000:  # Suspiciously large value suggests endian mismatch
+                    try:
+                        # Try interpreting the header as big-endian to see if it makes sense
+                        big_total_size = struct.unpack('>I', header[:4])[0]
+                        big_json_size = struct.unpack('>I', header[4:8])[0]
+                        
+                        if big_total_size < 10000 and big_json_size <= big_total_size and big_json_size > 0:
+                            logger.error(f"[BINARY] 🔄 ENDIAN MISMATCH DETECTED!")
+                            logger.error(f"[BINARY] If interpreted as big-endian: totalSize={big_total_size}, jsonSize={big_json_size}")
+                            logger.error(f"[BINARY] Client is sending big-endian data but server expects little-endian!")
+                            logger.error(f"[BINARY] 🔧 FIX: Client must use little-endian format (x86 standard)")
+                        
+                    except struct.error:
+                        pass
+                
                 return None, None
 
             # 4. Read data
@@ -579,11 +618,12 @@ class ShiftSchedulerServer:
 
     def detect_protocol_type(self, conn: socket.socket) -> str:
         """
-        Detect whether the client is using binary protocol (C++) or legacy protocol (Python).
+        Enhanced protocol detection with endian mismatch handling.
         
         Method:
         - Peek at first 8 bytes without consuming them
-        - If they look like a valid binary header, assume binary protocol
+        - Try little-endian interpretation first (correct format)
+        - If invalid, check for big-endian mismatch and log warning
         - Otherwise, assume legacy JSON protocol
         """
         try:
@@ -594,22 +634,44 @@ class ShiftSchedulerServer:
                 logger.debug(f"[PROTOCOL] Not enough data for binary header from {conn.getpeername()}, using legacy")
                 return "legacy"
             
-            # Try to interpret as binary header
+            # Try to interpret as little-endian binary header (correct format)
             try:
                 total_size = struct.unpack('<I', header_peek[:4])[0]
                 json_size = struct.unpack('<I', header_peek[4:8])[0]
                 
-                # Validate header values
+                # Validate header values for little-endian
                 if (json_size > 0 and 
                     json_size <= total_size and 
                     total_size <= BinaryProtocolHandler.MAX_PACKET_SIZE and
                     total_size < 1000000):  # Reasonable size for typical requests
                     
-                    logger.debug(f"[PROTOCOL] Valid binary header detected from {conn.getpeername()}: totalSize={total_size}, jsonSize={json_size}")
+                    logger.debug(f"[PROTOCOL] Valid little-endian binary header detected from {conn.getpeername()}: totalSize={total_size}, jsonSize={json_size}")
                     return "binary"
-                else:
-                    logger.debug(f"[PROTOCOL] Invalid binary header values from {conn.getpeername()}: totalSize={total_size}, jsonSize={json_size}, using legacy")
-                    return "legacy"
+                
+                # Check for potential big-endian mismatch
+                try:
+                    big_total_size = struct.unpack('>I', header_peek[:4])[0]
+                    big_json_size = struct.unpack('>I', header_peek[4:8])[0]
+                    
+                    # If big-endian interpretation gives reasonable values, it's likely an endian mismatch
+                    if (big_json_size > 0 and 
+                        big_json_size <= big_total_size and 
+                        big_total_size < 10000):  # Reasonable size when interpreted as big-endian
+                        
+                        logger.error(f"[PROTOCOL] 🚨 ENDIAN MISMATCH detected from {conn.getpeername()}! ")
+                        logger.error(f"[PROTOCOL] Client sent big-endian header: totalSize={big_total_size}, jsonSize={big_json_size}")
+                        logger.error(f"[PROTOCOL] Server interpreted as little-endian: totalSize={total_size}, jsonSize={json_size}")
+                        logger.error(f"[PROTOCOL] Client must use little-endian format for x86 compatibility!")
+                        
+                        # Return special endian_error type for proper handling
+                        return "endian_error"
+                        
+                except struct.error:
+                    pass
+                
+                # Neither interpretation gives valid values
+                logger.debug(f"[PROTOCOL] Invalid binary header values from {conn.getpeername()}: totalSize={total_size}, jsonSize={json_size}, using legacy")
+                return "legacy"
                     
             except struct.error:
                 logger.debug(f"[PROTOCOL] Binary header parsing failed from {conn.getpeername()}, using legacy")
@@ -633,55 +695,158 @@ class ShiftSchedulerServer:
         """Deprecated: Use protocol-specific handlers instead"""
         BinaryProtocolHandler.send_json_response(conn, json_str)
 
-    def _process_request(self, request_data: Dict[str, Any]) -> Dict[str, Any]:
-        """Process request with task-based routing"""
+    def _is_handover_request(self, request_data: Dict[str, Any]) -> bool:
+        """인수인계 요청인지 확인"""
+        # 직접 요청: {"task": "summarize_handover", "input_text": "..."}
+        if "task" in request_data and request_data.get("task") == "summarize_handover":
+            return True
+        
+        # 프로토콜 래퍼 요청: {"protocol": "py_req_handover_summary", "data": {"task": "summarize_handover", "input_text": "..."}}
+        if "protocol" in request_data and "data" in request_data:
+            data = request_data.get("data", {})
+            if "task" in data and data.get("task") == "summarize_handover":
+                return True
+        
+        return False
+    
+    def _is_schedule_request(self, request_data: Dict[str, Any]) -> bool:
+        """근무표 생성 요청인지 확인"""
+        # 프로토콜 래퍼가 있는 경우 확인
+        if "protocol" in request_data and "data" in request_data:
+            protocol = request_data.get("protocol", "")
+            # py_gen_timetable 프로토콜은 근무표 생성 요청
+            if protocol == "py_gen_timetable":
+                return True
+            # 인수인계 요청이 아니면 근무표 요청으로 간주
+            return not self._is_handover_request(request_data)
+        
+        # 직접 요청에서 task가 없거나 알 수 없는 task가 아니면 근무표 요청으로 간주
+        if "task" not in request_data:
+            return True
+        
+        task = request_data.get("task", "")
+        if task != "summarize_handover":
+            return True
+        
+        return False
+    
+    def _process_handover_request(self, request_data: Dict[str, Any]) -> Dict[str, Any]:
+        """인수인계 명료화 전용 처리 함수"""
         try:
             start_time = datetime.now()
-
-            # 1. Check for task-based requests (handover summarization)
-            if "task" in request_data:
-                task = request_data.get("task", "")
-                logger.info(f"Processing task request: {task}")
+            
+            # 프로토콜 래퍼 요청인지 확인
+            is_protocol_wrapper = "protocol" in request_data and "data" in request_data
+            
+            if is_protocol_wrapper:
+                # 프로토콜 래퍼 요청: {"protocol": "py_req_handover_summary", "data": {"task": "summarize_handover", "input_text": "..."}}
+                protocol = request_data.get("protocol", "")
+                actual_data = request_data.get("data", {})
+                input_text = actual_data.get("input_text", "")
                 
-                if task == "summarize_handover":
-                    input_text = request_data.get("input_text", "")
-                    process_start = datetime.now()
-                    response = summarize_handover(input_text)
-                    process_time = (datetime.now() - process_start).total_seconds()
-                    
-                    # Log handover response
-                    self.response_logger.log_handover_response(
-                        response_data=response,
-                        timestamp=process_start,
-                        input_text_length=len(input_text) if input_text else None,
-                        processing_time=process_time
-                    )
-                    
-                    return response
+                logger.info(f"🎯 프로토콜 래퍼 인수인계 요청 처리: {protocol}")
+            else:
+                # 직접 요청: {"task": "summarize_handover", "input_text": "..."}
+                input_text = request_data.get("input_text", "")
+                
+                logger.info("🎯 직접 인수인계 요청 처리")
+            
+            # 인수인계 요약 실행
+            process_start = datetime.now()
+            handover_result = summarize_handover(input_text)
+            process_time = (datetime.now() - process_start).total_seconds()
+            
+            # 응답 형식 결정
+            if is_protocol_wrapper:
+                # 프로토콜 래퍼 응답: {"protocol": "res_handover_summary", "data": {"task": "summarize_handover", "result": "..."}, "resp": "success"}
+                if handover_result.get("status") == "success":
+                    response = {
+                        "protocol": "res_handover_summary",
+                        "data": {
+                            "task": "summarize_handover",
+                            "result": handover_result.get("result", "")
+                        },
+                        "resp": "success"
+                    }
                 else:
+                    response = {
+                        "protocol": "res_handover_summary",
+                        "data": {
+                            "task": "summarize_handover",
+                            "result": handover_result.get("reason", "Unknown error")
+                        },
+                        "resp": "fail"
+                    }
+            else:
+                # 직접 응답: {"status": "success", "task": "summarize_handover", "result": "..."}
+                response = handover_result
+            
+            # 로깅
+            self.response_logger.log_handover_response(
+                response_data=response,
+                timestamp=process_start,
+                input_text_length=len(input_text) if input_text else None,
+                processing_time=process_time
+            )
+            
+            logger.info(f"✅ 인수인계 처리 완료 ({process_time:.2f}초)")
+            return response
+            
+        except Exception as e:
+            logger.error(f"❌ 인수인계 처리 오류: {e}")
+            
+            # 오류 응답 형식도 요청 형식에 맞춰 결정
+            is_protocol_wrapper = "protocol" in request_data and "data" in request_data
+            
+            if is_protocol_wrapper:
+                return {
+                    "protocol": "res_handover_summary",
+                    "data": {
+                        "task": "summarize_handover",
+                        "result": f"처리 중 오류 발생: {str(e)}"
+                    },
+                    "resp": "fail"
+                }
+            else:
+                return {
+                    "status": "error",
+                    "task": "summarize_handover",
+                    "reason": f"처리 중 오류 발생: {str(e)}"
+                }
+    
+    def _process_schedule_request(self, request_data: Dict[str, Any]) -> Dict[str, Any]:
+        """근무표 생성 전용 처리 함수"""
+        try:
+            start_time = datetime.now()
+            
+            # 프로토콜 래퍼가 있는지 확인
+            if "protocol" in request_data and "data" in request_data:
+                actual_data = request_data.get("data", {})
+                logger.info(f"📝 프로토콜 래퍼 근무표 요청 처리: {request_data.get('protocol', '')}")
+            else:
+                actual_data = request_data
+                logger.info("📝 직접 근무표 요청 처리")
+            
+            # 직접 요청에서 알 수 없는 task가 있는 경우 오류 반환
+            if "task" in request_data and request_data.get("task") != "":
+                task = request_data.get("task")
+                if task != "summarize_handover":  # 인수인계가 아닌 다른 task인 경우
+                    logger.warning(f"⚠️ 알 수 없는 task: {task}")
                     return {
                         "status": "error",
                         "task": task,
                         "reason": f"Unknown task: {task}"
                     }
             
-            # 2. Handle protocol wrapper if present (schedule generation)
-            if "protocol" in request_data and "data" in request_data:
-                protocol = request_data.get("protocol", "")
-                actual_data = request_data.get("data", {})
-                logger.info(f"Processing protocol request: {protocol}")
-            else:
-                actual_data = request_data
-            
-            # Extract request parameters
+            # 근무표 생성을 위한 데이터 추출
             staff_data = actual_data.get("staff_data", {})
             position = actual_data.get("position", "default")
             target_month = actual_data.get("target_month", None)
             custom_rules = actual_data.get("custom_rules", {})
             
-            logger.info(f"Processing schedule request for position: {position}")
+            logger.info(f"근무표 생성 요청 - 직책: {position}")
             
-            # Validate and parse data
+            # 데이터 검증 및 파싱
             staff = RequestValidator.validate_staff_data(staff_data)
             for staff_member in staff:
                 staff_member.position = position
@@ -689,22 +854,22 @@ class ShiftSchedulerServer:
             position_rules = POSITION_RULES.get(position, POSITION_RULES["default"])
             shift_rules = RequestValidator.validate_shift_rules(custom_rules, position_rules)
             
-            logger.info(f"Staff count: {len(staff)}")
-            logger.info(f"Shifts: {shift_rules.shifts}")
-            logger.info(f"Night shifts: {shift_rules.night_shifts}")
-            logger.info(f"Off shifts: {shift_rules.off_shifts}")
+            logger.info(f"직원 수: {len(staff)}")
+            logger.info(f"근무 형태: {shift_rules.shifts}")
+            logger.info(f"야간 근무: {shift_rules.night_shifts}")
+            logger.info(f"휴무: {shift_rules.off_shifts}")
             
-            # Parse target month
+            # 대상 월 파싱
             start_date, num_days = self._parse_target_month(target_month)
             
-            # Create and solve schedule
+            # 스케줄러 생성 및 실행
             scheduler = ShiftScheduler(staff, shift_rules, position, num_days)
             status, solution = scheduler.solve()
             
             processing_time = (datetime.now() - start_time).total_seconds()
-            logger.info(f"Processing completed in {processing_time:.2f} seconds")
+            logger.info(f"근무표 생성 완료: {processing_time:.2f}초")
             
-            # Format response
+            # 응답 형식 결정
             if status in [SolverStatus.OPTIMAL, SolverStatus.FEASIBLE]:
                 schedule_data = self._format_schedule_response(solution["schedule"], start_date)
                 response = {
@@ -712,38 +877,84 @@ class ShiftSchedulerServer:
                     "resp": "success",
                     "data": schedule_data
                 }
-                self.response_logger.log_schedule_response(response, start_time, len(staff), position, target_month)
-                return response
+                logger.info(f"✅ 근무표 생성 성공 ({len(schedule_data)}개 항목)")
             else:
                 response = {
                     "protocol": "py_gen_schedule",
                     "resp": "fail",
-                    "data": [],
-                    "reason": "No feasible schedule found"
+                    "data": []
                 }
-                self.response_logger.log_schedule_response(response, start_time, len(staff), position, target_month)
-                return response
-        
+                logger.warning("⚠️ 실행 가능한 근무표를 찾을 수 없음")
+            
+            # 로깅
+            self.response_logger.log_schedule_response(
+                response, start_time, len(staff), position, target_month
+            )
+            
+            return response
+            
         except ShiftSchedulerError as e:
-            logger.error(f"Validation error: {e}")
+            logger.error(f"❌ 근무표 데이터 검증 오류: {e}")
             error_response = {
                 "protocol": "py_gen_schedule",
                 "resp": "fail",
-                "data": [],
-                "error": str(e)
+                "data": []
             }
-            self.response_logger.log_schedule_response(error_response, datetime.now(), None, position, target_month)
+            try:
+                position = request_data.get("data", {}).get("position", "unknown") if "data" in request_data else request_data.get("position", "unknown")
+                target_month = request_data.get("data", {}).get("target_month", None) if "data" in request_data else request_data.get("target_month", None)
+                self.response_logger.log_schedule_response(error_response, datetime.now(), None, position, target_month)
+            except:
+                pass  # 로깅 오류는 무시
             return error_response
+            
         except Exception as e:
-            logger.error(f"Processing error: {e}")
+            logger.error(f"❌ 근무표 생성 내부 오류: {e}")
             error_response = {
                 "protocol": "py_gen_schedule",
                 "resp": "fail",
-                "data": [],
-                "error": "Internal server error"
+                "data": []
             }
-            self.response_logger.log_schedule_response(error_response, datetime.now(), None, position, target_month)
+            try:
+                position = request_data.get("data", {}).get("position", "unknown") if "data" in request_data else request_data.get("position", "unknown")
+                target_month = request_data.get("data", {}).get("target_month", None) if "data" in request_data else request_data.get("target_month", None)
+                self.response_logger.log_schedule_response(error_response, datetime.now(), None, position, target_month)
+            except:
+                pass  # 로깅 오류는 무시
             return error_response
+    
+    def _process_request(self, request_data: Dict[str, Any]) -> Dict[str, Any]:
+        """요청 타입에 따른 라우팅 및 처리"""
+        try:
+            logger.info(f"📨 요청 처리 시작 - 요청 키: {list(request_data.keys())}")
+            
+            # 요청 타입 식별 및 적절한 처리 함수로 라우팅
+            if self._is_handover_request(request_data):
+                logger.info("🎯 인수인계 요청으로 식별됨")
+                return self._process_handover_request(request_data)
+            
+            elif self._is_schedule_request(request_data):
+                logger.info("📝 근무표 생성 요청으로 식별됨")
+                return self._process_schedule_request(request_data)
+            
+            else:
+                # 식별되지 않는 요청 타입
+                logger.warning(f"⚠️ 알 수 없는 요청 타입: {request_data}")
+                return {
+                    "status": "error",
+                    "reason": "Unknown request type",
+                    "supported_types": [
+                        "handover: {task: 'summarize_handover', input_text: '...'}",
+                        "schedule: {staff_data: {...}, position: '...', target_month: '...'}"
+                    ]
+                }
+                
+        except Exception as e:
+            logger.error(f"❌ 요청 라우팅 오류: {e}")
+            return {
+                "status": "error",
+                "reason": f"Request routing error: {str(e)}"
+            }
 
     def _parse_target_month(self, target_month: Optional[str]) -> Tuple[datetime, int]:
         try:
@@ -785,6 +996,33 @@ class ShiftSchedulerServer:
             # Receive request based on protocol
             if protocol_type == "binary":
                 request_data, _ = BinaryProtocolHandler.receive_packet(conn)
+            elif protocol_type == "endian_error":
+                # Special case: detected endian mismatch, send error and close
+                logger.warning(f"[{addr}] Endian mismatch detected - consuming invalid header and sending error response")
+                
+                try:
+                    # First, consume the invalid header that was peeked
+                    invalid_header = conn.recv(8)
+                    logger.debug(f"[{addr}] Consumed invalid header: {invalid_header.hex()}")
+                    
+                    # Create and send endian error response
+                    endian_error = BinaryProtocolHandler.create_endian_error_response()
+                    error_json = json.dumps(endian_error, ensure_ascii=False)
+                    
+                    # Send as legacy protocol (no binary headers)
+                    LegacyProtocolHandler.send_json_response(conn, error_json)
+                    logger.info(f"[{addr}] Endian mismatch error response sent successfully")
+                    
+                except Exception as e:
+                    logger.error(f"[{addr}] Failed to handle endian error: {e}")
+                    try:
+                        # Fallback error response
+                        fallback_error = json.dumps({"error": "Protocol error - use little-endian format"}, ensure_ascii=False)
+                        LegacyProtocolHandler.send_json_response(conn, fallback_error)
+                    except Exception as fallback_error:
+                        logger.error(f"[{addr}] Fallback error response also failed: {fallback_error}")
+                
+                return  # Exit early, don't process further
             else:  # legacy
                 request_data = LegacyProtocolHandler.receive_json(conn)
             
@@ -802,21 +1040,49 @@ class ShiftSchedulerServer:
                 
                 logger.info(f"[{addr}] Request processed successfully using {protocol_type} protocol")
             else:
-                logger.warning(f"[{addr}] Failed to receive valid request data")
-                # Send error response
-                error_response = json.dumps({"resp": "fail", "error": "Invalid request data"}, ensure_ascii=False)
+                logger.warning(f"[{addr}] Failed to receive valid request data - possible endian mismatch")
+                
+                # Check if we should send a specific endian error response
+                # This could happen if protocol detection failed due to endian issues
                 if protocol_type == "binary":
-                    BinaryProtocolHandler.send_json_response(conn, error_response)
+                    # For binary protocol failures, send detailed endian error
+                    endian_error = BinaryProtocolHandler.create_endian_error_response()
+                    error_response = json.dumps(endian_error, ensure_ascii=False)
                 else:
-                    LegacyProtocolHandler.send_json_response(conn, error_response)
+                    # For legacy protocol, send generic error
+                    error_response = json.dumps({"resp": "fail", "error": "Invalid request data"}, ensure_ascii=False)
+                
+                try:
+                    if protocol_type == "binary":
+                        BinaryProtocolHandler.send_json_response(conn, error_response)
+                    else:
+                        LegacyProtocolHandler.send_json_response(conn, error_response)
+                except Exception as send_error:
+                    logger.error(f"[{addr}] Failed to send error response: {send_error}")
+                    # Try legacy as fallback
+                    try:
+                        fallback_error = json.dumps({"resp": "fail", "error": "Protocol error"}, ensure_ascii=False) 
+                        LegacyProtocolHandler.send_json_response(conn, fallback_error)
+                    except Exception as fallback_error:
+                        logger.error(f"[{addr}] Fallback error response also failed: {fallback_error}")
                     
         except Exception as e:
             logger.error(f"[{addr}] Client handling error: {e}")
             try:
-                # Try to send error response
-                error_response = json.dumps({"resp": "fail", "error": "Internal server error"}, ensure_ascii=False)
-                # Default to binary protocol for error response if protocol detection failed
-                BinaryProtocolHandler.send_json_response(conn, error_response)
+                # Try to send error response with enhanced error details
+                error_response = json.dumps({
+                    "resp": "fail", 
+                    "error": "Internal server error",
+                    "hint": "If using binary protocol, ensure little-endian format is used"
+                }, ensure_ascii=False)
+                
+                # Try both protocols to ensure delivery
+                try:
+                    BinaryProtocolHandler.send_json_response(conn, error_response)
+                except Exception:
+                    # Fallback to legacy protocol
+                    LegacyProtocolHandler.send_json_response(conn, error_response)
+                    
             except Exception as send_error:
                 logger.error(f"[{addr}] Failed to send error response: {send_error}")
         finally:
@@ -835,6 +1101,8 @@ class ShiftSchedulerServer:
         
         logger.info(f"Shift scheduler server started on {self.host}:{self.port}")
         logger.info("Server supports both binary protocol (C++) and legacy protocol (Python)")
+        logger.info("Binary protocol uses little-endian format for x86/x64 compatibility")
+        logger.info("Enhanced endian mismatch detection and error reporting enabled")
 
         while True:
             try:

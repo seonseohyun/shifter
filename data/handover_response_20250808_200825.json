@@ -1,0 +1,13 @@
+{
+  "timestamp": "2025-08-08T20:08:25.045438",
+  "request_type": "handover",
+  "response_data": {
+    "status": "success",
+    "task": "summarize_handover",
+    "result": "- A 환자: 수술 예정\n- B 환자: 약물 변경 예정"
+  },
+  "metadata": {
+    "input_text_length": 35,
+    "processing_time_seconds": 1.18952
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "timestamp": "2025-08-08T20:42:39.043911",
+  "request_type": "schedule",
+  "protocol": "py_gen_schedule",
+  "resp": "fail",
+  "data": [],
+  "error": "Missing staff_data.staff field",
+  "position": "default"
+}
