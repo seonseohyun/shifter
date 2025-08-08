@@ -26,6 +26,7 @@
             <Grid>
                 <Button Content="＜"
                         Command="{Binding GoBackCommand}"
+                        Style="{StaticResource RoundedBlueButtonStyle}"
                         Width="40" Height="40"
                         Background="Transparent"
                         BorderBrush="Transparent"
@@ -166,6 +167,7 @@
                     <Border Grid.Row="3" Background="#007AFF" CornerRadius="24" Margin="0,8,0,8"
                     Visibility="{Binding IsOwner, Converter={StaticResource BoolToVisibilityConverter}}">
                         <Button Content="수정하기"
+                        Style="{StaticResource RoundedBlueButtonStyle}"
               Background="Transparent"
               Foreground="White"
               FontSize="16"

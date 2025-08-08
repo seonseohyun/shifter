@@ -17,6 +17,45 @@
                           ShadowDepth="5"
                           BlurRadius="10"
                           Opacity="0.5"/>
+        
+
+        <Style x:Key="RoundedBlueButtonStyle" TargetType="Button">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Background" Value="#007AFF"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Template">
+              
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border"
+                         Background="{TemplateBinding Background}"
+                         CornerRadius="10"
+                         Padding="10,4"
+                         SnapsToDevicePixels="True">
+                            <ContentPresenter HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           RecognizesAccessKey="True"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#3399FF"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#005BBB"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="border" Property="Background" Value="Gray"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Page.Resources>
 
     <Grid>
@@ -126,10 +165,8 @@
                                                         <Button Content="상세보기"
                                                                 Background="Transparent"
                                                                 Foreground="White"
-                                                                FontSize="13"
-                                                                FontWeight="Bold"
-                                                                Padding="10,4"
                                                                 BorderThickness="0"
+                                                                Style="{StaticResource RoundedBlueButtonStyle}"
                                                                 Command="{Binding DataContext.ShowHandoverDetailCommand, RelativeSource={RelativeSource AncestorType=Page}}"
                                                                 CommandParameter="{Binding}"/>
                                                     </Border>
