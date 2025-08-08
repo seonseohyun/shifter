@@ -95,15 +95,14 @@
                     <!-- 스크롤 콘텐츠 -->
                     <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Hidden">
                         <StackPanel>
-                            <TextBlock Text="그룹 공지사항" FontSize="22" FontWeight="Bold" Margin="10,10,0,0"/>
                             <Grid Margin="12,5,0,10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
                                 <StackPanel Orientation="Horizontal" Grid.Column="0">
-                                    <TextBlock Text="{Binding TeamName}" FontSize="15" Foreground="Gray"/>
-                                    <TextBlock Text=" 공지사항" FontSize="15" Foreground="Gray"/>
+                                    <TextBlock Text="{Binding TeamName}" FontSize="22" FontWeight="Bold"/>
+                                    <TextBlock Text=" 공지사항" FontSize="22" FontWeight="Bold"/>
                                 </StackPanel>
                             </Grid>
 

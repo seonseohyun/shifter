@@ -83,7 +83,10 @@ namespace ShifterUser.ViewModels
 
         // 페이지 이동 커맨드
         [RelayCommand]
-        private void OpenAlert() => MessageBox.Show("알림 페이지로 이동합니다.");
+        private void OpenAlert()
+        {
+            MessageBox.Show("알림 페이지로 이동합니다.");
+        }
 
         [RelayCommand]
         private void GoToQrCheck()

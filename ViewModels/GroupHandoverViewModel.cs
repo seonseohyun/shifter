@@ -34,7 +34,7 @@ namespace ShifterUser.ViewModels
 
         public ObservableCollection<HandoverModel> HandoverList { get; } = new();
 
-        // 커맨드 명시적으로 선언
+
         public IAsyncRelayCommand LoadOnAppearAsyncCommand { get; }
 
         public GroupHandoverViewModel(SocketManager socket, UserSession session)

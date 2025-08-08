@@ -2,8 +2,8 @@
 using Newtonsoft.Json.Linq;
 using ShifterUser.Enums;
 using ShifterUser.Helpers;
-using ShifterUser.Services;
 using ShifterUser.Models;
+using ShifterUser.Services;
 using ShifterUser.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -16,6 +16,8 @@ namespace ShifterUser.Models
     using Newtonsoft.Json.Linq;
     using System;
     using System.Collections.Generic;
+    using System.Reflection;
+    using System.Windows.Controls;
 
     public class NoticeManager
     {
@@ -88,6 +90,57 @@ namespace ShifterUser.Models
 
             return list;
         }
+
+        public async Task<NoticeModel?> GetNoticeDetailAsync(int noticeUid)
+        {
+            JObject request = new()
+            {
+                ["protocol"] = "ask_notice_detail",
+                ["data"] = new JObject
+                {
+                    ["notice_uid"] = noticeUid
+                }
+            };
+
+            var sendItem = new WorkItem
+            {
+                json = request.ToString(),
+                payload = [], 
+                path = ""
+            };
+
+            // 2) 송/수신
+            _socket.Send(sendItem);
+            WorkItem response = _socket.Receive();
+
+            // 3) 파싱
+            JObject json = JObject.Parse(response.json);
+            string protocol = json["protocol"]?.ToString() ?? "";
+            string result = json["resp"]?.ToString() ?? "";
+
+            if (protocol == "ask_notice_detail" && result == "success")
+            {
+                var data = json["data"] as JObject;
+                if (data == null) return null;
+
+                // 모델 생성해서 매핑
+                var model = new NoticeModel
+                {
+                    NoticeUid = data.Value<int?>("notice_uid") ?? noticeUid,
+                    StaffName = data.Value<string>("staff_name") ?? string.Empty,
+                    NoticeDate = data.Value<string>("notice_date") ?? string.Empty,  
+                    Title = data.Value<string>("title") ?? string.Empty,
+                    Content = data.Value<string>("content") ?? string.Empty
+                };
+
+                return model; // 반환
+            }
+
+            // 실패 케이스
+            Console.WriteLine($"[공지 상세] 실패: protocol={protocol}, resp={result}");
+            return null; // 모든 경로에서 반환
+        }
+
     }
 
 }

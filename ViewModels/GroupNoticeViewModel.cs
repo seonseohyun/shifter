@@ -53,8 +53,13 @@ namespace ShifterUser.ViewModels
         private void OpenDetail(NoticeModel? item)
         {
             if (item is null) return;
-            // TODO: 상세 페이지로 이동(ask_notice_detail) or 팝업
+
+            WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.NoticeDetail));
+            WeakReferenceMessenger.Default.Send(new OpenNoticeDetailMessage(item.NoticeUid));
         }
+
+
+
 
         private void GoBack()
         {
@@ -64,3 +69,4 @@ namespace ShifterUser.ViewModels
 
 
 }
+

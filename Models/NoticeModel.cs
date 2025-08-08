@@ -14,6 +14,7 @@ namespace ShifterUser.Models
         [ObservableProperty] private string staffName = string.Empty;
         [ObservableProperty] private string noticeDate = string.Empty;
         [ObservableProperty] private string title = string.Empty;
+        [ObservableProperty] private string content = string.Empty;
     }
 }
 
