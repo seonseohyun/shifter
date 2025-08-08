@@ -1,5 +1,7 @@
 #pragma once
+#include "struct.h"
 #include <nlohmann/json.hpp>
+
 using json = nlohmann::json;
 
 class DBManager;
@@ -17,6 +19,13 @@ public:
     //출퇴근 관련
     static json handle_check_in             (const json& root, DBManager& db);
     static json handle_check_out            (const json& root, DBManager& db);
+    //근무표 관련
+    static json handle_gen_schedule         (const json& root, DBManager& db);
+    static json handle_ask_timetable_user   (const json& root, DBManager& db);
+
+    //인수인계 관련
+    static json handle_ask_handover_list    (const json& root, DBManager& db);
+    static json handle_ask_handover_detail  (const json& root, DBManager& db);
 
 };
 
