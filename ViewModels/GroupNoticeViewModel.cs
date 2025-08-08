@@ -58,7 +58,7 @@ namespace ShifterUser.ViewModels
 
         private void GoBack()
         {
-            // TODO: 페이지 전환 메시지 or NavigationService.GoBack()
+           WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.Goback));
         }
     }
 
