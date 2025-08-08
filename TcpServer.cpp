@@ -169,6 +169,7 @@ bool TcpServer::receivePacket(SOCKET clientSocket, std::string& out_json, std::v
     return true;
 }
 
+
 // =======================================================================
 // [sendJsonResponse]
 // - 클라이언트에게 보낼 json 생성
@@ -190,77 +191,100 @@ void TcpServer::sendJsonResponse(SOCKET sock, const std::string& jsonStr) {
 // [connectToPythonServer]
 // - 파이썬 서버와 연결
 // =======================================================================
-bool TcpServer::connectToPythonServer(const json& request, json& response, std::string& out_err_msg) {
-    const std::string ip = "127.0.0.1";
-    const int port = 5555;
-
-    SOCKET sock = connectToPythonServerSocket(ip, port);  // 이름 수정
+bool TcpServer::connectToPythonServer(const nlohmann::json& request,
+    nlohmann::json& pyRoot,
+    std::string& out_err_msg)
+{
+    SOCKET sock = connectToPythonServerSocket("10.10.20.116", 6004);
     if (sock == INVALID_SOCKET) {
-        out_err_msg = "[Python 통신] 서버 연결 실패";
+        out_err_msg = u8"[Python 통신] 서버 연결 실패";
         return false;
     }
 
-    bool success = false;
+    // 1) 요청 전송
+    std::string body = request.dump();
+    sendJsonResponse(sock, body);
+
+    // 2) 응답 수신
+    std::string raw;
+    std::vector<char> payload;
+    if (!TcpServer::receivePacket(sock, raw, payload)) {
+        out_err_msg = u8"[Python 통신] 패킷 수신 실패(헤더/바디 이상)";
+        closesocket(sock);
+        return false;
+    }
+    closesocket(sock);
+
+    // 3) JSON 파싱
     try {
-        // [1] JSON → 문자열 변환 및 전송
-        std::string reqStr = request.dump();
-        sendJsonResponse(sock, reqStr);  // 반환값 없는 함수이므로 그냥 호출
+        pyRoot = nlohmann::json::parse(raw);
 
-        // [2] 응답 수신
-        std::string resp_json_str;
-        std::vector<char> unused_payload;
-
-        if (!receivePacket(sock, resp_json_str, unused_payload)) {
-            out_err_msg = "[Python 통신] 응답 수신 실패";
-            goto cleanup;
-        }
-
-        // [3] 응답 파싱
-        try {
-            response = json::parse(resp_json_str);
-            success = true;
-        }
-        catch (const std::exception& e) {
-            out_err_msg = std::string("[Python 통신] 응답 JSON 파싱 실패: ") + e.what();
+        // 이중 직렬화 방지
+        if (pyRoot.is_string()) {
+            std::string inner = pyRoot.get<std::string>();
+            if (nlohmann::json::accept(inner)) {
+                pyRoot = nlohmann::json::parse(inner);
+            }
         }
     }
     catch (const std::exception& e) {
-        out_err_msg = std::string("[Python 통신] 예외 발생: ") + e.what();
+        out_err_msg = std::string("[JSON 파싱 실패] ") + e.what();
+        return false;
     }
 
-cleanup:
-    closesocket(sock);
-    WSACleanup();
-    return success;
+    // 4) 스키마 체크
+    if (!pyRoot.contains("response_data") || !pyRoot["response_data"].is_object()
+        || !pyRoot["response_data"].contains("data") || !pyRoot["response_data"]["data"].is_array()) {
+        out_err_msg = "[JSON 형식 오류] response_data.data 배열 없음";
+        return false;
+    }
+
+    return true;
 }
 
-SOCKET TcpServer::connectToPythonServerSocket(const std::string& ip, int port) {
+SOCKET TcpServer::connectToPythonServerSocket(const std::string& host, int port) {
     WSADATA wsaData;
-    SOCKET sock = INVALID_SOCKET;
-    sockaddr_in serverAddr{};
-
     if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
-        std::cerr << "[PythonConnect] WSAStartup 실패\n";
+        std::cerr << "[A-PythonConnect] WSAStartup 실패, err=" << WSAGetLastError() << "\n";
         return INVALID_SOCKET;
     }
 
-    sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+    // host가 IP든 hostname이든 처리 (IPv4/IPv6)
+    addrinfo hints{}; hints.ai_socktype = SOCK_STREAM; hints.ai_family = AF_UNSPEC;
+    addrinfo* res = nullptr;
+    std::string portstr = std::to_string(port);
+    int gai = getaddrinfo(host.c_str(), portstr.c_str(), &hints, &res);
+    if (gai != 0) {
+        std::cerr << "[B-PythonConnect] getaddrinfo 실패: " << gai_strerrorA(gai) << "\n";
+        WSACleanup();
+        return INVALID_SOCKET;
+    }
+
+    SOCKET sock = INVALID_SOCKET;
+    for (addrinfo* p = res; p; p = p->ai_next) {
+        sock = socket(p->ai_family, p->ai_socktype, p->ai_protocol);
+        if (sock == INVALID_SOCKET) continue;
+
+        // (선택) 타임아웃 설정
+        DWORD timeout = 3000; // 3초
+        setsockopt(sock, SOL_SOCKET, SO_RCVTIMEO, (const char*)&timeout, sizeof(timeout));
+        setsockopt(sock, SOL_SOCKET, SO_SNDTIMEO, (const char*)&timeout, sizeof(timeout));
+
+        if (connect(sock, p->ai_addr, (int)p->ai_addrlen) == 0) {
+            break; // 성공
+        }
+        else {
+            int err = WSAGetLastError();
+            std::cerr << "[C-PythonConnect] 연결 실패, err=" << err << "\n";
+            closesocket(sock);
+            sock = INVALID_SOCKET;
+            continue;
+        }
+    }
+    freeaddrinfo(res);
+
     if (sock == INVALID_SOCKET) {
-        std::cerr << "[PythonConnect] 소켓 생성 실패\n";
         WSACleanup();
-        return INVALID_SOCKET;
     }
-
-    serverAddr.sin_family = AF_INET;
-    serverAddr.sin_port = htons(port);
-    inet_pton(AF_INET, ip.c_str(), &serverAddr.sin_addr);
-
-    if (connect(sock, (sockaddr*)&serverAddr, sizeof(serverAddr)) == SOCKET_ERROR) {
-        std::cerr << "[PythonConnect] 연결 실패\n";
-        closesocket(sock);
-        WSACleanup();
-        return INVALID_SOCKET;
-    }
-
-    return sock;  // 연결 성공 시 소켓 반환
+    return sock;
 }

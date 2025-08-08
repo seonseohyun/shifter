@@ -22,7 +22,7 @@ public:
     static void sendJsonResponse(SOCKET sock, const string& jsonStr);
 
     // Python 서버 접속용 함수
-    static bool connectToPythonServer(const nlohmann::json& request, nlohmann::json& response, std::string& out_err_msg);
+    static bool connectToPythonServer(const nlohmann::json& request, nlohmann::json& pyRoot, std::string& out_err_msg);
     static SOCKET connectToPythonServerSocket(const string& ip, int port);
 private:
     int port_;

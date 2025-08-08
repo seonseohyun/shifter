@@ -17,7 +17,7 @@ using json = nlohmann::json;
 using namespace std;
 
 // UTF-8 -> UTF-16 변환 및 출력
-static std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+static wstring_convert<codecvt_utf8_utf16<wchar_t>> converter;
 
 // =======================================================================
 // [함수] 클라이언트 메시지용
@@ -130,8 +130,8 @@ void handleClient(SOCKET clientSocket) {
                     cout << response.dump(2) << endl;
                 LINE
             }
-            else if (protocol == u8"gen_schedule") {
-                LINE_LABEL("gen_schedule")
+            else if (protocol == u8"gen_timeTable") {
+                LINE_LABEL("gen_timeTable")
                 db.connect();
                 nlohmann::json response = ProtocolHandler::handle_gen_schedule(json, db);
                 TcpServer::sendJsonResponse(clientSocket, response.dump());
@@ -165,21 +165,56 @@ void handleClient(SOCKET clientSocket) {
                 MIDDLELINE
                 cout << response.dump(2) << endl;
                 LINE
-
+            }
+            else if (protocol == u8"ask_notice_list") {
+                LINE_LABEL("ask_notice_list")
+                db.connect();
+                nlohmann::json response = ProtocolHandler::handle_ask_notice_list(json, db);
+                TcpServer::sendJsonResponse(clientSocket, response.dump());
+                MIDDLELINE
+                cout << response.dump(2) << endl;
+                LINE
+            }
+            else if (protocol == u8"ask_notice_detail") {
+                LINE_LABEL("ask_notice_detail")
+                db.connect();
+                nlohmann::json response = ProtocolHandler::handle_ask_notice_detail(json, db);
+                TcpServer::sendJsonResponse(clientSocket, response.dump());
+                MIDDLELINE
+                cout << response.dump(2) << endl;
+                LINE
+                }
+            else if (protocol == u8"check_today_duty") {
+                LINE_LABEL("check_today_duty")
+                db.connect();
+                nlohmann::json response = ProtocolHandler::handle_check_today_duty(json, db);
+                TcpServer::sendJsonResponse(clientSocket, response.dump());
+                MIDDLELINE
+                cout << response.dump(2) << endl;
+                LINE
+            }
+            else if (protocol == u8"req_shift_info") {
+                LINE_LABEL("req_shift_info")
+                db.connect();
+                nlohmann::json response = ProtocolHandler::handle_req_shift_info(json, db);
+                TcpServer::sendJsonResponse(clientSocket, response.dump());
+                MIDDLELINE
+                cout << response.dump(2) << endl;
+                LINE
             }
             else {
-                std::cerr << u8"[에러] 알 수 없는 프로토콜: " << protocol << std::endl;
+                cerr << u8"[에러] 알 수 없는 프로토콜: " << protocol << endl;
                 TcpServer::sendJsonResponse(clientSocket, R"({"protocol":"unknown","resp":"fail","messege":"unknown_protocol"})");
             }
         }
         catch (const nlohmann::json::parse_error& e) {
-            std::cerr << u8"[에러] JSON 파싱 실패 (parse_error): " << e.what() << std::endl;
+            cerr << u8"[에러] JSON 파싱 실패 (parse_error): " << e.what() << endl;
         }
         catch (const nlohmann::json::type_error& e) {
-            std::cerr << u8"[에러] JSON 타입 오류 (type_error): " << e.what() << std::endl;
+            cerr << u8"[에러] JSON 타입 오류 (type_error): " << e.what() << endl;
         }
-        catch (const std::exception& e) {
-            std::cerr << u8"[에러] 기타 예외: " << e.what() << std::endl;
+        catch (const exception& e) {
+            cerr << u8"[에러] 기타 예외: " << e.what() << endl;
         }
     }
 }

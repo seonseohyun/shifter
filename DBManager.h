@@ -8,9 +8,6 @@
 using namespace std;
 using json = nlohmann::json;
 
-
-
-
 class DBManager
 {
 public:
@@ -20,16 +17,20 @@ public:
     // DB 연결
     bool connect();
 
-    // 로그인
-    bool login        (const string& id, const string & pw, json& out_data, string& out_err_msg);
-    bool login_admin  (const string& admin_id, const string& admin_pw, json& out_data, string& out_err_msg);
+    // 로그인 [유저/관리자]
+    bool login                (const string& id, const string & pw, json& out_data, string& out_err_msg);
+    bool login_admin          (const string& admin_id, const string& admin_pw, json& out_data, string& out_err_msg);
 
-    // 근무 변경
-    bool ask_shift_change    (int staff_uid, const string& yyyymmdd, const string& duty_type,
-                             const string& reason, string& out_err_msg);
-    bool cancel_shift_change (int& duty_request_uid, json& out_data, string& out_err_msg);
-    void get_request_status_count(int staff_uid, json& out_data, string& out_err_msg);
-    bool shift_change_detail (int staff_uid, const string& year_month, json& out_data, string& out_err_msg);
+   bool get_staff_info_by_uid(int staff_uid, StaffInfo& out_staff, string& out_err_msg);
+
+    // 근무 변경 [요청/취소/조회/상세]
+    bool ask_shift_change           (int staff_uid, const string& yyyymmdd, const string& duty_type, const string& reason, string& out_err_msg);
+    bool cancel_shift_change        (int& duty_request_uid, json& out_data, string& out_err_msg);
+    void get_request_status_count   (int staff_uid, json& out_data, string& out_err_msg);
+    bool shift_change_detail        (int staff_uid, const string& year_month, json& out_data, string& out_err_msg);
+
+    // 조회
+    bool req_shift_info_by_team (int team_uid, vector<ShiftInfo>& out_list, string& out_err_msg);
 
     // 출퇴근
     bool ask_check_in        (int staff_uid, int team_uid, json& out_data, string& out_err_msg);
@@ -42,14 +43,17 @@ public:
     bool insert_schedule         (const string& date, int staff_uid, const string& shift_type, string& out_err_msg);
 
     // 근무표 조회
-    vector<ScheduleEntry> get_team_schedule(int team_uid, const std::string& target_month);
-    vector<ScheduleEntry> get_staff_schedule(int team_uid, const std::string& target_month);
+    vector<ScheduleEntry> get_team_schedule (int team_uid, const string& target_month);
+    vector<ScheduleEntry> get_staff_schedule(int team_uid, const string& target_month);
+    bool check_today_duty_for_admin         (int team_uid, const string& date, json& out_json, string& out_err_msg);
 
     // 인수인계
     bool get_handover_notes_by_team     (int team_uid, vector<HandoverNoteInfo>& out_notes, string& out_err_msg);
     bool get_handover_notes_by_uid      (int team_uid, HandoverNoteInfo& out_note, string& out_err_msg);
-    bool ask_handover_list(int team_uid, vector<HandoverNoteInfo>& note_list, string& out_err_msg);
 
+    // 공지사항
+    bool get_notice_list_by_team (int team_uid, vector<NoticeSummary>& out_list, string& out_err_msg);
+    bool get_notice_detail_by_uid(int notice_uid, NoticeDetail& out_detail, string& out_err_msg);
 
 private:
     unique_ptr<sql::Connection> conn_;

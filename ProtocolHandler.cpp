@@ -26,7 +26,7 @@ string toUTF8_safely(const string& cp949Str) {
 json ProtocolHandler::handle_login(const json& root, DBManager& db) {
     nlohmann::json response;
     response["protocol"] = "login";
-    cout << u8"[login] 요청:\n" << root.dump(2) << endl;
+    std::cout << u8"[login] 요청:\n" << root.dump(2) << endl;
 
     if (!root.contains("data") || !root["data"].is_object()) {
         response["resp"] = "fail";
@@ -36,8 +36,8 @@ json ProtocolHandler::handle_login(const json& root, DBManager& db) {
 
     const nlohmann::json& data = root["data"];
 
-    std::string id = data.value("id", "");
-    std::string pw = data.value("pw", "");
+    string id = data.value("id", "");
+    string pw = data.value("pw", "");
 
     if (id.empty() || pw.empty()) {
         response["resp"] = "fail";
@@ -54,11 +54,25 @@ json ProtocolHandler::handle_login(const json& root, DBManager& db) {
 
         string att_err;
         string req_err;
-        db.get_today_attendance(staff_uid, team_uid, result_data, att_err);
-        db.get_request_status_count(staff_uid, result_data, req_err);
+        string staff_err;
+        StaffInfo staff_info;
+
+        db.get_today_attendance     (staff_uid, team_uid, result_data, att_err);
+        db.get_request_status_count (staff_uid, result_data, req_err);
+        bool ok_staff = db.get_staff_info_by_uid(staff_uid, staff_info, staff_err);
 
         response["resp"] = "success";
         response["data"] = result_data;
+
+        if (ok_staff && !staff_info.name.empty()) {
+            response["data"]["staff_name"] = staff_info.name;
+        }
+        else {
+            // 로그인 결과에 이름이 이미 있었다면 fallback
+            response["data"]["staff_name"] = result_data.value("staff_name", "");
+            if (!staff_err.empty()) response["messege"]= staff_err; 
+        }
+
         response["message"] = u8"로그인 성공";
 
     }
@@ -72,7 +86,7 @@ json ProtocolHandler::handle_login(const json& root, DBManager& db) {
 json ProtocolHandler::handle_login_admin(const json& root, DBManager& db) {
     json response;
     response["protocol"] = "login_admin";
-    cout << u8"[login_admin] 요청:\n" << root.dump(2) << endl;
+    std::cout << u8"[login_admin] 요청:\n" << root.dump(2) << endl;
     //[1] 필수 인자 체크
     if (!root.contains("data") || !root["data"].is_object()) {
         response["resp"] = "fail";
@@ -112,7 +126,7 @@ json ProtocolHandler::handle_login_admin(const json& root, DBManager& db) {
 json ProtocolHandler::handle_shift_change_detail(const json& root, DBManager& db) {
     json response;
     response["protocol"] = "shift_change_detail";
-    cout << u8"[shift_change_detail] 요청:\n" << root.dump(2) << endl;
+    std::cout << u8"[shift_change_detail] 요청:\n" << root.dump(2) << endl;
 
     if (!root.contains("data") || !root["data"].is_object()) {
         response["resp"] = "fail";
@@ -151,7 +165,7 @@ json ProtocolHandler::handle_shift_change_detail(const json& root, DBManager& db
 json ProtocolHandler::handle_ask_shift_change(const json& root, DBManager& db) {
     json response;
     response["protocol"] = "ask_shift_change";
-    cout << u8"[ask_shift_change] 요청:\n" << root.dump(2) << endl;
+    std::cout << u8"[ask_shift_change] 요청:\n" << root.dump(2) << endl;
 
     if (!root.contains("data") || !root["data"].is_object()) {
         response["resp"] = "fail";
@@ -189,7 +203,7 @@ json ProtocolHandler::handle_ask_shift_change(const json& root, DBManager& db) {
 json ProtocolHandler::handle_cancel_shift_change(const json& root, DBManager& db) {
     json response;
     response["protocol"] = "cancel_shift_change";
-    cout << u8"[cancel_shift_change] 요청:\n" << root.dump(2) << endl;
+    std::cout << u8"[cancel_shift_change] 요청:\n" << root.dump(2) << endl;
 
     if (!root.contains("data") || !root["data"].is_object()) {
         response["resp"] = "fail";
@@ -220,7 +234,7 @@ json ProtocolHandler::handle_cancel_shift_change(const json& root, DBManager& db
 json ProtocolHandler::handle_check_in(const json& root, DBManager& db) {
     json response;
     response["protocol"] = "ask_check_in";
-    cout << u8"[ask_check_in] 요청:\n" << root.dump(2) << endl;
+    std::cout << u8"[ask_check_in] 요청:\n" << root.dump(2) << endl;
 
     if (!root.contains("data") || !root["data"].is_object()) {
         response["resp"] = "fail";
@@ -252,7 +266,7 @@ json ProtocolHandler::handle_check_in(const json& root, DBManager& db) {
 json ProtocolHandler::handle_check_out(const json& root, DBManager& db) {
     json response;
     response["protocol"] = "ask_check_out";
-    cout << u8"[ask_check_out] 요청:\n" << root.dump(2) << endl;
+    std::cout << u8"[ask_check_out] 요청:\n" << root.dump(2) << endl;
 
     if (!root.contains("data") || !root["data"].is_object()) {
         response["resp"] = "fail";
@@ -281,6 +295,7 @@ json ProtocolHandler::handle_check_out(const json& root, DBManager& db) {
 json ProtocolHandler::handle_gen_schedule(const json& root, DBManager& db) {
     json response;
     response["protocol"] = "gen_timeTable";
+    std::cout << u8"[gen_timeTable] 요청:\n" << root.dump(2) << endl;
 
     if (!root.contains("data") || !root["data"].is_object()) {
         response["resp"] = "fail";
@@ -298,7 +313,7 @@ json ProtocolHandler::handle_gen_schedule(const json& root, DBManager& db) {
     string year = data.value("req_year", "");
     string month = data.value("req_month", "");
     string year_month = year + "-" + (month.length() == 1 ? "0" + month : month);
-
+    std::cout << "1";
     ctx.admin_uid = admin_uid;
     ctx.year_month = year_month;
 
@@ -315,6 +330,7 @@ json ProtocolHandler::handle_gen_schedule(const json& root, DBManager& db) {
         response["message"] = err_msg;
         return response;
     }
+    std::cout << "2";
 
     // [3] JSON 배열 구성
     json staff_array = json::array();
@@ -326,6 +342,8 @@ json ProtocolHandler::handle_gen_schedule(const json& root, DBManager& db) {
             {"total_monthly_work_hours", s.monthly_workhour}
             });
     }
+    std::cout << "3";
+
     //-------------------------------------------------------------------
     // [4] 파이썬 요청 Json 만들기 ㅜ.ㅜ
     json py_request = {
@@ -343,41 +361,49 @@ json ProtocolHandler::handle_gen_schedule(const json& root, DBManager& db) {
     }}
     };
     // [5] 파이썬 서버 호출하기
+    std::cout << "4";
+    std::cout << u8"[파이썬에게] 요청:\n" << py_request.dump(2) << endl;
+
     json py_response;
     if (!TcpServer::connectToPythonServer(py_request, py_response, err_msg)) {
         response["resp"] = "fail";
         response["message"] = err_msg;
         return response;
     }
+    std::cout << "5";
     // [6] 받은 값 파싱하고 DB INSERT
-    if (py_response.value("status", "") != "ok") {
+    if (py_response.value("resp", "") != "success") {
         response["resp"] = "fail";
-        response["message"] = "파이썬 서버 응답 오류";
+        response["message"] = py_response.value("error", "파이썬 서버 응답 오류");
         return response;
     }
 
-    const json& schedule = py_response["schedule"];
+    const json& schedule = py_response["data"];  // 서버의 data에 스케줄이 들어있음
+    std::cout << "5-1";
+
+
 
     // [7] DB 저장
     for (const auto& item : schedule.items()) {
-        const std::string& date = item.key();
+        const string& date = item.key();
         const json& shift_list = item.value();
 
         for (const auto& shift_entry : shift_list) {
-            std::string shift_type = shift_entry["shift"];
+            string shift_type = shift_entry["shift"];
             const auto& people = shift_entry["people"];
 
             for (const auto& person : people) {
                 int staff_uid = person.value("직원번호", -1);
                 if (staff_uid == -1) continue;
 
-                std::string err;
+                string err;
                 if (!db.insert_schedule(date, staff_uid, shift_type, err)) {
-                    std::cerr << "[DB 저장 실패] 날짜: " << date << ", UID: " << staff_uid << ", 오류: " << err << "\n";
+                    cerr << "[DB 저장 실패] 날짜: " << date << ", UID: " << staff_uid << ", 오류: " << err << "\n";
                 }
             }
         }
     }
+    std::cout << "6";
 
     // [8] 최종 응답 전송
     response["resp"] = "success";
@@ -389,7 +415,7 @@ json ProtocolHandler::handle_gen_schedule(const json& root, DBManager& db) {
 json ProtocolHandler::handle_ask_timetable_user(const json& root, DBManager& db) {
     json response;
     response["protocol"] = "ask_timetable_user";
-    cout << u8"[ask_timetable_user] 요청:\n" << root.dump(2) << endl;
+    std::cout << u8"[ask_timetable_user] 요청:\n" << root.dump(2) << endl;
 
     //[1]
     if (!root.contains("data") || !root["data"].is_object()) {
@@ -429,12 +455,89 @@ json ProtocolHandler::handle_ask_timetable_user(const json& root, DBManager& db)
     return response;
 }
 
+json ProtocolHandler::handle_check_today_duty(const json& root, DBManager& db) {
+    json response;
+    response["protocol"] = "check_today_duty";
+    std::cout << u8"[check_today_duty] 요청:\n" << root.dump(2) << endl;
+
+    if (!root.contains("data") || !root["data"].is_object()) {
+        return {
+            {"protocol", "check_today_duty"},
+            {"resp", "fail"},
+            {"message", u8"요청 데이터 형식 오류"}
+        };
+    }
+
+    const auto& data = root["data"];
+    if (!data.contains("date") || !data.contains("team_uid")) {
+        return {
+            {"protocol", "check_today_duty"},
+            {"resp", "fail"},
+            {"message", u8"필수 파라미터 누락"}
+        };
+    }
+
+    int team_uid = data["team_uid"];
+    string req_date = data["date"];
+
+    nlohmann::json duty_array;
+    string err_msg;
+    if (!db.check_today_duty_for_admin(team_uid, req_date, duty_array, err_msg)) {
+        response["resp"] = "fail";
+        response["message"] = err_msg;
+        return response;
+    }
+
+    response["resp"] = "success";
+    response["data"] = duty_array; // 바로 배열
+    response["message"] = u8"조회 성공";
+    return response;
+}
+
+// ============================[정보 등록 handler]================================
+
+#include <nlohmann/json.hpp>
+using json = nlohmann::json;
+
+json ProtocolHandler::handle_req_shift_info(const json& root, DBManager& db) {
+    json resp;                                // const 금지
+    resp["protocol"] = "req_shift_info";
+
+    std::vector<ShiftInfo> shifts;
+    std::string err;
+    int team_uid = 1; // TODO: 세션에서 가져오기
+
+    if (!db.req_shift_info_by_team(team_uid, shifts, err)) {
+        resp["resp"] = "fail";
+        resp["message"] = err;
+        return resp;
+    }
+
+    json shift_array = json::array();
+    for (const auto& s : shifts) {
+        shift_array.push_back(json{
+            {"duty_type",  s.duty_type},
+            {"start_time", s.start_time},
+            {"end_time",   s.end_time},
+            {"duty_hours", s.duty_hours}
+            });
+    }
+
+    json payload = json::object();            // ← 이름을 data가 아닌 payload로
+    payload["shift_info"] = std::move(shift_array);
+
+    resp["resp"] = "success";
+    resp["data"] = std::move(payload);
+    resp["message"] = "";
+
+    return resp;
+}
 
 // ============================[인수인계 handler]================================
 json ProtocolHandler::handle_ask_handover_list(const json& root, DBManager& db) {
     json response;
     response["protocol"] = "ask_handover_list";
-    cout << u8"[ask_handover_list] 요청:\n" << root.dump(2) << endl;
+    std::cout << u8"[ask_handover_list] 요청:\n" << root.dump(2) << endl;
 
     // [1] 요청 파싱
     if (!root.contains("data") || !root["data"].is_object()) {
@@ -484,7 +587,7 @@ json ProtocolHandler::handle_ask_handover_list(const json& root, DBManager& db) 
 json ProtocolHandler::handle_ask_handover_detail(const json& root, DBManager& db) {
     json response;
     response["protocol"] = "ask_handover_detail";
-    cout << u8"[ask_handover_detail] 요청:\n" << root.dump(2) << endl;
+    std::cout << u8"[ask_handover_detail] 요청:\n" << root.dump(2) << endl;
 
     // [1] 요청 파싱
     if (!root.contains("data") || !root["data"].is_object()) {
@@ -513,6 +616,7 @@ json ProtocolHandler::handle_ask_handover_detail(const json& root, DBManager& db
     }
     response["data"] = {
        {"handover_time", note.handover_time},
+       {"staff_name", note.staff_name},
        {"shift_type", note.shift_type},
        {"note_type", note.note_type},
        {"title", note.title},
@@ -526,3 +630,83 @@ json ProtocolHandler::handle_ask_handover_detail(const json& root, DBManager& db
     return response;
 }
 
+// ============================[공지사항 handler]================================
+
+json ProtocolHandler::handle_ask_notice_list(const json& root, DBManager& db) {
+    json response;
+    response["protocol"] = "ask_notice_list";
+    std::cout << u8"[ask_notice_list] 요청:\n" << root.dump(2) << endl;
+    // [1] 요청 파싱
+    if (!root.contains("data") || !root["data"].is_object()) {
+        response["resp"] = "fail";
+        response["message"] = u8"요청 데이터 형식 오류";
+        return response;
+    }
+    const nlohmann::json& data = root["data"];
+
+    if (!data.contains("team_uid")) {
+        response["resp"] = "fail";
+        response["message"] = u8"필수 파라미터 누락";
+        return response;
+    }
+
+    int team_uid = data["team_uid"];
+    vector <NoticeSummary> note_list;
+    string out_err_msg;
+    if (!db.get_notice_list_by_team(team_uid, note_list, out_err_msg)) {
+        response["resp"] = "fail";
+        response["message"] = out_err_msg;
+        return response;
+    }
+    json arr = json::array();
+    for (const auto& x : note_list) {
+        arr.push_back({
+            {"notice_uid",  x.notice_uid},
+            {"staff_name",  x.staff_name},
+            {"notice_date", x.notice_date},
+            {"title",       x.title}
+            });
+    }
+    response["resp"] = "success";
+    response["data"] = { {"list", arr} };
+    return response;
+}
+
+json ProtocolHandler::handle_ask_notice_detail(const json& root, DBManager& db) {
+    json response;
+    response["protocol"] = "ask_notice_detail";
+    std::cout << u8"[ask_notice_detail] 요청:\n" << root.dump(2) << endl;
+    // [1] 요청 파싱
+    if (!root.contains("data") || !root["data"].is_object()) {
+        response["resp"] = "fail";
+        response["message"] = u8"요청 데이터 형식 오류";
+        return response;
+    }
+    const nlohmann::json& data = root["data"];
+
+    if (!data.contains("notice_uid")) {
+        response["resp"] = "fail";
+        response["message"] = u8"필수 파라미터 누락";
+        return response;
+    }
+    int notice_uid = data["notice_uid"];
+    NoticeDetail notice;
+    string out_err_msg;
+
+
+    if (!db.get_notice_detail_by_uid(notice_uid, notice, out_err_msg)) {
+        response["resp"] = "fail";
+        response["message"] = out_err_msg;
+        return response;
+    }
+
+    response["resp"] = "success";
+    response["data"] = {
+        {"notice_uid",  notice.notice_uid},
+        {"staff_name",  notice.staff_name},
+        {"notice_date", notice.notice_date},
+        {"title",       notice.title},
+        {"content",     notice.content}
+    };
+    return response;
+}
