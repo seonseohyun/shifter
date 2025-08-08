@@ -1,0 +1,15 @@
+{
+  "timestamp": "2025-08-08T17:21:17.169106",
+  "request_type": "schedule",
+  "response_data": {
+    "protocol": "py_gen_schedule",
+    "resp": "fail",
+    "data": [],
+    "reason": "No feasible schedule found"
+  },
+  "metadata": {
+    "staff_count": 2,
+    "position": "간호",
+    "target_month": "2025-01"
+  }
+}

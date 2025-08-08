@@ -382,6 +382,168 @@ class ShiftScheduler:
                     schedule_data.append({"day": day, "shift": shift, "hours": self.shift_rules.shift_hours.get(shift, 0), "people": people})
         return {"schedule": schedule_data}
 
+class BinaryProtocolHandler:
+    """
+    Binary protocol handler for C++ client compatibility.
+    
+    C++ Protocol Format:
+    - 8-byte header: totalSize (4 bytes, little-endian) + jsonSize (4 bytes, little-endian)
+    - JSON data: UTF-8 encoded string
+    """
+    
+    MAX_PACKET_SIZE = 10 * 1024 * 1024  # 10MB limit
+    
+    @staticmethod
+    def recv_exact(conn: socket.socket, n: int) -> bytes:
+        """Receive exactly n bytes from socket."""
+        buf = b''
+        while len(buf) < n:
+            chunk = conn.recv(n - len(buf))
+            if not chunk:
+                raise ConnectionError(f"Socket connection closed unexpectedly from {conn.getpeername()}")
+            buf += chunk
+        return buf
+
+    @staticmethod
+    def receive_packet(conn: socket.socket) -> tuple[Optional[Dict[str, Any]], Optional[bytes]]:
+        """
+        Receive packet using C++ binary protocol.
+        Returns: (parsed_json_dict, payload_bytes) or (None, None) on error
+        """
+        try:
+            # 1. Read 8-byte header
+            header = BinaryProtocolHandler.recv_exact(conn, 8)
+            
+            # 2. Parse header (little-endian uint32_t)
+            total_size = struct.unpack('<I', header[:4])[0]  # Changed from '>I' to '<I'
+            json_size = struct.unpack('<I', header[4:8])[0]  # Changed from '>I' to '<I'
+            
+            logger.debug(f"[BINARY] Received header from {conn.getpeername()} - totalSize: {total_size}, jsonSize: {json_size}")
+
+            # 3. Validate header
+            if json_size == 0 or json_size > total_size or total_size > BinaryProtocolHandler.MAX_PACKET_SIZE:
+                logger.error(f"[BINARY] Invalid header from {conn.getpeername()}: jsonSize={json_size}, totalSize={total_size}")
+                return None, None
+
+            # 4. Read data
+            if total_size == 0:
+                logger.warning(f"[BINARY] Zero-length data from {conn.getpeername()}")
+                return None, None
+                
+            buffer = BinaryProtocolHandler.recv_exact(conn, total_size)
+            
+            # 5. Extract JSON data
+            json_data = buffer[:json_size].decode('utf-8', errors='ignore')
+            
+            # 6. Clean invalid UTF-8 bytes and BOM (as C++ code does)
+            while json_data and (
+                (ord(json_data[0]) == 0xC0) or 
+                (ord(json_data[0]) == 0xC1) or 
+                (ord(json_data[0]) < 0x20)
+            ):
+                logger.warning(f"[BINARY] Removing invalid byte 0x{ord(json_data[0]):02x} from JSON start")
+                json_data = json_data[1:]
+
+            # 7. Parse JSON
+            try:
+                request_data = json.loads(json_data)
+                logger.info(f"[BINARY] Successfully parsed JSON from {conn.getpeername()}")
+                
+                # 8. Extract payload if any
+                payload = buffer[json_size:] if json_size < total_size else None
+                
+                return request_data, payload
+                
+            except json.JSONDecodeError as e:
+                logger.error(f"[BINARY] JSON parsing failed from {conn.getpeername()}: {e}")
+                logger.debug(f"[BINARY] JSON data (first 200 chars): {repr(json_data[:200])}")
+                return None, None
+
+        except ConnectionError as e:
+            logger.error(f"[BINARY] Connection error from {conn.getpeername()}: {e}")
+            return None, None
+        except struct.error as e:
+            logger.error(f"[BINARY] Header unpacking error from {conn.getpeername()}: {e}")
+            return None, None
+        except Exception as e:
+            logger.error(f"[BINARY] Unexpected error receiving packet from {conn.getpeername()}: {e}")
+            return None, None
+
+    @staticmethod
+    def send_json_response(conn: socket.socket, json_str: str):
+        """
+        Send JSON response using C++ binary protocol.
+        
+        Format:
+        - 8-byte header: totalSize (4 bytes) + jsonSize (4 bytes), both little-endian
+        - JSON data: UTF-8 encoded string
+        """
+        try:
+            json_bytes = json_str.encode('utf-8')
+            total_size = len(json_bytes)
+            json_size = len(json_bytes)
+            
+            # Create 8-byte header (little-endian uint32_t)
+            header = struct.pack('<I', total_size) + struct.pack('<I', json_size)  # Changed from '>I' to '<I'
+            
+            # Send header + data
+            conn.sendall(header + json_bytes)
+            
+            logger.debug(f"[BINARY] Sent response to {conn.getpeername()}: totalSize={total_size}, jsonSize={json_size}")
+            
+        except Exception as e:
+            logger.error(f"[BINARY] Failed to send response to {conn.getpeername()}: {e}")
+            raise
+
+
+class LegacyProtocolHandler:
+    """
+    Legacy protocol handler for Python clients (JSON only, no headers).
+    Uses EOF to determine message boundaries.
+    """
+    
+    @staticmethod
+    def receive_json(conn: socket.socket) -> Optional[Dict[str, Any]]:
+        """Receive JSON data without headers (legacy Python client mode)."""
+        try:
+            # Set a reasonable timeout for legacy connections
+            conn.settimeout(10.0)
+            
+            data = b''
+            while True:
+                chunk = conn.recv(4096)
+                if not chunk:
+                    break
+                data += chunk
+                
+                # Try to parse JSON to see if we have a complete message
+                try:
+                    json_str = data.decode('utf-8')
+                    request_data = json.loads(json_str)
+                    logger.info(f"[LEGACY] Successfully parsed JSON from {conn.getpeername()}")
+                    return request_data
+                except (UnicodeDecodeError, json.JSONDecodeError):
+                    continue  # Keep reading
+                    
+        except socket.timeout:
+            logger.warning(f"[LEGACY] Timeout receiving data from {conn.getpeername()}")
+        except Exception as e:
+            logger.error(f"[LEGACY] Error receiving JSON from {conn.getpeername()}: {e}")
+        
+        return None
+
+    @staticmethod
+    def send_json_response(conn: socket.socket, json_str: str):
+        """Send JSON response without headers (legacy Python client mode)."""
+        try:
+            json_bytes = json_str.encode('utf-8')
+            conn.sendall(json_bytes)
+            logger.debug(f"[LEGACY] Sent response to {conn.getpeername()}")
+        except Exception as e:
+            logger.error(f"[LEGACY] Failed to send response to {conn.getpeername()}: {e}")
+            raise
+
+
 class ShiftSchedulerServer:
     def __init__(self, host: str = '0.0.0.0', port: int = 6004):
         self.host = host
@@ -389,50 +551,61 @@ class ShiftSchedulerServer:
         self.server_socket = None
         self.response_logger = ResponseLogger()
 
+    def detect_protocol_type(self, conn: socket.socket) -> str:
+        """
+        Detect whether the client is using binary protocol (C++) or legacy protocol (Python).
+        
+        Method:
+        - Peek at first 8 bytes without consuming them
+        - If they look like a valid binary header, assume binary protocol
+        - Otherwise, assume legacy JSON protocol
+        """
+        try:
+            # Peek at first 8 bytes
+            header_peek = conn.recv(8, socket.MSG_PEEK)
+            
+            if len(header_peek) < 8:
+                logger.debug(f"[PROTOCOL] Not enough data for binary header from {conn.getpeername()}, using legacy")
+                return "legacy"
+            
+            # Try to interpret as binary header
+            try:
+                total_size = struct.unpack('<I', header_peek[:4])[0]
+                json_size = struct.unpack('<I', header_peek[4:8])[0]
+                
+                # Validate header values
+                if (json_size > 0 and 
+                    json_size <= total_size and 
+                    total_size <= BinaryProtocolHandler.MAX_PACKET_SIZE and
+                    total_size < 1000000):  # Reasonable size for typical requests
+                    
+                    logger.debug(f"[PROTOCOL] Valid binary header detected from {conn.getpeername()}: totalSize={total_size}, jsonSize={json_size}")
+                    return "binary"
+                else:
+                    logger.debug(f"[PROTOCOL] Invalid binary header values from {conn.getpeername()}: totalSize={total_size}, jsonSize={json_size}, using legacy")
+                    return "legacy"
+                    
+            except struct.error:
+                logger.debug(f"[PROTOCOL] Binary header parsing failed from {conn.getpeername()}, using legacy")
+                return "legacy"
+                
+        except Exception as e:
+            logger.warning(f"[PROTOCOL] Protocol detection error from {conn.getpeername()}: {e}, defaulting to legacy")
+            return "legacy"
+
+    # Keep old methods for backward compatibility but mark them as deprecated
     def recv_exact(self, conn: socket.socket, n: int) -> bytes:
-        buf = b''
-        while len(buf) < n:
-            chunk = conn.recv(n - len(buf))
-            if not chunk:
-                raise ConnectionError(f"소켓 연결 끊김: {conn.getpeername()}")
-            buf += chunk
-        return buf
+        """Deprecated: Use BinaryProtocolHandler.recv_exact instead"""
+        return BinaryProtocolHandler.recv_exact(conn, n)
 
     def receive_packet(self, conn: socket.socket) -> tuple[Optional[Dict[str, Any]], list]:
-        try:
-            header = self.recv_exact(conn, 8)
-            total_size = struct.unpack('>I', header[:4])[0]
-            json_size = struct.unpack('>I', header[4:8])[0]
-            logger.debug(f"Received header - totalSize: {total_size}, jsonSize: {json_size}")
-
-            if json_size == 0 or json_size > total_size or total_size > 10 * 1024 * 1024:
-                logger.error(f"헤더 정보 비정상: jsonSize={json_size}, totalSize={total_size}")
-                return None, []
-
-            buffer = self.recv_exact(conn, total_size)
-            json_data = buffer[:json_size].decode('utf-8', errors='ignore')
-            while json_data and ord(json_data[0]) in (0xC0, 0xC1) or ord(json_data[0]) < 0x20:
-                logger.warning(f"JSON 앞에 비정상 바이트(0x{ord(json_data[0]):x}) 발견 → 제거")
-                json_data = json_data[1:]
-
-            try:
-                request_data = json.loads(json_data)
-                logger.info(f"Successfully parsed JSON from {conn.getpeername()}")
-                return request_data, buffer[json_size:]
-            except json.JSONDecodeError as e:
-                logger.error(f"JSON 파싱 실패: {e}")
-                return None, []
-
-        except Exception as e:
-            logger.error(f"패킷 처리 중 오류 발생 {conn.getpeername()}: {e}")
-            return None, []
+        """Deprecated: Use protocol-specific handlers instead"""
+        request_data, payload = BinaryProtocolHandler.receive_packet(conn)
+        return request_data, list(payload) if payload else []
 
     def send_json_response(self, conn: socket.socket, json_str: str):
-        json_bytes = json_str.encode('utf-8')
-        total_size = len(json_bytes)
-        header = struct.pack('>I', total_size) + struct.pack('>I', total_size)
-        conn.sendall(header + json_bytes)
-        logger.debug(f"Sent response to {conn.getpeername()}: {json_str}")
+        """Deprecated: Use protocol-specific handlers instead"""
+        BinaryProtocolHandler.send_json_response(conn, json_str)
 
     def _process_request(self, request_data: Dict[str, Any]) -> Dict[str, Any]:
         """Process request with task-based routing"""
@@ -574,27 +747,78 @@ class ShiftSchedulerServer:
             formatted_schedule.append(formatted_entry)
         return formatted_schedule
 
+    def _handle_client(self, conn: socket.socket, addr: tuple):
+        """Handle individual client connection with protocol detection."""
+        logger.info(f"Client connected: {addr}")
+        
+        try:
+            # Detect protocol type
+            protocol_type = self.detect_protocol_type(conn)
+            logger.info(f"[{addr}] Detected protocol: {protocol_type}")
+            
+            # Receive request based on protocol
+            if protocol_type == "binary":
+                request_data, _ = BinaryProtocolHandler.receive_packet(conn)
+            else:  # legacy
+                request_data = LegacyProtocolHandler.receive_json(conn)
+            
+            if request_data is not None:
+                # Process the request
+                response = self._process_request(request_data)
+                response_json = json.dumps(response, ensure_ascii=False)
+                
+                # Send response based on protocol
+                if protocol_type == "binary":
+                    BinaryProtocolHandler.send_json_response(conn, response_json)
+                else:  # legacy
+                    LegacyProtocolHandler.send_json_response(conn, response_json)
+                
+                logger.info(f"[{addr}] Request processed successfully using {protocol_type} protocol")
+            else:
+                logger.warning(f"[{addr}] Failed to receive valid request data")
+                # Send error response
+                error_response = json.dumps({"resp": "fail", "error": "Invalid request data"}, ensure_ascii=False)
+                if protocol_type == "binary":
+                    BinaryProtocolHandler.send_json_response(conn, error_response)
+                else:
+                    LegacyProtocolHandler.send_json_response(conn, error_response)
+                
+        except Exception as e:
+            logger.error(f"[{addr}] Client handling error: {e}")
+            try:
+                # Try to send error response
+                error_response = json.dumps({"resp": "fail", "error": "Internal server error"}, ensure_ascii=False)
+                # Default to binary protocol for error response if protocol detection failed
+                BinaryProtocolHandler.send_json_response(conn, error_response)
+            except Exception as send_error:
+                logger.error(f"[{addr}] Failed to send error response: {send_error}")
+        finally:
+            try:
+                conn.close()
+                logger.debug(f"[{addr}] Connection closed")
+            except Exception as close_error:
+                logger.error(f"[{addr}] Error closing connection: {close_error}")
+
     def start(self):
+        """Start the server and listen for connections."""
         self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self.server_socket.bind((self.host, self.port))
         self.server_socket.listen(5)
+        
         logger.info(f"Shift scheduler server started on {self.host}:{self.port}")
+        logger.info("Server supports both binary protocol (C++) and legacy protocol (Python)")
 
         while True:
-            conn, addr = self.server_socket.accept()
-            logger.info(f"Client connected: {addr}")
             try:
-                request_data, _ = self.receive_packet(conn)
-                if request_data is not None:
-                    response = self._process_request(request_data)
-                    response_json = json.dumps(response, ensure_ascii=False)
-                    self.send_json_response(conn, response_json)
+                conn, addr = self.server_socket.accept()
+                self._handle_client(conn, addr)
+            except KeyboardInterrupt:
+                logger.info("Server shutdown requested by user")
+                break
             except Exception as e:
-                logger.error(f"Client handling error {addr}: {e}")
-                self.send_json_response(conn, json.dumps({"resp": "fail", "error": str(e)}))
-            finally:
-                conn.close()
+                logger.error(f"Error accepting client connection: {e}")
+                continue
 
 def main():
     """Main server entry point"""
