@@ -19,7 +19,7 @@
                           Opacity="0.5"/>
         
 
-        <Style x:Key="RoundedBlueButtonStyle" TargetType="Button">
+        <Style x:Key="BlueButtonStyle" TargetType="Button">
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontSize" Value="13"/>
             <Setter Property="FontWeight" Value="Bold"/>
@@ -64,6 +64,7 @@
             <Grid>
                 <Button Content="＜"
                         Command="{Binding GoBackCommand}"
+                        Style="{StaticResource RoundedBlueButtonStyle}"
                         Width="40" Height="40"
                         Background="Transparent"
                         BorderBrush="Transparent"
@@ -166,7 +167,7 @@
                                                                 Background="Transparent"
                                                                 Foreground="White"
                                                                 BorderThickness="0"
-                                                                Style="{StaticResource RoundedBlueButtonStyle}"
+                                                                Style="{StaticResource BlueButtonStyle}"
                                                                 Command="{Binding DataContext.ShowHandoverDetailCommand, RelativeSource={RelativeSource AncestorType=Page}}"
                                                                 CommandParameter="{Binding}"/>
                                                     </Border>

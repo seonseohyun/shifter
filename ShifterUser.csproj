@@ -18,6 +18,7 @@
     <None Remove="Resources\images\check_green.png" />
     <None Remove="Resources\images\clock.png" />
     <None Remove="Resources\images\Doc.png" />
+    <None Remove="Resources\images\fix.png" />
     <None Remove="Resources\images\Logo.png" />
     <None Remove="Resources\images\pending.png" />
     <None Remove="Resources\images\pin.png" />
@@ -51,6 +52,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\images\Doc.png" />
+    <Resource Include="Resources\images\fix.png" />
     <Resource Include="Resources\images\Logo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

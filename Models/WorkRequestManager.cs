@@ -54,16 +54,16 @@ namespace ShifterUser.Models
             }
         }
 
-        // ▶ 날짜
+        // 날짜
         [ObservableProperty] private DateTime date;
 
-        // ▶ 근무 스케줄 정보
+        // 근무 스케줄 정보
         [ObservableProperty] private ConfirmedWorkScheModel? schedule;
 
-        // ▶ 출퇴근 기록
+        // 출퇴근 기록
         [ObservableProperty] private AttendanceModel? attendance;
 
-        // ▶ 희망 근무 요청 여부 및 사유
+        // 희망 근무 요청 여부 및 사유
         [ObservableProperty] private bool isRequested;
         [ObservableProperty] private string? requestReason;
 
@@ -115,7 +115,6 @@ namespace ShifterUser.Models
             }
         }
 
-        // 진또배기 
         public async Task<List<WorkRequestModel>> LoadMonthRequestsAsync(int uid, int year, int month)
         {
             JObject requestJson = new()

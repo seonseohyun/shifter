@@ -44,7 +44,6 @@ namespace ShifterUser.ViewModels
             _uid = session.GetUid(); // UID 저장
 
             LoadRequestsCommand = new AsyncRelayCommand(LoadRequestsAsync);
-            //GoToReqScheCommand = new RelayCommand(GoToReqSche);
             LoadOnAppearCommand = new RelayCommand(LoadInitialData);
 
             // 이벤트 차단 후 초기 설정

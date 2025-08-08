@@ -34,12 +34,13 @@ namespace ShifterUser
         {
             // Models
             services.AddSingleton<Models.UserSession>();
-            services.AddSingleton<Models.UserManager>();
-            services.AddSingleton<Models.WorkRequestManager>();
-            services.AddSingleton<Models.HandoverManager>();
 
             // Helpers
             services.AddSingleton<SocketManager>();
+            services.AddSingleton<Models.UserManager>();
+            services.AddSingleton<Models.WorkRequestManager>();
+            services.AddSingleton<Models.HandoverManager>();
+            services.AddSingleton<Models.NoticeManager>();
 
             // ViewModels
             services.AddSingleton<MainViewModel>();

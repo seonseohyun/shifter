@@ -29,7 +29,7 @@ namespace ShifterUser.Views
         {
             if (DataContext is GroupHandoverViewModel vm)
             {
-                Console.WriteLine("✅ Page_Loaded - 커맨드 실행");
+                Console.WriteLine("Page_Loaded - 커맨드 실행");
                 if (vm.LoadOnAppearAsyncCommand.CanExecute(null))
                     vm.LoadOnAppearAsyncCommand.Execute(null);
             }

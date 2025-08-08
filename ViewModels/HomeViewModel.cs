@@ -87,7 +87,11 @@ namespace ShifterUser.ViewModels
 
         [RelayCommand]
         private void GoToQrCheck()
-            => WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.QR));
+        {
+            Console.WriteLine("QR 페이지로 이동합니다.");
+            WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.QR));
+        }
+            
 
         [RelayCommand]
         private void GoToGroupActivity()

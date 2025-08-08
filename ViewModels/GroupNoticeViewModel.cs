@@ -1,15 +1,66 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
+using ShifterUser.Enums;
+using ShifterUser.Messages;
+using ShifterUser.Models;
+using ShifterUser.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ShifterUser.ViewModels
 {
-
-    public class GroupNoticeViewModel : ObservableObject  // 혹은 INotifyPropertyChanged 구현 클래스 상속
+    public partial class GroupNoticeViewModel : ObservableObject
     {
-        // 필요한 프로퍼티, 명령어 정의
+        private readonly NoticeManager _notice;
+        private readonly UserSession _session;
+
+        public GroupNoticeViewModel(NoticeManager notice, UserSession session)
+        {
+            _notice = notice;
+            _session = session;
+            TeamName = session.GetTeamName();
+            LoadOnAppearAsyncCommand = new AsyncRelayCommand(LoadOnAppearAsync);
+            OpenDetailCommand = new RelayCommand<NoticeModel>(OpenDetail);
+            GoBackCommand = new RelayCommand(GoBack);
+        }
+
+        public ObservableCollection<NoticeModel> Notices { get; } = new();
+
+        [ObservableProperty] private string teamName = "";
+        [ObservableProperty] private bool isBusy;
+
+        public IAsyncRelayCommand LoadOnAppearAsyncCommand { get; }
+        public IRelayCommand<NoticeModel> OpenDetailCommand { get; }
+        public IRelayCommand GoBackCommand { get; }
+
+        private async Task LoadOnAppearAsync()
+        {
+            if (IsBusy) return;
+            IsBusy = true;
+            try
+            {
+                var list = await Task.Run(() => _notice.LoadNoticeList());
+                Notices.Clear();
+                foreach (var n in list) Notices.Add(n);
+            }
+            finally { IsBusy = false; }
+        }
+
+        private void OpenDetail(NoticeModel? item)
+        {
+            if (item is null) return;
+            // TODO: 상세 페이지로 이동(ask_notice_detail) or 팝업
+        }
+
+        private void GoBack()
+        {
+            // TODO: 페이지 전환 메시지 or NavigationService.GoBack()
+        }
     }
+
+
 }
