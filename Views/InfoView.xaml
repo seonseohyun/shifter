@@ -26,7 +26,8 @@
                     FontSize="16"
                     Foreground="White"
                     HorizontalAlignment="Left"
-                    VerticalAlignment="Center"/>
+                    Style="{StaticResource RoundedBlueButtonStyle}"
+                    VerticalAlignment="Center" Margin="3,0,0,0"/>
             <TextBlock Text="소개"
                        FontSize="18"
                        FontWeight="Bold"

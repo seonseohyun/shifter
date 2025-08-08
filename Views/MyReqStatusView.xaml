@@ -26,14 +26,21 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- 상단 네비게이션 바 -->
-        <Border Background="#007AFF" Height="48" Width="400" Grid.Row="0">
-            <Button Command="{Binding GoBackCommand}"
-                    Background="Transparent" BorderThickness="0"
-                    HorizontalAlignment="Left" VerticalAlignment="Bottom"
-                    Padding="12,0,0,9" Cursor="Hand">
-                <TextBlock Text="&lt;" FontSize="22" Foreground="White"/>
-            </Button>
+        <!-- 상단바 -->
+        <Border Background="#007AFF" Height="56" VerticalAlignment="Top">
+            <Grid>
+                <Button Content="＜"
+                        Command="{Binding GoBackCommand}"
+                        Style="{StaticResource RoundedBlueButtonStyle}"
+                        Width="40" Height="40"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        FontSize="16"
+                        FontWeight="Bold"
+                        Foreground="White"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"/>
+            </Grid>
         </Border>
 
         <!-- 본문 -->
@@ -159,7 +166,7 @@
                             <RowDefinition Height="179*"/>
                             <RowDefinition Height="444*"/>
                         </Grid.RowDefinitions>
-                        <Rectangle Fill="#80000000" MouseDown="DetailBackground_MouseDown" Margin="-39,-82,-33,-97" Grid.RowSpan="2"/>
+                        <Rectangle Fill="#80000000" MouseDown="DetailBackground_MouseDown" Margin="-39,-92,-33,-97" Grid.RowSpan="2"/>
 
                         <Border Background="White" CornerRadius="25,25,0,0" Padding="24" Margin="-31,180,-33,-97" Grid.Row="1">
                             <StackPanel HorizontalAlignment="Center" Height="312" VerticalAlignment="Bottom">

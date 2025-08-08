@@ -21,14 +21,20 @@
 
             <StackPanel Margin="0,0,0,20" HorizontalAlignment="Center" VerticalAlignment="Top">
 
-                <!-- 상단 네비게이션 바 -->
-                <Border Background="#007AFF" Height="48" Width="400">
-                    <Button Command="{Binding GoBackCommand}"
-                            Background="Transparent" BorderThickness="0"
-                            HorizontalAlignment="Left" VerticalAlignment="Bottom"
-                            Padding="12,0,0,9" Cursor="Hand">
-                        <TextBlock Text="&lt;" FontSize="22" Foreground="White"/>
-                    </Button>
+                <Border Background="#007AFF" Height="56" VerticalAlignment="Top">
+                    <Grid Width="399">
+                        <Button Content="＜"
+                        Command="{Binding GoBackCommand}"
+                        Style="{StaticResource RoundedBlueButtonStyle}"
+                        Width="40" Height="40"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        FontSize="20"
+                        FontWeight="Bold"
+                        Foreground="White"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center" Margin="2,0,0,0"/>
+                    </Grid>
                 </Border>
 
                 <!-- 카메라 프리뷰 박스 -->
@@ -80,7 +86,7 @@
         <!-- 하단 고정 종 이미지 -->
         <Grid Grid.Row="1" Height="90" VerticalAlignment="Bottom">
             <Image Source="/Resources/images/bell.png"
-                   Width="50" Height="75" HorizontalAlignment="Left" Margin="179,-658,0,673"/>
+                   Width="50" Height="75" HorizontalAlignment="Left" Margin="179,-650,0,665"/>
         </Grid>
     </Grid>
 </Page>

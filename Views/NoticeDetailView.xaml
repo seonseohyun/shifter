@@ -26,7 +26,8 @@
                         FontWeight="Bold"
                         Foreground="White"
                         HorizontalAlignment="Left"
-                        VerticalAlignment="Center"/>
+                        Style="{StaticResource RoundedBlueButtonStyle}"
+                        VerticalAlignment="Center" Margin="4,0,0,0"/>
                 <TextBlock Text="공지사항"
                            Foreground="White"
                            FontSize="16"

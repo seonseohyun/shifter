@@ -18,13 +18,23 @@
         <!-- 상단바 -->
         <Border Background="#007AFF" Height="56" VerticalAlignment="Top">
             <Grid>
-                <Button Content="＜" Command="{Binding GoBackCommand}"
-                Width="40" Height="40" Background="Transparent"
-                BorderBrush="Transparent" FontSize="16"
-                Foreground="White" HorizontalAlignment="Left"
-                FontWeight="Bold"
-                Style="{StaticResource RoundedBlueButtonStyle}"
-                VerticalAlignment="Center"/>
+                <Button Content="＜"
+                        Command="{Binding GoBackCommand}"
+                        Width="40" Height="40"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        FontSize="16"
+                        FontWeight="Bold"
+                        Foreground="White"
+                        HorizontalAlignment="Left"
+                        Style="{StaticResource RoundedBlueButtonStyle}"
+                        VerticalAlignment="Center" Margin="4,0,0,0"/>
+                <TextBlock Text="공지사항"
+                           Foreground="White"
+                           FontSize="16"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
             </Grid>
         </Border>
 
