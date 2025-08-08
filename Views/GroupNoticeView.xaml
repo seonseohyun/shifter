@@ -4,9 +4,13 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ShifterUser.Views"
+      Background="White"
       mc:Ignorable="d" 
       d:DesignHeight="800" d:DesignWidth="400"
       Title="GroupNoticeView">
+
+
+
 
     <Page.Resources>
         <DropShadowEffect x:Key="ShadowEffect"
@@ -15,9 +19,163 @@
                           BlurRadius="10"
                           Opacity="0.5"/>
     </Page.Resources>
-    
-    
+
     <Grid>
-        
+
+        <!-- 상단바 -->
+        <Border Background="#007AFF" Height="56" VerticalAlignment="Top">
+            <Grid>
+                <Button Content="＜" Command="{Binding GoBackCommand}"
+                Width="40" Height="40" Background="Transparent"
+                BorderBrush="Transparent" FontSize="16"
+                Foreground="White" HorizontalAlignment="Left"
+                VerticalAlignment="Center"/>
+            </Grid>
+        </Border>
+
+        <!-- 콘텐츠 카드 -->
+        <Grid VerticalAlignment="Top" HorizontalAlignment="Left" Margin="27,215,0,0">
+            <!-- 그림자용 Border (배경만 있고 콘텐츠 없음) -->
+            <Border Height="Auto" CornerRadius="20" Margin="0,-135,10,10"
+            Background="White"
+            Effect="{StaticResource ShadowEffect}"/>
+
+            <!-- 실제 콘텐츠 Border -->
+            <Border Width="350" Padding="16"          
+            BorderThickness="1"
+            CornerRadius="20" Margin="-10,-135,10,10"
+            Background="White"
+            BorderBrush="#DDDDDD">
+
+                <StackPanel>
+
+                    <!-- 상단 텍스트박스 -->
+                    <TextBlock Text="그룹 공지사항" FontSize="21" FontWeight="Bold" Margin="5,10,0,0" TextAlignment="Left"/>
+                    <TextBlock Text="응급실 A팀 공지사항" FontSize="16" FontWeight="Bold" Margin="5,10,0,20" TextAlignment="Left" Foreground="Gray"/>
+
+                    <!--  검색창 -->
+
+                    <Grid Width="300" Height="35" Margin="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="3*"/>
+                            <RowDefinition Height="4*"/>
+                        </Grid.RowDefinitions>
+                        <!-- 배경용 Border (모서리 둥글게, 테두리 포함) -->
+                        <Border Background="White" 
+                                BorderBrush="Gray" 
+                                BorderThickness="1" 
+                                CornerRadius="10" Grid.RowSpan="2" Margin="0" Width="300" Height="35" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <!-- 실제 텍스트 박스 -->
+                            <TextBox x:Name="SearchBox"
+                                Background="#EAEAEA"
+                                 BorderThickness="0"
+                                 FontSize="14"
+                                 Padding="60,5,5,5"
+                                  Width="300"
+                                 VerticalContentAlignment="Center" Margin="0"/>
+                        </Border>
+
+                        <!-- 돋보기 아이콘 -->
+                        <TextBlock Text="🔍"
+                               FontSize="14"
+                               Foreground="Gray"
+                               VerticalAlignment="Top"
+                               Margin="5,9,16,0"
+                               IsHitTestVisible="False" Grid.RowSpan="2"/>
+
+                        <!-- 힌트 텍스트 "검색" -->
+                        <TextBlock x:Name="HintText"
+                            Text="검색"
+                            FontSize="14"
+                            Foreground="Gray"
+                            VerticalAlignment="Top"
+                            Margin="25,8,0,0"
+                            IsHitTestVisible="False"
+                            Visibility="Visible" Height="18" Grid.RowSpan="2"/>
+
+
+                    </Grid>
+
+
+                    <!--  검색창 끝-->
+
+                    <!--카드형식-->
+
+                    <Border CornerRadius="10" BorderBrush="#B0B0B0" BorderThickness="1" Background="White" Padding="15" Margin="10,5" Height="87"  >
+                        <StackPanel>
+                            <TextBlock FontWeight="Bold" FontSize="14" Text="📌 업무 분배에 관한 안내" />
+                            <TextBlock FontSize="12" Foreground="Gray" Margin="0,5,0,0" Text="2024.01.26" />
+                            <TextBlock FontSize="12" Foreground="LightGray" HorizontalAlignment="Right" Text="선서현" />
+                        </StackPanel>
+                    </Border>
+
+                    <!--카드형식 끝-->
+
+
+                    <!--카드형식-->
+
+                    <Border CornerRadius="10" BorderBrush="#B0B0B0" BorderThickness="1" Background="White" Padding="15" Margin="10,5" Height="87"  >
+                        <StackPanel>
+                            <TextBlock FontWeight="Bold" FontSize="14" Text=" 회의 일정 공지" />
+                            <TextBlock FontSize="12" Foreground="Gray" Margin="0,5,0,0" Text="2025.07.20" />
+                            <TextBlock FontSize="12" Foreground="LightGray" HorizontalAlignment="Right" Text="박경태" />
+                        </StackPanel>
+                    </Border>
+
+                    <!--카드형식 끝-->
+
+
+                    <!--카드형식-->
+
+                    <Border CornerRadius="10" BorderBrush="#B0B0B0" BorderThickness="1" Background="White" Padding="15" Height="87" Margin="10,5" >
+                        <StackPanel>
+                            <TextBlock FontWeight="Bold" FontSize="14" Text="비상 약품 업데이트 사항" />
+                            <TextBlock FontSize="12" Foreground="Gray" Margin="0,5,0,0" Text="2025.05.20" />
+                            <TextBlock FontSize="12" Foreground="LightGray" HorizontalAlignment="Right" Text="김유범" />
+                        </StackPanel>
+                    </Border>
+
+                    <!--카드형식 끝-->
+
+
+                    <!--카드형식-->
+
+                    <Border CornerRadius="10" BorderBrush="#B0B0B0" BorderThickness="1" Background="White" Padding="15" Height="87" Margin="10,5" >
+                        <StackPanel>
+                            <TextBlock FontWeight="Bold" FontSize="14" Text="병실 배치 변경 안내" />
+                            <TextBlock FontSize="12" Foreground="Gray" Margin="0,5,0,0" Text="2024.04.07" />
+                            <TextBlock FontSize="12" Foreground="LightGray" HorizontalAlignment="Right" Text="유희라" />
+                        </StackPanel>
+                    </Border>
+
+                    <!--카드형식 끝-->
+
+                    <!--카드형식-->
+
+                    <Border CornerRadius="10" BorderBrush="#B0B0B0" BorderThickness="1" Background="White" Padding="15" Margin="10,5" Height="87" >
+                        <StackPanel>
+                            <TextBlock FontWeight="Bold" FontSize="14" Text="청결 유지 방안" />
+                            <TextBlock FontSize="12" Foreground="Gray" Margin="0,5,0,0" Text="2024.04.07" />
+                            <TextBlock FontSize="12" Foreground="LightGray" HorizontalAlignment="Right" Text="이동녘" />
+                        </StackPanel>
+                    </Border>
+
+                    <!--카드형식 끝-->
+
+
+
+                    <!-- 버튼 2개 -->
+                    <UniformGrid Columns="2" Margin="0,0,0,20"/>
+
+                    <!-- 팀원 근무 일정 -->
+
+                    <!-- 전체 근무표 보기 -->
+                </StackPanel>
+            </Border>
+        </Grid>
+        <!-- 이미지로 대체된 제목 -->
     </Grid>
+
+
+
 </Page>
