@@ -36,6 +36,7 @@ namespace ShifterUser
             services.AddSingleton<Models.UserSession>();
             services.AddSingleton<Models.UserManager>();
             services.AddSingleton<Models.WorkRequestManager>();
+            services.AddSingleton<Models.HandoverManager>();
 
             // Helpers
             services.AddSingleton<SocketManager>();
@@ -53,6 +54,7 @@ namespace ShifterUser
             services.AddTransient<GroupDashboardViewModel>();
             services.AddTransient<GroupHandoverViewModel>();
             services.AddTransient<GroupNoticeViewModel>();
+            services.AddTransient<HandoverDetailViewModel>();
         }
     }
 }

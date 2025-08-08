@@ -101,30 +101,10 @@ namespace ShifterUser.ViewModels
         [RelayCommand]
         private void ShowHandoverDetail(HandoverModel item)
         {
-            try
-            {
-                // 선택된 항목 저장
-                SelectedHandover = item;
-
-                // 서버에서 상세 데이터 요청
-                var detail = _manager.LoadHandoverDetail(item.HandoverUid);
-                if (detail == null)
-                {
-                    Console.WriteLine("[경고] 상세 데이터 로드 실패");
-                    return;
-                }
-
-                // 상세 데이터를 바인딩 가능한 프로퍼티에 저장
-                //     → 상세 뷰에서 바로 보여줄 수 있도록
-                SelectedHandoverDetail = detail; // 새 ObservableProperty로 추가 필요
-
-                // 상세 보기 활성화
-                IsDetailVisible = true;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"[오류] 상세보기 처리 중 예외: {ex.Message}");
-            }
+            // 먼저 페이지 전환
+            WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.HandoverDetail));
+            WeakReferenceMessenger.Default.Send(new HandoverDetailRequestMessage(item.HandoverUid));
+ 
         }
 
 

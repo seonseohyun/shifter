@@ -66,9 +66,12 @@ namespace ShifterUser.Models
 
                 var data = jsonData["data"];
                 int staffUid = data?["staff_uid"]?.ToObject<int>() ?? -1;
+                string staffName = data?["staff_name"]?.ToString() ?? "";
                 int teamUid = data?["team_uid"]?.ToObject<int>() ?? -1;
                 string teamName = data?["team_name"]?.ToString() ?? "";
                 string date = data?["date"]?.ToString() ?? "";
+
+                Console.WriteLine($"$$$$$$$$$$$$${staffName}");
 
                 var status = data?["work_request_status"];
                 int approved = status?["approved"]?.ToObject<int>() ?? 0;
@@ -104,6 +107,7 @@ namespace ShifterUser.Models
 
 
                 // UserSession에 정보 저장
+                _session.SetName(staffName);
                 _session.SetUid(staffUid);
                 _session.SetTeamCode(teamUid);
                 _session.SetTeamName(teamName);
