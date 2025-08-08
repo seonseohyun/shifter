@@ -11,14 +11,16 @@ namespace Shifter.ViewModels {
     public partial class GenScdViewModel : ObservableObject {
 
         /** Constructor **/
-        public GenScdViewModel(Session? session) {
-            _session = session;
+        public GenScdViewModel(Session? session, ScdModel scdModel) {
+            _session  = session;
+            _scdmodel = scdModel;
         }
 
 
 
         /** Member Variables **/
-        private readonly Session? _session;
+        private readonly Session?  _session;
+        private readonly ScdModel? _scdmodel;
         [ObservableProperty] private int? year  = DateTime.Now.Year;
         [ObservableProperty] private int? month = DateTime.Now.Month;
 
@@ -27,6 +29,9 @@ namespace Shifter.ViewModels {
         /** Member Methods **/
         [RelayCommand] void GenScd() {
             Console.WriteLine("[GenScdViewModel] Executed GenScd()");
+            Console.WriteLine("[GenScdViewModel] Year: {0}, Month: {1}", Year, Month);
+            
+            _ = _scdmodel!.Gen_TimeTableAsync(Year, Month);
         }
 
         [RelayCommand] void MinusYear() {

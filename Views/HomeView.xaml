@@ -7,7 +7,8 @@
       mc:Ignorable="d" 
       d:DesignHeight="850" d:DesignWidth="1600"
       Title="Page1"
-      Background="#FFFFFF">
+      Background="#FFFFFF"
+      FontFamily="Noto Sans KR">
 
     <Grid Margin="80">
         <Grid.ColumnDefinitions>
@@ -78,7 +79,46 @@
                     </Grid>
                 </Grid>
 
-                <Grid Grid.Row="1"></Grid>
+                <Grid Grid.Row="1" Margin="0,8,0,0">
+                    <ItemsControl ItemsSource="{Binding TodaysDuty}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Background="#FFFFFF" CornerRadius="7" Margin="30,6,30,0">
+                                    <Grid Margin="10,8">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"/>
+                                            <!-- Shift 라벨 -->
+                                            <ColumnDefinition Width="12*"/>
+                                            <!-- 스태프 목록 -->
+                                        </Grid.ColumnDefinitions>
+
+                                        <!-- Shift (D/E/N/O) -->
+                                        <Border Grid.Column="0"
+                                                CornerRadius="6"
+                                                Background="#F2F4F8"
+                                                Padding="10,6"
+                                                HorizontalAlignment="Stretch">
+                                            <TextBlock Text="{Binding Shift}"
+                                                       VerticalAlignment="Center"
+                                                       FontWeight="SemiBold"
+                                                       HorizontalAlignment="Center"/>
+                                        </Border>
+
+                                        <!-- StaffName 배열을 ", "로 합쳐서 표시 -->
+                                        <TextBlock Grid.Column="1"
+                                                   Margin="12,0,0,0"
+                                                   VerticalAlignment="Center"
+                                                   FontWeight="Medium"
+                                                   Text="{Binding StaffName,
+                                                                  Converter={StaticResource JoinConverter},
+                                                                  ConverterParameter=', '}" />
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Grid>
+
 
                 <Button Grid.Row="2"
                         BorderBrush="Transparent"
@@ -88,7 +128,7 @@
                         Content="이달의 근무정보 확인하기 >"
                         FontSize="20"
                         FontFamily="Noto Sans KR"
-                        FontWeight="Normal"
+                        FontWeight="Bold"
                         BorderThickness="0"
                         Style="{StaticResource LargeRoundedBlueButtonStyle}">
                 </Button>

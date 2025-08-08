@@ -15,19 +15,17 @@ namespace Shifter.ViewModels {
     public partial class RgsEmpInfoViewModel : ObservableObject{
 
         /** Constructor **/
-        public RgsEmpInfoViewModel(Session? session) {
+        public RgsEmpInfoViewModel(Session? session, EmpModel? empModel) {
             _session = session;
-
-            Grades = new ObservableCollection<GradeItem>(_session!.Grades);
-            for( int i = 0; i < Grades.Count; i++ ) {
-                Console.WriteLine($"[RgsEmpInfoViewModel] Grade[{i}] GradeNum: {Grades[i].GradeNum}, GradeName: {Grades[i].GradeName}");
-            }
+            _empmodel = empModel;
+            Grades = new ObservableCollection<GradeItem>(_session!.Grades);     // GradeItem 객체를 Session에서 가져옴
         }
 
 
 
         /** Member Variables **/
         private readonly Session? _session;
+        private readonly EmpModel? _empmodel;
         [ObservableProperty] private ObservableCollection<Employee> employees = new();
         [ObservableProperty] private IList<GradeItem> grades;
 
@@ -38,9 +36,9 @@ namespace Shifter.ViewModels {
             Employees.Add(new Employee
             {
                 GradeItem = Grades.First(),
-                EmpName = "직원명",
-                PhoneNum = "010-0000-0000",
-                TotalHours = 0
+                EmpName = "",
+                PhoneNum = "",
+
             });
         }
 
@@ -50,6 +48,14 @@ namespace Shifter.ViewModels {
             Console.WriteLine("[RgsEmpInfoViewModel] Executed RgsEmpInfo()");
 
             /* Register Employee Info on Server */
+            _empmodel!.RgsEmpInfoAsync(Employees).ContinueWith(task => {
+                if (task.IsFaulted) {
+                    Console.WriteLine("[RgsEmpInfoViewModel] Error: " + task.Exception?.Message);
+                } else {
+                    Console.WriteLine("[RgsEmpInfoViewModel] Employee information registered successfully.");
+                }
+            });
+
 
             /* Change Page */
             WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.ChkTmpEmpInfo));
@@ -60,8 +66,8 @@ namespace Shifter.ViewModels {
 
 
 public partial class Employee : ObservableObject {
-    [ObservableProperty] private GradeItem? gradeItem;
-    [ObservableProperty] private string?    empName;
-    [ObservableProperty] private string?    phoneNum;
-    [ObservableProperty] private int?       totalHours;
+    [ObservableProperty] private GradeItem? gradeItem;     // grade_level, grade_name
+    [ObservableProperty] private string?    empName;       // staff_name
+    [ObservableProperty] private string?    phoneNum;      // phone_num
+    [ObservableProperty] private int?       totalHours;    // total_hours
 }

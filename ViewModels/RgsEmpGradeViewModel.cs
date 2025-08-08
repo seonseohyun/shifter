@@ -48,6 +48,19 @@ namespace Shifter.ViewModels {
         [RelayCommand] private void GoToRgsEmpInfo() {
             Console.WriteLine("[RgsEmpGradeViewModel] Executed GoToRgsEmpInfo()");
 
+            /* Check Input */
+            if (Grades.Count == 0) {
+                MessageBox.Show("직급정보를 입력해주세요.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            foreach (var grade in Grades) {
+                if (grade.GradeNum == null || string.IsNullOrEmpty(grade.GradeName)) {
+                    MessageBox.Show("직급정보를 모두 입력해주세요.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+            }
+
             /* Add Input Grades to Session */
             _session!.Grades.Clear();
             for (int i = 0; i < Grades.Count; i++) {

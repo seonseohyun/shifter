@@ -18,12 +18,12 @@
 
         <!-- [0] Left Panel -->
         <Border BorderBrush="#A7A7A7" BorderThickness="0.5">
-            <Grid Grid.Column="0">
+            <Grid Grid.Column="0" Margin="5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="20*"/>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Text="정보등록" FontSize="18" FontFamily="Noto Sans KR" FontWeight="Bold" Margin="5"/>
+                <TextBlock Grid.Row="0" Text="정보등록" FontSize="17" FontFamily="Noto Sans KR" FontWeight="Bold" Margin="5"/>
                 <Grid Grid.Row="1" Margin="5">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*"/>
@@ -278,7 +278,7 @@
                                 <RowDefinition Height="1*"/>
                             </Grid.RowDefinitions>
                             <TextBlock Grid.Row="0" Text="교대근무" FontSize="30" FontFamily="Noto Sans KR" FontWeight="Bold"></TextBlock>
-                            <TextBlock Grid.Row="1" Text="교대근무유형을 입력해주세요.(최대4교대. 휴무일 기본포함)"
+                            <TextBlock Grid.Row="1" Text="교대근무유형을 입력해주세요.(최대4교대. 휴무일 기본미포함)"
                                        FontSize="15" FontFamily="Noto Sans KR" FontWeight="Medium"></TextBlock>
                         </Grid>
 

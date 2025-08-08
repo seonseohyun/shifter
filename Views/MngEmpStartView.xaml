@@ -17,14 +17,14 @@
 
         
         <!-- 좌측패널 -->
-        <Grid Grid.Column="0">
+        <Grid Grid.Column="0" Margin="5">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="20*"/>
             </Grid.RowDefinitions>
 
             <TextBlock Grid.Row="0" Text="직원관리" Margin="5"
-                       FontSize="18" FontFamily="Noto Sans KR" FontWeight="Bold"
+                       FontSize="17" FontFamily="Noto Sans KR" FontWeight="Bold"
                        Foreground="#000000" Background="Transparent"></TextBlock>
 
             <StackPanel Grid.Row="1" Orientation="Vertical">

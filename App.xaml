@@ -11,6 +11,7 @@
         <local:ZeroToVisConv x:Key="ZeroToVisibility"/>
         <local:EqualityConverter x:Key="EqualityConverter" />
         <local:ShiftCountLookupConverter x:Key="ShiftCountLookupConverter"/>
+        <local:JoinConverter x:Key="JoinConverter" />
 
         <!-- Style Gray Watermark -->
         <Style x:Key="GrayWatermarkTextBoxStyle" TargetType="TextBox">

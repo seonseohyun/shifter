@@ -1,9 +1,12 @@
-﻿using Newtonsoft.Json;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Shifter.Services;
 using Shifter.Structs;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel.Design.Serialization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,14 +22,25 @@ namespace Shifter.Models {
 
 
         /** Member Variables **/
-        Session? _session;
-        SocketManager? _socket;
+        readonly Session? _session;
+        readonly SocketManager? _socket;
+        readonly ObservableCollection<ShiftItem>? _shifts = [];
+        readonly ObservableCollection<TodaysDutyInfo>? _todaysDuty = [];
 
 
         /** Member Method **/
-        async Task Gen_TimeTable(int year, int month) {
-            int admin_uid = _session.GetCurrentAdminId();
-            int team_uid = _session.GetCurrentTeamId();
+
+        public ObservableCollection<ShiftItem> GetShifts() {
+            return _shifts!;
+        }
+
+        public ObservableCollection<TodaysDutyInfo> GetTodaysDuty() {
+            return _todaysDuty!;
+        }
+
+        public async Task Gen_TimeTableAsync(int? year, int? month) {
+            int admin_uid = _session!.GetCurrentAdminId();
+            int team_uid  = _session!.GetCurrentTeamId();
 
             /* [1] new json */
             JObject sendJson = new JObject {
@@ -34,8 +48,8 @@ namespace Shifter.Models {
             { "data", new JObject {
                 { "admin_uid", admin_uid },
                 { "team_uid", team_uid },
-                { "req_year", year },
-                { "req_month", month }
+                { "req_year", year.ToString() },
+                { "req_month", month.ToString() }
                 }
                 }
             };
@@ -71,13 +85,14 @@ namespace Shifter.Models {
         }
 
         
-        async Task CheckTodayDuty() {
+        /* Protocol check_today_duty */
+        public async Task<List<TodaysDutyInfo>> CheckTodayDutyAsync() {
             /* [1] new json */
             JObject sendJson = new JObject {
                 { "protocol", "check_today_duty" },
                 { "data", new JObject {
-                    { "date", DateTime.Now.Date },
-                    { "team_uid", _session.GetCurrentTeamId() }
+                    { "date", DateTime.Now.Date.ToString()[..10] },
+                    { "team_uid", _session!.GetCurrentTeamId() }
                 }}
             };
 
@@ -101,22 +116,32 @@ namespace Shifter.Models {
             string protocol = recvJson["protocol"]!.ToString();
             string resp = recvJson["resp"]!.ToString();
 
+            var result = new List<TodaysDutyInfo>();
             if (protocol == "check_today_duty" && resp == "success") {
-                // 오늘의 근무가 확인됨
-                Console.WriteLine("Today's duty checked successfully.");
-            } else {
-                // 실패 처리
-                Console.WriteLine("Failed to check today's duty: {0}", recvJson["message"]!.ToString());
+
+                if ((string)recvJson["protocol"]! == "check_today_duty" &&
+                    (string)recvJson["resp"]! == "success") {
+                    foreach (JObject duty in (JArray)recvJson["data"]!) {
+                        result.Add(new TodaysDutyInfo
+                        {
+                            Shift = duty.Value<string>("shift") ?? "",
+                            StaffName = duty["staff"]?.ToObject<string[]>() ?? Array.Empty<string>()
+                        });
+                    }
+                }
             }
+            return result;
         }
 
 
-        async Task ReqShiftInfo() {
+        /* protocol req_shift_info */
+        public async Task ReqShiftInfo() {
+
             /* [1] new json */
             JObject sendJson = new JObject {
                 { "protocol", "req_shift_info" },
                 { "data", new JObject {
-                    { "team_uid", _session.GetCurrentTeamId() }
+                    { "team_uid", _session!.GetCurrentTeamId() }
                 }}
             };
 
@@ -138,15 +163,35 @@ namespace Shifter.Models {
         
             string protocol = recvJson["protocol"]!.ToString();
             string resp = recvJson["resp"]!.ToString();
+            var data = recvJson["data"]!;
 
             if (protocol == "req_shift_info" && resp == "success") {
-                // Shift 정보 요청 성공
                 Console.WriteLine("Shift information requested successfully.");
-                // 추가적인 데이터 처리 로직 필요
+
+                _shifts!.Clear(); // Clear existing shifts before adding new ones
+                foreach (var shift in data["shift_info"]!) {
+                    ShiftItem shiftItem = new ShiftItem()
+                    {
+                        ShiftType = shift["duty_type"]!.ToString(),
+                        StartTime = shift["start_time"]!.ToString(),
+                        EndTime   = shift["end_time"]!.ToString(),
+                        DutyHours = shift["duty_hours"]!.ToObject<int>()
+                    };
+                    _shifts.Add(shiftItem);
+                }
             } else {
                 // 실패 처리
                 Console.WriteLine("Failed to request shift information: {0}", recvJson["message"]!.ToString());
+
             }
         }
+    }
+
+
+
+    /*** Today's Duty Info ***/
+    public partial class TodaysDutyInfo : ObservableObject {
+        [ObservableProperty] private string? shift;          // 근무조
+        [ObservableProperty] private string[]? staffName;     // 직원명
     }
 }

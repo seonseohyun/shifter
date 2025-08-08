@@ -15,7 +15,8 @@ namespace Shifter.ViewModels {
         public ChkTmpEmpViewModel(Session? session) {
             _session = session;
 
-            UpdateTempEmpInfoAsync();
+            TeamName = _session?.GetCurrentTeamName();
+            _ = UpdateTempEmpInfoAsync();
         }
 
 
@@ -23,6 +24,7 @@ namespace Shifter.ViewModels {
         /** Member Variables **/
         private readonly Session? _session;
         [ObservableProperty] private ObservableCollection<TempEmpInfo> tempEmpInfo = new();
+        [ObservableProperty] private string? teamName = "";
 
 
 
