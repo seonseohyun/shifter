@@ -18,16 +18,25 @@
     <None Remove="Resources\Icons\clip_icon.png" />
     <None Remove="Resources\Icons\GenScd.png" />
     <None Remove="Resources\Icons\home-button.png" />
+    <None Remove="Resources\Icons\left.png" />
     <None Remove="Resources\Icons\magnifying-glass.png" />
     <None Remove="Resources\Icons\minus.png" />
+    <None Remove="Resources\Icons\next.png" />
     <None Remove="Resources\Icons\plus.png" />
     <None Remove="Resources\Icons\power-button.png" />
     <None Remove="Resources\Icons\right-arrows.png" />
+    <None Remove="Resources\Icons\Share.png" />
     <None Remove="Resources\Logo\Logo.png" />
     <None Remove="Resources\Logo\LogoNoMargin.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\Icons\left.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\next.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\Icons\plus.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -84,6 +93,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Icons\right-arrows.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\Share.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Logo\Logo.png">

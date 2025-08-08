@@ -19,12 +19,12 @@ namespace Shifter.ViewModels {
         }
 
 
-
         /** Member Variables **/
         private readonly Session? _session;
         [ObservableProperty] private ObservableCollection<ShiftItem> shifts = new();
         [ObservableProperty] private string? selectedIndustry;
-
+        [ObservableProperty] private string? comapanyName = "정규직";
+        [ObservableProperty] private string? teamName = "Hi,";
 
 
         /** Member Methods **/
@@ -52,17 +52,5 @@ namespace Shifter.ViewModels {
         [RelayCommand] private void GoToRgsEmpGrade() {
             WeakReferenceMessenger.Default.Send(new PageChangeMessage(Enums.PageType.RgsEmpGrade));
         }
-    }
-
-
-    public partial class ShiftItem : ObservableObject {
-        [ObservableProperty]
-        private string? shiftType;
-
-        [ObservableProperty]
-        private string? startTime;
-
-        [ObservableProperty]
-        private string? endTime;
     }
 }

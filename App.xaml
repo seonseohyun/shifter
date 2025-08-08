@@ -10,6 +10,7 @@
         <local:BoolToVisibilityConverter x:Key="BoolToVis"/>
         <local:ZeroToVisConv x:Key="ZeroToVisibility"/>
         <local:EqualityConverter x:Key="EqualityConverter" />
+        <local:ShiftCountLookupConverter x:Key="ShiftCountLookupConverter"/>
 
         <!-- Style Gray Watermark -->
         <Style x:Key="GrayWatermarkTextBoxStyle" TargetType="TextBox">
@@ -109,6 +110,80 @@
         </Style>
 
 
+        <!-- 둥근 모서리 버튼 스타일 - S-->
+        <Style x:Key="SmallRoundedBlueButtonStyle"   TargetType="Button">
+            <Setter Property="Foreground"       Value="White"/>
+            <Setter Property="FontSize"         Value="15"/>
+            <Setter Property="FontWeight"       Value="Bold"/>
+            <Setter Property="Background"       Value="#002EFF"/>
+            <Setter Property="BorderBrush"      Value="Transparent"/>
+            <Setter Property="BorderThickness"  Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="17"
+                                SnapsToDevicePixels="True">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
+                                              RecognizesAccessKey="True"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#0026D2"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#001EA7"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="border" Property="Background" Value="Gray"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+        <!-- 둥근 모서리 버튼 스타일 - L-->
+        <Style x:Key="InverseSmallRoundedBlueButtonStyle"   TargetType="Button">
+            <Setter Property="Foreground"       Value="#002EFF"/>
+            <Setter Property="FontSize"         Value="15"/>
+            <Setter Property="FontWeight"       Value="Bold"/>
+            <Setter Property="Background"       Value="Transparent"/>
+            <Setter Property="BorderBrush"      Value="#002EFF"/>
+            <Setter Property="BorderThickness"  Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="15"
+                                SnapsToDevicePixels="True">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
+                                              RecognizesAccessKey="True"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#DADADA"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#C8C8C8"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="border" Property="Background" Value="Gray"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
         <!-- 둥근 버튼 스타일 - S-->
         <Style x:Key="EllipseRoundedBlueButtonStyle"   TargetType="Button">
             <Setter Property="Foreground"       Value="#A7A7A7"/>
@@ -147,6 +222,32 @@
             </Setter>
         </Style>
 
+
+        <Style x:Key="TitleTextBlockStyle"       TargetType="TextBlock">
+            <Setter Property="Foreground"        Value="#000000"/>
+            <Setter Property="FontSize"          Value="30"/>
+            <Setter Property="FontFamily"        Value="Noto Sans KR"/>
+            <Setter Property="FontWeight"        Value="Bold"/>
+            <Setter Property="Background"        Value="Transparent"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Padding"           Value="5"/>
+        </Style>
+
+        <Style x:Key="KeywordBorderStyle"        TargetType="Border">
+            <Setter Property="Background"        Value="Transparent"/>
+            <Setter Property="CornerRadius"      Value="15"/>
+            <Setter Property="BorderBrush"       Value="#888888"/>
+            <Setter Property="BorderThickness"   Value="1"/>
+        </Style>
+
+        <Style x:Key="KeyworkdTextBlockStyle"       TargetType="TextBlock">
+            <Setter Property="Foreground"           Value="#888888"/>
+            <Setter Property="FontSize"             Value="13"/>
+            <Setter Property="FontFamily"           Value="Noto Sans KR"/>
+            <Setter Property="FontWeight"           Value="Medium"/>
+            <Setter Property="VerticalAlignment"    Value="Center"/>
+            <Setter Property="HorizontalAlignment"  Value="Center"/>
+        </Style>
 
     </Application.Resources>
 

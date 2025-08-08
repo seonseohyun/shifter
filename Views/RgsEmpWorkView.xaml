@@ -112,7 +112,9 @@
                             <Border Grid.Row="1" CornerRadius="15" Background="#FFFFFF" BorderBrush="Transparent" BorderThickness="0" >
                                 <TextBox FontSize="15" FontFamily="Noto Sans KR" FontWeight="Medium"
                                          Background="Transparent" BorderBrush="Transparent" BorderThickness="0"
-                                         VerticalContentAlignment="Center" TextAlignment="Center"></TextBox>
+                                         VerticalContentAlignment="Center" TextAlignment="Center"
+                                         Text="{Binding CompanyName}"
+                                         ></TextBox>
                             </Border>
                         </Grid>
 
@@ -131,7 +133,8 @@
                             <Border Grid.Row="1" CornerRadius="15" Background="#FFFFFF" BorderBrush="Transparent" BorderThickness="0" >
                                 <TextBox FontSize="15" FontFamily="Noto Sans KR" FontWeight="Medium"
                                          Background="Transparent" BorderBrush="Transparent" BorderThickness="0"
-                                         VerticalContentAlignment="Center" TextAlignment="Center"></TextBox>
+                                         VerticalContentAlignment="Center" TextAlignment="Center"
+                                         Text="{Binding TeamName}"></TextBox>
                             </Border>
                         </Grid>
 

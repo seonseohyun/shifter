@@ -3,12 +3,291 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Shifter.Views"
+      xmlns:local="clr-namespace:Shifter.Helpers"
       mc:Ignorable="d" 
-      d:DesignHeight="900" d:DesignWidth="1600"
-      Title="MdfScdView">
+      d:DesignHeight="850" d:DesignWidth="1600"
+      Title="MdfScdView"
+      Background="#FFFFFF"
+      x:Name="root"
+      FontFamily="Noto Sans KR">
 
     <Grid>
-        
+        <Border Margin="50" Background="#F7F7F7" CornerRadius="30" BorderThickness="0">
+            <Border.Effect>
+                <DropShadowEffect
+                    Color="Black"
+                    ShadowDepth="5"
+                    BlurRadius="10"
+                    Opacity="0.5">
+                </DropShadowEffect>
+            </Border.Effect>
+            <Grid Margin="30">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="8*"/>
+                </Grid.RowDefinitions>
+
+                <!-- Title -->
+                <Grid Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1.5*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="Test TeamName Before Binding" Style="{StaticResource TitleTextBlockStyle}"></TextBlock>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="9*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <TextBlock Grid.Column="0" Text="Test Company" Style="{StaticResource KeyworkdTextBlockStyle}"></TextBlock>
+
+                        <TextBlock Grid.Column="1" Text="Test Team" Style="{StaticResource KeyworkdTextBlockStyle}"></TextBlock>
+
+                        <TextBlock Grid.Column="2" Text="Test Admin" Style="{StaticResource KeyworkdTextBlockStyle}"></TextBlock>
+
+                        <TextBlock Grid.Column="3" Text="Test yyyy-MM" Style="{StaticResource KeyworkdTextBlockStyle}"></TextBlock>
+                    </Grid>
+
+                </Grid>
+
+                <Grid Grid.Row="1" Margin="0,10,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="13*"/>
+                    </Grid.RowDefinitions>
+
+                <!-- ShiftType & Buttons-->
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <!-- ShiftType Icons -->
+                        <Grid Grid.Column="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1.5*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" Background="#888888" CornerRadius="13" Margin="7">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="6*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Button Grid.Column="0" Background="Transparent" BorderThickness="0">
+                                        <Image Source="/Resources/Icons/left.png" Margin="5"/>
+                                    </Button>
+                                    <TextBlock Grid.Column="1" Background="Transparent" Text="Test" Foreground="#FFFFFF" FontSize="20" FontFamily="Noto Sans KR" FontWeight="Medium"
+                                            VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    <Button Grid.Column="2" Background="Transparent" BorderThickness="0">
+                                        <Image Source="/Resources/Icons/next.png" Margin="5"/>
+                                    </Button>
+                                </Grid>
+                            </Border>
+
+                            <ItemsControl Grid.Column="1"></ItemsControl>
+                        </Grid>
+
+                        <!-- Buttons -->
+                        <Grid Grid.Column="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="0.3*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!--
+                        <Button Grid.Column="1" Margin="10,5,5,5" Style="{StaticResource SmallRoundedBlueButtonStyle}">
+                            <Image Source="/Resources/Icons/Share.png" Margin="8"></Image>
+                        </Button>
+                        -->
+
+                            <Button Grid.Column="2" Margin="5,5,5,5" Background="Transparent" BorderBrush="#002EFF" Foreground="#002EFF" BorderThickness="2"
+                                FontSize="15" FontFamily="Noto Sans KR" FontWeight="Bold"
+                                Content="삭제하기" Command="{Binding DelScdCommand}">
+                                <Button.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="17"/>
+                                    </Style>
+                                </Button.Resources>
+                            </Button>
+
+                            <Button Grid.Column="3" Margin="5,5,5,5" Style="{StaticResource SmallRoundedBlueButtonStyle}"
+                                Content="저장하기" Command="{Binding SaveScdCommand}"></Button>
+
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1.5*"/>
+                            <RowDefinition Height="20*"/>
+                            <RowDefinition Height="4.5*"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- header -->
+                        <StackPanel Grid.Row="0" Orientation="Horizontal">
+                            <!-- staff name -->
+                            <Border BorderBrush="Transparent" BorderThickness="0" Width="80" Height="30" Background="Transparent">
+                                <TextBlock Text="staff name" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Border>
+
+                            <!-- 1일부터 31일까지 -->
+                            <ItemsControl ItemsSource="{Binding Days}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border BorderBrush="Transparent" BorderThickness="0" Width="30" Height="30" Background="Transparent">
+                                            <TextBlock Text="{Binding}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+
+                            <!-- 나머지 헤더 -->
+                            <StackPanel Orientation="Horizontal">
+                                <Border BorderBrush="Transparent" BorderThickness="1" Width="70" Height="30" Background="Transparent">
+                                    <TextBlock Text="근무시간" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15,1,1,1"/>
+                                </Border>
+                                <Border BorderBrush="Transparent" BorderThickness="1" Width="70" Height="30" Background="Transparent">
+                                    <TextBlock Text="잔여시간" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1"/>
+                                </Border>
+                                <ItemsControl ItemsSource="{Binding ShiftHeaders}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel Orientation="Horizontal" />
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border BorderBrush="Transparent" BorderThickness="1" Width="40" Height="30" Background="Transparent"
+                                                    Margin="1">
+                                                <TextBlock Text="{Binding DisplayName}" 
+                                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <ScrollViewer Grid.Row="1" 
+                                        HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                            <ItemsControl ItemsSource="{Binding StaffSchedules}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+
+                                            <!-- 직원 이름 -->
+                                            <Border BorderBrush="LightGray" BorderThickness="1" Width="80" Height="30" Background="#F5F5F5"
+                                                    CornerRadius="5" Margin="1">
+                                                <TextBlock Text="{Binding Name}" 
+                                                            VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                            </Border>
+
+                                            <!-- 31일 스케줄 + 통계 열 포함하는 StackPanel -->
+                                            <StackPanel Orientation="Horizontal">
+
+                                                <!-- 날짜별 셀 -->
+                                                <ItemsControl ItemsSource="{Binding DailyShifts}">
+                                                    <ItemsControl.ItemsPanel>
+                                                        <ItemsPanelTemplate>
+                                                            <StackPanel Orientation="Horizontal"/>
+                                                        </ItemsPanelTemplate>
+                                                    </ItemsControl.ItemsPanel>
+                                                    <ItemsControl.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <Button Width="27" Height="27" 
+                                                                    BorderBrush="LightGray" BorderThickness="1" Margin="1.46"
+                                                                    Background="#FFFFFF"
+                                                                    Content="{Binding ShiftCode}"
+                                                                    Command="{Binding DataContext.ToggleShiftCommand, RelativeSource={RelativeSource AncestorType=Page}}"
+                                                                    CommandParameter="{Binding}" />
+                                                        </DataTemplate>
+                                                    </ItemsControl.ItemTemplate>
+                                                </ItemsControl>
+
+                                                <!-- 오른쪽 통계 열 -->
+                                                <StackPanel Orientation="Horizontal" Margin="1">
+                                                    <!--근무시간-->
+                                                    <Border Width="70" Height="30" BorderBrush="LightGray" BorderThickness="1">
+                                                        <TextBlock Text="{Binding TotalWorkingHours}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1"/>
+                                                    </Border>
+                                                    <Border Width="70" Height="30" BorderBrush="LightGray" BorderThickness="1">
+                                                        <TextBlock Text="{Binding TotalEmptyDays}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1"/>
+                                                    </Border>
+                                                    <!-- 통계 열 -->
+                                                    <ItemsControl ItemsSource="{Binding ShiftCodeCounts}">
+                                                        <ItemsControl.ItemsPanel>
+                                                            <ItemsPanelTemplate>
+                                                                <StackPanel Orientation="Horizontal"/>
+                                                            </ItemsPanelTemplate>
+                                                        </ItemsControl.ItemsPanel>
+                                                        <ItemsControl.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <Border Width="40" Height="29" BorderBrush="LightGray" BorderThickness="1" Margin="1,0,1,0">
+                                                                    <TextBlock Text="{Binding Value}" 
+                                                                               HorizontalAlignment="Center" 
+                                                                               VerticalAlignment="Center"/>
+                                                                </Border>
+                                                            </DataTemplate>
+                                                        </ItemsControl.ItemTemplate>
+                                                    </ItemsControl>
+                                                </StackPanel>
+
+                                            </StackPanel>
+
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+
+                        <!-- Bottom Stat -->
+                        <ItemsControl Grid.Row="2" ItemsSource="{Binding ShiftHeaders}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" Tag="{Binding ShiftCode}">
+                                        <!-- 왼쪽 ShiftCode 라벨 -->
+                                        <TextBlock Text="{Binding ShiftCode}" Width="30" Margin="2" />
+
+                                        <!-- 오른쪽: 일별 통계 -->
+                                        <ItemsControl ItemsSource="{Binding DataContext.DailyStatistics, RelativeSource={RelativeSource AncestorType=UserControl}}">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <StackPanel Orientation="Horizontal"/>
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Border Width="25" Height="25" BorderBrush="Gray" BorderThickness="0.5" Margin="1">
+                                                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                            <TextBlock Text="{Binding Tag, RelativeSource={RelativeSource AncestorType=StackPanel}}" 
+           Foreground="Red" FontSize="10" />
+
+                                                        </TextBlock>
+                                                    </Border>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Border>
     </Grid>
 </Page>
