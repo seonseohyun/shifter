@@ -93,8 +93,8 @@
                     <Border Grid.Row="0" VerticalAlignment="Top" Height="1" Background="#E6E6E6" Margin="0,103,0,0"/>
 
                     <!-- ====== 업무 개요 (가운데만 스크롤) ====== -->
-                    <Border Grid.Row="1" Margin="0,8,0,8" Background="Transparent">
-                        <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,-12,0,12">
+                    <Border Grid.Row="1" Margin="0,3,0,13" Background="Transparent">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,-12,0,0">
                             <StackPanel>
                                 <TextBlock Text="업무 개요" FontWeight="Bold" FontSize="15" Margin="0,0,0,8"/>
                                 <Grid>
@@ -129,7 +129,7 @@
                         </ScrollViewer>
                     </Border>
 
-                    <Border Grid.Row="1" VerticalAlignment="Top" Height="1" Background="#E6E6E6" Margin="0,356,0,0"/>
+                    <Border Grid.Row="1" VerticalAlignment="Top" Height="1" Background="#E6E6E6" Margin="0,360,0,0"/>
 
                     <!-- ====== 첨부 자료 ====== -->
                     <StackPanel Grid.Row="2" Margin="0,8,0,8">
@@ -151,10 +151,10 @@
                                         </StackPanel>
 
                                         <Button Grid.Column="1"
-                      Width="28" Height="28"
-                      Background="Transparent" BorderBrush="#CFCFCF" BorderThickness="1"
-                      Command="{Binding DataContext.DownloadCommand, RelativeSource={RelativeSource AncestorType=Page}}"
-                      CommandParameter="{Binding}">
+                                          Width="28" Height="28"
+                                          Background="Transparent" BorderBrush="#CFCFCF" BorderThickness="1"
+                                          Command="{Binding DataContext.DownloadCommand, RelativeSource={RelativeSource AncestorType=Page}}"
+                                          CommandParameter="{Binding}">
                                             <TextBlock Text="⤓" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         </Button>
                                     </Grid>

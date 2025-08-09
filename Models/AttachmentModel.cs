@@ -9,9 +9,8 @@ namespace ShifterUser.Models
 {
     public class AttachmentModel
     {
-        public string FileName { get; set; } = "";
-        // 필요하면 서버 경로/UID 등 추가
-        public string? FilePath { get; set; }
+        public string FileName { get; set; } = "";   // UI 표시용
+        public string LocalPath { get; set; } = "";  // 로컬 전체 경로 (열기/보기용)
     }
 }
 

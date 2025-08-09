@@ -51,5 +51,17 @@ namespace ShifterUser.Enums
         기타
     }
 
+    public static class ShiftCode
+    {
+        public static string ToCode(ShiftType t) => t switch
+        {
+            ShiftType.Day => "D",
+            ShiftType.Evening => "E",
+            ShiftType.Night => "N",
+            ShiftType.Off => "O",
+            _ => "O"
+        };
+    }
+
 }
 

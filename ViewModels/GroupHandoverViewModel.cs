@@ -107,7 +107,6 @@ namespace ShifterUser.ViewModels
  
         }
 
-
         // Enum → 사용자 표시 문자열로 변환
         private string GetDisplayName(HandoverType type) => type switch
         {
@@ -143,6 +142,5 @@ namespace ShifterUser.ViewModels
         {
             WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.Goback));
         }
-
     }
 }

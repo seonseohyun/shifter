@@ -19,8 +19,6 @@
                           ShadowDepth="10"
                           BlurRadius="6"
                           Opacity="0.2"/>
-        <conv:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
-        <conv:NullToVisibilityConverter x:Key="NullToVisibilityConverter"/>
     </Page.Resources>
 
     <Grid>

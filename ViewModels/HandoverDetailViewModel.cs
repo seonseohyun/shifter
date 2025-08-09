@@ -65,6 +65,7 @@ namespace ShifterUser.ViewModels
         }
 
 
+
         [RelayCommand]
         private void GoBack()
         {

@@ -144,6 +144,65 @@ namespace ShifterUser.Models
             }
         }
 
+
+        // AI 문장 정리
+        public async Task<string?> SummarizeJournalAsync(string rawText)
+        {
+            var req = new JObject
+            {
+                ["protocol"] = "summary_journal",
+                ["data"] = new JObject { ["text"] = rawText ?? "" }
+            };
+
+            var send = new WorkItem { json = req.ToString(), payload = [], path = "" };
+            _socket.Send(send);
+
+            WorkItem resp = await Task.Run(() => _socket.Receive());
+
+            var root = JObject.Parse(resp.json);
+            if ((string?)root["protocol"] != "summary_journal") return null;
+            if (((string?)root["resp"])?.ToLower() != "success") return null;
+
+            return (string?)root["data"]?["text"];
+        }
+
+        // 인수인계 등록 
+        public async Task<(bool ok, int? handoverUid, string? error)> RegisterHandoverAsync(HandoverDetailModel m)
+        {
+            // 클라이언트에서 파일을 보관/표시만 할 것이므로 서버 전송 필드는 이름/여부만 보냄
+            var req = new JObject
+            {
+                ["protocol"] = "reg_handover",
+                ["data"] = new JObject
+                {
+                    ["staff_uid"] = _session.GetUid(),
+                    ["team_uid"] = _session.GetTeamCode(),
+                    ["title"] = m.Title ?? "",
+                    ["text"] = m.Text ?? "",
+                    ["text_particular"] = m.TextParticular ?? "",
+                    ["additional_info"] = m.AdditionalInfo ?? "",
+                    ["shift_type"] = ShiftCode.ToCode(m.ShiftType),
+                    ["note_type"] = m.NoteTypeDisplay,
+                    ["is_attached"] = m.IsAttached,
+                    ["file_name"] = m.FileName ?? ""
+                }
+            };
+
+            var send = new WorkItem { json = req.ToString(), payload = [], path = "" };
+            _socket.Send(send);
+
+            WorkItem resp = _socket.Receive();
+
+            var root = JObject.Parse(resp.json);
+            var ok = ((string?)root["resp"])?.ToLower() == "success";
+            var uid = (int?)root["data"]?["handover_uid"];
+            var err = (string?)root["message"] ?? (string?)root["messege"];
+
+            return (ok, uid, ok ? null : err);
+
+
+        }
+
         private ShiftType ParseShiftTime(string? str) => str?.ToLower() switch
         {
             "day" => ShiftType.Day,
@@ -163,6 +222,7 @@ namespace ShifterUser.Models
             "기타" => HandoverType.기타,
             _ => HandoverType.기타
         };
+
     }
 
 }

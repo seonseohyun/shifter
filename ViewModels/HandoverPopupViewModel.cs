@@ -6,9 +6,6 @@ using ShifterUser.Messages;
 using ShifterUser.Models;
 using ShifterUser.Services;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ShifterUser.ViewModels
@@ -16,8 +13,46 @@ namespace ShifterUser.ViewModels
     public partial class HandoverPopupViewModel : ObservableObject
     {
         private readonly UserSession _session;
-        public HandoverPopupViewModel(UserSession session) { 
+        private readonly HandoverManager _handover;
+
+        [ObservableProperty] private int handoverUid;          // 받은 uid 저장
+        [ObservableProperty] private string author = "";
+        [ObservableProperty] private DateTime registerDate;    // 화면에 yyyy.MM.dd로 포맷 바인딩
+        [ObservableProperty] private string teamName = "";
+
+
+        public HandoverPopupViewModel(UserSession session, HandoverManager handover)
+        {
             _session = session;
+            _handover = handover;
+
+            Author = _session.GetName();
+            RegisterDate = DateTime.Today;
+            Console.WriteLine($"Check Date : {DateTime.Now}");
+            Console.WriteLine($"Check Data : {DateTime.Today}");
+            // 기본값
+            TeamName = _session.GetTeamName() ?? "";
+
+            // 등록 완료 메시지 수신 → uid 저장 → 상세 로드
+            WeakReferenceMessenger.Default.Register<HandoverRegisteredMessage>(this, async (r, m) =>
+            {
+                HandoverUid = m.HandoverUid;
+            });
+        }
+
+        // 확인
+        [RelayCommand]
+        private void Confirm()
+        {
+            WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.GroupNotice));
+        }
+
+        // 바로 보기
+        [RelayCommand]
+        private void ViewNow()
+        {
+            WeakReferenceMessenger.Default.Send(new OpenHandoverDetailMessage(HandoverUid));
+            WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.HandoverDetail));
         }
     }
 }

@@ -129,21 +129,21 @@
                                     </Grid.RowDefinitions>
 
                                     <TextBlock Text="업무명" Foreground="#8A8A8A"/>
-                                    <TextBox Grid.Column="1"/>
+                                    <TextBox Text="{Binding SelectedHandoverDetail.Title}" Grid.Column="1"/>
 
                                     <TextBlock Text="업무 내용" Foreground="#8A8A8A" Grid.Row="1" Margin="0,6,0,0"/>
                                     <StackPanel Grid.Column="1" Grid.Row="1" Margin="0,6,0,0">
-                                        <TextBox Text="{Binding SelectedHandoverDetail.Text}" TextWrapping="Wrap" Margin="0,2,0,0" Height="186"/>
+                                        <TextBox Text="{Binding SelectedHandoverDetail.Text}" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,2,0,0" Height="186"/>
                                     </StackPanel>
 
                                     <TextBlock Text="특이사항" Foreground="#8A8A8A" Grid.Row="2" Margin="0,6,0,0"/>
                                     <StackPanel Grid.Column="1" Grid.Row="2" Margin="0,6,0,0">
-                                        <TextBox Text="{Binding SelectedHandoverDetail.TextParticular}" TextWrapping="Wrap" Margin="0,2,0,0" Height="45"/>
+                                        <TextBox Text="{Binding SelectedHandoverDetail.TextParticular}" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,2,0,0" Height="45"/>
                                     </StackPanel>
 
                                     <TextBlock Text="비고" Foreground="#8A8A8A" Grid.Row="3" Margin="0,6,0,0"/>
                                     <TextBox Text="{Binding SelectedHandoverDetail.AdditionalInfo}"
-                                             Grid.Column="1" Grid.Row="3" Margin="0,6,0,-27" TextWrapping="Wrap"/>
+                                             Grid.Column="1" Grid.Row="3" Margin="0,6,0,-27" TextWrapping="Wrap" AcceptsReturn="True"/>
                                 </Grid>
                             </ScrollViewer>
                         </Grid>
@@ -151,9 +151,8 @@
 
                     <Border Grid.Row="2" VerticalAlignment="Top" Height="1" Background="#E6E6E6" Margin="0,22,0,0"/>
 
-                    <!-- ====== 자료 첨부 (제목 + 우측 버튼) ====== -->
+                    <!-- ====== 자료 첨부 ====== -->
                     <StackPanel Grid.Row="3" Margin="0,8,0,8">
-                        <!-- 헤더: 제목(좌) + 자료 첨부 버튼(우) -->
                         <Grid Margin="0,0,0,8">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="226*"/>
@@ -193,6 +192,7 @@
                             </Button>
                         </Grid>
 
+
                         <!-- 첨부 파일 목록 -->
                         <ItemsControl ItemsSource="{Binding SelectedHandoverDetail.Attachments}">
                             <ItemsControl.ItemTemplate>
@@ -200,27 +200,39 @@
                                     <Grid Margin="0,6,0,0">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="28"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
 
                                         <StackPanel Orientation="Horizontal">
-                                            <Border Width="28" Height="28" CornerRadius="6" BorderBrush="#CFCFCF" BorderThickness="1" Background="#F8F8F8" Margin="0,0,8,0">
+                                            <Border Width="28" Height="28" CornerRadius="6"
+                                                BorderBrush="#CFCFCF" BorderThickness="1" Background="#F8F8F8"
+                                                Margin="0,0,8,0">
                                                 <TextBlock Text="📄" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                             </Border>
                                             <TextBlock Text="{Binding FileName}" VerticalAlignment="Center"/>
                                         </StackPanel>
 
-                                        <Button Grid.Column="1"
-                                                Width="28" Height="28"
-                                                Background="Transparent" BorderBrush="#CFCFCF" BorderThickness="1"
-                                                Command="{Binding DataContext.DownloadCommand, RelativeSource={RelativeSource AncestorType=Page}}"
-                                                CommandParameter="{Binding}">
-                                            <TextBlock Text="⤓" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <!-- 열기 -->
+                                        <Button Grid.Column="1" Margin="8,0,0,0"
+                                            Padding="6,2" Background="Transparent" BorderBrush="#CFCFCF" BorderThickness="1"
+                                            Command="{Binding DataContext.OpenAttachmentCommand, RelativeSource={RelativeSource AncestorType=Page}}"
+                                            CommandParameter="{Binding}">
+                                            <TextBlock Text="열기"/>
+                                        </Button>
+
+                                        <!-- 제거 -->
+                                        <Button Grid.Column="2" Margin="6,0,0,0"
+                                            Padding="6,2" Background="Transparent" BorderBrush="#CFCFCF" BorderThickness="1"
+                                            Command="{Binding DataContext.RemoveAttachmentCommand, RelativeSource={RelativeSource AncestorType=Page}}"
+                                            CommandParameter="{Binding}">
+                                            <TextBlock Text="삭제"/>
                                         </Button>
                                     </Grid>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
+
                     </StackPanel>
 
 
@@ -231,7 +243,7 @@
                             <!-- 공통 '필 버튼' 스타일 -->
                             <StackPanel.Resources>
                                 <Style x:Key="PillButton" TargetType="Button">
-                                    <Setter Property="Width" Value="163"/>
+                                    <Setter Property="Width" Value="165"/>
                                     <Setter Property="Height" Value="44"/>
                                     <Setter Property="FontFamily" Value="Noto Sans KR"/>
                                     <Setter Property="FontWeight" Value="SemiBold"/>
@@ -254,13 +266,13 @@
 
                             <!-- 아웃라인 버튼 -->
                             <Button Content="    AI 문장 정리하기"
-                                    Style="{StaticResource PillButton}"
-                                    Margin="0,0,8,0"
-                                    Background="White"
-                                    Foreground="#007AFF"
-                                    BorderBrush="#007AFF"
-                                    BorderThickness="1"
-                                    Command="{Binding GoToNoticeCommand}"/>
+                                Style="{StaticResource PillButton}"
+                                Background="White"
+                                Foreground="#007AFF"
+                                BorderBrush="#007AFF"
+                                BorderThickness="2"
+                                Margin="0,0,5,0"
+                                Command="{Binding SummarizeCommand}"/>
 
                             <!-- 꽉 찬 파란 버튼 -->
                             <Button Content="인수인계 등록하기"
@@ -268,7 +280,7 @@
                                     Background="#007AFF"
                                     Foreground="White"
                                     BorderThickness="0"
-                                    Command="{Binding GoToHandoverCommand}"/>
+                                    Command="{Binding RegisterCommand}"/>
                         </StackPanel>
                     </Border>
                 </Grid>
@@ -287,5 +299,18 @@
                 </Image.RenderTransform>
             </Image>
         </Grid>
+        
+        <!-- 로딩 팝업-->
+        <Grid Visibility="{Binding IsAI, Converter={StaticResource BooleanToVisibilityConverter}}"
+          Background="#80000000">
+                <Border Background="White" CornerRadius="12" Padding="20"
+              HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel>
+                    <ProgressBar IsIndeterminate="True" Width="200" Height="10"/>
+                    <TextBlock Text="{Binding AIMessage}" Margin="0,10,0,0" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+       
     </Grid>
 </Page>

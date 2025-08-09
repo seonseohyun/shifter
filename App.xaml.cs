@@ -32,10 +32,11 @@ namespace ShifterUser
 
         private static void ConfigureServices(IServiceCollection services)
         {
+
             // Models
             services.AddSingleton<Models.UserSession>();
 
-            // Helpers
+            // Services
             services.AddSingleton<SocketManager>();
             services.AddSingleton<Models.UserManager>();
             services.AddSingleton<Models.WorkRequestManager>();
@@ -49,7 +50,9 @@ namespace ShifterUser
             services.AddTransient<LoginViewModel>();
             services.AddSingleton<HomeViewModel>();
             services.AddTransient<InfoViewModel>();
-            services.AddTransient<MyScheViewModel>();
+            services.AddSingleton<MyScheViewModel>();
+            services.AddSingleton<ShifterUser.Helpers.IUserScheduleProvider>(
+                sp => sp.GetRequiredService<MyScheViewModel>());
             services.AddTransient<QRCheckViewModel>();
             services.AddTransient<MyReqStatusViewModel>();
             services.AddTransient<ReqScheViewModel>();

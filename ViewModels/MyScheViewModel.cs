@@ -5,6 +5,7 @@ using ShifterUser.Enums;
 using ShifterUser.Messages;
 using ShifterUser.Models;
 using ShifterUser.Services;
+using ShifterUser.Helpers;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace ShifterUser.ViewModels
 {
-    public partial class MyScheViewModel : ObservableObject
+    public partial class MyScheViewModel : ObservableObject, IUserScheduleProvider
     {
         // ===== 주입 의존성 =====
         private readonly TimetableManager _tt;
@@ -97,6 +98,28 @@ namespace ShifterUser.ViewModels
             }
         }
 
+        // IUserScheduleProvider 구현
+        public bool TryGetShiftType(DateTime date, out ShiftType shiftType)
+        {
+            // 월별 로드 이후 _monthSchedule에 캐시되어 있음
+            if (_monthSchedule.TryGetValue(date.Date, out var sched))
+            {
+                shiftType = sched.ShiftType; // ConfirmedWorkScheModel.ShiftType (enum)
+                return true;
+            }
+
+            // 캐시에 없을 경우 Days 컬렉션에서 보조 검색
+            var hit = Days.FirstOrDefault(d => d.Date?.Date == date.Date);
+            if (hit is not null && !string.IsNullOrWhiteSpace(hit.ShiftType))
+            {
+                shiftType = ParseShiftEnum(hit.ShiftType); // 이미 있는 유틸
+                return true;
+            }
+
+            shiftType = ShiftType.Off;
+            return false;
+        }
+
         // ===== 서버에서 근무표 가져와서 Days에 매핑 =====
         private async Task LoadTimeTableAsync(DateTime month)
         {
@@ -119,9 +142,9 @@ namespace ShifterUser.ViewModels
                     //  월데이터엔 세부시간/그룹이 없으므로 기본값으로 캐시
                     _monthSchedule[key] = new ConfirmedWorkScheModel
                     {
-                        ShiftType = Enum.Parse<ShiftType>(v.Shift, true),
-                        StartTime = TimeSpan.Zero,   // 또는 GetDefaultStart(v.Shift)
-                        EndTime = TimeSpan.Zero,   // 또는 GetDefaultEnd(v.Shift)
+                        ShiftType = ParseShiftEnum(v.Shift),
+                        StartTime = TimeSpan.Zero,
+                        EndTime = TimeSpan.Zero,
                         GroupName = null
                     };
                 }
@@ -134,10 +157,15 @@ namespace ShifterUser.ViewModels
                 }
             }
 
-            WorkDay = list.Count(x => !x.Shift.Equals("Off", StringComparison.OrdinalIgnoreCase));
-            NightCnt = list.Count(x => x.Shift.Equals("Night", StringComparison.OrdinalIgnoreCase));
-            OffCnt = list.Count(x => x.Shift.Equals("Off", StringComparison.OrdinalIgnoreCase));
+            // shift 문자열을 모두 정규화해서 동일 기준으로 집계
+            var normalized = list.Select(x => NormalizeShiftString(x.Shift)).ToList();
+
+            WorkDay = normalized.Count(s => s is "Day" or "Eve" or "Night");
+            NightCnt = normalized.Count(s => s == "Night");
+            OffCnt = normalized.Count(s => s == "Off");
+
             UpdateSummary();
+
         }
 
 
@@ -202,6 +230,30 @@ namespace ShifterUser.ViewModels
             await LoadTimeTableAsync(_currentDate);
         }
 
+        private static string NormalizeShiftString(string? s)
+        {
+            if (string.IsNullOrWhiteSpace(s)) return "";
+            switch (s.Trim().ToUpperInvariant())
+            {
+                case "D":
+                case "DAY": return "Day";
+                case "E":
+                case "EVE":
+                case "EVENING": return "Eve";
+                case "N":
+                case "NIGHT": return "Night";
+                case "O":
+                case "OFF": return "Off";
+                default: return s;
+            }
+        }
+
+        private static ShiftType ParseShiftEnum(string? s)
+        {
+            var norm = NormalizeShiftString(s);
+            return Enum.TryParse<ShiftType>(norm, true, out var r) ? r : ShiftType.Off;
+        }
+
         // ===== 뒤로가기 =====
         [RelayCommand]
         private static void GoBack()
@@ -209,7 +261,11 @@ namespace ShifterUser.ViewModels
             Console.WriteLine("[MyScheViewModel] GoBack command executed.");
             WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.Home));
         }
+
+
     }
+
+
 
     // ===== 달력 셀 모델 =====
     public partial class DayModel : ObservableObject

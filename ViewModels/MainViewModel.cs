@@ -54,6 +54,7 @@ namespace ShifterUser.ViewModels
                 case PageType.QR:
                     _mainFrame.Navigate(new QRCheckView { DataContext = App.Services.GetService(typeof(QRCheckViewModel)) });
                     break;
+
                 case PageType.MySche:
                     _mainFrame.Navigate(new MyScheView { DataContext = App.Services.GetService(typeof(MyScheViewModel)) });
                     break;
