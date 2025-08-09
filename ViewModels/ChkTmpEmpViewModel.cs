@@ -12,8 +12,9 @@ namespace Shifter.ViewModels {
     public partial class ChkTmpEmpViewModel : ObservableObject {
 
         /** Constructor **/
-        public ChkTmpEmpViewModel(Session? session) {
-            _session = session;
+        public ChkTmpEmpViewModel(Session? session, EmpModel? empModel) {
+            _session  = session!;
+            _empModel = empModel!;
 
             TeamName = _session?.GetCurrentTeamName();
             _ = UpdateTempEmpInfoAsync();
@@ -22,8 +23,9 @@ namespace Shifter.ViewModels {
 
 
         /** Member Variables **/
-        private readonly Session? _session;
-        [ObservableProperty] private ObservableCollection<TempEmpInfo> tempEmpInfo = new();
+        private readonly Session ? _session;
+        private readonly EmpModel? _empModel;
+        [ObservableProperty] private ObservableCollection<Employee> tempEmpInfo = new();
         [ObservableProperty] private string? teamName = "";
 
 
@@ -32,48 +34,13 @@ namespace Shifter.ViewModels {
         public async Task UpdateTempEmpInfoAsync() {
             Console.WriteLine("[ChkTmpEmpViewModel] Executed UpdateTempEmpInfoAsync");
             
-            ObservableCollection<TempEmpInfo> ResultTempEmpInfo = new();
-
-            /***********************************<Test>***********************************/
-
-            TempEmpInfo TestTempEmpInfo = new()
-            {
-                GradeItem     = new()
-                {
-                    GradeName = "Test Grade",
-                    GradeNum  = 1
-                },
-                EmpName       = "Test Name",
-                EmpPhoneNum   = "010-0000-0000",
-                EmpTotalHours = 80,
-                EmpTmpId      = "Test ID",
-                EmpTmpPw      = "Test Pw"
-            };
-            ResultTempEmpInfo.Clear();
-            for( int i = 0; i < 15; i++ ) {
-                ResultTempEmpInfo.Add(TestTempEmpInfo);
-            }
-
-            /*****************************************************************************/
-
-            /* ResultTempEmpInfo = Model.GetTempEmpInfoAsync() */
+            ObservableCollection<Employee> ResultTempEmpInfo = new();
+ 
+            ResultTempEmpInfo = await _empModel!.ChkTempStaffInfoAsync();
 
             TempEmpInfo = ResultTempEmpInfo;
 
             return;
         }
-    }
-
-
-    /*** TempEmpInfo Class ***/
-    public partial class TempEmpInfo : ObservableObject {
-
-        /** Member Variables **/
-        [ObservableProperty] private GradeItem? gradeItem  = null;
-        [ObservableProperty] private string? empName       = "";
-        [ObservableProperty] private string? empPhoneNum   = "";
-        [ObservableProperty] private float ? empTotalHours = 0;
-        [ObservableProperty] private string? empTmpId      = "";
-        [ObservableProperty] private string? empTmpPw      = "";
     }
 }

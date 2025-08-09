@@ -23,8 +23,9 @@ namespace Shifter.ViewModels {
             _session.VisGoBack = false;
 
             TeamName = _session.GetCurrentTeamName();
-            _ = CheckTodayDuty();
-            //_ = _scdmodel!.ReqShiftInfo();
+            _ = _scdmodel!.ReqShiftInfo();
+            //_ = CheckTodayDuty();
+
         }
 
 

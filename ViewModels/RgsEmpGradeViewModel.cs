@@ -16,14 +16,16 @@ namespace Shifter.ViewModels {
     public partial class RgsEmpGradeViewModel : ObservableObject{
 
         /** Constructor **/
-        public RgsEmpGradeViewModel(Session? session) {
+        public RgsEmpGradeViewModel(Session? session, EmpModel empModel) {
             _session = session;
+            _empmodel = empModel;
         }
 
 
 
         /** Member Variables **/
         private readonly Session? _session;
+        private readonly EmpModel? _empmodel;
         [ObservableProperty] private ObservableCollection<GradeItem> grades = new();
 
 
@@ -67,6 +69,9 @@ namespace Shifter.ViewModels {
                 Console.WriteLine($"[RgsEmpGradeViewModel] Grade[{i}] GradeNum: {Grades[i].GradeNum}, GradeName: {Grades[i].GradeName}");
                 _session.Grades.Add(Grades[i]);
             }
+
+            /* Register Info on Server */
+            //_ = _empmodel!.RgsEmpGradeAsync(Grades);
 
             /* NavigatePage */
             WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.RgsEmpInfo));

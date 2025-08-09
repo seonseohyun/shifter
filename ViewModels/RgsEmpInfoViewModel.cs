@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Shifter.Enums;
+using System.Windows;
 
 namespace Shifter.ViewModels {
     public partial class RgsEmpInfoViewModel : ObservableObject{
@@ -38,36 +39,31 @@ namespace Shifter.ViewModels {
                 GradeItem = Grades.First(),
                 EmpName = "",
                 PhoneNum = "",
-
             });
         }
 
 
         /* Register Employee Information */
-        [RelayCommand] private void RgsEmpInfo() {
+        [RelayCommand] private async Task RgsEmpInfo() {
             Console.WriteLine("[RgsEmpInfoViewModel] Executed RgsEmpInfo()");
 
             /* Register Employee Info on Server */
-            _empmodel!.RgsEmpInfoAsync(Employees).ContinueWith(task => {
-                if (task.IsFaulted) {
-                    Console.WriteLine("[RgsEmpInfoViewModel] Error: " + task.Exception?.Message);
-                } else {
-                    Console.WriteLine("[RgsEmpInfoViewModel] Employee information registered successfully.");
-                }
-            });
+            bool result = await _empmodel!.RgsEmpInfoAsync(Employees);
+           
+            if( result == true ) {
+                /* Change Page */
+                WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.ChkTmpEmpInfo));
+            }
+            else if ( result == false ) {
+                /* Show Error Message */
+                MessageBox.Show("직원정보 등록에 실패했습니다. 다시 시도해주세요.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else {
+                /* Show Error Message */
+                MessageBox.Show("직원정보 등록에 실패했습니다. 다시 시도해주세요.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
 
 
-            /* Change Page */
-            WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.ChkTmpEmpInfo));
         }
     }
-}
-
-
-
-public partial class Employee : ObservableObject {
-    [ObservableProperty] private GradeItem? gradeItem;     // grade_level, grade_name
-    [ObservableProperty] private string?    empName;       // staff_name
-    [ObservableProperty] private string?    phoneNum;      // phone_num
-    [ObservableProperty] private int?       totalHours;    // total_hours
 }
