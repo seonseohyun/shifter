@@ -44,7 +44,7 @@ namespace ShifterUser.ViewModels
         [RelayCommand]
         private void Confirm()
         {
-            WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.GroupNotice));
+            WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.GroupHandover));
         }
 
         // 바로 보기

@@ -48,8 +48,18 @@ namespace ShifterUser.ViewModels
 
                 // 첨부 단건 응답을 리스트로 변환
                 detail.Attachments.Clear();
-                if (detail.IsAttached == 1 && !string.IsNullOrWhiteSpace(detail.FileName))
-                    detail.Attachments.Add(new AttachmentModel { FileName = detail.FileName });
+                if (!string.IsNullOrWhiteSpace(detail.FileName))
+                {
+                    // 여러 개가 올 가능성 대비: 콤마/세미콜론/파이프 구분 허용
+                    var names = detail.FileName
+                        .Split(new[] { ',', ';', '|' }, StringSplitOptions.RemoveEmptyEntries);
+
+                    foreach (var n in names)
+                        detail.Attachments.Add(new AttachmentModel { FileName = n.Trim() });
+
+                    // 서버가 is_attached를 0으로 줄 때도 UI가 보이도록 보정
+                    detail.IsAttached = detail.Attachments.Count > 0 ? 1 : 0;
+                }
 
                 SelectedHandoverDetail = detail;
 
