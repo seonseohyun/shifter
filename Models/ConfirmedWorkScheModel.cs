@@ -10,6 +10,6 @@ namespace ShifterUser.Models
         [ObservableProperty] private ShiftType shiftType;
         [ObservableProperty] private TimeSpan startTime;
         [ObservableProperty] private TimeSpan endTime;
-        [ObservableProperty] private string groupName;
+        [ObservableProperty] private string? groupName;
     }
 }

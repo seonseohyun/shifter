@@ -3,10 +3,27 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:local="clr-namespace:ShifterUser.Helpers"
       xmlns:converters="clr-namespace:ShifterUser.Converters"
-      Background="White"
-      FontFamily="Noto Sans KR"
-      Width="400"
-      Height="800">
+      Background="White" FontFamily="Noto Sans KR" Width="400" Height="800"
+      Loaded="Page_Loaded">
+
+    <Page.Resources>
+        <!-- 색상  -->
+        <SolidColorBrush x:Key="ShiftDayBrush"   Color="#F8B6B8"/>
+        <SolidColorBrush x:Key="ShiftEveBrush"   Color="#BEE3C1"/>
+        <SolidColorBrush x:Key="ShiftNightBrush" Color="#AFCBFF"/>
+        <SolidColorBrush x:Key="ShiftOffBrush"   Color="#D6D6D6"/>
+
+        <!-- 컨버터 -->
+        <converters:ShiftToBrushConverter x:Key="ShiftToBrushConverter"
+                                          DayBrush="{StaticResource ShiftDayBrush}"
+                                          EveBrush="{StaticResource ShiftEveBrush}"
+                                          NightBrush="{StaticResource ShiftNightBrush}"
+                                          OffBrush="{StaticResource ShiftOffBrush}"/>
+        <converters:ShiftToCodeConverter x:Key="ShiftToCodeConverter"/>
+        <!-- 내장 컨버터 -->
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </Page.Resources>
+
 
     <Grid Width="400" Height="800">
         <Grid.RowDefinitions>
@@ -73,7 +90,6 @@
             <TextBlock Text="토" HorizontalAlignment="Center" Foreground="Blue"/>
         </UniformGrid>
 
-        <!-- 달력 날짜 -->
         <ItemsControl Grid.Row="4" ItemsSource="{Binding Days}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -84,25 +100,76 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Button Command="{Binding DataContext.DayClickCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
-                            CommandParameter="{Binding}"
-                            BorderThickness="0"
-                            Background="Transparent"
-                            Padding="0"
-                            IsEnabled="{Binding IsWrited}">
-                        <Border 
-                            BorderBrush="LightGray"
-                            BorderThickness="0.5"
-                            CornerRadius="1"
-                            Background="Transparent">
+                    CommandParameter="{Binding}"
+                    BorderThickness="0"
+                    Background="Transparent"
+                    Padding="0"
+                    IsEnabled="{Binding IsWrited}">
+                        <Border BorderBrush="LightGray"
+                        BorderThickness="0.5"
+                        CornerRadius="1"
+                        Background="Transparent">
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Setter Property="BorderBrush" Value="LightGray"/>
+                                    <Setter Property="BorderThickness" Value="0.5"/>
+                                    <!-- 오늘인 셀은 테두리 강조 -->
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsToday}" Value="True">
+                                            <Setter Property="BorderBrush" Value="#007AFF"/>
+                                            <Setter Property="BorderThickness" Value="1.5"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+
                             <Grid Width="110" Height="110">
-                                <TextBlock Text="{Binding DayText}" 
-                                           HorizontalAlignment="Left"
-                                           VerticalAlignment="Top"
-                                           Margin="2,1,0,0" 
-                                           FontSize="12"
-                                           Foreground="Black"
-                                           FontWeight="SemiBold" 
-                                           />
+                                <!-- 날짜 숫자 + 오늘 배지 -->
+                                <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="4,3,0,0">
+                                    <!-- 오늘 배지(동그라미) -->
+                                    <Border Width="20" Height="20"
+                                    CornerRadius="10"
+                                    Background="#007AFF"
+                                    Visibility="{Binding IsToday, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                    <!-- 날짜 숫자 -->
+                                    <TextBlock Text="{Binding DayText}"
+                                       FontSize="12"
+                                       FontWeight="SemiBold"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center">
+                                        <TextBlock.ToolTip>
+                                            <ToolTip Content="{Binding Date, StringFormat={}{0:yyyy.MM.dd}}"/>
+                                        </TextBlock.ToolTip>
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="Foreground" Value="Black"/>
+                                                <Style.Triggers>
+                                                    <!-- 오늘이면 흰 글자 (배지 위) -->
+                                                    <DataTrigger Binding="{Binding IsToday}" Value="True">
+                                                        <Setter Property="Foreground" Value="White"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </Grid>
+
+                                <!-- 근무 칩 -->
+                                <Border CornerRadius="0"
+                                Margin="0,10,0,0"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Stretch"
+                                Padding="4,2"
+                                Background="{Binding ShiftType, Converter={StaticResource ShiftToBrushConverter}}"
+                                Visibility="{Binding HasShift, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <TextBlock Text="{Binding ShiftType, Converter={StaticResource ShiftToCodeConverter}}"
+                                       FontSize="11"
+                                       FontWeight="SemiBold"
+                                       Foreground="White"
+                                       HorizontalAlignment="Left"
+                                       Margin="20,0,0,0"
+                                       VerticalAlignment="Center"/>
+                                </Border>
                             </Grid>
                         </Border>
                     </Button>

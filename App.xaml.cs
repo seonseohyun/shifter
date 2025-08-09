@@ -41,11 +41,12 @@ namespace ShifterUser
             services.AddSingleton<Models.WorkRequestManager>();
             services.AddSingleton<Models.HandoverManager>();
             services.AddSingleton<Models.NoticeManager>();
+            services.AddSingleton<TimetableManager>();
+            services.AddSingleton<AttendanceManager>();
 
             // ViewModels
             services.AddSingleton<MainViewModel>();
             services.AddTransient<LoginViewModel>();
-            services.AddTransient<QRCheckViewModel>();
             services.AddSingleton<HomeViewModel>();
             services.AddTransient<InfoViewModel>();
             services.AddTransient<MyScheViewModel>();

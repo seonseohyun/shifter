@@ -2,7 +2,6 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-
 namespace ShifterUser.Views
 {
     /// <summary>
@@ -23,5 +22,12 @@ namespace ShifterUser.Views
                     vm.HideDetailCommand.Execute(null);
             }
         }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (DataContext is MyScheViewModel vm && vm.LoadOnAppearAsyncCommand.CanExecute(null))
+                vm.LoadOnAppearAsyncCommand.Execute(null);
+        }
+
     }
 }

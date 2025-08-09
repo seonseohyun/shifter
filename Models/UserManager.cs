@@ -25,8 +25,6 @@ namespace ShifterUser.Models
             _socket = socket;
             _session = session;
         }
-        // 사용자 정보
-        // 근무표 정보
 
         // 로그인
         public bool LogIn(string id, string password)
@@ -169,7 +167,6 @@ namespace ShifterUser.Models
 
             return false;
         }
-
 
 
         public bool AskCheckOut(HomeViewModel homeVM)
