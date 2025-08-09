@@ -169,7 +169,7 @@ namespace ShifterUser.Models
         // 인수인계 등록 
         public async Task<(bool ok, int? handoverUid, string? error)> RegisterHandoverAsync(HandoverDetailModel m)
         {
-            // 클라이언트에서 파일을 보관/표시만 할 것이므로 서버 전송 필드는 이름/여부만 보냄
+            
             var req = new JObject
             {
                 ["protocol"] = "reg_handover",
@@ -199,8 +199,6 @@ namespace ShifterUser.Models
             var err = (string?)root["message"] ?? (string?)root["messege"];
 
             return (ok, uid, ok ? null : err);
-
-
         }
 
         private ShiftType ParseShiftTime(string? str) => str?.ToLower() switch

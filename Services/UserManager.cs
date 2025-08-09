@@ -212,7 +212,46 @@ namespace ShifterUser.Models
             }
         }
 
+        public async Task<string[]> GetWeeklyShiftCodesAsync(DateTime monday)
+        {
+            var result = new string[7] { "-", "-", "-", "-", "-", "-", "-" };
 
+            var req = new JObject
+            {
+                ["protocol"] = "ask_timetable_weekly",
+                ["data"] = new JObject
+                {
+                    ["date"] = monday.ToString("yyyy-MM-dd"),
+                    ["staff_uid"] = _session.GetUid()
+                }
+            };
+
+            var sendItem = new WorkItem
+            {
+                json = JsonConvert.SerializeObject(req),
+                payload = Array.Empty<byte>(),
+                path = ""
+            };
+
+            _socket.Send(sendItem);
+
+            WorkItem resItem = _socket.Receive();
+            if (!string.IsNullOrEmpty(resItem.json))
+            {
+                var res = JObject.Parse(resItem.json);
+                var arr = res?["data"]?["shift_type"] as JArray;
+                if (arr != null)
+                {
+                    for (int i = 0; i < Math.Min(7, arr.Count); i++)
+                    {
+                        var raw = arr[i]?.ToString();
+                        result[i] = string.IsNullOrWhiteSpace(raw) ? "-" : raw.Trim().ToUpperInvariant();
+                    }
+                }
+            }
+
+            return result;
+        }
     }
 }
 

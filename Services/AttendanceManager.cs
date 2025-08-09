@@ -24,6 +24,7 @@ namespace ShifterUser.Services
             // 요청 JSON
             var req = new JObject
             {
+                //attendance_info
                 ["protocol"] = "attendance_info",
                 ["data"] = new JObject
                 {

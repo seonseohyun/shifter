@@ -5,6 +5,7 @@ using ShifterUser.Enums;
 using ShifterUser.Messages;
 using ShifterUser.Models;
 using System;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Media;
 
@@ -13,10 +14,15 @@ namespace ShifterUser.ViewModels
     public partial class HomeViewModel : ObservableObject
     {
         private readonly UserSession _session;
+        private readonly UserManager _manager;
+        public ObservableCollection<string> WeeklyCodes { get; } =
+        new ObservableCollection<string>(new[] { "-", "-", "-", "-", "-", "-", "-" });
 
-        public HomeViewModel(UserSession session)
+        public HomeViewModel(UserSession session, UserManager userManager)
         {
             _session = session;
+            _manager = userManager;
+            _ = LoadWeekAsync(DateTime.Today);
 
             // 초기화
             TeamName = _session.GetTeamName();
@@ -38,6 +44,16 @@ namespace ShifterUser.ViewModels
                     AttendanceStatus = AttendanceStatus.출근전;
             }
 
+        }
+
+        private async Task LoadWeekAsync(DateTime any)
+        {
+            int offset = ((int)any.DayOfWeek + 6) % 7; // Mon=0
+            var monday = any.Date.AddDays(-offset);
+
+            var codes = await _manager.GetWeeklyShiftCodesAsync(monday); 
+            for (int i = 0; i < 7; i++)
+                WeeklyCodes[i] = (codes[i] ?? "-").ToUpperInvariant();
         }
 
         // 바인딩 속성

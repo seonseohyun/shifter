@@ -20,7 +20,7 @@ public class TimetableManager
     public class TimeTableEntry
     {
         public DateTime Date { get; set; }
-        public string Shift { get; set; } = "";     // "Day|Eve|Night|Off"
+        public string Shift { get; set; } = "";    
         public int Hours { get; set; }
         public int ScheduleUid { get; set; }
     }
@@ -40,7 +40,6 @@ public class TimetableManager
 
         _socket.Send(new WorkItem { json = JsonConvert.SerializeObject(req) });
 
-        // ⚠️ 프로젝트 표준 수신 방식에 맞춰 아래 한 줄 선택
         WorkItem resp = _socket.Receive();
 
         var root = JObject.Parse(resp.json);

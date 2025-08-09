@@ -19,7 +19,25 @@
                           ShadowDepth="10"
                           BlurRadius="6"
                           Opacity="0.2"/>
+
+        <!-- === 근무표 색상 팔레트 === -->
+        <SolidColorBrush x:Key="ShiftDayBrush"   Color="#FFB300"/>
+        <!-- Day: 골드 -->
+        <SolidColorBrush x:Key="ShiftEveBrush"   Color="#26A69A"/>
+        <!-- Eve: 청록 -->
+        <SolidColorBrush x:Key="ShiftNightBrush" Color="#283593"/>
+        <!-- Night: 남색 -->
+        <SolidColorBrush x:Key="ShiftOffBrush"   Color="#757575"/>
+        <!-- Off / '-' : 회색 -->
+
+        <!-- === 근무 코드 → 색상 변환 컨버터 === -->
+        <conv:ShiftToBrushConverter x:Key="ShiftToBrushConverter"
+                                      DayBrush="{StaticResource ShiftDayBrush}"
+                                      EveBrush="{StaticResource ShiftEveBrush}"
+                                      NightBrush="{StaticResource ShiftNightBrush}"
+                                      OffBrush="{StaticResource ShiftOffBrush}"/>
     </Page.Resources>
+
 
     <Grid>
         <!-- 상단 바 -->
@@ -134,35 +152,69 @@
                             </Image>
                         </DockPanel>
 
-                        <!-- 요일 7개 구성 -->
+                        <!-- 색 팔레트 & 컨버터는 이미 등록되어 있다고 가정 -->
                         <UniformGrid Columns="7" HorizontalAlignment="Stretch">
-                            <StackPanel HorizontalAlignment="Center">
-                                <TextBlock Text="월" Background="#EEF6FF" Padding="5,2" Width="50" TextAlignment="Center" Height="30" FontSize="16"/>
-                                <TextBlock Text="D" FontWeight="Bold" Foreground="#007AFF" TextAlignment="Center" Width="50" Height="30" FontSize="16"/>
-                            </StackPanel>
-                            <StackPanel HorizontalAlignment="Center">
-                                <TextBlock Text="화" Background="#EEF6FF" Padding="5,2" Width="50" TextAlignment="Center" Height="30" FontSize="16"/>
-                                <TextBlock Text="N" FontWeight="Bold" Foreground="#007AFF" TextAlignment="Center" Width="50" Height="30" FontSize="16"/>
-                            </StackPanel>
-                            <StackPanel HorizontalAlignment="Center">
-                                <TextBlock Text="수" Background="#EEF6FF" Padding="5,2" Width="50" TextAlignment="Center" Height="30" FontSize="16"/>
-                                <TextBlock Text="N" FontWeight="Bold" Foreground="#007AFF" TextAlignment="Center" Width="50" Height="30" FontSize="16"/>
-                            </StackPanel>
-                            <StackPanel HorizontalAlignment="Center">
-                                <TextBlock Text="목" Background="#EEF6FF" Padding="5,2" Width="50" TextAlignment="Center" Height="30" FontSize="16"/>
-                                <TextBlock Text="E" FontWeight="Bold" Foreground="#007AFF" TextAlignment="Center" Width="50" Height="30" FontSize="16"/>
-                            </StackPanel>
-                            <StackPanel HorizontalAlignment="Center">
-                                <TextBlock Text="금" Background="#EEF6FF" Padding="5,2" Width="50" TextAlignment="Center" Height="30" FontSize="16"/>
-                                <TextBlock Text="O" FontWeight="Bold" Foreground="#007AFF" TextAlignment="Center" Width="50" Height="30" FontSize="16"/>
-                            </StackPanel>
-                            <StackPanel HorizontalAlignment="Center">
-                                <TextBlock Text="토" Background="#EEF6FF" Padding="5,2" Width="50" TextAlignment="Center" Height="30" FontSize="16"/>
-                                <TextBlock Text="-" FontWeight="Bold" Foreground="Gray" TextAlignment="Center" Width="50" Height="30" FontSize="16"/>
-                            </StackPanel>
+                            <!-- 월 -->
                             <StackPanel HorizontalAlignment="Center" Width="50">
-                                <TextBlock Text="일" Background="#EEF6FF" Padding="5,2" Width="50" TextAlignment="Center" Height="30" FontSize="16"/>
-                                <TextBlock Text="-" FontWeight="Bold" Foreground="Gray" TextAlignment="Center" Height="30" FontSize="16"/>
+                                <TextBlock Text="월" Background="#EEF6FF" Padding="5,2"
+                   Width="50" Height="30" TextAlignment="Center" FontSize="16"/>
+                                <TextBlock Text="{Binding WeeklyCodes[0]}" FontWeight="Bold" FontSize="16"
+                   TextAlignment="Center" Width="50" Height="30"
+                   Foreground="{Binding WeeklyCodes[0], Converter={StaticResource ShiftToBrushConverter}}"/>
+                            </StackPanel>
+
+                            <!-- 화 -->
+                            <StackPanel HorizontalAlignment="Center" Width="50">
+                                <TextBlock Text="화" Background="#EEF6FF" Padding="5,2"
+                   Width="50" Height="30" TextAlignment="Center" FontSize="16"/>
+                                <TextBlock Text="{Binding WeeklyCodes[1]}" FontWeight="Bold" FontSize="16"
+                   TextAlignment="Center" Width="50" Height="30"
+                   Foreground="{Binding WeeklyCodes[1], Converter={StaticResource ShiftToBrushConverter}}"/>
+                            </StackPanel>
+
+                            <!-- 수 -->
+                            <StackPanel HorizontalAlignment="Center" Width="50">
+                                <TextBlock Text="수" Background="#EEF6FF" Padding="5,2"
+                   Width="50" Height="30" TextAlignment="Center" FontSize="16"/>
+                                <TextBlock Text="{Binding WeeklyCodes[2]}" FontWeight="Bold" FontSize="16"
+                   TextAlignment="Center" Width="50" Height="30"
+                   Foreground="{Binding WeeklyCodes[2], Converter={StaticResource ShiftToBrushConverter}}"/>
+                            </StackPanel>
+
+                            <!-- 목 -->
+                            <StackPanel HorizontalAlignment="Center" Width="50">
+                                <TextBlock Text="목" Background="#EEF6FF" Padding="5,2"
+                   Width="50" Height="30" TextAlignment="Center" FontSize="16"/>
+                                <TextBlock Text="{Binding WeeklyCodes[3]}" FontWeight="Bold" FontSize="16"
+                   TextAlignment="Center" Width="50" Height="30"
+                   Foreground="{Binding WeeklyCodes[3], Converter={StaticResource ShiftToBrushConverter}}"/>
+                            </StackPanel>
+
+                            <!-- 금 -->
+                            <StackPanel HorizontalAlignment="Center" Width="50">
+                                <TextBlock Text="금" Background="#EEF6FF" Padding="5,2"
+                   Width="50" Height="30" TextAlignment="Center" FontSize="16"/>
+                                <TextBlock Text="{Binding WeeklyCodes[4]}" FontWeight="Bold" FontSize="16"
+                   TextAlignment="Center" Width="50" Height="30"
+                   Foreground="{Binding WeeklyCodes[4], Converter={StaticResource ShiftToBrushConverter}}"/>
+                            </StackPanel>
+
+                            <!-- 토 -->
+                            <StackPanel HorizontalAlignment="Center" Width="50">
+                                <TextBlock Text="토" Background="#EEF6FF" Padding="5,2"
+                   Width="50" Height="30" TextAlignment="Center" FontSize="16"/>
+                                <TextBlock Text="{Binding WeeklyCodes[5]}" FontWeight="Bold" FontSize="16"
+                   TextAlignment="Center" Width="50" Height="30"
+                   Foreground="{Binding WeeklyCodes[5], Converter={StaticResource ShiftToBrushConverter}}"/>
+                            </StackPanel>
+
+                            <!-- 일 -->
+                            <StackPanel HorizontalAlignment="Center" Width="50">
+                                <TextBlock Text="일" Background="#EEF6FF" Padding="5,2"
+                   Width="50" Height="30" TextAlignment="Center" FontSize="16"/>
+                                <TextBlock Text="{Binding WeeklyCodes[6]}" FontWeight="Bold" FontSize="16"
+                   TextAlignment="Center" Width="50" Height="30"
+                   Foreground="{Binding WeeklyCodes[6], Converter={StaticResource ShiftToBrushConverter}}"/>
                             </StackPanel>
                         </UniformGrid>
 

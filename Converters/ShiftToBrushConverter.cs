@@ -28,6 +28,7 @@ namespace ShifterUser.Converters
                 case "n": return NightBrush ?? Brushes.CornflowerBlue;
                 case "off":
                 case "o": return OffBrush ?? Brushes.Gray;
+                case "-": return OffBrush ?? Brushes.Gray;
                 default: return Brushes.Transparent;
             }
         }
