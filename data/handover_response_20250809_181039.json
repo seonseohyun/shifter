@@ -1,0 +1,9 @@
+{
+  "timestamp": "2025-08-09T18:10:39.756904",
+  "request_type": "handover",
+  "status": "success",
+  "task": "summarize_handover",
+  "result": "- 환자: 501호 김할머니\n- 상태: 혈압 불안정\n- 조치: 2시간마다 혈압 체크 필요\n- 일정: 내일 오전 정형외과 수술 예정",
+  "input_text_length": 51,
+  "processing_time_seconds": 1.244271
+}
