@@ -44,7 +44,7 @@ public partial class MainViewModel : ObservableObject {
     public void SetFrame(Frame frame) {  // 메인 프레임 설정(예: MainWindow.xaml.cs에서 호출)
         Console.WriteLine("[MainViewModel] Executed SetFrame");
         _mainFrame = frame;              // 프레임을 설정
-        Navigate(PageType.LogIn);        // 첫 페이지 로딩 ( Enum PageType.LogIn )
+        Navigate(PageType.Status);        // 첫 페이지 로딩 ( Enum PageType.LogIn )
     }
 
 

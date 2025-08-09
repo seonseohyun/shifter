@@ -12,6 +12,7 @@
         <local:EqualityConverter x:Key="EqualityConverter" />
         <local:ShiftCountLookupConverter x:Key="ShiftCountLookupConverter"/>
         <local:JoinConverter x:Key="JoinConverter" />
+        <local:BoolToBoldConverter x:Key="boolToBoldConverter"/>
 
         <!-- Style Gray Watermark -->
         <Style x:Key="GrayWatermarkTextBoxStyle" TargetType="TextBox">
