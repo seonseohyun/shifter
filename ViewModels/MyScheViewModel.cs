@@ -41,8 +41,6 @@ namespace ShifterUser.ViewModels
 
         public IAsyncRelayCommand LoadOnAppearAsyncCommand { get; }
 
-        // 팝업 바인딩
-        //[ObservableProperty] private WorkRequestManager? selectedDayData;
         [ObservableProperty] private bool isDetailVisible;
 
         // 상단 월 텍스트

@@ -66,10 +66,10 @@
                     </Grid.ColumnDefinitions>
 
                     <Button Grid.Column="0" Content="바로 보기"
-        Width="163" Height="44" FontFamily="Noto Sans KR"
-        BorderBrush="#007AFF" BorderThickness="1" Background="White" Foreground="#007AFF"
-        FontWeight="SemiBold" FontSize="16"
-        Command="{Binding ViewNowCommand}" Margin="0,0,6,0">
+                    Width="163" Height="44" FontFamily="Noto Sans KR"
+                    BorderBrush="#007AFF" BorderThickness="1" Background="White" Foreground="#007AFF"
+                    FontWeight="SemiBold" FontSize="16"
+                    Command="{Binding ViewNowCommand}" Margin="0,0,6,0">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border CornerRadius="20"

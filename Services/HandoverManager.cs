@@ -194,6 +194,7 @@ namespace ShifterUser.Models
             WorkItem resp = _socket.Receive();
 
             var root = JObject.Parse(resp.json);
+
             var ok = ((string?)root["resp"])?.ToLower() == "success";
             var uid = (int?)root["data"]?["handover_uid"];
             var err = (string?)root["message"] ?? (string?)root["messege"];

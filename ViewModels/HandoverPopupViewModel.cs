@@ -34,9 +34,10 @@ namespace ShifterUser.ViewModels
             TeamName = _session.GetTeamName() ?? "";
 
             // 등록 완료 메시지 수신 → uid 저장 → 상세 로드
-            WeakReferenceMessenger.Default.Register<HandoverRegisteredMessage>(this, async (r, m) =>
+            WeakReferenceMessenger.Default.Register<HandoverRegisteredMessage>(this, (r, m) =>
             {
                 HandoverUid = m.HandoverUid;
+                Console.WriteLine($"[Popup] Received HandoverUid = {HandoverUid}");
             });
         }
 
@@ -51,8 +52,20 @@ namespace ShifterUser.ViewModels
         [RelayCommand]
         private void ViewNow()
         {
-            WeakReferenceMessenger.Default.Send(new OpenHandoverDetailMessage(HandoverUid));
+            // uid가 아직 안 왔으면 토스트/로그 후 리턴(또는 재시도)
+            if (HandoverUid <= 0)
+            {
+                Console.WriteLine("[Popup] HandoverUid not ready yet.");
+                return;
+            }
+
             WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.HandoverDetail));
+            System.Windows.Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                WeakReferenceMessenger.Default.Send(new OpenHandoverDetailMessage(HandoverUid));
+            }));
         }
+
+
     }
 }

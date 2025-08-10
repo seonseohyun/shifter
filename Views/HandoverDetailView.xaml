@@ -119,7 +119,7 @@
 
                                     <TextBlock Text="특이사항" Foreground="#8A8A8A" Grid.Row="2" Margin="0,6,0,0"/>
                                     <StackPanel Grid.Column="1" Grid.Row="2" Margin="0,6,0,0">
-                                        <TextBlock Text="{Binding SelectedHandoverDetail.TextParticular}" TextWrapping="Wrap" Margin="0,2,0,0"/>
+                                        <TextBlock Text="{Binding SelectedHandoverDetail.TextParticular}" TextWrapping="Wrap" Margin="0,1,0,0"/>
                                     </StackPanel>
 
                                     <TextBlock Text="비고" Foreground="#8A8A8A" Grid.Row="3" Margin="0,6,0,0"/>

@@ -57,8 +57,14 @@ namespace ShifterUser.ViewModels
                 return;
             }
 
-            WeakReferenceMessenger.Default.Send(new HandoverRegisteredMessage(uid.Value));
+            // 1) 팝업 먼저 띄우고
             WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.HandoverPopup));
+
+            // 2) 다음 프레임에 uid 전송 (팝업 VM이 Register한 뒤 수신)
+            System.Windows.Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                WeakReferenceMessenger.Default.Send(new HandoverRegisteredMessage(uid.Value));
+            }));
         }
 
         [RelayCommand]

@@ -17,6 +17,14 @@ namespace ShifterUser.ViewModels
         private readonly UserManager _manager;
         public ObservableCollection<string> WeeklyCodes { get; } =
         new ObservableCollection<string>(new[] { "-", "-", "-", "-", "-", "-", "-" });
+        // 바인딩 속성
+        [ObservableProperty] private string todayDate;
+        [ObservableProperty] private string teamName;
+        [ObservableProperty] private string approvedText;
+        [ObservableProperty] private string pendingText;
+        [ObservableProperty] private string rejectedText;
+        [ObservableProperty] private AttendanceStatus attendanceStatus = AttendanceStatus.출근전;
+        [ObservableProperty] private Brush attendanceColor = Brushes.Gray;
 
         public HomeViewModel(UserSession session, UserManager userManager)
         {
@@ -56,18 +64,6 @@ namespace ShifterUser.ViewModels
                 WeeklyCodes[i] = (codes[i] ?? "-").ToUpperInvariant();
         }
 
-        // 바인딩 속성
-        [ObservableProperty] private bool hasAlert = true;
-        [ObservableProperty] private string todayDate;
-        [ObservableProperty] private string teamName;
-        [ObservableProperty] private string approvedText;
-        [ObservableProperty] private string pendingText;
-        [ObservableProperty] private string rejectedText;
-        [ObservableProperty] private AttendanceStatus attendanceStatus = AttendanceStatus.출근전;
-
-        [ObservableProperty]
-        private Brush attendanceColor = Brushes.Gray;
-
         partial void OnAttendanceStatusChanged(AttendanceStatus value)
         {
             AttendanceColor = value switch
@@ -99,9 +95,10 @@ namespace ShifterUser.ViewModels
 
         // 페이지 이동 커맨드
         [RelayCommand]
-        private void OpenAlert()
+        private void OpenMyInfo()
         {
-            MessageBox.Show("알림 페이지로 이동합니다.");
+            Console.WriteLine("내정보 페이지로 이동합니다.");
+            WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.MyInfo));
         }
 
         [RelayCommand]

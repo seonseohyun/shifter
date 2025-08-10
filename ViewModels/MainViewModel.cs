@@ -54,7 +54,6 @@ namespace ShifterUser.ViewModels
                 case PageType.QR:
                     _mainFrame.Navigate(new QRCheckView { DataContext = App.Services.GetService(typeof(QRCheckViewModel)) });
                     break;
-
                 case PageType.MySche:
                     _mainFrame.Navigate(new MyScheView { DataContext = App.Services.GetService(typeof(MyScheViewModel)) });
                     break;
@@ -84,6 +83,9 @@ namespace ShifterUser.ViewModels
                     break;
                 case PageType.HandoverPopup:
                     _mainFrame.Navigate(new HandoverPopupView { DataContext = App.Services.GetRequiredService<HandoverPopupViewModel>() });
+                    break;
+                case PageType.MyInfo:
+                    _mainFrame.Navigate(new MyInfoView { DataContext = App.Services.GetRequiredService<MyInfoViewModel>() });
                     break;
                 case PageType.Goback:
                         _mainFrame.GoBack();

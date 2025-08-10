@@ -25,6 +25,7 @@
     <None Remove="Resources\images\pin.png" />
     <None Remove="Resources\images\qr_icon.png" />
     <None Remove="Resources\images\search.png" />
+    <None Remove="Resources\images\setting.png" />
     <None Remove="Resources\images\teamimg.png" />
     <None Remove="Resources\images\twinkle.png" />
     <None Remove="Resources\images\WhiteBell.png" />
@@ -63,6 +64,7 @@
     <Resource Include="Resources\images\pin.png" />
     <Resource Include="Resources\images\qr_icon.png" />
     <Resource Include="Resources\images\search.png" />
+    <Resource Include="Resources\images\setting.png" />
     <Resource Include="Resources\images\teamimg.png" />
     <Resource Include="Resources\images\twinkle.png" />
     <Resource Include="Resources\images\WhiteBell.png" />

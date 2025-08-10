@@ -22,6 +22,7 @@ namespace ShifterUser.Enums
         NoticeDetail,
         HandoverDetail,
         HandoverPopup,
+        MyInfo,
         Goback,
     }
 

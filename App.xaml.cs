@@ -63,6 +63,7 @@ namespace ShifterUser
             services.AddTransient<NoticeDetailViewModel>();
             services.AddTransient<WriteHandoverViewModel>();
             services.AddTransient<HandoverPopupViewModel>();
+            services.AddTransient<MyInfoViewModel>();
         }
     }
 }

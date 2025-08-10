@@ -23,7 +23,7 @@ namespace ShifterUser.ViewModels
             _session = session;
 
             // 리스트에서 들어오는 handover_uid 수신
-            WeakReferenceMessenger.Default.Register<HandoverDetailRequestMessage>(
+            WeakReferenceMessenger.Default.Register<OpenHandoverDetailMessage>(
                 this, (r, m) => LoadDetail(m.HandoverUid)
             );
         }

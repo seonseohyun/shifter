@@ -52,12 +52,9 @@
                            TextAlignment="Center"/>
 
                 <Grid HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,12,0" Width="24" Height="24">
-                    <Button Command="{Binding OpenAlertCommand}" Background="Transparent" BorderThickness="0">
+                    <Button Command="{Binding OpenMyInfoCommand}" Background="Transparent" BorderThickness="0" >
                         <Grid>
-                            <Image Source="/Resources/images/bell_on.png" Width="20" Height="20"/>
-                            <Ellipse Width="8" Height="8" Fill="Red"
-                                     HorizontalAlignment="Right" VerticalAlignment="Top"
-                                     Visibility="{Binding HasAlert, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                            <Image Source="/Resources/images/setting.png" Width="20" Height="20" />
                         </Grid>
                     </Button>
                 </Grid>

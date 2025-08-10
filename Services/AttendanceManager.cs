@@ -53,8 +53,7 @@ namespace ShifterUser.Services
             {
                 var att = root["data"]?["attendance"] as JObject;
                 if (att == null) return Task.FromResult<AttendanceModel?>(null);
-
-                var status = att["status"]?.ToString();          
+          
                 var cinStr = att["check_in_time"]?.ToString();   
                 var coutStr = att["check_out_time"]?.ToString();  
 
@@ -79,16 +78,6 @@ namespace ShifterUser.Services
                     ClockOutStatus = null
                 };
 
-                // 상태 채우기: 서버 status 우선, 없으면 시간 존재 여부로 채움
-                if (string.Equals(status, "출근", StringComparison.OrdinalIgnoreCase))
-                    model.ClockInStatus = "출근";
-                if (string.Equals(status, "퇴근", StringComparison.OrdinalIgnoreCase))
-                    model.ClockOutStatus = "퇴근";
-
-                if (model.ClockInStatus == null && model.ClockInTime != null)
-                    model.ClockInStatus = "출근";
-                if (model.ClockOutStatus == null && model.ClockOutTime != null)
-                    model.ClockOutStatus = "퇴근";
 
                 return Task.FromResult<AttendanceModel?>(model);
             }

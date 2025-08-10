@@ -62,4 +62,95 @@ public class TimetableManager
         }
         return list;
     }
+
+    // 오늘 팀 근무 현황
+    // 오늘 팀 근무 현황
+    public async Task<List<TodayDutyGroup>> GetTodayDutyAsync(DateTime date, int teamuid)
+    {
+        var req = new
+        {
+            protocol = "check_today_duty",
+            data = new
+            {
+                date = date.ToString("yyyy-MM-dd"),
+                team_uid = teamuid   // ← 전달받은 매개변수 사용(세션값 쓰려면 이 줄만 교체)
+            }
+        };
+
+        var sendItem = new WorkItem
+        {
+            json = JsonConvert.SerializeObject(req),
+            payload = Array.Empty<byte>(),
+            path = string.Empty
+        };
+
+        _socket.Send(sendItem);
+
+        // 수신/기본 가드
+        WorkItem recv = _socket.Receive();
+
+        var root = JObject.Parse(recv.json);
+        string protocol = root["protocol"]?.ToString() ?? "";
+        string resp = root["resp"]?.ToString() ?? "";
+
+        // 프로토콜 체크
+        if (!string.Equals(protocol, "check_today_duty", StringComparison.OrdinalIgnoreCase))
+            return new List<TodayDutyGroup>();
+
+        // 서버가 ""(빈문자열) 또는 "success" 두 케이스 모두 올 수 있음
+        if (!(string.IsNullOrEmpty(resp) || string.Equals(resp, "success", StringComparison.OrdinalIgnoreCase)))
+            return new List<TodayDutyGroup>();
+
+        var arr = root["data"] as JArray;
+        if (arr == null)
+            return new List<TodayDutyGroup>();
+
+        var result = new List<TodayDutyGroup>();
+
+        foreach (var g in arr)
+        {
+            var shift = g?["shift"]?.ToString() ?? "";
+            var staffArr = g?["staff"] as JArray;
+
+            var names = new List<string>();
+            if (staffArr != null)
+            {
+                foreach (var s in staffArr)
+                {
+                    var name = s?.ToString();
+                    if (!string.IsNullOrWhiteSpace(name))
+                        names.Add(name);
+                }
+            }
+
+            // 비어있는 섹션은 추가 안 함(원하면 제거)
+            if (names.Count > 0)
+            {
+                result.Add(new TodayDutyGroup
+                {
+                    Shift = shift,
+                    Staff = names
+                });
+            }
+        }
+
+        // 정렬: D → E → N → O
+        static int Key(string s) => (s ?? "").Trim().ToLower() switch
+        {
+            "d" or "day" => 0,
+            "e" or "eve" or "evening" => 1,
+            "n" or "night" => 2,
+            "o" or "off" => 3,
+            _ => 4
+        };
+
+        return result.OrderBy(x => Key(x.Shift)).ToList();
+    }
+
+
+    public class TodayDutyGroup
+    {
+        public string Shift { get; set; } = "";                 // "D"/"E"/"N"/"O" 혹은 영문
+        public List<string> Staff { get; set; } = new();        // 이름 리스트
+    }
 }

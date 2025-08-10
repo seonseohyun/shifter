@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShifterUser.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,17 @@ namespace ShifterUser.Views
         public GroupDashboardView()
         {
             InitializeComponent();
+
         }
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (DataContext is GroupHandoverViewModel vm)
+            {
+                Console.WriteLine("Page_Loaded - 커맨드 실행");
+                if (vm.LoadOnAppearAsyncCommand.CanExecute(null))
+                    vm.LoadOnAppearAsyncCommand.Execute(null);
+            }
+        }
+
     }
 }
