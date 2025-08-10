@@ -56,7 +56,7 @@ namespace ShifterUser.ViewModels
 
             if (success)
             {
-                MessageBox.Show("퇴근 완료되었습니다.");
+                MessageBox.Show($"퇴근 완료! {DateTime.Now:HH:mm}", "알림", MessageBoxButton OK, MessageBoxImage.Information);
                 WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.Home));
             }
             else

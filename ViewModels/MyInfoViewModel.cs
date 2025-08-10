@@ -28,6 +28,8 @@ namespace ShifterUser.ViewModels
 
         // 팝업 표시/숨김
         [ObservableProperty] private bool isPwPopupVisible;
+        [ObservableProperty] private bool hasPassword;
+
 
         // 내정보 기본 속성
         [ObservableProperty] private string company = "";
@@ -83,7 +85,7 @@ namespace ShifterUser.ViewModels
         }
 
         [RelayCommand]
-        public static void GoBack()
+        public void GoBack()
         {
             WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.Goback));
         }
