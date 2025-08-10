@@ -1,0 +1,12 @@
+{
+  "timestamp": "2025-08-11T08:37:46.567320",
+  "request_type": "handover",
+  "protocol": "res_handover_summary",
+  "data": {
+    "task": "summarize_handover",
+    "result": "- 환자 정보: 202호 박환자, 45세, 급성심근경색 의심\n- 증상 및 소견: 흉통, EKG상 ST elevation, cardiac enzyme 상승\n- 치료 계획: 응급 심도자술 예정\n- 현재 상태: 산소포화도 92%, O2 4L/min 적용 중, 혈압 90/60\n- 약물 투여: Aspirin, Plavix 완료, Heparin drip 진행 중, Dopamine 0.5mcg/kg/min 시작\n- 보호자: 부인, 수술 동의서 작성 완료"
+  },
+  "resp": "success",
+  "input_text_length": 347,
+  "processing_time_seconds": 2.860755
+}

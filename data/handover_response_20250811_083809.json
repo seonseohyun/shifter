@@ -1,0 +1,12 @@
+{
+  "timestamp": "2025-08-11T08:38:09.717245",
+  "request_type": "handover",
+  "protocol": "res_handover_summary",
+  "data": {
+    "task": "summarize_handover",
+    "result": "- 환자 정보: 502호 최할아버지, 82세\n- 주요 질환: 고혈압, 당뇨병, 심부전, 치매\n- 현재 상태: 폐렴으로 입원, 항생제 치료 3일째\n- 치료 및 관리:\n  - 인슐린 사용(혈당 조절)\n  - 이뇨제 복용(심부전 관리)\n  - 치매로 의사소통 어려움, 불안 증상\n- 안전 및 주의사항:\n  - 낙상 위험: 침대 안전바 사용, 보호자 상주 필요\n  - 약물 상호작용 주의\n  - 신기능 모니터링 중요"
+  },
+  "resp": "success",
+  "input_text_length": 328,
+  "processing_time_seconds": 3.045802
+}
