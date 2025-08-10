@@ -1,9 +1,0 @@
-{
-  "timestamp": "2025-08-08T20:24:38.066881",
-  "request_type": "handover",
-  "status": "success",
-  "task": "summarize_handover",
-  "result": "- 환자 상태 확인: 즉시 수행 필요\n- 약물 투여 시간 체크: 정해진 스케줄에 맞춰 확인",
-  "input_text_length": 27,
-  "processing_time_seconds": 0.975464
-}

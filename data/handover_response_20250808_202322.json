@@ -1,9 +1,0 @@
-{
-  "timestamp": "2025-08-08T20:23:22.997938",
-  "request_type": "handover",
-  "status": "success",
-  "task": "summarize_handover",
-  "result": "- E 환자: 퇴원 준비 진행\n- F 환자: 약물 조정 필요",
-  "input_text_length": 26,
-  "processing_time_seconds": 0.874935
-}

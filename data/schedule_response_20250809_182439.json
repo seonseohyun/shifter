@@ -1,8 +1,0 @@
-{
-  "timestamp": "2025-08-09T18:24:39.380303",
-  "request_type": "schedule",
-  "protocol": "py_gen_schedule",
-  "resp": "fail",
-  "data": [],
-  "position": "unknown"
-}
