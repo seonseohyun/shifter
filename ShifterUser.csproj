@@ -20,6 +20,7 @@
     <None Remove="Resources\images\clock.png" />
     <None Remove="Resources\images\Doc.png" />
     <None Remove="Resources\images\fix.png" />
+    <None Remove="Resources\images\girl.png" />
     <None Remove="Resources\images\Logo.png" />
     <None Remove="Resources\images\pending.png" />
     <None Remove="Resources\images\pin.png" />
@@ -58,6 +59,7 @@
     </Resource>
     <Resource Include="Resources\images\Doc.png" />
     <Resource Include="Resources\images\fix.png" />
+    <Resource Include="Resources\images\girl.png" />
     <Resource Include="Resources\images\Logo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
