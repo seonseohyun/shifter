@@ -137,12 +137,12 @@
                         </Button>
                     </UniformGrid>
 
-                    <!-- 오늘 팀 출근 현황 -->
+                    <!-- 오늘 팀 근무 현황 -->
                     <ScrollViewer Margin="0,0,0,0" VerticalScrollBarVisibility="Hidden">
                         <StackPanel>
 
                             <!-- 타이틀 -->
-                            <TextBlock Text="오늘 팀 출근 현황"
+                            <TextBlock Text="오늘 팀 근무 현황"
                                        FontSize="18" FontWeight="Bold"
                                        Margin="0,10,0,20"/>
 

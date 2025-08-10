@@ -101,11 +101,16 @@ namespace ShifterUser.ViewModels
         [RelayCommand]
         private void ShowHandoverDetail(HandoverModel item)
         {
-            // 먼저 페이지 전환
+            // 페이지 전환 먼저
             WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.HandoverDetail));
-            WeakReferenceMessenger.Default.Send(new HandoverDetailRequestMessage(item.HandoverUid));
- 
+
+            // 상세 페이지 VM이 구독할 메시지로 통일: OpenHandoverDetailMessage
+            System.Windows.Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                WeakReferenceMessenger.Default.Send(new OpenHandoverDetailMessage(item.HandoverUid));
+            }));
         }
+
 
         // Enum → 사용자 표시 문자열로 변환
         private string GetDisplayName(HandoverType type) => type switch

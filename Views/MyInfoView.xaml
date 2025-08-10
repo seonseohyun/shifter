@@ -120,7 +120,7 @@
                         </Grid>
 
                         <!-- 이름 -->
-                        <TextBlock Text="{Binding Name}"
+                        <TextBlock Text="선서현"
                          FontSize="20" FontWeight="Bold"
                          Margin="0,20,0,10"
                          HorizontalAlignment="Center"/>
@@ -172,8 +172,8 @@
                         <TextBlock Grid.Row="4" Grid.Column="1" FontSize="15"
                                     Text="{Binding PasswordMask}" Foreground="{StaticResource LabelBrush}" VerticalAlignment="Center"/>
                         <Button Grid.Row="4" Grid.Column="2" Content="비밀번호 변경"
-                                    HorizontalAlignment="Right" Style="{StaticResource BlueButtonStyle}"
-                                    Command="{Binding OpenChangePasswordCommand}"/>         
+                                HorizontalAlignment="Right" Style="{StaticResource BlueButtonStyle}"
+                                Command="{Binding OpenChangePasswordCommand}"/>         
 
                         <!-- 비밀번호 아래만 회색 줄 -->
                         <Border Grid.Row="4" Grid.ColumnSpan="3" Background="{StaticResource DividerBrush}"
