@@ -16,7 +16,17 @@ namespace ShifterUser.ViewModels
 {
     public partial class MyInfoViewModel : ObservableObject
     {
+        private readonly UserSession _session;
+        private readonly UserManager _manager;
 
+        public MyInfoViewModel(UserSession session, UserManager manager) { 
+            
+            _session = session;
+            _manager = manager;
+        
+        }
+
+        
 
 
         [RelayCommand]

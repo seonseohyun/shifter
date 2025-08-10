@@ -74,12 +74,6 @@
                         HorizontalAlignment="Left"
                         Style="{StaticResource RoundedBlueButtonStyle}"
                         VerticalAlignment="Center" Margin="4,0,0,0"/>
-                <TextBlock Text="그룹 대시보드"
-                           Foreground="White"
-                           FontSize="16"
-                           FontWeight="Bold"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center"/>
             </Grid>
         </Border>
 
@@ -116,8 +110,8 @@
                                 <ControlTemplate TargetType="Button">
                                     <Border BorderThickness="1" BorderBrush="#007AFF" Background="#007AFF" CornerRadius="12">
                                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                            <Image Source="/Resources/images/WhiteBell.png" Width="40" Height="40" Margin="0,5,0,4"/>
-                                            <TextBlock Text="공지사항 보기" FontWeight="Bold" Foreground="White" FontSize="16" HorizontalAlignment="Center"/>
+                                            <Image Source="/Resources/images/WhiteBell.png" Width="35" Height="35" Margin="0,5,0,4"/>
+                                            <TextBlock Text="공지사항 보기" FontWeight="Bold" Foreground="White" FontSize="15" HorizontalAlignment="Center"/>
                                         </StackPanel>
                                     </Border>
                                 </ControlTemplate>
@@ -129,8 +123,8 @@
                                 <ControlTemplate TargetType="Button">
                                     <Border BorderThickness="2" BorderBrush="#007AFF" Background="White" CornerRadius="12">
                                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                            <Image Source="/Resources/images/Doc.png" Width="35" Height="35" Margin="0,0,0,10"/>
-                                            <TextBlock Text="인수인계 보기" FontWeight="Bold" Foreground="#007AFF" FontSize="16" HorizontalAlignment="Center"/>
+                                            <Image Source="/Resources/images/Doc.png" Width="31" Height="31" Margin="0,0,0,10"/>
+                                            <TextBlock Text="인수인계 보기" FontWeight="Bold" Foreground="#007AFF" FontSize="15" HorizontalAlignment="Center"/>
                                         </StackPanel>
                                     </Border>
                                 </ControlTemplate>

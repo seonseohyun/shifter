@@ -28,6 +28,7 @@
     <None Remove="Resources\images\setting.png" />
     <None Remove="Resources\images\teamimg.png" />
     <None Remove="Resources\images\twinkle.png" />
+    <None Remove="Resources\images\user.png" />
     <None Remove="Resources\images\WhiteBell.png" />
   </ItemGroup>
 
@@ -67,6 +68,7 @@
     <Resource Include="Resources\images\setting.png" />
     <Resource Include="Resources\images\teamimg.png" />
     <Resource Include="Resources\images\twinkle.png" />
+    <Resource Include="Resources\images\user.png" />
     <Resource Include="Resources\images\WhiteBell.png" />
   </ItemGroup>
 

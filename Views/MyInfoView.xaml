@@ -3,7 +3,6 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:ShifterUser.Views"
       mc:Ignorable="d" 
       Background="White"
       FontFamily="Noto Sans KR"
@@ -16,6 +15,8 @@
                           ShadowDepth="5"
                           BlurRadius="10"
                           Opacity="0.5"/>
+        <SolidColorBrush x:Key="LabelBrush" Color="#8A8A8A"/>
+        <SolidColorBrush x:Key="DividerBrush" Color="#E6E6E6"/>
     </Page.Resources>
 
     <Grid>
@@ -23,22 +24,22 @@
         <Border Background="#007AFF" Height="56" VerticalAlignment="Top">
             <Grid>
                 <Button Content="＜"
-                Command="{Binding GoBackCommand}"
-                Width="40" Height="40"
-                Background="Transparent"
-                BorderBrush="Transparent"
-                FontSize="16"
-                FontWeight="Bold"
-                Foreground="White"
-                HorizontalAlignment="Left"
-                Style="{StaticResource RoundedBlueButtonStyle}"
-                VerticalAlignment="Center" Margin="4,0,0,0"/>
+                        Command="{Binding GoBackCommand}"
+                        Width="40" Height="40"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        FontSize="16"
+                        FontWeight="Bold"
+                        Foreground="White"
+                        HorizontalAlignment="Left"
+                        Style="{StaticResource RoundedBlueButtonStyle}"
+                        VerticalAlignment="Center" Margin="4,0,0,0"/>
                 <TextBlock Text="내정보"
-                   Foreground="White"
-                   FontSize="16"
-                   FontWeight="Bold"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"/>
+                           Foreground="White"
+                           FontSize="16"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
             </Grid>
         </Border>
 
@@ -47,10 +48,162 @@
             <!-- 카드 그림자 + 테두리 -->
             <Border Background="White" CornerRadius="20" Effect="{StaticResource ShadowEffect}"/>
             <Border Background="White" CornerRadius="20" BorderBrush="#DDDDDD" BorderThickness="1">
-                <!-- 카드 내부: 아래(첨부) 고정, 위(본문) 스크롤 -->
+                <!-- 카드 내부: 아래(로그아웃) 고정, 위(본문) -->
                 <DockPanel LastChildFill="True" Margin="16">
+
+                    <!-- 아래 고정: 로그아웃 -->
+                    <Border DockPanel.Dock="Bottom"
+                            Margin="0,24,0,8"
+                            CornerRadius="22"
+                            Height="48"
+                            Background="#007AFF"
+                            Effect="{StaticResource ShadowEffect}">
+                        <Button Content="로그아웃"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                Foreground="White"
+                                FontWeight="Bold"
+                                FontSize="16"
+                                Style="{StaticResource RoundedBlueButtonStyle}"
+                                Command="{Binding LogoutCommand}"/>
+                    </Border>
+
+                    <!-- 위: 프로필 + 정보 테이블 -->
+                    <StackPanel>
+                        <!-- 프로필 -->
+                        <StackPanel Margin="0,12,0,16" HorizontalAlignment="Center">
+                            <Grid Width="72" Height="72" HorizontalAlignment="Center" Margin="0,0,0,8">
+                                <Ellipse Fill="#EAF3FF"/>
+                                <TextBlock Text="👤"
+                                           FontSize="28"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"/>
+                            </Grid>
+                            <TextBlock Text="{Binding Name, FallbackValue=이름}"
+                                       FontSize="18" FontWeight="Bold"
+                                       HorizontalAlignment="Center"/>
+                        </StackPanel>
+
+                        <!-- 정보 테이블 -->
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="1"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="1"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="90"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!-- 연락처 -->
+                            <TextBlock Grid.Row="0" Grid.Column="0" Margin="0,5,0,5"
+                                       Text="연락처" Foreground="{StaticResource LabelBrush}" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Row="0" Grid.Column="1" 
+                                       Text="{Binding PhoneNumber, FallbackValue=전화번호}" VerticalAlignment="Center"/>
+
+                            <!-- 구분선 -->
+
+                            <!-- 아이디 -->
+                            <TextBlock Grid.Row="2" Grid.Column="0" Margin="0,5,0,5"
+                                       Text="아이디" Foreground="{StaticResource LabelBrush}" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Row="2" Grid.Column="1"
+                                       Text="{Binding Id, FallbackValue=아이디}" VerticalAlignment="Center"/>
+
+                            <!-- 구분선 -->
+                            <Border Grid.Row="4" Grid.ColumnSpan="3" Background="{StaticResource DividerBrush}" Margin="0,41,0,-14"/>
+
+                            <!-- 비밀번호 + 버튼 -->
+                            <TextBlock Grid.Row="4" Grid.Column="0" Margin="0,5,0,5"
+                                       Text="비밀번호" Foreground="{StaticResource LabelBrush}" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Row="4" Grid.Column="1"
+                                       Text="-" Foreground="{StaticResource LabelBrush}" VerticalAlignment="Center"/>
+                            <Border Grid.Row="4" Grid.Column="2"
+                                    Background="#007AFF" CornerRadius="6"
+                                    Height="28" MinWidth="90" HorizontalAlignment="Right" Margin="8,0,0,0">
+                                <Button Content="비밀번호 변경"
+                                        Background="Transparent"
+                                        Foreground="White"
+                                        BorderThickness="0"
+                                        FontSize="12" FontWeight="SemiBold"
+                                        Padding="10,2"
+                                        Command="{Binding OpenChangePasswordCommand}"/>
+                            </Border>
+                        </Grid>
+
+                    </StackPanel>
                 </DockPanel>
             </Border>
         </Grid>
+
+        <!-- ⬇⬇ 비밀번호 변경 팝업(바텀시트) ⬇⬇ -->
+        <Grid Visibility="{Binding IsPwPopupVisible, Converter={StaticResource BoolToVisibilityConverter}}"
+              Panel.ZIndex="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- 어두운 오버레이 + 바깥 클릭 닫기 -->
+            <Button Grid.RowSpan="2"
+                    Background="#80000000"
+                    BorderThickness="0"
+                    Command="{Binding ClosePwPopupCommand}"
+                    Content="{x:Null}"/>
+
+            <!-- 바텀 시트 -->
+            <Border
+                    Background="White"
+                    CornerRadius="24,24,0,0"
+                    Padding="20,16,20,24"
+                    Effect="{StaticResource ShadowEffect}" Margin="0,483,0,0" Grid.RowSpan="2">
+                <StackPanel>
+
+                    <!-- 핸들바 -->
+                    <Rectangle Height="6" Width="64" Fill="#E0E0E0"
+                               RadiusX="3" RadiusY="3"
+                               HorizontalAlignment="Center" Margin="0,0,0,14"/>
+
+                    <!-- 제목 -->
+                    <TextBlock Text="비밀번호 변경"
+                               FontSize="19" FontWeight="Bold"
+                               HorizontalAlignment="Center" Margin="0,20,0,-10"/>
+
+                    <!-- 회색 카드 영역 -->
+                    <Border Background="#F5F5F5"
+                            CornerRadius="12"
+                            Padding="14"
+                            Margin="0,30,0,-30" Height="120">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,6,0,4">
+                                <TextBlock Text="현재 비밀번호 " Width="120" VerticalAlignment="Center"/>
+                                <PasswordBox Width="180"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,6,0,4">
+                                <TextBlock Text="새 비밀번호 " Width="120" VerticalAlignment="Center"/>
+                                <PasswordBox Width="180"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,6,0,0">
+                                <TextBlock Text="새 비밀번호 확인 " Width="120" VerticalAlignment="Center"/>
+                                <PasswordBox Width="180"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- 저장하기 버튼 -->
+                    <Border CornerRadius="22" Height="48" Background="#007AFF" Margin="0,40,0,0">
+                        <Button Content="저장하기"
+                                Foreground="White"
+                                FontSize="16" FontWeight="Bold"
+                                Background="Transparent" BorderThickness="0"
+                                Command="{Binding SavePasswordCommand}" Height="48" VerticalAlignment="Top"/>
+                    </Border>
+                </StackPanel>
+            </Border>
+        </Grid>
+        <!-- ⬆⬆ 비밀번호 변경 팝업 끝 ⬆⬆ -->
     </Grid>
 </Page>

@@ -79,7 +79,7 @@ namespace ShifterUser.ViewModels
         [RelayCommand]
         private void GoBack()
         {
-            WeakReferenceMessenger.Default.Send(new PageChangeMessage(Enums.PageType.Goback));
+            WeakReferenceMessenger.Default.Send(new PageChangeMessage(Enums.PageType.GroupHandover));
         }
 
         [RelayCommand]
