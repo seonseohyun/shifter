@@ -63,17 +63,17 @@ void handleClient(SOCKET clientSocket) {
 
         try {
             //[STEP 1] JSON 파싱
-            json json = nlohmann::json::parse(jsonStr);
+            json json = json::parse(jsonStr);
             //[STEP 2] 프로토콜 파싱
             string protocol = json.value("protocol", "");
 
             if (protocol == u8"login") {
                 LINE_LABEL("login") //라인
-                    db.connect(); // DB연결
+                db.connect(); // DB연결
                 nlohmann::json response = ProtocolHandler::handle_login(json, db);// 프로토콜 처리 핸들러로 전송
                 TcpServer::sendJsonResponse(clientSocket, response.dump()); // 제이슨 전송
                 MIDDLELINE
-                    cout << response.dump(2) << endl;
+                cout << response.dump(2) << endl;
                 LINE
             }
             else if (protocol == u8"login_admin") {
@@ -196,12 +196,76 @@ void handleClient(SOCKET clientSocket) {
             else if (protocol == u8"req_shift_info") {
                 LINE_LABEL("req_shift_info")
                 db.connect();
-                nlohmann::json response = ProtocolHandler::handle_req_shift_info(json, db);
+                nlohmann::json response = ProtocolHandler::handle_rgs_shift_info(json, db);
                 TcpServer::sendJsonResponse(clientSocket, response.dump());
                 MIDDLELINE
                 cout << response.dump(2) << endl;
                 LINE
             }
+            else if (protocol == u8"reg_handover") {
+                LINE_LABEL("reg_handover")
+                db.connect();
+                nlohmann::json response = ProtocolHandler::handle_reg_handover(json, db);
+                TcpServer::sendJsonResponse(clientSocket, response.dump());
+                MIDDLELINE
+                cout << response.dump(2) << endl;
+                LINE
+            }
+            else if (protocol == u8"summary_journal") {
+                LINE_LABEL("summary_journal")
+                db.connect();
+                nlohmann::json response = ProtocolHandler::handle_summary_journal(json, db);
+                TcpServer::sendJsonResponse(clientSocket, response.dump());
+                MIDDLELINE
+                cout << response.dump(2) << endl;
+                LINE
+            }
+            else if (protocol == u8"attendance_info") {
+                LINE_LABEL("attendance_info")
+                db.connect();
+                nlohmann::json response = ProtocolHandler::handle_attendance_info(json, db);
+                TcpServer::sendJsonResponse(clientSocket, response.dump());
+                MIDDLELINE
+                cout << response.dump(2) << endl;
+                LINE
+            }
+            else if (protocol == u8"ask_timetable_weekly") {
+                LINE_LABEL("ask_timetable_weekly")
+                db.connect();
+                nlohmann::json response = ProtocolHandler::handle_ask_timetable_weekly(json, db);
+                TcpServer::sendJsonResponse(clientSocket, response.dump());
+                MIDDLELINE
+                cout << response.dump(2) << endl;
+                LINE
+            }
+            else if (protocol == u8"rgs_team_info") {
+                LINE_LABEL("rgs_team_info")
+                db.connect();
+                nlohmann::json response = ProtocolHandler::handle_rgs_team_info(json, db);
+                TcpServer::sendJsonResponse(clientSocket, response.dump());
+                MIDDLELINE
+                cout << response.dump(2) << endl;
+                LINE
+            }
+            else if (protocol == u8"rgs_grade_info") {
+                LINE_LABEL("rgs_grade_info")
+                db.connect();
+                nlohmann::json response = ProtocolHandler::handle_rgs_grade_info(json, db);
+                TcpServer::sendJsonResponse(clientSocket, response.dump());
+                MIDDLELINE
+                cout << response.dump(2) << endl;
+                LINE
+            }
+            else if (protocol == u8"rgs_staff_info") {
+                LINE_LABEL("rgs_staff_info")
+                db.connect();
+                nlohmann::json response = ProtocolHandler::handle_rgs_staff_info(json, db);
+                TcpServer::sendJsonResponse(clientSocket, response.dump());
+                MIDDLELINE
+                cout << response.dump(2) << endl;
+                LINE
+            }
+
             else {
                 cerr << u8"[에러] 알 수 없는 프로토콜: " << protocol << endl;
                 TcpServer::sendJsonResponse(clientSocket, R"({"protocol":"unknown","resp":"fail","messege":"unknown_protocol"})");

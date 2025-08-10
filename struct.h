@@ -44,6 +44,8 @@ struct HandoverNoteInfo {
     std::string additional_info;
     std::string text_refine;
     int is_refined = -1;
+    std::string file_name;
+
 };
 
 //근무 일정 구조체
@@ -67,7 +69,7 @@ struct NoticeSummary {
     std::string notice_date;   // "YYYY-MM-DD"
     std::string title;
 };
-
+// 공지사항 디테일 구조체 
 struct NoticeDetail {
     int notice_uid = -1;
     std::string staff_name;
@@ -81,5 +83,11 @@ struct ShiftInfo {
     std::string duty_type;
     std::string start_time;
     std::string end_time;
-    int duty_hours;
+    int duty_hours = -1;
+};
+
+// 직급 등록 구조체
+struct GradeInfo {
+    int grade_level = -1;
+    std::string grade_name;
 };

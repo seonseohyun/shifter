@@ -3,164 +3,197 @@
 #include <fstream>
 #include <nlohmann/json.hpp>
 using json = nlohmann::json;
+#include <algorithm>    // std::max, std::min
+#include <string>
+#include <vector>
+#include <iostream>
+#include <cstdio>
+#include <winsock2.h>
+#pragma comment(lib, "ws2_32.lib")
+#define NOMINMAX
+
+#undef min
+#undef max
+
+#include <filesystem>  // 파일 시스템 관련
+#include <ctime>   
+#undef byte
 
 
-// 링크: 윈속 라이브러리
-#pragma comment(lib, "Ws2_32.lib")
+bool createDirIfNotExists(const std::string& path) {
+    DWORD attrs = GetFileAttributesA(path.c_str());
+    if (attrs != INVALID_FILE_ATTRIBUTES && (attrs & FILE_ATTRIBUTE_DIRECTORY))
+        return true; // 이미 폴더 있음
+    return CreateDirectoryA(path.c_str(), NULL) || GetLastError() == ERROR_ALREADY_EXISTS;
+}
 
-// =======================================================================
-// [생성자] TcpServer
-// - 포트 번호를 받아서 서버 소켓 초기값 설정
-// =======================================================================
 TcpServer::TcpServer(int port)
     : port_(port), listenSocket_(INVALID_SOCKET), wsaData_{} {
 }
 
-// =======================================================================
-// [소멸자] TcpServer
-// - 리스닝 소켓이 유효하면 닫고, Winsock 종료
-// =======================================================================
 TcpServer::~TcpServer() {
     if (listenSocket_ != INVALID_SOCKET) closesocket(listenSocket_);
     WSACleanup();
 }
 
-// =======================================================================
-// [start] - 서버 오픈을 위한 소켓 생성 단계 (1)
-// - 서버 초기화 (Winsock 시작, 소켓 생성, 바인딩, 리슨까지)
-// - 성공 시 true, 실패 시 false 반환
-// =======================================================================
 bool TcpServer::start() {
-    // Winsock 라이브러리 초기화
     if (WSAStartup(MAKEWORD(2, 2), &wsaData_) != 0) {
-        std::cerr << "WSAStartup 실패\n";
+        std::cerr << "WSAStartup failed\n";
         return false;
     }
 
-    // 서버 소켓 생성 (IPv4, TCP)
     listenSocket_ = socket(AF_INET, SOCK_STREAM, 0);
     if (listenSocket_ == INVALID_SOCKET) {
-        std::cerr << "소켓 생성 실패\n";
+        std::cerr << "Socket creation failed\n";
         return false;
     }
 
-    // 서버 주소 구조체 설정
     sockaddr_in serverAddr{};
     serverAddr.sin_family = AF_INET;
-    serverAddr.sin_addr.s_addr = INADDR_ANY;    // 모든 IP에서 접속 허용
-    serverAddr.sin_port = htons(port_);         // 포트 설정
+    serverAddr.sin_addr.s_addr = INADDR_ANY;
+    serverAddr.sin_port = htons(port_);
 
-    // 소켓 바인딩 (주소와 연결)
     if (::bind(listenSocket_, (sockaddr*)&serverAddr, sizeof(serverAddr)) == SOCKET_ERROR) {
-        std::cerr << u8"바인딩 실패\n";
+        std::cerr << "Bind failed\n";
         closesocket(listenSocket_);
         return false;
     }
 
-    // 리슨 상태 진입 (클라이언트 연결 대기)
     if (listen(listenSocket_, SOMAXCONN) == SOCKET_ERROR) {
-        std::cerr << u8"리스닝 실패\n";
+        std::cerr << "Listen failed\n";
         closesocket(listenSocket_);
         return false;
     }
 
-    cout << u8"서버가 포트 " << port_ << u8"에서 대기 중입니다...\n";
+    std::cout << "Server listening on port " << port_ << "...\n";
     return true;
 }
 
-// =======================================================================
-// [acceptClient] - 클라이언트 연결 감지 단계 (2)
-// - 클라이언트의 연결 요청을 수락하고, 클라이언트 소켓 반환
-// - 실패 시 INVALID_SOCKET 반환
-// =======================================================================
 SOCKET TcpServer::acceptClient() {
     sockaddr_in clientAddr{};
     int clientSize = sizeof(clientAddr);
 
-    // 클라이언트 수락 (연결 요청 받아들이기)
     SOCKET clientSocket = accept(listenSocket_, (sockaddr*)&clientAddr, &clientSize);
     if (clientSocket == INVALID_SOCKET) {
-        std::cerr << u8"클라이언트 수락 실패\n";
+        std::cerr << "Accept failed\n";
     }
-    //std::cout << "[클라이언트] 연결 성공\n";
 
     return clientSocket;
 }
 
-
-// =======================================================================
-// [readExact]
-// - 주어진 바이트 수(totalBytes)만큼 정확히 읽을 때까지 반복 수신
-// - recv()는 TCP 스트림 특성상 일부만 수신될 수 있으므로 반드시 반복 호출
-// - 실패하거나 연결이 끊기면 false 반환
-// =======================================================================
 bool TcpServer::readExact(SOCKET sock, char* buffer, int totalBytes) {
     int received = 0;
     while (received < totalBytes) {
         int len = recv(sock, buffer + received, totalBytes - received, 0);
-        std::cout << "[readExact] recv returned: " << len << "\n";
-        if (len <= 0) return false;  // 연결 끊김 or 오류
+        if (len <= 0) return false;
         received += len;
     }
-    return true;
+
+    return received == totalBytes;
 }
 
-// =======================================================================
-// [receivePacket]
-// - 클라이언트로부터 다음 순서로 수신:
-//   [1] 8바이트 헤더: totalSize (4바이트) + jsonSize (4바이트)
-//   [2] JSON 문자열 (jsonSize 바이트)
-//   [3] payload (totalSize - jsonSize 바이트, 있을 경우)
-//
-// - 받은 데이터를 out_json, out_payload로 분리해서 반환
-// =======================================================================
 bool TcpServer::receivePacket(SOCKET clientSocket, std::string& out_json, std::vector<char>& out_payload) {
-    //std::cout << u8"[DEBUG] receivePacket 진입\n";
-
-    // 1. 8바이트 헤더 수신
     char header[8];
     if (!readExact(clientSocket, header, 8)) {
-        std::cerr << u8"[ERROR] 헤더 수신 실패\n";
-        closesocket(clientSocket); //  반드시 소켓 닫아야 함
+        std::cerr << "[ERROR] Failed to read header\n";
+        closesocket(clientSocket);
         return false;
     }
 
-    // 2. 헤더 파싱
     uint32_t totalSize = 0, jsonSize = 0;
     memcpy(&totalSize, header, 4);
     memcpy(&jsonSize, header + 4, 4);
 
-    std::cout << u8"[DEBUG] totalSize: " << totalSize << u8", jsonSize: " << jsonSize << "\n";
+    std::cout << "[DEBUG] totalSize: " << totalSize << ", jsonSize: " << jsonSize << "\n";
 
-    // 3. 헤더 유효성 검증
     if (jsonSize == 0 || jsonSize > totalSize || totalSize > 10 * 1024 * 1024) {
-        std::cerr << u8"[ERROR] 헤더 정보 비정상: jsonSize=" << jsonSize << u8", totalSize=" << totalSize << "\n";
+        std::cerr << "[ERROR] Invalid packet sizes\n";
         return false;
     }
 
-    // 4. 바디 수신
-    std::vector<char> buffer(totalSize);
+    std::vector<char> buffer(totalSize, 0);
     if (!readExact(clientSocket, buffer.data(), totalSize)) {
-        std::cerr << "[ERROR] 바디 수신 실패\n";
+        std::cerr << "[ERROR] Failed to read body\n";
         return false;
     }
 
-    // 5. JSON 분리 및 BOM 제거
     try {
         out_json = std::string(buffer.begin(), buffer.begin() + jsonSize);
 
-        // 2. UTF-8 비정상 바이트 제거
-        while (!out_json.empty() && ((unsigned char)out_json[0] == 0xC0 || (unsigned char)out_json[0] == 0xC1 || (unsigned char)out_json[0] < 0x20)) {
-            std::cerr << u8"[경고] JSON 앞에 비정상 바이트(0x" << std::hex << (int)(unsigned char)out_json[0] << ") 발견 → 제거\n";
-            out_json = out_json.substr(1);
+        int dumpStart = std::max(0, std::min(-3, (int)jsonSize - 1));
+        int dumpEnd = std::min((int)jsonSize, 27);
+        std::cout << "[DEBUG] Received JSON bytes (" << dumpStart << "-" << dumpEnd - 1 << "):\n";
+        for (int i = dumpStart; i < dumpEnd; ++i) {
+            if (i == 7) printf("[%02X] ", (unsigned char)buffer[i]);
+            else printf("%02X ", (unsigned char)buffer[i]);
+            if ((i - dumpStart + 1) % 16 == 0) printf("\n");
         }
+        printf("\n");
+
+        std::string cleaned_json;
+        cleaned_json.reserve(out_json.size());
+
+        for (size_t i = 0; i < out_json.size();) {
+            unsigned char byte = (unsigned char)out_json[i];
+
+            if (byte <= 0x7F) {
+                if (byte >= 0x20 || byte == 0x09 || byte == 0x0A || byte == 0x0D) {
+                    cleaned_json += (char)byte;
+                }
+                i++;
+            }
+            else if (byte >= 0xC2 && byte <= 0xDF && i + 1 < out_json.size()) {
+                unsigned char byte2 = (unsigned char)out_json[i + 1];
+                if (byte2 >= 0x80 && byte2 <= 0xBF) {
+                    cleaned_json += (char)byte;
+                    cleaned_json += (char)byte2;
+                    i += 2;
+                }
+                else {
+                    i++;
+                }
+            }
+            else if (byte >= 0xE0 && byte <= 0xEF && i + 2 < out_json.size()) {
+                unsigned char byte2 = (unsigned char)out_json[i + 1];
+                unsigned char byte3 = (unsigned char)out_json[i + 2];
+                if (byte2 >= 0x80 && byte2 <= 0xBF && byte3 >= 0x80 && byte3 <= 0xBF) {
+                    cleaned_json += (char)byte;
+                    cleaned_json += (char)byte2;
+                    cleaned_json += (char)byte3;
+                    i += 3;
+                }
+                else {
+                    i++;
+                }
+            }
+            else if (byte >= 0xF0 && byte <= 0xF7 && i + 3 < out_json.size()) {
+                unsigned char byte2 = (unsigned char)out_json[i + 1];
+                unsigned char byte3 = (unsigned char)out_json[i + 2];
+                unsigned char byte4 = (unsigned char)out_json[i + 3];
+                if (byte2 >= 0x80 && byte2 <= 0xBF && byte3 >= 0x80 && byte3 <= 0xBF && byte4 >= 0x80 && byte4 <= 0xBF) {
+                    cleaned_json += (char)byte;
+                    cleaned_json += (char)byte2;
+                    cleaned_json += (char)byte3;
+                    cleaned_json += (char)byte4;
+                    i += 4;
+                }
+                else {
+                    i++;
+                }
+            }
+            else {
+                i++;
+            }
+        }
+
+        out_json = cleaned_json;
+        //std::cout << "[DEBUG] Cleaned JSON length: " << out_json.size() << " bytes\n";
     }
     catch (const std::exception& e) {
-        std::cerr << u8"[ERROR] JSON 문자열 처리 중 예외 발생: " << e.what() << "\n";
+        //std::cerr << "[ERROR] JSON string processing error: " << e.what() << "\n";
         return false;
     }
 
-    // 6. payload 분리
     if (jsonSize < totalSize)
         out_payload.assign(buffer.begin() + jsonSize, buffer.end());
     else
@@ -168,12 +201,6 @@ bool TcpServer::receivePacket(SOCKET clientSocket, std::string& out_json, std::v
 
     return true;
 }
-
-
-// =======================================================================
-// [sendJsonResponse]
-// - 클라이언트에게 보낼 json 생성
-// =======================================================================
 
 void TcpServer::sendJsonResponse(SOCKET sock, const std::string& jsonStr) {
     uint32_t totalSize = static_cast<uint32_t>(jsonStr.size());
@@ -187,75 +214,53 @@ void TcpServer::sendJsonResponse(SOCKET sock, const std::string& jsonStr) {
     send(sock, jsonStr.c_str(), jsonStr.size(), 0);
 }
 
-// =======================================================================
-// [connectToPythonServer]
-// - 파이썬 서버와 연결
-// =======================================================================
 bool TcpServer::connectToPythonServer(const nlohmann::json& request,
-    nlohmann::json& pyRoot,
-    std::string& out_err_msg)
+    nlohmann::json& pyRoot, std::string& out_err_msg)
 {
     SOCKET sock = connectToPythonServerSocket("10.10.20.116", 6004);
-    if (sock == INVALID_SOCKET) {
-        out_err_msg = u8"[Python 통신] 서버 연결 실패";
-        return false;
-    }
+    if (sock == INVALID_SOCKET) { out_err_msg = "[Python] Connection failed"; return false; }
 
-    // 1) 요청 전송
     std::string body = request.dump();
     sendJsonResponse(sock, body);
 
-    // 2) 응답 수신
-    std::string raw;
-    std::vector<char> payload;
+    std::string raw; std::vector<char> payload;
     if (!TcpServer::receivePacket(sock, raw, payload)) {
-        out_err_msg = u8"[Python 통신] 패킷 수신 실패(헤더/바디 이상)";
-        closesocket(sock);
-        return false;
+        out_err_msg = "[Python] Packet receive failed"; closesocket(sock); return false;
     }
     closesocket(sock);
 
-    // 3) JSON 파싱
+    // 로그/백업 저장 (생략 가능)
+    createDirIfNotExists("receive_data");
+    { std::ofstream ofs("receive_data\\last_response.json", std::ios::binary); ofs.write(raw.data(), raw.size()); }
+
     try {
         pyRoot = nlohmann::json::parse(raw);
+        if (pyRoot.is_string() && nlohmann::json::accept(pyRoot.get<std::string>()))
+            pyRoot = nlohmann::json::parse(pyRoot.get<std::string>());
 
-        // 이중 직렬화 방지
-        if (pyRoot.is_string()) {
-            std::string inner = pyRoot.get<std::string>();
-            if (nlohmann::json::accept(inner)) {
-                pyRoot = nlohmann::json::parse(inner);
-            }
-        }
+        if (pyRoot.contains("response_data") && pyRoot["response_data"].is_object())
+            pyRoot = pyRoot["response_data"];
+
+        return true;
     }
     catch (const std::exception& e) {
-        out_err_msg = std::string("[JSON 파싱 실패] ") + e.what();
+        out_err_msg = std::string("[JSON parsing error] ") + e.what();
         return false;
     }
-
-    // 4) 스키마 체크
-    if (!pyRoot.contains("response_data") || !pyRoot["response_data"].is_object()
-        || !pyRoot["response_data"].contains("data") || !pyRoot["response_data"]["data"].is_array()) {
-        out_err_msg = "[JSON 형식 오류] response_data.data 배열 없음";
-        return false;
-    }
-
-    return true;
 }
 
 SOCKET TcpServer::connectToPythonServerSocket(const std::string& host, int port) {
     WSADATA wsaData;
     if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
-        std::cerr << "[A-PythonConnect] WSAStartup 실패, err=" << WSAGetLastError() << "\n";
+        std::cerr << "[A-PythonConnect] WSAStartup failed, err=" << WSAGetLastError() << "\n";
         return INVALID_SOCKET;
     }
 
-    // host가 IP든 hostname이든 처리 (IPv4/IPv6)
     addrinfo hints{}; hints.ai_socktype = SOCK_STREAM; hints.ai_family = AF_UNSPEC;
     addrinfo* res = nullptr;
     std::string portstr = std::to_string(port);
     int gai = getaddrinfo(host.c_str(), portstr.c_str(), &hints, &res);
     if (gai != 0) {
-        std::cerr << "[B-PythonConnect] getaddrinfo 실패: " << gai_strerrorA(gai) << "\n";
         WSACleanup();
         return INVALID_SOCKET;
     }
@@ -265,17 +270,14 @@ SOCKET TcpServer::connectToPythonServerSocket(const std::string& host, int port)
         sock = socket(p->ai_family, p->ai_socktype, p->ai_protocol);
         if (sock == INVALID_SOCKET) continue;
 
-        // (선택) 타임아웃 설정
-        DWORD timeout = 3000; // 3초
+        DWORD timeout = 3000;
         setsockopt(sock, SOL_SOCKET, SO_RCVTIMEO, (const char*)&timeout, sizeof(timeout));
         setsockopt(sock, SOL_SOCKET, SO_SNDTIMEO, (const char*)&timeout, sizeof(timeout));
 
         if (connect(sock, p->ai_addr, (int)p->ai_addrlen) == 0) {
-            break; // 성공
+            break;
         }
         else {
-            int err = WSAGetLastError();
-            std::cerr << "[C-PythonConnect] 연결 실패, err=" << err << "\n";
             closesocket(sock);
             sock = INVALID_SOCKET;
             continue;
