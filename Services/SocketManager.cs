@@ -108,14 +108,6 @@ namespace Shifter.Services {
             Console.WriteLine("payload 길이: " + payloadBytes.Length);
             Console.WriteLine("전체 길이: " + totalLen);
 
-
-            // 한번에 담아서 보내는 법
-            //List<byte> packet = new List<byte>();
-            //packet.AddRange(header);
-            //packet.AddRange(jsonBytes);
-            //packet.AddRange(payloadBytes);
-
-            //stream.Write(packet.ToArray(), 0, packet.Count);
             Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n");
 
         }

@@ -28,7 +28,7 @@ namespace Shifter.Models {
 
 
         /** Member Methods **/
-        /* LogIn Method */
+        /* Protocol - login_admin */
         public async Task<bool> LogInAsync(string id, string pw) {
             /* [1] new json */
             JObject jsonData = new JObject {

@@ -38,6 +38,8 @@ namespace Shifter.Models {
             return _todaysDuty!;
         }
 
+
+        /* Protocol - gen_timeTable */
         public async Task Gen_TimeTableAsync(int? year, int? month) {
             int admin_uid = _session!.GetCurrentAdminId();
             int team_uid  = _session!.GetCurrentTeamId();
@@ -85,7 +87,7 @@ namespace Shifter.Models {
         }
 
         
-        /* Protocol check_today_duty */
+        /* Protocol - check_today_duty */
         public async Task<List<TodaysDutyInfo>> CheckTodayDutyAsync() {
             /* [1] new json */
             JObject sendJson = new JObject {
