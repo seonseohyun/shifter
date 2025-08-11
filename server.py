@@ -337,7 +337,7 @@ class HandoverSummary:
 class TCPServer:
     """TCP 서버 메인 클래스"""
     
-    def __init__(self, host='127.0.0.1', port=6004):
+    def __init__(self, host='0.0.0.0', port=6004):
         self.host = host
         self.port = port
         self.schedule_generator = ScheduleGenerator()

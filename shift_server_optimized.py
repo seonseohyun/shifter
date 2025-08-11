@@ -44,7 +44,7 @@ else:
     print("OpenAI is not available.")
 
 # Logging setup
-logging.basicConfig(level=logging.INFO, format='%(asctime)s [%(levelname)s] %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
+logging.basicConfig(level=logging.INFO, format='%(asctime)s [%(levelname)s] %(message)s', datefmt='%Y-%m-%d %H:%M:%S', force=True)
 logger = logging.getLogger(__name__)
 
 class SolverStatus(Enum):
@@ -443,6 +443,7 @@ class BinaryProtocolHandler:
     @staticmethod  
     def recv_exact(conn: socket.socket, n: int) -> bytes:
         """Receive exactly n bytes from socket."""
+        conn.settimeout(5.0)  # 5초 타임아웃
         buf = b''
         while len(buf) < n:
             chunk = conn.recv(n - len(buf))
@@ -568,7 +569,7 @@ class LegacyProtocolHandler:
         """Receive JSON data without headers (legacy Python client mode)."""
         try:
             # Set a reasonable timeout for legacy connections
-            conn.settimeout(10.0)
+            conn.settimeout(5.0)
             
             data = b''
             while True:
@@ -967,6 +968,9 @@ class ShiftSchedulerServer:
         logger.info(f"Client connected: {addr}")
         
         try:
+
+            #소켓 타임아웃 설정( 예: 5초)
+            conn.settimeout(5.0)
             # Detect protocol type
             protocol_type = self.detect_protocol_type(conn)
             logger.info(f"[{addr}] Detected protocol: {protocol_type}")

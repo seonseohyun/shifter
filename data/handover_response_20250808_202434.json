@@ -1,9 +1,0 @@
-{
-  "timestamp": "2025-08-08T20:24:34.566869",
-  "request_type": "handover",
-  "status": "success",
-  "task": "summarize_handover",
-  "result": "1. **환자 상태확인**: 모든 환자의 현재 상태를 점검하고 기록하세요. 이상 징후가 있으면 즉시 보고하세요.\n\n2. **약물투여시간 체크**: 각 환자의 약물 투여 시간을 확인하고, 정해진 시간에 맞춰 투여하세요. 투여 후 기록을 반드시 업데이트하세요.",
-  "input_text_length": 27,
-  "processing_time_seconds": 3.499619
-}

@@ -1,9 +1,0 @@
-{
-  "timestamp": "2025-08-08T20:24:39.043575",
-  "request_type": "handover",
-  "status": "success",
-  "task": "summarize_handover",
-  "result": "1. 환자 상태 확인\n   - 즉시 환자 상태를 점검하고 기록하세요.\n\n2. 약물 투여 시간 체크\n   - 정해진 약물 투여 시간을 확인하고, 일정에 맞춰 투여하세요.",
-  "input_text_length": 27,
-  "processing_time_seconds": 1.469601
-}
