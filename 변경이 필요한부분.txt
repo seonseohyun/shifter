@@ -1,71 +1,25 @@
-점검해보자 리틀엔디안 방식을 지켰는가? 내가 요구한 프로토콜을 지켰는가? "{
-  protocol : ""py_gen_timetable""
-  data: {
-    ""staff_data"": {
-      ""staff"": [
-        {
-          ""name"": ""김간호사"",
-          ""staff_id"": 1001,
-          ""grade"": 3,
-          ""total_hours"": 195
-        },....
-        
-      ]
-    },
-    ""position"": ""간호"",
-    ""target_month"": ""2025-09"",
-    ""custom_rules"": {
-      ""shifts"": [""Day"", ""Evening"", ""Night"", ""Off""],
-      ""shift_hours"": {
-        ""Day"": 8,
-        ""Evening"": 8,
-        ""Night"": 8,
-        ""Off"": 0
-      },
-      ""night_shifts"": [""Night""],
-      ""off_shifts"": [""Off""]
-     }
-    }
-  }
-  "    "{
-      ""protocol"": ""py_gen_schedule"",
-      ""resp"": ""success/fail"",
-      ""data"": [
-          {
-              ""date"": ""2025-09-01"",
-              ""shift"": ""Day"",
-              ""hours"": 8,
-              ""people"": [
-                  {
-                      ""name"": ""김간호사"",
-                      ""staff_id"": 1001,
-                      ""grade"": 3
-                  },
-                  {
-                    ""name"": ""이간호사"",
-                    ""staff_id"": 1002,
-                    ""grade"": 3
-                  },
-              {
-              ""date"" : ""2025-09-01"",
-              ""shift"": ""Eve"",
-              ""hours"": 8,
-              ""people"" : [
-                  {
-                      ""name"":""StaffName"",
-                      ""staff_id"": 1003,
-                      ""grade"":1
-                  },
-                  {
-                      ""name"":""StaffName"",
-                      ""staff_id"": 1004,
-                      ""grade:2
-                  }
-              ]
-          }
-      ],
-      ""message"": ""error""
-  }
-  " py_gen_timetable이 cpp가 파이썬에 요청하는 프로토콜 py_get_schedule이 파이썬이 cpp에 응답하는
-   프로토콜  공통점은 data 키가 둘다 최상위에 이protocol 과 같은동등한 위치에 ㅇ존재해야 
-  한다는점이야
+
+생성한 근무표  image.png를 보면 
+우리 파이썬 서버를 통해 생성한 근무표이고 
+/data/schedule_response_20250809_155544.json 파일중 
+uid1번의 근무표 데이터이다 
+
+
+현재 근무표 생성 알고리즘을 다시한번 살펴보자
+근무표 생성시 테스트 데이터의 근무자 수는 10명이다
+그런데 uid1번의 오프 날짜를 확인하면
+7월 1,2,5,7,8,12,13,14,15,17,18,20,21,22,24,25,27,28,29,30,31이다
+결국 근무표 생성알고리즘이 너무 엉망이라는 결론이 나온다.
+형평성 << 이쪽이 제대로 동작안하는 셈이다
+
+1	간호	min_off_days	3	int	최소 휴무일
+2	간호	newbie_no_night	TRUE	bool	신규는 야간 금지
+3	간호	night_after_day	bool	bool	야간 다음날 데이 금지
+4	간호	max_monthly_hours	209 <<최고치 	int	월 최대 근무시간
+5	소방	shift_cycle	"3_day"	json	3일 주기 (D24 → O → O) 패턴
+6	소방	duty_per_cycle	1	int	3일마다 D24 1회
+7	소방	max_monthly_hours	192	int	월 최대 근무시간
+8	소방	night_after_off	TRUE	bool	D24 다음날 오프 필수
+
+이 내용을 보고 다시 제약사항 점검해서  근무표를 제대로 뽑아내는 서버를 만들어야한다.
+

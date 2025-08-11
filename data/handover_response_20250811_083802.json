@@ -1,0 +1,12 @@
+{
+  "timestamp": "2025-08-11T08:38:02.131811",
+  "request_type": "handover",
+  "protocol": "res_handover_summary",
+  "data": {
+    "task": "summarize_handover",
+    "result": "- 환아: 김아기, 생후 8개월, 301호\n- 진단: 기관지폐렴\n- 증상: 발열(현재 체온 38.5도), 기침, 호흡곤란\n- 치료: 항생제, 해열제 투여 후 경과 관찰\n- 수유: 평소의 70% 섭취, 보채는 증상 있음\n- 산소포화도: 94%, O2 2L/min 비강캐뉼러 적용 중\n- 보호자: 어머니 24시간 상주, 모유수유 중\n\n중요사항:\n- 체온 및 호흡 상태 지속 관찰 필요\n- 산소포화도 및 수유량 모니터링\n- 보호자와의 소통 유지"
+  },
+  "resp": "success",
+  "input_text_length": 292,
+  "processing_time_seconds": 3.531483
+}

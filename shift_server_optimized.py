@@ -96,15 +96,40 @@ class PositionRules:
     night_after_off: bool = True
     max_monthly_hours: int = 180
     newbie_grade: int = 5
+    min_off_days: int = 3  # 최소 휴무일 수
+    max_off_days: Optional[int] = None  # 최대 휴무일 수 (형평성)
+    min_work_days: Optional[int] = None  # 최소 근무일 수
     default_shifts: List[str] = field(default_factory=lambda: ['D', 'E', 'N', 'O'])
     default_shift_hours: Dict[str, int] = field(default_factory=lambda: {'D': 8, 'E': 8, 'N': 8, 'O': 0})
     default_night_shifts: List[str] = field(default_factory=lambda: ['N'])
     default_off_shifts: List[str] = field(default_factory=lambda: ['O'])
 
 POSITION_RULES = {
-    "간호": PositionRules(newbie_no_night=True, night_after_off=True, max_monthly_hours=209, newbie_grade=5, default_shifts=['Day', 'Evening', 'Night', 'Off'], default_shift_hours={'Day': 8, 'Evening': 8, 'Night': 8, 'Off': 0}, default_night_shifts=['Night'], default_off_shifts=['Off']),
-    "소방": PositionRules(night_after_off=True, max_monthly_hours=190, default_shifts=['D24', 'O'], default_shift_hours={'D24': 24, 'O': 0}, default_night_shifts=['D24'], default_off_shifts=['O']),
-    "default": PositionRules()
+    "간호": PositionRules(
+        newbie_no_night=True, 
+        night_after_off=True, 
+        max_monthly_hours=209, 
+        newbie_grade=5,
+        min_off_days=3,  # 최소 휴무일
+        max_off_days=10,  # 최대 휴무일 - 대규모 시스템 형평성 강화
+        min_work_days=21,  # 최소 근무일 (형평성 강화)
+        default_shifts=['Day', 'Evening', 'Night', 'Off'], 
+        default_shift_hours={'Day': 8, 'Evening': 8, 'Night': 8, 'Off': 0}, 
+        default_night_shifts=['Night'], 
+        default_off_shifts=['Off']
+    ),
+    "소방": PositionRules(
+        night_after_off=True, 
+        max_monthly_hours=192,
+        min_off_days=5,   # 소방은 D24가 24시간이므로 더 많은 휴무 필요
+        max_off_days=20,  # 3일 주기 패턴 고려 (31일의 약 65%)
+        min_work_days=11,  # 최소 근무일
+        default_shifts=['D24', 'O'], 
+        default_shift_hours={'D24': 24, 'O': 0}, 
+        default_night_shifts=['D24'], 
+        default_off_shifts=['O']
+    ),
+    "default": PositionRules(min_off_days=3, max_off_days=10, min_work_days=21)
 }
 
 class ShiftSchedulerError(Exception):
@@ -328,6 +353,48 @@ class ShiftScheduler:
             if work_hours:
                 monthly_limit = min(staff_member.total_hours, self.position_rules.max_monthly_hours)
                 self.model.Add(sum(work_hours) <= monthly_limit)
+            
+            # 형평성 제약조건 추가
+            if self.shift_rules.off_shifts:
+                # 휴무일 수 계산
+                off_days = []
+                for day in range(self.num_days):
+                    for off_shift in self.shift_rules.off_shifts:
+                        if off_shift in self.shift_rules.shifts:
+                            off_days.append(self.schedule[(staff_id, day, off_shift)])
+                
+                if off_days:
+                    total_off_days = sum(off_days)
+                    
+                    # 최소 휴무일 제약
+                    self.model.Add(total_off_days >= self.position_rules.min_off_days)
+                    
+                    # 최대 휴무일 제약 (형평성 보장 - 동적 조정)
+                    if self.position_rules.max_off_days:
+                        # 직원 수에 따른 동적 형평성 제약
+                        staff_count = len(self.staff)
+                        if staff_count >= 15:
+                            # 대규모 시스템: 더 엄격한 제약 (최대 8일)
+                            dynamic_max_off = min(self.position_rules.max_off_days, max(6, self.num_days // 4))
+                        elif staff_count >= 10:
+                            # 중규모 시스템: 보통 제약 (최대 9일)
+                            dynamic_max_off = min(self.position_rules.max_off_days, max(7, self.num_days * 3 // 10))
+                        else:
+                            # 소규모 시스템: 기본 제약
+                            dynamic_max_off = self.position_rules.max_off_days
+                        
+                        self.model.Add(total_off_days <= dynamic_max_off)
+                        logger.info(f"{staff_member.name}: Dynamic max off days set to {dynamic_max_off} (staff={staff_count})")
+                    else:
+                        # 자동 계산: 전체 일수의 35%를 넘지 않도록 (더 엄격)
+                        max_fair_off_days = max(self.position_rules.min_off_days, self.num_days * 1 // 3)
+                        self.model.Add(total_off_days <= max_fair_off_days)
+                        logger.info(f"{staff_member.name}: Max off days limited to {max_fair_off_days} for fairness")
+                    
+                    # 최소 근무일 제약
+                    if self.position_rules.min_work_days:
+                        work_days = self.num_days - total_off_days
+                        self.model.Add(work_days >= self.position_rules.min_work_days)
             if self.position == "간호" and self.position_rules.newbie_no_night and staff_member.grade == self.position_rules.newbie_grade:
                 for night_shift in self.shift_rules.night_shifts:
                     if night_shift in self.shift_rules.shifts:
