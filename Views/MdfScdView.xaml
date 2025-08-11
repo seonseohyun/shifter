@@ -219,11 +219,11 @@
                                                 <!-- 오른쪽 통계 열 -->
                                                 <StackPanel Orientation="Horizontal" Margin="1">
                                                     <!--근무시간-->
-                                                    <Border Width="70" Height="30" BorderBrush="LightGray" BorderThickness="1">
-                                                        <TextBlock Text="{Binding TotalWorkingHours}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1"/>
+                                                    <Border Width="70" Height="27" BorderBrush="LightGray" BorderThickness="1.46">
+                                                        <TextBlock Text="{Binding TotalWorkingHours}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1.46"/>
                                                     </Border>
-                                                    <Border Width="70" Height="30" BorderBrush="LightGray" BorderThickness="1">
-                                                        <TextBlock Text="{Binding TotalEmptyDays}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1"/>
+                                                    <Border Width="70" Height="27" BorderBrush="LightGray" BorderThickness="1.46">
+                                                        <TextBlock Text="{Binding TotalEmptyDays}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1.46"/>
                                                     </Border>
                                                     <!-- 통계 열 -->
                                                     <ItemsControl ItemsSource="{Binding ShiftCodeCounts}">
@@ -234,7 +234,7 @@
                                                         </ItemsControl.ItemsPanel>
                                                         <ItemsControl.ItemTemplate>
                                                             <DataTemplate>
-                                                                <Border Width="40" Height="29" BorderBrush="LightGray" BorderThickness="1" Margin="1,0,1,0">
+                                                                <Border Width="40" Height="27" BorderBrush="LightGray" BorderThickness="1" Margin="1.46, 0, 1.46, 0">
                                                                     <TextBlock Text="{Binding Value}" 
                                                                                HorizontalAlignment="Center" 
                                                                                VerticalAlignment="Center"/>
@@ -252,39 +252,57 @@
                             </ItemsControl>
                         </ScrollViewer>
 
+                        
                         <!-- Bottom Stat -->
-                        <ItemsControl Grid.Row="2" ItemsSource="{Binding ShiftHeaders}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal" Tag="{Binding ShiftCode}">
-                                        <!-- 왼쪽 ShiftCode 라벨 -->
-                                        <TextBlock Text="{Binding ShiftCode}" Width="30" Margin="2" />
+                        <ScrollViewer Grid.Row="2" 
+                                      HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
+                                      Margin="0,10,0,0">
+                            <ItemsControl ItemsSource="{Binding ShiftHeaders}" Margin="0,2,0,0">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <!-- 왼쪽 라벨 -->
+                                            <Border CornerRadius="5" Margin="1" Width="80" Height="27"
+                                                Background="#303030"
+                                                BorderThickness="1" BorderBrush="#A7A7A7">
+                                                <TextBlock Text="{Binding ShiftCode}" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                       Foreground="#FFFFFF"/>
+                                            </Border>
 
-                                        <!-- 오른쪽: 일별 통계 -->
-                                        <ItemsControl ItemsSource="{Binding DataContext.DailyStatistics, RelativeSource={RelativeSource AncestorType=UserControl}}">
-                                            <ItemsControl.ItemsPanel>
-                                                <ItemsPanelTemplate>
-                                                    <StackPanel Orientation="Horizontal"/>
-                                                </ItemsPanelTemplate>
-                                            </ItemsControl.ItemsPanel>
-                                            <ItemsControl.ItemTemplate>
-                                                <DataTemplate>
-                                                    <Border Width="25" Height="25" BorderBrush="Gray" BorderThickness="0.5" Margin="1">
-                                                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">
-                                                            <TextBlock Text="{Binding Tag, RelativeSource={RelativeSource AncestorType=StackPanel}}" 
-           Foreground="Red" FontSize="10" />
+                                            <!-- 오른쪽: 일별 통계 -->
+                                            <ItemsControl ItemsSource="{Binding DataContext.DailyStatistics, ElementName=root}"
+                                                      Tag="{Binding ShiftCode}">
+                                                <ItemsControl.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <StackPanel Orientation="Horizontal"/>
+                                                    </ItemsPanelTemplate>
+                                                </ItemsControl.ItemsPanel>
 
-                                                        </TextBlock>
-                                                    </Border>
-                                                </DataTemplate>
-                                            </ItemsControl.ItemTemplate>
-                                        </ItemsControl>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-
-
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Border Width="27" Height="27" Background="#FFFFFF"
+                                                            BorderBrush="LightGray" BorderThickness="0.5" Margin="1.46">
+                                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                                   FontSize="12" Foreground="Black">
+                                                                <TextBlock.Text>
+                                                                    <MultiBinding Converter="{StaticResource ShiftCountLookup}">
+                                                                        <!-- 1) 오늘자 DailyShiftStats -->
+                                                                        <Binding/>
+                                                                        <!-- 2) 이 행의 ShiftCode (바깥 ItemsControl.Tag) -->
+                                                                        <Binding Path="Tag"
+                                                                             RelativeSource="{RelativeSource AncestorType=ItemsControl}"/>
+                                                                    </MultiBinding>
+                                                                </TextBlock.Text>
+                                                            </TextBlock>
+                                                        </Border>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
                     </Grid>
                 </Grid>
             </Grid>

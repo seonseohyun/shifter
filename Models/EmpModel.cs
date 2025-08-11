@@ -113,14 +113,10 @@ namespace Shifter.Models {
             /* [0] new jArray */
             JArray jArray = new JArray();
             for (int i = 0; i < employees.Count; i++) {
-                Console.WriteLine("[EmpModel] i: " + i.ToString());
-                Console.WriteLine("[EmpModel] grade_level: " + employees[i].GradeItem!.GradeNum);
-                Console.WriteLine("[EmpModel] staff_name: " + employees[i].EmpName);
-                Console.WriteLine("[EmpModel] phone_num: " + employees[i].PhoneNum);
-                Console.WriteLine("[EmpModel] total_hours: " + employees[i].TotalHours);
                 JObject staff = new()
                 {
                     ["grade_level"] = employees[i].GradeItem!.GradeNum,
+                    ["grade_name"] = employees[i].GradeItem!.GradeName,
                     ["staff_name"] = employees[i].EmpName,
                     ["phone_num"] = employees[i].PhoneNum,
                     ["total_hours"] = employees[i].TotalHours
@@ -230,13 +226,6 @@ namespace Shifter.Models {
 
 
         /* Protocol - chk_temp_staff_info */
-        /* {
-        "protocol": "chk_temp_staff_info",
-            "data": {
-                "team_uid": 0
-            }
-        }*/
-
         public async Task<ObservableCollection<Employee>> ChkTempStaffInfoAsync() {
             Console.WriteLine("[EmpModel] ChkTempStaffInfoAsync Executed");
 

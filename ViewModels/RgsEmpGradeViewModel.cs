@@ -71,7 +71,7 @@ namespace Shifter.ViewModels {
             }
 
             /* Register Info on Server */
-            //_ = _empmodel!.RgsEmpGradeAsync(Grades);
+            _ = _empmodel!.RgsEmpGradeAsync(Grades);
 
             /* NavigatePage */
             WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.RgsEmpInfo));

@@ -10,7 +10,7 @@
         <local:BoolToVisibilityConverter x:Key="BoolToVis"/>
         <local:ZeroToVisConv x:Key="ZeroToVisibility"/>
         <local:EqualityConverter x:Key="EqualityConverter" />
-        <local:ShiftCountLookupConverter x:Key="ShiftCountLookupConverter"/>
+        <local:ShiftCountLookupConverter x:Key="ShiftCountLookup"/>
         <local:JoinConverter x:Key="JoinConverter" />
         <local:BoolToBoldConverter x:Key="boolToBoldConverter"/>
 

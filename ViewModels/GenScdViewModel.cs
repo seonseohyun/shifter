@@ -1,5 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
+using Shifter.Enums;
+using Shifter.Messages;
 using Shifter.Models;
 using System;
 using System.Collections.Generic;
@@ -30,8 +33,11 @@ namespace Shifter.ViewModels {
         [RelayCommand] void GenScd() {
             Console.WriteLine("[GenScdViewModel] Executed GenScd()");
             Console.WriteLine("[GenScdViewModel] Year: {0}, Month: {1}", Year, Month);
-            
-            _ = _scdmodel!.Gen_TimeTableAsync(Year, Month);
+
+            _session!.SetCurrentYear(Year!.Value);
+            _session!.SetCurrentMonth(Month!.Value);
+
+            WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.MdfScd));
         }
 
         [RelayCommand] void MinusYear() {

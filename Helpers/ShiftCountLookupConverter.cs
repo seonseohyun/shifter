@@ -1,24 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Shifter.Models;
+using Shifter.ViewModels;
+using System;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Data;
 
 namespace Shifter.Helpers {
     public class ShiftCountLookupConverter : IMultiValueConverter {
-        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture) {
-            if (values.Length < 2 || values[0] is not Dictionary<string, int> dict || values[1] is not string code) { 
-                Console.WriteLine("[ShiftCountLookupConverter]");
-                return "0";
-            }
 
-            return dict.TryGetValue(code, out int count) ? count.ToString() : "0";
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture) {
+            var daily = values[0] as DailyShiftStats;
+            var code = values[1] as string;
+            if (daily == null || string.IsNullOrEmpty(code)) return "";
+
+            var returnvalue = daily.ShiftCounts.TryGetValue(code, out var cnt) ? cnt.ToString() : "";
+
+            return returnvalue;
+
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
-            => throw new NotImplementedException();
+            => throw new NotSupportedException();
     }
 
 }

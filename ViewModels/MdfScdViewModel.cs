@@ -8,64 +8,69 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Shifter.ViewModels {
     public partial class MdfScdViewModel : ObservableObject {
 
         /** Constructor **/
-        public MdfScdViewModel(Session? session) {
+        public MdfScdViewModel(Session? session, ScdModel scdModel) {
             _session = session;
+            _scdModel = scdModel;
 
-            // [1] 날짜(1~31일) 채우기
-            for (int i = 1; i <= 31; i++)
-                Days.Add(i);
+            _ = LoadAsync(_session!.GetCurrentYear(), _session!.GetCurrentMonth());
+            //// [1] 날짜(1~31일) 채우기
+            //for (int i = 1; i <= 31; i++)
+            //    Days.Add(i);
 
-            // [2] 서버 또는 테스트용 Shift 정보 정의
-            ShiftWorkingHoursMap.Clear();
-            var testShiftInfos = new Dictionary<string, int>
-                {
-                    { "D", 8 },
-                    { "E", 8 },
-                    { "N", 8 },
-                    { "O", 0 }
-                };
+            //// [2] 서버 또는 테스트용 Shift 정보 정의
+            //ShiftWorkingHoursMap.Clear();
+            //var testShiftInfos = new Dictionary<string, int>
+            //    {
+            //        { "D", 8 },
+            //        { "E", 8 },
+            //        { "N", 8 },
+            //        { "O", 0 }
+            //    };
 
-            // [3] ShiftCode 리스트 및 ShiftHeader 초기화
-            foreach (var kvp in testShiftInfos) {
-                ShiftCodes.Add(kvp.Key);
-                ShiftWorkingHoursMap[kvp.Key] = kvp.Value;
+            //// [3] ShiftCode 리스트 및 ShiftHeader 초기화
+            //foreach (var kvp in testShiftInfos) {
+            //    ShiftCodes.Add(kvp.Key);
+            //    ShiftWorkingHoursMap[kvp.Key] = kvp.Value;
 
-                // 동적 헤더용 (필요 시 사용)
-                ShiftHeaders.Add(new ShiftHeader
-                {
-                    ShiftCode = kvp.Key,
-                    DisplayName = $"{kvp.Key}"
-                });
-            }
+            //    // 동적 헤더용 (필요 시 사용)
+            //    ShiftHeaders.Add(new ShiftHeader
+            //    {
+            //        ShiftCode = kvp.Key,
+            //        DisplayName = $"{kvp.Key}"
+            //    });
+            //}
 
-            // [4] 테스트용 직원 스케줄 초기화
-            for (int i = 1; i <= 24; i++) {
-                var staff = new StaffSchedule { Name = $"staff{i}" };
-                staff.UpdateDailyStatsCallback = UpdateDailyStatistics;
+            //// [4] 테스트용 직원 스케줄 초기화
+            //for (int i = 1; i <= 24; i++) {
+            //    var staff = new StaffSchedule { Name = $"staff{i}" };
+            //    staff.UpdateDailyStatsCallback = UpdateDailyStatistics;
 
-                for (int day = 1; day <= 31; day++) {
-                    staff.DailyShifts.Add(new ScheduleCell { Day = day });
-                }
+            //    for (int day = 1; day <= 31; day++) {
+            //        staff.DailyShifts.Add(new ScheduleCell { Day = day });
+            //    }
 
-                StaffSchedules.Add(staff);
-            }
+            //    StaffSchedules.Add(staff);
+            //}
 
-            UpdateDailyStatistics();
+            //UpdateDailyStatistics();
         }
 
 
 
         /** Member Variables **/
         private readonly Session? _session;
+        private readonly ScdModel _scdModel;
         public ObservableCollection<int> Days { get; set; } = new();
         [ObservableProperty] private ObservableCollection<StaffSchedule> staffSchedules = new();
         public static List<string> ShiftCodes { get; } = new();
         public static Dictionary<string, int> ShiftWorkingHoursMap { get; } = new();
+
         /* Header Shifts(Column Names) */
         public ObservableCollection<ShiftHeader> ShiftHeaders { get; set; } = new();
         public ObservableCollection<DailyShiftStats> DailyStatistics { get; set; } = new();
@@ -73,6 +78,8 @@ namespace Shifter.ViewModels {
 
 
         /** Member Methods **/
+
+        /* 클릭 시 Shift 변경 */
         [RelayCommand] public void ToggleShift(ScheduleCell cell) {
             Console.WriteLine("[MdfScdViewModel] Executed ToggleShift(ScheduleCell cell)");
             if (ShiftCodes.Count == 0) return;
@@ -84,15 +91,20 @@ namespace Shifter.ViewModels {
             UpdateDailyStatistics();
         }
 
+
+        /* 스케줄 삭제 */
         [RelayCommand] public void DelScd() {
             Console.WriteLine("[MdfScdViewModel] Executed DelScd");
         }
 
 
+        /* 스케줄 저장 */
         [RelayCommand] public void SaveScd() {
             Console.WriteLine("[MdfScdViewModel] Executed SaveScd()");
         }
 
+
+        /* 스케줄 초기화 */
         public void UpdateDailyStatistics() {
             DailyStatistics.Clear();
 
@@ -115,103 +127,23 @@ namespace Shifter.ViewModels {
 
             OnPropertyChanged(nameof(DailyStatistics));
         }
-    }
 
+        public async Task LoadAsync(int year, int month) {
+            Console.WriteLine("[MdfScdViewModel] Executed LoadAsync(year: {0}, month: {1})", year, month);
+            var list = await _scdModel.GenTimeTableAsync(year, month);
 
+            await Application.Current.Dispatcher.InvokeAsync(() =>
+            {
+                // 방법 A: 인스턴스 교체 (선택 유지가 필요 없다면 간단)
+                StaffSchedules = new ObservableCollection<StaffSchedule>(list);
 
-    /*** Class Schedule Cell ***/
-    public partial class ScheduleCell : ObservableObject {
-        
-        /** Member Variables **/
-        [ObservableProperty] private int day;
-        private string shiftCode = "";
-        public string ShiftCode {
-            get => shiftCode;
-            set {
-                if (SetProperty(ref shiftCode, value)) {
-                    ShiftCodeChanged?.Invoke(this, EventArgs.Empty);
-                }
-            }
+                // 각 항목에 콜백 연결
+                foreach (var s in StaffSchedules)
+                    s.UpdateDailyStatsCallback = UpdateDailyStatistics;
+
+                // 집계
+                UpdateDailyStatistics();
+            });
         }
-        public event EventHandler? ShiftCodeChanged;
     }
-
-
-
-
-    /*** Class Staff Schedule ***/
-    public partial class StaffSchedule : ObservableObject {
-        
-        /** Constructor **/
-        public StaffSchedule() {
-            DailyShifts.CollectionChanged += (s, e) => {
-                if (e.NewItems != null)
-                    foreach (ScheduleCell cell in e.NewItems)
-                        cell.ShiftCodeChanged += OnCellShiftChanged;
-                if (e.OldItems != null)
-                    foreach (ScheduleCell cell in e.OldItems)
-                        cell.ShiftCodeChanged -= OnCellShiftChanged;
-            };
-        }
-
-        /* Member Variables */
-        public string Name { get; set; } = string.Empty;
-        public ObservableCollection<ScheduleCell> DailyShifts { get; set; } = new();
-        // 동적 통계용 딕셔너리
-        public ObservableCollection<KeyValuePair<string, int>> ShiftCodeCounts { get; set; } = new();
-        public event EventHandler? ShiftChanged;
-        public Action? UpdateDailyStatsCallback { get; set; }
-
-
-        private void OnCellShiftChanged(object? sender, EventArgs e) {
-            UpdateShiftCounts();
-            OnPropertyChanged(nameof(TotalWorkingHours));
-            OnPropertyChanged(nameof(TotalEmptyDays));
-            UpdateDailyStatsCallback?.Invoke(); // ViewModel에 직접 요청
-        }
-
-
-        public void UpdateShiftCounts() {
-            // 1. 임시 Dictionary로 그룹핑된 카운트 계산
-            var tempDict = DailyShifts
-                .GroupBy(c => c.ShiftCode)
-                .Where(g => !string.IsNullOrWhiteSpace(g.Key))
-                .ToDictionary(g => g.Key!, g => g.Count());
-
-            // 2. 순서 맞춰 다시 채우기
-            ShiftCodeCounts.Clear();
-
-            foreach (var shift in MdfScdViewModel.ShiftCodes) {
-                tempDict.TryGetValue(shift, out int count);
-                ShiftCodeCounts.Add(new KeyValuePair<string, int>(shift, count));
-            }
-
-            OnPropertyChanged(nameof(ShiftCodeCounts));
-        }
-
-        public int TotalWorkingHours =>
-            DailyShifts.Sum(c =>
-                MdfScdViewModel.ShiftWorkingHoursMap.TryGetValue(c.ShiftCode ?? "", out int hours) ? hours : 0);
-
-        public int TotalEmptyDays =>
-            DailyShifts.Count(c => string.IsNullOrWhiteSpace(c.ShiftCode));
-    }
-
-
-
-    /*** Class ShiftHeader ***/
-    public class ShiftHeader {
-        public string DisplayName { get; set; } = "";   // 예: "Total D"
-        public string ShiftCode { get; set; } = "";     // 예: "D"
-    }
-
-
-    /*** Class Daily Shift Status ***/
-    public class DailyShiftStats : ObservableObject {
-        public int Day { get; set; }
-
-        // shift 코드 → 해당 일에 몇 명이 이 교대를 했는지
-        public Dictionary<string, int> ShiftCounts { get; set; } = new();
-    }
-
 }
