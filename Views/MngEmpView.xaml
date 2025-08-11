@@ -134,26 +134,26 @@
                     <!-- Column Names -->
                     <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="7*"/>
                             <ColumnDefinition Width="4*"/>
-                            <ColumnDefinition Width="10*"/>
+                            <ColumnDefinition Width="7*"/>
+                            <ColumnDefinition Width="7*"/>
                             <ColumnDefinition Width="7*"/>
                             <ColumnDefinition Width="8*"/>
                         </Grid.ColumnDefinitions>
                         
                         <!-- Column Names -->
                         <TextBlock Grid.Column="0" 
-                                   Text=" 팀명" TextAlignment="Left" Foreground="#444444"
-                                   FontSize="18" FontFamily="Noto Sans KR" FontWeight="Medium"
-                                   VerticalAlignment="Center" Padding="5"/>
-                        
-                        <TextBlock Grid.Column="1" 
                                    Text=" 직원ID" TextAlignment="Left" Foreground="#444444"
                                    FontSize="18" FontFamily="Noto Sans KR" FontWeight="Medium"
                                    VerticalAlignment="Center" Padding="5"/>
                         
-                        <TextBlock Grid.Column="2" 
+                        <TextBlock Grid.Column="1" 
                                    Text=" 직원명" TextAlignment="Left" Foreground="#444444"
+                                   FontSize="18" FontFamily="Noto Sans KR" FontWeight="Medium"
+                                   VerticalAlignment="Center" Padding="5"/>
+                        
+                        <TextBlock Grid.Column="2" 
+                                   Text=" 핸드폰" TextAlignment="Left" Foreground="#444444"
                                    FontSize="18" FontFamily="Noto Sans KR" FontWeight="Medium"
                                    VerticalAlignment="Center" Padding="5"/>
                         
@@ -175,55 +175,44 @@
                                 <DataTemplate>
                                     <Grid>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="7*"/>
                                             <ColumnDefinition Width="4*"/>
-                                            <ColumnDefinition Width="10*"/>
+                                            <ColumnDefinition Width="7*"/>
+                                            <ColumnDefinition Width="7*"/>
                                             <ColumnDefinition Width="7*"/>
                                             <ColumnDefinition Width="8*"/>
                                         </Grid.ColumnDefinitions>
-                                    
-                                        <!-- 0 TeamName   -->
+
+                                        <!-- 0 EmpId   -->
                                         <Border Grid.Column="0" Margin="5" Height="40" Background="#FFFFFF" BorderThickness="0"
                                                 CornerRadius="10">
                                             <TextBlock Grid.Row="0" 
                                                        VerticalAlignment="Center" FontFamily="Noto Sans KR" FontSize="15" FontWeight="Medium" Padding="5"
-                                                       Text="{Binding TeamName}"></TextBlock>
+                                                       Text="{Binding EmpId}"></TextBlock>
                                         </Border>
 
-                                        <!-- 1 EmpId      -->
+                                        <!-- 1 EmpName -->
                                         <Border Grid.Column="1" Margin="5" Height="40" Background="#FFFFFF" BorderThickness="0"
                                                 CornerRadius="10">
                                             <TextBlock Grid.Row="1"
                                                        VerticalAlignment="Center" FontFamily="Noto Sans KR" FontSize="15" FontWeight="Medium" Padding="5"
-                                                       Text="{Binding EmpId}"></TextBlock>
+                                                       Text="{Binding EmpName}"></TextBlock>
                                         </Border>
 
-                                        <!-- 2 EmpName    -->
+                                        <!-- 2 PhoneNum -->
                                         <Border Grid.Column="2" Margin="5" Height="40" Background="#FFFFFF" BorderThickness="0"
                                                 CornerRadius="10">
                                             <TextBox Grid.Row="2"
                                                      Background="Transparent" BorderThickness="0"
                                                      VerticalAlignment="Center" FontFamily="Noto Sans KR" FontSize="15" FontWeight="Medium" Padding="5"
-                                                     Text="{Binding EmpName, Mode=TwoWay}"></TextBox>
+                                                     Text="{Binding PhoneNum, Mode=TwoWay}"></TextBox>
                                         </Border>
 
                                         <!-- 3 GradeItem  -->
                                         <Border Grid.Column="3" Margin="5" Height="40" Background="#FFFFFF" BorderThickness="0"
                                                 CornerRadius="10">
-                                            <ComboBox Grid.Row="3"
-                                                      ItemsSource ="{Binding DataContext.Grades, ElementName=Root}"
-                                                      SelectedItem="{Binding GradeItem, Mode=TwoWay}"
-                                                      DisplayMemberPath="GradeName"
-                                                      VerticalAlignment="Center" Padding="5" BorderThickness="0"
-                                                      Style="{StaticResource {x:Static ToolBar.ComboBoxStyleKey}}"
-                                                      Width="200">
-                                                <ComboBox.ItemContainerStyle>
-                                                    <Style TargetType="ComboBoxItem">
-                                                        <Setter Property="Background" Value="Transparent"/>
-                                                        <Setter Property="BorderBrush" Value="Transparent"/>
-                                                    </Style>
-                                                </ComboBox.ItemContainerStyle>
-                                            </ComboBox>
+                                            <TextBlock Grid.Row="3"
+                                                       VerticalAlignment="Center" FontFamily="Noto Sans KR" FontSize="15" FontWeight="Medium" Padding="5"
+                                                       Text="{Binding GradeItem.GradeName}"></TextBlock>
                                         </Border>
                                     
                                         <!-- 4 TotalHours -->

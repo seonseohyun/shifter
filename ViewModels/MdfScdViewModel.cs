@@ -21,47 +21,7 @@ namespace Shifter.ViewModels {
             TeamName = _session?.GetCurrentTeamName();
             CompanyName = _session?.GetCurrentCompanyName();
 
-            _ = LoadAsync(_session!.GetCurrentYear(), _session!.GetCurrentMonth());
-            //// [1] 날짜(1~31일) 채우기
-            //for (int i = 1; i <= 31; i++)
-            //    Days.Add(i);
-
-            //// [2] 서버 또는 테스트용 Shift 정보 정의
-            //ShiftWorkingHoursMap.Clear();
-            //var testShiftInfos = new Dictionary<string, int>
-            //    {
-            //        { "D", 8 },
-            //        { "E", 8 },
-            //        { "N", 8 },
-            //        { "O", 0 }
-            //    };
-
-            //// [3] ShiftCode 리스트 및 ShiftHeader 초기화
-            //foreach (var kvp in testShiftInfos) {
-            //    ShiftCodes.Add(kvp.Key);
-            //    ShiftWorkingHoursMap[kvp.Key] = kvp.Value;
-
-            //    // 동적 헤더용 (필요 시 사용)
-            //    ShiftHeaders.Add(new ShiftHeader
-            //    {
-            //        ShiftCode = kvp.Key,
-            //        DisplayName = $"{kvp.Key}"
-            //    });
-            //}
-
-            //// [4] 테스트용 직원 스케줄 초기화
-            //for (int i = 1; i <= 24; i++) {
-            //    var staff = new StaffSchedule { Name = $"staff{i}" };
-            //    staff.UpdateDailyStatsCallback = UpdateDailyStatistics;
-
-            //    for (int day = 1; day <= 31; day++) {
-            //        staff.DailyShifts.Add(new ScheduleCell { Day = day });
-            //    }
-
-            //    StaffSchedules.Add(staff);
-            //}
-
-            //UpdateDailyStatistics();
+            _ = LoadAsync(_session!.GetCurrentYear(), _session!.GetCurrentMonth()); 
         }
 
 
@@ -139,21 +99,24 @@ namespace Shifter.ViewModels {
         public async Task LoadAsync(int year, int month) {
             Console.WriteLine("[MdfScdViewModel] Executed LoadAsync(year: {0}, month: {1})", year, month);
 
-            // 날짜(1~31일) 채우기
+            /* [1] 날짜 채우기 */
             Days.Clear();
             for (int i = 1; i <= (int) DateTime.DaysInMonth(year, month); i++)
                 Days.Add(i);
 
+            /* [2] Server, Py - Generate TimeTable 설정 */
             var list = await _scdModel.GenTimeTableAsync(year, month);
 
             await Application.Current.Dispatcher.InvokeAsync(() =>
             {
-                // 인스턴스 교체
+                /* [3] ShiftCodes, ShiftWorkingHoursMap 설정 */
                 StaffSchedules = new ObservableCollection<StaffSchedule>(list);
 
-                // 각 항목에 콜백 연결
-                foreach (var schedule in StaffSchedules)
+                /* ShiftCodes, ShiftWorkingHoursMap 설정 */
+                foreach (var schedule in StaffSchedules) {
                     schedule.UpdateDailyStatsCallback = UpdateDailyStatistics;
+                    schedule.RebindAndRecalculate();   // ← 핵심
+                }
 
                 // 집계
                 UpdateDailyStatistics();

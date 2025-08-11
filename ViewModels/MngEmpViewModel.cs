@@ -15,53 +15,40 @@ namespace Shifter.ViewModels {
     public partial class MngEmpViewModel : ObservableObject {
 
         /** Constructor **/
-        public MngEmpViewModel(Session? session) {
+        public MngEmpViewModel(Session? session, EmpModel? empModel) {
             _session = session;
+            _empModel = empModel;
             Grades = new ObservableCollection<GradeItem>(_session!.Grades);
 
-            UpdateEmpInfoList();
+            _ = UpdateEmpInfoList();
         }
 
 
 
         /** Member Variables **/
         private readonly Session? _session;
-        [ObservableProperty] private ObservableCollection<GradeItem> grades = new();
-        [ObservableProperty] private ObservableCollection<EmpInfo> emps = new();
+        private readonly EmpModel? _empModel;
+        [ObservableProperty] private ObservableCollection<GradeItem> grades = [];
+        [ObservableProperty] private ObservableCollection<Employee>  emps   = [];
 
 
 
         /** Member Methods **/
+
+        /* Update Employee Information List (xaml Binded Variable) */
         private async Task UpdateEmpInfoList() {
-            for (int i = 0; i < 25; i++) {
-                Emps.Add(new EmpInfo
-                {
-                    TeamName = $"팀{i}",
-                    EmpId = i + 1,
-                    EmpName = $"직원{i}",
-                    TotalHours = 10 + i,
-                    GradeItem = new GradeItem
-                    {
-                        GradeName = "TestGrade",
-                        GradeNum = i + 1,
-                    }
-                });
-            }
+            
+            Emps.Clear(); // Clear the existing list before updating
+
+            Emps = await _empModel!.ReqStaffListAsync();
         }
 
+
+        /* Go To Check Temporary Employee Information Command */
         [RelayCommand] private void GoToChkTmpEmpInfo() {
             Console.WriteLine("[MngEmpViewModel] GoToChkTmpEmpInfo Executed");
             // Navigate to the temporary employee info view
             WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.ChkTmpEmpInfo));
         }
-    }
-
-
-    public partial class EmpInfo : ObservableObject {
-        [ObservableProperty] private string    ? teamName   = "";
-        [ObservableProperty] private int       ? empId      = 0;
-        [ObservableProperty] private string    ? empName    = "";
-        [ObservableProperty] private GradeItem ? gradeItem  = null;
-        [ObservableProperty] private int       ? totalHours = 0;
     }
 }

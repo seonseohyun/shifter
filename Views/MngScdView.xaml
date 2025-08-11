@@ -5,10 +5,151 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Shifter.Views"
       mc:Ignorable="d" 
-      d:DesignHeight="900" d:DesignWidth="1600"
-      Title="MngScdView">
+      d:DesignHeight="950" d:DesignWidth="1600"
+      Background="#FFFFFF"
+      Title="MngScdView"
+      FontFamily="Noto">
 
     <Grid>
-        
+        <!-- Main Border -->
+        <Border Margin="60" CornerRadius="30" Background="#F7F7F7">
+            <Border.Effect>
+                <DropShadowEffect
+                    Color="Black"
+                    ShadowDepth="5"
+                    BlurRadius="10"
+                    Opacity="0.5">
+                </DropShadowEffect>
+            </Border.Effect>
+            <!-- PanelGrid -->
+            <Grid Margin="30">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="1.3*"/>
+                    <RowDefinition Height="15*"/>
+                </Grid.RowDefinitions>
+
+                <!-- Title Grid -->
+                <Grid Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1.5*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <!-- Main Title -->
+                    <TextBlock Grid.Row="0" Text="{Binding TeamName}" 
+                               Style="{StaticResource TitleTextBlockStyle}" 
+                               VerticalAlignment="Center" HorizontalAlignment="Left"
+                               Margin="0,0,0,0"/>
+
+                    <!-- Sub Title -->
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="5*"/>
+                        </Grid.ColumnDefinitions>
+                        <!-- CompanyName -->
+                        <Border Grid.Column="0" Margin="0 ,0,3,0" Style="{StaticResource KeywordBorderStyle}">
+                            <TextBlock Text="{Binding CompanyName}" FontWeight="Medium"
+                                       Style="{StaticResource KeyworkdTextBlockStyle}" 
+                                       VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                        <!-- TeamName -->
+                        <Border Grid.Column="1" Margin="3,0,3,0" Style="{StaticResource KeywordBorderStyle}">
+                            <TextBlock Text="{Binding TeamName}" FontWeight="Medium"
+                                       Style="{StaticResource KeyworkdTextBlockStyle}" 
+                                       VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                        <!-- AdminName -->
+                        <Border Grid.Column="2" Margin="3,0,3,0" Style="{StaticResource KeywordBorderStyle}">
+                            <TextBlock Text="{Binding AdminName}" FontWeight="Medium"
+                                        Style="{StaticResource KeyworkdTextBlockStyle}" 
+                                        VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                        <!-- yyyy-MM -->
+                        <Border Grid.Column="3" Margin="3,0,3,0" Style="{StaticResource KeywordBorderStyle}">
+                            <TextBlock Text="{Binding CurrentMonth, StringFormat=0월}" FontWeight="Medium"
+                                       Style="{StaticResource KeyworkdTextBlockStyle}" 
+                                       VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                </Grid>
+
+                <!-- yyyy-MM selecting Button, Export(Share), ChkChgReqButton, MdfButton -->
+                <Grid Grid.Row="1" Margin="0,5,0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"/>
+                        <!-- 공백 -->
+                        <ColumnDefinition Width="10*"/>
+                        <ColumnDefinition Width="0.56*"/>
+                        <ColumnDefinition Width="2.5*"/>
+                        <ColumnDefinition Width="2.5*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- yyyy-MM selecting Button -->
+                    <Border Background="#4E4E4E" CornerRadius="17" Margin="0,5,0,0">
+                        <!--MinusMonthButton, yyyy-MM Text, PlusButton-->
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="8.5*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <!-- ＜ Button -->
+                            <Button Grid.Column="0" Content="＜" 
+                                    Foreground="#FFFFFF" Background="Transparent"
+                                    BorderBrush="Transparent" BorderThickness="0"
+                                    Command="{Binding MinusMonthCommand}"
+                                    FontWeight="Bold">
+                            </Button>
+                            <!-- yyyy-MM TextBlock -->
+                            <TextBlock Grid.Column="1" Text="{Binding YearMonth}" 
+                                       Foreground="#FFFFFF" FontWeight="Medium"
+                                       VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <!-- ＞ Button -->
+                            <Button Grid.Column="2" Content="＞" 
+                                    Command="{Binding PlusMonthCommand}"
+                                    Background="Transparent"
+                                    Foreground="#FFFFFF"
+                                    BorderBrush="Transparent"/>
+                        </Grid>
+                    </Border>
+                    <!-- Export(Share) Button -->
+                    <Button Grid.Column="2" Command="{Binding ExportCommand}"
+                            Background="#002EFF" BorderBrush="Transparent"
+                            BorderThickness="0" Padding="8" Margin="0,0,0,0">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="20"/>
+                            </Style>
+                        </Button.Resources>
+                        <Image
+                            Source="/Resources/Icons/Share.png">
+                        </Image>
+                    </Button>
+                    <!-- ChkChgReqButton -->
+                    <Button Grid.Column="3" Content="Change Request" Margin="10,0,5,0" 
+                            Command="{Binding GoToChkChgReqCommand}"
+                            FontWeight="Medium" FontFamily="Noto Sans KR" FontSize="15"
+                            Foreground="#002EFF" Background="Transparent"
+                            BorderBrush="#002EFF" BorderThickness="2">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="20"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    <!-- MdfButton -->
+                    <Button Grid.Column="4" Content="Modify Schedule" Margin="5,0,5,0"
+                            Style="{StaticResource SmallRoundedBlueButtonStyle}"
+                            FontWeight="Medium"
+                            Command="{Binding GoToMdfScdCommand}"/>
+                </Grid>
+            
+                
+            </Grid>
+        </Border>
     </Grid>
 </Page>

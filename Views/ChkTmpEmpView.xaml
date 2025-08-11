@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Shifter.Views"
       mc:Ignorable="d" 
-      d:DesignHeight="900" d:DesignWidth="1600"
+      d:DesignHeight="850" d:DesignWidth="1600"
       Title="ChkTmpEmpView"
       Background="#FFFFFF">
 
@@ -189,7 +189,7 @@
                                             <!-- 2 전화번호 -->
                                             <Border Grid.Column="2" Margin="3" Height="40" Background="#FFFFFF" CornerRadius="10"
                                                     BorderThickness="0">
-                                                <TextBlock Text="{Binding EmpPhoneNum}"
+                                                <TextBlock Text="{Binding PhoneNum}"
                                                            FontSize="14" FontFamily="Noto Sans KR" FontWeight="Medium" Foreground="#444444"
                                                            Background="Transparent" VerticalAlignment="Center" Padding="5"/>
                                             </Border>
@@ -197,7 +197,7 @@
                                             <!-- 3 총 근무시간 -->
                                             <Border Grid.Column="3" Margin="3" Height="40" Background="#FFFFFF" CornerRadius="10"
                                                     BorderThickness="0">
-                                                <TextBlock Text="{Binding EmpTotalHours}"
+                                                <TextBlock Text="{Binding TotalHours}"
                                                            FontSize="14" FontFamily="Noto Sans KR" FontWeight="Medium" Foreground="#444444"
                                                            Background="Transparent" VerticalAlignment="Center" Padding="5"/>
                                             </Border>
@@ -205,7 +205,7 @@
                                             <!-- 4 임시 아이디 -->
                                             <Border Grid.Column="4" Margin="3" Height="40" Background="#FFFFFF" CornerRadius="10"
                                                     BorderThickness="0">
-                                                <TextBlock Text="{Binding EmpTmpId}"
+                                                <TextBlock Text="{Binding TempId}"
                                                            FontSize="14" FontFamily="Noto Sans KR" FontWeight="Medium" Foreground="#444444"
                                                            Background="Transparent" VerticalAlignment="Center" Padding="5"/>
                                             </Border>
@@ -213,7 +213,7 @@
                                             <!-- 5 임시 비밀번호 -->
                                             <Border Grid.Column="5" Margin="3" Height="40" Background="#FFFFFF" CornerRadius="10"
                                                     BorderThickness="0">
-                                                <TextBlock Text="{Binding EmpTmpPw}"
+                                                <TextBlock Text="{Binding TempPw}"
                                                            FontSize="14" FontFamily="Noto Sans KR" FontWeight="Medium" Foreground="#444444"
                                                            Background="Transparent" VerticalAlignment="Center" Padding="5"/>
                                             </Border>
