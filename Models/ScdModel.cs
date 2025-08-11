@@ -50,10 +50,9 @@ namespace Shifter.Models {
             [ObservableProperty] public string desireShift = "";
             [ObservableProperty] public string reason = "";
 
-            // 서버가 주는 값: "approved" | "rejected" | "pending"
+            // 서버가 주는 값: "approved" / "rejected" / "pending"
             [ObservableProperty] public string status = "";
 
-            // UI 제어용 파생 속성
             public bool CanAct => string.Equals(Status, "pending", StringComparison.OrdinalIgnoreCase);
             public string StatusKo => Status switch
             {
