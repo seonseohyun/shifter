@@ -140,7 +140,10 @@
                                         <TextBlock Grid.Column="3" Text="{Binding Reason}" TextWrapping="Wrap" FontSize="12" Foreground="#666666" VerticalAlignment="Center" Margin="5,0"/>
 
                                         <!-- 반려 버튼 -->
-                                        <Button  Grid.Column="4" Width="150" Content="반려" BorderBrush="#002EFF" BorderThickness="1" Background="Transparent" Foreground="#0078D4" Padding="10,5" Margin="5,0">
+                                        <Button  Grid.Column="4" Width="150" Content="반려" BorderBrush="#002EFF" BorderThickness="1" Background="Transparent" Foreground="#0078D4" Padding="10,5" Margin="5,0"
+                                                 Command="{Binding OpenWriteRejectReasonCommand}"
+                                                 >
+                                       
                                             <Button.Resources>
                                                 <Style TargetType="{x:Type Border}">
                                                     <Setter Property="CornerRadius" Value="10"/>
@@ -163,6 +166,76 @@
                 </ScrollViewer>
             </StackPanel>
         </Border>
+
+        <!-- -->
+
+
+        <!-- 반려사유 입력 팝업 -->
+        <Grid Visibility="{Binding IsWriteVisible, Converter={StaticResource BoolToVis}}"
+      Panel.ZIndex="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Rectangle Grid.RowSpan="2" Fill="#80000000">
+                <Rectangle.InputBindings>
+                    <MouseBinding Gesture="LeftClick" Command="{Binding ClosePwPopupCommand}"/>
+                </Rectangle.InputBindings>
+            </Rectangle>
+
+            <Border Background="White" CornerRadius="24,24,0,0" Padding="20,16,20,24"
+            Margin="0,446,0,0">
+                <StackPanel>
+                    <Rectangle Height="6" Width="64" Fill="#E0E0E0" RadiusX="3" RadiusY="3"
+                       HorizontalAlignment="Center" Margin="0,0,0,14"/>
+                    <TextBlock Text="반려 사유 입력란" FontSize="20" FontWeight="Bold"
+                       HorizontalAlignment="Center" Margin="0,18,0,-10"/>
+
+                    <Border Background="#F5F5F5" CornerRadius="12" Padding="14" Margin="0,35,0,-20" Height="120">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,6,0,4">
+                                <TextBlock Text="반려 사유 " FontSize="15" Width="120" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="30"/>
+                                <TextBox Text="{Binding RejectReason}"
+                                TextWrapping="Wrap" AcceptsReturn="True" Height="71" Width="1420"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <Button Content="반려 진행"                    
+                    Height="48"
+                    Margin="0,50,0,0"
+                    Command="{Binding RejectCommand}"/>
+                    
+                </StackPanel>
+            </Border>
+        </Grid>
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- -->
+
+
+
+
+
+
+
+
+
+
+
+
+
     </Grid>
 
 

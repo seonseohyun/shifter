@@ -46,9 +46,21 @@ namespace Shifter.ViewModels {
         [ObservableProperty] private string? yearMonth;
         [ObservableProperty] private ObservableCollection<ShiftChangeRequestInfo> scr;
 
+        
+        [ObservableProperty] private bool isWriteVisible;
+
 
 
         /** Member Methods **/
+        [RelayCommand] public void OpenWriteRejectReason()
+        {
+            Console.WriteLine("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+isWriteVisible);
+            IsWriteVisible = true;
+        }
+
+
+
+
         [RelayCommand] void MinusMonth() {
             if (_currentMonth == 1) {
                 _currentYear--;
@@ -58,6 +70,8 @@ namespace Shifter.ViewModels {
             }
             YearMonth = $"{_currentYear:D4}-{_currentMonth:D2}";
         }
+
+
 
         [RelayCommand] void PlusMonth() {
             if (_currentMonth == 12) {
