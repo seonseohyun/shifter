@@ -8,7 +8,6 @@
 
         <!-- 컨버터 등록 -->
         <conv:EmptyStringToVisibilityConverter x:Key="EmptyStringToVisibilityConverter" />
-        <conv:BooleanToAlertIconConverter x:Key="AlertIconConverter" />
         <conv:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <conv:ZeroToVisibleConverter x:Key="ZeroToVisibleConverter" />
         <conv:StatusToColorConverter x:Key="StatusToColorConverter"/>

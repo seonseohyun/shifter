@@ -1,6 +1,7 @@
 ﻿// Services/TimetableManager.cs
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using ShifterUser.Enums;
 using ShifterUser.Helpers;
 using ShifterUser.Models;
 using ShifterUser.Services;
@@ -16,7 +17,6 @@ public class TimetableManager
         _session = session;
     }
 
-    // ⬇ 내부 전용 모델(별도 파일 불필요)
     public class TimeTableEntry
     {
         public DateTime Date { get; set; }
@@ -24,6 +24,61 @@ public class TimetableManager
         public int Hours { get; set; }
         public int ScheduleUid { get; set; }
     }
+
+    public class ShiftRule
+    {
+        public string DutyType { get; init; } = "";   // "D" | "E" | "N" | "O"
+        public TimeSpan Start { get; init; }
+        public TimeSpan End { get; init; }
+        public int Hours { get; init; }
+    }
+
+    private Dictionary<string, ShiftRule> _shiftRules = new(StringComparer.OrdinalIgnoreCase);
+
+    public async Task EnsureShiftRulesAsync()
+    {
+        if (_shiftRules.Count > 0) return;
+
+        var req = new
+        {
+            protocol = "req_shift_info",
+            data = new { team_uid = _session.GetTeamCode() }
+        };
+
+        _socket.Send(new WorkItem { json = JsonConvert.SerializeObject(req) });
+        var res = _socket.Receive();
+        if (string.IsNullOrWhiteSpace(res.json)) { _shiftRules.Clear(); return; }
+
+        var root = JObject.Parse(res.json);
+        if (!string.Equals((string?)root["protocol"], "req_shift_info", StringComparison.OrdinalIgnoreCase)) { _shiftRules.Clear(); return; }
+        if (!string.Equals((string?)root["resp"], "success", StringComparison.OrdinalIgnoreCase)) { _shiftRules.Clear(); return; }
+
+        var dict = new Dictionary<string, ShiftRule>(StringComparer.OrdinalIgnoreCase);
+        var arr = (JArray?)root["data"]?["shift_info"] ?? new JArray();
+        foreach (var it in arr)
+        {
+            var code = it["duty_type"]?.ToString() ?? "";
+            var start = TimeSpan.Parse(it["start_time"]?.ToString() ?? "00:00");
+            var end = TimeSpan.Parse(it["end_time"]?.ToString() ?? "00:00");
+            var hrs = it["duty_hours"]?.Value<int>() ?? 0;
+
+            if (!string.IsNullOrWhiteSpace(code))
+                dict[code] = new ShiftRule { DutyType = code, Start = start, End = end, Hours = hrs };
+        }
+
+        _shiftRules = dict;
+    }
+
+    public bool TryGetShiftRule(string code, out ShiftRule rule)
+        => _shiftRules.TryGetValue(code, out rule);
+
+    public static string ToCode(ShiftType t) => t switch
+    {
+        ShiftType.Day => "D",
+        ShiftType.Evening => "E",
+        ShiftType.Night => "N",
+        _ => "O"
+    };
 
     public async Task<List<TimeTableEntry>> GetUserTimetableAsync(int year, int month)
     {
@@ -63,7 +118,6 @@ public class TimetableManager
         return list;
     }
 
-    // 오늘 팀 근무 현황
     // 오늘 팀 근무 현황
     public async Task<List<TodayDutyGroup>> GetTodayDutyAsync(DateTime date, int teamuid)
     {

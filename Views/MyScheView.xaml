@@ -212,10 +212,11 @@
                                 <TextBlock Text="근무 유형" Foreground="Gray" Width="80" FontSize="14"/>
                                 <TextBlock Text="{Binding SelectedDayData.Schedule.ShiftType}" FontWeight="SemiBold" FontSize="14"/>
                             </StackPanel>
-
+                            
+                            
                             <StackPanel Orientation="Horizontal" Margin="0,0,0,6">
                                 <TextBlock Text="근무 시간" Foreground="Gray" Width="80" FontSize="14"/>
-                                <TextBlock Text="{Binding SelectedDayData.Schedule.HoursDisplay}" FontSize="14"/>
+                                <TextBlock Text="{Binding SelectedDayData.Schedule.HoursDetailDisplay}" FontSize="14"/>
                             </StackPanel>
 
                             <!--

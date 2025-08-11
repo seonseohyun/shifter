@@ -15,6 +15,8 @@ namespace ShifterUser.ViewModels
 {
     public partial class MyScheViewModel : ObservableObject, IUserScheduleProvider
     {
+
+
         // ===== 주입 의존성 =====
         private readonly TimetableManager _tt;
         private readonly UserSession _session;
@@ -66,6 +68,7 @@ namespace ShifterUser.ViewModels
         [RelayCommand]
         private async Task LoadOnAppearAsync()
         {
+            await _tt.EnsureShiftRulesAsync();
             await LoadTimeTableAsync(_currentDate);
         }
 
@@ -116,13 +119,11 @@ namespace ShifterUser.ViewModels
             return false;
         }
 
-        // ===== 서버에서 근무표 가져와서 Days에 매핑 =====
         private async Task LoadTimeTableAsync(DateTime month)
         {
             var list = await _tt.GetUserTimetableAsync(month.Year, month.Month);
 
             _monthSchedule.Clear();
-
             var map = list.ToDictionary(x => x.Date.Date, x => x);
 
             foreach (var cell in Days)
@@ -130,20 +131,26 @@ namespace ShifterUser.ViewModels
                 var key = cell.Date?.Date ?? default;
                 if (key != default && map.TryGetValue(key, out var v))
                 {
-                    cell.ShiftType = v.Shift;        // "Day|Eve|Night|Off"
+                    cell.ShiftType = v.Shift;     
                     cell.Hours = v.Hours;
                     cell.ScheduleUid = v.ScheduleUid;
                     cell.HasShift = true;
 
-                    //  월데이터엔 세부시간/그룹이 없으므로 기본값으로 캐시
-                    _monthSchedule[key] = new ConfirmedWorkScheModel
+                    var st = ParseShiftEnum(v.Shift);
+                    var sched = new ConfirmedWorkScheModel
                     {
-                        ShiftType = ParseShiftEnum(v.Shift),
-                        Hours = v.Hours,
-                        //StartTime = TimeSpan.Zero,
-                        //EndTime = TimeSpan.Zero,
+                        ShiftType = st,
                         GroupName = _session.GetTeamName()
                     };
+
+                    var code = TimetableManager.ToCode(st);
+                    if (_tt.TryGetShiftRule(code, out var rule))
+                    {
+                        sched.StartTime = rule.Start;
+                        sched.EndTime = rule.End;
+                    }
+
+                    _monthSchedule[key] = sched;
                 }
                 else
                 {
@@ -154,19 +161,13 @@ namespace ShifterUser.ViewModels
                 }
             }
 
-            // shift 문자열을 모두 정규화해서 동일 기준으로 집계
             var normalized = list.Select(x => NormalizeShiftString(x.Shift)).ToList();
-
             WorkDay = normalized.Count(s => s is "Day" or "Eve" or "Night");
             NightCnt = normalized.Count(s => s == "Night");
             OffCnt = normalized.Count(s => s == "Off");
-
             UpdateSummary();
-
         }
 
-
-        // ===== 날짜 클릭 → 팝업 =====
         [RelayCommand]
         private async Task DayClick(DayModel day)
         {
@@ -176,14 +177,21 @@ namespace ShifterUser.ViewModels
             IsDetailVisible = true;
             IsDetailLoading = true;
 
-            // 스케줄은 캐시에서
             _monthSchedule.TryGetValue(date.Date, out var schedule);
-            if (schedule != null) schedule.Hours = day.Hours;
 
-            // 출퇴근은 서버에서
+            // 혹시 캐시에 시간 미적용이면 여기서 한 번 더
+            if (schedule is not null && schedule.StartTime is null)
+            {
+                var code = TimetableManager.ToCode(schedule.ShiftType);
+                if (_tt.TryGetShiftRule(code, out var rule))
+                {
+                    schedule.StartTime = rule.Start;
+                    schedule.EndTime = rule.End;
+                }
+            }
+
             var attendance = await _attendance.GetByDateAsync(date);
 
-            //  DayDetailModel로 바인딩
             SelectedDayData = new DayDetailModel
             {
                 Schedule = schedule ?? new ConfirmedWorkScheModel(),
@@ -194,7 +202,6 @@ namespace ShifterUser.ViewModels
 
             IsDetailLoading = false;
         }
-
 
         [RelayCommand]
         private void HideDetail() => IsDetailVisible = false;
@@ -282,4 +289,5 @@ namespace ShifterUser.ViewModels
         [ObservableProperty] private bool isToday;
 
     }
+
 }

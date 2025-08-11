@@ -109,9 +109,6 @@ namespace ShifterUser.Models
                 _session.SetDate(date);
                 _session.SetRequestStatus(approved, pending, rejected);
 
-                Console.WriteLine($"로그인 정보 저장 완료: UID={staffUid}, 팀={teamName}({teamUid}), 날짜={date}");
-                Console.WriteLine($"요청 현황 - 승인:{approved}, 대기:{pending}, 반려:{rejected}");
-
                 return true;
             }
 

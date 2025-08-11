@@ -1,21 +1,33 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using System;
+﻿// ShifterUser.Models
 using ShifterUser.Enums;
+using System;
 
-
-namespace ShifterUser.Models
+public partial class ConfirmedWorkScheModel
 {
-    public partial class ConfirmedWorkScheModel : ObservableObject
+    public ShiftType ShiftType { get; set; }
+    public string GroupName { get; set; } = "";
+
+    public TimeSpan? StartTime { get; set; }
+    public TimeSpan? EndTime { get; set; }
+
+    // 총 근무시간 계산(자정 넘김 처리)
+    public TimeSpan? Duration =>
+        (StartTime.HasValue && EndTime.HasValue)
+            ? (EndTime.Value >= StartTime.Value
+                ? EndTime.Value - StartTime.Value
+                : EndTime.Value.Add(TimeSpan.FromDays(1)) - StartTime.Value)
+            : (TimeSpan?)null;
+
+    // 시간대 + 총 근무시간
+    public string HoursDetailDisplay
     {
-        [ObservableProperty] private ShiftType shiftType;
-        [ObservableProperty] private TimeSpan startTime;
-        [ObservableProperty] private TimeSpan endTime;
-        [ObservableProperty] private string? groupName;
-
-        // 근무 시간 Hours 자체로 바인딩
-        [ObservableProperty] private double hours;
-
-
-
+        get
+        {
+            if (ShiftType == ShiftType.Off) return "-";
+            if (!(StartTime.HasValue && EndTime.HasValue)) return "-";
+            var dur = Duration ?? TimeSpan.Zero;
+            if (dur.TotalMinutes <= 0) return "-";
+            return $"{StartTime:hh\\:mm} - {EndTime:hh\\:mm} · {dur.TotalHours:0.#}시간";
+        }
     }
 }

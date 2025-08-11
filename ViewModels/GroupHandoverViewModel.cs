@@ -35,8 +35,6 @@ namespace ShifterUser.ViewModels
         public ObservableCollection<HandoverModel> HandoverList { get; } = new();
 
 
-        public IAsyncRelayCommand LoadOnAppearAsyncCommand { get; }
-
         public GroupHandoverViewModel(SocketManager socket, UserSession session)
         {
             Console.WriteLine("GroupHandoverViewModel 생성자 호출됨");
@@ -48,6 +46,8 @@ namespace ShifterUser.ViewModels
             TeamName = _session.GetTeamName();
             LoadOnAppearAsyncCommand = new AsyncRelayCommand(LoadOnAppearAsync);
         }
+
+        public IAsyncRelayCommand LoadOnAppearAsyncCommand { get; }
 
         private async Task LoadOnAppearAsync()
         {

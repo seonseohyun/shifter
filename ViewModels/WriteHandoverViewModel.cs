@@ -47,20 +47,20 @@ namespace ShifterUser.ViewModels
         private async Task RegisterAsync()
         {
             _schedule.TryGetShiftType(DateTime.Today, out var todayShift);
-            SelectedHandoverDetail.ShiftType = todayShift;    // ✅ 모델에 넣기
+            SelectedHandoverDetail.ShiftType = todayShift;    
 
 
-            var (ok, uid, err) = await _manager.RegisterHandoverAsync(SelectedHandoverDetail); // ✅ 인자 한 개
+            var (ok, uid, err) = await _manager.RegisterHandoverAsync(SelectedHandoverDetail); 
             if (!ok || uid is null)
             {
                 System.Windows.MessageBox.Show(err ?? "등록에 실패했어요.");
                 return;
             }
 
-            // 1) 팝업 먼저 띄우고
+            // 팝업 먼저 띄우고
             WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.HandoverPopup));
 
-            // 2) 다음 프레임에 uid 전송 (팝업 VM이 Register한 뒤 수신)
+            // 다음 프레임에 uid 전송 (팝업 VM이 Register한 뒤 수신)
             System.Windows.Application.Current.Dispatcher.BeginInvoke(new Action(() =>
             {
                 WeakReferenceMessenger.Default.Send(new HandoverRegisteredMessage(uid.Value));
