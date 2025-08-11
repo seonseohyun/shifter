@@ -1,5 +1,6 @@
 #pragma once
 #include "struct.h"
+#include "DateUtil.h"
 #include <nlohmann/json.hpp>
 
 using json = nlohmann::json;
@@ -32,8 +33,9 @@ public:
     //근무표 관련
     static json handle_gen_schedule         (const json& root, DBManager& db);
     static json handle_ask_timetable_user   (const json& root, DBManager& db);
+    static json handle_ask_timetable_admin  (const json& root, DBManager& db);
+    static json handle_ask_timetable_weekly(const json& root, DBManager& db);
     static json handle_check_today_duty     (const json& root, DBManager& db);
-    static json handle_ask_timetable_weekly (const json& root, DBManager& db);
 
     //인수인계 관련
     static json handle_ask_handover_list    (const json& root, DBManager& db);
@@ -45,6 +47,9 @@ public:
     static json handle_ask_notice_list      (const json& root, DBManager& db);
     static json handle_ask_notice_detail    (const json& root, DBManager& db);
 
+    //조회 관련
+	static json handle_ask_user_info        (const json& root, DBManager& db);
+	static json handle_ask_staff_list       (const json& root, DBManager& db);
 };
 
 //“헤더로 길이 파악 → json 파싱 → 프로토콜 분기 → DBManager로 로직 실행

@@ -72,39 +72,60 @@ bool DBManager::connect() {
 }
 
 //============ [로그인] ============
-bool DBManager::login(const string& id, const string& pw, json& out_data, string& out_err_msg) {
-    if (!conn_) {
-        out_err_msg = u8"[DB 오류] DB 연결 실패";
-        return false;
-    }
-
+// meta 기반 로그인: id/pw 검증 후, 팀 메타를 로드해서 out_data 채움
+bool DBManager::login(const string& id, const string& pw,
+    nlohmann::json& out_data, string& out_err_msg)
+{
+    if (!conn_) { out_err_msg = u8"[DB 오류] DB 연결 실패"; return false; }
     if (id.empty() || pw.empty()) {
         out_err_msg = u8"[입력 오류] 아이디 또는 비밀번호가 비어 있습니다.";
         return false;
     }
 
     try {
-        string query =
-            "SELECT s.staff_uid, s.team_uid, t.team_name "
+        // 1) 자격 확인: 최소키만 가져옴 (이름/회사명은 meta에서)
+        unique_ptr<sql::PreparedStatement> ps(conn_->prepareStatement(
+            "SELECT s.staff_uid, s.team_uid "
             "FROM staff s "
-            "JOIN team t ON s.team_uid = t.team_uid "
-            "WHERE s.id = ? AND s.pw = ?";
-
-        auto pstmt = conn_->prepareStatement(query);
-        pstmt->setString(1, id);
-        pstmt->setString(2, pw);
-        auto res = pstmt->executeQuery();
-
-        if (!res->next()) {
+            "WHERE s.id = ? AND s.pw = ? "
+            "LIMIT 1"
+        ));
+        ps->setString(1, id);
+        ps->setString(2, pw);
+        unique_ptr<sql::ResultSet> rs(ps->executeQuery());
+        if (!rs->next()) {
             out_err_msg = u8"아이디 또는 비밀번호가 일치하지 않습니다.";
             return false;
         }
 
-        string today = DateUtil::get_today();
-        out_data["date"] = today;
-        out_data["staff_uid"] = res->getInt("staff_uid");
-        out_data["team_uid"] = res->getInt("team_uid");
-        out_data["team_name"] = res->getString("team_name");
+        const int staff_uid = rs->getInt("staff_uid");
+        const int team_uid = rs->getInt("team_uid");
+
+        // 2) 팀 메타 로드
+        vector<StaffInfo> meta;
+        if (!get_staff_list_by_team(team_uid, meta, out_err_msg)) {
+            return false; // 메타 로드 실패
+        }
+
+        // 3) 메타에서 내 행 찾기
+        const StaffInfo* me = nullptr;
+        for (const auto& m : meta) {
+            if (m.staff_uid == staff_uid) { me = &m; break; }
+        }
+        if (!me) {
+            out_err_msg = u8"대상 사용자를 메타에서 찾지 못했습니다.";
+            return false;
+        }
+
+        // 4) 응답 채우기 (API 계약 키에 맞춰 매핑)
+        out_data["date"] = DateUtil::get_today();
+        out_data["staff_uid"] = staff_uid;
+        out_data["team_uid"] = team_uid;
+        out_data["team_name"] = me->team_name;   
+        out_data["staff_name"] = me->name;
+        out_data["grade_level"] = me->grade_level;
+        out_data["grade_name"] = me->grade_name;
+        out_data["is_tmp_id"] = me->is_tmp_id;      // (있으면 같이 내려도 유용)
 
         return true;
     }
@@ -174,21 +195,29 @@ bool DBManager::get_staff_info_by_uid(int staff_uid, StaffInfo& out_staff, strin
 
     try {
         unique_ptr<sql::PreparedStatement> stmt(
-            conn_->prepareStatement(R"(
-                SELECT s.staff_uid, s.name, g.grade, s.monthly_workhour
+            conn_->prepareStatement(R"SQL(
+                SELECT 
+                  s.staff_uid,
+                  s.name,
+                  s.grade_level,
+                  COALESCE(g.grade_name, '')   AS grade_name,
+                  COALESCE(s.monthly_workhour,0) AS monthly_workhour
                 FROM staff s
-                JOIN grade g ON s.grade_uid = g.grade_uid
+                LEFT JOIN grade g
+                  ON g.team_uid = s.team_uid
+                 AND g.grade    = s.grade_level
                 WHERE s.staff_uid = ?
-            )")
-        );
+                LIMIT 1
+            )SQL"));
+
         stmt->setInt(1, staff_uid);
 
         unique_ptr<sql::ResultSet> res(stmt->executeQuery());
 
         if (res->next()) {
             out_staff.staff_uid = res->getInt("staff_uid");
-            out_staff.name = res->getString("name").c_str();
-            out_staff.grade = res->getInt("grade");
+            out_staff.name = res->getString("staff_name").c_str();
+            out_staff.grade_level = res->getInt("grade");
             out_staff.monthly_workhour = res->getInt("monthly_workhour");
             return true;
         }
@@ -792,14 +821,20 @@ bool DBManager::get_admin_context_by_uid(int admin_uid, AdminContext& out_ctx, s
 
         // [2] shift_code 테이블 조회하여 ShiftSetting 채우기
         unique_ptr<sql::PreparedStatement> stmt2(
-            conn_->prepareStatement("SELECT shift_type, shift_start, shift_end "
+            conn_->prepareStatement(
+                "SELECT shift_type, shift_start, shift_end, job_category "
                 "FROM shift_code "
+                "WHERE team_uid = ? "
                 "ORDER BY shift_code_uid")
         );
+        stmt2->setInt(1, out_ctx.team_uid);
         unique_ptr<sql::ResultSet> res2(stmt2->executeQuery());
 
         out_ctx.shift_setting.shifts.clear();
         out_ctx.shift_setting.shift_hours.clear();
+        out_ctx.shift_setting.night_shifts.clear();
+        out_ctx.shift_setting.off_shifts.clear();
+
 
         while (res2->next()) {
 #if defined(HAVE_SQLSTRING_ASSTDSTRING)
@@ -810,6 +845,7 @@ bool DBManager::get_admin_context_by_uid(int admin_uid, AdminContext& out_ctx, s
            string type =string(res2->getString("shift_type").c_str());
            string start = res2->isNull("shift_start") ? "" :string(res2->getString("shift_start").c_str());
            string end = res2->isNull("shift_end") ? "" :string(res2->getString("shift_end").c_str());
+           string job_category = string(res1->getString("job_category").c_str());
 #endif
             out_ctx.shift_setting.shifts.push_back(type);
 
@@ -861,7 +897,8 @@ bool DBManager::insert_schedule(const string& date, int staff_uid, const string&
     }
 }
 
-//============ [** 근무자 정보 가져오기] ============
+//============ [근무자 정보 가져오기] ============
+//팀 uid 기준으로 전체 팀원을 메타 구조체에 채우삼
 bool DBManager::get_staff_list_by_team(int team_uid, vector<StaffInfo>& out_staffs, string& out_err_msg) {
     if (!conn_) {
         out_err_msg = u8"[DB 오류] DB 연결 실패";
@@ -869,37 +906,106 @@ bool DBManager::get_staff_list_by_team(int team_uid, vector<StaffInfo>& out_staf
     }
 
     try {
-        unique_ptr<sql::PreparedStatement> stmt(
-            conn_->prepareStatement(R"(
-                SELECT s.staff_uid,
-                       s.name,
-                       g.grade,
-                       s.monthly_workhour
-                FROM staff s
-                JOIN grade g ON s.grade_uid = g.grade_uid
-                WHERE s.team_uid = ?
-                ORDER BY g.grade ASC, s.name ASC;
-            )")
-        );
+        unique_ptr<sql::PreparedStatement> stmt(conn_->prepareStatement(R"SQL(
+            SELECT
+              s.staff_uid,
+              s.team_uid,
+              s.name,
+              s.id,
+              s.pw,
+              s.phone,
+              s.is_tmp_id,
+              s.grade_level,                          
+              COALESCE(g.grade_name, '')      AS grade_name,          
+              COALESCE(s.monthly_workhour, 0) AS monthly_workhour,
+              COALESCE(t.company_name, '')    AS company_name,
+              COALESCE(t.team_name, '')       AS team_name,
+              COALESCE(t.job_category, '')    AS job_category
+            FROM staff s
+            JOIN team  t
+              ON t.team_uid = s.team_uid
+            LEFT JOIN grade g
+              ON g.team_uid = s.team_uid
+             AND g.grade    = s.grade_level
+            WHERE s.team_uid = ?
+            ORDER BY s.name ASC; )SQL"));
+
         stmt->setInt(1, team_uid);
         unique_ptr<sql::ResultSet> res(stmt->executeQuery());
 
         out_staffs.clear();
         while (res->next()) {
-            StaffInfo s;
-            s.staff_uid = res->getInt("staff_uid");
-            s.name = res->getString("name").c_str();
-            s.grade = res->getInt("grade");
-            s.monthly_workhour = res->getInt("monthly_workhour");
-            out_staffs.push_back(s);
+            StaffInfo info;
+            info.staff_uid   = res->getInt("staff_uid");
+            info.team_uid    = res->getInt("team_uid");
+            info.name        = res->getString("name").c_str();
+            info.id          = res->getString("id").c_str();
+            info.pw          = res->getString("pw").c_str();
+            info.phone       = res->getString("phone").c_str();
+            info.is_tmp_id   = res->getInt("is_tmp_id");
+            info.grade_level = res->getInt("grade_level");
+            info.grade_name  = res->getString("grade_name").c_str();
+            info.monthly_workhour = res->getInt("monthly_workhour");
+            info.company_name = res->getString("company_name").c_str();
+			info.team_name = res->getString("team_name").c_str();
+			info.job_category = res->getString("job_category").c_str();
+            out_staffs.push_back(move(info));
         }
-
         return true;
     }
     catch (const sql::SQLException& e) {
-        out_err_msg = string("[DB 오류] ") + e.what();
+        out_err_msg = string(u8"[DB 오류] ") + e.what();
         return false;
     }
+}
+//임시 아이디인 직원만 메타 구조체에서 복사, 반환하기
+bool DBManager::build_tmp_staff_from_meta(const vector<StaffInfo>& meta, vector<StaffInfo>& out_list, int tmp_flag){
+    out_list.clear();
+    out_list.reserve(meta.size());
+
+    for (const auto& m : meta) {
+        if (m.is_tmp_id != tmp_flag) continue;      // tmp만!
+
+        StaffInfo info;                            
+        // 필요 필드만 복사 (요구 스펙)
+        info.grade_level = m.grade_level;
+        info.grade_name = m.grade_name;
+        info.phone = m.phone;                 // phone_num
+        info.id = m.id;                    // temp_id
+        info.pw = m.pw;                    // temp_pw 
+        info.monthly_workhour = m.monthly_workhour;
+        out_list.push_back(move(info));
+    }
+    return true;
+}
+// [최종~]팀 uid를 기준으로 메타 로드 하고 임시 아이디인 녀석만 반환하는 녀석
+bool DBManager::get_tmp_staff_list_by_team_from_meta( int team_uid, vector<StaffInfo>& out_list, string& out_err_msg, int tmp_flag){
+    vector<StaffInfo> meta;
+    if (!get_staff_list_by_team(team_uid, meta, out_err_msg))  //전체 팀원 로드
+        return false;
+
+    return build_tmp_staff_from_meta(meta, out_list, tmp_flag =1); //임시 직원만 로드
+}
+// 직원 uid가 일치하는 정보만 메타 구조체에서 복사, 반환하기
+bool DBManager::build_user_info_from_meta(int team_uid, int staff_uid, UserInfo& out_info, string& out_err_msg) {
+    if (!conn_) {
+        out_err_msg = u8"[DB 오류] DB 연결 실패";
+        return false;
+    }
+	vector<StaffInfo> meta;
+    if (!get_staff_list_by_team(team_uid, meta, out_err_msg)) {
+        return false;  // 메타 로드 실패
+    }
+    for (const auto& m : meta) {
+        if (m.staff_uid == staff_uid) {  // 직원 uid가 일치하는지 확인
+            out_info.id = m.id;
+            out_info.pw = m.pw;
+            out_info.phone_number = m.phone;
+            out_info.company_name = m.company_name;
+			out_info.grade_name = m.grade_name;
+            return true;  
+        }
+	}
 }
 
 //============ [인수인계] ============
@@ -1130,7 +1236,6 @@ vector<ScheduleEntry> DBManager::get_team_schedule(int team_uid, const string& t
             entry.staff_uid = res->getInt("staff_uid");
             entry.duty_date = res->getString("duty_date");
             entry.shift_type = res->getString("shift_type");
-
             schedule_list.push_back(entry);
         }
     }
@@ -1140,7 +1245,7 @@ vector<ScheduleEntry> DBManager::get_team_schedule(int team_uid, const string& t
     return schedule_list;
 }
 
-vector<ScheduleEntry> DBManager::get_staff_schedule(int team_uid, const string& target_month) {
+vector<ScheduleEntry> DBManager::get_staff_schedule(int staff_uid, const string& target_month) {
     vector<ScheduleEntry> schedule_list;
 
     try {
@@ -1151,7 +1256,7 @@ vector<ScheduleEntry> DBManager::get_staff_schedule(int team_uid, const string& 
             ORDER BY duty_date ASC
 
         )");
-        stmt->setInt(1, team_uid);
+        stmt->setInt(1, staff_uid);
         stmt->setString(2, target_month);
 
         auto res = stmt->executeQuery();

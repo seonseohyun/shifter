@@ -35,7 +35,10 @@ public:
     bool shift_change_detail        (int staff_uid, const string& year_month, json& out_data, string& out_err_msg);
 
     // Á¶È¸
-    bool req_shift_info_by_team (int team_uid, vector<ShiftInfo>& out_list, string& out_err_msg);
+    bool req_shift_info_by_team              (int team_uid, vector<ShiftInfo>& out_list, string& out_err_msg);
+    bool build_tmp_staff_from_meta           (const vector<StaffInfo>& meta, vector<StaffInfo>& out_list, int tmp_flag);
+    bool get_tmp_staff_list_by_team_from_meta(int team_uid,  vector<StaffInfo>& out_list,  string& out_err_msg, int tmp_flag);
+    bool build_user_info_from_meta           (int team_uid, int staff_uid, UserInfo& out_info, string& out_err);
 
     // ÃâÅğ±Ù
     bool ask_check_in        (int staff_uid, int team_uid, json& out_data, string& out_err_msg);
