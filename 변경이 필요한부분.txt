@@ -3,32 +3,12 @@ cpp 서버와 python 서버간
 다시 요청이 왔을때 파이썬 서버에서 요청이 끝났는지 안끝났는지 무한정 대기상태였다가
 내가 cmd 터미널에서 엔터를 치면 그제서야 완성된것처럼 근무표 생성완료 메시지가 나온다
 cpp 서버에서는 최대 5초를 기다렸다가 그냥 바로 요청을 끊는다.
-그래서 엔터를 기다리는것처럼 보이는 문제를 
-파이썬 코드 내에서
 
-def recv_exact(conn: socket.socket, n: int) -> bytes:
-    conn.settimeout(5.0)  # 5초 타임아웃
-    buf = b''
-    try:
-        while len(buf) < n:
-            chunk = conn.recv(n - len(buf))
-            if not chunk:
-                raise ConnectionError(f"Socket connection closed unexpectedly from {conn.getpeername()}")
-            buf += chunk
-    except socket.timeout:
-        logger.warning(f"[BINARY] Timeout receiving {n} bytes from {conn.getpeername()}")
-        raise
-    return buf
+그래서 엔터를 기다리는것처럼 보이는 문제
 
-    이런식으로 conn.settimeout(5.0) 타임아웃을 줘서 회피하려한다.
-    cpp 서버도 마찬가지로 
-    
-    SOCKET sock = socket(p->ai_family, p->ai_socktype, p->ai_protocol);
-    if (sock == INVALID_SOCKET) continue;
-    DWORD timeout = 5000; // 5000ms 타임아웃
-    setsockopt(sock, SOL_SOCKET, SO_RCVTIMEO, (const char*)&timeout, sizeof(timeout));
-    setsockopt(sock, SOL_SOCKET, SO_SNDTIMEO, (const char*)&timeout, sizeof(timeout));
 
-    이런방식으로 통일시켜서 회피시도중이다.
-    다른 해결방법이 있을까? 파이썬 서버측에서 어떻게 이런문제를 해결/ 회피할수 있을까? 
 
+파이썬 서버가 PowerShell에서 실행될 때 "엔터 이슈"(로그가 즉시 출력되지 않고 엔터 입력이 필요해 서버가 멈춘 것처럼 보이는 문제)가 계속 발생하는 것은 Python의 출력 버퍼링(output buffering) 문제로 보입니다. 이전 답변에서 제안한 sys.stdout.flush(), FlushHandler, 그리고 PYTHONUNBUFFERED=1 설정에도 불구하고 문제가 지속된다면, 이는 PowerShell의 출력 처리 방식이나 Python의 로깅 설정이 완전히 최적화되지 않았기 때문일 가능성이 높습니다. 또한, 제공된 로그와 코드에서 소켓 블록킹(conn.settimeout(4.0))은 해결되었으므로, 문제는 로그 출력 지연에 초점이 맞춰져 있습니다. 아래에서 원인을 재분석하고, 추가 해결 방법을 제시하겠습니다.
+
+
+파이썬 서버에서는 계속 해서 (파워쉘에) 엔터 입력이 들어가줘야 정상적으로 동작하는 상황이다. 

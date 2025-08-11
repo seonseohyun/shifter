@@ -1,0 +1,12 @@
+{
+  "timestamp": "2025-08-11T11:42:34.222798",
+  "request_type": "handover",
+  "protocol": "res_handover_summary",
+  "data": {
+    "task": "summarize_handover",
+    "result": "- 신규 환자: 혈압 낮음, 의사 보고 후 수액 조치 완료. 현재 안정.\n- 옆 침대 환자: 기침 심함, 가습기 세팅 완료. 점심 반만 섭취.\n- 격리 환자: 큰 변화 없음. 수액 교체 및 라인 확인 완료.\n- 드레싱: 모두 새로 교체, 하나 젖음. 추가 확인 필요."
+  },
+  "resp": "success",
+  "input_text_length": 240,
+  "processing_time_seconds": 2.733441
+}

@@ -11,7 +11,9 @@ import json
 import struct
 import logging
 import calendar
+import sys
 import os
+#os.environ['PYTHONUNBUFFERED'] = '1'/
 import time
 from datetime import datetime, timedelta
 from dataclasses import dataclass, field
@@ -28,6 +30,14 @@ HOST = '0.0.0.0'
 PORT = 6004
 SOLVER_TIMEOUT_SECONDS = 30.0
 
+
+
+# stdout/stderr을 line-buffered로 강제 재바인딩
+sys.stdout = open(sys.stdout.fileno(), mode='w', buffering=1, encoding='utf-8', errors='replace')
+sys.stderr = open(sys.stderr.fileno(), mode='w', buffering=1, encoding='utf-8', errors='replace')
+
+
+
 # Load environment variables
 load_dotenv()
 
@@ -43,9 +53,23 @@ if OPENAI_AVAILABLE:
 else:
     print("OpenAI is not available.")
 
+
+
+class FlushHandler(logging.StreamHandler):
+    def emit(self, record):
+        super().emit(record)
+        self.flush()
+        
 # Logging setup
-logging.basicConfig(level=logging.INFO, format='%(asctime)s [%(levelname)s] %(message)s', datefmt='%Y-%m-%d %H:%M:%S', force=True)
+logging.basicConfig(level=logging.INFO, 
+                    format='%(asctime)s [%(levelname)s] %(message)s', 
+                    datefmt='%Y-%m-%d %H:%M:%S',
+                    handlers=[logging.StreamHandler(sys.stdout)],
+                    #stream=sys.stdout, 
+                    force=True)
+
 logger = logging.getLogger(__name__)
+
 
 class SolverStatus(Enum):
     OPTIMAL = "optimal"
@@ -144,6 +168,8 @@ class ResponseLogger:
             self.data_dir.mkdir(exist_ok=True)
         except OSError as e:
             logger.error(f"Failed to create data directory {self.data_dir}: {e}")
+            sys.stdout.flush()
+
             raise
     def _generate_filename(self, request_type: str, timestamp: datetime) -> str:
         datetime_str = timestamp.strftime("%Y%m%d_%H%M%S")
@@ -183,16 +209,20 @@ class ResponseLogger:
                 json.dump(log_entry, f, ensure_ascii=False, indent=2)
             
             logger.info(f"Response logged successfully: {filepath}")
+            sys.stdout.flush()
             return True
             
         except (OSError, IOError, TypeError) as e:
             logger.error(f"Failed to save {request_type} response: {e}")
+            sys.stdout.flush()
             return False
         except json.JSONEncodeError as e:
             logger.error(f"JSON encoding error for {request_type} response: {e}")
+            sys.stdout.flush()
             return False
         except Exception as e:
             logger.error(f"Unexpected error saving {request_type} response: {e}")
+            sys.stdout.flush()
             return False
     def log_schedule_response(self, response_data: Dict[str, Any], timestamp: Optional[datetime] = None, staff_count: Optional[int] = None, position: Optional[str] = None, target_month: Optional[str] = None) -> bool:
         if timestamp is None:
@@ -224,22 +254,28 @@ def summarize_handover(input_text: str) -> Dict[str, Any]:
             return {"status": "error", "task": "summarize_handover", "reason": "input_text가 비어 있습니다."}
         logger.info("=== 인수인계 요약 시작 ===")
         logger.info(f"입력 텍스트 길이: {len(input_text)} 문자")
+        sys.stdout.flush()
         system_prompt = """넌 Master Handover AI야. 
 간결하고 명확하게 인수인계 내용을 요약하는 전문가야.
 
 입력된 내용을 빠르게 파악할 수 있도록 핵심만 뽑아 요약해줘.  
 중요한 일정, 변경사항, 위험요소는 우선순위로 정리하고,  
-불필요한 말은 생략하고 실무에 바로 도움이 되도록 써줘."""
+불필요한 말은 생략하고 실무에 바로 도움이 되도록 써줘.
+절대 ** 이런 기호를 넣지마 
+"""
         logger.info("OpenAI API 호출 중...")
-        response = openai_client.chat.completions.create(model="gpt-4o", messages=[{"role": "system", "content": system_prompt}, {"role": "user", "content": input_text}], max_tokens=1000, temperature=0.3)
+        sys.stdout.flush()
+        response = openai_client.chat.completions.create(model="gpt-3.5-turbo", messages=[{"role": "system", "content": system_prompt}, {"role": "user", "content": input_text}], max_tokens=1000, temperature=0.3)
         summary = response.choices[0].message.content.strip()
         process_time = time.time() - start_time
         logger.info(f"요약 완료: {process_time:.2f}초")
         logger.info(f"요약 결과 길이: {len(summary)} 문자")
+        sys.stdout.flush()
         return {"status": "success", "task": "summarize_handover", "result": summary}
     except Exception as e:
         process_time = time.time() - start_time
         logger.error(f"인수인계 요약 오류 ({process_time:.2f}초): {e}")
+        sys.stdout.flush()
         return {"status": "error", "task": "summarize_handover", "reason": f"요약 처리 중 오류 발생: {str(e)}"}
 
 class RequestValidator:
@@ -282,6 +318,7 @@ class RequestValidator:
         detected_night = []
         detected_off = []
         logger.info(f"Auto-detecting shifts from: {shifts}")
+        sys.stdout.flush()
         for shift in shifts:
             shift_lower = shift.lower()
             is_night = False
@@ -289,27 +326,32 @@ class RequestValidator:
                 detected_night.append(shift)
                 is_night = True
                 logger.info(f"'{shift}' -> Night (abbreviation)")
+                sys.stdout.flush()
             else:
                 for keyword in night_keywords:
                     if keyword.lower() in shift_lower and len(keyword) >= 3:
                         detected_night.append(shift)
                         is_night = True
                         logger.info(f"'{shift}' -> Night (keyword: {keyword})")
+                        sys.stdout.flush()
                         break
             if not is_night:
                 if shift_lower in off_abbrev:
                     detected_off.append(shift)
                     logger.info(f"'{shift}' -> Off (abbreviation)")
+                    sys.stdout.flush()
                 else:
                     for keyword in off_keywords:
                         if keyword.lower() in shift_lower and len(keyword) >= 3:
                             detected_off.append(shift)
                             logger.info(f"'{shift}' -> Off (keyword: {keyword})")
+                            sys.stdout.flush()
                             break
         if not detected_night and not detected_off:
             detected_night = position_rules.default_night_shifts
             detected_off = position_rules.default_off_shifts
             logger.info(f"Using defaults: night={detected_night}, off={detected_off}")
+            sys.stdout.flush()
         return detected_night, detected_off
 
 class ShiftScheduler:
@@ -342,6 +384,7 @@ class ShiftScheduler:
                 self.model.Add(sum(day_shifts) == 1)
     def _apply_position_constraints(self):
         logger.info(f"Applying {self.position} position constraints")
+        sys.stdout.flush()
         for staff_member in self.staff:
             staff_id = str(staff_member.staff_id)
             work_hours = []
@@ -385,11 +428,13 @@ class ShiftScheduler:
                         
                         self.model.Add(total_off_days <= dynamic_max_off)
                         logger.info(f"{staff_member.name}: Dynamic max off days set to {dynamic_max_off} (staff={staff_count})")
+                        sys.stdout.flush()
                     else:
                         # 자동 계산: 전체 일수의 35%를 넘지 않도록 (더 엄격)
                         max_fair_off_days = max(self.position_rules.min_off_days, self.num_days * 1 // 3)
                         self.model.Add(total_off_days <= max_fair_off_days)
                         logger.info(f"{staff_member.name}: Max off days limited to {max_fair_off_days} for fairness")
+                        sys.stdout.flush()
                     
                     # 최소 근무일 제약
                     if self.position_rules.min_work_days:
@@ -401,6 +446,7 @@ class ShiftScheduler:
                         for day in range(self.num_days):
                             self.model.Add(self.schedule[(staff_id, day, night_shift)] == 0)
                 logger.info(f"{staff_member.name}: Newbie night shift restriction applied")
+                sys.stdout.flush()
             if self.position_rules.night_after_off and self.shift_rules.night_shifts and self.shift_rules.off_shifts:
                 for day in range(self.num_days - 1):
                     night_vars = [self.schedule[(staff_id, day, ns)] for ns in self.shift_rules.night_shifts if ns in self.shift_rules.shifts]
@@ -418,11 +464,13 @@ class ShiftScheduler:
         if self.position != "소방":
             return
         logger.info("Applying firefighter constraints")
+        sys.stdout.flush()
         duty_shifts = [s for s in self.shift_rules.shifts if any(keyword in s.lower() for keyword in ['d24', '24', '당직'])]
         if not duty_shifts:
             duty_shifts = self.shift_rules.night_shifts
         if duty_shifts and self.shift_rules.off_shifts and self.num_days >= 3:
             logger.info(f"Firefighter duty shifts: {duty_shifts}")
+            sys.stdout.flush()
             for staff_member in self.staff:
                 staff_id = str(staff_member.staff_id)
                 for day in range(self.num_days - 1):
@@ -442,24 +490,30 @@ class ShiftScheduler:
                     self.model.Add(sum(monthly_duty_count) >= 6)
     def solve(self) -> Tuple[SolverStatus, Optional[Dict]]:
         logger.info("Applying constraints...")
+        sys.stdout.flush()
         self._apply_basic_constraints()
         self._apply_position_constraints()  
         self._apply_firefighter_constraints()
         logger.info("Starting CP-SAT solver...")
+        sys.stdout.flush()
         solver = cp_model.CpSolver()
         solver.parameters.max_time_in_seconds = SOLVER_TIMEOUT_SECONDS
         status = solver.Solve(self.model)
         if status == cp_model.OPTIMAL:
             logger.info("Optimal solution found")
+            sys.stdout.flush()
             return SolverStatus.OPTIMAL, self._extract_solution(solver)
         elif status == cp_model.FEASIBLE:
             logger.info("Feasible solution found")
+            sys.stdout.flush()
             return SolverStatus.FEASIBLE, self._extract_solution(solver)
         elif status == cp_model.INFEASIBLE:
             logger.warning("No feasible solution found")
+            sys.stdout.flush()
             return SolverStatus.INFEASIBLE, None
         else:
             logger.error(f"Solver failed with status: {solver.StatusName(status)}")
+            sys.stdout.flush()
             return SolverStatus.UNKNOWN, None
     def _extract_solution(self, solver: cp_model.CpSolver) -> Dict[str, Any]:
         schedule_data = []
@@ -537,6 +591,7 @@ class BinaryProtocolHandler:
             # 3. Validate header with enhanced endian mismatch detection
             if json_size == 0 or json_size > total_size or total_size > BinaryProtocolHandler.MAX_PACKET_SIZE:
                 logger.error(f"[BINARY] 🚨 Invalid header from {conn.getpeername()}: jsonSize={json_size}, totalSize={total_size}")
+                sys.stdout.flush()
                 
                 # Check if this might be a big-endian mismatch
                 if total_size > 1000000:  # Suspiciously large value suggests endian mismatch
@@ -550,6 +605,7 @@ class BinaryProtocolHandler:
                             logger.error(f"[BINARY] If interpreted as big-endian: totalSize={big_total_size}, jsonSize={big_json_size}")
                             logger.error(f"[BINARY] Client is sending big-endian data but server expects little-endian!")
                             logger.error(f"[BINARY] 🔧 FIX: Client must use little-endian format (x86 standard)")
+                            sys.stdout.flush()
                         
                     except struct.error:
                         pass
@@ -559,6 +615,7 @@ class BinaryProtocolHandler:
             # 4. Read data
             if total_size == 0:
                 logger.warning(f"[BINARY] Zero-length data from {conn.getpeername()}")
+                sys.stdout.flush()
                 return None, None
                 
             buffer = BinaryProtocolHandler.recv_exact(conn, total_size)
@@ -573,12 +630,14 @@ class BinaryProtocolHandler:
                 (ord(json_data[0]) < 0x20)
             ):
                 logger.warning(f"[BINARY] Removing invalid byte 0x{ord(json_data[0]):02x} from JSON start")
+                sys.stdout.flush()
                 json_data = json_data[1:]
 
             # 7. Parse JSON
             try:
                 request_data = json.loads(json_data)
                 logger.info(f"[BINARY] Successfully parsed JSON from {conn.getpeername()}")
+                sys.stdout.flush()
                 
                 # 8. Extract payload if any
                 payload = buffer[json_size:] if json_size < total_size else None
@@ -587,16 +646,20 @@ class BinaryProtocolHandler:
                 
             except json.JSONDecodeError as e:
                 logger.error(f"[BINARY] JSON parsing failed from {conn.getpeername()}: {e}")
+                sys.stdout.flush()
                 return None, None
 
         except ConnectionError as e:
             logger.error(f"[BINARY] Connection error from {conn.getpeername()}: {e}")
+            sys.stdout.flush()
             return None, None
         except struct.error as e:
             logger.error(f"[BINARY] Header unpacking error from {conn.getpeername()}: {e}")
+            sys.stdout.flush()
             return None, None
         except Exception as e:
             logger.error(f"[BINARY] Unexpected error receiving packet from {conn.getpeername()}: {e}")
+            sys.stdout.flush()
             return None, None
 
     @staticmethod
@@ -622,6 +685,7 @@ class BinaryProtocolHandler:
             
         except Exception as e:
             logger.error(f"[BINARY] Failed to send response to {conn.getpeername()}: {e}")
+            sys.stdout.flush()
             raise
 
 
@@ -650,14 +714,17 @@ class LegacyProtocolHandler:
                     json_str = data.decode('utf-8')
                     request_data = json.loads(json_str)
                     logger.info(f"[LEGACY] Successfully parsed JSON from {conn.getpeername()}")
+                    sys.stdout.flush()
                     return request_data
                 except (UnicodeDecodeError, json.JSONDecodeError):
                     continue  # Keep reading
                     
         except socket.timeout:
             logger.warning(f"[LEGACY] Timeout receiving data from {conn.getpeername()}")
+            sys.stdout.flush()
         except Exception as e:
             logger.error(f"[LEGACY] Error receiving JSON from {conn.getpeername()}: {e}")
+            sys.stdout.flush()
         
         return None
 
@@ -669,6 +736,7 @@ class LegacyProtocolHandler:
             conn.sendall(json_bytes)
         except Exception as e:
             logger.error(f"[LEGACY] Failed to send response to {conn.getpeername()}: {e}")
+            sys.stdout.flush()
             raise
 
 
@@ -723,7 +791,7 @@ class ShiftSchedulerServer:
                         logger.error(f"[PROTOCOL] Client sent big-endian header: totalSize={big_total_size}, jsonSize={big_json_size}")
                         logger.error(f"[PROTOCOL] Server interpreted as little-endian: totalSize={total_size}, jsonSize={json_size}")
                         logger.error(f"[PROTOCOL] Client must use little-endian format for x86 compatibility!")
-                        
+                        sys.stdout.flush()
                         # Return special endian_error type for proper handling
                         return "endian_error"
                         
@@ -738,6 +806,7 @@ class ShiftSchedulerServer:
                 
         except Exception as e:
             logger.warning(f"[PROTOCOL] Protocol detection error from {conn.getpeername()}: {e}, defaulting to legacy")
+            sys.stdout.flush()
             return "legacy"
 
 
@@ -791,12 +860,13 @@ class ShiftSchedulerServer:
                 input_text = actual_data.get("input_text", "")
                 
                 logger.info(f"🎯 프로토콜 래퍼 인수인계 요청 처리: {protocol}")
+                sys.stdout.flush()
             else:
                 # 직접 요청: {"task": "summarize_handover", "input_text": "..."}
                 input_text = request_data.get("input_text", "")
                 
                 logger.info("🎯 직접 인수인계 요청 처리")
-            
+                sys.stdout.flush()
             # 인수인계 요약 실행
             process_start = datetime.now()
             handover_result = summarize_handover(input_text)
@@ -836,11 +906,12 @@ class ShiftSchedulerServer:
             )
             
             logger.info(f"✅ 인수인계 처리 완료 ({process_time:.2f}초)")
+            sys.stdout.flush()
             return response
             
         except Exception as e:
             logger.error(f"❌ 인수인계 처리 오류: {e}")
-            
+            sys.stdout.flush()
             # 오류 응답 형식도 요청 형식에 맞춰 결정
             is_protocol_wrapper = "protocol" in request_data and "data" in request_data
             
@@ -869,15 +940,18 @@ class ShiftSchedulerServer:
             if "protocol" in request_data and "data" in request_data:
                 actual_data = request_data.get("data", {})
                 logger.info(f"📝 프로토콜 래퍼 근무표 요청 처리: {request_data.get('protocol', '')}")
+                sys.stdout.flush()
             else:
                 actual_data = request_data
                 logger.info("📝 직접 근무표 요청 처리")
+                sys.stdout.flush()
             
             # 직접 요청에서 알 수 없는 task가 있는 경우 오류 반환
             if "task" in request_data and request_data.get("task") != "":
                 task = request_data.get("task")
                 if task != "summarize_handover":  # 인수인계가 아닌 다른 task인 경우
                     logger.warning(f"⚠️ 알 수 없는 task: {task}")
+                    sys.stdout.flush()
                     return {
                         "status": "error",
                         "task": task,
@@ -891,6 +965,7 @@ class ShiftSchedulerServer:
             custom_rules = actual_data.get("custom_rules", {})
             
             logger.info(f"근무표 생성 요청 - 직책: {position}")
+            sys.stdout.flush()
             
             # 데이터 검증 및 파싱
             staff = RequestValidator.validate_staff_data(staff_data)
@@ -904,7 +979,7 @@ class ShiftSchedulerServer:
             logger.info(f"근무 형태: {shift_rules.shifts}")
             logger.info(f"야간 근무: {shift_rules.night_shifts}")
             logger.info(f"휴무: {shift_rules.off_shifts}")
-            
+            sys.stdout.flush()
             # 대상 월 파싱
             start_date, num_days = self._parse_target_month(target_month)
             
@@ -914,6 +989,7 @@ class ShiftSchedulerServer:
             
             processing_time = (datetime.now() - start_time).total_seconds()
             logger.info(f"근무표 생성 완료: {processing_time:.2f}초")
+            sys.stdout.flush()
             
             # 응답 형식 결정
             if status in [SolverStatus.OPTIMAL, SolverStatus.FEASIBLE]:
@@ -924,6 +1000,7 @@ class ShiftSchedulerServer:
                     "data": schedule_data
                 }
                 logger.info(f"✅ 근무표 생성 성공 ({len(schedule_data)}개 항목)")
+                sys.stdout.flush()
             else:
                 response = {
                     "protocol": "py_gen_schedule",
@@ -931,6 +1008,7 @@ class ShiftSchedulerServer:
                     "data": []
                 }
                 logger.warning("⚠️ 실행 가능한 근무표를 찾을 수 없음")
+                sys.stdout.flush()
             
             # 로깅
             self.response_logger.log_schedule_response(
@@ -941,6 +1019,7 @@ class ShiftSchedulerServer:
             
         except ShiftSchedulerError as e:
             logger.error(f"❌ 근무표 데이터 검증 오류: {e}")
+            sys.stdout.flush()
             error_response = {
                 "protocol": "py_gen_schedule",
                 "resp": "fail",
@@ -956,6 +1035,7 @@ class ShiftSchedulerServer:
             
         except Exception as e:
             logger.error(f"❌ 근무표 생성 내부 오류: {e}")
+            sys.stdout.flush()
             error_response = {
                 "protocol": "py_gen_schedule",
                 "resp": "fail",
@@ -973,19 +1053,22 @@ class ShiftSchedulerServer:
         """요청 타입에 따른 라우팅 및 처리"""
         try:
             logger.info(f"📨 요청 처리 시작 - 요청 키: {list(request_data.keys())}")
-            
+            sys.stdout.flush()
             # 요청 타입 식별 및 적절한 처리 함수로 라우팅
             if self._is_handover_request(request_data):
                 logger.info("🎯 인수인계 요청으로 식별됨")
+                sys.stdout.flush()
                 return self._process_handover_request(request_data)
             
             elif self._is_schedule_request(request_data):
                 logger.info("📝 근무표 생성 요청으로 식별됨")
+                sys.stdout.flush()
                 return self._process_schedule_request(request_data)
             
             else:
                 # 식별되지 않는 요청 타입
                 logger.warning(f"⚠️ 알 수 없는 요청 타입: {request_data}")
+                sys.stdout.flush()
                 return {
                     "status": "error",
                     "reason": "Unknown request type",
@@ -997,6 +1080,7 @@ class ShiftSchedulerServer:
                 
         except Exception as e:
             logger.error(f"❌ 요청 라우팅 오류: {e}")
+            sys.stdout.flush()
             return {
                 "status": "error",
                 "reason": f"Request routing error: {str(e)}"
@@ -1012,9 +1096,11 @@ class ShiftSchedulerServer:
             start_date = datetime(year, month, 1)
             num_days = calendar.monthrange(year, month)[1]
             logger.info(f"Target month: {year}-{month:02d} ({num_days} days)")
+            sys.stdout.flush()
             return start_date, num_days
         except Exception as e:
             logger.warning(f"Target month parsing error: {e}, using default")
+            sys.stdout.flush()
             return datetime(2025, 9, 1), 30
 
     def _format_schedule_response(self, schedule: List[Dict], start_date: datetime) -> List[Dict]:
@@ -1034,6 +1120,8 @@ class ShiftSchedulerServer:
         """Handle individual client connection with protocol detection."""
         logger.info(f"Client connected: {addr}")
         
+        sys.stdout.flush() 
+        
         try:
 
             #소켓 타임아웃 설정( 예: 5초)
@@ -1041,6 +1129,7 @@ class ShiftSchedulerServer:
             # Detect protocol type
             protocol_type = self.detect_protocol_type(conn)
             logger.info(f"[{addr}] Detected protocol: {protocol_type}")
+            sys.stdout.flush()
             
             # Receive request based on protocol
             if protocol_type == "binary":
@@ -1048,7 +1137,7 @@ class ShiftSchedulerServer:
             elif protocol_type == "endian_error":
                 # Special case: detected endian mismatch, send error and close
                 logger.warning(f"[{addr}] Endian mismatch detected - consuming invalid header and sending error response")
-                
+                sys.stdout.flush()
                 try:
                     # First, consume the invalid header that was peeked
                     invalid_header = conn.recv(8)
@@ -1060,16 +1149,17 @@ class ShiftSchedulerServer:
                     # Send as legacy protocol (no binary headers)
                     LegacyProtocolHandler.send_json_response(conn, error_json)
                     logger.info(f"[{addr}] Endian mismatch error response sent successfully")
-                    
+                    sys.stdout.flush()
                 except Exception as e:
                     logger.error(f"[{addr}] Failed to handle endian error: {e}")
+                    sys.stdout.flush()
                     try:
                         # Fallback error response
                         fallback_error = json.dumps({"error": "Protocol error - use little-endian format"}, ensure_ascii=False)
                         LegacyProtocolHandler.send_json_response(conn, fallback_error)
                     except Exception as fallback_error:
                         logger.error(f"[{addr}] Fallback error response also failed: {fallback_error}")
-                
+                        sys.stdout.flush()
                 return  # Exit early, don't process further
             else:  # legacy
                 request_data = LegacyProtocolHandler.receive_json(conn)
@@ -1087,8 +1177,10 @@ class ShiftSchedulerServer:
                     LegacyProtocolHandler.send_json_response(conn, response_json)
                 
                 logger.info(f"[{addr}] Request processed successfully using {protocol_type} protocol")
+                sys.stdout.flush()
             else:
                 logger.warning(f"[{addr}] Failed to receive valid request data - possible endian mismatch")
+                sys.stdout.flush()
                 
                 # Check if we should send a specific endian error response
                 # This could happen if protocol detection failed due to endian issues
@@ -1107,15 +1199,18 @@ class ShiftSchedulerServer:
                         LegacyProtocolHandler.send_json_response(conn, error_response)
                 except Exception as send_error:
                     logger.error(f"[{addr}] Failed to send error response: {send_error}")
+                    sys.stdout.flush()
                     # Try legacy as fallback
                     try:
                         fallback_error = json.dumps({"resp": "fail", "error": "Protocol error"}, ensure_ascii=False) 
                         LegacyProtocolHandler.send_json_response(conn, fallback_error)
                     except Exception as fallback_error:
                         logger.error(f"[{addr}] Fallback error response also failed: {fallback_error}")
+                        sys.stdout.flush()
                     
         except Exception as e:
             logger.error(f"[{addr}] Client handling error: {e}")
+            sys.stdout.flush()
             try:
                 # Try to send error response with enhanced error details
                 error_response = json.dumps({
@@ -1133,11 +1228,13 @@ class ShiftSchedulerServer:
                     
             except Exception as send_error:
                 logger.error(f"[{addr}] Failed to send error response: {send_error}")
+                sys.stdout.flush()
         finally:
             try:
                 conn.close()
             except Exception as close_error:
                 logger.error(f"[{addr}] Error closing connection: {close_error}")
+                sys.stdout.flush()
 
     def start(self):
         """Start the server and listen for connections."""
@@ -1150,6 +1247,7 @@ class ShiftSchedulerServer:
         logger.info("Server supports both binary protocol (C++) and legacy protocol (Python)")
         logger.info("Binary protocol uses little-endian format for x86/x64 compatibility")
         logger.info("Enhanced endian mismatch detection and error reporting enabled")
+        sys.stdout.flush()
 
         while True:
             try:
@@ -1157,24 +1255,29 @@ class ShiftSchedulerServer:
                 self._handle_client(conn, addr)
             except KeyboardInterrupt:
                 logger.info("Server shutdown requested by user")
+                sys.stdout.flush()
                 break
             except Exception as e:
                 logger.error(f"Error accepting client connection: {e}")
+                sys.stdout.flush()
                 continue
 
 def main():
     """Main server entry point"""
     logger.info("Starting Optimized Shift Scheduler Server")
-    
+    sys.stdout.flush()
     server = ShiftSchedulerServer()
     try:
         server.start()
     except KeyboardInterrupt:
         logger.info("Server stopped by user")
+        sys.stdout.flush()
     except Exception as e:
         logger.error(f"Server error: {e}")
+        sys.stdout.flush()
     finally:
         logger.info("Server shutdown complete")
+        sys.stdout.flush()
         if server.server_socket:
             server.server_socket.close()
 

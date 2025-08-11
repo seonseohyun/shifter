@@ -1,0 +1,12 @@
+{
+  "timestamp": "2025-08-11T11:57:20.046636",
+  "request_type": "handover",
+  "protocol": "res_handover_summary",
+  "data": {
+    "task": "summarize_handover",
+    "result": "- 아침 회진: 피검사만 진행, 오후 채혈 후 결과 예정\n- 점심: 한 환자 속 불편, 약 투여 후 휴식\n- 격리실 환자: 컨디션 양호, 기분 좋음\n- 수액 문제: 라인 새로 잡음, 혈압 낮아져 의사 보고 후 조치 완료\n- 옆 침대 환자: 기침 심함, 가습기 세팅, 점심 반만 섭취\n- 격리 환자: 큰 변화 없음, 수액 교체 및 라인 확인 완료\n- 드레싱: 모두 새로 교체, 하나는 젖어 재확인 필요"
+  },
+  "resp": "success",
+  "input_text_length": 387,
+  "processing_time_seconds": 2.609122
+}

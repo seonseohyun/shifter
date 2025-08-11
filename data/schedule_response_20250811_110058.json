@@ -1,0 +1,10 @@
+{
+  "timestamp": "2025-08-11T11:00:58.516928",
+  "request_type": "schedule",
+  "protocol": "py_gen_schedule",
+  "resp": "fail",
+  "data": [],
+  "staff_count": 10,
+  "position": "외과 A팀",
+  "target_month": "2025-11"
+}
