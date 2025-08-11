@@ -45,7 +45,7 @@ struct StaffInfo {
     // ¸ÞÅ¸
     std::string company_name;   // team.name
     std::string team_name;
-    std::string job_category;
+	std::string job_category;   // team.job_category
 };
 
 
@@ -92,7 +92,7 @@ struct HandoverNoteInfo {
 struct ScheduleEntry {
     int         schedule_uid = -1;
     int         staff_uid = -1;
-    int         hours = 8;
+    int         hours = -1;
     std::string duty_date;   // YYYY-MM-DD
     std::string shift_type;  // "Day", "Night", "Off" µî
 };
@@ -131,3 +131,4 @@ struct GradeInfo {
     int         grade_level = -1;
     std::string grade_name;
 };
+

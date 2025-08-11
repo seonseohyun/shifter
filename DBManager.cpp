@@ -20,6 +20,11 @@ inline string to_std(const sql::SQLString& s) {
     return string(s.c_str(), s.length());  // 즉시 복사 (dangling 방지)
 }
 
+auto get_str = [&](unique_ptr<sql::ResultSet>& rs, const char* col) -> string {
+    if (rs->isNull(col)) return {};             // 필요 시 throw 또는 에러 처리
+    return to_std(rs->getString(col));
+    };
+
 static string gen_temp_id(int team_uid, int rand_len = 4) {
     static const char alnum[] =
         "0123456789abcdefghijklmnopqrstuvwxyz";
@@ -125,7 +130,7 @@ bool DBManager::login(const string& id, const string& pw,
         out_data["staff_name"] = me->name;
         out_data["grade_level"] = me->grade_level;
         out_data["grade_name"] = me->grade_name;
-        out_data["is_tmp_id"] = me->is_tmp_id;      // (있으면 같이 내려도 유용)
+        out_data["is_tmp_id"] = me->is_tmp_id;      
 
         return true;
     }
@@ -143,7 +148,7 @@ bool DBManager::login_admin(const string& admin_id, const string& admin_pw, json
     try {
         // [1] 로그인 체크
         unique_ptr<sql::PreparedStatement> checklogin(
-            conn_->prepareStatement("SELECT admin_uid, team_uid FROM admin WHERE admin_id = ? AND admin_pw = ?")
+            conn_->prepareStatement("SELECT admin_uid, team_uid, admin_name FROM admin WHERE admin_id = ? AND admin_pw = ?")
         );
         checklogin->setString(1, admin_id);
         checklogin->setString(2, admin_pw);
@@ -158,18 +163,20 @@ bool DBManager::login_admin(const string& admin_id, const string& admin_pw, json
         // [2] admin_uid, team_uid 저장
         out_data["admin_uid"] = res->getInt("admin_uid");
         int team_uid = res->isNull("team_uid") ? -1 : res->getInt("team_uid");
+        out_data["admin_name"] = res->getString("admin_name");
         out_data["team_uid"] = team_uid;
 
         // [3] team_name 조회 (team_uid가 있는 경우만)
         if (team_uid != -1) {
             unique_ptr<sql::PreparedStatement> teamname(
-                conn_->prepareStatement("SELECT team_name FROM team WHERE team_uid = ?")
+                conn_->prepareStatement("SELECT team_name, company_name FROM team WHERE team_uid = ?")
             );
             teamname->setInt(1, team_uid);
 
             unique_ptr<sql::ResultSet> res_team(teamname->executeQuery());
             if (res_team->next()) {
                 out_data["team_name"] = res_team->getString("team_name");
+                out_data["company_name"] = res_team->getString("company_name");
             }
             else {
                 out_data["team_name"] = ""; // 팀 없음
@@ -388,23 +395,24 @@ bool DBManager::register_team_info(const string& company_name_in,const string& t
     }
 }
 
-bool DBManager::register_grade_info(int team_uid, const vector<GradeInfo>& grades, string& out_err) {
+bool DBManager::register_grade_info(int team_uid, int admin_uid, const vector<GradeInfo>& grades, string& out_err) {
     if (!conn_) { out_err = u8"[DB 오류] DB 연결 실패"; return false; }
     try {
         conn_->setAutoCommit(false);
 
         unique_ptr<sql::PreparedStatement> ins(
             conn_->prepareStatement(
-                "INSERT INTO team_grade (team_uid, grade_level, grade_name) "
-                "VALUES (?,?,?)"
+                "INSERT INTO grade (team_uid, admin_uid, grade, grade_name) "
+                "VALUES (?,?,?,?)"
             )
         );
 
         for (const auto& g : grades) {
             if (g.grade_level <= 0 || g.grade_name.empty()) continue; 
             ins->setInt(1, team_uid);
-            ins->setInt(2, g.grade_level);
-            ins->setString(3, g.grade_name);
+            ins->setInt(2, admin_uid);
+            ins->setInt(3, g.grade_level);
+            ins->setString(4, g.grade_name);
             ins->executeUpdate();  
         }
 
@@ -421,12 +429,8 @@ bool DBManager::register_grade_info(int team_uid, const vector<GradeInfo>& grade
     }
 }
 
-bool DBManager::register_staff_info(
-    int team_uid, int grade_level,
-    const string& name, const string& phone,
-    int monthly_workhour,
-    string& out_id, string& out_pw,
-    string& out_err)
+bool DBManager::register_staff_info(int team_uid, int grade_level, const string& name, const string& phone,
+                                    int monthly_workhour, string& out_id, string& out_pw, string& out_err)
 {
     if (!conn_) { out_err = u8"DB 연결 없음"; return false; }
 
@@ -457,6 +461,44 @@ bool DBManager::register_staff_info(
     }
     catch (const sql::SQLException& e) {
         out_err = string(u8"[DB 오류] ") + e.what();
+        return false;
+    }
+}
+
+//유저정보 수정
+bool DBManager::modify_user_info(int staff_uid, const string& new_pw, string& out_err_msg) {
+    if (!conn_) {
+        out_err_msg = u8"[DB 오류] DB 연결 실패";
+        return false;
+    }
+    try {
+        // [1] staff_uid로 staff 정보 조회
+        unique_ptr<sql::PreparedStatement> pstmt(
+            conn_->prepareStatement("SELECT * FROM staff WHERE staff_uid = ?")
+        );
+        pstmt->setInt(1, staff_uid);
+        unique_ptr<sql::ResultSet> res(pstmt->executeQuery());
+        if (!res->next()) {
+            out_err_msg = u8"[오류] 해당 직원번호를 찾을 수 없습니다.";
+            return false;
+        }
+        // [2] PW 업데이트
+        unique_ptr<sql::PreparedStatement> update_stmt(
+            conn_->prepareStatement("UPDATE staff SET pw = ?, is_tmp_id = ? WHERE staff_uid = ?")
+        );
+        update_stmt->setString(1, new_pw);
+        update_stmt->setInt(2, 0);
+        update_stmt->setInt(3, staff_uid);
+		// [3] 실행
+        int rows_affected = update_stmt->executeUpdate();
+        if (rows_affected == 0) {
+            out_err_msg = u8"[오류] 업데이트에 실패했습니다.";
+            return false;
+        }
+        return true;
+    }
+    catch (const sql::SQLException& e) {
+        out_err_msg = string(u8"SQL 예외 발생: ") + e.what();
         return false;
     }
 }
@@ -580,9 +622,218 @@ bool DBManager::cancel_shift_change(int& duty_request_uid, json& out_data, strin
         return false;
     }
 }
+//============ [근무 변경 요청 목록 - 관리자] ============
+bool DBManager::shift_change_list(int team_uid, const string& year_month, json& out_array, string& out_err_msg)
+{
+    out_array = nlohmann::json::array();
 
+    if (!conn_) {
+        out_err_msg = u8"[DB 오류] DB 연결 실패";
+        return false;
+    }
+    try {
+        unique_ptr<sql::PreparedStatement> ps(
+            conn_->prepareStatement(R"SQL(
+ SELECT
+            dr.duty_request_uid,
+            dr.staff_uid,
+            dr.status,
+            DATE(dr.request_date) AS request_date,
+            dr.desire_shift,
+            COALESCE(dr.reason, '') AS reason,
+            COALESCE(s.name, '') AS staff_name
+        FROM duty_request dr
+        LEFT JOIN staff s ON s.staff_uid = dr.staff_uid       -- (A) LEFT JOIN
+        WHERE dr.team_uid = ?
+          AND COALESCE(dr.is_deleted, 0) = 0                  -- (B) NULL도 0으로 처리
+          AND DATE_FORMAT(dr.request_date, '%Y-%m') = ?       -- (C) year_month는 "YYYY-MM"로!
+        ORDER BY dr.request_date ASC, dr.duty_request_uid ASC
+    )SQL")
+        );
+        ps->setInt(1, team_uid);
+        ps->setString(2, year_month); // "2025-08"
 
-//============ [출근 요청 - 유저] ============
+        unique_ptr<sql::ResultSet> rs(ps->executeQuery());
+        while (rs->next()) {
+            int duty_request_uid = rs->getInt("duty_request_uid");
+            int staff_uid = rs->getInt("staff_uid");
+            string status = get_str(rs, "status");
+            string request_date = get_str(rs, "request_date");   // "YYYY-MM-DD"
+            string desire_shift = get_str(rs, "desire_shift");   // "D/E/N/O"
+            string staff_name = get_str(rs, "staff_name");
+            string reason = get_str(rs, "reason");
+
+            nlohmann::json item{
+                {"duty_request_uid", duty_request_uid},
+                {"staff_uid",        staff_uid},
+                {"request_date",     request_date},
+                {"desire_shift",     desire_shift}, 
+                {"staff_name",       staff_name},
+                {"status",           status},
+                {"reason",           reason}
+            };
+            out_array.push_back(move(item));
+        }
+        return true;
+    }
+    catch (const sql::SQLException& e) {
+        out_err_msg = string(u8"[SQL 예외] ") + e.what();
+        return false;
+    }
+    catch (...) {
+        out_err_msg = u8"[예외] 알 수 없는 오류";
+        return false;
+    }
+}
+
+bool DBManager::answer_shift_change(int duty_request_uid, string status, string date, const string& admin_msg, string& out_err_msg)
+{
+    if (!conn_) {
+        out_err_msg = u8"[DB 오류] DB 연결 실패";
+        return false;
+    }
+    try {
+        conn_->setAutoCommit(false); // 트랜잭션 시작
+
+        // 1) 요청 행 잠금 조회 (UID로 고정, 날짜/근무타입은 검증용)
+        unique_ptr<sql::PreparedStatement> sel(
+            conn_->prepareStatement(R"SQL(
+                SELECT duty_request_uid, staff_uid, team_uid,
+                       DATE(request_date) AS req_date,
+                       desire_shift, reason, status
+                  FROM duty_request
+                 WHERE duty_request_uid = ? AND is_deleted = 0
+                 FOR UPDATE
+            )SQL"));
+
+        sel->setInt(1, duty_request_uid);
+        unique_ptr<sql::ResultSet> rs(sel->executeQuery());
+        if (!rs->next()) {
+            out_err_msg = u8"[오류] 해당 근무 변경 요청이 존재하지 않습니다.";
+            conn_->rollback();
+            return false;
+        }
+        if (status != "approved" && status != "pending" && status != "rejected") {
+            out_err_msg = u8"[오류] status 값이 유효하지 않습니다.";
+            conn_->rollback();
+            return false;
+        }
+
+        const int staff_uid = rs->getInt("staff_uid");
+        const string db_req_date = get_str(rs, "req_date");
+        const string db_shift = get_str(rs, "desire_shift");
+        const string db_reason = get_str(rs, "reason");
+        const string cur_status = get_str(rs, "status");
+
+        // 2) 상태/관리자메시지 업데이트 (트리거가 여기서 동작)
+        unique_ptr<sql::PreparedStatement> upd(
+            conn_->prepareStatement(R"SQL(
+                UPDATE duty_request
+                   SET status = ?, admin_msg = ?
+                 WHERE duty_request_uid = ?
+            )SQL")
+        );
+        upd->setString(1, status);      // 그대로 반영
+        upd->setString(2, admin_msg);       // 거절/보류/승인 모두 메시지 저장 가능
+        upd->setInt(3, duty_request_uid);
+        const int affected = upd->executeUpdate();
+        if (affected != 1) {
+            out_err_msg = u8"[오류] 상태 갱신 실패(영향 0행).";
+            conn_->rollback();
+            return false;
+        }
+        // 3) 커밋 -> (AFTER UPDATE 트리거가 스케줄을 자동 갱신)
+        conn_->commit();
+		return true;
+        }
+    catch (const sql::SQLException& e) {
+        try { conn_->rollback(); } catch (...) {}
+        out_err_msg = string(u8"[SQL 예외] ") + e.what();
+        return false;
+    }
+    catch (...) {
+        try { conn_->rollback(); } catch (...) {}
+        out_err_msg = u8"[예외] 알 수 없는 오류";
+		return false;
+        }
+}
+
+bool DBManager::load_timetable_admin(
+    int team_uid,
+    const string& from_date,     
+    const string& to_date,      
+    nlohmann::json& out_array,        
+    string& out_err_msg)
+{
+    out_array = nlohmann::json::array();
+
+    if (!conn_) { out_err_msg = u8"[DB 오류] DB 연결 실패"; return false; }
+
+    try {
+        unique_ptr<sql::PreparedStatement> ps(
+            conn_->prepareStatement(R"SQL(
+              SELECT
+                     s.duty_date,
+                     s.shift_type,         
+                     s.hours,
+                     st.staff_uid,
+                     st.name AS staff_name,
+                     st.grade_level AS grade
+                FROM schedule s
+                JOIN staff st ON st.staff_uid = s.staff_uid
+               WHERE st.team_uid = ?
+                 AND s.duty_date >= ?
+                 AND s.duty_date <  ?
+               ORDER BY s.duty_date ASC, s.shift_type ASC, grade DESC, staff_name ASC
+            )SQL")
+        );
+        ps->setInt(1, team_uid);
+        ps->setString(2, from_date);
+        ps->setString(3, to_date);
+
+        unique_ptr<sql::ResultSet> rs(ps->executeQuery());
+
+        unordered_map<string, size_t> idx;
+        while (rs->next()) {
+            string date = rs->getString("duty_date").c_str();
+            string shiftCode = rs->getString("shift_type").c_str(); // 그대로
+            int         hours = rs->getInt("hours");
+            int         staff_id = rs->getInt("staff_uid");
+            string name = rs->getString("staff_name").c_str();
+            int         grade = rs->isNull("grade") ? -1 : rs->getInt("grade");
+
+            string key = date + '|' + shiftCode; // 그대로
+
+            if (!idx.count(key)) {
+                nlohmann::json bucket = {
+                    {"date",  date},
+                    {"shift", shiftCode},  // 그대로
+                    {"hours", hours},
+                    {"people", nlohmann::json::array()}
+                };
+                out_array.push_back(move(bucket));
+                idx[key] = out_array.size() - 1;
+            }
+
+            out_array[idx[key]]["people"].push_back({
+                {"name",     name},
+                {"staff_id", staff_id},
+                {"grade",    grade}
+                });
+        }
+        return true;
+    }
+    catch (const sql::SQLException& e) {
+        out_err_msg = string(u8"[SQL 예외] ") + e.what();
+        return false;
+    }
+    catch (...) {
+        out_err_msg = u8"[예외] 알 수 없는 오류";
+        return false;
+    }
+}
+
+//============ [출/퇴근 요청 - 유저] ============
 bool DBManager::ask_check_in(int staff_uid, int team_uid, json& out_data, string& out_err_msg) {
     if (!conn_) {
         out_err_msg = u8"[DB 오류] DB 연결 실패";
@@ -622,7 +873,7 @@ bool DBManager::ask_check_in(int staff_uid, int team_uid, json& out_data, string
         return false;
     }
 }
-//============ [퇴근 요청 - 유저] ============
+
 bool DBManager::ask_check_out(int check_in_uid, string& out_err_msg) {
     if (!conn_) {
         out_err_msg = u8"[DB 오류] DB 연결 실패";
@@ -645,7 +896,7 @@ bool DBManager::ask_check_out(int check_in_uid, string& out_err_msg) {
         return false;
     }
 }
-//============ [근태정보 요청 - 유저] ============
+//============ [근태정보 요청 ] ============
 bool DBManager::get_today_attendance(int staff_uid, int team_uid,json& out_data, string& out_err_msg){
     out_data["attendance"] = {
         {"status", nullptr},
@@ -712,7 +963,7 @@ bool DBManager::get_today_attendance(int staff_uid, int team_uid,json& out_data,
         return false;
     }
 }
-//============ [근태정보 날짜별 요청 - 유저] ============
+
 bool DBManager::get_attendance_info(int staff_uid,const string& ymd, string& check_in,string& check_out,string& err)
 {
     check_in.clear(); check_out.clear();
@@ -748,6 +999,43 @@ bool DBManager::get_attendance_info(int staff_uid,const string& ymd, string& che
     }
 }
 
+bool DBManager::get_attendance_info_admin(int team_uid, const string& ymd, json& out_data, string& out_err_msg) {
+    out_data = json::array();
+    if (!conn_) {
+        out_err_msg = u8"[DB 오류] DB 연결 실패";
+        return false;
+    }
+    try {
+        static constexpr char SQL[] = R"SQL(
+            SELECT
+              s.staff_uid,
+              s.name,
+              DATE_FORMAT(ci.check_in_time, '%Y-%m-%d %H:%i:%s') AS check_in_time,
+              DATE_FORMAT(ci.check_out_time, '%Y-%m-%d %H:%i:%s') AS check_out_time
+            FROM staff s
+            LEFT JOIN check_in ci ON s.staff_uid = ci.staff_uid
+            WHERE s.team_uid = ?
+              AND DATE(ci.check_in_time) = ?
+            ORDER BY s.staff_uid
+        )SQL";
+        unique_ptr<sql::PreparedStatement> stmt(conn_->prepareStatement(SQL));
+        stmt->setInt(1, team_uid);
+        stmt->setString(2, ymd);
+        unique_ptr<sql::ResultSet> rs(stmt->executeQuery());
+        while (rs->next()) {
+            json item;
+            item["staff_name"] = rs->getString("name");
+            item["check_in_time"] = rs->isNull("check_in_time") ? nullptr : rs->getString("check_in_time");
+            item["check_out_time"] = rs->isNull("check_out_time") ? nullptr : rs->getString("check_out_time");
+            out_data.push_back(item);
+        }
+        return true;
+    }
+    catch (const sql::SQLException& e) {
+        out_err_msg = string(u8"[SQL 예외] ") + e.what();
+        return false;
+	}
+}
 //============ [근무 변경 개수 요청 - 유저] ============
 void DBManager::get_request_status_count(int staff_uid, json& out_data, string& out_err_msg) {
     json status_count = {
@@ -835,24 +1123,33 @@ bool DBManager::get_admin_context_by_uid(int admin_uid, AdminContext& out_ctx, s
         out_ctx.shift_setting.night_shifts.clear();
         out_ctx.shift_setting.off_shifts.clear();
 
+        bool position_set = false;
 
         while (res2->next()) {
 #if defined(HAVE_SQLSTRING_ASSTDSTRING)
-           string type = res2->getString("shift_type").asStdString();
-           string start = res2->isNull("shift_start") ? "" : res2->getString("shift_start").asStdString();
-           string end = res2->isNull("shift_end") ? "" : res2->getString("shift_end").asStdString();
+            string type = res2->getString("shift_type").asStdString();
+            string start = res2->isNull("shift_start") ? "" : res2->getString("shift_start").asStdString();
+            string end = res2->isNull("shift_end") ? "" : res2->getString("shift_end").asStdString();
+            string job_category = res2->isNull("job_category") ? "" : res2->getString("job_category").asStdString();
 #else
-           string type =string(res2->getString("shift_type").c_str());
-           string start = res2->isNull("shift_start") ? "" :string(res2->getString("shift_start").c_str());
-           string end = res2->isNull("shift_end") ? "" :string(res2->getString("shift_end").c_str());
-           string job_category = string(res1->getString("job_category").c_str());
+            string type = string(res2->getString("shift_type").c_str());
+            string start = res2->isNull("shift_start") ? "" : string(res2->getString("shift_start").c_str());
+            string end = res2->isNull("shift_end") ? "" : string(res2->getString("shift_end").c_str());
+            string job_category = res2->isNull("job_category") ? "" : string(res2->getString("job_category").c_str());
 #endif
+
+            // position은 한 번만 세팅(여러 행이라도 보통 동일)
+            if (!position_set && !job_category.empty()) {
+                out_ctx.position = job_category;
+                position_set = true;
+            }
+
             out_ctx.shift_setting.shifts.push_back(type);
 
             int hours = 0;
             if (!start.empty() && !end.empty() && start.size() >= 2 && end.size() >= 2) {
-                int h_start =stoi(start.substr(0, 2));
-                int h_end =stoi(end.substr(0, 2));
+                int h_start = stoi(start.substr(0, 2));
+                int h_end = stoi(end.substr(0, 2));
                 hours = (h_end - h_start + 24) % 24;
             }
             out_ctx.shift_setting.shift_hours[type] = hours;
@@ -864,13 +1161,13 @@ bool DBManager::get_admin_context_by_uid(int admin_uid, AdminContext& out_ctx, s
         return true;
     }
     catch (const sql::SQLException& e) {
-        out_err_msg = string("[DB 오류] ") + e.what();
+        out_err_msg = string(u8"[DB 오류] ") + e.what();
         return false;
     }
 }
 
 //============ [근무표 DB 삽입] ============
-bool DBManager::insert_schedule(const string& date, int staff_uid, const string& shift_type, string& out_err_msg) {
+bool DBManager::insert_schedule(const string& date, int staff_uid, const string& shift_type, int duty_hours, string& out_err_msg) {
     if (!conn_) {
         out_err_msg = u8"[DB 오류] DB 연결 실패";
         return false;
@@ -878,8 +1175,8 @@ bool DBManager::insert_schedule(const string& date, int staff_uid, const string&
     try {
         unique_ptr<sql::PreparedStatement> stmt(
             conn_->prepareStatement(R"(
-                INSERT INTO schedule (staff_uid, duty_date, shift_type)
-                VALUES (?, ?, ?)
+                INSERT INTO schedule (staff_uid, duty_date, shift_type, hours)
+                VALUES (?, ?, ?, ?)
                 ON DUPLICATE KEY UPDATE shift_type = VALUES(shift_type)
             )")
         );
@@ -887,6 +1184,7 @@ bool DBManager::insert_schedule(const string& date, int staff_uid, const string&
         stmt->setInt(1, staff_uid);
         stmt->setString(2, date);          // "YYYY-MM-DD"
         stmt->setString(3, shift_type);    // "Day", "Night", "Off" 등
+        stmt->setInt(4, duty_hours);
 
         stmt->executeUpdate();
         return true;
@@ -954,7 +1252,7 @@ bool DBManager::get_staff_list_by_team(int team_uid, vector<StaffInfo>& out_staf
         return true;
     }
     catch (const sql::SQLException& e) {
-        out_err_msg = string(u8"[DB 오류] ") + e.what();
+        out_err_msg = string("[DB ERROR] ") + e.what();
         return false;
     }
 }
@@ -974,6 +1272,7 @@ bool DBManager::build_tmp_staff_from_meta(const vector<StaffInfo>& meta, vector<
         info.id = m.id;                    // temp_id
         info.pw = m.pw;                    // temp_pw 
         info.monthly_workhour = m.monthly_workhour;
+        info.name = m.name;
         out_list.push_back(move(info));
     }
     return true;
@@ -1071,7 +1370,7 @@ bool DBManager::get_handover_notes_by_team(int team_uid, vector<HandoverNoteInfo
         return true;
     }
     catch (const sql::SQLException& e) {
-        out_err_msg = string("[DB 오류] ") + e.what();
+        out_err_msg = string(u8"[DB 오류] ") + e.what();
         return false;
     }
 }
@@ -1216,11 +1515,11 @@ bool DBManager::reg_handover(int staff_uid, int team_uid, const string& title, c
 
 //============ [** 근무정보 구조체 정보 가져오기] ============
 vector<ScheduleEntry> DBManager::get_team_schedule(int team_uid, const string& target_month) {
-    vector<ScheduleEntry> schedule_list;
 
+    vector<ScheduleEntry> schedule_list;
     try {
         auto stmt = conn_->prepareStatement(R"(
-            SELECT s.schedule_uid, s.staff_uid, s.duty_date, s.shift_type
+            SELECT s.schedule_uid, s.staff_uid, s.duty_date, s.shift_type, s.hours
             FROM schedule s
             JOIN staff st ON s.staff_uid = st.staff_uid
             WHERE st.team_uid = ? AND DATE_FORMAT(s.duty_date, '%Y-%m') = ?
@@ -1236,6 +1535,7 @@ vector<ScheduleEntry> DBManager::get_team_schedule(int team_uid, const string& t
             entry.staff_uid = res->getInt("staff_uid");
             entry.duty_date = res->getString("duty_date");
             entry.shift_type = res->getString("shift_type");
+            entry.hours = res->getInt("hours");
             schedule_list.push_back(entry);
         }
     }

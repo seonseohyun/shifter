@@ -4,7 +4,7 @@
 #include <nlohmann/json.hpp>
 
 using json = nlohmann::json;
-
+using namespace std;
 class DBManager;
 
 class ProtocolHandler
@@ -19,24 +19,30 @@ public:
     static json handle_rgs_grade_info       (const json& root, DBManager& db);
     static json handle_rgs_shift_info       (const json& root, DBManager& db);
     static json handle_rgs_staff_info       (const json& root, DBManager& db);
+    static json handle_modify_user_info     (const json& root, DBManager& db);
 
     //근무 변경 요청 관련
-    static json handle_shift_change_detail  (const json& root, DBManager& db);
-    static json handle_ask_shift_change     (const json& root, DBManager& db);
-    static json handle_cancel_shift_change  (const json& root, DBManager& db);
+    static json handle_shift_change_detail  (const json& root, DBManager& db);  //for_user
+	static json handle_shift_change_list    (const json& root, DBManager& db);  //for admin
+    static json handle_ask_shift_change     (const json& root, DBManager& db);  //for_user
+    static json handle_cancel_shift_change  (const json& root, DBManager& db);  //for_user
+	static json handle_answer_shift_change  (const json& root, DBManager& db);  //for admin
 
     //출퇴근 관련
     static json handle_check_in             (const json& root, DBManager& db);
     static json handle_check_out            (const json& root, DBManager& db);
     static json handle_attendance_info      (const json& root, DBManager& db);
+	static json handle_attendance_info_admin(const json& root, DBManager& db);
+
 
     //근무표 관련
+    static json handle_gen_schedule_raw     (const std::string& raw_json, DBManager& db);
     static json handle_gen_schedule         (const json& root, DBManager& db);
     static json handle_ask_timetable_user   (const json& root, DBManager& db);
     static json handle_ask_timetable_admin  (const json& root, DBManager& db);
-    static json handle_ask_timetable_weekly(const json& root, DBManager& db);
+    static json handle_ask_timetable_weekly (const json& root, DBManager& db);
     static json handle_check_today_duty     (const json& root, DBManager& db);
-
+    
     //인수인계 관련
     static json handle_ask_handover_list    (const json& root, DBManager& db);
     static json handle_ask_handover_detail  (const json& root, DBManager& db);
@@ -50,7 +56,9 @@ public:
     //조회 관련
 	static json handle_ask_user_info        (const json& root, DBManager& db);
 	static json handle_ask_staff_list       (const json& root, DBManager& db);
+	static json handle_req_staff_list       (const json& root, DBManager& db);
 };
 
 //“헤더로 길이 파악 → json 파싱 → 프로토콜 분기 → DBManager로 로직 실행
 //→ 결과를 ProtocolHandler로 전달 → 응답 JSON 구성 → send로 클라이언트에 반환”
+
