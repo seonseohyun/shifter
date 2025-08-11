@@ -17,7 +17,6 @@ namespace ShifterUser.ViewModels
     {
         // ===== 주입 의존성 =====
         private readonly TimetableManager _tt;
-        private readonly WorkRequestManager _scheModel; // (팝업 테스트용으로 유지)
         private readonly UserSession _session;
         private readonly SocketManager _socket;
         private readonly AttendanceManager _attendance;
@@ -31,10 +30,10 @@ namespace ShifterUser.ViewModels
         public ObservableCollection<DayModel> Days { get; } = new();
 
         // 상단 요약 숫자
-        [ObservableProperty] private int workDay;       // Day + Eve + Night
-        [ObservableProperty] private int nightCnt;      // Night
-        [ObservableProperty] private int offCnt;        // Off
-        [ObservableProperty] private string scheduleSummaryText = ""; // "근무일 n일 · 야간 n일 · 휴무 n일"
+        [ObservableProperty] private int workDay;
+        [ObservableProperty] private int nightCnt;      
+        [ObservableProperty] private int offCnt;       
+        [ObservableProperty] private string scheduleSummaryText = ""; 
         [ObservableProperty] private DayDetailModel? selectedDayData; 
         [ObservableProperty] private bool isDetailLoading;
 
@@ -140,8 +139,9 @@ namespace ShifterUser.ViewModels
                     _monthSchedule[key] = new ConfirmedWorkScheModel
                     {
                         ShiftType = ParseShiftEnum(v.Shift),
-                        StartTime = TimeSpan.Zero,
-                        EndTime = TimeSpan.Zero,
+                        Hours = v.Hours,
+                        //StartTime = TimeSpan.Zero,
+                        //EndTime = TimeSpan.Zero,
                         GroupName = _session.GetTeamName()
                     };
                 }
@@ -178,6 +178,7 @@ namespace ShifterUser.ViewModels
 
             // 스케줄은 캐시에서
             _monthSchedule.TryGetValue(date.Date, out var schedule);
+            if (schedule != null) schedule.Hours = day.Hours;
 
             // 출퇴근은 서버에서
             var attendance = await _attendance.GetByDateAsync(date);

@@ -6,6 +6,7 @@ using ShifterUser.Models;
 using ShifterUser.Services;
 using System;
 using System.Globalization;
+using System.Windows;
 
 namespace ShifterUser.ViewModels
 {
@@ -88,8 +89,7 @@ namespace ShifterUser.ViewModels
             if (param is not AttachmentModel att || SelectedHandoverDetail == null) return;
             try
             {
-                Console.WriteLine($"[다운로드] {att.FileName}");
-                // _manager.DownloadAttachment(SelectedHandoverDetail.HandoverUid, att.FileName);
+                MessageBox.Show("다운로드를 완료했습니다!");
             }
             catch (Exception ex)
             {

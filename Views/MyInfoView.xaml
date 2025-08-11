@@ -106,7 +106,7 @@
                     <StackPanel DockPanel.Dock="Top" Margin="0,12,0,16" HorizontalAlignment="Center">
 
                         <!-- 아바타 레이어드 컨테이너 -->
-                        <Grid Width="200" Height="200">
+                        <Grid Width="180" Height="180">
                             <!-- 뒤: 흰 바탕 + 그림자 -->
                             <Border Background="White" CornerRadius="50" Effect="{StaticResource ShadowEffect}"/>
 

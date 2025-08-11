@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.Messaging;
 using ShifterUser.Enums;
 using ShifterUser.Messages;
 using ShifterUser.Models;
+using ShifterUser.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,12 +18,12 @@ namespace ShifterUser.ViewModels
 
     public partial class QRCheckViewModel : ObservableObject
     {
-        private readonly UserManager _userManager;
+        private readonly AttendanceManager _manager;
         private readonly HomeViewModel _homeViewModel;
 
-        public QRCheckViewModel(UserManager userManager, HomeViewModel homeViewModel)
+        public QRCheckViewModel(AttendanceManager Manager, HomeViewModel homeViewModel)
         {
-            _userManager = userManager;
+            _manager = Manager;
             _homeViewModel = homeViewModel;
         }
 
@@ -34,9 +35,10 @@ namespace ShifterUser.ViewModels
 
         [RelayCommand]
         private void CheckIn()
-        {
-            //var homeViewModel = new HomeViewModel(); // HomeViewModel 인스턴스 생성
-            bool result = _userManager.AskCheckIn(_homeViewModel);
+        {   
+            // 출근 요청
+            bool result = _manager.AskCheckIn(_homeViewModel);
+            
             if (result)
             {
                 MessageBox.Show($"출근 완료! {DateTime.Now:HH:mm}", "알림", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -52,9 +54,9 @@ namespace ShifterUser.ViewModels
         private void CheckOut()
         {
             // 퇴근 요청
-            bool success = _userManager.AskCheckOut(_homeViewModel); 
+            bool result = _manager.AskCheckOut(_homeViewModel); 
 
-            if (success)
+            if (result)
             {
                 MessageBox.Show($"퇴근 완료! {DateTime.Now:HH:mm}", "알림", MessageBoxButton.OK, MessageBoxImage.Information);
                 WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.Home));

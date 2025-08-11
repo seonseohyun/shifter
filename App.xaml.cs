@@ -48,10 +48,10 @@ namespace ShifterUser
             // ViewModels
             services.AddSingleton<MainViewModel>();
             services.AddTransient<LoginViewModel>();
-            services.AddSingleton<HomeViewModel>();
+            services.AddTransient<HomeViewModel>();
             services.AddTransient<InfoViewModel>();
-            services.AddSingleton<MyScheViewModel>();
-            services.AddSingleton<ShifterUser.Helpers.IUserScheduleProvider>(
+            services.AddTransient<MyScheViewModel>();
+            services.AddTransient<ShifterUser.Helpers.IUserScheduleProvider>(
                 sp => sp.GetRequiredService<MyScheViewModel>());
             services.AddTransient<QRCheckViewModel>();
             services.AddTransient<MyReqStatusViewModel>();

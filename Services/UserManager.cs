@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using ShifterUser.Enums;
 using ShifterUser.Helpers;
+using ShifterUser.Models;
 using ShifterUser.Services;
 using ShifterUser.ViewModels;
 using System;
@@ -17,6 +18,7 @@ namespace ShifterUser.Models
         // Meber Variables
         private readonly SocketManager _socket;
         private readonly UserSession _session;
+        private string? _serverPwPlain;         // 서버에서 내려온 현재 비밀번호
 
         // 생성자
         public UserManager(SocketManager socket, UserSession session)
@@ -124,93 +126,6 @@ namespace ShifterUser.Models
             }
         }
 
-        // 출근
-        public bool AskCheckIn(HomeViewModel homeViewModel)
-        {
-            JObject jsonData = new()
-            {
-                { "protocol", "ask_check_in" },
-                {
-                    "data", new JObject
-                    {
-                        {"staff_uid", _session.GetUid() },
-                        {"team_uid", _session.GetTeamCode() }
-                    }
-                }
-            };
-
-            WorkItem sendItem = new()
-            {
-                json = JsonConvert.SerializeObject(jsonData),
-                payload = [],
-                path = ""
-            };
-
-            _socket.Send(sendItem);
-
-            WorkItem response = _socket.Receive();
-            JObject respJson = JObject.Parse(response.json);
-
-            string protocol = respJson["protocol"]?.ToString() ?? "";
-            string result = respJson["resp"]?.ToString() ?? "";
-            int checkInUid = respJson["data"]?["check_in_uid"]?.Value<int>() ?? -1;
-
-            if (protocol == "ask_check_in" && result == "success")
-            {
-                // 상태 반영!
-                _session.SetCheckInUid(checkInUid);
-                // HomeViewModel 상태 갱신
-                homeViewModel.AttendanceStatus = AttendanceStatus.출근완료;
-
-                return true;
-            }
-
-            return false;
-        }
-
-
-        public bool AskCheckOut(HomeViewModel homeVM)
-        {
-            JObject jsonData = new()
-            {
-                { "protocol", "ask_check_out" },
-                {
-                    "data", new JObject
-                    {
-                        { "check_in_uid", _session.GetCheckInUid() }
-                    }
-                }
-            };
-
-            WorkItem sendItem = new()
-            {
-                json = JsonConvert.SerializeObject(jsonData),
-                payload = [],
-                path = ""
-            };
-
-            _socket.Send(sendItem);
-
-            WorkItem response = _socket.Receive();
-            JObject respJson = JObject.Parse(response.json);
-
-            string protocol = respJson["protocol"]?.ToString() ?? "";
-            string result = respJson["resp"]?.ToString() ?? "";
-            string message = respJson["message"]?.ToString() ?? "";
-
-            if (protocol == "ask_check_out" && result == "success")
-            {
-                //  상태 반영
-                homeVM.UpdateAttendanceStatusFromMessage(message);
-                // HomeViewModel 상태 갱신
-                homeVM.AttendanceStatus = AttendanceStatus.퇴근완료;
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
 
         public async Task<string[]> GetWeeklyShiftCodesAsync(DateTime monday)
         {
@@ -265,28 +180,20 @@ namespace ShifterUser.Models
                 }
             };
 
-            var send = new WorkItem
-            {
-                json = JsonConvert.SerializeObject(req),
-                payload = Array.Empty<byte>(),
-                path = ""
-            };
-
+            var send = new WorkItem { json = JsonConvert.SerializeObject(req), payload = Array.Empty<byte>(), path = "" };
             _socket.Send(send);
 
-            WorkItem resItem = _socket.Receive();
-            if (string.IsNullOrWhiteSpace(resItem.json))
-                return null;
+            var resItem = _socket.Receive();
+            if (string.IsNullOrWhiteSpace(resItem.json)) return null;
 
             var json = JObject.Parse(resItem.json);
-            var protocol = json["protocol"]?.ToString() ?? "";
-            var resp = json["resp"]?.ToString() ?? "";
-
-            if (protocol != "ask_user_info" || resp != "success")
-                return null;
+            if (json["protocol"]?.ToString() != "ask_user_info" || json["resp"]?.ToString() != "success") return null;
 
             var data = json["data"];
             var pwRaw = data?["pw"]?.ToString() ?? "";
+
+            // 평문 PW 보관 (클라 비교용)
+            _serverPwPlain = string.IsNullOrWhiteSpace(pwRaw) ? null : pwRaw;
 
             return new UserInfoModel
             {
@@ -296,6 +203,38 @@ namespace ShifterUser.Models
                 GradeName = data?["grade_name"]?.ToString() ?? "",
                 HasPassword = !string.IsNullOrWhiteSpace(pwRaw)
             };
+        }
+
+        // 현재 비밀번호 로컬 비교 (평문 문자열 비교)
+        public bool VerifyCurrentPassword(string currentPw)
+            => _serverPwPlain is not null &&
+               string.Equals(_serverPwPlain, currentPw, StringComparison.Ordinal);
+
+        // 비밀번호 변경 호출 (스펙상 current_pw 없이 pw만 전송)
+        public async Task<(bool ok, string? message)> ModifyPasswordAsync(string newPw)
+        {
+            var req = new JObject
+            {
+                ["protocol"] = "modify_user_info",
+                ["data"] = new JObject
+                {
+                    ["staff_uid"] = _session.GetUid(),
+                    ["pw"] = newPw
+                }
+            };
+
+            var send = new WorkItem { json = JsonConvert.SerializeObject(req), payload = Array.Empty<byte>(), path = "" };
+            _socket.Send(send);
+
+            var resItem = _socket.Receive();
+            if (string.IsNullOrWhiteSpace(resItem.json)) return (false, "서버 응답 없음");
+
+            var json = JObject.Parse(resItem.json);
+            if (json["protocol"]?.ToString() != "modify_user_info") return (false, "프로토콜 불일치");
+
+            var resp = json["resp"]?.ToString();
+            var msg = json["messege"]?.ToString() ?? json["message"]?.ToString(); // 철자 케이스 대비
+            return (resp == "success", msg);
         }
 
     }
@@ -309,5 +248,4 @@ namespace ShifterUser.Models
         public bool HasPassword { get; init; }
     }
 }
-
 

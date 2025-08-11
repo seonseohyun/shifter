@@ -11,5 +11,11 @@ namespace ShifterUser.Models
         [ObservableProperty] private TimeSpan startTime;
         [ObservableProperty] private TimeSpan endTime;
         [ObservableProperty] private string? groupName;
+
+        // 근무 시간 Hours 자체로 바인딩
+        [ObservableProperty] private double hours;
+
+
+
     }
 }

@@ -1,8 +1,10 @@
 ﻿// Services/AttendanceManager.cs
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using ShifterUser.Enums;
 using ShifterUser.Helpers;
 using ShifterUser.Models;
+using ShifterUser.ViewModels;
 using System;
 using System.Threading.Tasks;
 
@@ -18,7 +20,91 @@ namespace ShifterUser.Services
             _socket = socket;
             _session = session;
         }
+        // 출근
+        public bool AskCheckIn(HomeViewModel homeViewModel)
+        {
+            JObject jsonData = new()
+            {
+                { "protocol", "ask_check_in" },
+                {
+                    "data", new JObject
+                    {
+                        {"staff_uid", _session.GetUid() },
+                        {"team_uid", _session.GetTeamCode() }
+                    }
+                }
+            };
 
+            WorkItem sendItem = new()
+            {
+                json = JsonConvert.SerializeObject(jsonData),
+                payload = [],
+                path = ""
+            };
+
+            _socket.Send(sendItem);
+
+            WorkItem response = _socket.Receive();
+            JObject respJson = JObject.Parse(response.json);
+
+            string protocol = respJson["protocol"]?.ToString() ?? "";
+            string result = respJson["resp"]?.ToString() ?? "";
+            int checkInUid = respJson["data"]?["check_in_uid"]?.Value<int>() ?? -1;
+
+            if (protocol == "ask_check_in" && result == "success")
+            {
+                // 상태 반영!
+                _session.SetCheckInUid(checkInUid);
+                // HomeViewModel 상태 갱신
+                homeViewModel.AttendanceStatus = AttendanceStatus.출근완료;
+
+                return true;
+            }
+
+            return false;
+        }
+        public bool AskCheckOut(HomeViewModel homeVM)
+        {
+            JObject jsonData = new()
+            {
+                { "protocol", "ask_check_out" },
+                {
+                    "data", new JObject
+                    {
+                        { "check_in_uid", _session.GetCheckInUid() }
+                    }
+                }
+            };
+
+            WorkItem sendItem = new()
+            {
+                json = JsonConvert.SerializeObject(jsonData),
+                payload = [],
+                path = ""
+            };
+
+            _socket.Send(sendItem);
+
+            WorkItem response = _socket.Receive();
+            JObject respJson = JObject.Parse(response.json);
+
+            string protocol = respJson["protocol"]?.ToString() ?? "";
+            string result = respJson["resp"]?.ToString() ?? "";
+            string message = respJson["message"]?.ToString() ?? "";
+
+            if (protocol == "ask_check_out" && result == "success")
+            {
+                //  상태 반영
+                homeVM.UpdateAttendanceStatusFromMessage(message);
+                // HomeViewModel 상태 갱신
+                homeVM.AttendanceStatus = AttendanceStatus.퇴근완료;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public Task<AttendanceModel?> GetByDateAsync(DateTime date)
         {
             // 요청 JSON

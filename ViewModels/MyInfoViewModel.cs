@@ -30,7 +30,6 @@ namespace ShifterUser.ViewModels
         [ObservableProperty] private bool isPwPopupVisible;
         [ObservableProperty] private bool hasPassword;
 
-
         // 내정보 기본 속성
         [ObservableProperty] private string company = "";
         [ObservableProperty] private string position = "";
@@ -42,6 +41,22 @@ namespace ShifterUser.ViewModels
         [ObservableProperty] private string currentPw = "";
         [ObservableProperty] private string newPw = "";
         [ObservableProperty] private string confirmPw = "";
+
+
+        private bool _isSaving;
+        public bool IsSaving
+        {
+            get => _isSaving;
+            set
+            {
+                if (SetProperty(ref _isSaving, value))
+                {
+                    // CanExecute 갱신
+                    OnPropertyChanged(nameof(CanSavePassword));
+                    SavePasswordCommand?.NotifyCanExecuteChanged();
+                }
+            }
+        }
 
         [RelayCommand]
         public async Task LoadAsync()
@@ -75,9 +90,46 @@ namespace ShifterUser.ViewModels
         [RelayCommand(CanExecute = nameof(CanSavePassword))]
         private async Task SavePasswordAsync()
         {
-            
-            // TODO: 서버 호출 modify_user_info (current_pw + pw)
-            // 성공 시 팝업 닫기 & 필드 초기화
+            try
+            {
+                IsSaving = true;
+                SavePasswordCommand?.NotifyCanExecuteChanged();
+
+                // 현재 비밀번호 로컬 확인
+                if (!_manager.VerifyCurrentPassword(CurrentPw))
+                {
+                    MessageBox.Show("현재 비밀번호가 올바르지 않습니다.", "실패",
+                                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                // 새 비밀번호 서버 전송
+                var (ok, msg) = await _manager.ModifyPasswordAsync(NewPw);
+                if (!ok)
+                {
+                    MessageBox.Show(msg ?? "비밀번호 변경 실패", "실패",
+                                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                MessageBox.Show("비밀번호가 변경되었습니다.", "완료",
+                                MessageBoxButton.OK, MessageBoxImage.Information);
+
+                HasPassword = true;
+                CurrentPw = NewPw = ConfirmPw = string.Empty; 
+                IsPwPopupVisible = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"오류: {ex.Message}", "에러",
+                                MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            finally
+            {
+                IsSaving = false;
+                OnPropertyChanged(nameof(CanSavePassword));
+                SavePasswordCommand?.NotifyCanExecuteChanged();
+            }
         }
 
         [RelayCommand]
@@ -127,3 +179,7 @@ namespace ShifterUser.ViewModels
         }
     }
 }
+
+
+
+
