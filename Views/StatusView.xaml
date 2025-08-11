@@ -3,12 +3,70 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Shifter.Views"
+      xmlns:local="clr-namespace:Shifter.Helpers"
       mc:Ignorable="d" 
       d:DesignHeight="900" d:DesignWidth="1600"
       Title="StatusView">
+    <Page.Resources>
+        <local:BoolToBoldConverter x:Key="boolToBoldConverter"/>
+       
+    </Page.Resources>
 
-    <Grid>
-        
-    </Grid>
+    <Border Margin="20" Background="White" CornerRadius="10" Padding="10"
+        BorderBrush="#E0E0E0" BorderThickness="1">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- 왼쪽 패널 (달력) -->
+            <Border Grid.Column="0" BorderBrush="#DDD" BorderThickness="1" CornerRadius="5" Padding="10" Margin="5">
+
+                <Calendar HorizontalAlignment="Stretch"
+              VerticalAlignment="Stretch"
+              FontSize="16">
+                    <Calendar.LayoutTransform>
+                        <ScaleTransform ScaleX="4" ScaleY="4"/>
+                    </Calendar.LayoutTransform>
+                </Calendar>
+
+
+            </Border>
+
+
+            <!-- 오른쪽 패널 (출퇴근 기록 DataGrid) -->
+
+            <Border Grid.Column="1" BorderBrush="#DDD" BorderThickness="1" CornerRadius="5" Padding="10" Margin="5" Background="#FAFAFA">
+                <DataGrid AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  HeadersVisibility="Column"
+                  ColumnHeaderHeight="35"
+                  RowHeight="40"
+                  FontSize="14"
+                  HorizontalGridLinesBrush="LightGray"
+                  VerticalGridLinesBrush="LightGray"
+                  BorderBrush="#DDD"
+                  BorderThickness="1">
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="이름" Binding="{Binding Name}" Width="100" />
+                        <DataGridTextColumn Header="교대" Binding="{Binding Shift}" Width="80" />
+                        <DataGridTextColumn Header="업무시간" Binding="{Binding WorkingTime}" Width="150" />
+                        <DataGridTextColumn Header="출근" Binding="{Binding CheckIn}" Width="60" />
+                        <DataGridTextColumn Header="퇴근" Binding="{Binding CheckOut}" Width="60" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Border>
+
+
+
+        </Grid>
+    </Border>
+
 </Page>
