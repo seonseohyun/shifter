@@ -45,7 +45,7 @@ public partial class MainViewModel : ObservableObject {
         Console.WriteLine("[MainViewModel] Executed SetFrame");
         _mainFrame = frame;              // 프레임을 설정
 
-        Navigate(PageType.LogIn);        // 첫 페이지 로딩 ( Enum PageType.LogIn )
+        Navigate(PageType.ChkChgReq);        // 첫 페이지 로딩 ( Enum PageType.LogIn )
     }
 
 

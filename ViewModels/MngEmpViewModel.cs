@@ -1,4 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
+using Shifter.Messages;
 using Shifter.Models;
 using System;
 using System.Collections.Generic;
@@ -6,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Shifter.Enums;
 
 namespace Shifter.ViewModels {
     public partial class MngEmpViewModel : ObservableObject {
@@ -43,6 +47,12 @@ namespace Shifter.ViewModels {
                     }
                 });
             }
+        }
+
+        [RelayCommand] private void GoToChkTmpEmpInfo() {
+            Console.WriteLine("[MngEmpViewModel] GoToChkTmpEmpInfo Executed");
+            // Navigate to the temporary employee info view
+            WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.ChkTmpEmpInfo));
         }
     }
 

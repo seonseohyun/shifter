@@ -188,7 +188,8 @@ namespace Shifter.Models {
                 protocol = "rgs_grade_info",
                 data = new
                 {
-                    team_uid = _session.GetCurrentTeamId(),
+                    admin_uid = _session.GetCurrentAdminId(),
+                    team_uid  = _session.GetCurrentTeamId(),
                     grades = jArray
                 }
             };
@@ -232,7 +233,7 @@ namespace Shifter.Models {
             /* [0] new json */
             var sendJson = new
             {
-                protocol = "chk_temp_staff_info",
+                protocol = "ask_temp_staff_info",
                 data = new
                 {
                     team_uid = _session.GetCurrentTeamId()
@@ -258,11 +259,11 @@ namespace Shifter.Models {
             string protocol = recvJson["protocol"]!.ToString();
             string resp = recvJson["resp"]!.ToString();
 
-            if (protocol == "chk_temp_staff_info" && resp == "success") {
+            if (protocol == "ask_staff_list" && resp == "success") {
                 // Handle success case
                 Console.WriteLine("[EmpModel] Temporary staff info received successfully.");
                 ObservableCollection<Employee> tempStaffList = new ObservableCollection<Employee>();
-                JArray staffArray = (JArray)recvJson["data"]!["staff"]!;
+                JArray staffArray = (JArray)recvJson["data"]!["staff_list"]!;
                 foreach (var staff in staffArray) {
                     Employee emp = new Employee
                     {
@@ -282,7 +283,6 @@ namespace Shifter.Models {
                 return tempStaffList;
             }
             else {
-                // Handle error case
                 Console.WriteLine("[EmpModel] Failed to receive temporary staff info.");
                 return [];
             }

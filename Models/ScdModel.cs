@@ -86,7 +86,7 @@ namespace Shifter.Models {
 
                 var result = new ObservableCollection<StaffSchedule>();
                 var byId = new Dictionary<int, StaffSchedule>();
-                int daysInMonth = DateTime.DaysInMonth(year.Value, month.Value);
+                int daysInMonth = DateTime.DaysInMonth(year!.Value, month!.Value);
 
                 JToken dataTok = recvJson["data"]!;
                 var items = dataTok is JArray arr ? arr

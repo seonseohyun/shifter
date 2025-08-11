@@ -87,10 +87,9 @@ namespace Shifter.ViewModels {
                 MessageBox.Show("EmpModel is not initialized.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             } else {
-                _empmodel!.RgsTeamInfoAsync(CompanyName, TeamName, SelectedIndustry, Shifts);
+                _ = _empmodel!.RgsTeamInfoAsync(CompanyName, TeamName, SelectedIndustry, Shifts);
             }
 
-                _ = _empmodel!.RgsTeamInfoAsync(CompanyName!, TeamName!, SelectedIndustry!, Shifts);
             WeakReferenceMessenger.Default.Send(new PageChangeMessage(Enums.PageType.RgsEmpGrade));
         }
     }

@@ -55,7 +55,7 @@
                                     FontSize="15" FontWeight="Bold" Foreground="#FFFFFF"
                                     Background="Transparent" HorizontalAlignment="Left"
                                     VerticalAlignment="Center" Grid.ColumnSpan="2"
-                                    Command="{Binding ValueNameCommand}"    
+                                    Command="{Binding MinusMonthCommand}"    
                                     BorderBrush="Transparent">
                                 <Button.Resources>
                                     <Style TargetType="Border">
@@ -64,7 +64,7 @@
                                 </Button.Resources>
                             </Button>
 
-                            <TextBlock Grid.Column="1" Text="{Binding Month}"
+                            <TextBlock Grid.Column="1" Text="{Binding YearMonth}"
                                        FontSize="20" FontFamily="Noto Sans KR"
                                        FontWeight="Medium" VerticalAlignment="Center" Foreground="#FFFFFF"
                                        TextAlignment="Center" Grid.ColumnSpan="2" 
@@ -76,7 +76,7 @@
                                 Background="Transparent" Foreground="#FFFFFF"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Center" 
-                                Command="{Binding ValueNameCommand}"    
+                                Command="{Binding PlusMonthCommand}"    
                                 BorderBrush="Transparent" Grid.ColumnSpan="2" Margin="252,0,0,0"
                                 >
                                 <Button.Resources>

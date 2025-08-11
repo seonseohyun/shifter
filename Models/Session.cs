@@ -14,7 +14,9 @@ namespace Shifter.Models {
         /** Member Variables **/
         private int CurrentAdminId;
         private int CurrentTeamId;
+        private string? CurrentCompanyName;
         private string? CurrentTeamName;
+        private string? CurrentAdminName;
         private int CurrentYear;
         private int CurrentMonth;
         [ObservableProperty] bool visToolbar = true;
@@ -30,6 +32,8 @@ namespace Shifter.Models {
         public void SetCurrentTeamName(string teamName) { CurrentTeamName = teamName; }
         public void SetCurrentYear    (int year)        { CurrentYear     = year; }
         public void SetCurrentMonth   (int month)       { CurrentMonth    = month; }
+        public void SetCurrentCompanyName(string companyName) { CurrentCompanyName = companyName; }
+        public void SetCurrentAdminName(string adminName) { CurrentAdminName = adminName; }
 
         /* Get Variables */
         public int GetCurrentAdminId()     { return CurrentAdminId; }
@@ -37,5 +41,7 @@ namespace Shifter.Models {
         public int GetCurrentYear()        { return CurrentYear; }
         public int GetCurrentMonth()       { return CurrentMonth; }
         public string GetCurrentTeamName() { return CurrentTeamName!; }
+        public string GetCurrentCompanyName() { return CurrentCompanyName!; }
+        public string GetCurrentAdminName() { return CurrentAdminName!; }
     }
 }

@@ -33,7 +33,8 @@
                         <RowDefinition Height="1.5*"/>
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Text="Test TeamName Before Binding" Style="{StaticResource TitleTextBlockStyle}"></TextBlock>
+                    <TextBlock Grid.Row="0" Text="{Binding TeamName}" 
+                               Style="{StaticResource TitleTextBlockStyle}"></TextBlock>
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"/>

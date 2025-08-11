@@ -18,6 +18,9 @@ namespace Shifter.ViewModels {
             _session = session;
             _scdModel = scdModel;
 
+            TeamName = _session?.GetCurrentTeamName();
+            CompanyName = _session?.GetCurrentCompanyName();
+
             _ = LoadAsync(_session!.GetCurrentYear(), _session!.GetCurrentMonth());
             //// [1] 날짜(1~31일) 채우기
             //for (int i = 1; i <= 31; i++)
@@ -66,6 +69,11 @@ namespace Shifter.ViewModels {
         /** Member Variables **/
         private readonly Session? _session;
         private readonly ScdModel _scdModel;
+
+        [ObservableProperty] private string? teamName;
+        [ObservableProperty] private string? companyName;
+        [ObservableProperty] private string? yearMonth; // "2023-10" 형식
+        [ObservableProperty] private string? adminName;
         public ObservableCollection<int> Days { get; set; } = new();
         [ObservableProperty] private ObservableCollection<StaffSchedule> staffSchedules = new();
         public static List<string> ShiftCodes { get; } = new();
@@ -130,16 +138,22 @@ namespace Shifter.ViewModels {
 
         public async Task LoadAsync(int year, int month) {
             Console.WriteLine("[MdfScdViewModel] Executed LoadAsync(year: {0}, month: {1})", year, month);
+
+            // 날짜(1~31일) 채우기
+            Days.Clear();
+            for (int i = 1; i <= (int) DateTime.DaysInMonth(year, month); i++)
+                Days.Add(i);
+
             var list = await _scdModel.GenTimeTableAsync(year, month);
 
             await Application.Current.Dispatcher.InvokeAsync(() =>
             {
-                // 방법 A: 인스턴스 교체 (선택 유지가 필요 없다면 간단)
+                // 인스턴스 교체
                 StaffSchedules = new ObservableCollection<StaffSchedule>(list);
 
                 // 각 항목에 콜백 연결
-                foreach (var s in StaffSchedules)
-                    s.UpdateDailyStatsCallback = UpdateDailyStatistics;
+                foreach (var schedule in StaffSchedules)
+                    schedule.UpdateDailyStatsCallback = UpdateDailyStatistics;
 
                 // 집계
                 UpdateDailyStatistics();

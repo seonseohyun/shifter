@@ -45,6 +45,17 @@
                     <TextBlock Grid.Row="0" Text="임시팀정보" Margin="5"
                            FontSize="15" FontFamily="Noto Sans KR" FontWeight="Bold"
                            Foreground="#000000" Background="Transparent"></TextBlock>
+                    <StackPanel>
+                        <Button MinHeight="30" Content="임시 팀정보" Margin="5,2,5,2"
+                        Foreground="#000000" Background="#F7F7F7" BorderBrush="Transparent"
+                        FontSize="15" FontFamily="Noto Sans KR" FontWeight="Medium" Command="{Binding GoToChkTmpEmpInfoCommand}">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="6"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                    </StackPanel>
                 </Grid>
             </Grid>
         </Border>
