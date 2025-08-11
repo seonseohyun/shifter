@@ -26,9 +26,6 @@ namespace ShifterUser.ViewModels
             WeakReferenceMessenger.Default.Register<OpenNoticeDetailMessage>(this,
                 async (_, m) => await LoadAsync(m.Value));
 
-            // 테스트용
-            Notice = new NoticeModel { Title = "테스트", StaffName = "관리자", NoticeDate = "2025-08-08", Content = "하드코딩" };
-
         }
 
 

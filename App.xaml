@@ -19,6 +19,7 @@
         <conv:NullToVisibilityConverter x:Key="NullToVisibilityConverter"/>
         <conv:HandoverTypeToColorConverter x:Key="HandoverTypeToColorConverter"/>
         <conv:ShiftToBrushConverter x:Key="ShiftToBrushConverter"/>
+        <conv:NewlineUnescapeConverter x:Key="NewlineUnescapeConverter"/>
 
         <!-- 워터마크 텍스트박스 스타일 -->
         <Style x:Key="BlueWatermarkTextBoxStyle" TargetType="TextBox">

@@ -5,9 +5,44 @@ namespace ShifterUser.Models
 {
     public partial class AttendanceModel : ObservableObject
     {
-        [ObservableProperty] private DateTime? clockInTime;
-        [ObservableProperty] private string? clockInStatus;
-        [ObservableProperty] private DateTime? clockOutTime;
-        [ObservableProperty] private string? clockOutStatus;
+        // ====== 서버 원본 값 ======
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(IsClockInDone))]
+        [NotifyPropertyChangedFor(nameof(ClockInTimeDisplay))]
+        [NotifyPropertyChangedFor(nameof(ClockInStatusText))]
+        private DateTime? clockInTime;
+
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(IsClockInDone))]
+        [NotifyPropertyChangedFor(nameof(ClockInStatusText))]
+        private string? clockInStatus;
+
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(IsClockOutDone))]
+        [NotifyPropertyChangedFor(nameof(ClockOutTimeDisplay))]
+        [NotifyPropertyChangedFor(nameof(ClockOutStatusText))]
+        private DateTime? clockOutTime;
+
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(IsClockOutDone))]
+        [NotifyPropertyChangedFor(nameof(ClockOutStatusText))]
+        private string? clockOutStatus;
+
+        // ====== 계산 프로퍼티 ======
+        public bool IsClockInDone =>
+            !string.IsNullOrWhiteSpace(ClockInStatus)
+                ? ClockInStatus.Equals("done", StringComparison.OrdinalIgnoreCase)
+                : ClockInTime.HasValue;
+
+        public bool IsClockOutDone =>
+            !string.IsNullOrWhiteSpace(ClockOutStatus)
+                ? ClockOutStatus.Equals("done", StringComparison.OrdinalIgnoreCase)
+                : ClockOutTime.HasValue;
+
+        public string ClockInTimeDisplay => ClockInTime?.ToString("HH:mm") ?? "--:--";
+        public string ClockOutTimeDisplay => ClockOutTime?.ToString("HH:mm") ?? "--:--";
+
+        public string ClockInStatusText => IsClockInDone ? "출근 완료" : "미출근";
+        public string ClockOutStatusText => IsClockOutDone ? "퇴근 완료" : "미퇴근";
     }
 }

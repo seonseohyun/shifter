@@ -120,14 +120,13 @@
                             <Border Height="1.5" Background="#E6E6E6" Margin="0,0,0,12"/>
 
                             <!-- 내용 -->
-                            <TextBlock Text="{Binding Notice.Content}"
+                            <TextBlock Text="{Binding Notice.Content, Converter={StaticResource NewlineUnescapeConverter}}"
                                        TextWrapping="Wrap"
                                        FontSize="15"
                                        LineHeight="22"
                                        Margin="4,0,4,0"/>
                         </StackPanel>
                     </ScrollViewer>
-
                 </DockPanel>
             </Border>
         </Grid>

@@ -104,11 +104,9 @@ namespace ShifterUser.Models
                 path = ""
             };
 
-            // 2) 송/수신
             _socket.Send(sendItem);
             WorkItem response = _socket.Receive();
 
-            // 3) 파싱
             JObject json = JObject.Parse(response.json);
             string protocol = json["protocol"]?.ToString() ?? "";
             string result = json["resp"]?.ToString() ?? "";
@@ -135,6 +133,7 @@ namespace ShifterUser.Models
             Console.WriteLine($"[공지 상세] 실패: protocol={protocol}, resp={result}");
             return null; // 모든 경로에서 반환
         }
+
 
     }
 

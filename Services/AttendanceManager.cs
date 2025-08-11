@@ -55,19 +55,41 @@ namespace ShifterUser.Services
                 if (att == null) return Task.FromResult<AttendanceModel?>(null);
           
                 var cinStr = att["check_in_time"]?.ToString();   
-                var coutStr = att["check_out_time"]?.ToString();  
+                var coutStr = att["check_out_time"]?.ToString();
 
-                // "HH:mm" -> DateTime? (기본은 같은 날짜, 퇴근이 새벽이면 +1일 보정)
-                static DateTime? ToDateTime(DateTime baseDate, string? hhmm, bool isOut)
+                // "yyyy-MM-dd HH:mm[:ss]" / "HH:mm[:ss]" 모두 지원
+                static DateTime? ToDateTime(DateTime baseDate, string? value, bool isOut)
                 {
-                    if (string.IsNullOrWhiteSpace(hhmm)) return null;
+                    if (string.IsNullOrWhiteSpace(value)) return null;
 
-                    var d = baseDate;
-                    if (isOut && TimeSpan.TryParse(hhmm, out var t) && t < TimeSpan.FromHours(6))
-                        d = d.AddDays(1);
+                    // 먼저 전체 날짜+시각 시도
+                    var fmtsFull = new[] { "yyyy-MM-dd HH:mm:ss", "yyyy-MM-dd HH:mm" };
+                    if (DateTime.TryParseExact(value.Trim(), fmtsFull,
+                        System.Globalization.CultureInfo.InvariantCulture,
+                        System.Globalization.DateTimeStyles.None, out var dtFull))
+                    {
+                        return dtFull;
+                    }
 
-                    return DateTime.TryParse($"{d:yyyy-MM-dd} {hhmm}", out var dt)
-                        ? dt : (DateTime?)null;
+                    // 시간만 온 경우(HH:mm or HH:mm:ss)
+                    var fmtsTime = new[] { "HH:mm:ss", "HH:mm" };
+                    if (DateTime.TryParseExact(value.Trim(), fmtsTime,
+                        System.Globalization.CultureInfo.InvariantCulture,
+                        System.Globalization.DateTimeStyles.None, out var tOnly))
+                    {
+                        // 퇴근이 새벽이면 +1일
+                        var date = baseDate;
+                        if (isOut && tOnly.TimeOfDay < TimeSpan.FromHours(6))
+                            date = date.AddDays(1);
+
+                        return date.Date + tOnly.TimeOfDay;
+                    }
+
+                    // 마지막으로 일반 파서
+                    if (DateTime.TryParse(value, out var any))
+                        return any;
+
+                    return null;
                 }
 
                 var model = new AttendanceModel
@@ -77,7 +99,6 @@ namespace ShifterUser.Services
                     ClockInStatus = null,
                     ClockOutStatus = null
                 };
-
 
                 return Task.FromResult<AttendanceModel?>(model);
             }

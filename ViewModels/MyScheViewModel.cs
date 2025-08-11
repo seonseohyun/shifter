@@ -21,7 +21,6 @@ namespace ShifterUser.ViewModels
         private readonly UserSession _session;
         private readonly SocketManager _socket;
         private readonly AttendanceManager _attendance;
-        // ViewModels/MyScheViewModel.cs
         private readonly Dictionary<DateTime, ConfirmedWorkScheModel> _monthSchedule = new();
 
 
@@ -110,7 +109,7 @@ namespace ShifterUser.ViewModels
             var hit = Days.FirstOrDefault(d => d.Date?.Date == date.Date);
             if (hit is not null && !string.IsNullOrWhiteSpace(hit.ShiftType))
             {
-                shiftType = ParseShiftEnum(hit.ShiftType); // 이미 있는 유틸
+                shiftType = ParseShiftEnum(hit.ShiftType); 
                 return true;
             }
 
@@ -143,7 +142,7 @@ namespace ShifterUser.ViewModels
                         ShiftType = ParseShiftEnum(v.Shift),
                         StartTime = TimeSpan.Zero,
                         EndTime = TimeSpan.Zero,
-                        GroupName = null
+                        GroupName = _session.GetTeamName()
                     };
                 }
                 else
@@ -246,11 +245,14 @@ namespace ShifterUser.ViewModels
             }
         }
 
-        private static ShiftType ParseShiftEnum(string? s)
+        private static ShiftType ParseShiftEnum(string? s) => (s ?? "").Trim().ToUpperInvariant() switch
         {
-            var norm = NormalizeShiftString(s);
-            return Enum.TryParse<ShiftType>(norm, true, out var r) ? r : ShiftType.Off;
-        }
+            "D" or "DAY" => ShiftType.Day,
+            "E" or "EVENING" => ShiftType.Evening,
+            "N" or "NIGHT" => ShiftType.Night,
+            "O" or "OFF" or "-" or "" => ShiftType.Off,
+            _ => ShiftType.Off
+        };
 
         // ===== 뒤로가기 =====
         [RelayCommand]
@@ -262,8 +264,6 @@ namespace ShifterUser.ViewModels
 
 
     }
-
-
 
     // ===== 달력 셀 모델 =====
     public partial class DayModel : ObservableObject

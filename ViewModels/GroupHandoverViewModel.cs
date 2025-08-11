@@ -145,7 +145,7 @@ namespace ShifterUser.ViewModels
         [RelayCommand]
         private void GoBack()
         {
-            WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.Goback));
+            WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.Home));
         }
     }
 }

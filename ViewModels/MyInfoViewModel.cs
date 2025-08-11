@@ -43,26 +43,21 @@ namespace ShifterUser.ViewModels
         [ObservableProperty] private string newPw = "";
         [ObservableProperty] private string confirmPw = "";
 
-        public bool CanSavePassword =>
-        !string.IsNullOrWhiteSpace(CurrentPw) &&
-        !string.IsNullOrWhiteSpace(NewPw) &&
-        NewPw == ConfirmPw &&
-        NewPw.Length >= 8;
+        [RelayCommand]
+        public async Task LoadAsync()
+        {
+            var info = await _manager.GetUserInfoAsync();
+            if (info == null)
+            {
+                return;
+            }
 
-        partial void OnCurrentPwChanged(string value)
-        {
-            OnPropertyChanged(nameof(CanSavePassword));
-            SavePasswordCommand?.NotifyCanExecuteChanged();
-        }
-        partial void OnNewPwChanged(string value)
-        {
-            OnPropertyChanged(nameof(CanSavePassword));
-            SavePasswordCommand?.NotifyCanExecuteChanged();
-        }
-        partial void OnConfirmPwChanged(string value)
-        {
-            OnPropertyChanged(nameof(CanSavePassword));
-            SavePasswordCommand?.NotifyCanExecuteChanged();
+            Company = info.CompanyName;
+            Position = info.GradeName;   
+            Name = _session.GetName();   
+            PhoneNumber = info.PhoneNumber;
+            Id = info.Id;
+            HasPassword = info.HasPassword;
         }
 
         [RelayCommand]
@@ -80,8 +75,19 @@ namespace ShifterUser.ViewModels
         [RelayCommand(CanExecute = nameof(CanSavePassword))]
         private async Task SavePasswordAsync()
         {
+            
             // TODO: 서버 호출 modify_user_info (current_pw + pw)
             // 성공 시 팝업 닫기 & 필드 초기화
+        }
+
+        [RelayCommand]
+        public void Logout()
+        {
+            if(MessageBox.Show("로그아웃 하시겠습니까", "로그아웃", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.Login));
+            }
+            
         }
 
         [RelayCommand]
@@ -90,5 +96,34 @@ namespace ShifterUser.ViewModels
             WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.Goback));
         }
 
+
+        public bool CanSavePassword =>
+        !string.IsNullOrWhiteSpace(CurrentPw) &&
+        !string.IsNullOrWhiteSpace(NewPw) &&
+        NewPw == ConfirmPw &&
+        NewPw.Length >= 8;
+        public string PasswordMask => HasPassword ? "********" : "미설정";
+
+        // HasPassword가 바뀔 때 Mask도 갱신 알림
+        partial void OnHasPasswordChanged(bool value)
+        {
+            OnPropertyChanged(nameof(PasswordMask));
+        }
+
+        partial void OnCurrentPwChanged(string value)
+        {
+            OnPropertyChanged(nameof(CanSavePassword));
+            SavePasswordCommand?.NotifyCanExecuteChanged();
+        }
+        partial void OnNewPwChanged(string value)
+        {
+            OnPropertyChanged(nameof(CanSavePassword));
+            SavePasswordCommand?.NotifyCanExecuteChanged();
+        }
+        partial void OnConfirmPwChanged(string value)
+        {
+            OnPropertyChanged(nameof(CanSavePassword));
+            SavePasswordCommand?.NotifyCanExecuteChanged();
+        }
     }
 }

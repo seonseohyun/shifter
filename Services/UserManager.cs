@@ -252,6 +252,61 @@ namespace ShifterUser.Models
 
             return result;
         }
+
+        public async Task<UserInfoModel?> GetUserInfoAsync()
+        {
+            var req = new JObject
+            {
+                ["protocol"] = "ask_user_info",
+                ["data"] = new JObject
+                {
+                    ["team_uid"] = _session.GetTeamCode(),
+                    ["staff_uid"] = _session.GetUid()
+                }
+            };
+
+            var send = new WorkItem
+            {
+                json = JsonConvert.SerializeObject(req),
+                payload = Array.Empty<byte>(),
+                path = ""
+            };
+
+            _socket.Send(send);
+
+            WorkItem resItem = _socket.Receive();
+            if (string.IsNullOrWhiteSpace(resItem.json))
+                return null;
+
+            var json = JObject.Parse(resItem.json);
+            var protocol = json["protocol"]?.ToString() ?? "";
+            var resp = json["resp"]?.ToString() ?? "";
+
+            if (protocol != "ask_user_info" || resp != "success")
+                return null;
+
+            var data = json["data"];
+            var pwRaw = data?["pw"]?.ToString() ?? "";
+
+            return new UserInfoModel
+            {
+                Id = data?["id"]?.ToString() ?? "",
+                PhoneNumber = data?["phone_number"]?.ToString() ?? "",
+                CompanyName = data?["company_name"]?.ToString() ?? "",
+                GradeName = data?["grade_name"]?.ToString() ?? "",
+                HasPassword = !string.IsNullOrWhiteSpace(pwRaw)
+            };
+        }
+
+    }
+
+    public class UserInfoModel
+    {
+        public string Id { get; init; } = "";
+        public string PhoneNumber { get; init; } = "";
+        public string CompanyName { get; init; } = "";
+        public string GradeName { get; init; } = "";
+        public bool HasPassword { get; init; }
     }
 }
 

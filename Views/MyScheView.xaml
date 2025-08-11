@@ -178,10 +178,6 @@
                     </Button>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
-
-            <ItemsControl.Margin>
-                <Thickness Bottom="80"/>
-            </ItemsControl.Margin>
         </ItemsControl>
 
         <!-- 팝업 배경 + 카드 -->
@@ -236,27 +232,52 @@
                     <!-- 출퇴근 기록 -->
                     <TextBlock Text="출퇴근 기록" FontWeight="Bold" FontSize="18" Margin="0,5,0,15"/>
 
-                    <Border Background="White" CornerRadius="10" Padding="12">
-                        <StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
-                                <Image Source="/Resources/images/check_green.png" Width="20" Height="20" Margin="0,0,6,0"/>
-                                <TextBlock FontSize="14">
-                                <Run Text="출근 시각 "/>
-                                <Run Text="{Binding SelectedDayData.Attendance.ClockInTime}" FontWeight="SemiBold"/>
-                                <Run Text=" 출근 완료"/>
-                                </TextBlock>
-                            </StackPanel>
+                    <!-- 출근 -->
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
+                        <Image Width="20" Height="20" Margin="0,0,6,0">
+                            <Image.Style>
+                                <Style TargetType="Image">
+                                    <Setter Property="Source" Value="/Resources/images/pending.png"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding SelectedDayData.Attendance.IsClockInDone}" Value="True">
+                                            <Setter Property="Source" Value="/Resources/images/check_green.png"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
 
-                            <StackPanel Orientation="Horizontal" >
-                                <Image Source="/Resources/images/check_green.png" Width="20" Height="20" Margin="0,0,6,0"/>
-                                <TextBlock FontSize="14">
-                                <Run Text="퇴근 시각 "/>
-                                <Run Text="{Binding SelectedDayData.Attendance.ClockOutTime}" FontWeight="SemiBold"/>
-                                <Run Text=" 퇴근 완료"/>
-                                </TextBlock>
-                            </StackPanel>
-                        </StackPanel>
-                    </Border>
+                        <TextBlock FontSize="14">
+                        <Run Text="출근 시각 "/>
+                        <Run Text="{Binding SelectedDayData.Attendance.ClockInTimeDisplay, Mode=OneWay}" FontWeight="SemiBold"/>
+                        <Run Text=" "/>
+                        <Run Text="{Binding SelectedDayData.Attendance.ClockInStatusText, Mode=OneWay}"/>
+                        </TextBlock>
+                    </StackPanel>
+
+                    <!-- 퇴근 -->
+                    <StackPanel Orientation="Horizontal">
+                        <Image Width="20" Height="20" Margin="0,0,6,0">
+                            <Image.Style>
+                                <Style TargetType="Image">
+                                    <Setter Property="Source" Value="/Resources/images/pending.png"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding SelectedDayData.Attendance.IsClockOutDone}" Value="True">
+                                            <Setter Property="Source" Value="/Resources/images/check_green.png"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+
+                        <TextBlock FontSize="14">
+                        <Run Text="퇴근 시각 "/>
+                        <Run Text="{Binding SelectedDayData.Attendance.ClockOutTimeDisplay, Mode=OneWay}" FontWeight="SemiBold"/>
+                        <Run Text=" "/>
+                        <Run Text="{Binding SelectedDayData.Attendance.ClockOutStatusText, Mode=OneWay}"/>
+                        </TextBlock>
+                    </StackPanel>
+
                 </StackPanel>
             </Border>
         </Grid>
