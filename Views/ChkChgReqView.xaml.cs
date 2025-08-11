@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Shifter.ViewModels;
+
 
 namespace Shifter.Views {
     /// <summary>
@@ -22,9 +24,17 @@ namespace Shifter.Views {
             InitializeComponent();
         }
 
-        private void BackButton_Click(object sender, RoutedEventArgs e)
+        
+        private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-
+            if (DataContext is ChkChgReqViewModel vm)
+            {
+                Console.WriteLine("Page_Loaded - 커맨드 실행");
+                if (vm.LoadOnAppearAsyncCommand.CanExecute(null))
+                    vm.LoadOnAppearAsyncCommand.Execute(null);
+            }
         }
+
+        
     }
 }

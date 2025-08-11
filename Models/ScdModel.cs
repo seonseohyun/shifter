@@ -11,6 +11,7 @@ using System.ComponentModel.Design.Serialization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Shifter.Models {
     public partial class ScdModel {
@@ -39,10 +40,160 @@ namespace Shifter.Models {
             return _todaysDuty!;
         }
 
+
+        /* 
+       public async Task<bool> LogInAsync(string id, string pw)
+       {
+        
+        JObject jsonData = new JObject {
+                { "protocol", "login_admin" },
+                { "data", new JObject {
+                        { "id", id },
+                        { "pw", pw }
+                    }
+                }
+            };
+
+            WorkItem sendItem = new()
+            {
+                json = JsonConvert.SerializeObject(jsonData),
+                payload = [],
+                path = ""
+            };
+
+        
+            await _socket.SendAsync(sendItem);
+
+           
+            WorkItem recvItem = await _socket.ReceiveAsync();
+            JObject recvJson = JObject.Parse(recvItem.json);
+            byte[] payload = recvItem.payload;
+            string path = recvItem.path;
+
+        
+            if (recvJson["resp"]!.ToString() == "success")
+            {
+                var data = recvJson["data"]!;
+
+                AdminUid = data["admin_uid"]!.ToObject<int>();
+                if (data["team_uid"] is not null)
+                {
+                    TeamUid = data["team_uid"]!.ToObject<int>();
+                    TeamName = data["team_name"]!.ToString();
+                }
+                else if (data["team_uid"] is null)
+                {
+                    TeamUid = 0;
+                    TeamName = "no team";
+                }
+
+                
+                _session.SetCurrentAdminId(AdminUid);
+                _session.SetCurrentTeamId(TeamUid);
+                _session.SetCurrentTeamName(TeamName);
+                return true;
+            }
+
+            return false;
+        }       
+          "protocol" : "shift_change_list",
+         "data" : {
+          "team_uid" : 0,
+
+        }{"desire_shift":"D",
+        
+        
+        
+        
+        "staff_uid":1
+        */
+        public partial class ShiftChangeRequestInfo : ObservableObject 
+        {
+            [ObservableProperty] public int dutyRequestUid;
+            [ObservableProperty] public int staffUid = 0;
+            [ObservableProperty] public string staffName;
+            [ObservableProperty] public DateTime requestDate;
+            [ObservableProperty] public string desireShift;
+            [ObservableProperty] public string reason;
+        }
+
+
+        public async Task<ObservableCollection<ShiftChangeRequestInfo>> ShiftChangeList(int _currentYear, int _currentMonth)
+        {
+
+
+
+            
+            JObject jsonData = new JObject {
+                { "protocol", "shift_change_list" },
+                { "data", new JObject {
+                    //{ "team_uid", _session.GetCurrentTeamId() },
+                        {"team_uid" , 1},
+                        { "req_year", _currentYear.ToString() },
+                        { "req_month", _currentMonth.ToString() },
+                    }
+                }
+            };
+
+            WorkItem sendItem = new()
+            {
+                json = JsonConvert.SerializeObject(jsonData),
+                payload = [],
+                path = ""
+            };
+
+            await _socket.SendAsync(sendItem);
+
+
+            WorkItem recvItem = await _socket.ReceiveAsync();
+            JObject recvJson = JObject.Parse(recvItem.json);
+            byte[] payload = recvItem.payload;
+            string path = recvItem.path;
+
+            /*
+             
+                                                [ObservableProperty] public int dutyRequestUid;
+                                                [ObservableProperty] public int staffUid = 0;
+                                                [ObservableProperty] public string staff_name;
+                                                [ObservableProperty] public DateTime requestDate;
+                                                [ObservableProperty] public string desireShift;
+            [ObservableProperty] public string reason;
+             
+             */
+
+            var result = new ObservableCollection<ShiftChangeRequestInfo>();
+
+            if (recvJson["resp"]!.ToString() == "success")
+            {
+                var dataArray = recvJson["data"] as JArray;
+                if (dataArray != null)
+                {
+                    foreach (var item in dataArray)
+                    {
+                        result.Add(new ShiftChangeRequestInfo
+                        {
+                            DutyRequestUid = item.Value<int>("duty_request_uid"),
+                            StaffUid = item.Value<int>("staff_uid"),
+                            RequestDate = item.Value<DateTime>("request_date"),
+                            StaffName = item.Value<string>("staff_name") ?? string.Empty,
+                             
+                            DesireShift = item.Value<string>("desire_shift") ?? string.Empty,
+                            Reason = item.Value<string>("reason") ?? string.Empty
+                        }); 
+                    }
+                    
+                }
+
+            }
+            return result;
+         }
+
+
+
         /*
         {"data":[{"date":"2025-10-01","hours":8,"people":[{"grade":3,"name":"유예솜","staff_id":8}],"shift":"D"},{"date":"2025-10-01","hours":8,"people":[{"grade":4,"name":"김유범","staff_id":4}],"shift":"E"},{"date":"2025-10-01","hours":8,"people":[{"grade":1,"name":"유희라","staff_id":1}],"shift":"N"},{"date":"2025-10-01","hours":0,"people":[{"grade":5,"name":"김대업","staff_id":10},{"grade":3,"name":"박경태","staff_id":3},{"grade":4,"name":"박주영","staff_id":9},{"grade":2,"name":"선서현","staff_id":2},{"grade":5,"name":"오장관","staff_id":5},{"grade":1,"name":"이보은","staff_id":6},{"grade":2,"name":"하진영","staff_id":7}],"shift":"O"},{"date":"2025-10-02","hours":8,"people":[{"grade":2,"name":"하진영","staff_id":7}],"shift":"D"},{"date":"2025-10-02","hours":8,"people":[{"grade":3,"name":"박경태","staff_id":3}],"shift":"E"},{"date":"2025-10-02","hours":8,"people":[{"grade":1,"name":"이보은","staff_id":6}],"shift":"N"},{"date":"2025-10-02","hours":0,"people":[{"grade":5,"name":"김대업","staff_id":10},{"grade":4,"name":"김유범","staff_id":4},{"grade":4,"name":"박 주영","staff_id":9},{"grade":2,"name":"선서현","staff_id":2},{"grade":5,"name":"오장관","staff_id":5},{"grade":3,"name":"유예솜","staff_id":8},{"grade":1,"name":"유희라","staff_id":1}],"shift":"O"},{"date":"2025-10-03","hours":8,"people":[{"grade":4,"name":"김유범","staff_id":4}],"shift":"D"},{"date":"2025-10-03","hours":8,"people":[{"grade":5,"name":"김대업","staff_id":10}],"shift":"E"},{"date":"2025-10-03","hours":8,"people":[{"grade":3,"name":"유예솜","staff_id":8}],"shift":"N"},{"date":"2025-10-03","hours":0,"people":[{"grade":3,"name":"박경태","staff_id":3},{"grade":4,"name":"박주영","staff_id":9},{"grade":2,"name":"선서현","staff_id":2},{"grade":5,"name":"오장관","staff_id":5},{"grade":1,"name":"유희라","staff_id":1},{"grade":1,"name":"이보은","staff_id":6},{"grade":2,"name":"하진영","staff_id":7}],"shift":"O"},{"date":"2025-10-04","hours":8,"people":[{"grade":5,"name":"김대업","staff_id":10}],"shift":"D"},{"date":"2025-10-04","hours":8,"people":[{"grade":3,"name":"박경태","staff_id":3}],"shift":"E"},{"date":"2025-10-04","hours":8,"people":[{"grade":4,"name":"박주영","staff_id":9}],"shift":"N"},{"date":"2025-10-04","hours":0,"people":[{"grade":4,"name":"김유범","staff_id":4},{"grade":2,"name":"선서현","staff_id":2},{"grade":5,"name":"오장관","staff_id":5},{"grade":3,"name":"유예솜","staff_id":8},{"grade":1,"name":"유희라","staff_id":1},{"grade":1,"name":"이보은","staff_id":6},{"grade":2,"name":"하진영","staff_id":7}],"shift":"O"},{"date":"2025-10-05","hours":8,"people":[{"grade":5,"name":"오장관","staff_id":5}],"shift":"D"},{"date":"2025-10-05","hours":8,"people":[{"grade":1,"name":"유희라","staff_id":1}],"shift":"E"},{"date":"2025-10-05","hours":8,"people":[{"grade":2,"name":"하진영","staff_id":7}],"shift":"N"},{"date":"2025-10-05","hours":0,"people":[{"grade":5,"name":"김대업","staff_id":10},{"grade":4,"name":"김유범","staff_id":4},{"grade":3,"name":"박경태","staff_id":3},{"grade":4,"name":"박주영","staff_id":9},{"grade":2,"name":"선서현","staff_id":2},{"grade":3,"name":"유예솜","staff_id":8},{"grade":1,"name":"이보은","staff_id":6}],"shift":"O"},{"date":"2025-10-06","hours":8,"people":[{"grade":5,"name":"오장관","staff_id":5}],"shift":"D"},{"date":"2025-10-06","hours":8,"people":[{"grade":4,"name":"김유범","staff_id":4}],"shift":"E"},{"date":"2025-10-06","hours":8,"people":[{"grade":5,"name":"김대업","staff_id":10}],"shift":"N"},{"date":"2025-10-06","hours":0,"people":[{"grade":3,"name":"박경태","staff_id":3},{"grade":4,"name":"박주영","staff_id":9},{"grade":2,"name":"선서현","staff_id":2},{"grade":3,"name":"유예솜","staff_id":8},{"grade":1,"name":"유희라","staff_id":1},{"grade":1,"name":"이보은","staff_id":6},{"grade":2,"name":"하진영","staff_id":7}],"shift":"O"},{"date":"2025-10-07","hours":8,"people":[{"grade":1,"name":"유희라","staff_id":1}],"shift":"D"},{"date":"2025-10-07","hours":8,"people":[{"grade":2,"name":"선서현","staff_id":2}],"shift":"E"},{"date":"2025-10-07","hours":8,"people":[{"grade":2,"name":"하진영","staff_id":7}],"shift":"N"},{"date":"2025-10-07","hours":0,"people":[{"grade":5,"name":"김대업","staff_id":10},{"grade":4,"name":"김유범","staff_id":4},{"grade":3,"name":"박경태","staff_id":3},{"grade":4,"name":"박주영","staff_id":9},{"grade":5,"name":"오장 관","staff_id":5},{"grade":3,"name":"유예솜","staff_id":8},{"grade":1,"name":"이보은","staff_id":6}],"shift":"O"},{"date":"2025-10-08","hours":8,"people":[{"grade":3,"name":"박경태","staff_id":3}],"shift":"D"},{"date":"2025-10-08","hours":8,"people":[{"grade":1,"name":"이보은","staff_id":6}],"shift":"E"},{"date":"2025-10-08","hours":8,"people":[{"grade":2,"name":"선서현","staff_id":2}],"shift":"N"},{"date":"2025-10-08","hours":0,"people":[{"grade":5,"name":"김대업","staff_id":10},{"grade":4,"name":"김유범","staff_id":4},{"grade":4,"name":"박주영","staff_id":9},{"grade":5,"name":"오장관","staff_id":5},{"grade":3,"name":"유예솜","staff_id":8},{"grade":1,"name":"유희라","staff_id":1},{"grade":2,"name":"하진영","staff_id":7}],"shift":"O"},{"date":"2025-10-09","hours":8,"people":[{"grade":1,"name":"이보은","staff_id":6}],"shift":"D"},{"date":"2025-10-09","hours":8,"people":[{"grade":5,"name":"김대업","staff_id":10}],"shift":"E"},{"date":"2025-10-09","hours":8,"people":[{"grade":4,"name":"김유범","staff_id":4}],"shift":"N"},{"date":"2025-10-09","hours":0,"people":[{"grade":3,"name":"박경태","staff_id":3},{"grade":4,"name":"박주영","staff_id":9},{"grade":2,"name":"선서현","staff_id":2},{"grade":5,"name":"오장관","staff_id":5},{"grade":3,"name":"유예솜","staff_id":8},{"grade":1,"name":"유희라","staff_id":1},{"grade":2,"name":"하진영","staff_id":7}],"shift":"O"},{"date":"2025-10-10","hours":8,"people":[{"grade":5,"name":"오장관","staff_id":5}],"shift":"D"},{"date":"2025-10-10","hours":8,"people":[{"grade":5,"name":"김대업","staff_id":10}],"shift":"E"},{"date":"2025-10-10","hours":8,"people":[{"grade":3,"name":"유예솜","staff_id":8}],"shift":"N"},{"date":"2025-10-10","hours":0,"people":[{"grade":4,"name":"김유범","staff_id":4},{"grade":3,"name":"박경태","staff_id":3},{"grade":4,"name":"박주영","staff_id":9},{"grade":2,"name":"선서현","staff_id":2},{"grade":1,"name":"유희라","staff_id":1},{"grade":1,"name":"이보은","staff_id":6},{"grade":2,"name":"하진영","staff_id":7}],"shift":"O"},{"date":"2025-10-11","hours":8,"people":[{"grade":3,"name":"박경태","staff_id":3}],"shift":"D"},{"date":"2025-10-11","hours":8,"people":[{"grade":4,"name":"박주영","staff_id":9}],"shift":"E"},{"date":"2025-10-11","hours":8,"people":[{"grade":5,"name":"김대업","staff_id":10},{"grade":2,"name":"선서현","staff_id":2}],"shift":"N"},{"date":"2025-10-11","hours":0,"people":[{"grade":4,"name":"김 유범","staff_id":4},{"grade":5,"name":"오장관","staff_id":5},{"grade":3,"name":"유예솜","staff_id":8},{"grade":1,"name":"유희라","staff_id":1},{"grade":1,"name":"이보은","staff_id":6},{"grade":2,"name":"하진영","staff_id":7}],"shift":"O"},{"date":"2025-10-12","hours":8,"people":[{"grade":4,"name":"박주영","staff_id":9}],"shift":"D"},{"date":"2025-10-12","hours":8,"people":[{"grade":1,"name":"이보은","staff_id":6}],"shift":"E"},{"date":"2025-10-12","hours":8,"people":[{"grade":5,"name":"오장관","staff_id":5}],"shift":"N"},{"date":"2025-10-12","hours":0,"people":[{"grade":5,"name":"김대업","staff_id":10},{"grade":4,"name":"김유범","staff_id":4},{"grade":3,"name":"박경태","staff_id":3},{"grade":2,"name":"선서현","staff_id":2},{"grade":3,"name":"유예솜","staff_id":8},{"grade":1,"name":"유희라","staff_id":1},{"grade":2,"name":"하진영","staff_id":7}],"shift":"O"},{"date":"2025-10-13","hours":8,"people":[{"grade":3,"name":"유예솜","staff_id":8}],"shift":"D"},{"date":"2025-10-13","hours":8,"people":[{"grade":4,"name":"김유범","staff_id":4}],"shift":"E"},{"date":"2025-10-13","hours":8,"people":[{"grade":1,"name":"이보은","staff_id":6}],"shift":"N"},{"date":"2025-10-13","hours":0,"people":[{"grade":5,"name":"김대업","staff_id":10},{"grade":3,"name":"박경태","staff_id":3},{"grade":4,"name":"박주영","staff_id":9},{"grade":2,"name":"선서현","staff_id":2},{"grade":5,"name":"오장관","staff_id":5},{"grade":1,"name":"유희라","staff_id":1},{"grade":2,"name":"하진영","staff_id":7}],"shift":"O"},{"date":"2025-10-14","hours":8,"people":[{"grade":5,"name":"오장관","staff_id":5}],"shift":"D"},{"date":"2025-10-14","hours":8,"people":[{"grade":2,"name":"하진영","staff_id":7}],"shift":"E"},{"date":"2025-10-14","hours":8,"people":[{"grade":3,"name":"박경태","staff_id":3}],"shift":"N"},{"date":"2025-10-14","hours":0,"people":[{"grade":5,"name":"김대업","staff_id":10},{"grade":4,"name":"김유범","staff_id":4},{"grade":4,"name":"박주영","staff_id":9},{"grade":2,"name":"선서현","staff_id":2},{"grade":3,"name":"유예솜","staff_id":8},{"grade":1,"name":"유희라","staff_id":1},{"grade":1,"name":"이보은","staff_id":6}],"shift":"O"},{"date":"2025-10-15","hours":8,"people":[{"grade":1,"name":"이보은","staff_id":6}],"shift":"D"},{"date":"2025-10-15","hours":8,"people":[{"grade":1,"name":"유희라","staff_id":1}],"shift":"E"},{"date":"2025-10-15","hours":8,"people":[{"grade":2,"name":"하진영","staff_id":7}],"shift":"N"},{"date":"2025-10-15","hours":0,"people":[{"grade":5,"name":"김대업","staff_id":10},{"grade":4,"name":"김유범","staff_id":4},{"grade":3,"name":"박경태","staff_id":3},{"grade":4,"name":"박주영","staff_id":9},{"grade":2,"name":"선서현","staff_id":2},{"grade":5,"name":"오장관","staff_id":5},{"grade":3,"name":"유예솜","staff_id":8}],"shift":"O"},{"date":"2025-10-16","hours":8,"people":[{"grade":3,"name":"박경태","staff_id":3}],"shift":"D"},{"date":"2025-10-16","hours":8,"people":[{"grade":5,"name":"오장관","staff_id":5}],"shift":"E"},{"date":"2025-10-16","hours":8,"people":[{"grade":5,"name":"김대업","staff_id":10}],"shift":"N"},{"date":"2025-10-16","hours":0,"people":[{"grade":4,"name":"김유범","staff_id":4},{"grade":4,"name":"박주영","staff_id":9},{"grade":2,"name":"선서현","staff_id":2},{"grade":3,"name":"유예 솜","staff_id":8},{"grade":1,"name":"유희라","staff_id":1},{"grade":1,"name":"이보은","staff_id":6},{"grade":2,"name":" 하진영","staff_id":7}],"shift":"O"},{"date":"2025-10-17","hours":8,"people":[{"grade":1,"name":"이보은","staff_id":6}],"shift":"D"},{"date":"2025-10-17","hours":8,"people":[{"grade":2,"name":"하진영","staff_id":7}],"shift":"E"},{"date":"2025-10-17","hours":8,"people":[{"grade":5,"name":"오장관","staff_id":5}],"shift":"N"},{"date":"2025-10-17","hours":0,"people":[{"grade":5,"name":"김대업","staff_id":10},{"grade":4,"name":"김유범","staff_id":4},{"grade":3,"name":"박경태","staff_id":3},{"grade":4,"name":"박주영","staff_id":9},{"grade":2,"name":"선서현","staff_id":2},{"grade":3,"name":"유예솜","staff_id":8},{"grade":1,"name":"유희라","staff_id":1}],"shift":"O"},{"date":"2025-10-18","hours":8,"people":[{"grade":3,"name":"박경태","staff_id":3}],"shift":"D"},{"date":"2025-10-18","hours":8,"people":[{"grade":4,"name":"박주영","staff_id":9}],"shift":"E"},{"date":"2025-10-18","hours":8,"people":[{"grade":3,"name":"유예솜","staff_id":8}],"shift":"N"},{"date":"2025-10-18","hours":0,"people":[{"grade":5,"name":"김대업","staff_id":10},{"grade":4,"name":"김유범","staff_id":4},{"grade":2,"name":"선서현","staff_id":2},{"grade":5,"name":"오장관","staff_id":5},{"grade":1,"name":"유희라","staff_id":1},{"grade":1,"name":"이보은","staff_id":6},{"grade":2,"name":"하진영","staff_id":7}],"shift":"O"},{"date":"2025-10-19","hours":8,"people":[{"grade":5,"name":"오장관","staff_id":5}],"shift":"D"},{"date":"2025-10-19","hours":8,"people":[{"grade":5,"name":"김대업","staff_id":10}],"shift":"E"},{"date":"2025-10-19","hours":8,"people":[{"grade":4,"name":"박주영","staff_id":9}],"shift":"N"},{"date":"2025-10-19","hours":0,"people":[{"grade":4,"name":"김유범","staff_id":4},{"grade":3,"name":"박경태","staff_id":3},{"grade":2,"name":"선서현","staff_id":2},{"grade":3,"name":"유예솜","staff_id":8},{"grade":1,"name":"유희라","staff_id":1},{"grade":1,"name":"이보은","staff_id":6},{"grade":2,"name":"하진영","staff_id":7}],"shift":"O"},{"date":"2025-10-20","hours":8,"people":[{"grade":1,"name":"이보은","staff_id":6}],"shift":"D"},{"date":"2025-10-20","hours":8,"people":[{"grade":4,"name":"김유범","staff_id":4}],"shift":"E"},{"date":"2025-10-20","hours":8,"people":[{"grade":5,"name":"오장관","staff_id":5}],"shift":"N"},{"date":"2025-10-20","hours":0,"people":[{"grade":5,"name":"김 대업","staff_id":10},{"grade":3,"name":"박경태","staff_id":3},{"grade":4,"name":"박주영","staff_id":9},{"grade":2,"name":"선서현","staff_id":2},{"grade":3,"name":"유예솜","staff_id":8},{"grade":1,"name":"유희라","staff_id":1},{"grade":2,"name":"하진영","staff_id":7}],"shift":"O"},{"date":"2025-10-21","hours":8,"people":[{"grade":1,"name":"이보은","staff_id":6}],"shift":"D"},{"date":"2025-10-21","hours":8,"people":[{"grade":2,"name":"선서현","staff_id":2}],"shift":"E"},{"date":"2025-10-21","hours":8,"people":[{"grade":3,"name":"박경태","staff_id":3}],"shift":"N"},{"date":"2025-10-21","hours":0,"people":[{"grade":5,"name":"김대업","staff_id":10},{"grade":4,"name":"김유범","staff_id":4},{"grade":4,"name":"박주영","staff_id":9},{"grade":5,"name":"오장관","staff_id":5},{"grade":3,"name":"유예솜","staff_id":8},{"grade":1,"name":"유희 라","staff_id":1},{"grade":2,"name":"하진영","staff_id":7}],"shift":"O"},{"date":"2025-10-22","hours":8,"people":[{"grade":3,"name":"유예솜","staff_id":8}],"shift":"D"},{"date":"2025-10-22","hours":8,"people":[{"grade":2,"name":"선서현","staff_id":2}],"shift":"E"},{"date":"2025-10-22","hours":8,"people":[{"grade":2,"name":"하진영","staff_id":7}],"shift":"N"},{"date":"2025-10-22","hours":0,"people":[{"grade":5,"name":"김대업","staff_id":10},{"grade":4,"name":"김유범","staff_id":4},{"grade":3,"name":"박경태","staff_id":3},{"grade":4,"name":"박주영","staff_id":9},{"grade":5,"name":"오장관","staff_id":5},{"grade":1,"name":"유희라","staff_id":1},{"grade":1,"name":"이보은","staff_id":6}],"shift":"O"},{"date":"2025-10-23","hours":8,"people":[{"grade":4,"name":"박주영","staff_id":9}],"shift":"D"},{"date":"2025-10-23","hours":8,"people":[{"grade":5,"name":"김대업","staff_id":10}],"shift":"E"},{"date":"2025-10-23","hours":8,"people":[{"grade":3,"name":"유 예솜","staff_id":8}],"shift":"N"},{"date":"2025-10-23","hours":0,"people":[{"grade":4,"name":"김유범","staff_id":4},{"grade":3,"name":"박경태","staff_id":3},{"grade":2,"name":"선서현","staff_id":2},{"grade":5,"name":"오장관","staff_id":5},{"grade":1,"name":"유희라","staff_id":1},{"grade":1,"name":"이보은","staff_id":6},{"grade":2,"name":"하진영","staff_id":7}],"shift":"O"},{"date":"2025-10-24","hours":8,"people":[{"grade":1,"name":"유희라","staff_id":1}],"shift":"D"},{"date":"2025-10-24","hours":8,"people":[{"grade":2,"name":"하진영","staff_id":7}],"shift":"E"},{"date":"2025-10-24","hours":8,"people":[{"grade":5,"name":"오장관","staff_id":5}],"shift":"N"},{"date":"2025-10-24","hours":0,"people":[{"grade":5,"name":"김대업","staff_id":10},{"grade":4,"name":"김유범","staff_id":4},{"grade":3,"name":"박경태","staff_id":3},{"grade":4,"name":"박주영","staff_id":9},{"grade":2,"name":"선서현","staff_id":2},{"grade":3,"name":"유예솜","staff_id":8},{"grade":1,"name":"이보은","staff_id":6}],"shift":"O"},{"date":"2025-10-25","hours":8,"people":[{"grade":3,"name":"박경태","staff_id":3}],"shift":"D"},{"date":"2025-10-25","hours":8,"people":[{"grade":4,"name":"김유범","staff_id":4}],"shift":"E"},{"date":"2025-10-25","hours":8,"people":[{"grade":2,"name":"하진영","staff_id":7}],"shift":"N"},{"date":"2025-10-25","hours":0,"people":[{"grade":5,"name":"김대업","staff_id":10},{"grade":4,"name":"박주영","staff_id":9},{"grade":2,"name":"선서현","staff_id":2},{"grade":5,"name":"오장관","staff_id":5},{"grade":3,"name":"유예솜","staff_id":8},{"grade":1,"name":"유희라","staff_id":1},{"grade":1,"name":"이보은","staff_id":6}],"shift":"O"},{"date":"2025-10-26","hours":8,"people":[{"grade":4,"name":"김유범","staff_id":4}],"shift":"D"},{"date":"2025-10-26","hours":8,"people":[{"grade":1,"name":"이보은","staff_id":6}],"shift":"E"},{"date":"2025-10-26","hours":8,"people":[{"grade":5,"name":"김대업","staff_id":10}],"shift":"N"},{"date":"2025-10-26","hours":0,"people":[{"grade":3,"name":"박경태","staff_id":3},{"grade":4,"name":"박주영","staff_id":9},{"grade":2,"name":"선서현","staff_id":2},{"grade":5,"name":"오장관","staff_id":5},{"grade":3,"name":"유예솜","staff_id":8},{"grade":1,"name":"유희라","staff_id":1},{"grade":2,"name":"하진영","staff_id":7}],"shift":"O"},{"date":"2025-10-27","hours":8,"people":[{"grade":2,"name":"선서현","staff_id":2}],"shift":"D"},{"date":"2025-10-27","hours":8,"people":[{"grade":5,"name":"오장관","staff_id":5}],"shift":"E"},{"date":"2025-10-27","hours":8,"people":[{"grade":2,"name":"하진영","staff_id":7}],"shift":"N"},{"date":"2025-10-27","hours":0,"people":[{"grade":5,"name":"김대업","staff_id":10},{"grade":4,"name":"김유범","staff_id":4},{"grade":3,"name":"박경태","staff_id":3},{"grade":4,"name":"박주영","staff_id":9},{"grade":3,"name":"유예솜","staff_id":8},{"grade":1,"name":"유희라","staff_id":1},{"grade":1,"name":"이보은","staff_id":6}],"shift":"O"},{"date":"2025-10-28","hours":8,"people":[{"grade":1,"name":"이보은","staff_id":6}],"shift":"D"},{"date":"2025-10-28","hours":8,"people":[{"grade":5,"name":"오장관","staff_id":5}],"shift":"E"},{"date":"2025-10-28","hours":8,"people":[{"grade":3,"name":"박경태","staff_id":3}],"shift":"N"},{"date":"2025-10-28","hours":0,"people":[{"grade":5,"name":"김대업","staff_id":10},{"grade":4,"name":"김유범","staff_id":4},{"grade":4,"name":"박주영","staff_id":9},{"grade":2,"name":"선서현","staff_id":2},{"grade":3,"name":"유예솜","staff_id":8},{"grade":1,"name":"유희라","staff_id":1},{"grade":2,"name":"하진영","staff_id":7}],"shift":"O"},{"date":"2025-10-29","hours":8,"people":[{"grade":1,"name":"이보은","staff_id":6}],"shift":"D"},{"date":"2025-10-29","hours":8,"people":[{"grade":1,"name":"유희라","staff_id":1}],"shift":"E"},{"date":"2025-10-29","hours":8,"people":[{"grade":4,"name":"박주영","staff_id":9}],"shift":"N"},{"date":"2025-10-29","hours":0,"people":[{"grade":5,"name":"김대업","staff_id":10},{"grade":4,"name":"김유범","staff_id":4},{"grade":3,"name":"박경태","staff_id":3},{"grade":2,"name":"선서현","staff_id":2},{"grade":5,"name":"오장관","staff_id":5},{"grade":3,"name":"유예솜","staff_id":8},{"grade":2,"name":"하진영","staff_id":7}],"shift":"O"},{"date":"2025-10-30","hours":8,"people":[{"grade":2,"name":"하진영","staff_id":7}],"shift":"D"},{"date":"2025-10-30","hours":8,"people":[{"grade":1,"name":"이보은","staff_id":6}],"shift":"E"},{"date":"2025-10-30","hours":8,"people":[{"grade":1,"name":"유희라","staff_id":1}],"shift":"N"},{"date":"2025-10-30","hours":0,"people":[{"grade":5,"name":"김대업","staff_id":10},{"grade":4,"name":"김유범","staff_id":4},{"grade":3,"name":"박경태","staff_id":3},{"grade":4,"name":"박주영","staff_id":9},{"grade":2,"name":"선서 현","staff_id":2},{"grade":5,"name":"오장관","staff_id":5},{"grade":3,"name":"유예솜","staff_id":8}],"shift":"O"},{"date":"2025-10-31","hours":8,"people":[{"grade":3,"name":"박경태","staff_id":3}],"shift":"D"},{"date":"2025-10-31","hours":8,"people":[{"grade":5,"name":"오장관","staff_id":5}],"shift":"E"},{"date":"2025-10-31","hours":8,"people":[{"grade":1,"name":"이보은","staff_id":6}],"shift":"N"},{"date":"2025-10-31","hours":0,"people":[{"grade":5,"name":"김대업","staff_id":10},{"grade":4,"name":"김유범","staff_id":4},{"grade":4,"name":"박주영","staff_id":9},{"grade":2,"name":"선서현","staff_id":2},{"grade":3,"name":"유예솜","staff_id":8},{"grade":1,"name":"유희라","staff_id":1},{"grade":2,"name":"하진영","staff_id":7}],"shift":"O"}],"message":"근무표 생성 완료","protocol":"gen_timeTable","resp":"success"}
         */
-        /* Protocol - gen_timeTable */
+            /* Protocol - gen_timeTable */
         public async Task<ObservableCollection<StaffSchedule>> GenTimeTableAsync(int? year, int? month) {
             int admin_uid = _session!.GetCurrentAdminId();
             int team_uid = _session!.GetCurrentTeamId();

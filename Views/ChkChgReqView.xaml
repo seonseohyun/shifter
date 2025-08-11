@@ -8,7 +8,9 @@
       d:DesignHeight="900" d:DesignWidth="1600"
       Title="ChkChgReqView"
       Background="#FFFFFF"
-      FontFamily="Noto Sans KR">
+      FontFamily="Noto Sans KR"
+      Loaded="Page_Loaded"
+      >
 
 
     <Grid Background="White">
@@ -95,7 +97,7 @@
                 <TextBlock Text="이벤트 관련 수정 요청사항을 확인할 수 있습니다." FontSize="15" Foreground="#383838" Margin="0,0,0,20"/>
 
                 <ScrollViewer Height="600" VerticalScrollBarVisibility="Auto">
-                    <ItemsControl ItemsSource="{Binding []}" >
+                    <ItemsControl ItemsSource="{Binding Scr}" >
                         <ItemsControl.ItemTemplate>
                             <!-- 하나의 카드 항목 -->
                             <DataTemplate>
@@ -121,21 +123,21 @@
 
                                         <!--동적구성 -->
                                         <!-- 날짜 라벨 -->
-                                        <Border Grid.Column="0" Background="#000000" CornerRadius="5" Margin="0,0,5,0">
-                                            <TextBlock Text="{Binding Date}" Foreground="White" Padding="5,2" FontSize="12" FontWeight="Bold"/>
+                                        <Border Grid.Column="0" Background="#000000" CornerRadius="5" Margin="0,0,5,0" Width="100" >
+                                            <TextBlock Text="{Binding RequestDate, StringFormat=yyyy.MM.dd}" Foreground="White" Padding="5,2" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center" />
                                         </Border>
                                         <!-- 교대 변경 라벨 -->
-                                        <Border Grid.Column="1" Background="#000000" CornerRadius="5" Margin="0,0,5,0">
-                                            <TextBlock Text="{Binding ShiftChange}" Foreground="White" Padding="5,2" FontSize="12" FontWeight="Bold"/>
+                                        <Border Grid.Column="1" Background="#000000" CornerRadius="5" Margin="0,0,5,0" Width="100" >
+                                            <TextBlock Text="{Binding DesireShift}" Foreground="White" Padding="5,2" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center" />
                                         </Border>
 
                                         <!-- 직원 이름 라벨 -->
-                                        <Border Grid.Column="2" Background="#000000" CornerRadius="5" Margin="0,0,5,0">
-                                            <TextBlock Text="{Binding StaffName}" Foreground="White" Padding="5,2" FontSize="12" FontWeight="Bold"/>
+                                        <Border Grid.Column="2" Background="#000000" CornerRadius="5" Margin="0,0,5,0" Width="100"  >
+                                            <TextBlock Text="{Binding StaffName}" Foreground="White" Padding="5,2" FontSize="12" FontWeight="Bold"  HorizontalAlignment="Center" />
                                         </Border>
 
                                         <!-- 설명 텍스트 -->
-                                        <TextBlock Grid.Column="3" Text="{Binding Description}" TextWrapping="Wrap" FontSize="12" Foreground="#666666" VerticalAlignment="Center" Margin="5,0"/>
+                                        <TextBlock Grid.Column="3" Text="{Binding Reason}" TextWrapping="Wrap" FontSize="12" Foreground="#666666" VerticalAlignment="Center" Margin="5,0"/>
 
                                         <!-- 반려 버튼 -->
                                         <Button  Grid.Column="4" Width="150" Content="반려" BorderBrush="#002EFF" BorderThickness="1" Background="Transparent" Foreground="#0078D4" Padding="10,5" Margin="5,0">
