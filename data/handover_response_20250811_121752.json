@@ -1,0 +1,12 @@
+{
+  "timestamp": "2025-08-11T12:17:52.947161",
+  "request_type": "handover",
+  "protocol": "res_handover_summary",
+  "data": {
+    "task": "summarize_handover",
+    "result": "- 208호 환자분의 열이 38.6도까지 올라가서 해열제 투여 후 37.5도로 내려감.\n- 215호 환자분의 링거 바늘 통증으로 교체 및 조치.\n- 복도 전등 안정기 문제로 공무팀에 연락하여 확인 요청.\n- 격리실 환자분의 침대 높이 조절 버튼 고장으로 다른 침대로 교체.\n- 201호 환자 보호자분의 화장실 전구 교체.\n- 새벽에 혈당 체크 시간 놓친 환자분 발견하여 깨워 확인.\n- 주사기 펌프에 누액 발견하여 닦고 재장착."
+  },
+  "resp": "success",
+  "input_text_length": 380,
+  "processing_time_seconds": 2.625328
+}
