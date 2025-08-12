@@ -1,0 +1,10 @@
+{
+  "timestamp": "2025-08-12T12:43:02.909166",
+  "request_type": "schedule",
+  "protocol": "py_gen_schedule",
+  "resp": "fail",
+  "data": [],
+  "staff_count": 26,
+  "position": "간호",
+  "target_month": "2025-08"
+}
