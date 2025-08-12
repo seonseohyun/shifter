@@ -97,6 +97,7 @@ json ProtocolHandler::handle_login(const json& root, DBManager& db) {
     resp["data"] = move(out);
     return resp;
 }
+
 json ProtocolHandler::handle_login_admin(const json& root, DBManager& db) {
     json response;
     response["protocol"] = "login_admin";
@@ -668,6 +669,7 @@ json ProtocolHandler::handle_gen_schedule_raw(const string& raw_json, DBManager&
 }
 
 json ProtocolHandler::handle_gen_schedule(const json& root, DBManager& db) {
+    int status = 0;
     json response;
     response["protocol"] = "gen_timeTable";
     cout << u8"[gen_timeTable] 요청:\n" << root.dump(2) << endl;
@@ -688,7 +690,7 @@ json ProtocolHandler::handle_gen_schedule(const json& root, DBManager& db) {
     string year = data.value("req_year", "");
     string month = data.value("req_month", "");
     string year_month = year + "-" + (month.length() == 1 ? "0" + month : month);
-    cout << "1";
+
     ctx.admin_uid = admin_uid;
     ctx.year_month = year_month;
 
@@ -705,7 +707,7 @@ json ProtocolHandler::handle_gen_schedule(const json& root, DBManager& db) {
         response["message"] = toUTF8_safely(err_msg);
         return response;
     }
-   cout << "2";
+    status = 2;
 
     // [3] JSON 배열 구성
     json staff_array = json::array();
@@ -717,7 +719,7 @@ json ProtocolHandler::handle_gen_schedule(const json& root, DBManager& db) {
             {"total_monthly_work_hours", s.monthly_workhour}
             });
     }
-   cout << "3";
+    status = 3;
 
     //-------------------------------------------------------------------
     // [4] 파이썬 요청 Json 만들기 ㅜ.ㅜ
@@ -742,8 +744,7 @@ json ProtocolHandler::handle_gen_schedule(const json& root, DBManager& db) {
         response["message"] = toUTF8_safely(err_msg);
         return response;
     }
-    cout << "[pyrequest]\n" << py_request.dump(2);
-   cout << "4";
+    status = 5;
 
     // [6] 응답 검증
     if (py_response.value("resp", "") != "success") {
@@ -752,7 +753,6 @@ json ProtocolHandler::handle_gen_schedule(const json& root, DBManager& db) {
             py_response.value("error", u8"파이썬 서버 응답 오류"));
         return response;
     }
-    cout << "[pyresponse]\n" << py_response.dump(2);
 
     // [6-1] data 정규화: 배열이든, 날짜키-객체든 rows로 통일
     json rows = json::array();
@@ -770,6 +770,7 @@ json ProtocolHandler::handle_gen_schedule(const json& root, DBManager& db) {
             }
         }
     }
+
     else if (py_response.contains("data") && py_response["data"].is_array()) {
         for (const auto& row : py_response["data"]) rows.push_back(row);
     }
@@ -777,7 +778,7 @@ json ProtocolHandler::handle_gen_schedule(const json& root, DBManager& db) {
         throw runtime_error("[JSON structure error] data not found");
     }
 
-    cout << "5-1";
+    status = 6;
 
     // [7] DB 저장
     for (const auto& row : rows) {
@@ -798,14 +799,62 @@ json ProtocolHandler::handle_gen_schedule(const json& root, DBManager& db) {
             }
         }
     }
-   cout << "6";
 
     // [8] 최종 응답(원하면 생성된 스케줄도 그대로 내려주기)
     response["resp"] = "success";
     response["message"] = u8"근무표 생성 완료";
     response["data"] = rows;          // 클라에서 바로 쓰게 전달
     return response;                  // (현재 코드는 py_response를 리턴하고 있음)
+
+    if (status == 6) {
+        cout << u8"근무표 생성 완료";
+    }
 }
+
+json ProtocolHandler::handle_modify_schedule(const json& root, DBManager& db) {
+    json response;
+    response["protocol"] = "mdf_scd";
+   cout << u8"[modify_schedule] 요청:\n" << root.dump(2) << endl;
+
+   if(!root.contains("data") || !root["data"].is_object()
+       || !root["data"].contains("mdf_infos")) {
+       response["resp"] = "fail";
+       response["message"] = u8"요청 형식 오류";
+       return response;
+   }
+    string msg;
+    bool ok = db.modify_schedule(root["data"]["mdf_infos"], msg);
+    response["resp"] = ok ? "success" : "fail";
+    response["message"] = msg;
+    return response;
+}
+
+json ProtocolHandler::handle_chk_timeTable(const json& root, DBManager& db) {
+    json resp; resp["protocol"] = "chk_timeTable";
+    cout << u8"[chk_timeTable] 요청:\n" << root.dump(2) << endl;
+
+    if (!root.contains("data") || !root["data"].is_object()) {
+        resp["resp"] = "fail"; resp["message"] = u8"요청 데이터 형식 오류"; return resp;
+    }
+    const auto& data = root["data"];
+    int team_uid = data.value("team_uid", -1);
+    std::string period = data.value("req_period", "");
+
+    if (team_uid <= 0 || period.size() != 7) {
+        resp["resp"] = "fail"; resp["message"] = u8"파라미터 오류"; return resp;
+    }
+
+    bool can_generate = false; std::string err;
+    if (!db.chk_timeTable_can_generate(team_uid, period, can_generate, err)) {
+        resp["resp"] = "fail"; resp["message"] = err; return resp;
+    }
+    resp["resp"] = "success";
+    resp["data"]["can_gen"] = can_generate ? "true" : "false";
+    // 하나라도 있으면 false 반환 (생성 불가)
+    resp["message"] = can_generate ? "true" : "false";
+    return resp;
+}
+
 
 // ============================[근무표 조회 handler]================================
 json ProtocolHandler::handle_ask_timetable_user(const json& root, DBManager& db) {
@@ -972,7 +1021,6 @@ json ProtocolHandler::handle_ask_timetable_weekly(const json& root, DBManager& d
     response["data"] = out;  // {"shift_type":[7개 문자열]}
     return response;
 }
-
 
 
 // ============================[인수인계 handler]================================

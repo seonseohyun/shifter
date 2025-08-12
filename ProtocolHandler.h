@@ -42,7 +42,9 @@ public:
     static json handle_ask_timetable_admin  (const json& root, DBManager& db);
     static json handle_ask_timetable_weekly (const json& root, DBManager& db);
     static json handle_check_today_duty     (const json& root, DBManager& db);
-    
+	static json handle_modify_schedule      (const json& root, DBManager& db);
+	static json handle_chk_timeTable        (const json& root, DBManager& db);
+
     //인수인계 관련
     static json handle_ask_handover_list    (const json& root, DBManager& db);
     static json handle_ask_handover_detail  (const json& root, DBManager& db);

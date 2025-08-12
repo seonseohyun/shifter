@@ -336,8 +336,8 @@ void handleClient(SOCKET clientSocket) {
                 db.connect();
                 nlohmann::json response = ProtocolHandler::handle_shift_change_list(json, db);
                 TcpServer::sendJsonResponse(clientSocket, response.dump());
-                MIDDLELINE
-                cout << response.dump(2) << endl;
+                //MIDDLELINE
+                //cout << response.dump(2) << endl;
                 LINE
             }
             else if (protocol == u8"answer_shift_change") {
@@ -348,6 +348,25 @@ void handleClient(SOCKET clientSocket) {
                 MIDDLELINE
                 cout << response.dump(2) << endl;
                 LINE
+            }
+            else if (protocol == u8"mdf_scd") {
+                LINE_LABEL("modify_schedule")
+                db.connect();
+                nlohmann::json response = ProtocolHandler::handle_modify_schedule(json, db);
+                TcpServer::sendJsonResponse(clientSocket, response.dump());
+                MIDDLELINE
+                cout << response.dump(2) << endl;
+                LINE
+            }
+            else if (protocol == u8"chk_timeTable") {
+                LINE_LABEL("chk_timeTable")
+                db.connect();
+                nlohmann::json response = ProtocolHandler::handle_chk_timeTable(json, db);
+                TcpServer::sendJsonResponse(clientSocket, response.dump());
+                MIDDLELINE
+                cout << response.dump(2) << endl;
+                LINE
+
             }
             else {
                 cerr << u8"[에러] 알 수 없는 프로토콜: " << protocol << endl;

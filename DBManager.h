@@ -22,7 +22,7 @@ public:
     bool login_admin          (const string& admin_id, const string& admin_pw, json& out_data, string& out_err_msg);
     bool get_staff_info_by_uid(int staff_uid, StaffInfo& out_staff, string& out_err_msg);
     
-    // 등록
+    // 개인정보 [등록/ 수정]
 	bool register_grade_info    (int team_uid, int admin_uid, const vector<GradeInfo>& grades, string& out_err);
     bool register_team_info     (const string& company_name_in, const string& team_name_in, const string& job_category_in, const json& shift_info, json& out_json, string& out_err);
     bool register_staff_info    (int team_uid, int grade_level, const string& name, const string& phone, int monthly_workhour,
@@ -36,7 +36,7 @@ public:
     bool shift_change_detail        (int staff_uid, const string& year_month, json& out_data, string& out_err_msg);
 	bool shift_change_list          (int team_uid, const string& year_month, json& out_data, string& out_err_msg);
     bool answer_shift_change        (int duty_request_uid, string status, string date, const string& admin_msg, string& out_err_msg);
-
+	bool modify_schedule            (const json& mdf_infos, string& out_err);
     
     
     // 조회
@@ -63,7 +63,7 @@ public:
     vector<ScheduleEntry> get_staff_schedule(int team_uid, const string& target_month);
     bool check_today_duty_for_admin         (int team_uid, const string& date, json& out_json, string& out_err_msg);
     bool get_weekly_shift_mon_sun_compact   (int staff_uid, const string& date, json& out, string& err);
-
+    bool chk_timeTable_can_generate         (int team_uid, const std::string& yyyy_mm, bool& out_can_generate, std::string& out_err);
 
     // 인수인계
     bool get_handover_notes_by_team (int team_uid, vector<HandoverNoteInfo>& out_notes, string& out_err_msg);
