@@ -4,10 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace ShifterUser.Messages
 {
-    public record AttendanceChangedMessage;
+    public record WorkWishSubmittedMessage(DateTime SubmittedAt);
 }
-
-

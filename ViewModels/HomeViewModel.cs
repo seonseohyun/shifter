@@ -45,8 +45,6 @@ namespace ShifterUser.ViewModels
             _session = session;
             _manager = userManager;
             _ = LoadWeekAsync(DateTime.Today);
-
-            // 생성자 안
             WeakReferenceMessenger.Default.RegisterAll(this);
 
             // 최초 진입 시 세션 기준으로 1회 반영
@@ -71,8 +69,30 @@ namespace ShifterUser.ViewModels
                 else
                     AttendanceStatus = AttendanceStatus.출근전;
             }
+
+            WeakReferenceMessenger.Default.Register<HomeViewModel, AttendanceChangedMessage>(
+            this, (r, m) => r.RefreshAttendanceFromSession());
+
+            WeakReferenceMessenger.Default.Register<HomeViewModel, WorkWishSubmittedMessage>(
+                this, async (r, m) => await r.ReloadAllAsync());
+
         }
 
+
+
+        public async Task ReloadAllAsync()
+        {
+            await LoadWeekAsync(DateTime.Today);
+
+            // 출퇴근은 세션 기준 즉시 반영
+            RefreshAttendanceFromSession();
+
+            // 요청 현황 텍스트 갱신 (세션이 갱신되어 있다면 그대로, 아니라면 여기서 서버 재조회 메서드 호출)
+            var (approved, pending, rejected) = _session.GetRequestStatus();
+            ApprovedText = $" 승인 {approved}건";
+            PendingText = $" 대기 {pending}건";
+            RejectedText = $" 반려 {rejected}건";
+        }
 
         partial void OnAttendanceStatusChanged(AttendanceStatus oldValue, AttendanceStatus newValue)
         {

@@ -28,12 +28,12 @@ namespace ShifterUser.ViewModels
         public ObservableCollection<DateTime> AvailableDates { get; } = new();
 
         public ObservableCollection<ShiftType> ShiftTypes { get; } = new()
-    {
-        ShiftType.Day,
-        ShiftType.Night,
-        ShiftType.Off,
-        ShiftType.Evening
-    };
+        {
+            ShiftType.Day,
+            ShiftType.Night,
+            ShiftType.Off,
+            ShiftType.Evening
+        };
 
         public DateTime SelectedDate
         {
@@ -85,26 +85,27 @@ namespace ShifterUser.ViewModels
             RequestTitle = title;
         }
 
-
         [RelayCommand]
         private void RegisterReq()
         {
             Console.WriteLine($"[등록됨] 날짜: {SelectedDate}, 타입: {SelectedShiftType}, 사유: {Reason}");
-
             bool success = _workRequestManager.SendRequest(SelectedDate, SelectedShiftType, Reason);
 
             if (success)
             {
-                Console.WriteLine("요청 성공");
-                //WeakReferenceMessenger.Default.Send(new RequestUpdatedMessage());
+
+                WeakReferenceMessenger.Default.Send(new WorkWishSubmittedMessage(DateTime.Now));
+
                 MessageBox.Show("요청이 전송되었습니다!");
-                GoBack(); // 혹은 메시지 전송
+                WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.ReqStatus));
             }
             else
             {
                 Console.WriteLine("요청 실패");
+                MessageBox.Show("요청이 실패했습니다. 다시 시도해주세요.");
             }
         }
+
 
         [RelayCommand]
         private void GoBack()
