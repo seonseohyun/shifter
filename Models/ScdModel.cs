@@ -4,15 +4,7 @@ using Newtonsoft.Json.Linq;
 using Shifter.Services;
 using Shifter.Structs;
 using Shifter.ViewModels;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel.Design.Serialization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static OpenCvSharp.Stitcher;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Shifter.Models {
 
