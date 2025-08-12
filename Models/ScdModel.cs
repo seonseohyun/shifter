@@ -60,7 +60,7 @@ namespace Shifter.Models {
         }
 
 
-
+        /* Protocol - shift_change_list */
         public async Task<ObservableCollection<ShiftChangeRequestInfo>> ShiftChangeList(int _currentYear, int _currentMonth)
         {
             
@@ -118,6 +118,8 @@ namespace Shifter.Models {
             return result;
          }
 
+
+        /* protocol - answer_shift_change */
         public async Task<(bool ok, string? message)> AnswerShiftChangeAsync(
             int dutyRequestUid, string status, DateTime date, string dutyType, string adminMsg)
         {
@@ -171,6 +173,8 @@ namespace Shifter.Models {
             }
         }
 
+
+        /* Protocol - gen_timeTable */
         public async Task<ObservableCollection<StaffSchedule>> GenTimeTableAsync(int? year, int? month) {
             int admin_uid = _session!.GetCurrentAdminId();
             int team_uid = _session!.GetCurrentTeamId();
@@ -451,7 +455,131 @@ namespace Shifter.Models {
             }
         }
 
-       }
+
+        /* Protocol - chk_timeTable */
+        public async Task<bool> ChkTimeTableAsync(int year, int month) {
+            Console.WriteLine("[ScdModel] Executed ChkTimeTableAsync()");
+
+            string str_month = month.ToString();
+            if( str_month.Length == 1) {
+                str_month = "0" + str_month; // 월이 한 자리 수면 앞에 0 붙이기
+            }
+
+            /* [1] new json */
+            JObject sendJson = new JObject {
+                { "protocol", "chk_timeTable" },
+                { "data", new JObject {
+                    { "team_uid", _session!.GetCurrentTeamId() },
+                    { "req_period", year.ToString() + "-" + str_month }
+                }}
+            };
+
+            /* [2] Put json in WorkItem */
+            WorkItem sendItem = new WorkItem
+            {
+                json = JsonConvert.SerializeObject(sendJson),
+                payload = [],
+                path = ""
+            };
+
+            /* [3] Send the created WorkItem */
+            await _socket!.SendAsync(sendItem);
+
+            /* [4] Create WorkItem response & receive data from the socket. */
+            WorkItem recvItem = await _socket.ReceiveAsync();
+            JObject recvJson = JObject.Parse(recvItem.json);
+            byte[] payload = recvItem.payload;
+            string path = recvItem.path;
+
+            /* [5] Parse the data. */
+            string protocol = recvJson["protocol"]!.ToString();
+            string resp = recvJson["resp"]!.ToString();
+
+            if (protocol == "chk_timeTable" && resp == "success") {
+                
+                JObject data = (JObject)recvJson["data"]!;
+                bool CanGen = data["can_gen"]!.ToObject<bool>();
+
+                if( CanGen ) {
+                    // 테이블 생성 가능
+                    Console.WriteLine("[ScdModel] TimeTable can be generated for {0}-{1}.", year, month);
+                    return true;
+                }
+                else {
+                    // 테이블 생성 불가
+                    Console.WriteLine("[ScdModel] TimeTable cannot be generated for {0}-{1}.", year, month);
+                    return false;
+                }
+            }
+            else {
+                // 실패 처리
+                Console.WriteLine("[ScdModel] Failed to check TimeTable: {0}", recvJson["message"]!.ToString());
+                return false;
+            }
+        }
+
+
+        /* Protocol - mdf_scd */
+        public async Task<bool> MdfScdAsync(ObservableCollection<StaffSchedule> staff_schedules) {
+
+            int year = _session!.GetCurrentYear();
+            int month = _session!.GetCurrentMonth();
+
+            var mdfInfos = new JArray();
+
+            foreach (var staff in staff_schedules) {
+                foreach (var cell in staff.DailyShifts) {
+                    if (!cell.IsDirty) continue; // 변경된 셀만!
+
+                    string date = new DateTime(year, month, cell.Day).ToString("yyyy-MM-dd");
+                    mdfInfos.Add(new JObject
+                    {
+                        ["date"] = date,
+                        ["staff_id"] = staff.StaffId,
+                        ["shift"] = cell.ShiftCode ?? ""   // 비우면 "" 전송, Off는 "O"
+                    });
+                }
+            }
+
+            if (mdfInfos.Count == 0) {
+                Console.WriteLine("[MdfScdViewModel] No changes to send.");
+                return false;
+            }
+
+            // 요청 JSON
+            JObject sendJson = new JObject
+            {
+                ["protocol"] = "mdf_scd",
+                ["data"] = new JObject
+                {
+                    ["mdf_infos"] = mdfInfos
+                }
+            };
+
+            // 전송
+            var sendItem = new WorkItem
+            {
+                json = JsonConvert.SerializeObject(sendJson),
+                payload = Array.Empty<byte>(),
+                path = ""
+            };
+            await _socket!.SendAsync(sendItem);
+
+            // 응답
+            var recv = await _socket.ReceiveAsync();
+            var resp = JObject.Parse(recv.json);
+            if ((string)resp["protocol"]! == "mdf_scd" && (string)resp["resp"]! == "success") {
+                Console.WriteLine($"[MdfScdViewModel] Saved {mdfInfos.Count} changes.");
+
+                return true;
+            }
+            else {
+                Console.WriteLine("[MdfScdViewModel] Save failed: " + (string?)resp["message"]);
+
+                return false;
+            }
+        }
+    }
 
 
 
@@ -553,6 +681,15 @@ namespace Shifter.Models {
             }
         }
         public event EventHandler? ShiftCodeChanged;
+
+        // 로드 시점의 원본 값
+        public string? OriginalShiftCode { get; set; }
+
+        // 현재 값과 원본이 다르면 변경됨
+        public bool IsDirty => (ShiftCode ?? "") != (OriginalShiftCode ?? "");
+
+
+        /** Member Methods **/
     }
 
 

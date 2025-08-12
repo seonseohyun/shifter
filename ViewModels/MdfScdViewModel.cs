@@ -1,11 +1,15 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Shifter.Models;
+using Shifter.Structs;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -33,6 +37,9 @@ namespace Shifter.ViewModels {
         private readonly Session? _session;
         private readonly ScdModel _scdModel;
 
+        /* Checking TimeTable Exists */
+        private bool CanGen = false;
+
         /* Title & Keywords */
         [ObservableProperty] private string? companyName;
         [ObservableProperty] private string? teamName;
@@ -53,28 +60,11 @@ namespace Shifter.ViewModels {
 
         /** Member Methods **/
 
-        /* 클릭 시 Shift 변경 */
-        [RelayCommand] public void ToggleShift(ScheduleCell cell) {
-            Console.WriteLine("[MdfScdViewModel] Executed ToggleShift(ScheduleCell cell)");
-            if (ShiftCodes.Count == 0) return;
-
-            int currentIndex = ShiftCodes.IndexOf(cell.ShiftCode ?? "");
-            int nextIndex = (currentIndex + 1) % ShiftCodes.Count;
-            cell.ShiftCode = ShiftCodes[nextIndex];
-            Console.WriteLine("[MdfScdViewModel] cell.ShiftCode:"+ cell.ShiftCode);
-            UpdateDailyStatistics();
-        }
-
-
-        /* 스케줄 삭제 */
-        [RelayCommand] public void DelScd() {
-            Console.WriteLine("[MdfScdViewModel] Executed DelScd");
-        }
-
-
-        /* 스케줄 저장 */
-        [RelayCommand] public void SaveScd() {
-            Console.WriteLine("[MdfScdViewModel] Executed SaveScd()");
+        /* 스케줄 존재여부 확인 */
+        public async Task<bool> CheckCanGen() {
+            Console.WriteLine("[MdfScdViewModel] Executed CanGenCheck()");
+            CanGen = await _scdModel.ChkTimeTableAsync(_session!.GetCurrentYear(), _session!.GetCurrentMonth());
+            return CanGen;
         }
 
 
@@ -109,38 +99,90 @@ namespace Shifter.ViewModels {
 
             /* [1] 날짜 채우기 */
             Days.Clear();
-            for (int i = 1; i <= (int) DateTime.DaysInMonth(year, month); i++)
+            for (int i = 1; i <= (int)DateTime.DaysInMonth(year, month); i++)
                 Days.Add(i);
 
             /* [2] Server, Py - Generate TimeTable 설정 */
-            var list = await _scdModel.GenTimeTableAsync(year, month);
+            CanGen = await _scdModel.ChkTimeTableAsync(year, month);
+            
+            if( CanGen is true ) {
+                Console.WriteLine("[MdfScdViewModel] TimeTable does not exist. Generating new timetable...");
 
-            // 2-1) ShiftCodes / Hours 주입
-            ShiftCodes.Clear();
-            foreach (var code in _scdModel.LastShiftCodes)
-                ShiftCodes.Add(code);
+                var list = await _scdModel.GenTimeTableAsync(year, month);
 
-            ShiftWorkingHoursMap.Clear();
-            foreach (var kv in _scdModel.LastShiftHours)
-                ShiftWorkingHoursMap[kv.Key] = kv.Value;
+                // 2-1) ShiftCodes / Hours 주입
+                ShiftCodes.Clear();
+                foreach (var code in _scdModel.LastShiftCodes)
+                    ShiftCodes.Add(code);
 
-            // 2-2) 하단 표의 왼쪽 레이블(헤더) 구성
-            ShiftHeaders.Clear();
-            foreach (var code in ShiftCodes) {
-                ShiftHeaders.Add(new ShiftHeader
-                {
-                    ShiftCode = code,
-                    DisplayName = code   // 필요 시 "주간(D)" 등으로 표시명 매핑
-                });
+                ShiftWorkingHoursMap.Clear();
+                foreach (var kv in _scdModel.LastShiftHours)
+                    ShiftWorkingHoursMap[kv.Key] = kv.Value;
+
+                // 2-2) 하단 표의 왼쪽 레이블(헤더) 구성
+                ShiftHeaders.Clear();
+                foreach (var code in ShiftCodes) {
+                    ShiftHeaders.Add(new ShiftHeader
+                    {
+                        ShiftCode = code,
+                        DisplayName = code   // 필요 시 "주간(D)" 등으로 표시명 매핑
+                    });
+                }
+                OnPropertyChanged(nameof(ShiftHeaders));
+
+                // 2-3) 직원 스케줄 바인딩
+                StaffSchedules = new ObservableCollection<StaffSchedule>(list);
+
+                // 2-4) Cell 내역 저장
+                foreach (var staff in StaffSchedules)
+                    foreach (var cell in staff.DailyShifts)
+                        cell.OriginalShiftCode = cell.ShiftCode;
+
+                // 2-4) 행 강제 재계산 및 하단 집계
+                InitializeStatistics();
+                UpdateDailyStatistics();
+
+                if (list.Count == 0) {
+                    MessageBox.Show("조건을 만족하는 해를 찾는 데 실패했습니다.", "오류", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
             }
-            OnPropertyChanged(nameof(ShiftHeaders));
 
-            // 2-3) 직원 스케줄 바인딩
-            StaffSchedules = new ObservableCollection<StaffSchedule>(list);
+            else if ( CanGen is false ) {
+                var list = await _scdModel.AskTimeTableAdminAsync(year, month);
 
-            // 2-4) 행 강제 재계산 및 하단 집계
-            InitializeStatistics();
-            UpdateDailyStatistics();
+                // 2-1) ShiftCodes / Hours 주입
+                ShiftCodes.Clear();
+                foreach (var code in _scdModel.LastShiftCodes)
+                    ShiftCodes.Add(code);
+
+                ShiftWorkingHoursMap.Clear();
+                foreach (var kv in _scdModel.LastShiftHours)
+                    ShiftWorkingHoursMap[kv.Key] = kv.Value;
+
+                // 2-2) 하단 표의 왼쪽 레이블(헤더) 구성
+                ShiftHeaders.Clear();
+                foreach (var code in ShiftCodes) {
+                    ShiftHeaders.Add(new ShiftHeader
+                    {
+                        ShiftCode = code,
+                        DisplayName = code   // 필요 시 "주간(D)" 등으로 표시명 매핑
+                    });
+                }
+                OnPropertyChanged(nameof(ShiftHeaders));
+
+                // 2-3) 직원 스케줄 바인딩
+                StaffSchedules = new ObservableCollection<StaffSchedule>(list);
+
+                // 2-4) Cell 내역 저장
+                foreach (var staff in StaffSchedules)
+                    foreach (var cell in staff.DailyShifts)
+                        cell.OriginalShiftCode = cell.ShiftCode;
+
+                // 2-4) 행 강제 재계산 및 하단 집계
+                InitializeStatistics();
+                UpdateDailyStatistics();
+            }
         }
 
 
@@ -180,6 +222,49 @@ namespace Shifter.ViewModels {
             }
 
             OnPropertyChanged(nameof(DailyStatistics));
+        }
+
+
+        /* 클릭 시 Shift 변경 */
+        [RelayCommand] public void ToggleShift(ScheduleCell cell) {
+            Console.WriteLine("[MdfScdViewModel] Executed ToggleShift(ScheduleCell cell)");
+            if (ShiftCodes.Count == 0) return;
+
+            int currentIndex = ShiftCodes.IndexOf(cell.ShiftCode ?? "");
+            int nextIndex = (currentIndex + 1) % ShiftCodes.Count;
+            cell.ShiftCode = ShiftCodes[nextIndex];
+            Console.WriteLine("[MdfScdViewModel] cell.ShiftCode:"+ cell.ShiftCode);
+            UpdateDailyStatistics();
+        }
+
+
+        /* 스케줄 삭제 */
+        [RelayCommand] public void DelScd() {
+            Console.WriteLine("[MdfScdViewModel] Executed DelScd");
+        }
+
+
+        /* 스케줄 저장 */
+        [RelayCommand]
+        public async Task SaveScd() {
+            Console.WriteLine("[MdfScdViewModel] Executed SaveScd()");
+
+            bool result = await _scdModel.MdfScdAsync(StaffSchedules);
+            
+            if( result == true ) {
+                // 성공 시 원본 업데이트 → 더 이상 dirty로 안 잡히게
+                await Application.Current.Dispatcher.InvokeAsync(() =>
+                {
+                    foreach (var staff in StaffSchedules)
+                        foreach (var cell in staff.DailyShifts)
+                            if (cell.IsDirty) cell.OriginalShiftCode = cell.ShiftCode;
+                });
+                MessageBox.Show("스케줄이 성공적으로 저장되었습니다.", "저장 완료", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else if ( result == false) {
+                // 실패 시 알림
+                MessageBox.Show("스케줄 저장에 실패했습니다. 다시 시도해주세요.", "오류", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

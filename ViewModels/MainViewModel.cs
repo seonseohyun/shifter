@@ -148,6 +148,14 @@ public partial class MainViewModel : ObservableObject {
     }
 
 
+    /* Go To ChkChgReqView */
+    [RelayCommand] void GoToChkChgReq() {
+        Console.WriteLine("[MainViewModel] GoToChkChgReq() Executed");
+        Session.VisGoBack = true;
+        Navigate(PageType.ChkChgReq);
+    }
+
+
     /* Log Out */
     [RelayCommand] void LogOut() {
         MessageBoxResult result = MessageBox.Show("정말로 로그아웃하시겠습니까?" , "로그아웃", MessageBoxButton.YesNo, MessageBoxImage.Question);
@@ -159,4 +167,3 @@ public partial class MainViewModel : ObservableObject {
         }
     }
 }
-

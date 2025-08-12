@@ -130,8 +130,8 @@
                         </Image>
                     </Button>
                     <!-- ChkChgReqButton -->
-                    <Button Grid.Column="3" Content="Change Request" Margin="10,0,5,0" 
-                            Command="{Binding GoToChkChgReqCommand}"
+                    <Button Grid.Column="3" Content="수정요청확인" Margin="10,0,5,0" 
+                            Command="{Binding GoToChkChgReqCommand}" 
                             FontWeight="Medium" FontFamily="Noto Sans KR" FontSize="15"
                             Foreground="#002EFF" Background="Transparent"
                             BorderBrush="#002EFF" BorderThickness="2">
@@ -142,9 +142,9 @@
                         </Button.Resources>
                     </Button>
                     <!-- MdfButton -->
-                    <Button Grid.Column="4" Content="Modify Schedule" Margin="5,0,5,0"
+                    <Button Grid.Column="4" Content="스케쥴수정" Margin="5,0,5,0"
                             Style="{StaticResource SmallRoundedBlueButtonStyle}"
-                            FontWeight="Medium"
+                            FontWeight="Medium" FontFamily="Noto Sans KR"
                             Command="{Binding GoToMdfScdCommand}"/>
                 </Grid>
             
@@ -180,10 +180,10 @@
                         <!-- ▶ 우측 헤더 추가 구간 -->
                         <StackPanel Orientation="Horizontal" Margin="4,0,0,0">
                             <Border Width="60" Height="28" Background="Transparent">
-                                <TextBlock Text="근무시간" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Text="근무시간" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
                             </Border>
                             <Border Width="60" Height="28" Background="Transparent">
-                                <TextBlock Text="잔여시간" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Text="잔여시간" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
                             </Border>
 
                             <!-- Total Shift 헤더 -->
@@ -198,7 +198,7 @@
                                         <Border Width="36" Height="28" Background="Transparent" Margin="1,0">
                                             <TextBlock Text="{Binding DisplayName}"
                                                        TextAlignment="Center"
-                                                       VerticalAlignment="Center"
+                                                       VerticalAlignment="Bottom"
                                                        TextWrapping="Wrap"
                                                        LineStackingStrategy="BlockLineHeight"
                                                        LineHeight="12"/>
