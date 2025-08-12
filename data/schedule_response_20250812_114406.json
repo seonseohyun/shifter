@@ -1,0 +1,2429 @@
+{
+  "timestamp": "2025-08-12T11:44:06.113234",
+  "request_type": "schedule",
+  "protocol": "py_gen_schedule",
+  "resp": "success",
+  "data": [
+    {
+      "date": "2025-08-01",
+      "shift": "D",
+      "hours": 8,
+      "people": [
+        {
+          "name": "박경태",
+          "staff_id": 3,
+          "grade": 3
+        },
+        {
+          "name": "유예솜",
+          "staff_id": 8,
+          "grade": 3
+        }
+      ]
+    },
+    {
+      "date": "2025-08-01",
+      "shift": "E",
+      "hours": 8,
+      "people": [
+        {
+          "name": "김대업",
+          "staff_id": 10,
+          "grade": 5
+        },
+        {
+          "name": "이보은",
+          "staff_id": 6,
+          "grade": 1
+        }
+      ]
+    },
+    {
+      "date": "2025-08-01",
+      "shift": "N",
+      "hours": 8,
+      "people": [
+        {
+          "name": "선서현",
+          "staff_id": 2,
+          "grade": 2
+        }
+      ]
+    },
+    {
+      "date": "2025-08-01",
+      "shift": "O",
+      "hours": 0,
+      "people": [
+        {
+          "name": "김유범",
+          "staff_id": 4,
+          "grade": 4
+        },
+        {
+          "name": "박주영",
+          "staff_id": 9,
+          "grade": 4
+        },
+        {
+          "name": "오장관",
+          "staff_id": 5,
+          "grade": 5
+        },
+        {
+          "name": "유희라",
+          "staff_id": 1,
+          "grade": 1
+        },
+        {
+          "name": "하진영",
+          "staff_id": 7,
+          "grade": 2
+        }
+      ]
+    },
+    {
+      "date": "2025-08-02",
+      "shift": "D",
+      "hours": 8,
+      "people": [
+        {
+          "name": "유희라",
+          "staff_id": 1,
+          "grade": 1
+        }
+      ]
+    },
+    {
+      "date": "2025-08-02",
+      "shift": "E",
+      "hours": 8,
+      "people": [
+        {
+          "name": "박주영",
+          "staff_id": 9,
+          "grade": 4
+        },
+        {
+          "name": "오장관",
+          "staff_id": 5,
+          "grade": 5
+        },
+        {
+          "name": "유예솜",
+          "staff_id": 8,
+          "grade": 3
+        },
+        {
+          "name": "이보은",
+          "staff_id": 6,
+          "grade": 1
+        }
+      ]
+    },
+    {
+      "date": "2025-08-02",
+      "shift": "N",
+      "hours": 8,
+      "people": [
+        {
+          "name": "선서현",
+          "staff_id": 2,
+          "grade": 2
+        },
+        {
+          "name": "하진영",
+          "staff_id": 7,
+          "grade": 2
+        }
+      ]
+    },
+    {
+      "date": "2025-08-02",
+      "shift": "O",
+      "hours": 0,
+      "people": [
+        {
+          "name": "김대업",
+          "staff_id": 10,
+          "grade": 5
+        },
+        {
+          "name": "김유범",
+          "staff_id": 4,
+          "grade": 4
+        },
+        {
+          "name": "박경태",
+          "staff_id": 3,
+          "grade": 3
+        }
+      ]
+    },
+    {
+      "date": "2025-08-03",
+      "shift": "D",
+      "hours": 8,
+      "people": [
+        {
+          "name": "김대업",
+          "staff_id": 10,
+          "grade": 5
+        },
+        {
+          "name": "박주영",
+          "staff_id": 9,
+          "grade": 4
+        }
+      ]
+    },
+    {
+      "date": "2025-08-03",
+      "shift": "E",
+      "hours": 8,
+      "people": [
+        {
+          "name": "유예솜",
+          "staff_id": 8,
+          "grade": 3
+        },
+        {
+          "name": "이보은",
+          "staff_id": 6,
+          "grade": 1
+        }
+      ]
+    },
+    {
+      "date": "2025-08-03",
+      "shift": "N",
+      "hours": 8,
+      "people": [
+        {
+          "name": "박경태",
+          "staff_id": 3,
+          "grade": 3
+        }
+      ]
+    },
+    {
+      "date": "2025-08-03",
+      "shift": "O",
+      "hours": 0,
+      "people": [
+        {
+          "name": "김유범",
+          "staff_id": 4,
+          "grade": 4
+        },
+        {
+          "name": "선서현",
+          "staff_id": 2,
+          "grade": 2
+        },
+        {
+          "name": "오장관",
+          "staff_id": 5,
+          "grade": 5
+        },
+        {
+          "name": "유희라",
+          "staff_id": 1,
+          "grade": 1
+        },
+        {
+          "name": "하진영",
+          "staff_id": 7,
+          "grade": 2
+        }
+      ]
+    },
+    {
+      "date": "2025-08-04",
+      "shift": "D",
+      "hours": 8,
+      "people": [
+        {
+          "name": "박경태",
+          "staff_id": 3,
+          "grade": 3
+        },
+        {
+          "name": "박주영",
+          "staff_id": 9,
+          "grade": 4
+        },
+        {
+          "name": "유예솜",
+          "staff_id": 8,
+          "grade": 3
+        },
+        {
+          "name": "유희라",
+          "staff_id": 1,
+          "grade": 1
+        }
+      ]
+    },
+    {
+      "date": "2025-08-04",
+      "shift": "E",
+      "hours": 8,
+      "people": [
+        {
+          "name": "오장관",
+          "staff_id": 5,
+          "grade": 5
+        }
+      ]
+    },
+    {
+      "date": "2025-08-04",
+      "shift": "N",
+      "hours": 8,
+      "people": [
+        {
+          "name": "김유범",
+          "staff_id": 4,
+          "grade": 4
+        },
+        {
+          "name": "하진영",
+          "staff_id": 7,
+          "grade": 2
+        }
+      ]
+    },
+    {
+      "date": "2025-08-04",
+      "shift": "O",
+      "hours": 0,
+      "people": [
+        {
+          "name": "김대업",
+          "staff_id": 10,
+          "grade": 5
+        },
+        {
+          "name": "선서현",
+          "staff_id": 2,
+          "grade": 2
+        },
+        {
+          "name": "이보은",
+          "staff_id": 6,
+          "grade": 1
+        }
+      ]
+    },
+    {
+      "date": "2025-08-05",
+      "shift": "D",
+      "hours": 8,
+      "people": [
+        {
+          "name": "박주영",
+          "staff_id": 9,
+          "grade": 4
+        },
+        {
+          "name": "선서현",
+          "staff_id": 2,
+          "grade": 2
+        }
+      ]
+    },
+    {
+      "date": "2025-08-05",
+      "shift": "E",
+      "hours": 8,
+      "people": [
+        {
+          "name": "박경태",
+          "staff_id": 3,
+          "grade": 3
+        }
+      ]
+    },
+    {
+      "date": "2025-08-05",
+      "shift": "N",
+      "hours": 8,
+      "people": [
+        {
+          "name": "유희라",
+          "staff_id": 1,
+          "grade": 1
+        },
+        {
+          "name": "하진영",
+          "staff_id": 7,
+          "grade": 2
+        }
+      ]
+    },
+    {
+      "date": "2025-08-05",
+      "shift": "O",
+      "hours": 0,
+      "people": [
+        {
+          "name": "김대업",
+          "staff_id": 10,
+          "grade": 5
+        },
+        {
+          "name": "김유범",
+          "staff_id": 4,
+          "grade": 4
+        },
+        {
+          "name": "오장관",
+          "staff_id": 5,
+          "grade": 5
+        },
+        {
+          "name": "유예솜",
+          "staff_id": 8,
+          "grade": 3
+        },
+        {
+          "name": "이보은",
+          "staff_id": 6,
+          "grade": 1
+        }
+      ]
+    },
+    {
+      "date": "2025-08-06",
+      "shift": "D",
+      "hours": 8,
+      "people": [
+        {
+          "name": "김대업",
+          "staff_id": 10,
+          "grade": 5
+        },
+        {
+          "name": "김유범",
+          "staff_id": 4,
+          "grade": 4
+        },
+        {
+          "name": "박주영",
+          "staff_id": 9,
+          "grade": 4
+        },
+        {
+          "name": "오장관",
+          "staff_id": 5,
+          "grade": 5
+        }
+      ]
+    },
+    {
+      "date": "2025-08-06",
+      "shift": "E",
+      "hours": 8,
+      "people": [
+        {
+          "name": "유희라",
+          "staff_id": 1,
+          "grade": 1
+        },
+        {
+          "name": "하진영",
+          "staff_id": 7,
+          "grade": 2
+        }
+      ]
+    },
+    {
+      "date": "2025-08-06",
+      "shift": "N",
+      "hours": 8,
+      "people": [
+        {
+          "name": "선서현",
+          "staff_id": 2,
+          "grade": 2
+        },
+        {
+          "name": "유예솜",
+          "staff_id": 8,
+          "grade": 3
+        }
+      ]
+    },
+    {
+      "date": "2025-08-06",
+      "shift": "O",
+      "hours": 0,
+      "people": [
+        {
+          "name": "박경태",
+          "staff_id": 3,
+          "grade": 3
+        },
+        {
+          "name": "이보은",
+          "staff_id": 6,
+          "grade": 1
+        }
+      ]
+    },
+    {
+      "date": "2025-08-07",
+      "shift": "D",
+      "hours": 8,
+      "people": [
+        {
+          "name": "박주영",
+          "staff_id": 9,
+          "grade": 4
+        },
+        {
+          "name": "이보은",
+          "staff_id": 6,
+          "grade": 1
+        },
+        {
+          "name": "하진영",
+          "staff_id": 7,
+          "grade": 2
+        }
+      ]
+    },
+    {
+      "date": "2025-08-07",
+      "shift": "E",
+      "hours": 8,
+      "people": [
+        {
+          "name": "김대업",
+          "staff_id": 10,
+          "grade": 5
+        },
+        {
+          "name": "오장관",
+          "staff_id": 5,
+          "grade": 5
+        },
+        {
+          "name": "유희라",
+          "staff_id": 1,
+          "grade": 1
+        }
+      ]
+    },
+    {
+      "date": "2025-08-07",
+      "shift": "N",
+      "hours": 8,
+      "people": [
+        {
+          "name": "김유범",
+          "staff_id": 4,
+          "grade": 4
+        },
+        {
+          "name": "선서현",
+          "staff_id": 2,
+          "grade": 2
+        },
+        {
+          "name": "유예솜",
+          "staff_id": 8,
+          "grade": 3
+        }
+      ]
+    },
+    {
+      "date": "2025-08-07",
+      "shift": "O",
+      "hours": 0,
+      "people": [
+        {
+          "name": "박경태",
+          "staff_id": 3,
+          "grade": 3
+        }
+      ]
+    },
+    {
+      "date": "2025-08-08",
+      "shift": "D",
+      "hours": 8,
+      "people": [
+        {
+          "name": "김대업",
+          "staff_id": 10,
+          "grade": 5
+        },
+        {
+          "name": "오장관",
+          "staff_id": 5,
+          "grade": 5
+        }
+      ]
+    },
+    {
+      "date": "2025-08-08",
+      "shift": "E",
+      "hours": 8,
+      "people": [
+        {
+          "name": "박경태",
+          "staff_id": 3,
+          "grade": 3
+        },
+        {
+          "name": "하진영",
+          "staff_id": 7,
+          "grade": 2
+        }
+      ]
+    },
+    {
+      "date": "2025-08-08",
+      "shift": "N",
+      "hours": 8,
+      "people": [
+        {
+          "name": "김유범",
+          "staff_id": 4,
+          "grade": 4
+        },
+        {
+          "name": "박주영",
+          "staff_id": 9,
+          "grade": 4
+        },
+        {
+          "name": "선서현",
+          "staff_id": 2,
+          "grade": 2
+        }
+      ]
+    },
+    {
+      "date": "2025-08-08",
+      "shift": "O",
+      "hours": 0,
+      "people": [
+        {
+          "name": "유예솜",
+          "staff_id": 8,
+          "grade": 3
+        },
+        {
+          "name": "유희라",
+          "staff_id": 1,
+          "grade": 1
+        },
+        {
+          "name": "이보은",
+          "staff_id": 6,
+          "grade": 1
+        }
+      ]
+    },
+    {
+      "date": "2025-08-09",
+      "shift": "D",
+      "hours": 8,
+      "people": [
+        {
+          "name": "김대업",
+          "staff_id": 10,
+          "grade": 5
+        },
+        {
+          "name": "박경태",
+          "staff_id": 3,
+          "grade": 3
+        },
+        {
+          "name": "선서현",
+          "staff_id": 2,
+          "grade": 2
+        },
+        {
+          "name": "오장관",
+          "staff_id": 5,
+          "grade": 5
+        }
+      ]
+    },
+    {
+      "date": "2025-08-09",
+      "shift": "E",
+      "hours": 8,
+      "people": [
+        {
+          "name": "하진영",
+          "staff_id": 7,
+          "grade": 2
+        }
+      ]
+    },
+    {
+      "date": "2025-08-09",
+      "shift": "N",
+      "hours": 8,
+      "people": [
+        {
+          "name": "김유범",
+          "staff_id": 4,
+          "grade": 4
+        },
+        {
+          "name": "유예솜",
+          "staff_id": 8,
+          "grade": 3
+        },
+        {
+          "name": "이보은",
+          "staff_id": 6,
+          "grade": 1
+        }
+      ]
+    },
+    {
+      "date": "2025-08-09",
+      "shift": "O",
+      "hours": 0,
+      "people": [
+        {
+          "name": "박주영",
+          "staff_id": 9,
+          "grade": 4
+        },
+        {
+          "name": "유희라",
+          "staff_id": 1,
+          "grade": 1
+        }
+      ]
+    },
+    {
+      "date": "2025-08-10",
+      "shift": "D",
+      "hours": 8,
+      "people": [
+        {
+          "name": "선서현",
+          "staff_id": 2,
+          "grade": 2
+        },
+        {
+          "name": "오장관",
+          "staff_id": 5,
+          "grade": 5
+        },
+        {
+          "name": "유예솜",
+          "staff_id": 8,
+          "grade": 3
+        },
+        {
+          "name": "유희라",
+          "staff_id": 1,
+          "grade": 1
+        },
+        {
+          "name": "이보은",
+          "staff_id": 6,
+          "grade": 1
+        }
+      ]
+    },
+    {
+      "date": "2025-08-10",
+      "shift": "E",
+      "hours": 8,
+      "people": [
+        {
+          "name": "김유범",
+          "staff_id": 4,
+          "grade": 4
+        },
+        {
+          "name": "박경태",
+          "staff_id": 3,
+          "grade": 3
+        }
+      ]
+    },
+    {
+      "date": "2025-08-10",
+      "shift": "N",
+      "hours": 8,
+      "people": [
+        {
+          "name": "박주영",
+          "staff_id": 9,
+          "grade": 4
+        }
+      ]
+    },
+    {
+      "date": "2025-08-10",
+      "shift": "O",
+      "hours": 0,
+      "people": [
+        {
+          "name": "김대업",
+          "staff_id": 10,
+          "grade": 5
+        },
+        {
+          "name": "하진영",
+          "staff_id": 7,
+          "grade": 2
+        }
+      ]
+    },
+    {
+      "date": "2025-08-11",
+      "shift": "D",
+      "hours": 8,
+      "people": [
+        {
+          "name": "김대업",
+          "staff_id": 10,
+          "grade": 5
+        },
+        {
+          "name": "박주영",
+          "staff_id": 9,
+          "grade": 4
+        },
+        {
+          "name": "유예솜",
+          "staff_id": 8,
+          "grade": 3
+        },
+        {
+          "name": "유희라",
+          "staff_id": 1,
+          "grade": 1
+        }
+      ]
+    },
+    {
+      "date": "2025-08-11",
+      "shift": "E",
+      "hours": 8,
+      "people": [
+        {
+          "name": "오장관",
+          "staff_id": 5,
+          "grade": 5
+        }
+      ]
+    },
+    {
+      "date": "2025-08-11",
+      "shift": "N",
+      "hours": 8,
+      "people": [
+        {
+          "name": "박경태",
+          "staff_id": 3,
+          "grade": 3
+        },
+        {
+          "name": "이보은",
+          "staff_id": 6,
+          "grade": 1
+        },
+        {
+          "name": "하진영",
+          "staff_id": 7,
+          "grade": 2
+        }
+      ]
+    },
+    {
+      "date": "2025-08-11",
+      "shift": "O",
+      "hours": 0,
+      "people": [
+        {
+          "name": "김유범",
+          "staff_id": 4,
+          "grade": 4
+        },
+        {
+          "name": "선서현",
+          "staff_id": 2,
+          "grade": 2
+        }
+      ]
+    },
+    {
+      "date": "2025-08-12",
+      "shift": "D",
+      "hours": 8,
+      "people": [
+        {
+          "name": "김대업",
+          "staff_id": 10,
+          "grade": 5
+        },
+        {
+          "name": "박주영",
+          "staff_id": 9,
+          "grade": 4
+        },
+        {
+          "name": "이보은",
+          "staff_id": 6,
+          "grade": 1
+        }
+      ]
+    },
+    {
+      "date": "2025-08-12",
+      "shift": "E",
+      "hours": 8,
+      "people": [
+        {
+          "name": "김유범",
+          "staff_id": 4,
+          "grade": 4
+        },
+        {
+          "name": "선서현",
+          "staff_id": 2,
+          "grade": 2
+        }
+      ]
+    },
+    {
+      "date": "2025-08-12",
+      "shift": "N",
+      "hours": 8,
+      "people": [
+        {
+          "name": "유예솜",
+          "staff_id": 8,
+          "grade": 3
+        },
+        {
+          "name": "유희라",
+          "staff_id": 1,
+          "grade": 1
+        }
+      ]
+    },
+    {
+      "date": "2025-08-12",
+      "shift": "O",
+      "hours": 0,
+      "people": [
+        {
+          "name": "박경태",
+          "staff_id": 3,
+          "grade": 3
+        },
+        {
+          "name": "오장관",
+          "staff_id": 5,
+          "grade": 5
+        },
+        {
+          "name": "하진영",
+          "staff_id": 7,
+          "grade": 2
+        }
+      ]
+    },
+    {
+      "date": "2025-08-13",
+      "shift": "D",
+      "hours": 8,
+      "people": [
+        {
+          "name": "김유범",
+          "staff_id": 4,
+          "grade": 4
+        },
+        {
+          "name": "박경태",
+          "staff_id": 3,
+          "grade": 3
+        },
+        {
+          "name": "이보은",
+          "staff_id": 6,
+          "grade": 1
+        }
+      ]
+    },
+    {
+      "date": "2025-08-13",
+      "shift": "E",
+      "hours": 8,
+      "people": [
+        {
+          "name": "김대업",
+          "staff_id": 10,
+          "grade": 5
+        },
+        {
+          "name": "오장관",
+          "staff_id": 5,
+          "grade": 5
+        },
+        {
+          "name": "하진영",
+          "staff_id": 7,
+          "grade": 2
+        }
+      ]
+    },
+    {
+      "date": "2025-08-13",
+      "shift": "N",
+      "hours": 8,
+      "people": [
+        {
+          "name": "선서현",
+          "staff_id": 2,
+          "grade": 2
+        },
+        {
+          "name": "유예솜",
+          "staff_id": 8,
+          "grade": 3
+        },
+        {
+          "name": "유희라",
+          "staff_id": 1,
+          "grade": 1
+        }
+      ]
+    },
+    {
+      "date": "2025-08-13",
+      "shift": "O",
+      "hours": 0,
+      "people": [
+        {
+          "name": "박주영",
+          "staff_id": 9,
+          "grade": 4
+        }
+      ]
+    },
+    {
+      "date": "2025-08-14",
+      "shift": "D",
+      "hours": 8,
+      "people": [
+        {
+          "name": "선서현",
+          "staff_id": 2,
+          "grade": 2
+        }
+      ]
+    },
+    {
+      "date": "2025-08-14",
+      "shift": "E",
+      "hours": 8,
+      "people": [
+        {
+          "name": "박주영",
+          "staff_id": 9,
+          "grade": 4
+        },
+        {
+          "name": "오장관",
+          "staff_id": 5,
+          "grade": 5
+        }
+      ]
+    },
+    {
+      "date": "2025-08-14",
+      "shift": "N",
+      "hours": 8,
+      "people": [
+        {
+          "name": "김유범",
+          "staff_id": 4,
+          "grade": 4
+        },
+        {
+          "name": "이보은",
+          "staff_id": 6,
+          "grade": 1
+        },
+        {
+          "name": "하진영",
+          "staff_id": 7,
+          "grade": 2
+        }
+      ]
+    },
+    {
+      "date": "2025-08-14",
+      "shift": "O",
+      "hours": 0,
+      "people": [
+        {
+          "name": "김대업",
+          "staff_id": 10,
+          "grade": 5
+        },
+        {
+          "name": "박경태",
+          "staff_id": 3,
+          "grade": 3
+        },
+        {
+          "name": "유예솜",
+          "staff_id": 8,
+          "grade": 3
+        },
+        {
+          "name": "유희라",
+          "staff_id": 1,
+          "grade": 1
+        }
+      ]
+    },
+    {
+      "date": "2025-08-15",
+      "shift": "D",
+      "hours": 8,
+      "people": [
+        {
+          "name": "김유범",
+          "staff_id": 4,
+          "grade": 4
+        },
+        {
+          "name": "오장관",
+          "staff_id": 5,
+          "grade": 5
+        }
+      ]
+    },
+    {
+      "date": "2025-08-15",
+      "shift": "E",
+      "hours": 8,
+      "people": [
+        {
+          "name": "김대업",
+          "staff_id": 10,
+          "grade": 5
+        },
+        {
+          "name": "박경태",
+          "staff_id": 3,
+          "grade": 3
+        }
+      ]
+    },
+    {
+      "date": "2025-08-15",
+      "shift": "N",
+      "hours": 8,
+      "people": [
+        {
+          "name": "유예솜",
+          "staff_id": 8,
+          "grade": 3
+        }
+      ]
+    },
+    {
+      "date": "2025-08-15",
+      "shift": "O",
+      "hours": 0,
+      "people": [
+        {
+          "name": "박주영",
+          "staff_id": 9,
+          "grade": 4
+        },
+        {
+          "name": "선서현",
+          "staff_id": 2,
+          "grade": 2
+        },
+        {
+          "name": "유희라",
+          "staff_id": 1,
+          "grade": 1
+        },
+        {
+          "name": "이보은",
+          "staff_id": 6,
+          "grade": 1
+        },
+        {
+          "name": "하진영",
+          "staff_id": 7,
+          "grade": 2
+        }
+      ]
+    },
+    {
+      "date": "2025-08-16",
+      "shift": "D",
+      "hours": 8,
+      "people": [
+        {
+          "name": "하진영",
+          "staff_id": 7,
+          "grade": 2
+        }
+      ]
+    },
+    {
+      "date": "2025-08-16",
+      "shift": "E",
+      "hours": 8,
+      "people": [
+        {
+          "name": "김대업",
+          "staff_id": 10,
+          "grade": 5
+        },
+        {
+          "name": "유예솜",
+          "staff_id": 8,
+          "grade": 3
+        },
+        {
+          "name": "유희라",
+          "staff_id": 1,
+          "grade": 1
+        }
+      ]
+    },
+    {
+      "date": "2025-08-16",
+      "shift": "N",
+      "hours": 8,
+      "people": [
+        {
+          "name": "김유범",
+          "staff_id": 4,
+          "grade": 4
+        },
+        {
+          "name": "박경태",
+          "staff_id": 3,
+          "grade": 3
+        },
+        {
+          "name": "이보은",
+          "staff_id": 6,
+          "grade": 1
+        }
+      ]
+    },
+    {
+      "date": "2025-08-16",
+      "shift": "O",
+      "hours": 0,
+      "people": [
+        {
+          "name": "박주영",
+          "staff_id": 9,
+          "grade": 4
+        },
+        {
+          "name": "선서현",
+          "staff_id": 2,
+          "grade": 2
+        },
+        {
+          "name": "오장관",
+          "staff_id": 5,
+          "grade": 5
+        }
+      ]
+    },
+    {
+      "date": "2025-08-17",
+      "shift": "D",
+      "hours": 8,
+      "people": [
+        {
+          "name": "김유범",
+          "staff_id": 4,
+          "grade": 4
+        },
+        {
+          "name": "박주영",
+          "staff_id": 9,
+          "grade": 4
+        },
+        {
+          "name": "선서현",
+          "staff_id": 2,
+          "grade": 2
+        },
+        {
+          "name": "오장관",
+          "staff_id": 5,
+          "grade": 5
+        }
+      ]
+    },
+    {
+      "date": "2025-08-17",
+      "shift": "E",
+      "hours": 8,
+      "people": [
+        {
+          "name": "박경태",
+          "staff_id": 3,
+          "grade": 3
+        },
+        {
+          "name": "유희라",
+          "staff_id": 1,
+          "grade": 1
+        },
+        {
+          "name": "하진영",
+          "staff_id": 7,
+          "grade": 2
+        }
+      ]
+    },
+    {
+      "date": "2025-08-17",
+      "shift": "N",
+      "hours": 8,
+      "people": [
+        {
+          "name": "유예솜",
+          "staff_id": 8,
+          "grade": 3
+        }
+      ]
+    },
+    {
+      "date": "2025-08-17",
+      "shift": "O",
+      "hours": 0,
+      "people": [
+        {
+          "name": "김대업",
+          "staff_id": 10,
+          "grade": 5
+        },
+        {
+          "name": "이보은",
+          "staff_id": 6,
+          "grade": 1
+        }
+      ]
+    },
+    {
+      "date": "2025-08-18",
+      "shift": "D",
+      "hours": 8,
+      "people": [
+        {
+          "name": "김대업",
+          "staff_id": 10,
+          "grade": 5
+        },
+        {
+          "name": "김유범",
+          "staff_id": 4,
+          "grade": 4
+        },
+        {
+          "name": "하진영",
+          "staff_id": 7,
+          "grade": 2
+        }
+      ]
+    },
+    {
+      "date": "2025-08-18",
+      "shift": "E",
+      "hours": 8,
+      "people": [
+        {
+          "name": "박경태",
+          "staff_id": 3,
+          "grade": 3
+        },
+        {
+          "name": "이보은",
+          "staff_id": 6,
+          "grade": 1
+        }
+      ]
+    },
+    {
+      "date": "2025-08-18",
+      "shift": "N",
+      "hours": 8,
+      "people": [
+        {
+          "name": "박주영",
+          "staff_id": 9,
+          "grade": 4
+        },
+        {
+          "name": "유예솜",
+          "staff_id": 8,
+          "grade": 3
+        }
+      ]
+    },
+    {
+      "date": "2025-08-18",
+      "shift": "O",
+      "hours": 0,
+      "people": [
+        {
+          "name": "선서현",
+          "staff_id": 2,
+          "grade": 2
+        },
+        {
+          "name": "오장관",
+          "staff_id": 5,
+          "grade": 5
+        },
+        {
+          "name": "유희라",
+          "staff_id": 1,
+          "grade": 1
+        }
+      ]
+    },
+    {
+      "date": "2025-08-19",
+      "shift": "D",
+      "hours": 8,
+      "people": [
+        {
+          "name": "오장관",
+          "staff_id": 5,
+          "grade": 5
+        },
+        {
+          "name": "하진영",
+          "staff_id": 7,
+          "grade": 2
+        }
+      ]
+    },
+    {
+      "date": "2025-08-19",
+      "shift": "E",
+      "hours": 8,
+      "people": [
+        {
+          "name": "김대업",
+          "staff_id": 10,
+          "grade": 5
+        },
+        {
+          "name": "박주영",
+          "staff_id": 9,
+          "grade": 4
+        },
+        {
+          "name": "유예솜",
+          "staff_id": 8,
+          "grade": 3
+        }
+      ]
+    },
+    {
+      "date": "2025-08-19",
+      "shift": "N",
+      "hours": 8,
+      "people": [
+        {
+          "name": "박경태",
+          "staff_id": 3,
+          "grade": 3
+        },
+        {
+          "name": "선서현",
+          "staff_id": 2,
+          "grade": 2
+        },
+        {
+          "name": "유희라",
+          "staff_id": 1,
+          "grade": 1
+        }
+      ]
+    },
+    {
+      "date": "2025-08-19",
+      "shift": "O",
+      "hours": 0,
+      "people": [
+        {
+          "name": "김유범",
+          "staff_id": 4,
+          "grade": 4
+        },
+        {
+          "name": "이보은",
+          "staff_id": 6,
+          "grade": 1
+        }
+      ]
+    },
+    {
+      "date": "2025-08-20",
+      "shift": "D",
+      "hours": 8,
+      "people": [
+        {
+          "name": "유희라",
+          "staff_id": 1,
+          "grade": 1
+        },
+        {
+          "name": "하진영",
+          "staff_id": 7,
+          "grade": 2
+        }
+      ]
+    },
+    {
+      "date": "2025-08-20",
+      "shift": "E",
+      "hours": 8,
+      "people": [
+        {
+          "name": "김대업",
+          "staff_id": 10,
+          "grade": 5
+        },
+        {
+          "name": "박경태",
+          "staff_id": 3,
+          "grade": 3
+        }
+      ]
+    },
+    {
+      "date": "2025-08-20",
+      "shift": "N",
+      "hours": 8,
+      "people": [
+        {
+          "name": "선서현",
+          "staff_id": 2,
+          "grade": 2
+        },
+        {
+          "name": "이보은",
+          "staff_id": 6,
+          "grade": 1
+        }
+      ]
+    },
+    {
+      "date": "2025-08-20",
+      "shift": "O",
+      "hours": 0,
+      "people": [
+        {
+          "name": "김유범",
+          "staff_id": 4,
+          "grade": 4
+        },
+        {
+          "name": "박주영",
+          "staff_id": 9,
+          "grade": 4
+        },
+        {
+          "name": "오장관",
+          "staff_id": 5,
+          "grade": 5
+        },
+        {
+          "name": "유예솜",
+          "staff_id": 8,
+          "grade": 3
+        }
+      ]
+    },
+    {
+      "date": "2025-08-21",
+      "shift": "D",
+      "hours": 8,
+      "people": [
+        {
+          "name": "김대업",
+          "staff_id": 10,
+          "grade": 5
+        },
+        {
+          "name": "박주영",
+          "staff_id": 9,
+          "grade": 4
+        },
+        {
+          "name": "이보은",
+          "staff_id": 6,
+          "grade": 1
+        },
+        {
+          "name": "하진영",
+          "staff_id": 7,
+          "grade": 2
+        }
+      ]
+    },
+    {
+      "date": "2025-08-21",
+      "shift": "E",
+      "hours": 8,
+      "people": [
+        {
+          "name": "유희라",
+          "staff_id": 1,
+          "grade": 1
+        }
+      ]
+    },
+    {
+      "date": "2025-08-21",
+      "shift": "N",
+      "hours": 8,
+      "people": [
+        {
+          "name": "선서현",
+          "staff_id": 2,
+          "grade": 2
+        }
+      ]
+    },
+    {
+      "date": "2025-08-21",
+      "shift": "O",
+      "hours": 0,
+      "people": [
+        {
+          "name": "김유범",
+          "staff_id": 4,
+          "grade": 4
+        },
+        {
+          "name": "박경태",
+          "staff_id": 3,
+          "grade": 3
+        },
+        {
+          "name": "오장관",
+          "staff_id": 5,
+          "grade": 5
+        },
+        {
+          "name": "유예솜",
+          "staff_id": 8,
+          "grade": 3
+        }
+      ]
+    },
+    {
+      "date": "2025-08-22",
+      "shift": "D",
+      "hours": 8,
+      "people": [
+        {
+          "name": "선서현",
+          "staff_id": 2,
+          "grade": 2
+        }
+      ]
+    },
+    {
+      "date": "2025-08-22",
+      "shift": "E",
+      "hours": 8,
+      "people": [
+        {
+          "name": "김대업",
+          "staff_id": 10,
+          "grade": 5
+        },
+        {
+          "name": "유예솜",
+          "staff_id": 8,
+          "grade": 3
+        }
+      ]
+    },
+    {
+      "date": "2025-08-22",
+      "shift": "N",
+      "hours": 8,
+      "people": [
+        {
+          "name": "김유범",
+          "staff_id": 4,
+          "grade": 4
+        },
+        {
+          "name": "박주영",
+          "staff_id": 9,
+          "grade": 4
+        },
+        {
+          "name": "유희라",
+          "staff_id": 1,
+          "grade": 1
+        }
+      ]
+    },
+    {
+      "date": "2025-08-22",
+      "shift": "O",
+      "hours": 0,
+      "people": [
+        {
+          "name": "박경태",
+          "staff_id": 3,
+          "grade": 3
+        },
+        {
+          "name": "오장관",
+          "staff_id": 5,
+          "grade": 5
+        },
+        {
+          "name": "이보은",
+          "staff_id": 6,
+          "grade": 1
+        },
+        {
+          "name": "하진영",
+          "staff_id": 7,
+          "grade": 2
+        }
+      ]
+    },
+    {
+      "date": "2025-08-23",
+      "shift": "D",
+      "hours": 8,
+      "people": [
+        {
+          "name": "박경태",
+          "staff_id": 3,
+          "grade": 3
+        }
+      ]
+    },
+    {
+      "date": "2025-08-23",
+      "shift": "E",
+      "hours": 8,
+      "people": [
+        {
+          "name": "유예솜",
+          "staff_id": 8,
+          "grade": 3
+        },
+        {
+          "name": "유희라",
+          "staff_id": 1,
+          "grade": 1
+        },
+        {
+          "name": "하진영",
+          "staff_id": 7,
+          "grade": 2
+        }
+      ]
+    },
+    {
+      "date": "2025-08-23",
+      "shift": "N",
+      "hours": 8,
+      "people": [
+        {
+          "name": "박주영",
+          "staff_id": 9,
+          "grade": 4
+        },
+        {
+          "name": "선서현",
+          "staff_id": 2,
+          "grade": 2
+        },
+        {
+          "name": "이보은",
+          "staff_id": 6,
+          "grade": 1
+        }
+      ]
+    },
+    {
+      "date": "2025-08-23",
+      "shift": "O",
+      "hours": 0,
+      "people": [
+        {
+          "name": "김대업",
+          "staff_id": 10,
+          "grade": 5
+        },
+        {
+          "name": "김유범",
+          "staff_id": 4,
+          "grade": 4
+        },
+        {
+          "name": "오장관",
+          "staff_id": 5,
+          "grade": 5
+        }
+      ]
+    },
+    {
+      "date": "2025-08-24",
+      "shift": "D",
+      "hours": 8,
+      "people": [
+        {
+          "name": "김대업",
+          "staff_id": 10,
+          "grade": 5
+        },
+        {
+          "name": "박경태",
+          "staff_id": 3,
+          "grade": 3
+        },
+        {
+          "name": "하진영",
+          "staff_id": 7,
+          "grade": 2
+        }
+      ]
+    },
+    {
+      "date": "2025-08-24",
+      "shift": "E",
+      "hours": 8,
+      "people": [
+        {
+          "name": "선서현",
+          "staff_id": 2,
+          "grade": 2
+        },
+        {
+          "name": "오장관",
+          "staff_id": 5,
+          "grade": 5
+        }
+      ]
+    },
+    {
+      "date": "2025-08-24",
+      "shift": "N",
+      "hours": 8,
+      "people": [
+        {
+          "name": "김유범",
+          "staff_id": 4,
+          "grade": 4
+        },
+        {
+          "name": "유희라",
+          "staff_id": 1,
+          "grade": 1
+        },
+        {
+          "name": "이보은",
+          "staff_id": 6,
+          "grade": 1
+        }
+      ]
+    },
+    {
+      "date": "2025-08-24",
+      "shift": "O",
+      "hours": 0,
+      "people": [
+        {
+          "name": "박주영",
+          "staff_id": 9,
+          "grade": 4
+        },
+        {
+          "name": "유예솜",
+          "staff_id": 8,
+          "grade": 3
+        }
+      ]
+    },
+    {
+      "date": "2025-08-25",
+      "shift": "D",
+      "hours": 8,
+      "people": [
+        {
+          "name": "김대업",
+          "staff_id": 10,
+          "grade": 5
+        }
+      ]
+    },
+    {
+      "date": "2025-08-25",
+      "shift": "E",
+      "hours": 8,
+      "people": [
+        {
+          "name": "김유범",
+          "staff_id": 4,
+          "grade": 4
+        },
+        {
+          "name": "박주영",
+          "staff_id": 9,
+          "grade": 4
+        },
+        {
+          "name": "오장관",
+          "staff_id": 5,
+          "grade": 5
+        },
+        {
+          "name": "하진영",
+          "staff_id": 7,
+          "grade": 2
+        }
+      ]
+    },
+    {
+      "date": "2025-08-25",
+      "shift": "N",
+      "hours": 8,
+      "people": [
+        {
+          "name": "박경태",
+          "staff_id": 3,
+          "grade": 3
+        }
+      ]
+    },
+    {
+      "date": "2025-08-25",
+      "shift": "O",
+      "hours": 0,
+      "people": [
+        {
+          "name": "선서현",
+          "staff_id": 2,
+          "grade": 2
+        },
+        {
+          "name": "유예솜",
+          "staff_id": 8,
+          "grade": 3
+        },
+        {
+          "name": "유희라",
+          "staff_id": 1,
+          "grade": 1
+        },
+        {
+          "name": "이보은",
+          "staff_id": 6,
+          "grade": 1
+        }
+      ]
+    },
+    {
+      "date": "2025-08-26",
+      "shift": "D",
+      "hours": 8,
+      "people": [
+        {
+          "name": "김대업",
+          "staff_id": 10,
+          "grade": 5
+        }
+      ]
+    },
+    {
+      "date": "2025-08-26",
+      "shift": "E",
+      "hours": 8,
+      "people": [
+        {
+          "name": "오장관",
+          "staff_id": 5,
+          "grade": 5
+        },
+        {
+          "name": "유예솜",
+          "staff_id": 8,
+          "grade": 3
+        },
+        {
+          "name": "하진영",
+          "staff_id": 7,
+          "grade": 2
+        }
+      ]
+    },
+    {
+      "date": "2025-08-26",
+      "shift": "N",
+      "hours": 8,
+      "people": [
+        {
+          "name": "김유범",
+          "staff_id": 4,
+          "grade": 4
+        },
+        {
+          "name": "박경태",
+          "staff_id": 3,
+          "grade": 3
+        },
+        {
+          "name": "선서현",
+          "staff_id": 2,
+          "grade": 2
+        }
+      ]
+    },
+    {
+      "date": "2025-08-26",
+      "shift": "O",
+      "hours": 0,
+      "people": [
+        {
+          "name": "박주영",
+          "staff_id": 9,
+          "grade": 4
+        },
+        {
+          "name": "유희라",
+          "staff_id": 1,
+          "grade": 1
+        },
+        {
+          "name": "이보은",
+          "staff_id": 6,
+          "grade": 1
+        }
+      ]
+    },
+    {
+      "date": "2025-08-27",
+      "shift": "D",
+      "hours": 8,
+      "people": [
+        {
+          "name": "오장관",
+          "staff_id": 5,
+          "grade": 5
+        },
+        {
+          "name": "유희라",
+          "staff_id": 1,
+          "grade": 1
+        }
+      ]
+    },
+    {
+      "date": "2025-08-27",
+      "shift": "E",
+      "hours": 8,
+      "people": [
+        {
+          "name": "선서현",
+          "staff_id": 2,
+          "grade": 2
+        }
+      ]
+    },
+    {
+      "date": "2025-08-27",
+      "shift": "N",
+      "hours": 8,
+      "people": [
+        {
+          "name": "김유범",
+          "staff_id": 4,
+          "grade": 4
+        },
+        {
+          "name": "유예솜",
+          "staff_id": 8,
+          "grade": 3
+        },
+        {
+          "name": "이보은",
+          "staff_id": 6,
+          "grade": 1
+        },
+        {
+          "name": "하진영",
+          "staff_id": 7,
+          "grade": 2
+        }
+      ]
+    },
+    {
+      "date": "2025-08-27",
+      "shift": "O",
+      "hours": 0,
+      "people": [
+        {
+          "name": "김대업",
+          "staff_id": 10,
+          "grade": 5
+        },
+        {
+          "name": "박경태",
+          "staff_id": 3,
+          "grade": 3
+        },
+        {
+          "name": "박주영",
+          "staff_id": 9,
+          "grade": 4
+        }
+      ]
+    },
+    {
+      "date": "2025-08-28",
+      "shift": "D",
+      "hours": 8,
+      "people": [
+        {
+          "name": "김대업",
+          "staff_id": 10,
+          "grade": 5
+        },
+        {
+          "name": "김유범",
+          "staff_id": 4,
+          "grade": 4
+        },
+        {
+          "name": "박경태",
+          "staff_id": 3,
+          "grade": 3
+        }
+      ]
+    },
+    {
+      "date": "2025-08-28",
+      "shift": "E",
+      "hours": 8,
+      "people": [
+        {
+          "name": "박주영",
+          "staff_id": 9,
+          "grade": 4
+        },
+        {
+          "name": "오장관",
+          "staff_id": 5,
+          "grade": 5
+        },
+        {
+          "name": "유희라",
+          "staff_id": 1,
+          "grade": 1
+        }
+      ]
+    },
+    {
+      "date": "2025-08-28",
+      "shift": "N",
+      "hours": 8,
+      "people": [
+        {
+          "name": "유예솜",
+          "staff_id": 8,
+          "grade": 3
+        }
+      ]
+    },
+    {
+      "date": "2025-08-28",
+      "shift": "O",
+      "hours": 0,
+      "people": [
+        {
+          "name": "선서현",
+          "staff_id": 2,
+          "grade": 2
+        },
+        {
+          "name": "이보은",
+          "staff_id": 6,
+          "grade": 1
+        },
+        {
+          "name": "하진영",
+          "staff_id": 7,
+          "grade": 2
+        }
+      ]
+    },
+    {
+      "date": "2025-08-29",
+      "shift": "D",
+      "hours": 8,
+      "people": [
+        {
+          "name": "김대업",
+          "staff_id": 10,
+          "grade": 5
+        },
+        {
+          "name": "오장관",
+          "staff_id": 5,
+          "grade": 5
+        }
+      ]
+    },
+    {
+      "date": "2025-08-29",
+      "shift": "E",
+      "hours": 8,
+      "people": [
+        {
+          "name": "이보은",
+          "staff_id": 6,
+          "grade": 1
+        },
+        {
+          "name": "하진영",
+          "staff_id": 7,
+          "grade": 2
+        }
+      ]
+    },
+    {
+      "date": "2025-08-29",
+      "shift": "N",
+      "hours": 8,
+      "people": [
+        {
+          "name": "김유범",
+          "staff_id": 4,
+          "grade": 4
+        },
+        {
+          "name": "박주영",
+          "staff_id": 9,
+          "grade": 4
+        },
+        {
+          "name": "선서현",
+          "staff_id": 2,
+          "grade": 2
+        }
+      ]
+    },
+    {
+      "date": "2025-08-29",
+      "shift": "O",
+      "hours": 0,
+      "people": [
+        {
+          "name": "박경태",
+          "staff_id": 3,
+          "grade": 3
+        },
+        {
+          "name": "유예솜",
+          "staff_id": 8,
+          "grade": 3
+        },
+        {
+          "name": "유희라",
+          "staff_id": 1,
+          "grade": 1
+        }
+      ]
+    },
+    {
+      "date": "2025-08-30",
+      "shift": "D",
+      "hours": 8,
+      "people": [
+        {
+          "name": "이보은",
+          "staff_id": 6,
+          "grade": 1
+        }
+      ]
+    },
+    {
+      "date": "2025-08-30",
+      "shift": "E",
+      "hours": 8,
+      "people": [
+        {
+          "name": "오장관",
+          "staff_id": 5,
+          "grade": 5
+        },
+        {
+          "name": "유희라",
+          "staff_id": 1,
+          "grade": 1
+        }
+      ]
+    },
+    {
+      "date": "2025-08-30",
+      "shift": "N",
+      "hours": 8,
+      "people": [
+        {
+          "name": "박경태",
+          "staff_id": 3,
+          "grade": 3
+        },
+        {
+          "name": "선서현",
+          "staff_id": 2,
+          "grade": 2
+        },
+        {
+          "name": "유예솜",
+          "staff_id": 8,
+          "grade": 3
+        }
+      ]
+    },
+    {
+      "date": "2025-08-30",
+      "shift": "O",
+      "hours": 0,
+      "people": [
+        {
+          "name": "김대업",
+          "staff_id": 10,
+          "grade": 5
+        },
+        {
+          "name": "김유범",
+          "staff_id": 4,
+          "grade": 4
+        },
+        {
+          "name": "박주영",
+          "staff_id": 9,
+          "grade": 4
+        },
+        {
+          "name": "하진영",
+          "staff_id": 7,
+          "grade": 2
+        }
+      ]
+    },
+    {
+      "date": "2025-08-31",
+      "shift": "D",
+      "hours": 8,
+      "people": [
+        {
+          "name": "김대업",
+          "staff_id": 10,
+          "grade": 5
+        }
+      ]
+    },
+    {
+      "date": "2025-08-31",
+      "shift": "E",
+      "hours": 8,
+      "people": [
+        {
+          "name": "오장관",
+          "staff_id": 5,
+          "grade": 5
+        }
+      ]
+    },
+    {
+      "date": "2025-08-31",
+      "shift": "N",
+      "hours": 8,
+      "people": [
+        {
+          "name": "박경태",
+          "staff_id": 3,
+          "grade": 3
+        },
+        {
+          "name": "이보은",
+          "staff_id": 6,
+          "grade": 1
+        }
+      ]
+    },
+    {
+      "date": "2025-08-31",
+      "shift": "O",
+      "hours": 0,
+      "people": [
+        {
+          "name": "김유범",
+          "staff_id": 4,
+          "grade": 4
+        },
+        {
+          "name": "박주영",
+          "staff_id": 9,
+          "grade": 4
+        },
+        {
+          "name": "선서현",
+          "staff_id": 2,
+          "grade": 2
+        },
+        {
+          "name": "유예솜",
+          "staff_id": 8,
+          "grade": 3
+        },
+        {
+          "name": "유희라",
+          "staff_id": 1,
+          "grade": 1
+        },
+        {
+          "name": "하진영",
+          "staff_id": 7,
+          "grade": 2
+        }
+      ]
+    }
+  ],
+  "staff_count": 10,
+  "position": "간호",
+  "target_month": "2025-08"
+}
