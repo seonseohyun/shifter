@@ -15,6 +15,8 @@ using static OpenCvSharp.Stitcher;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Shifter.Models {
+
+    /*** Class ScdModel ***/
     public partial class ScdModel {
 
         /* Constructor*/
@@ -29,6 +31,8 @@ namespace Shifter.Models {
         readonly SocketManager? _socket;
         readonly ObservableCollection<ShiftItem>? _shifts = [];
         readonly ObservableCollection<TodaysDutyInfo>? _todaysDuty = [];
+        public IReadOnlyList<string> LastShiftCodes { get; private set; } = Array.Empty<string>();
+        public IReadOnlyDictionary<string, int> LastShiftHours { get; private set; } = new Dictionary<string, int>();
 
 
         /** Member Method **/
@@ -218,9 +222,11 @@ namespace Shifter.Models {
                 // 성공적으로 테이블 생성됨
                 Console.WriteLine("TimeTable generated successfully for {0}-{1}.", year, month);
 
-                var result = new ObservableCollection<StaffSchedule>();
-                var byId = new Dictionary<int, StaffSchedule>();
-                int daysInMonth = DateTime.DaysInMonth(year!.Value, month!.Value);
+                var result = new ObservableCollection<StaffSchedule>();                 // 결과를 담을 ObservableCollection
+                var byId = new Dictionary<int, StaffSchedule>();                        // 직원 ID → StaffSchedule 매핑
+                int daysInMonth = DateTime.DaysInMonth(year!.Value, month!.Value);      // 해당 월의 일수
+                var codes = new HashSet<string>(StringComparer.Ordinal);                // 중복 방지용
+                var codeHours = new Dictionary<string, int>(StringComparer.Ordinal);    // Shift 코드별 근무 시간
 
                 JToken dataTok = recvJson["data"]!;
                 var items = dataTok is JArray arr ? arr
@@ -230,7 +236,12 @@ namespace Shifter.Models {
                 foreach (var item in items) {
                     var dateStr = (string)item["date"]!;
                     var shift = (string)item["shift"]!;
+                    var hours = (int)item["hours"]!;
                     int day = DateTime.Parse(dateStr).Day;
+
+                    // shift 정의 수집
+                    codes.Add(shift);
+                    if (!codeHours.ContainsKey(shift)) codeHours[shift] = hours;
 
                     foreach (var p in (JArray)item["people"]!) {
                         int staffId = (int)p["staff_id"]!;
@@ -246,11 +257,96 @@ namespace Shifter.Models {
                         staff.DailyShifts[day - 1].ShiftCode = shift; // "D/E/N/O"
                     }
                 }
+                LastShiftCodes = codes.OrderBy(c => c).ToArray();
+                LastShiftHours = new Dictionary<string, int>(codeHours, StringComparer.Ordinal);
                 return result;
             }
             else {
                 // 실패 처리
                 Console.WriteLine("Failed to generate TimeTable: {0}", recvJson["message"]!.ToString());
+                return [];
+            }
+        }
+
+
+        /* Protocol - ask_timetable_admin */
+        public async Task<ObservableCollection<StaffSchedule>> AskTimeTableAdminAsync(int year, int month) {
+            Console.WriteLine("[ScdModel] Executed AskTimeTableAdminAsync()");
+
+            /* [1] new json */
+            JObject sendJson = new JObject {
+                { "protocol", "ask_timetable_admin" },
+                { "data", new JObject {
+                    { "req_year", year.ToString() },
+                    { "req_month", month.ToString() },
+                    { "team_uid", _session!.GetCurrentTeamId() }
+                }}
+            };
+
+            /* [2] Put json in WorkItem */
+            WorkItem sendItem = new WorkItem
+            {
+                json = JsonConvert.SerializeObject(sendJson),
+                payload = [],
+                path = ""
+            };
+
+            /* [3] Send the created WorkItem */
+            await _socket!.SendAsync(sendItem);
+
+            /* [4] Create WorkItem response & receive data from the socket. */
+            WorkItem recvItem = await _socket.ReceiveAsync();
+            JObject recvJson = JObject.Parse(recvItem.json);
+            byte[] payload = recvItem.payload;
+            string path = recvItem.path;
+
+            /* [5] Parse the data. */
+            string protocol = recvJson["protocol"]!.ToString();
+            string resp = recvJson["resp"]!.ToString();
+
+            if (protocol == "ask_timetable_admin" && resp == "success") {
+                var result = new ObservableCollection<StaffSchedule>();
+                var byId = new Dictionary<int, StaffSchedule>();
+                int daysInMonth = DateTime.DaysInMonth(year, month);
+
+                var codes = new HashSet<string>(StringComparer.Ordinal);
+                var codeHours = new Dictionary<string, int>(StringComparer.Ordinal);
+
+                JToken dataTok = recvJson["data"]!;
+                var items = dataTok is JArray arr ? arr
+                          : dataTok["schedules"] is JArray arr2 ? arr2
+                          : new JArray();
+
+                foreach (var item in items) {
+                    var dateStr = (string)item["date"]!;
+                    var shift = (string)item["shift"]!;
+                    var hours = (int)item["hours"]!;
+                    int day = DateTime.Parse(dateStr).Day;
+
+                    codes.Add(shift);
+                    if (!codeHours.ContainsKey(shift)) codeHours[shift] = hours;
+
+                    foreach (var p in (JArray)item["people"]!) {
+                        int staffId = (int)p["staff_id"]!;
+                        string name = (string)p["name"]!;
+                        if (!byId.TryGetValue(staffId, out var staff)) {
+                            staff = new StaffSchedule { StaffId = staffId, Name = name };
+                            for (int d = 1; d <= daysInMonth; d++)
+                                staff.DailyShifts.Add(new ScheduleCell { Day = d /*, Owner = staff*/ });
+                            byId[staffId] = staff;
+                            result.Add(staff);
+                        }
+                        staff.DailyShifts[day - 1].ShiftCode = shift; // D/E/N/O
+                    }
+                }
+
+                LastShiftCodes = codes.OrderBy(c => c).ToArray();
+                LastShiftHours = new Dictionary<string, int>(codeHours, StringComparer.Ordinal);
+                return result;
+            }
+            else {
+                // 실패 처리
+                Console.WriteLine("Failed to request TimeTable: {0}", recvJson["message"]!.ToString());
                 return [];
             }
         }
@@ -363,56 +459,16 @@ namespace Shifter.Models {
             }
         }
 
-        public async Task AskTimeTableAdminAsync(int year, int month) {
-            Console.WriteLine("[ScdModel] Executed AskTimeTableAdminAsync()");
-
-            /* [1] new json */
-            JObject sendJson = new JObject {
-                { "protocol", "ask_timetable_admin" },
-                { "data", new JObject {
-                    { "req_year", year.ToString() },
-                    { "req_month", month.ToString() },
-                    { "team_uid", _session!.GetCurrentTeamId() }
-                }}
-            };
-
-            /* [2] Put json in WorkItem */
-            WorkItem sendItem = new WorkItem
-            {
-                json = JsonConvert.SerializeObject(sendJson),
-                payload = [],
-                path = ""
-            };
-
-            /* [3] Send the created WorkItem */
-            await _socket!.SendAsync(sendItem);
-
-            /* [4] Create WorkItem response & receive data from the socket. */
-            WorkItem recvItem = await _socket.ReceiveAsync();
-            JObject recvJson = JObject.Parse(recvItem.json);
-            byte[] payload = recvItem.payload;
-            string path = recvItem.path;
-
-            /* [5] Parse the data. */
-            string protocol = recvJson["protocol"]!.ToString();
-            string resp = recvJson["resp"]!.ToString();
-
-            if (protocol == "ask_timetable_admin" && resp == "success") {
-
-            }
-            else {
-                // 실패 처리
-                Console.WriteLine("Failed to request TimeTable: {0}", recvJson["message"]!.ToString());
-            }
-        }
-    }
+       }
 
 
-    /*** Today's Duty Info ***/
+
+    /*** Class Today's Duty Info ***/
     public partial class TodaysDutyInfo : ObservableObject {
         [ObservableProperty] private string? shift;          // 근무조
         [ObservableProperty] private string[]? staffName;     // 직원명
     }
+
 
 
     /*** Class Staff Schedule ***/
@@ -430,15 +486,15 @@ namespace Shifter.Models {
             };
         }
 
-        /* Member Variables */
+        /** Member Variables **/
         public string Name { get; set; } = string.Empty;
         public ObservableCollection<ScheduleCell> DailyShifts { get; set; } = new();
-        // 동적 통계용 딕셔너리
         public ObservableCollection<KeyValuePair<string, int>> ShiftCodeCounts { get; set; } = new();
         public event EventHandler? ShiftChanged;
         public Action? UpdateDailyStatsCallback { get; set; }
 
 
+        /** Member Methods **/
         private void OnCellShiftChanged(object? sender, EventArgs e) {
             UpdateShiftCounts();
             OnPropertyChanged(nameof(TotalWorkingHours));
@@ -473,7 +529,21 @@ namespace Shifter.Models {
             DailyShifts.Count(c => string.IsNullOrWhiteSpace(c.ShiftCode));
 
         public int StaffId { get; internal set; }
+
+        /* Force Recalc - Renew Cells */
+        public void ForceRecalc() {
+            // 모든 셀 이벤트 보장(교체/초기 로드 대비)
+            foreach (var c in DailyShifts) {
+                c.ShiftCodeChanged -= OnCellShiftChanged;
+                c.ShiftCodeChanged += OnCellShiftChanged;
+            }
+
+            UpdateShiftCounts();
+            OnPropertyChanged(nameof(TotalWorkingHours));
+            OnPropertyChanged(nameof(TotalEmptyDays));
+        }
     }
+
 
 
     /*** Class Schedule Cell ***/
@@ -494,11 +564,13 @@ namespace Shifter.Models {
     }
 
 
+
     /*** Class ShiftHeader ***/
     public class ShiftHeader {
         public string DisplayName { get; set; } = "";   // 예: "Total D"
         public string ShiftCode { get; set; } = "";     // 예: "D"
     }
+
 
 
     /*** Class Daily Shift Status ***/

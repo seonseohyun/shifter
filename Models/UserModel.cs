@@ -25,6 +25,8 @@ namespace Shifter.Models {
         private int AdminUid    { get; set; }
         private int TeamUid     { get; set; }
         private string TeamName { get; set; }
+        private string AdminName { get; set; }
+        private string CompanyName { get; set; } = "Shifter Inc."; // Default Company Name
 
 
         /** Member Methods **/
@@ -64,6 +66,8 @@ namespace Shifter.Models {
                 if ( data["team_uid"] is not null ) {
                     TeamUid  = data["team_uid"]!.ToObject<int>();
                     TeamName = data["team_name"]!.ToString();
+                    AdminName = data["admin_name"]!.ToString();
+                    CompanyName = data["company_name"]!.ToString();
                 }
                 else if (data["team_uid"] is null ) {
                     TeamUid  = 0;
@@ -74,6 +78,8 @@ namespace Shifter.Models {
                 _session.SetCurrentAdminId(AdminUid);
                 _session.SetCurrentTeamId(TeamUid);
                 _session.SetCurrentTeamName(TeamName);
+                _session.SetCurrentCompanyName(CompanyName);
+                _session.SetCurrentAdminName(AdminName);
                 return true;
             }
 

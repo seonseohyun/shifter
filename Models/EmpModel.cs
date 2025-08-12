@@ -287,6 +287,71 @@ namespace Shifter.Models {
                 return [];
             }
         }
+
+
+        /* Protocol - ReqStaffList */
+        public async Task<ObservableCollection<Employee>> ReqStaffListAsync() {
+            Console.WriteLine("[EmpModel] ReqStaffListAsync Executed");
+
+            /* [0] new json */
+            var sendJson = new
+            {
+                protocol = "req_staff_list",
+                data = new
+                {
+                    team_uid = _session.GetCurrentTeamId()
+                }
+            };
+
+            /* [1] put json in WorkItem */
+            WorkItem sendItem = new WorkItem
+            {
+                json = JObject.FromObject(sendJson).ToString(),
+                payload = [],
+                path = ""
+            };
+
+            /* [2] send the created WorkItem */
+            await _socket.SendAsync(sendItem);
+
+            /* [3] create WorkItem response & receive data from the socket. */
+            WorkItem recvItem = await _socket.ReceiveAsync();
+            JObject recvJson = JObject.Parse(recvItem.json);
+
+            /* [4] parse the data. */
+            string protocol = recvJson["protocol"]!.ToString();
+            string resp = recvJson["resp"]!.ToString();
+
+            if (protocol == "req_staff_list" && resp == "success") {
+                // Handle success case
+                Console.WriteLine("[EmpModel] Staff list received successfully.");
+
+                ObservableCollection<Employee> staffList = [];
+
+                JArray staffArray = (JArray)recvJson["data"]!["staff_list"]!;
+                foreach (var staff in staffArray) {
+                    Employee emp = new Employee
+                    {
+                        GradeItem  = new GradeItem
+                        {
+                            GradeNum  = (int)staff["grade_level"]!,
+                            GradeName = (string)staff["grade_name"]!
+                        },
+                        EmpId     = (string)staff["staff_uid"]!,
+                        EmpName    = (string)staff["staff_name"]!,
+                        PhoneNum   = (string)staff["phone_num"]!,
+                        TotalHours = (int)staff["total_hours"]!
+                    };
+                    staffList.Add(emp);
+                }
+
+                return staffList;
+            }
+            else {
+                Console.WriteLine("[EmpModel] Failed to receive staff list.");
+                return [];
+            }
+        }
     }
 
 
@@ -300,6 +365,7 @@ namespace Shifter.Models {
 
     public partial class Employee : ObservableObject {
         [ObservableProperty] private GradeItem? gradeItem;     // grade_level, grade_name
+        [ObservableProperty] private string?    empId;        // staff_id
         [ObservableProperty] private string?    empName;       // staff_name
         [ObservableProperty] private string?    phoneNum;      // phone_num
         [ObservableProperty] private int?       totalHours;    // total_hours
