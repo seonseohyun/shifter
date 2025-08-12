@@ -163,19 +163,7 @@
                         </ItemsControl>
                     </StackPanel>
 
-                    <!-- ====== 수정하기 버튼 ====== -->
-                    <Border Grid.Row="3" Background="#007AFF" CornerRadius="24" Margin="0,8,0,8"
-                    Visibility="{Binding IsOwner, Converter={StaticResource BoolToVisibilityConverter}}">
-                        <Button Content="수정하기"
-                        Style="{StaticResource RoundedBlueButtonStyle}"
-              Background="Transparent"
-              Foreground="White"
-              FontSize="16"
-              FontWeight="Bold"
-              Padding="10"
-              BorderThickness="0"
-              Command="{Binding EditCommand}"/>
-                    </Border>
+
                 </Grid>
             </Border>
 
