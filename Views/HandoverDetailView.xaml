@@ -132,7 +132,7 @@
                     <Border Grid.Row="1" VerticalAlignment="Top" Height="1" Background="#E6E6E6" Margin="0,360,0,0"/>
 
                     <!-- ====== 첨부 자료 ====== -->
-                    <StackPanel Grid.Row="2" Margin="0,8,0,8">
+                    <StackPanel Grid.Row="2" Margin="0,-25,0,8">
                         <TextBlock Text="첨부 자료" FontWeight="Bold" FontSize="15" Margin="0,0,0,8"/>
                         <ItemsControl ItemsSource="{Binding SelectedHandoverDetail.Attachments}">
                             <ItemsControl.ItemTemplate>

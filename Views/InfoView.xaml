@@ -67,11 +67,11 @@
                             <!-- 카드1 -->
                             <Border BorderBrush="#DDDDDD" BorderThickness="1" CornerRadius="10" Padding="10" Margin="0,0,0,10">
                                 <StackPanel Orientation="Horizontal">
-                                    <Image Source="/Resources/images/qr_icon.png" Width="40" Height="40" Margin="0,0,10,0"/>
+                                    <Image Source="/Resources/images/qr_icon.png" Width="30" Height="30" Margin="0,0,10,0"/>
                                     <StackPanel Width="300">
-                                        <TextBlock Text="출퇴근 QR 기록" FontWeight="Bold" FontSize="14"/>
+                                        <TextBlock Text="출퇴근 QR 기록" FontWeight="Bold" FontSize="12"/>
                                         <TextBlock Text="QR코드로 간편하게 출근/퇴근을 기록하고 확인할 수 있어요." 
-                                TextWrapping="Wrap" FontSize="11.8"/>
+                                TextWrapping="Wrap" FontSize="9"/>
                                     </StackPanel>
                                 </StackPanel>
                             </Border>
@@ -81,9 +81,9 @@
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="/Resources/images/calender.png" Width="40" Height="40" Margin="0,0,10,0"/>
                                     <StackPanel Width="300">
-                                        <TextBlock Text="내 근무표 보기" FontWeight="Bold" FontSize="14"/>
+                                        <TextBlock Text="내 근무표 보기" FontWeight="Bold" FontSize="13"/>
                                         <TextBlock Text="이번 주부터 한 달까지 근무 스케줄을 직관적으로 확인해요." 
-                                TextWrapping="Wrap" FontSize="12"/>
+                                TextWrapping="Wrap" FontSize="9"/>
                                     </StackPanel>
                                 </StackPanel>
                             </Border>
@@ -93,9 +93,9 @@
                                 <StackPanel Orientation="Horizontal" >
                                     <Image Source="/Resources/images/clock.png" Width="40" Height="40" Margin="0,0,10,0"/>
                                     <StackPanel>
-                                        <TextBlock Text="공지사항/인수인계 공유" FontWeight="Bold" FontSize="14"/>
+                                        <TextBlock Text="공지사항/인수인계 공유" FontWeight="Bold" FontSize="12"/>
                                         <TextBlock Text="중요한 내용을 팀원과 빠르게 공유하고 자동 저장돼요." 
-                                TextWrapping="Wrap" FontSize="12"/>
+                                TextWrapping="Wrap" FontSize="9"/>
                                     </StackPanel>
                                 </StackPanel>
                             </Border>
@@ -105,9 +105,9 @@
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="/Resources/images/bell.png" Width="40" Height="40" Margin="0,0,10,0"/>
                                     <StackPanel Width="300">
-                                        <TextBlock Text="근무 요청/승인 시스템" FontWeight="Bold" FontSize="14"/>
-                                        <TextBlock Text="휴가/교대 요청을 간편하게 보내고 승인 현황도 실시간으로  확인해요." 
-                                TextWrapping="Wrap" FontSize="12"/>
+                                        <TextBlock Text="근무 요청/승인 시스템" FontWeight="Bold" FontSize="12"/>
+                                        <TextBlock Text="간편하게 보내고 승인 현황도 실시간으로 확인해요." 
+                                TextWrapping="Wrap" FontSize="9"/>
                                     </StackPanel>
                                 </StackPanel>
                             </Border>
@@ -117,13 +117,13 @@
                                 <TextBlock Text="왜 하루고리가 필요한가요?" 
                         FontSize="18" FontWeight="SemiBold" Margin="0,0,0,10"/>
                                 <TextBlock Text="✅ 교대 근무표, 계속 메모하거나 단톡방 찾아보시나요?"
-                        FontSize="13" Margin="0,0,0,5"/>
+                        FontSize="11" Margin="0,0,0,5"/>
                                 <TextBlock Text="✅ 출퇴근 누락돼서 확인 요청 오면 당황스럽지 않으셨나요?"
-                        FontSize="13" Margin="0,0,0,5"/>
+                        FontSize="11" Margin="0,0,0,5"/>
                                 <TextBlock Text="✅ 매번 다른 인수인계 방식, 불편하지 않으셨나요?"
-                        FontSize="13" Margin="0,0,0,10"/>
+                        FontSize="11" Margin="0,0,0,10"/>
                                 <TextBlock Text="👉 하루고리는 이 모든 불편을 하나로 해결합니다."
-                        FontSize="14" FontWeight="Bold" Foreground="#007AFF"/>
+                        FontSize="11" FontWeight="Bold" Foreground="#007AFF"/>
                             </StackPanel>
                         </StackPanel>
                     </ScrollViewer>

@@ -28,6 +28,7 @@ namespace ShifterUser.Models
             _session = session;
         }
 
+
         // 로그인
         public bool LogIn(string id, string password)
         {

@@ -11,7 +11,8 @@
       UseLayoutRounding="True"
       FontFamily="Noto Sans KR"
       TextOptions.TextRenderingMode="ClearType"
-      TextOptions.TextFormattingMode="Display">
+      TextOptions.TextFormattingMode="Display"
+      Loaded="Page_Loaded">
 
     <Page.Resources>
         <DropShadowEffect x:Key="ShadowEffect"
@@ -19,6 +20,8 @@
                           ShadowDepth="10"
                           BlurRadius="6"
                           Opacity="0.2"/>
+        
+        
 
         <!-- === 근무표 색상 팔레트 === -->
         <SolidColorBrush x:Key="ShiftDayBrush"   Color="#FFB300"/>
@@ -29,6 +32,12 @@
         <!-- Night: 남색 -->
         <SolidColorBrush x:Key="ShiftOffBrush"   Color="#757575"/>
         <!-- Off / '-' : 회색 -->
+
+        <!-- 출퇴근 점 색상 컨버터 -->
+        <conv:AttendanceDotToBrushConverter x:Key="DotToBrush"
+                                        GrayColor="#BDBDBD"
+                                        GreenColor="#00C853"
+                                        BlueColor="#2979FF"/>
 
         <!-- === 근무 코드 → 색상 변환 컨버터 === -->
         <conv:ShiftToBrushConverter x:Key="ShiftToBrushConverter"
@@ -76,11 +85,9 @@
                                        FontSize="16" 
                                        FontWeight="Bold" 
                                        VerticalAlignment="Center"/>
+                                    <Ellipse Width="10" Height="10" Margin="6,3,0,0" VerticalAlignment="Center"
+                                         Fill="{Binding AttendanceColor}"/>
 
-                                     <Ellipse Width="10" Height="10" 
-                                     Margin="6,3,0,0"
-                                     Fill="{Binding AttendanceColor}" 
-                                     VerticalAlignment="Center"/>
                                 </StackPanel>
 
                             </StackPanel>

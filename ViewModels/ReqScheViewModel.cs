@@ -55,24 +55,36 @@ namespace ShifterUser.ViewModels
 
         public ReqScheViewModel(WorkRequestManager workRequestManager)
         {
-            // 다음 달 계산
-            DateTime now = DateTime.Now;
-            int nextMonth = now.Month == 12 ? 1 : now.Month + 1;
-            int nextYear = now.Month == 12 ? now.Year + 1 : now.Year;
-
-            int daysInNextMonth = DateTime.DaysInMonth(nextYear, nextMonth);
-            for (int day = 1; day <= daysInNextMonth; day++)
-            {
-                AvailableDates.Add(new DateTime(nextYear, nextMonth, day));
-            }
-
-            // 기본 선택 날짜: 다음 달 1일
-            SelectedDate = new DateTime(nextYear, nextMonth, 1);
-
-            // 제목 설정
-            RequestTitle = $"{nextMonth:00}월 근무 희망 일정 요청";
             _workRequestManager = workRequestManager;
+
+            // 시작: 내일(오늘 + 1일)
+            DateTime start = DateTime.Today.AddDays(1);
+
+            // 끝: 다음 달 마지막 날
+            int nextMonth = (start.Month == 12) ? 1 : start.Month + 1;
+            int nextYear = (start.Month == 12) ? start.Year + 1 : start.Year;
+            DateTime end = new DateTime(
+                nextYear,
+                nextMonth,
+                DateTime.DaysInMonth(nextYear, nextMonth)
+            );
+
+            // 날짜 목록 초기화 후 채우기
+            AvailableDates.Clear();
+            for (DateTime d = start.Date; d <= end; d = d.AddDays(1))
+                AvailableDates.Add(d);
+
+            // 기본 선택 날짜: 내일
+            SelectedDate = start.Date;
+
+            // 제목: 범위 표시(예: "08~09월 근무 희망 일정 요청")
+            string title =
+                (start.Month == end.Month && start.Year == end.Year)
+                ? $"{start:MM}월 근무 희망 일정 요청"
+                : $"{start:MM}~{end:MM}월 근무 희망 일정 요청";
+            RequestTitle = title;
         }
+
 
         [RelayCommand]
         private void RegisterReq()

@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Media;
 
+
 namespace ShifterUser.ViewModels
 {
     public partial class HomeViewModel : ObservableObject
@@ -17,13 +18,26 @@ namespace ShifterUser.ViewModels
         private readonly UserManager _manager;
         public ObservableCollection<string> WeeklyCodes { get; } =
         new ObservableCollection<string>(new[] { "-", "-", "-", "-", "-", "-", "-" });
+        public void Receive(AttendanceChangedMessage m) => RefreshAttendanceFromSession();
+
+        public void RefreshAttendanceFromSession() 
+        {
+            var att = _session.GetAttendance();
+            if (att?.ClockOutTime != null) AttendanceStatus = AttendanceStatus.퇴근완료;
+            else if (att?.ClockInTime != null) AttendanceStatus = AttendanceStatus.출근완료;
+            else AttendanceStatus = AttendanceStatus.출근전;
+        }
+
+
         // 바인딩 속성
         [ObservableProperty] private string todayDate;
         [ObservableProperty] private string teamName;
         [ObservableProperty] private string approvedText;
         [ObservableProperty] private string pendingText;
         [ObservableProperty] private string rejectedText;
-        [ObservableProperty] private AttendanceStatus attendanceStatus = AttendanceStatus.출근전;
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(AttendanceText))]
+        private AttendanceStatus attendanceStatus = AttendanceStatus.출근전;
         [ObservableProperty] private Brush attendanceColor = Brushes.Gray;
 
         public HomeViewModel(UserSession session, UserManager userManager)
@@ -31,6 +45,12 @@ namespace ShifterUser.ViewModels
             _session = session;
             _manager = userManager;
             _ = LoadWeekAsync(DateTime.Today);
+
+            // 생성자 안
+            WeakReferenceMessenger.Default.RegisterAll(this);
+
+            // 최초 진입 시 세션 기준으로 1회 반영
+            RefreshAttendanceFromSession();
 
             // 초기화
             TeamName = _session.GetTeamName();
@@ -51,8 +71,19 @@ namespace ShifterUser.ViewModels
                 else
                     AttendanceStatus = AttendanceStatus.출근전;
             }
-
         }
+
+
+        partial void OnAttendanceStatusChanged(AttendanceStatus oldValue, AttendanceStatus newValue)
+        {
+            AttendanceColor = newValue switch
+            {
+                AttendanceStatus.출근완료 => System.Windows.Media.Brushes.Green,
+                AttendanceStatus.퇴근완료 => System.Windows.Media.Brushes.Blue,
+                _ => System.Windows.Media.Brushes.Gray
+            };
+        }
+
 
         private async Task LoadWeekAsync(DateTime any)
         {
@@ -64,16 +95,6 @@ namespace ShifterUser.ViewModels
                 WeeklyCodes[i] = (codes[i] ?? "-").ToUpperInvariant();
         }
 
-        partial void OnAttendanceStatusChanged(AttendanceStatus value)
-        {
-            AttendanceColor = value switch
-            {
-                AttendanceStatus.출근완료 => Brushes.Green,
-                AttendanceStatus.퇴근완료 => Brushes.Blue,
-                AttendanceStatus.출근전 => Brushes.Gray,
-                _ => Brushes.Transparent
-            };
-        }
 
         public string AttendanceText => AttendanceStatus switch
         {

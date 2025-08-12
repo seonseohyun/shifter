@@ -1,8 +1,10 @@
 ﻿// Services/AttendanceManager.cs
+using CommunityToolkit.Mvvm.Messaging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using ShifterUser.Enums;
 using ShifterUser.Helpers;
+using ShifterUser.Messages;
 using ShifterUser.Models;
 using ShifterUser.ViewModels;
 using System;
@@ -51,15 +53,27 @@ namespace ShifterUser.Services
             string result = respJson["resp"]?.ToString() ?? "";
             int checkInUid = respJson["data"]?["check_in_uid"]?.Value<int>() ?? -1;
 
+            // Services/AttendanceManager.cs
             if (protocol == "ask_check_in" && result == "success")
             {
-                // 상태 반영!
                 _session.SetCheckInUid(checkInUid);
-                // HomeViewModel 상태 갱신
+
+                // 세션 출근 상태 반영
+                var now = DateTime.Now;
+                var att = _session.GetAttendance() ?? new AttendanceModel();
+                att.ClockInTime = att.ClockInTime ?? now;
+                att.ClockInStatus = "출근 완료";
+                _session.SetAttendance(att);
+
+                // (현재 화면의 VM도 갱신 — 같은 인스턴스면 즉시 반영)
                 homeViewModel.AttendanceStatus = AttendanceStatus.출근완료;
+
+                //  메시지 브로드캐스트로 다른 홈 인스턴스도 갱신
+                WeakReferenceMessenger.Default.Send(new AttendanceChangedMessage());
 
                 return true;
             }
+
 
             return false;
         }
@@ -94,12 +108,21 @@ namespace ShifterUser.Services
 
             if (protocol == "ask_check_out" && result == "success")
             {
-                //  상태 반영
-                homeVM.UpdateAttendanceStatusFromMessage(message);
-                // HomeViewModel 상태 갱신
+                // 🔹 세션 퇴근 상태 반영
+                var att = _session.GetAttendance() ?? new AttendanceModel();
+                att.ClockOutTime = att.ClockOutTime ?? DateTime.Now;
+                att.ClockOutStatus = "퇴근 완료";
+                _session.SetAttendance(att);
+
+                // 현재 VM도 갱신
                 homeVM.AttendanceStatus = AttendanceStatus.퇴근완료;
+
+                // (선택) 브로드캐스트
+                WeakReferenceMessenger.Default.Send(new AttendanceChangedMessage());
+
                 return true;
             }
+
             else
             {
                 return false;

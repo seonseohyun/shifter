@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShifterUser.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,12 @@ namespace ShifterUser.Views
         public HomeView()
         {
             InitializeComponent();
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (DataContext is HomeViewModel vm)
+                vm.RefreshAttendanceFromSession();
         }
     }
 }

@@ -34,31 +34,38 @@ namespace ShifterUser.ViewModels
         }
 
         [RelayCommand]
-        private void CheckIn()
-        {   
-            // 출근 요청
+        private async Task CheckIn()
+        {
             bool result = _manager.AskCheckIn(_homeViewModel);
-            
             if (result)
             {
-                MessageBox.Show($"출근 완료! {DateTime.Now:HH:mm}", "알림", MessageBoxButton.OK, MessageBoxImage.Information);
-                WeakReferenceMessenger.Default.Send((new PageChangeMessage(PageType.Home)));
+                var model = await _manager.GetByDateAsync(DateTime.Today);
+                _homeViewModel.RefreshAttendanceFromSession();
+                WeakReferenceMessenger.Default.Send(new AttendanceChangedMessage()); // ← 인자 제거
+
+                MessageBox.Show($"출근 완료! {DateTime.Now:HH:mm}", "알림",
+                                MessageBoxButton.OK, MessageBoxImage.Information);
+                WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.Home));
             }
             else
             {
-                MessageBox.Show("출근 요청 실패했습니다.\n다시 시도해 주세요.", "오류", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("출근 요청 실패했습니다.\n다시 시도해 주세요.", "오류",
+                                MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         [RelayCommand]
-        private void CheckOut()
+        private async Task CheckOut()
         {
-            // 퇴근 요청
-            bool result = _manager.AskCheckOut(_homeViewModel); 
-
+            bool result = _manager.AskCheckOut(_homeViewModel);
             if (result)
             {
-                MessageBox.Show($"퇴근 완료! {DateTime.Now:HH:mm}", "알림", MessageBoxButton.OK, MessageBoxImage.Information);
+                var model = await _manager.GetByDateAsync(DateTime.Today);
+                _homeViewModel.RefreshAttendanceFromSession();
+                WeakReferenceMessenger.Default.Send(new AttendanceChangedMessage()); // ← 인자 제거
+
+                MessageBox.Show($"퇴근 완료! {DateTime.Now:HH:mm}", "알림",
+                                MessageBoxButton.OK, MessageBoxImage.Information);
                 WeakReferenceMessenger.Default.Send(new PageChangeMessage(PageType.Home));
             }
             else
@@ -70,16 +77,3 @@ namespace ShifterUser.ViewModels
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

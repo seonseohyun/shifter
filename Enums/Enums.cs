@@ -64,5 +64,13 @@ namespace ShifterUser.Enums
         };
     }
 
+    public enum AttendanceDot
+    {
+        Gray,
+        Green,
+        Blue
+    }
+
+
 }
 
