@@ -8,3 +8,8 @@ openai 에 현재 실제 근무인원과 제약을 던지고
 근무표 데이터를 json으로 받아서 그대로 cpp 서버로 기존 프로토콜 지켜서 던지는 방식이며
 생성시도 하였으나 해가 없음이 나올시에는 openai가 대안의 근무표를 생성해준다.
 이 버전을 server_ai_gen.py로 생성 
+
+
+
+그럼 server_ai_gen.py와 shift_server_optimized.py 서버 각각의 함수와클래스별 역할에 대해 상세히 기술하는
+기술명세서 작성해줘 
