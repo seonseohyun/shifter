@@ -131,12 +131,12 @@ class PositionRules:
 POSITION_RULES = {
     "간호": PositionRules(
         newbie_no_night=True, 
-        night_after_off=True, 
+        night_after_off=False, 
         max_monthly_hours=209, 
         newbie_grade=5,
         min_off_days=3,  # 최소 휴무일
-        max_off_days=10,  # 최대 휴무일 - 대규모 시스템 형평성 강화
-        min_work_days=21,  # 최소 근무일 (형평성 강화)
+        max_off_days=11,  # 최대 휴무일 - 대규모 시스템 형평성 강화
+        min_work_days=20,  # 최소 근무일 (형평성 강화)
         default_shifts=['Day', 'Evening', 'Night', 'Off'], 
         default_shift_hours={'Day': 8, 'Evening': 8, 'Night': 8, 'Off': 0}, 
         default_night_shifts=['Night'], 
@@ -396,6 +396,7 @@ class ShiftScheduler:
             if work_hours:
                 monthly_limit = min(staff_member.total_hours, self.position_rules.max_monthly_hours)
                 self.model.Add(sum(work_hours) <= monthly_limit)
+                
             
             # 형평성 제약조건 추가
             if self.shift_rules.off_shifts:
@@ -418,10 +419,12 @@ class ShiftScheduler:
                         staff_count = len(self.staff)
                         if staff_count >= 15:
                             # 대규모 시스템: 더 엄격한 제약 (최대 8일)
+                            
                             dynamic_max_off = min(self.position_rules.max_off_days, max(6, self.num_days // 4))
                         elif staff_count >= 10:
                             # 중규모 시스템: 보통 제약 (최대 9일)
-                            dynamic_max_off = min(self.position_rules.max_off_days, max(7, self.num_days * 3 // 10))
+                            #dynamic_max_off = min(self.position_rules.max_off_days, max(7, self.num_days * 3 // 10))
+                            dynamic_max_off = min(self.position_rules.max_off_days, max(8, self.num_days * 4 // 10))
                         else:
                             # 소규모 시스템: 기본 제약
                             dynamic_max_off = self.position_rules.max_off_days

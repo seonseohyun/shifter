@@ -1,9 +1,0 @@
-{
-  "timestamp": "2025-08-11T08:37:33.873621",
-  "request_type": "handover",
-  "status": "success",
-  "task": "summarize_handover",
-  "result": "- 환자 정보: 301호 김할머니, 75세, 당뇨병성 신증\n- 혈당 상태: 아침 공복혈당 180mg/dl, 혈당 조절 불안정\n- 치료: 인슐린 주사 하루 3회, 식사 조절 중\n- 추가 관리: 탈수 위험으로 수액 주입, 혈압 불안정\n- 모니터링: 활력징후 매 4시간 체크\n- 추가 필요 사항: 가족 면회 시 교육 필요",
-  "input_text_length": 279,
-  "processing_time_seconds": 3.970751
-}

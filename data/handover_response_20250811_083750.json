@@ -1,9 +1,0 @@
-{
-  "timestamp": "2025-08-11T08:37:50.433737",
-  "request_type": "handover",
-  "status": "success",
-  "task": "summarize_handover",
-  "result": "- 환자: 105호, 52세, 복강경 담낭절제술 후\n- 상태: 수술 성공, 의식 명료, 통증 호소 (PCA 연결)\n- 관리: 배액관 2개, 하루 배액량 체크 필요\n- 식사: 금식 중, 내일 가스배출 후 식사 시작 예정\n- 약물: Cefazolin 8시간마다 투여\n- 활력징후: 안정적",
-  "input_text_length": 311,
-  "processing_time_seconds": 2.705405
-}

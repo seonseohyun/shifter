@@ -297,7 +297,10 @@ class HandoverSummary:
 
 중요한 일정, 변경사항, 위험요소는 우선순위로 정리하고,
 
-불필요한 말은 생략하고 실무에 바로 도움이 되도록 써줘."""
+불필요한 말은 생략하고 실무에 바로 도움이 되도록 써줘.
+
+**기호는 입력 하지 말아줘
+"""
             
             response = self.client.chat.completions.create(
                 model="gpt-3.5-turbo",
