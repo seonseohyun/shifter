@@ -25,11 +25,19 @@ namespace Shifter.ViewModels {
             TeamName     = "Team Name";
             AdminName    = "Admin Name";
 
+            if( _session is not null ) {
+                CompanyName = _session!.GetCurrentCompanyName();
+                TeamName = _session!.GetCurrentTeamName();
+                AdminName = _session!.GetCurrentAdminName();
+            }
+
             /* Init Time */
             CurrentYear  = (int) DateTime.Now.Year;
             CurrentMonth = (int) DateTime.Now.Month;
 
-            YearMonth = CurrentYear.ToString() + "년 " + CurrentMonth.ToString() + "월";
+            string? StrCurrentMonth = CurrentMonth < 10 ? "0" + CurrentMonth.ToString() : CurrentMonth.ToString();
+
+            YearMonth = CurrentYear.ToString() + StrCurrentMonth;
 
             /* Get Admin Time Table */
             _ = LoadAsync(CurrentYear!.Value, CurrentMonth!.Value);

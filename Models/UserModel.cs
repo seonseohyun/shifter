@@ -64,10 +64,33 @@ namespace Shifter.Models {
 
                 AdminUid = data["admin_uid"]!.ToObject<int>();
                 if ( data["team_uid"] is not null ) {
-                    TeamUid  = data["team_uid"]!.ToObject<int>();
-                    TeamName = data["team_name"]!.ToString();
-                    AdminName = data["admin_name"]!.ToString();
-                    CompanyName = data["company_name"]!.ToString();
+                    if( data["team_uid"] is null ) {
+                        TeamUid  = 0;
+                    } else {
+                        TeamUid = data["team_uid"]!.ToObject<int>();
+                    }
+
+                    if ( data["team_name"] is null ) {
+                        TeamName = "no team"; // Default Team Name
+                    } else {
+                        TeamName = data["team_name"]!.ToString();
+                    }
+
+                    if ( data["admin_name"] is null ) {
+                        AdminName = "no name"; // Default Admin Name
+                    } else {
+                        AdminName = data["admin_name"]!.ToString();
+                    }
+
+                    if ( data["company_name"] is null ) {
+                        CompanyName = "Shifter Inc."; // Default Company Name
+                    } else {
+                        CompanyName = data["company_name"]!.ToString();
+                    }
+                    _session.SetCurrentTeamId(TeamUid);
+                    _session.SetCurrentTeamName(TeamName);
+                    _session.SetCurrentAdminName(AdminName);
+                    _session.SetCurrentCompanyName(CompanyName);
                 }
                 else if (data["team_uid"] is null ) {
                     TeamUid  = 0;

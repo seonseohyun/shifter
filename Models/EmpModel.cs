@@ -31,9 +31,11 @@ namespace Shifter.Models {
         /* Protocol - rgs_team_info */
         public async Task RgsTeamInfoAsync(string company_name, string teamname, string job_cate, ObservableCollection<ShiftItem>? shiftitems) {
 
+            Console.WriteLine("[EmpModel] RgsTeamInfoAsync Executed");
 
             /* [0] new jArray */
-            JArray jArray = new JArray();
+            JArray jArray = [];
+
             for (int i = 0; i < shiftitems!.Count; i++) {
 
                 if (shiftitems[i].StartTime == null || shiftitems[i].EndTime == null) {
@@ -41,12 +43,12 @@ namespace Shifter.Models {
                     continue; // Skip if StartTime or EndTime is null
                 }
 
+                //if ( (int) shiftitems![i].EndTime)
+
                 var startStr = shiftitems![i].StartTime![..2];
                 var endStr = shiftitems![i].EndTime![..2];
 
-                int duty_hour_int = 0;
-
-                duty_hour_int = int.Parse(endStr) - int.Parse(startStr);
+                int duty_hour_int = int.Parse(endStr) - int.Parse(startStr);
 
                 if (duty_hour_int < 0) {
                     duty_hour_int += 24; // 시간 차이가 음수일 경우, 24시간을 더해줌
@@ -70,14 +72,14 @@ namespace Shifter.Models {
                 data = new
                 {
                     company_name = company_name,
-                    team_name = teamname,
+                    team_name    = teamname,
                     job_category = job_cate,
-                    shift_info = jArray
+                    shift_info   = jArray
                 }
             };
 
             /* [2] put json in WorkItem */
-            WorkItem sendItem = new WorkItem
+            WorkItem sendItem = new()
             {
                 json = JObject.FromObject(sendJson).ToString(),
                 payload = [],
@@ -98,6 +100,8 @@ namespace Shifter.Models {
             if (protocol == "rgs_team_info" && resp == "success") {
                 int TeamUid = recvJson["data"]!["team_id"]!.ToObject<int>();
                 _session.SetCurrentTeamId(TeamUid);
+                _session.SetCurrentTeamName(teamname);
+                _session.SetCurrentCompanyName(company_name);
             }
             else {
                 return;

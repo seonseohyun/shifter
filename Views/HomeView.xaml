@@ -83,7 +83,8 @@
                     <ItemsControl ItemsSource="{Binding TodaysDuty}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Border Background="#FFFFFF" CornerRadius="7" Margin="30,6,30,0">
+                                <Border Background="#FFFFFF" CornerRadius="7" Margin="30,6,30,0"
+                                        Height="70">
                                     <Grid Margin="10,8">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="1*"/>
@@ -101,7 +102,8 @@
                                             <TextBlock Text="{Binding Shift}"
                                                        VerticalAlignment="Center"
                                                        FontWeight="SemiBold"
-                                                       HorizontalAlignment="Center"/>
+                                                       HorizontalAlignment="Center"
+                                                       FontSize="17"/>
                                         </Border>
 
                                         <!-- StaffName 배열을 ", "로 합쳐서 표시 -->
@@ -109,6 +111,7 @@
                                                    Margin="12,0,0,0"
                                                    VerticalAlignment="Center"
                                                    FontWeight="Medium"
+                                                   FontSize="15"
                                                    Text="{Binding StaffName,
                                                                   Converter={StaticResource JoinConverter},
                                                                   ConverterParameter=', '}" />
