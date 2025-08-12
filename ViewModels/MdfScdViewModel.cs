@@ -18,8 +18,10 @@ namespace Shifter.ViewModels {
             _session = session;
             _scdModel = scdModel;
 
-            TeamName = _session?.GetCurrentTeamName();
             CompanyName = _session?.GetCurrentCompanyName();
+            TeamName = _session?.GetCurrentTeamName();
+            YearMonth = _session?.GetCurrentYear().ToString() + _session?.GetCurrentMonth().ToString();
+            AdminName = _session?.GetCurrentAdminName();
 
             _ = LoadAsync(_session!.GetCurrentYear(), _session!.GetCurrentMonth()); 
         }
@@ -27,13 +29,17 @@ namespace Shifter.ViewModels {
 
 
         /** Member Variables **/
+        /* Model DI */
         private readonly Session? _session;
         private readonly ScdModel _scdModel;
 
-        [ObservableProperty] private string? teamName;
+        /* Title & Keywords */
         [ObservableProperty] private string? companyName;
+        [ObservableProperty] private string? teamName;
         [ObservableProperty] private string? yearMonth; // "2023-10" 형식
         [ObservableProperty] private string? adminName;
+
+        /* For ScheduleTable */
         public ObservableCollection<int> Days { get; set; } = new();
         [ObservableProperty] private ObservableCollection<StaffSchedule> staffSchedules = new();
         public static List<string> ShiftCodes { get; } = new();
@@ -96,6 +102,8 @@ namespace Shifter.ViewModels {
             OnPropertyChanged(nameof(DailyStatistics));
         }
 
+
+        /* LoadAsync - 서버로부터 날짜, 시간표 불러오기 */
         public async Task LoadAsync(int year, int month) {
             Console.WriteLine("[MdfScdViewModel] Executed LoadAsync(year: {0}, month: {1})", year, month);
 
@@ -107,20 +115,71 @@ namespace Shifter.ViewModels {
             /* [2] Server, Py - Generate TimeTable 설정 */
             var list = await _scdModel.GenTimeTableAsync(year, month);
 
-            await Application.Current.Dispatcher.InvokeAsync(() =>
-            {
-                /* [3] ShiftCodes, ShiftWorkingHoursMap 설정 */
-                StaffSchedules = new ObservableCollection<StaffSchedule>(list);
+            // 2-1) ShiftCodes / Hours 주입
+            ShiftCodes.Clear();
+            foreach (var code in _scdModel.LastShiftCodes)
+                ShiftCodes.Add(code);
 
-                /* ShiftCodes, ShiftWorkingHoursMap 설정 */
-                foreach (var schedule in StaffSchedules) {
-                    schedule.UpdateDailyStatsCallback = UpdateDailyStatistics;
-                    schedule.RebindAndRecalculate();   // ← 핵심
+            ShiftWorkingHoursMap.Clear();
+            foreach (var kv in _scdModel.LastShiftHours)
+                ShiftWorkingHoursMap[kv.Key] = kv.Value;
+
+            // 2-2) 하단 표의 왼쪽 레이블(헤더) 구성
+            ShiftHeaders.Clear();
+            foreach (var code in ShiftCodes) {
+                ShiftHeaders.Add(new ShiftHeader
+                {
+                    ShiftCode = code,
+                    DisplayName = code   // 필요 시 "주간(D)" 등으로 표시명 매핑
+                });
+            }
+            OnPropertyChanged(nameof(ShiftHeaders));
+
+            // 2-3) 직원 스케줄 바인딩
+            StaffSchedules = new ObservableCollection<StaffSchedule>(list);
+
+            // 2-4) 행 강제 재계산 및 하단 집계
+            InitializeStatistics();
+            UpdateDailyStatistics();
+        }
+
+
+        /* Renew Cells */
+        public void InitializeStatistics() {
+            // 1) 각 행 강제 집계(총 근무시간/빈 칸/행별 코드 카운트)
+            foreach (var staff in StaffSchedules) {
+                // 콜백 연결(없으면 생략 가능)
+                if (staff.UpdateDailyStatsCallback == null)
+                    staff.UpdateDailyStatsCallback = UpdateDailyStatistics;
+
+                // 행 상태 강제 갱신 (StaffSchedule 쪽에 메서드 하나 있어야 편함)
+                staff.ForceRecalc();   // 아래 참고
+            }
+
+            // 2) 하단 일별 통계 갱신
+            DailyStatistics.Clear();
+
+            // 31 고정 대신 뷰에 있는 Days 사용 (없으면 DaysInMonth)
+            int dayCount = Days?.Count > 0 ? Days.Count : 31;
+
+            for (int day = 1; day <= dayCount; day++) {
+                var stats = new DailyShiftStats { Day = day };
+
+                // 모든 코드 0으로 초기화
+                foreach (var code in ShiftCodes)
+                    stats.ShiftCounts[code] = 0;
+
+                // 직원별 셀 확인
+                foreach (var staff in StaffSchedules) {
+                    var cell = staff.DailyShifts.FirstOrDefault(c => c.Day == day);
+                    if (cell != null && !string.IsNullOrWhiteSpace(cell.ShiftCode) && stats.ShiftCounts.ContainsKey(cell.ShiftCode))
+                        stats.ShiftCounts[cell.ShiftCode]++;
                 }
 
-                // 집계
-                UpdateDailyStatistics();
-            });
+                DailyStatistics.Add(stats);
+            }
+
+            OnPropertyChanged(nameof(DailyStatistics));
         }
     }
 }

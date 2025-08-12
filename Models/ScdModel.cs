@@ -13,6 +13,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Shifter.Models {
+
+    /*** Class ScdModel ***/
     public partial class ScdModel {
 
         /* Constructor*/
@@ -27,6 +29,8 @@ namespace Shifter.Models {
         readonly SocketManager? _socket;
         readonly ObservableCollection<ShiftItem>? _shifts = [];
         readonly ObservableCollection<TodaysDutyInfo>? _todaysDuty = [];
+        public IReadOnlyList<string> LastShiftCodes { get; private set; } = Array.Empty<string>();
+        public IReadOnlyDictionary<string, int> LastShiftHours { get; private set; } = new Dictionary<string, int>();
 
 
         /** Member Method **/
@@ -82,9 +86,11 @@ namespace Shifter.Models {
                 // 성공적으로 테이블 생성됨
                 Console.WriteLine("TimeTable generated successfully for {0}-{1}.", year, month);
 
-                var result = new ObservableCollection<StaffSchedule>();
-                var byId = new Dictionary<int, StaffSchedule>();
-                int daysInMonth = DateTime.DaysInMonth(year!.Value, month!.Value);
+                var result = new ObservableCollection<StaffSchedule>();                 // 결과를 담을 ObservableCollection
+                var byId = new Dictionary<int, StaffSchedule>();                        // 직원 ID → StaffSchedule 매핑
+                int daysInMonth = DateTime.DaysInMonth(year!.Value, month!.Value);      // 해당 월의 일수
+                var codes = new HashSet<string>(StringComparer.Ordinal);                // 중복 방지용
+                var codeHours = new Dictionary<string, int>(StringComparer.Ordinal);    // Shift 코드별 근무 시간
 
                 JToken dataTok = recvJson["data"]!;
                 var items = dataTok is JArray arr ? arr
@@ -94,7 +100,12 @@ namespace Shifter.Models {
                 foreach (var item in items) {
                     var dateStr = (string)item["date"]!;
                     var shift = (string)item["shift"]!;
+                    var hours = (int)item["hours"]!;
                     int day = DateTime.Parse(dateStr).Day;
+
+                    // shift 정의 수집
+                    codes.Add(shift);
+                    if (!codeHours.ContainsKey(shift)) codeHours[shift] = hours;
 
                     foreach (var p in (JArray)item["people"]!) {
                         int staffId = (int)p["staff_id"]!;
@@ -110,6 +121,8 @@ namespace Shifter.Models {
                         staff.DailyShifts[day - 1].ShiftCode = shift; // "D/E/N/O"
                     }
                 }
+                LastShiftCodes = codes.OrderBy(c => c).ToArray();
+                LastShiftHours = new Dictionary<string, int>(codeHours, StringComparer.Ordinal);
                 return result;
             }
             else {
@@ -156,21 +169,26 @@ namespace Shifter.Models {
             string resp = recvJson["resp"]!.ToString();
 
             if (protocol == "ask_timetable_admin" && resp == "success") {
-
-                // 성공적으로 테이블 요청됨
-                Console.WriteLine("TimeTable requested successfully for {0}-{1}.", year, month);
                 var result = new ObservableCollection<StaffSchedule>();
                 var byId = new Dictionary<int, StaffSchedule>();
                 int daysInMonth = DateTime.DaysInMonth(year, month);
-                
+
+                var codes = new HashSet<string>(StringComparer.Ordinal);
+                var codeHours = new Dictionary<string, int>(StringComparer.Ordinal);
+
                 JToken dataTok = recvJson["data"]!;
                 var items = dataTok is JArray arr ? arr
                           : dataTok["schedules"] is JArray arr2 ? arr2
                           : new JArray();
+
                 foreach (var item in items) {
                     var dateStr = (string)item["date"]!;
-                    var shift   = (string)item["shift"]!;
-                    int day     = DateTime.Parse(dateStr).Day;
+                    var shift = (string)item["shift"]!;
+                    var hours = (int)item["hours"]!;
+                    int day = DateTime.Parse(dateStr).Day;
+
+                    codes.Add(shift);
+                    if (!codeHours.ContainsKey(shift)) codeHours[shift] = hours;
 
                     foreach (var p in (JArray)item["people"]!) {
                         int staffId = (int)p["staff_id"]!;
@@ -178,13 +196,16 @@ namespace Shifter.Models {
                         if (!byId.TryGetValue(staffId, out var staff)) {
                             staff = new StaffSchedule { StaffId = staffId, Name = name };
                             for (int d = 1; d <= daysInMonth; d++)
-                                staff.DailyShifts.Add(new ScheduleCell { Day = d });
+                                staff.DailyShifts.Add(new ScheduleCell { Day = d /*, Owner = staff*/ });
                             byId[staffId] = staff;
                             result.Add(staff);
                         }
-                        staff.DailyShifts[day - 1].ShiftCode = shift; // "D/E/N/O"
+                        staff.DailyShifts[day - 1].ShiftCode = shift; // D/E/N/O
                     }
                 }
+
+                LastShiftCodes = codes.OrderBy(c => c).ToArray();
+                LastShiftHours = new Dictionary<string, int>(codeHours, StringComparer.Ordinal);
                 return result;
             }
             else {
@@ -305,11 +326,13 @@ namespace Shifter.Models {
        }
 
 
-    /*** Today's Duty Info ***/
+
+    /*** Class Today's Duty Info ***/
     public partial class TodaysDutyInfo : ObservableObject {
         [ObservableProperty] private string? shift;          // 근무조
         [ObservableProperty] private string[]? staffName;     // 직원명
     }
+
 
 
     /*** Class Staff Schedule ***/
@@ -371,19 +394,20 @@ namespace Shifter.Models {
 
         public int StaffId { get; internal set; }
 
-        public void RebindAndRecalculate() {
-            // 1) 셀의 ShiftCodeChanged 핸들러 보장
-            foreach (var cell in DailyShifts) {
-                cell.ShiftCodeChanged -= OnCellShiftChanged;
-                cell.ShiftCodeChanged += OnCellShiftChanged;
+        /* Force Recalc - Renew Cells */
+        public void ForceRecalc() {
+            // 모든 셀 이벤트 보장(교체/초기 로드 대비)
+            foreach (var c in DailyShifts) {
+                c.ShiftCodeChanged -= OnCellShiftChanged;
+                c.ShiftCodeChanged += OnCellShiftChanged;
             }
 
-            // 2) 행 집계 강제 계산
             UpdateShiftCounts();
             OnPropertyChanged(nameof(TotalWorkingHours));
             OnPropertyChanged(nameof(TotalEmptyDays));
         }
     }
+
 
 
     /*** Class Schedule Cell ***/
@@ -404,11 +428,13 @@ namespace Shifter.Models {
     }
 
 
+
     /*** Class ShiftHeader ***/
     public class ShiftHeader {
         public string DisplayName { get; set; } = "";   // 예: "Total D"
         public string ShiftCode { get; set; } = "";     // 예: "D"
     }
+
 
 
     /*** Class Daily Shift Status ***/
