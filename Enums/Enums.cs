@@ -24,6 +24,7 @@ namespace ShifterUser.Enums
         HandoverPopup,
         MyInfo,
         Goback,
+        Page
     }
 
     public enum ShiftType { Off, Day, Evening, Night }

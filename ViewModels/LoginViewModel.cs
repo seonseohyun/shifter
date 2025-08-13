@@ -28,10 +28,10 @@ namespace ShifterUser.ViewModels
         [RelayCommand]
         private void LogIn()
         {
-            // 로그인 시 이메일과 비밀번호가 비어있는지 확인
+            // 로그인 시 아이디와 비밀번호가 비어있는지 확인
             if (string.IsNullOrWhiteSpace(Id) || string.IsNullOrWhiteSpace(Password))
             {
-                MessageBox.Show("이메일과 비밀번호를 입력해주세요.", "입력 오류", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(" 비밀번호를 입력해주세요.", "입력 오류", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 

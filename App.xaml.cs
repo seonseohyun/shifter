@@ -64,6 +64,7 @@ namespace ShifterUser
             services.AddTransient<WriteHandoverViewModel>();
             services.AddTransient<HandoverPopupViewModel>();
             services.AddTransient<MyInfoViewModel>();
+            services.AddTransient<PageViewModel>();
         }
     }
 }
