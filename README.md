@@ -133,7 +133,14 @@ shifter/
 │   └── ...
 │
 ├── User_dev/                     # 직원용 WPF 클라이언트
-│   └── ...
+│    ├── Views/ # UI 화면 (XAML)
+├    |── ViewModels/ # 화면별 ViewModel
+├    |── Models/ # 데이터 구조 정의
+├    |── Services/ # 서버 통신, 데이터 관리 로직
+├    |── Helpers/ # 값 변환기(Converter) 및 유틸리티
+├    |── Messages/ # MVVM 메시징 구조체
+├    |── Enums/ # 열거형(Enums)
+└    |── Resources/ # 이미지 및 리소스  
 │
 ├── Python_tcp/                   # Python 스케줄러 & TCP 연동
 │   ├── scheduler_app.py
