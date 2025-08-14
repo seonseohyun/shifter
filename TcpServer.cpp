@@ -217,7 +217,7 @@ void TcpServer::sendJsonResponse(SOCKET sock, const std::string& jsonStr) {
 bool TcpServer::connectToPythonServer(const nlohmann::json& request,
     nlohmann::json& pyRoot, std::string& out_err_msg)
 {
-    SOCKET sock = connectToPythonServerSocket("10.10.20.116", 6004);
+    SOCKET sock = connectToPythonServerSocket("10.10.20.116", 6010);
     if (sock == INVALID_SOCKET) { out_err_msg = "[Python] Connection failed"; return false; }
 
     std::string body = request.dump();
@@ -270,7 +270,7 @@ SOCKET TcpServer::connectToPythonServerSocket(const std::string& host, int port)
         sock = socket(p->ai_family, p->ai_socktype, p->ai_protocol);
         if (sock == INVALID_SOCKET) continue;
 
-        DWORD timeout = 7000;
+        DWORD timeout = 20000;
         setsockopt(sock, SOL_SOCKET, SO_RCVTIMEO, (const char*)&timeout, sizeof(timeout));
         setsockopt(sock, SOL_SOCKET, SO_SNDTIMEO, (const char*)&timeout, sizeof(timeout));
 

@@ -57,7 +57,7 @@ public:
     bool get_admin_context_by_uid(int admin_uid, AdminContext& out_ctx, string& out_err_msg);
     bool insert_schedule         (const string& date, int staff_uid, const string& shift_type, int duty_hours, string& out_err_msg);
     bool load_timetable_admin    (int team_uid, const string& from_date, const string& to_date, json& out_array, string& out_err_msg);
-
+    bool get_staff_list_gen(int team_uid, vector<StaffInfo>& out_staffs, string& out_err_msg);
     // 근무표 조회
     vector<ScheduleEntry> get_team_schedule (int team_uid, const string& target_month);
     vector<ScheduleEntry> get_staff_schedule(int team_uid, const string& target_month);

@@ -702,7 +702,7 @@ json ProtocolHandler::handle_gen_schedule(const json& root, DBManager& db) {
 
     // [2] 팀 소속 직원 목록 조회
     vector<StaffInfo> staff_list;
-    if (!db.get_staff_list_by_team(ctx.team_uid, staff_list, err_msg)) {
+    if (!db.get_staff_list_gen(ctx.team_uid, staff_list, err_msg)) {
         response["resp"] = "fail";
         response["message"] = toUTF8_safely(err_msg);
         return response;
@@ -745,6 +745,7 @@ json ProtocolHandler::handle_gen_schedule(const json& root, DBManager& db) {
         return response;
     }
     status = 5;
+    cout << py_request.dump(2);
 
     // [6] 응답 검증
     if (py_response.value("resp", "") != "success") {
@@ -777,7 +778,6 @@ json ProtocolHandler::handle_gen_schedule(const json& root, DBManager& db) {
     else {
         throw runtime_error("[JSON structure error] data not found");
     }
-
     status = 6;
 
     // [7] DB 저장

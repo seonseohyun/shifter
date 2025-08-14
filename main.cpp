@@ -136,7 +136,7 @@ void handleClient(SOCKET clientSocket) {
                 nlohmann::json response = ProtocolHandler::handle_gen_schedule(json, db);
                 TcpServer::sendJsonResponse(clientSocket, response.dump());
                 MIDDLELINE
-                //cout << response.dump(2) << endl;
+                cout << response.dump(2) << endl;
                 cout << u8"생성완료" << endl;
                 LINE
             }

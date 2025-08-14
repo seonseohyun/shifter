@@ -1,1 +1,1 @@
-{"protocol": "py_gen_schedule", "resp": "fail", "data": []}
+{"protocol": "res_handover_summary", "data": {"task": "summarize_handover", "result": "- 오늘은 3병동을 먼저 보는 일정이었음\n- 502호 환자의 수액 교체 및 혈당 체크 후 추가 인슐린 처방\n- 301호 환자의 갑작스러운 기침으로 흉부 X-ray 촬영\n- 4층 복도에서 낙상 위험 환자 발견 후 보호자에게 연락\n- 수액 펌프 소리 이상으로 튜브 교체\n- 격리실 환자의 TV 고장 문제로 기사님 불렀으나 오후 도착 예정"}, "resp": "success"}

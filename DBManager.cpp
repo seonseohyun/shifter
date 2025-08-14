@@ -1469,6 +1469,7 @@ bool DBManager::get_staff_list_by_team(int team_uid, vector<StaffInfo>& out_staf
     }
 
     try {
+        out_staffs.clear();  // 초기화
         unique_ptr<sql::PreparedStatement> stmt(conn_->prepareStatement(R"SQL(
             SELECT
               s.staff_uid,
@@ -1521,6 +1522,45 @@ bool DBManager::get_staff_list_by_team(int team_uid, vector<StaffInfo>& out_staf
         return false;
     }
 }
+// - team_uid -> staff meta
+bool DBManager::get_staff_list_gen(int team_uid, vector<StaffInfo>& out_staffs, string& out_err_msg) {
+    if (!conn_) {
+        out_err_msg = u8"[DB 오류] DB 연결 실패";
+        return false;
+    }
+
+    try {
+        out_staffs.clear();
+        unique_ptr<sql::PreparedStatement> stmt(conn_->prepareStatement(R"SQL(
+            SELECT DISTINCT
+              s.staff_uid,
+              s.name,
+              s.grade_level,
+              s.monthly_workhour
+            FROM staff s
+            WHERE s.team_uid = ?
+            ORDER BY s.grade_level, s.staff_uid
+        )SQL"));
+        stmt->setInt(1, team_uid);
+
+        unique_ptr<sql::ResultSet> res(stmt->executeQuery());
+        while (res->next()) {
+            StaffInfo info;
+            info.staff_uid = res->getInt("staff_uid");
+            info.name = res->getString("name").c_str();
+            info.grade_level = res->getInt("grade_level");
+            info.monthly_workhour = res->getInt("monthly_workhour");
+            out_staffs.push_back(move(info));
+        }
+        return true;
+    }
+    catch (const sql::SQLException& e) {
+        out_err_msg = string("[DB ERROR] ") + e.what();
+        return false;
+    }
+}
+
+
 // - meta -> 임시 직원 정보 채우기
 bool DBManager::build_tmp_staff_from_meta(const vector<StaffInfo>& meta, vector<StaffInfo>& out_list, int tmp_flag){
     out_list.clear();
