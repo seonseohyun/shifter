@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media;
-using ShifterUser.Enums; // ★ enum 네임스페이스 맞춰줌
+using ShifterUser.Enums;
 
 namespace ShifterUser.Converters
 {

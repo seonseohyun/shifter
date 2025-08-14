@@ -90,9 +90,6 @@ namespace ShifterUser.ViewModels
                 case PageType.Goback:
                         _mainFrame.GoBack();
                         break;
-                case PageType.Page:
-                    _mainFrame.Navigate(new Page1 { DataContext = App.Services.GetRequiredService<PageViewModel>() });
-                    break;
             }
         }
     }

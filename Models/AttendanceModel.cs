@@ -50,7 +50,6 @@ namespace ShifterUser.Models
         public string ClockInStatusText => IsClockInDone ? "출근 완료" : "미출근";
         public string ClockOutStatusText => IsClockOutDone ? "퇴근 완료" : "미퇴근";
 
-        // ★ 여기가 새로 추가되는 부분
         public AttendanceDot StatusDot =>
             IsClockOutDone ? AttendanceDot.Blue :
             IsClockInDone ? AttendanceDot.Green :
