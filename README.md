@@ -117,3 +117,38 @@
  - HandoverNote Model: 인수인계 기록, 첨부파일 경로/이름 저장
  - CheckIn Model: 출퇴근 기록과 타입, 타임스탬프 관리
  - Notice Model: 공지사항 등록/조회
+
+---
+##프로젝트 메인 디렉토리 구조
+```
+shifter/
+├── Server_dev/                   # C++ TCP 서버 개발
+│   ├── main.cpp
+│   ├── TcpServer.cpp / TcpServer.h
+│   ├── DBManager.cpp / DBManager.h
+│   ├── ProtocolHandler.cpp / ProtocolHandler.h
+│   └── 기타 서버 관련 소스
+│
+├── Admin_dev/                    # 관리자용 WPF 클라이언트
+│   └── ...
+│
+├── User_dev/                     # 직원용 WPF 클라이언트
+│   └── ...
+│
+├── Python_tcp/                   # Python 스케줄러 & TCP 연동
+│   ├── scheduler_app.py
+│   └── requirements.txt
+│
+├── docs/                         # 개발 문서
+│   ├── DemoScreenshot/
+│   ├── DemoVideo/
+│   ├── Database Schema Definition.pdf
+│   ├── Development Schedule.pdf
+│   ├── ERD.png
+│   ├── Protocol Specification.pdf
+│   └── System Architecture Diagram.png
+│
+├── README.md                     # 프로젝트 개요
+└── LICENSE
+```
+
