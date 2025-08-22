@@ -123,24 +123,33 @@
 ```
 shifter/
 ├── Server_dev/                   # C++ TCP 서버 개발
-│   ├── main.cpp
+│   ├── main.cpp # TCP서버 실행부, 프로토콜 분기
 │   ├── TcpServer.cpp / TcpServer.h
 │   ├── DBManager.cpp / DBManager.h
 │   ├── ProtocolHandler.cpp / ProtocolHandler.h
-│   └── 기타 서버 관련 소스
+│   └── struct.h  #공용 데이터 구조체
 │
 ├── Admin_dev/                    # 관리자용 WPF 클라이언트
-│   └── ...
+│    |── Models/ # 데이터 구조 정의
+│    |── ViewModels # 화면별 ViewModel
+│    |── Views    # UI 화면 (XAML)
+│    ├── Enums    # 열거형(Enums)
+│    ├── Helpers  # 값 변환기(Converter) 및 유틸리티
+│    ├── Helpers  # 값 변환기(Converter) 및 유틸리티
+│    |── Messages # MVVM 메시징 구조체
+│    |── Resources/Services # MVVM 메시징 구조체
+│    └──  Structs    # 전송용/공유용 구조체 정의
+
 │
 ├── User_dev/                     # 직원용 WPF 클라이언트
-│    ├── Views/ # UI 화면 (XAML)
-├    |── ViewModels/ # 화면별 ViewModel
-├    |── Models/ # 데이터 구조 정의
-├    |── Services/ # 서버 통신, 데이터 관리 로직
-├    |── Helpers/ # 값 변환기(Converter) 및 유틸리티
-├    |── Messages/ # MVVM 메시징 구조체
-├    |── Enums/ # 열거형(Enums)
-└    |── Resources/ # 이미지 및 리소스  
+│    ├── Views      # UI 화면 (XAML)
+├    |── ViewModels # 화면별 ViewModel
+├    |── Model      # 데이터 구조 정의
+├    |── Services   # 서버 통신, 데이터 관리 로직
+├    |── Helpers    # 값 변환기(Converter) 및 유틸리티
+├    |── Messages   # MVVM 메시징 구조체
+├    |── Enums      # 열거형(Enums)
+└    └── Resources  # 이미지 및 리소스  
 │
 ├── Python_tcp/                   # Python 스케줄러 & TCP 연동
 │   ├── scheduler_app.py
